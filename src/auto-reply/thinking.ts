@@ -79,11 +79,14 @@ export function supportsXHighThinking(provider?: string | null, model?: string |
   if (!modelKey) {
     return false;
   }
+  if (XHIGH_MODEL_IDS.has(modelKey)) {
+    return true;
+  }
   const providerKey = provider?.trim().toLowerCase();
   if (providerKey) {
     return XHIGH_MODEL_SET.has(`${providerKey}/${modelKey}`);
   }
-  return XHIGH_MODEL_IDS.has(modelKey);
+  return false;
 }
 
 export function listThinkingLevels(provider?: string | null, model?: string | null): ThinkLevel[] {
