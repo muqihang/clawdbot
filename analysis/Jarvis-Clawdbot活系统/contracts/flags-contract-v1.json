@@ -1,0 +1,65 @@
+{
+  "version": "jarvis-flags-contract-v1",
+  "flags": [
+    {
+      "name": "memory.jarvis.enabled",
+      "default": false
+    },
+    {
+      "name": "memory.jarvis.read_mode",
+      "default": "local"
+    },
+    {
+      "name": "memory.jarvis.write_mode",
+      "default": "off"
+    },
+    {
+      "name": "memory.jarvis.cutover_percent",
+      "default": 0
+    },
+    {
+      "name": "memory.jarvis.backfill.enabled",
+      "default": false
+    },
+    {
+      "name": "security.auth_claim_mapping.enabled",
+      "default": false
+    },
+    {
+      "name": "security.mtls.required",
+      "default": false
+    },
+    {
+      "name": "governance.approval_api.enabled",
+      "default": false
+    },
+    {
+      "name": "governance.approval_api.require_audit_write",
+      "default": true
+    },
+    {
+      "name": "governance.data_policy.enforced",
+      "default": false
+    },
+    {
+      "name": "governance.forgetting.purge_enabled",
+      "default": false
+    },
+    {
+      "name": "quota.enforced",
+      "default": false
+    },
+    {
+      "name": "quota.hard_block.enabled",
+      "default": false
+    },
+    {
+      "name": "replay.auto.enabled",
+      "default": false
+    },
+    {
+      "name": "replay.partition_strict.enabled",
+      "default": true
+    }
+  ]
+}

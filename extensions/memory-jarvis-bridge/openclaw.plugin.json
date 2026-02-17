@@ -1,0 +1,69 @@
+{
+  "id": "memory-jarvis-bridge",
+  "kind": "memory",
+  "name": "Memory (Jarvis Bridge)",
+  "description": "Compatibility-first memory bridge with optional Jarvis remote path",
+  "uiHints": {
+    "plugin_load": {
+      "label": "Plugin Load",
+      "help": "Enable/disable bridge registration without touching memory-core"
+    },
+    "default_route": {
+      "label": "Default Route",
+      "help": "Default route for bridge mode; local keeps memory-core as source of truth"
+    },
+    "read_mode": {
+      "label": "Read Mode",
+      "help": "local or remote reads"
+    },
+    "write_mode": {
+      "label": "Write Mode",
+      "help": "off or remote writes"
+    },
+    "jarvis_base_url": {
+      "label": "Jarvis Base URL",
+      "placeholder": "https://jarvis.example.com"
+    },
+    "jarvis_api_key": {
+      "label": "Jarvis API Key",
+      "sensitive": true
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "plugin_load": {
+        "type": "boolean",
+        "default": true
+      },
+      "default_route": {
+        "type": "string",
+        "enum": ["local", "jarvis"],
+        "default": "local"
+      },
+      "read_mode": {
+        "type": "string",
+        "enum": ["local", "remote"],
+        "default": "local"
+      },
+      "write_mode": {
+        "type": "string",
+        "enum": ["off", "remote"],
+        "default": "off"
+      },
+      "jarvis_base_url": {
+        "type": "string"
+      },
+      "jarvis_api_key": {
+        "type": "string"
+      },
+      "request_timeout_ms": {
+        "type": "number",
+        "minimum": 100,
+        "maximum": 120000,
+        "default": 3000
+      }
+    }
+  }
+}
