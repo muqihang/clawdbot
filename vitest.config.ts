@@ -37,6 +37,8 @@ export default defineConfig({
       "src/**/*.test.ts",
       "extensions/**/*.test.ts",
       "test/**/*.test.ts",
+      "analysis/Jarvis-Clawdbot活系统/contracts/**/*.test.mts",
+      "analysis/Jarvis-Clawdbot活系统/contracts/tests/**/*.spec.mts",
       "ui/src/ui/views/usage-render-details.test.ts",
     ],
     setupFiles: ["test/setup.ts"],

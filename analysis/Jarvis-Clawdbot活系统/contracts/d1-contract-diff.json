@@ -1,0 +1,159 @@
+{
+  "version": "d1-contract-diff-v1",
+  "generated_at": "2026-02-17T15:48:59.436Z",
+  "openapi_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml",
+  "ddl_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql",
+  "total_diffs": 12,
+  "unresolved_without_owner": 0,
+  "by_category": {
+    "openapi": {
+      "total": 7,
+      "open": 7,
+      "resolved": 0
+    },
+    "ddl": {
+      "total": 4,
+      "open": 4,
+      "resolved": 0
+    },
+    "flags": {
+      "total": 1,
+      "open": 1,
+      "resolved": 0
+    }
+  },
+  "diffs": [
+    {
+      "id": "api.missing_path.cancel",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "/v0/approval-tickets/{approvalId}/cancel",
+      "expected": "POST path exists",
+      "actual": "missing",
+      "resolution_task": "T00-02",
+      "notes": "P0 必需路径缺失。",
+      "status": "open"
+    },
+    {
+      "id": "api.missing_path.cutover.create",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "/v0/cutover/runs",
+      "expected": "POST path exists",
+      "actual": "missing",
+      "resolution_task": "T00-02",
+      "notes": "P0 必需路径缺失。",
+      "status": "open"
+    },
+    {
+      "id": "api.missing_path.cutover.advance",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "/v0/cutover/runs/{cutoverId}/advance",
+      "expected": "POST path exists",
+      "actual": "missing",
+      "resolution_task": "T00-02",
+      "notes": "P0 必需路径缺失。",
+      "status": "open"
+    },
+    {
+      "id": "api.missing_path.cutover.rollback",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "/v0/cutover/runs/{cutoverId}/rollback",
+      "expected": "POST path exists",
+      "actual": "missing",
+      "resolution_task": "T00-02",
+      "notes": "P0 必需路径缺失。",
+      "status": "open"
+    },
+    {
+      "id": "api.schema.approval_action_response.decision_id_required",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "components.schemas.ApprovalActionResponse.data.required",
+      "expected": "contains decision_id",
+      "actual": "[\"approval_id\",\"status\"]",
+      "resolution_task": "T00-02",
+      "notes": "审批动作返回体缺少 decision_id 必填约束。",
+      "status": "open"
+    },
+    {
+      "id": "api.schema.approval_action_response.decision_id_property",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "components.schemas.ApprovalActionResponse.data.properties.decision_id",
+      "expected": "UUID field exists",
+      "actual": "missing",
+      "resolution_task": "T00-02",
+      "notes": "审批动作返回体未声明 decision_id 字段。",
+      "status": "open"
+    },
+    {
+      "id": "api.schema.approval_action_response.status_canceled",
+      "category": "openapi",
+      "owner": "API 合同负责人",
+      "item": "components.schemas.ApprovalActionResponse.data.properties.status.enum",
+      "expected": "includes canceled",
+      "actual": "[\"approved\",\"rejected\",\"expired\"]",
+      "resolution_task": "T00-02",
+      "notes": "审批终态缺少 canceled。",
+      "status": "open"
+    },
+    {
+      "id": "ddl.missing_object.batch_003.audit.cutover_run",
+      "category": "ddl",
+      "owner": "DB 负责人",
+      "item": "audit.cutover_run",
+      "expected": "batch_003 contains object",
+      "actual": "missing",
+      "resolution_task": "T00-03",
+      "notes": "DDL 草案缺少 batch_003 对象。",
+      "status": "open"
+    },
+    {
+      "id": "ddl.missing_object.batch_003.audit.cutover_stage_log",
+      "category": "ddl",
+      "owner": "DB 负责人",
+      "item": "audit.cutover_stage_log",
+      "expected": "batch_003 contains object",
+      "actual": "missing",
+      "resolution_task": "T00-03",
+      "notes": "DDL 草案缺少 batch_003 对象。",
+      "status": "open"
+    },
+    {
+      "id": "ddl.missing_object.batch_004.public.memory_lifecycle_status_enum",
+      "category": "ddl",
+      "owner": "DB 负责人",
+      "item": "public.memory_lifecycle_status_enum",
+      "expected": "batch_004 contains object",
+      "actual": "missing",
+      "resolution_task": "T00-03",
+      "notes": "DDL 草案缺少 batch_004 对象。",
+      "status": "open"
+    },
+    {
+      "id": "ddl.missing_object.batch_004.mem.memory_record.lifecycle_status",
+      "category": "ddl",
+      "owner": "DB 负责人",
+      "item": "mem.memory_record.lifecycle_status",
+      "expected": "batch_004 contains object",
+      "actual": "missing",
+      "resolution_task": "T00-03",
+      "notes": "DDL 草案缺少 batch_004 对象。",
+      "status": "open"
+    },
+    {
+      "id": "flags.contract.freeze.pending",
+      "category": "flags",
+      "owner": "配置/门禁负责人",
+      "item": "15 canonical flags + defaults",
+      "expected": "contract file frozen in D1",
+      "actual": "pending T00-04/T00-06 lock",
+      "resolution_task": "T00-04",
+      "notes": "待冻结 flags: memory.jarvis.enabled=false, memory.jarvis.read_mode=local, memory.jarvis.write_mode=off, memory.jarvis.cutover_percent=0, memory.jarvis.backfill.enabled=false, security.auth_claim_mapping.enabled=false, security.mtls.required=false, governance.approval_api.enabled=false, governance.approval_api.require_audit_write=true, governance.data_policy.enforced=false, governance.forgetting.purge_enabled=false, quota.enforced=false, quota.hard_block.enabled=false, replay.auto.enabled=false, replay.partition_strict.enabled=true",
+      "status": "open"
+    }
+  ]
+}
