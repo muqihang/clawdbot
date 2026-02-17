@@ -8,7 +8,7 @@
 
 | category | total | open | resolved |
 | --- | ---: | ---: | ---: |
-| openapi | 7 | 7 | 0 |
+| openapi | 7 | 0 | 7 |
 | ddl | 4 | 4 | 0 |
 | flags | 1 | 1 | 0 |
 
@@ -16,13 +16,13 @@
 
 | id | category | status | owner | item | expected | actual | resolution_task | notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| api.missing_path.cancel | openapi | open | API 合同负责人 | /v0/approval-tickets/{approvalId}/cancel | POST path exists | missing | T00-02 | P0 必需路径缺失。 |
-| api.missing_path.cutover.create | openapi | open | API 合同负责人 | /v0/cutover/runs | POST path exists | missing | T00-02 | P0 必需路径缺失。 |
-| api.missing_path.cutover.advance | openapi | open | API 合同负责人 | /v0/cutover/runs/{cutoverId}/advance | POST path exists | missing | T00-02 | P0 必需路径缺失。 |
-| api.missing_path.cutover.rollback | openapi | open | API 合同负责人 | /v0/cutover/runs/{cutoverId}/rollback | POST path exists | missing | T00-02 | P0 必需路径缺失。 |
-| api.schema.approval_action_response.decision_id_required | openapi | open | API 合同负责人 | components.schemas.ApprovalActionResponse.data.required | contains decision_id | ["approval_id","status"] | T00-02 | 审批动作返回体缺少 decision_id 必填约束。 |
-| api.schema.approval_action_response.decision_id_property | openapi | open | API 合同负责人 | components.schemas.ApprovalActionResponse.data.properties.decision_id | UUID field exists | missing | T00-02 | 审批动作返回体未声明 decision_id 字段。 |
-| api.schema.approval_action_response.status_canceled | openapi | open | API 合同负责人 | components.schemas.ApprovalActionResponse.data.properties.status.enum | includes canceled | ["approved","rejected","expired"] | T00-02 | 审批终态缺少 canceled。 |
+| api.missing_path.cancel | openapi | resolved | API 合同负责人 | /v0/approval-tickets/{approvalId}/cancel | POST path exists | exists in openapi-v1 | T00-02 | 已在 v1 增加 cancel 路径。 |
+| api.missing_path.cutover.create | openapi | resolved | API 合同负责人 | /v0/cutover/runs | POST path exists | exists in openapi-v1 | T00-02 | 已在 v1 增加 cutover create 路径。 |
+| api.missing_path.cutover.advance | openapi | resolved | API 合同负责人 | /v0/cutover/runs/{cutoverId}/advance | POST path exists | exists in openapi-v1 | T00-02 | 已在 v1 增加 cutover advance 路径。 |
+| api.missing_path.cutover.rollback | openapi | resolved | API 合同负责人 | /v0/cutover/runs/{cutoverId}/rollback | POST path exists | exists in openapi-v1 | T00-02 | 已在 v1 增加 cutover rollback 路径。 |
+| api.schema.approval_action_response.decision_id_required | openapi | resolved | API 合同负责人 | components.schemas.ApprovalActionResponse.data.required | contains decision_id | includes decision_id in openapi-v1 | T00-02 | 已补齐 decision_id 必填约束。 |
+| api.schema.approval_action_response.decision_id_property | openapi | resolved | API 合同负责人 | components.schemas.ApprovalActionResponse.data.properties.decision_id | UUID field exists | uuid property declared in openapi-v1 | T00-02 | 已声明 decision_id 字段。 |
+| api.schema.approval_action_response.status_canceled | openapi | resolved | API 合同负责人 | components.schemas.ApprovalActionResponse.data.properties.status.enum | includes canceled | includes canceled in openapi-v1 | T00-02 | 已补齐 canceled 终态。 |
 | ddl.missing_object.batch_003.audit.cutover_run | ddl | open | DB 负责人 | audit.cutover_run | batch_003 contains object | missing | T00-03 | DDL 草案缺少 batch_003 对象。 |
 | ddl.missing_object.batch_003.audit.cutover_stage_log | ddl | open | DB 负责人 | audit.cutover_stage_log | batch_003 contains object | missing | T00-03 | DDL 草案缺少 batch_003 对象。 |
 | ddl.missing_object.batch_004.public.memory_lifecycle_status_enum | ddl | open | DB 负责人 | public.memory_lifecycle_status_enum | batch_004 contains object | missing | T00-03 | DDL 草案缺少 batch_004 对象。 |
