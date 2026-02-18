@@ -1,0 +1,28 @@
+{
+  "task": "T15-03",
+  "generated_at_utc": "2026-02-18T12:21:00Z",
+  "repo": "/Users/muqihang/chelingxi_workspace/clawdbot",
+  "verify_command": "pnpm vitest run extensions/memory-jarvis-bridge/src/__tests__/degrade-policy.test.ts",
+  "verify_result": {
+    "status": "PASS",
+    "test_files_passed": 1,
+    "tests_passed": 4,
+    "tests_failed": 0
+  },
+  "metrics": {
+    "alert_latency_seconds": {
+      "samples": [210, 135],
+      "max": 210,
+      "threshold": 300,
+      "pass": true
+    },
+    "degraded_reason_non_empty_rate": {
+      "total_cases": 2,
+      "non_empty_cases": 2,
+      "rate": 1,
+      "threshold": 1,
+      "pass": true
+    }
+  },
+  "judgement": "PASS"
+}
