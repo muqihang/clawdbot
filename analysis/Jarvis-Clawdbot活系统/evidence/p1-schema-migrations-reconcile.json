@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "generated_at_utc": "2026-02-18T12:12:00Z",
+    "project_ref": "tchjnedljlkspqcdthip",
+    "environment": "staging"
+  },
+  "ledger_check": {
+    "versions_checked": ["20260217103000", "20260217110000"],
+    "schema_migrations_rows": [],
+    "ledger_has_all_versions": false
+  },
+  "object_state": {
+    "batch_004": {
+      "mem_memory_record": "mem.memory_record",
+      "memory_lifecycle_status_enum": "memory_lifecycle_status_enum",
+      "verify_batch_004_data_governance": "PASS"
+    },
+    "batch_005": {
+      "quota_policy": "audit.quota_policy",
+      "quota_usage_hourly": "audit.quota_usage_hourly",
+      "quota_policy_degraded_reason_exists": true,
+      "quota_usage_degraded_reason_exists": true,
+      "uq_quota_scope_exists": true,
+      "uq_quota_usage_bucket_exists": true
+    }
+  },
+  "classification": "only_executed_not_ledgered",
+  "human_conclusion": "仅演练执行未入账本",
+  "risk": {
+    "level": "medium",
+    "blocking": false,
+    "summary": "对象可用但迁移账本缺失，存在后续自动化迁移判定分歧风险。"
+  },
+  "recommendation": [
+    "本轮不做高风险账本修复。",
+    "后续在审批窗口采用受控 marker/no-op 迁移补账本。",
+    "补账本前后都执行对象快照与对账报告。"
+  ]
+}

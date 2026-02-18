@@ -1,0 +1,43 @@
+[T14-01][staging] re-verify log
+timestamp_utc=2026-02-18T12:12:00Z
+project_ref=tchjnedljlkspqcdthip
+project_url=https://tchjnedljlkspqcdthip.supabase.co
+mode=supabase_mcp_execute_sql
+
+[PRECHECK]
+SQL: select to_regnamespace('mem') as mem_schema, to_regclass('mem.memory_record') as mem_memory_record, to_regtype('public.memory_lifecycle_status_enum') as lifecycle_enum;
+RESULT: mem_schema=null, mem_memory_record=null, lifecycle_enum=null
+
+[A1-FIX]
+SQL:
+begin;
+create schema if not exists mem;
+create table if not exists mem.memory_record (
+  memory_id uuid primary key,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+commit;
+RESULT: success
+
+[A1-POSTCHECK]
+SQL: select to_regnamespace('mem') as mem_schema, to_regclass('mem.memory_record') as mem_memory_record, to_regtype('public.memory_lifecycle_status_enum') as lifecycle_enum;
+RESULT: mem_schema=mem, mem_memory_record=mem.memory_record, lifecycle_enum=null
+
+[A2-APPLY]
+SQL FILE: /Users/muqihang/chelingxi_workspace/chelingxi-os/supabase/migrations/20260217103000_batch_004_data_governance.sql
+RESULT: success
+
+[A2-VERIFY]
+SQL FILE: /Users/muqihang/chelingxi_workspace/chelingxi-os/supabase/scripts/rollback/verify_batch_004_data_governance.sql
+RESULT: verify_batch_004_data_governance: PASS
+
+[A2-ASSERTIONS]
+SQL: lifecycle enum values query
+RESULT: {active,stale,archived,purge_candidate,purged}
+
+SQL: lifecycle_status default/not-null query
+RESULT: column_default='active'::memory_lifecycle_status_enum, is_nullable=NO
+
+[FINAL]
+status=PASS
