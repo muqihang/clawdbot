@@ -1,0 +1,204 @@
+{
+  "generated_at": "2026-02-18T13:00:15.176Z",
+  "total_scenarios": 6,
+  "dag_complete_scenarios": 6,
+  "dag_complete_ratio": 1,
+  "default_guardrail_state": {
+    "read_mode": "local",
+    "write_mode": "off"
+  },
+  "scenarios": [
+    {
+      "id": "jarvis_down",
+      "name": "Jarvis down",
+      "dag": {
+        "degrade": {
+          "stage": "degrade",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "detect jarvis endpoint unavailable and trigger degrade policy",
+          "evidence": "Jarvis down: degrade stage executed"
+        },
+        "fallback": {
+          "stage": "fallback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "fallback to local retrieval-only chain without jarvis write path",
+          "evidence": "Jarvis down: fallback stage executed"
+        },
+        "rollback": {
+          "stage": "rollback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "restore guardrails and keep read_mode=local/write_mode=off",
+          "evidence": "Jarvis down: rollback stage executed"
+        }
+      },
+      "dag_complete": true,
+      "post_recovery": {
+        "read_mode": "local",
+        "write_mode": "off"
+      }
+    },
+    {
+      "id": "graph_timeout",
+      "name": "Graph timeout",
+      "dag": {
+        "degrade": {
+          "stage": "degrade",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "detect graph execution timeout and lower retrieval complexity",
+          "evidence": "Graph timeout: degrade stage executed"
+        },
+        "fallback": {
+          "stage": "fallback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "fallback to bounded local graph traversal timeout profile",
+          "evidence": "Graph timeout: fallback stage executed"
+        },
+        "rollback": {
+          "stage": "rollback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "rollback graph timeout override and restore conservative defaults",
+          "evidence": "Graph timeout: rollback stage executed"
+        }
+      },
+      "dag_complete": true,
+      "post_recovery": {
+        "read_mode": "local",
+        "write_mode": "off"
+      }
+    },
+    {
+      "id": "vector_down",
+      "name": "Vector down",
+      "dag": {
+        "degrade": {
+          "stage": "degrade",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "detect vector index unavailable and disable vector retrieval path",
+          "evidence": "Vector down: degrade stage executed"
+        },
+        "fallback": {
+          "stage": "fallback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "fallback to lexical retrieval and cache snapshot mode",
+          "evidence": "Vector down: fallback stage executed"
+        },
+        "rollback": {
+          "stage": "rollback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "rollback temporary vector bypass and enforce local read-only policy",
+          "evidence": "Vector down: rollback stage executed"
+        }
+      },
+      "dag_complete": true,
+      "post_recovery": {
+        "read_mode": "local",
+        "write_mode": "off"
+      }
+    },
+    {
+      "id": "auth_fail",
+      "name": "Auth fail",
+      "dag": {
+        "degrade": {
+          "stage": "degrade",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "detect auth scope mismatch and enter degraded authorization mode",
+          "evidence": "Auth fail: degrade stage executed"
+        },
+        "fallback": {
+          "stage": "fallback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "fallback to deny-write safe path and scoped local read mode",
+          "evidence": "Auth fail: fallback stage executed"
+        },
+        "rollback": {
+          "stage": "rollback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "rollback transient auth policy mutation to conservative defaults",
+          "evidence": "Auth fail: rollback stage executed"
+        }
+      },
+      "dag_complete": true,
+      "post_recovery": {
+        "read_mode": "local",
+        "write_mode": "off"
+      }
+    },
+    {
+      "id": "quota_exceed",
+      "name": "Quota exceed",
+      "dag": {
+        "degrade": {
+          "stage": "degrade",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "detect quota exceeded and clamp expensive retrieval dimensions",
+          "evidence": "Quota exceed: degrade stage executed"
+        },
+        "fallback": {
+          "stage": "fallback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "fallback to low-cost retrieval profile with strict budget guardrails",
+          "evidence": "Quota exceed: fallback stage executed"
+        },
+        "rollback": {
+          "stage": "rollback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "rollback quota drill overrides and keep write_mode=off",
+          "evidence": "Quota exceed: rollback stage executed"
+        }
+      },
+      "dag_complete": true,
+      "post_recovery": {
+        "read_mode": "local",
+        "write_mode": "off"
+      }
+    },
+    {
+      "id": "replay_worker_crash",
+      "name": "Replay worker crash",
+      "dag": {
+        "degrade": {
+          "stage": "degrade",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "detect replay worker crash and switch to dead-letter accumulation",
+          "evidence": "Replay worker crash: degrade stage executed"
+        },
+        "fallback": {
+          "stage": "fallback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "fallback to manual replay trigger and manual fix flow",
+          "evidence": "Replay worker crash: fallback stage executed"
+        },
+        "rollback": {
+          "stage": "rollback",
+          "executed": true,
+          "timestamp": "2026-02-18T13:00:15.176Z",
+          "action": "rollback worker drill settings and preserve replay.auto.enabled=false",
+          "evidence": "Replay worker crash: rollback stage executed"
+        }
+      },
+      "dag_complete": true,
+      "post_recovery": {
+        "read_mode": "local",
+        "write_mode": "off"
+      }
+    }
+  ]
+}
