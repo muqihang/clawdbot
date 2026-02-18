@@ -1,4 +1,4 @@
-import type { JarvisBridgeFlags } from "../config/flags.js";
+import { buildLocalRollbackFlags, type JarvisBridgeFlags } from "../config/flags.js";
 import {
   createTokenIssuer,
   type TokenIssueInput,
@@ -117,9 +117,87 @@ const createDefaultTokenIssuer = (flags: JarvisBridgeFlags): TokenIssuer | undef
 
 export type JarvisAuthContext = TokenIssueInput;
 
+export type JarvisReadRoute = "local" | "jarvis";
+
+export type JarvisReadRoutingDecision = {
+  route: JarvisReadRoute;
+  shadow_compare: boolean;
+  cutover_percent: number;
+  read_mode: JarvisBridgeFlags["read_mode"];
+};
+
+const hashToPercentBucket = (seed: string): number => {
+  let hash = 0;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
+  }
+  return hash % 100;
+};
+
+const resolveReadRoutingDecision = (
+  flags: JarvisBridgeFlags,
+  hasRemoteBaseUrl: boolean,
+  routeKey: string,
+): JarvisReadRoutingDecision => {
+  if (!hasRemoteBaseUrl || flags.read_mode === "local") {
+    return {
+      route: "local",
+      shadow_compare: false,
+      cutover_percent: flags.cutover_percent,
+      read_mode: flags.read_mode,
+    };
+  }
+
+  if (flags.read_mode === "shadow") {
+    return {
+      route: "local",
+      shadow_compare: true,
+      cutover_percent: flags.cutover_percent,
+      read_mode: flags.read_mode,
+    };
+  }
+
+  if (flags.read_mode === "remote") {
+    return {
+      route: "jarvis",
+      shadow_compare: false,
+      cutover_percent: 100,
+      read_mode: flags.read_mode,
+    };
+  }
+
+  if (flags.cutover_percent <= 0) {
+    return {
+      route: "local",
+      shadow_compare: false,
+      cutover_percent: 0,
+      read_mode: flags.read_mode,
+    };
+  }
+
+  if (flags.cutover_percent >= 100) {
+    return {
+      route: "jarvis",
+      shadow_compare: false,
+      cutover_percent: 100,
+      read_mode: flags.read_mode,
+    };
+  }
+
+  const bucket = hashToPercentBucket(routeKey);
+  return {
+    route: bucket < flags.cutover_percent ? "jarvis" : "local",
+    shadow_compare: false,
+    cutover_percent: flags.cutover_percent,
+    read_mode: flags.read_mode,
+  };
+};
+
 export type JarvisClient = {
   canReadRemote(): boolean;
   canWriteRemote(): boolean;
+  resolveReadRoute(routeKey: string): JarvisReadRoutingDecision;
+  buildEmergencyRollbackFlags(): JarvisBridgeFlags;
   read(query: string, authContext?: JarvisAuthContext): Promise<unknown[] | null>;
   write(payload: unknown, authContext?: JarvisAuthContext): Promise<boolean>;
 };
@@ -163,14 +241,31 @@ export function createJarvisClient(
   const tokenIssuer = options.tokenIssuer ?? createDefaultTokenIssuer(flags);
   const defaultAuthContext = options.defaultAuthContext;
 
-  const canReadRemote = (): boolean => flags.read_mode === "remote" && Boolean(baseUrl);
+  const canReadRemote = (): boolean => {
+    if (!baseUrl || flags.read_mode === "local") {
+      return false;
+    }
+
+    if (flags.read_mode === "primary") {
+      return flags.cutover_percent > 0;
+    }
+
+    return true;
+  };
   const canWriteRemote = (): boolean => flags.write_mode === "remote" && Boolean(baseUrl);
 
   return {
     canReadRemote,
     canWriteRemote,
+    resolveReadRoute(routeKey: string): JarvisReadRoutingDecision {
+      return resolveReadRoutingDecision(flags, Boolean(baseUrl), routeKey);
+    },
+    buildEmergencyRollbackFlags(): JarvisBridgeFlags {
+      return buildLocalRollbackFlags(flags);
+    },
     async read(query: string, authContext?: JarvisAuthContext): Promise<unknown[] | null> {
-      if (!canReadRemote() || !baseUrl) {
+      const decision = resolveReadRoutingDecision(flags, Boolean(baseUrl), query);
+      if (decision.route !== "jarvis" || !baseUrl) {
         return null;
       }
 
