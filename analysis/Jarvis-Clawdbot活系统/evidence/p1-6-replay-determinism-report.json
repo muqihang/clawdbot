@@ -1,0 +1,36 @@
+{
+  "task": "T16-03",
+  "generated_at_utc": "2026-02-18T12:57:52Z",
+  "repo": "/Users/muqihang/chelingxi_workspace/chelingxi-os",
+  "verify_commands": [
+    {
+      "command": "npm run test:property -- replay-determinism",
+      "status": "PASS",
+      "test_files_passed": 1,
+      "tests_passed": 1,
+      "tests_failed": 0
+    },
+    {
+      "command": "npm exec vitest run src/nest/application/use-cases/__tests__/replay-worker.use-case.spec.ts",
+      "status": "PASS",
+      "test_files_passed": 1,
+      "tests_passed": 2,
+      "tests_failed": 0
+    }
+  ],
+  "metrics": {
+    "ordered_ok_events": 6,
+    "replayed_events": 6,
+    "ordered_ratio": 1,
+    "replay_consistency_pass_rate": 1,
+    "partition_strict_enabled": true,
+    "max_concurrent_partitions_observed": 2
+  },
+  "judgement": {
+    "thresholds": {
+      "ordered_ratio": "== 1.0",
+      "replay_consistency_pass_rate": ">= 0.99"
+    },
+    "result": "PASS"
+  }
+}
