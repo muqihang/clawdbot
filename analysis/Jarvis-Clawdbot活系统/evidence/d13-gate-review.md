@@ -1,6 +1,6 @@
 # D13 Gate Review
 
-- generated_at_utc: 2026-02-18T13:21:39.306Z
+- generated_at_utc: 2026-02-19T02:14:19.089Z
 - p0_all_green: true
 - p1_readiness: true
 - decision: GO
