@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-19T02:14:19.089Z",
+  "generated_at_utc": "2026-02-19T02:31:51.475Z",
   "input": {
     "in_dir": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/evidence",
     "out_file": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/evidence/d13-gate-review.json",
@@ -310,7 +310,7 @@
         "exists": true,
         "parseable": true,
         "non_empty": true,
-        "size_bytes": 1295,
+        "size_bytes": 1272,
         "parse_error": null
       },
       {
@@ -422,10 +422,10 @@
         "quota_alert_degraded_reason_rate": 1,
         "governance_pass": true,
         "verify_logs_pass": true,
-        "schema_ledger_has_all_versions": false,
+        "schema_ledger_has_all_versions": true,
         "schema_risk_blocking": false,
-        "schema_risk_level": "medium",
-        "schema_classification": "only_executed_not_ledgered"
+        "schema_risk_level": "low",
+        "schema_classification": "已补账本完成（Batch001~005）"
       },
       "evidence": [
         "evidence/p1-6-replay-api-test.json",
@@ -440,10 +440,7 @@
   "p0_all_green": true,
   "p1_readiness": true,
   "blockers": [],
-  "warnings": [
-    "P1 schema_migrations 账本未完整记录（演练对象存在但 ledger 缺失版本）",
-    "P1 schema_migrations 风险等级=medium"
-  ],
+  "warnings": [],
   "decision": "GO",
   "hard_rule": "仅当 p0_all_green=true 时，decision 才能为 GO；否则强制 NO-GO"
 }

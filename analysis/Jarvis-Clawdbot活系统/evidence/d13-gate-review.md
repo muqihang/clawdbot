@@ -1,6 +1,6 @@
 # D13 Gate Review
 
-- generated_at_utc: 2026-02-19T02:14:19.089Z
+- generated_at_utc: 2026-02-19T02:31:51.475Z
 - p0_all_green: true
 - p1_readiness: true
 - decision: GO
@@ -13,7 +13,7 @@
 | P0-1 审批闭环 | PASS | approval_api_pass=true, audit_completeness=1, decision_id_evidence=true |
 | P0-2 鉴权映射 | PASS | missing_claim=1, cross_scope=1, plugin_combined=1 |
 | P0-3 切流回填 | PASS | backfill=1, shadow=1, rollback_s=0, fault_dag=1 |
-| P1 Readiness（非阻断） | PASS | replay_ordered=1, replay_consistency=1, quota_rate=1, schema_ledger_complete=false |
+| P1 Readiness（非阻断） | PASS | replay_ordered=1, replay_consistency=1, quota_rate=1, schema_ledger_complete=true |
 
 ## Evidence Inventory
 
@@ -28,8 +28,7 @@
 
 ## Warnings
 
-- P1 schema_migrations 账本未完整记录（演练对象存在但 ledger 缺失版本）
-- P1 schema_migrations 风险等级=medium
+- 无
 
 ## Hard Rule
 

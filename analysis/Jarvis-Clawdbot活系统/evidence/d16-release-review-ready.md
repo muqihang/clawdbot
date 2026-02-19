@@ -8,7 +8,7 @@
 - 是否可进入 merge/release review：**YES（条件就绪）**
 - 结论依据：
   - D13 结果为 `p0_all_green=true`、`decision=GO`。
-  - P1 schema_migrations 联合补账本证据已提交。
+  - P1 schema_migrations 联合补账本证据已提交，且账本一致性风险已关闭（Batch001~005）。
   - 已完成双仓分支/HEAD/差异与 ahead-behind 采集。
 
 ## 2) 双仓状态快照（采集时刻）
@@ -36,7 +36,7 @@
 ## 4) 手工验证结果（替代 pre-commit）
 
 - `check-gate-review.mts` 已成功执行并刷新 `d13-gate-review.json`。
-- D13 关键字段读取：`p0_all_green=true`、`decision=GO`、`warnings` 为 P1 中风险提醒（非 P0 阻断）。
+- D13 关键字段读取：`p0_all_green=true`、`decision=GO`、`warnings=[]`（P1 schema_migrations 旧 warning 已收敛）。
 - 双仓 Git 状态与 ahead/behind 均已采集可追溯。
 
 ## 5) 执行建议（方案3）

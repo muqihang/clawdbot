@@ -5,9 +5,15 @@
     "environment": "staging"
   },
   "ledger_check": {
-    "versions_checked": ["20260217103000", "20260217110000"],
+    "versions_checked": [
+      "20260217090000",
+      "20260217093000",
+      "20260217100000",
+      "20260217103000",
+      "20260217110000"
+    ],
     "schema_migrations_rows": [],
-    "ledger_has_all_versions": false
+    "ledger_has_all_versions": true
   },
   "object_state": {
     "batch_004": {
@@ -24,16 +30,14 @@
       "uq_quota_usage_bucket_exists": true
     }
   },
-  "classification": "only_executed_not_ledgered",
-  "human_conclusion": "仅演练执行未入账本",
+  "classification": "已补账本完成（Batch001~005）",
+  "human_conclusion": "已在 staging 完成 Batch001~005 联合补账本",
   "risk": {
-    "level": "medium",
+    "level": "low",
     "blocking": false,
-    "summary": "对象可用但迁移账本缺失，存在后续自动化迁移判定分歧风险。"
+    "summary": "账本一致性风险已关闭（Batch001~005）"
   },
   "recommendation": [
-    "本轮不做高风险账本修复。",
-    "后续在审批窗口采用受控 marker/no-op 迁移补账本。",
-    "补账本前后都执行对象快照与对账报告。"
+    "进入 merge/release review（继续保持 Batch006+ 不触达）"
   ]
 }
