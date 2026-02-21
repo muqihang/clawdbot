@@ -1,0 +1,446 @@
+{
+  "generated_at_utc": "2026-02-19T03:05:14.456Z",
+  "input": {
+    "in_dir": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/evidence",
+    "out_file": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/evidence/d13-gate-review.json",
+    "execution_cwd": "/Users/muqihang/chelingxi_workspace/clawdbot"
+  },
+  "evidence_inventory": {
+    "in_dir": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/evidence",
+    "root_dir": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统",
+    "required_total": 26,
+    "required_ready": 26,
+    "missing_required": [],
+    "required_parse_failures": [],
+    "files": [
+      {
+        "path": "contracts/d1-contract-diff.md",
+        "required": true,
+        "type": "md",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 3612,
+        "parse_error": null
+      },
+      {
+        "path": "contracts/d1-contract-lock.md",
+        "required": true,
+        "type": "md",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 811,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-1-batch001-verify.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 149,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-1-approval-api-test.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 4253,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-1-audit-completeness.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 910,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-2-batch002-verify.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 932,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-2-auth-matrix.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 812,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-2-clawdbot-auth-e2e.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 836,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-3-batch003-verify.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 970,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-3-cutover-api-test.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 2639,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/d11-backfill-report.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 231,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/d11-shadow-report.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 194,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-3-rollback-drill.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 364,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-supabase-cloud-drill-report.md",
+        "required": true,
+        "type": "md",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 3386,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-4-batch004-verify.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 2595,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-4-governance-policy-report.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 340,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-5-batch005-verify.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 5290,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-5-quota-api-test.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 791,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-5-quota-alert-latency.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 683,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-6-batch006-verify.log",
+        "required": true,
+        "type": "log",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 9184,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-6-replay-api-test.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 871,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-6-replay-determinism-report.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 936,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/d12-fault-drill.json",
+        "required": true,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 6744,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/d12-fault-drill.md",
+        "required": true,
+        "type": "md",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 2305,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-staging-baseline-fix-report.md",
+        "required": true,
+        "type": "md",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 3028,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-schema-migrations-reconcile.md",
+        "required": true,
+        "type": "md",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 2277,
+        "parse_error": null
+      },
+      {
+        "path": "contracts/d1-contract-diff.json",
+        "required": false,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 5758,
+        "parse_error": null
+      },
+      {
+        "path": "contracts/flags-contract-v1.json",
+        "required": false,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 1279,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p0-supabase-cloud-drill-report.json",
+        "required": false,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 3691,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-schema-migrations-reconcile.json",
+        "required": false,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 1272,
+        "parse_error": null
+      },
+      {
+        "path": "evidence/p1-staging-baseline-fix-report.json",
+        "required": false,
+        "type": "json",
+        "exists": true,
+        "parseable": true,
+        "non_empty": true,
+        "size_bytes": 1744,
+        "parse_error": null
+      }
+    ]
+  },
+  "gates": {
+    "p0_0_contract_freeze": {
+      "name": "P0-0 合同冻结",
+      "pass": true,
+      "metrics": {
+        "lock_ready": true,
+        "unresolved": 0,
+        "signoff_all_signed": true,
+        "lock_rule_declared": true,
+        "lock_checklist_present": true,
+        "flags_count": 15
+      },
+      "evidence": [
+        "contracts/d1-contract-lock.md",
+        "contracts/d1-contract-diff.md",
+        "contracts/d1-contract-diff.json",
+        "contracts/flags-contract-v1.json"
+      ]
+    },
+    "p0_1_approval_closure": {
+      "name": "P0-1 审批闭环",
+      "pass": true,
+      "metrics": {
+        "approval_api_pass": true,
+        "audit_completeness_ratio": 1,
+        "audit_completeness_required": 1,
+        "batch001_verify_pass": true,
+        "decision_trace_required": true,
+        "request_trace_required": true,
+        "decision_id_evidence": true
+      },
+      "evidence": [
+        "evidence/p0-1-approval-api-test.json",
+        "evidence/p0-1-audit-completeness.json",
+        "evidence/p0-1-batch001-verify.log"
+      ]
+    },
+    "p0_2_auth_mapping": {
+      "name": "P0-2 鉴权映射",
+      "pass": true,
+      "metrics": {
+        "missing_claim_fail_rate": 1,
+        "cross_scope_denied_rate": 1,
+        "plugin_cross_tenant_blocked_rate": 1,
+        "plugin_cross_workspace_blocked_rate": 1,
+        "plugin_combined_blocked_rate": 1,
+        "plugin_interception_pass": true,
+        "batch002_verify_pass": true
+      },
+      "evidence": [
+        "evidence/p0-2-auth-matrix.json",
+        "evidence/p0-2-clawdbot-auth-e2e.json",
+        "evidence/p0-2-batch002-verify.log"
+      ]
+    },
+    "p0_3_cutover_backfill": {
+      "name": "P0-3 切流回填",
+      "pass": true,
+      "metrics": {
+        "backfill_ratio": 1,
+        "backfill_required": 0.995,
+        "shadow_ratio": 1,
+        "shadow_required": 0.98,
+        "rollback_duration_seconds": 0,
+        "rollback_duration_required_max": 60,
+        "rollback_after_read_mode": "local",
+        "rollback_after_cutover_percent": 0,
+        "rollback_pass_flag": true,
+        "fault_dag_ratio": 1,
+        "fault_dag_required": 1,
+        "cutover_api_pass": true,
+        "batch003_verify_pass": true
+      },
+      "evidence": [
+        "evidence/d11-backfill-report.json",
+        "evidence/d11-shadow-report.json",
+        "evidence/p0-3-rollback-drill.log",
+        "evidence/d12-fault-drill.json",
+        "evidence/p0-3-cutover-api-test.json",
+        "evidence/p0-3-batch003-verify.log"
+      ]
+    },
+    "p1_readiness": {
+      "name": "P1 Readiness（非阻断）",
+      "pass": true,
+      "metrics": {
+        "replay_ordered_ratio": 1,
+        "replay_ordered_required": 1,
+        "replay_consistency": 1,
+        "replay_consistency_required": 0.99,
+        "replay_manual_fix_audit_rate": 1,
+        "quota_degraded_reason_rate": 1,
+        "quota_alert_latency_seconds_max": 210,
+        "quota_alert_latency_required_max": 300,
+        "quota_alert_degraded_reason_rate": 1,
+        "governance_pass": true,
+        "verify_logs_pass": true,
+        "schema_ledger_has_all_versions": true,
+        "schema_risk_blocking": false,
+        "schema_risk_level": "low",
+        "schema_classification": "已补账本完成（Batch001~005）"
+      },
+      "evidence": [
+        "evidence/p1-6-replay-api-test.json",
+        "evidence/p1-6-replay-determinism-report.json",
+        "evidence/p1-5-quota-api-test.json",
+        "evidence/p1-5-quota-alert-latency.json",
+        "evidence/p1-schema-migrations-reconcile.json",
+        "evidence/p1-schema-migrations-reconcile.md"
+      ]
+    }
+  },
+  "p0_all_green": true,
+  "p1_readiness": true,
+  "blockers": [],
+  "warnings": [],
+  "decision": "GO",
+  "hard_rule": "仅当 p0_all_green=true 时，decision 才能为 GO；否则强制 NO-GO"
+}
