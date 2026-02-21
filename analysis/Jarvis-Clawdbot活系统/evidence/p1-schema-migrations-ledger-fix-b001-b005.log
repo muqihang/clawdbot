@@ -1,0 +1,109 @@
+=== P1 schema_migrations ledger fix log (Batch001~005) ===
+generated_at_utc=2026-02-18T14:24:58Z
+environment=staging
+project_ref=tchjnedljlkspqcdthip
+
+[context]
+- supabase_cli_version=2.72.7
+- linked_project_ref_from_supabase_temp=tchjnedljlkspqcdthip
+- mcp_get_project_url=https://tchjnedljlkspqcdthip.supabase.co
+- constraints_obeyed: no supabase db push; no business DDL/DML; repair-only
+
+[A/pre-check] scope ledger/object matrix (before)
+query=WITH versions AS (...) SELECT version,batch,marker_regclass,marker_exists,in_ledger,...
+result=[
+  {"version":"20260217090000","batch":"batch001","marker_regclass":"audit.approval_ticket","marker_exists":true,"in_ledger":false},
+  {"version":"20260217093000","batch":"batch002","marker_regclass":"audit.actor_role_binding","marker_exists":true,"in_ledger":false},
+  {"version":"20260217100000","batch":"batch003","marker_regclass":"audit.cutover_run","marker_exists":true,"in_ledger":false},
+  {"version":"20260217103000","batch":"batch004","marker_regclass":"mem.memory_record","marker_exists":true,"in_ledger":false},
+  {"version":"20260217110000","batch":"batch005","marker_regclass":"audit.quota_policy","marker_exists":true,"in_ledger":false}
+]
+
+[A/pre-check] schema_migrations full versions snapshot (before)
+query=SELECT version,name,created_by FROM supabase_migrations.schema_migrations ORDER BY version;
+versions_before=["001","002","003","004","005","006","007","008","009","20251118070143","20251118074519","20251118080343","20251118093000","20251118095643","20251118095744","20251118110000","20251118123000","20251118133000","20251118141500","20251118160000","20251118173000","20251118190000","20260117090000","20260117090100","20260117153629","20260117153708","20260117154110","20260117154237","20260117160000","20260117160425","20260117162000","20260118032000","20260118033837","20260118034500","20260118104500","20260119064601","20260122143000","20260124000000","20260124000001","20260124000002","20260124000004","20260204000000","20260204000001","20260205000000","20260206142000","20260207062457","20260207062542","20260207062558","20260207074856","20260207151000","20260207152000","20260207153000","20260207174000"]
+
+[A/pre-check] missing versions in scope (before)
+result=[{"missing_versions":["20260217090000","20260217093000","20260217100000","20260217103000","20260217110000"]}]
+
+[A/pre-check] object_state details
+result=[{
+  "b001_approval_ticket_exists":true,
+  "b002_actor_role_binding_exists":true,
+  "b003_cutover_run_exists":true,
+  "b004_memory_record_exists":true,
+  "b004_lifecycle_enum_exists":true,
+  "b004_lifecycle_column_exists":true,
+  "b005_quota_policy_exists":true,
+  "b005_quota_usage_hourly_exists":true,
+  "b005_quota_policy_degraded_reason_exists":true,
+  "b005_quota_usage_degraded_reason_exists":true,
+  "b005_uq_quota_scope_exists":true,
+  "b005_uq_quota_usage_bucket_exists":true
+}]
+
+[B/repair] ascending execution
+
+cmd=supabase migration repair 20260217090000 --status applied --db-url "$SUPABASE_DB_URL" --yes
+stdout=Repaired migration history: [20260217090000] => applied
+recheck_sql_result=[{"version":"20260217090000","in_ledger":true,"marker_exists":true}]
+
+cmd=supabase migration repair 20260217093000 --status applied --db-url "$SUPABASE_DB_URL" --yes
+stdout=Repaired migration history: [20260217093000] => applied
+recheck_sql_result=[{"version":"20260217093000","in_ledger":true,"marker_exists":true}]
+
+cmd=supabase migration repair 20260217100000 --status applied --db-url "$SUPABASE_DB_URL" --yes
+stdout=Repaired migration history: [20260217100000] => applied
+recheck_sql_result=[{"version":"20260217100000","in_ledger":true,"marker_exists":true}]
+
+cmd=supabase migration repair 20260217103000 --status applied --db-url "$SUPABASE_DB_URL" --yes
+stdout=Repaired migration history: [20260217103000] => applied
+recheck_sql_result=[{"version":"20260217103000","in_ledger":true,"marker_exists":true,"lifecycle_enum_exists":true,"lifecycle_column_exists":true}]
+
+cmd=supabase migration repair 20260217110000 --status applied --db-url "$SUPABASE_DB_URL" --yes
+stdout=Repaired migration history: [20260217110000] => applied
+recheck_sql_result=[{"version":"20260217110000","in_ledger":true,"quota_policy_exists":true,"quota_usage_hourly_exists":true,"quota_policy_degraded_reason_exists":true,"quota_usage_degraded_reason_exists":true,"uq_quota_scope_exists":true,"uq_quota_usage_bucket_exists":true}]
+
+[C/post-check]
+query=scope missing versions
+result=[{"missing_versions":[]}]
+
+query=scope rows in schema_migrations
+result=[
+  {"version":"20260217090000","name":"batch_001_approval_closure","created_by":null},
+  {"version":"20260217093000","name":"batch_002_auth_scope_mapping","created_by":null},
+  {"version":"20260217100000","name":"batch_003_cutover_runbook","created_by":null},
+  {"version":"20260217103000","name":"batch_004_data_governance","created_by":null},
+  {"version":"20260217110000","name":"batch_005_quota_capacity","created_by":null}
+]
+
+query=verify_schema_migrations_ledger_reconcile.sql (equivalent assertions)
+result=[{"result":"verify_schema_migrations_ledger_reconcile: PASS"}]
+
+query=batch006+ guard matrix
+result=[
+  {"version":"20260217090000","batch":"batch001","marker_regclass":"audit.approval_ticket","marker_exists":true,"in_ledger":true},
+  {"version":"20260217093000","batch":"batch002","marker_regclass":"audit.actor_role_binding","marker_exists":true,"in_ledger":true},
+  {"version":"20260217100000","batch":"batch003","marker_regclass":"audit.cutover_run","marker_exists":true,"in_ledger":true},
+  {"version":"20260217103000","batch":"batch004","marker_regclass":"mem.memory_record","marker_exists":true,"in_ledger":true},
+  {"version":"20260217110000","batch":"batch005","marker_regclass":"audit.quota_policy","marker_exists":true,"in_ledger":true},
+  {"version":"20260217113000","batch":"batch006","marker_regclass":"mem.replay_queue","marker_exists":false,"in_ledger":false}
+]
+
+query=versions >= 20260217090000
+result=[
+  {"version":"20260217090000"},
+  {"version":"20260217093000"},
+  {"version":"20260217100000"},
+  {"version":"20260217103000"},
+  {"version":"20260217110000"}
+]
+
+[C/post-check] schema_migrations full versions snapshot (after)
+query=SELECT version,name,created_by FROM supabase_migrations.schema_migrations ORDER BY version;
+versions_after=["001","002","003","004","005","006","007","008","009","20251118070143","20251118074519","20251118080343","20251118093000","20251118095643","20251118095744","20251118110000","20251118123000","20251118133000","20251118141500","20251118160000","20251118173000","20251118190000","20260117090000","20260117090100","20260117153629","20260117153708","20260117154110","20260117154237","20260117160000","20260117160425","20260117162000","20260118032000","20260118033837","20260118034500","20260118104500","20260119064601","20260122143000","20260124000000","20260124000001","20260124000002","20260124000004","20260204000000","20260204000001","20260205000000","20260206142000","20260207062457","20260207062542","20260207062558","20260207074856","20260207151000","20260207152000","20260207153000","20260207174000","20260217090000","20260217093000","20260217100000","20260217103000","20260217110000"]
+
+final_status=PASS
+scope_missing_before=[20260217090000,20260217093000,20260217100000,20260217103000,20260217110000]
+scope_missing_after=[]
+unexpected_changes=[]

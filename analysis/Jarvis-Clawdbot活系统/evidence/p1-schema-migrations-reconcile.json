@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "generated_at_utc": "2026-02-18T12:12:00Z",
+    "project_ref": "tchjnedljlkspqcdthip",
+    "environment": "staging"
+  },
+  "ledger_check": {
+    "versions_checked": [
+      "20260217090000",
+      "20260217093000",
+      "20260217100000",
+      "20260217103000",
+      "20260217110000"
+    ],
+    "schema_migrations_rows": [],
+    "ledger_has_all_versions": true
+  },
+  "object_state": {
+    "batch_004": {
+      "mem_memory_record": "mem.memory_record",
+      "memory_lifecycle_status_enum": "memory_lifecycle_status_enum",
+      "verify_batch_004_data_governance": "PASS"
+    },
+    "batch_005": {
+      "quota_policy": "audit.quota_policy",
+      "quota_usage_hourly": "audit.quota_usage_hourly",
+      "quota_policy_degraded_reason_exists": true,
+      "quota_usage_degraded_reason_exists": true,
+      "uq_quota_scope_exists": true,
+      "uq_quota_usage_bucket_exists": true
+    }
+  },
+  "classification": "已补账本完成（Batch001~005）",
+  "human_conclusion": "已在 staging 完成 Batch001~005 联合补账本",
+  "risk": {
+    "level": "low",
+    "blocking": false,
+    "summary": "账本一致性风险已关闭（Batch001~005）"
+  },
+  "recommendation": ["进入 merge/release review（继续保持 Batch006+ 不触达）"]
+}

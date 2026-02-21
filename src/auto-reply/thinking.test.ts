@@ -4,6 +4,7 @@ import {
   listThinkingLevels,
   normalizeReasoningLevel,
   normalizeThinkLevel,
+  supportsXHighThinking,
 } from "./thinking.js";
 
 describe("normalizeThinkLevel", () => {
@@ -49,6 +50,11 @@ describe("listThinkingLevels", () => {
   it("includes xhigh for github-copilot gpt-5.2 refs", () => {
     expect(listThinkingLevels("github-copilot", "gpt-5.2")).toContain("xhigh");
     expect(listThinkingLevels("github-copilot", "gpt-5.2-codex")).toContain("xhigh");
+  });
+
+  it("includes xhigh for codex model ids on compatible proxy providers", () => {
+    expect(supportsXHighThinking("sub2api", "gpt-5.3-codex")).toBe(true);
+    expect(listThinkingLevels("sub2api", "gpt-5.3-codex")).toContain("xhigh");
   });
 
   it("excludes xhigh for non-codex models", () => {

@@ -1,0 +1,166 @@
+[T16-01] Batch006 回放确定性 DDL 验证
+timestamp_utc=2026-02-18T12:23:34Z
+repo=/Users/muqihang/chelingxi_workspace/chelingxi-os
+reason=psql 和 DATABASE_URL 在本机命令链不可稳定复用，使用临时 Postgres 容器等价验证
+container=batch6_pg database=batch6_t16
+
+[RED] verify before migration (expected fail)
+$ docker exec batch6_pg psql -U postgres -d batch6_t16 -f /tmp/verify_batch_006_replay_determinism.sql
+psql:/tmp/verify_batch_006_replay_determinism.sql:9: ERROR:  assert_failed: schema mem is missing
+CONTEXT:  PL/pgSQL function inline_code_block line 4 at RAISE
+
+[GREEN] apply migration
+$ docker exec batch6_pg psql -U postgres -d batch6_t16 -f /tmp/20260217113000_batch_006_replay_determinism.sql
+BEGIN
+CREATE SCHEMA
+CREATE TABLE
+ALTER TABLE
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "tenant_id" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "workspace_id" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "partition_key" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "partition_seq" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "idempotency_key" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "payload" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "status" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "attempt_count" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "available_at" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "created_at" of relation "replay_queue" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:36: NOTICE:  column "updated_at" of relation "replay_queue" already exists, skipping
+UPDATE 0
+ALTER TABLE
+DO
+CREATE INDEX
+CREATE TABLE
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "tenant_id" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "workspace_id" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "partition_key" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "last_applied_seq" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "last_applied_at" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "metadata" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "created_at" of relation "replay_checkpoint" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:141: NOTICE:  column "updated_at" of relation "replay_checkpoint" already exists, skipping
+ALTER TABLE
+UPDATE 0
+ALTER TABLE
+DO
+CREATE TABLE
+ALTER TABLE
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "tenant_id" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "workspace_id" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "source_table" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "source_record_id" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "failure_code" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "failure_reason" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "payload" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "retryable" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "first_failed_at" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "last_failed_at" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "created_at" of relation "ingest_dead_letter" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:226: NOTICE:  column "updated_at" of relation "ingest_dead_letter" already exists, skipping
+UPDATE 0
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "dead_letter_id" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "tenant_id" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "workspace_id" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "operator" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "fix_action" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "fix_payload" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "applied" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "applied_at" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "created_at" of relation "replay_manual_fix" already exists, skipping
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:297: NOTICE:  column "updated_at" of relation "replay_manual_fix" already exists, skipping
+UPDATE 0
+ALTER TABLE
+DO
+CREATE INDEX
+DO
+psql:/tmp/20260217113000_batch_006_replay_determinism.sql:354: NOTICE:  batch_006_replay_determinism migration applied
+COMMIT
+
+[GREEN] verify after migration
+$ docker exec batch6_pg psql -U postgres -d batch6_t16 -f /tmp/verify_batch_006_replay_determinism.sql
+DO
+DO
+DO
+DO
+ replay_queue_regclass 
+-----------------------
+ mem.replay_queue
+(1 row)
+
+ replay_checkpoint_regclass 
+----------------------------
+ mem.replay_checkpoint
+(1 row)
+
+ ingest_dead_letter_regclass 
+-----------------------------
+ mem.ingest_dead_letter
+(1 row)
+
+ replay_manual_fix_regclass 
+----------------------------
+ mem.replay_manual_fix
+(1 row)
+
+ idx_replay_partition_order_regclass 
+-------------------------------------
+ mem.idx_replay_partition_order
+(1 row)
+
+                  result                   
+-------------------------------------------
+ verify_batch_006_replay_determinism: PASS
+(1 row)
+
+
+[ROLLBACK-DRILL] non-destructive rollback
+$ docker exec batch6_pg psql -U postgres -d batch6_t16 -f /tmp/20260217113000_batch_006_replay_determinism_rollback.sql
+BEGIN
+psql:/tmp/20260217113000_batch_006_replay_determinism_rollback.sql:7: NOTICE:  schema "mem" already exists, skipping
+CREATE SCHEMA
+DO
+COMMIT
+psql:/tmp/20260217113000_batch_006_replay_determinism_rollback.sql:29: NOTICE:  batch_006_replay_determinism rollback applied in non-destructive mode
+
+[POST-ROLLBACK] verify still pass
+$ docker exec batch6_pg psql -U postgres -d batch6_t16 -f /tmp/verify_batch_006_replay_determinism.sql
+DO
+DO
+DO
+DO
+ replay_queue_regclass 
+-----------------------
+ mem.replay_queue
+(1 row)
+
+ replay_checkpoint_regclass 
+----------------------------
+ mem.replay_checkpoint
+(1 row)
+
+ ingest_dead_letter_regclass 
+-----------------------------
+ mem.ingest_dead_letter
+(1 row)
+
+ replay_manual_fix_regclass 
+----------------------------
+ mem.replay_manual_fix
+(1 row)
+
+ idx_replay_partition_order_regclass 
+-------------------------------------
+ mem.idx_replay_partition_order
+(1 row)
+
+                  result                   
+-------------------------------------------
+ verify_batch_006_replay_determinism: PASS
+(1 row)
+
+
+[FINAL]
+status=PASS

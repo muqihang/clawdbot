@@ -1,0 +1,2226 @@
+openapi: 3.0.3
+info:
+  title: Jarvis KB API (for Clawdbot Integration)
+  version: 1.0.0-draft.1
+  description: |
+    OpenAPI draft for Jarvis x Clawdbot v1 contract freeze (D1).
+
+    Goals:
+    - Reuse existing PG + Vector + Graph capabilities
+    - Enforce structured envelope for traceability
+    - Support bounded autonomy via propose/commit governance
+    - Expose explicit degraded semantics and fallback path
+    - Freeze cancel + cutover + decision_id contract deltas for Batch-1
+
+servers:
+  - url: https://jarvis.internal
+    description: Production (example)
+  - url: http://localhost:8088
+    description: Local development
+
+tags:
+  - name: system
+    description: Health and capability endpoints
+  - name: ingest
+    description: Event ingestion and replay
+  - name: memory
+    description: Proposal/commit/conflict endpoints
+  - name: retrieval
+    description: Search and chunk retrieval
+  - name: graph
+    description: Graph neighborhood and impact analysis
+  - name: symbols
+    description: Symbol lookup (repo/code intelligence)
+  - name: artifacts
+    description: Artifact store and feedback
+  - name: approval
+    description: Approval workflow and ticket lifecycle
+  - name: audit
+    description: Audit query and trace retrieval
+  - name: governance
+    description: Data governance policy endpoints
+  - name: quota
+    description: Capacity and budget quota policy endpoints
+
+security:
+  - bearerAuth: []
+
+paths:
+  /v0/health:
+    get:
+      tags: [system]
+      summary: kb_health
+      operationId: getHealth
+      responses:
+        "200":
+          description: Service health summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+
+  /v0/capabilities:
+    get:
+      tags: [system]
+      summary: kb_capabilities
+      operationId: getCapabilities
+      responses:
+        "200":
+          description: Supported features and policy surfaces
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CapabilitiesResponse"
+
+  /v0/events/ingest:
+    post:
+      tags: [ingest]
+      summary: kb_ingest_event
+      operationId: ingestEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IngestEventRequest"
+      responses:
+        "202":
+          description: Event accepted for async processing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IngestEventResponse"
+        "409":
+          description: Idempotency hit or version conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/events/replay/run:
+    post:
+      tags: [ingest]
+      summary: Run replay worker once (manual recovery)
+      operationId: runReplay
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReplayRunRequest"
+      responses:
+        "200":
+          description: Replay pass completed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReplayRunResponse"
+
+  /v0/memory/proposals:
+    post:
+      tags: [memory]
+      summary: kb_memory_propose
+      operationId: createMemoryProposal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MemoryProposalRequest"
+      responses:
+        "202":
+          description: Proposal accepted into policy gate
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MemoryProposalResponse"
+        "409":
+          description: Duplicate idempotency key
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/memory/proposals/{proposalId}/commit:
+    post:
+      tags: [memory]
+      summary: kb_memory_commit
+      operationId: commitMemoryProposal
+      parameters:
+        - in: path
+          name: proposalId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MemoryCommitRequest"
+      x-contract-rules:
+        proposal_id_must_match_path_param: true
+        mismatch_error_code: VALIDATION_ERROR
+      responses:
+        "200":
+          description: Proposal committed into long-term memory
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MemoryCommitResponse"
+        "403":
+          description: Policy denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Version conflict
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/approval-tickets:
+    get:
+      tags: [approval]
+      summary: List approval tickets
+      operationId: listApprovalTickets
+      parameters:
+        - in: query
+          name: tenant_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: workspace_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: status
+          required: false
+          schema:
+            type: string
+            enum: [pending, approved, rejected, canceled, expired]
+        - in: query
+          name: subject_type
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 50
+      responses:
+        "200":
+          description: Approval tickets list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApprovalTicketListResponse"
+
+  /v0/approval-tickets/{approvalId}:
+    get:
+      tags: [approval]
+      summary: Get approval ticket
+      operationId: getApprovalTicket
+      parameters:
+        - in: path
+          name: approvalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - in: query
+          name: tenant_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: workspace_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Approval ticket detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApprovalTicketResponse"
+        "404":
+          description: Ticket not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/approval-tickets/{approvalId}/approve:
+    post:
+      tags: [approval]
+      summary: Approve ticket
+      operationId: approveTicket
+      parameters:
+        - in: path
+          name: approvalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApprovalActionRequest"
+      responses:
+        "200":
+          description: Ticket approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApprovalActionResponse"
+        "403":
+          description: Role or scope denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Ticket already resolved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/approval-tickets/{approvalId}/reject:
+    post:
+      tags: [approval]
+      summary: Reject ticket
+      operationId: rejectTicket
+      parameters:
+        - in: path
+          name: approvalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApprovalActionRequest"
+      responses:
+        "200":
+          description: Ticket rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApprovalActionResponse"
+        "403":
+          description: Role or scope denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Ticket already resolved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/approval-tickets/{approvalId}/expire:
+    post:
+      tags: [approval]
+      summary: Expire ticket
+      operationId: expireTicket
+      parameters:
+        - in: path
+          name: approvalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApprovalActionRequest"
+      responses:
+        "200":
+          description: Ticket expired
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApprovalActionResponse"
+        "403":
+          description: Role or scope denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Ticket already resolved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/approval-tickets/{approvalId}/cancel:
+    post:
+      tags: [approval]
+      summary: Cancel ticket
+      operationId: cancelTicket
+      parameters:
+        - in: path
+          name: approvalId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApprovalActionRequest"
+      responses:
+        "200":
+          description: Ticket canceled
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApprovalActionResponse"
+        "403":
+          description: Role or scope denied
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "409":
+          description: Ticket already resolved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/cutover/runs:
+    post:
+      tags: [system]
+      summary: Create cutover run
+      operationId: createCutoverRun
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CutoverRunCreateRequest"
+      responses:
+        "200":
+          description: Cutover run created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CutoverRunResponse"
+        "409":
+          description: Existing active cutover run blocks creation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/cutover/runs/{cutoverId}/advance:
+    post:
+      tags: [system]
+      summary: Advance cutover run stage
+      operationId: advanceCutoverRun
+      parameters:
+        - in: path
+          name: cutoverId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CutoverAdvanceRequest"
+      responses:
+        "200":
+          description: Cutover run advanced
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CutoverRunResponse"
+        "409":
+          description: Stage guard rejected transition
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/cutover/runs/{cutoverId}/rollback:
+    post:
+      tags: [system]
+      summary: Roll back cutover run stage
+      operationId: rollbackCutoverRun
+      parameters:
+        - in: path
+          name: cutoverId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CutoverRollbackRequest"
+      responses:
+        "200":
+          description: Cutover run rolled back
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CutoverRunResponse"
+        "409":
+          description: Rollback denied by state guard
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/audit/requests:
+    get:
+      tags: [audit]
+      summary: Query request/audit trail
+      operationId: listAuditRequests
+      parameters:
+        - in: query
+          name: tenant_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: workspace_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: request_id
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: trace_id
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: reason_code
+          required: false
+          schema:
+            $ref: "#/components/schemas/ReasonCode"
+        - in: query
+          name: from
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: to
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        "200":
+          description: Audit request list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuditRequestListResponse"
+
+  /v0/governance/policies/{tenantId}/{workspaceId}:
+    get:
+      tags: [governance]
+      summary: Get governance policy
+      operationId: getGovernancePolicy
+      parameters:
+        - in: path
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: workspaceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Governance policy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GovernancePolicyResponse"
+    put:
+      tags: [governance]
+      summary: Upsert governance policy
+      operationId: upsertGovernancePolicy
+      parameters:
+        - in: path
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: workspaceId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GovernancePolicyUpsertRequest"
+      responses:
+        "200":
+          description: Policy upserted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GovernancePolicyResponse"
+
+  /v0/quotas/{tenantId}/{workspaceId}:
+    get:
+      tags: [quota]
+      summary: Get quota policy
+      operationId: getQuotaPolicy
+      parameters:
+        - in: path
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: workspaceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Quota policy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuotaPolicyResponse"
+    put:
+      tags: [quota]
+      summary: Upsert quota policy
+      operationId: upsertQuotaPolicy
+      parameters:
+        - in: path
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: workspaceId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuotaPolicyUpsertRequest"
+      responses:
+        "200":
+          description: Quota policy upserted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuotaPolicyResponse"
+
+  /v0/quotas/{tenantId}/{workspaceId}/usage:
+    get:
+      tags: [quota]
+      summary: Get quota usage snapshot
+      operationId: getQuotaUsage
+      parameters:
+        - in: path
+          name: tenantId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: workspaceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Quota usage snapshot
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuotaUsageResponse"
+
+  /v0/events/replay/dead-letter/{deadLetterId}/resolve:
+    post:
+      tags: [ingest]
+      summary: Resolve dead-letter item manually
+      operationId: resolveDeadLetter
+      parameters:
+        - in: path
+          name: deadLetterId
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeadLetterResolveRequest"
+      responses:
+        "200":
+          description: Dead-letter item resolved or re-queued
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeadLetterResolveResponse"
+
+  /v0/memory/conflicts/preview:
+    post:
+      tags: [memory]
+      summary: kb_memory_conflict_preview
+      operationId: previewMemoryConflict
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MemoryConflictPreviewRequest"
+      responses:
+        "200":
+          description: Conflict candidates and suggested actions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MemoryConflictPreviewResponse"
+
+  /v0/search:
+    post:
+      tags: [retrieval]
+      summary: kb_search
+      operationId: searchKnowledge
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SearchRequest"
+      responses:
+        "200":
+          description: Search results with evidence and degraded info
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SearchResponse"
+
+  /v0/chunks/{chunkId}:
+    get:
+      tags: [retrieval]
+      summary: kb_get_chunk
+      operationId: getChunk
+      parameters:
+        - in: path
+          name: chunkId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: tenant_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: workspace_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Chunk payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetChunkResponse"
+        "404":
+          description: Chunk not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/chunks/batch-get:
+    post:
+      tags: [retrieval]
+      summary: kb_get_chunks
+      operationId: batchGetChunks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BatchGetChunksRequest"
+      responses:
+        "200":
+          description: Batch chunk payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BatchGetChunksResponse"
+
+  /v0/graph/entities/{entityId}/neighbors:
+    get:
+      tags: [graph]
+      summary: kb_graph_neighbors
+      operationId: getGraphNeighbors
+      parameters:
+        - in: path
+          name: entityId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: tenant_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: workspace_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: hops
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 3
+            default: 1
+        - in: query
+          name: relation_type
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: limit
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 20
+      responses:
+        "200":
+          description: Neighbor nodes and edges
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GraphNeighborsResponse"
+
+  /v0/graph/impact-report:
+    post:
+      tags: [graph]
+      summary: kb_impact_report_pg
+      operationId: getImpactReport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImpactReportRequest"
+      responses:
+        "200":
+          description: Impact report generated from graph + relational joins
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImpactReportResponse"
+
+  /v0/symbols/lookup:
+    post:
+      tags: [symbols]
+      summary: kb_symbol_lookup_pg
+      operationId: lookupSymbol
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SymbolLookupRequest"
+      responses:
+        "200":
+          description: Symbol lookup result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SymbolLookupResponse"
+
+  /v0/artifacts:
+    post:
+      tags: [artifacts]
+      summary: kb_store_artifact
+      operationId: storeArtifact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StoreArtifactRequest"
+      responses:
+        "201":
+          description: Artifact stored
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StoreArtifactResponse"
+
+  /v0/artifacts/{artifactId}:
+    get:
+      tags: [artifacts]
+      summary: kb_get_artifact
+      operationId: getArtifact
+      parameters:
+        - in: path
+          name: artifactId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: tenant_id
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: workspace_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Artifact payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetArtifactResponse"
+        "404":
+          description: Artifact not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /v0/artifacts/{artifactId}/feedback:
+    post:
+      tags: [artifacts]
+      summary: kb_feedback
+      operationId: submitArtifactFeedback
+      parameters:
+        - in: path
+          name: artifactId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ArtifactFeedbackRequest"
+      responses:
+        "200":
+          description: Feedback accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ArtifactFeedbackResponse"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT must include: sub, tenant_id, workspace_id, actor_role, scope, iss, aud, exp.
+        Authorization is fail-closed when required claims are missing or mismatched.
+
+  schemas:
+    Envelope:
+      type: object
+      required:
+        - envelope_version
+        - request_id
+        - trace_id
+        - source_system
+        - tenant_id
+        - workspace_id
+        - actor
+        - scope
+      properties:
+        envelope_version:
+          type: string
+          example: v1
+        request_id:
+          type: string
+          example: req_01JARVIS7W9P2W2W8Y3Q6NJ
+        trace_id:
+          type: string
+          example: tr_01JARVIS7W9P2W2W8Y3Q6NJ
+        source_system:
+          type: string
+          enum: [clawdbot, opencode, mobile, obsidian, repo_sync]
+        tenant_id:
+          type: string
+          example: tenant_default
+        workspace_id:
+          type: string
+          example: ws_main
+        actor:
+          $ref: "#/components/schemas/ActorContext"
+        scope:
+          $ref: "#/components/schemas/ScopeContext"
+        budget:
+          $ref: "#/components/schemas/BudgetContext"
+        degrade_policy:
+          $ref: "#/components/schemas/DegradePolicy"
+
+    ActorContext:
+      type: object
+      required: [actor_id, actor_type]
+      properties:
+        actor_id:
+          type: string
+        actor_type:
+          type: string
+          enum: [agent, user, policy_engine, system, human_reviewer]
+        session_id:
+          type: string
+
+    ScopeContext:
+      type: object
+      required: [scope_type, scope_id]
+      properties:
+        scope_type:
+          type: string
+          enum: [workspace, project, domain]
+        scope_id:
+          type: string
+
+    BudgetContext:
+      type: object
+      properties:
+        latency_ms:
+          type: integer
+          minimum: 50
+        max_candidates:
+          type: integer
+          minimum: 1
+          maximum: 500
+
+    DegradePolicy:
+      type: object
+      properties:
+        allow_degraded:
+          type: boolean
+          default: true
+        require_reason:
+          type: boolean
+          default: true
+
+    ResponseMeta:
+      type: object
+      required: [request_id, trace_id, status, timestamp, degraded]
+      properties:
+        request_id:
+          type: string
+        trace_id:
+          type: string
+        status:
+          type: string
+          enum: [ok, accepted, error]
+        timestamp:
+          type: string
+          format: date-time
+        degraded:
+          $ref: "#/components/schemas/DegradedInfo"
+
+    DegradedInfo:
+      type: object
+      required: [is_degraded]
+      properties:
+        is_degraded:
+          type: boolean
+        reason_code:
+          $ref: "#/components/schemas/ReasonCode"
+        fallback_path:
+          type: string
+          example: PG->VECTOR
+
+    ReasonCode:
+      type: string
+      enum:
+        - IDEMPOTENCY_HIT
+        - VERSION_CONFLICT
+        - POLICY_DENY
+        - POLICY_REVIEW_REQUIRED
+        - APPROVAL_ALREADY_RESOLVED
+        - APPROVAL_EXPIRED
+        - AUTH_INVALID_TOKEN
+        - AUTH_TENANT_SCOPE_MISMATCH
+        - AUTH_WORKSPACE_SCOPE_MISMATCH
+        - AUTH_ROLE_FORBIDDEN
+        - AUTH_SCOPE_DENIED
+        - QUOTA_EXCEEDED_QPS
+        - QUOTA_EXCEEDED_BUDGET
+        - QUOTA_EXCEEDED_INDEX_GROWTH
+        - REPLAY_EXHAUSTED
+        - DEG_GRAPH_TIMEOUT
+        - DEG_VECTOR_DOWN
+        - DEG_JARVIS_UNREACHABLE
+        - DEG_LOCAL_INDEX_STALE
+        - DEG_NO_EVIDENCE
+        - VALIDATION_ERROR
+        - INTERNAL_ERROR
+
+    ErrorResponse:
+      type: object
+      required: [meta, error]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code:
+              $ref: "#/components/schemas/ReasonCode"
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
+
+    HealthResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [status, checks]
+          properties:
+            status:
+              type: string
+              enum: [healthy, degraded, unhealthy]
+            checks:
+              type: array
+              items:
+                type: object
+                required: [name, status]
+                properties:
+                  name:
+                    type: string
+                  status:
+                    type: string
+                    enum: [ok, warn, fail]
+                  detail:
+                    type: string
+
+    CapabilitiesResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [engines, tools, governance]
+          properties:
+            engines:
+              type: object
+              properties:
+                postgres:
+                  type: boolean
+                vector:
+                  type: boolean
+                graph:
+                  type: boolean
+            tools:
+              type: array
+              items:
+                type: string
+            governance:
+              type: object
+              properties:
+                propose_commit:
+                  type: boolean
+                conflict_preview:
+                  type: boolean
+                explicit_degraded_reason:
+                  type: boolean
+
+    IngestEventRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [event]
+          properties:
+            event:
+              type: object
+              required:
+                - event_id
+                - idempotency_key
+                - source_event_id
+                - event_type
+                - event_time
+                - record_version
+                - payload
+              properties:
+                event_id:
+                  type: string
+                idempotency_key:
+                  type: string
+                source_event_id:
+                  type: string
+                event_type:
+                  type: string
+                event_time:
+                  type: string
+                  format: date-time
+                record_version:
+                  type: integer
+                  minimum: 1
+                payload:
+                  type: object
+                  additionalProperties: true
+
+    IngestEventResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [ingest_id, status, deduped]
+          properties:
+            ingest_id:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [accepted, deduped]
+            deduped:
+              type: boolean
+
+    ReplayRunRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [limit]
+          properties:
+            limit:
+              type: integer
+              minimum: 1
+              maximum: 1000
+              default: 100
+
+    ReplayRunResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [processed, resolved, failed]
+          properties:
+            processed:
+              type: integer
+            resolved:
+              type: integer
+            failed:
+              type: integer
+
+    MemoryProposalRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [proposal]
+          properties:
+            proposal:
+              type: object
+              required:
+                - proposal_id
+                - proposal_type
+                - subject
+                - statement
+                - idempotency_key
+              properties:
+                proposal_id:
+                  type: string
+                proposal_type:
+                  type: string
+                  enum: [memory_fact, memory_preference, memory_decision, relation_candidate, rule_candidate]
+                subject:
+                  type: string
+                statement:
+                  type: string
+                confidence:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                source_event_id:
+                  type: string
+                idempotency_key:
+                  type: string
+                evidence:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/EvidenceInput"
+                payload:
+                  type: object
+                  additionalProperties: true
+
+    EvidenceInput:
+      type: object
+      required: [source_type, source_ref]
+      properties:
+        source_type:
+          type: string
+          enum: [chat, obsidian, repo, postgres, vector, graph, artifact]
+        source_ref:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        snippet:
+          type: string
+
+    MemoryProposalResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [proposal_id, status]
+          properties:
+            proposal_id:
+              type: string
+            status:
+              type: string
+              enum: [proposed, review_required, policy_denied, policy_allowed]
+            policy_hint:
+              type: string
+
+    MemoryCommitRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [proposal_id, expected_record_version, policy_decision_ref]
+          properties:
+            proposal_id:
+              type: string
+            expected_record_version:
+              type: integer
+              minimum: 1
+            commit_reason:
+              type: string
+            policy_decision_ref:
+              type: string
+              format: uuid
+
+    MemoryCommitResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [memory_id, status, record_version]
+          properties:
+            memory_id:
+              type: string
+            status:
+              type: string
+              enum: [committed, superseded]
+            record_version:
+              type: integer
+            supersedes:
+              type: string
+
+    ApprovalTicketListResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [items]
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/ApprovalTicket"
+
+    ApprovalTicketResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          $ref: "#/components/schemas/ApprovalTicket"
+
+    ApprovalTicket:
+      type: object
+      required: [approval_id, status, tenant_id, workspace_id, subject_type, subject_id]
+      properties:
+        approval_id:
+          type: string
+          format: uuid
+        decision_id:
+          type: string
+          format: uuid
+        tenant_id:
+          type: string
+        workspace_id:
+          type: string
+        subject_type:
+          type: string
+        subject_id:
+          type: string
+        status:
+          type: string
+          enum: [pending, approved, rejected, canceled, expired]
+        required_approver_role:
+          type: string
+        requested_by_actor_id:
+          type: string
+        approved_by_actor_id:
+          type: string
+        comment:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        resolved_at:
+          type: string
+          format: date-time
+
+    ApprovalActionRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [action_idempotency_key]
+          properties:
+            action_idempotency_key:
+              type: string
+            expected_status:
+              type: string
+              enum: [pending]
+              default: pending
+            comment:
+              type: string
+
+    ApprovalActionResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [approval_id, decision_id, status]
+          properties:
+            approval_id:
+              type: string
+              format: uuid
+            decision_id:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [approved, rejected, canceled, expired]
+            resolved_at:
+              type: string
+              format: date-time
+
+    CutoverRunCreateRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [tenant_id, workspace_id]
+          properties:
+            tenant_id:
+              type: string
+            workspace_id:
+              type: string
+            requested_by:
+              type: string
+            target_stage:
+              type: string
+              enum:
+                [
+                  backfill_pending,
+                  backfill_done,
+                  shadow_read,
+                  compare_passed,
+                  canary,
+                  primary,
+                  steady,
+                ]
+
+    CutoverAdvanceRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [target_stage]
+          properties:
+            target_stage:
+              type: string
+              enum:
+                [
+                  backfill_done,
+                  shadow_read,
+                  compare_passed,
+                  canary,
+                  primary,
+                  steady,
+                ]
+            expected_current_stage:
+              type: string
+
+    CutoverRollbackRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [rollback_to_stage]
+          properties:
+            rollback_to_stage:
+              type: string
+              enum:
+                [backfill_pending, backfill_done, shadow_read, compare_passed, canary, local]
+            reason:
+              type: string
+
+    CutoverRunResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [cutover_id, status, current_stage]
+          properties:
+            cutover_id:
+              type: string
+              format: uuid
+            status:
+              type: string
+              enum: [running, completed, rolled_back]
+            current_stage:
+              type: string
+            updated_at:
+              type: string
+              format: date-time
+
+    AuditRequestListResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [items]
+          properties:
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  request_id:
+                    type: string
+                  trace_id:
+                    type: string
+                  endpoint:
+                    type: string
+                  action_name:
+                    type: string
+                  actor_id:
+                    type: string
+                  degraded_reason:
+                    $ref: "#/components/schemas/ReasonCode"
+                  started_at:
+                    type: string
+                    format: date-time
+                  finished_at:
+                    type: string
+                    format: date-time
+
+    GovernancePolicyUpsertRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [classification_rules, retention_rules]
+          properties:
+            classification_rules:
+              type: object
+              additionalProperties: true
+            retention_rules:
+              type: object
+              additionalProperties: true
+            masking_rules:
+              type: object
+              additionalProperties: true
+            kms_policy:
+              type: object
+              additionalProperties: true
+
+    GovernancePolicyResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          properties:
+            tenant_id:
+              type: string
+            workspace_id:
+              type: string
+            classification_rules:
+              type: object
+              additionalProperties: true
+            retention_rules:
+              type: object
+              additionalProperties: true
+            masking_rules:
+              type: object
+              additionalProperties: true
+            kms_policy:
+              type: object
+              additionalProperties: true
+
+    QuotaPolicyUpsertRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [qps_limit, top_k_max, embedding_budget_usd_daily]
+          properties:
+            qps_limit:
+              type: integer
+              minimum: 1
+            top_k_max:
+              type: integer
+              minimum: 1
+              maximum: 500
+            embedding_budget_usd_daily:
+              type: number
+              minimum: 0
+            index_growth_soft_bytes:
+              type: integer
+              minimum: 0
+            index_growth_hard_bytes:
+              type: integer
+              minimum: 0
+
+    QuotaPolicyResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          properties:
+            tenant_id:
+              type: string
+            workspace_id:
+              type: string
+            qps_limit:
+              type: integer
+            top_k_max:
+              type: integer
+            embedding_budget_usd_daily:
+              type: number
+            index_growth_soft_bytes:
+              type: integer
+            index_growth_hard_bytes:
+              type: integer
+
+    QuotaUsageResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          properties:
+            qps_current:
+              type: number
+            qps_limit:
+              type: number
+            embedding_cost_usd_today:
+              type: number
+            embedding_budget_usd_daily:
+              type: number
+            index_bytes:
+              type: integer
+            degraded_reason:
+              $ref: "#/components/schemas/ReasonCode"
+
+    DeadLetterResolveRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [action]
+          properties:
+            action:
+              type: string
+              enum: [requeue, drop]
+            comment:
+              type: string
+
+    DeadLetterResolveResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [dead_letter_id, action, accepted]
+          properties:
+            dead_letter_id:
+              type: string
+              format: uuid
+            action:
+              type: string
+              enum: [requeue, drop]
+            accepted:
+              type: boolean
+
+    MemoryConflictPreviewRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [proposal]
+          properties:
+            proposal:
+              type: object
+              required: [proposal_type, subject, statement]
+              properties:
+                proposal_type:
+                  type: string
+                subject:
+                  type: string
+                statement:
+                  type: string
+                confidence:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+
+    MemoryConflictPreviewResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [conflicts]
+          properties:
+            conflicts:
+              type: array
+              items:
+                type: object
+                required: [conflict_type, suggested_action]
+                properties:
+                  conflict_type:
+                    type: string
+                    enum: [duplicate, contradiction, version, schema]
+                  existing_memory_id:
+                    type: string
+                  suggested_action:
+                    type: string
+                    enum: [commit_new, supersede, merge, reject]
+                  detail:
+                    type: object
+                    additionalProperties: true
+
+    SearchRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [query]
+          properties:
+            query:
+              type: string
+            filters:
+              type: object
+              additionalProperties: true
+            retrieval_plan:
+              type: object
+              properties:
+                enable_graph:
+                  type: boolean
+                  default: true
+                enable_vector:
+                  type: boolean
+                  default: true
+                graph_hops:
+                  type: integer
+                  minimum: 1
+                  maximum: 3
+                  default: 2
+                top_k:
+                  type: integer
+                  minimum: 1
+                  maximum: 200
+                  default: 20
+
+    SearchResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [results]
+          properties:
+            results:
+              type: array
+              items:
+                $ref: "#/components/schemas/SearchResult"
+
+    SearchResult:
+      type: object
+      required: [result_id, summary, score, evidence]
+      properties:
+        result_id:
+          type: string
+        summary:
+          type: string
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        evidence:
+          type: array
+          items:
+            $ref: "#/components/schemas/EvidenceItem"
+
+    EvidenceItem:
+      type: object
+      required: [engine, source_ref]
+      properties:
+        engine:
+          type: string
+          enum: [postgres, graph, vector, memory_local]
+        source_ref:
+          type: string
+        record_version:
+          type: integer
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+        path:
+          type: string
+        start_line:
+          type: integer
+        end_line:
+          type: integer
+
+    GetChunkResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [chunk_id, content]
+          properties:
+            chunk_id:
+              type: string
+            document_id:
+              type: string
+              format: uuid
+            content:
+              type: string
+            start_line:
+              type: integer
+            end_line:
+              type: integer
+            metadata:
+              type: object
+              additionalProperties: true
+
+    BatchGetChunksRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [chunk_ids]
+          properties:
+            chunk_ids:
+              type: array
+              minItems: 1
+              maxItems: 200
+              items:
+                type: string
+
+    BatchGetChunksResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [chunks]
+          properties:
+            chunks:
+              type: array
+              items:
+                type: object
+                properties:
+                  chunk_id:
+                    type: string
+                  content:
+                    type: string
+                  metadata:
+                    type: object
+                    additionalProperties: true
+
+    GraphNeighborsResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [neighbors]
+          properties:
+            neighbors:
+              type: array
+              items:
+                type: object
+                properties:
+                  entity_id:
+                    type: string
+                  relation_type:
+                    type: string
+                  relation_status:
+                    type: string
+                    enum: [candidate, active, deprecated]
+                  confidence:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+
+    ImpactReportRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [entity_id]
+          properties:
+            entity_id:
+              type: string
+            domain:
+              type: string
+            horizon_days:
+              type: integer
+              minimum: 1
+              maximum: 365
+              default: 30
+
+    ImpactReportResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          properties:
+            summary:
+              type: string
+            impacted_entities:
+              type: array
+              items:
+                type: object
+                properties:
+                  entity_id:
+                    type: string
+                  impact_score:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+
+    SymbolLookupRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [symbol]
+          properties:
+            symbol:
+              type: string
+            repository:
+              type: string
+            ref:
+              type: string
+
+    SymbolLookupResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          properties:
+            symbol:
+              type: string
+            matches:
+              type: array
+              items:
+                type: object
+                properties:
+                  file_path:
+                    type: string
+                  line:
+                    type: integer
+                  language:
+                    type: string
+                  score:
+                    type: number
+                    minimum: 0
+                    maximum: 1
+
+    StoreArtifactRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [artifact]
+          properties:
+            artifact:
+              type: object
+              required: [artifact_id, artifact_type]
+              properties:
+                artifact_id:
+                  type: string
+                artifact_type:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                uri:
+                  type: string
+                content_hash:
+                  type: string
+                payload:
+                  type: object
+                  additionalProperties: true
+
+    StoreArtifactResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [artifact_id, status]
+          properties:
+            artifact_id:
+              type: string
+            status:
+              type: string
+              enum: [stored, updated]
+
+    GetArtifactResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          properties:
+            artifact_id:
+              type: string
+            artifact_type:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            uri:
+              type: string
+            content_hash:
+              type: string
+            payload:
+              type: object
+              additionalProperties: true
+
+    ArtifactFeedbackRequest:
+      type: object
+      required: [envelope, payload]
+      properties:
+        envelope:
+          $ref: "#/components/schemas/Envelope"
+        payload:
+          type: object
+          required: [rating]
+          properties:
+            rating:
+              type: integer
+              minimum: -1
+              maximum: 1
+            comment:
+              type: string
+
+    ArtifactFeedbackResponse:
+      type: object
+      required: [meta, data]
+      properties:
+        meta:
+          $ref: "#/components/schemas/ResponseMeta"
+        data:
+          type: object
+          required: [artifact_id, accepted]
+          properties:
+            artifact_id:
+              type: string
+            accepted:
+              type: boolean

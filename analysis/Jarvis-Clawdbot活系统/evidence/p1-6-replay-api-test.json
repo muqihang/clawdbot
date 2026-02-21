@@ -1,0 +1,25 @@
+{
+  "task": "T16-02",
+  "generated_at_utc": "2026-02-18T12:53:27Z",
+  "repo": "/Users/muqihang/chelingxi_workspace/chelingxi-os",
+  "verify_command": "npm exec vitest run src/nest/interfaces/http/kb-v0/__tests__/replay.controller.spec.ts src/nest/interfaces/http/kb-v0/__tests__/replay.integration.spec.ts",
+  "verify_result": {
+    "status": "PASS",
+    "test_files_passed": 2,
+    "tests_passed": 3,
+    "tests_failed": 0
+  },
+  "dead_letter_manual_fix_metric": {
+    "sample_source": "replay.integration.spec.ts::supports replay run + dead-letter resolve endpoints with full manual-fix audit",
+    "total_resolved": 1,
+    "with_manual_fix_audit": 1,
+    "dead_letter_manual_fix_audit_rate": 1
+  },
+  "replay_flags": {
+    "replay_auto_enabled_default": false
+  },
+  "judgement": {
+    "threshold": "dead_letter_manual_fix_audit_rate == 1",
+    "result": "PASS"
+  }
+}

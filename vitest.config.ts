@@ -36,7 +36,10 @@ export default defineConfig({
     include: [
       "src/**/*.test.ts",
       "extensions/**/*.test.ts",
+      "scripts/**/*.test.mts",
       "test/**/*.test.ts",
+      "analysis/Jarvis-Clawdbot活系统/contracts/**/*.test.mts",
+      "analysis/Jarvis-Clawdbot活系统/contracts/tests/**/*.spec.mts",
       "ui/src/ui/views/usage-render-details.test.ts",
     ],
     setupFiles: ["test/setup.ts"],

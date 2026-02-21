@@ -85,6 +85,8 @@ USER.md
 
 # local tooling
 .serena/
+.opencode/
+.sisyphus/
 
 # Agent credentials and memory (NEVER COMMIT)
 /memory/
