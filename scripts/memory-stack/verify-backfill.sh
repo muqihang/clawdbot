@@ -61,9 +61,6 @@ for probe in "${PROBES[@]}"; do
       mem0_hit_run_id="$mem0_run_id"
       mem0_top_id="$(echo "$mem0_response" | jq -r '(.results // [])[0].id // ""' 2>/dev/null || true)"
     fi
-    if [[ "$mem0_count" -gt 0 ]]; then
-      break
-    fi
   done
 
   graphiti_payload="$(jq -nc \
