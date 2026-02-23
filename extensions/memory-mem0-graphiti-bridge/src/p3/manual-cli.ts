@@ -120,6 +120,7 @@ type ReportCliOptions = {
 };
 
 type AbCliOptions = {
+  mode?: string;
   dataset?: string;
   modelA?: string;
   modelB?: string;
@@ -474,6 +475,7 @@ export function registerMemoryBridgeP3Cli(params: {
   root
     .command("ab-eval")
     .description("Run write-path A/B quality evaluation on fixed validation set")
+    .option("--mode <mode>", "Evaluation mode: simulated|real", "simulated")
     .option("--dataset <path>", "Validation dataset path")
     .option("--model-a <id>", "Model A id", "gpt-5.1-codex-mini")
     .option("--model-b <id>", "Model B id", "gpt-5.3-codex")
@@ -491,15 +493,40 @@ export function registerMemoryBridgeP3Cli(params: {
       });
 
       const validationSet = await loadValidationSet(datasetPath);
+      const mode = normalizeString(opts.mode) === "real" ? "real" : "simulated";
       const report = await runWritePathAbEvaluation({
+        mode,
         modelA: normalizeString(opts.modelA) ?? "gpt-5.1-codex-mini",
         modelB: normalizeString(opts.modelB) ?? "gpt-5.3-codex",
         validationSet,
+        realOptions:
+          mode === "real"
+            ? {
+                mem0BaseUrl: params.flags.mem0.base_url ?? "http://127.0.0.1:8766",
+                mem0ApiKey: params.flags.mem0.api_key,
+                mem0Path: params.flags.p3.mem0_write_path || "/memories",
+                graphitiBaseUrl: params.flags.graphiti.base_url ?? "http://127.0.0.1:8000",
+                graphitiApiKey: params.flags.graphiti.api_key,
+                graphitiPath:
+                  params.flags.p3.graphiti_write_path === "/items"
+                    ? "/messages"
+                    : params.flags.p3.graphiti_write_path,
+                timeoutMs: params.flags.p3.write_timeout_ms,
+                maxAttempts: params.flags.p3.max_attempts,
+                baseBackoffMs: params.flags.p3.base_backoff_ms,
+                maxBackoffMs: params.flags.p3.max_backoff_ms,
+                jitterRatio: 0,
+                lowConfidenceThreshold: params.flags.p3.low_confidence_threshold,
+              }
+            : undefined,
       });
 
       await mkdir(path.dirname(outputPath), { recursive: true });
       await writeFile(outputPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 
+      console.log(`evaluation_mode: ${report.evaluationMode}`);
+      console.log(`data_source: ${report.dataSource}`);
+      console.log(`cost_assumption: ${report.costAssumption}`);
       console.log(`ab_eval_sample_size: ${String(report.sampleSize)}`);
       console.log(`model_a: ${report.modelA.model}`);
       console.log(`model_b: ${report.modelB.model}`);
