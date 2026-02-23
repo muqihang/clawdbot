@@ -16,7 +16,7 @@ describe("mem0 + graphiti clients", () => {
         results: [
           {
             id: "abc123",
-            snippet: "prefers dark mode",
+            memory: "prefers dark mode",
             score: 0.91,
           },
         ],
@@ -138,5 +138,12 @@ describe("mem0 + graphiti clients", () => {
         message: "upstream unavailable",
       },
     ]);
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "https://mem0.test/memories/abc123",
+      expect.objectContaining({
+        method: "GET",
+      }),
+    );
   });
 });

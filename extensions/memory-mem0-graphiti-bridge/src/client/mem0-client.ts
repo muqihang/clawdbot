@@ -135,6 +135,7 @@ const parseSearchHit = (source: BridgeRemoteSource, item: unknown): BridgeSearch
     normalizeString(record.snippet) ??
     normalizeString(record.text) ??
     normalizeString(record.content) ??
+    normalizeString(record.memory) ??
     "";
 
   return {
@@ -179,7 +180,8 @@ const parseTextRecord = (payload: unknown): string | undefined => {
   return (
     normalizeString(record.text) ??
     normalizeString(record.snippet) ??
-    normalizeString(record.content)
+    normalizeString(record.content) ??
+    normalizeString(record.memory)
   );
 };
 
@@ -358,7 +360,7 @@ export function createMem0Client(options: CreateMem0ClientOptions): RemoteMemory
   return createRemoteClient({
     source: "mem0",
     searchPath: "/search",
-    getPath: (id) => `/items/${encodeURIComponent(id)}`,
+    getPath: (id) => `/memories/${encodeURIComponent(id)}`,
     ...options,
   });
 }
