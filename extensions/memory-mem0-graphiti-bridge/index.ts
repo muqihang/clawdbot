@@ -5,6 +5,11 @@ import { createMem0Client } from "./src/client/mem0-client.js";
 import { mem0GraphitiBridgeConfigSchema, resolveBridgeFlags } from "./src/config/flags.js";
 import { createShadowReporter } from "./src/metrics/shadow-reporter.js";
 import { registerMemoryBridgeP2Cli } from "./src/p2/manual-cli.js";
+import { registerMemoryBridgeP3Cli } from "./src/p3/manual-cli.js";
+import { createOnlineIncrementalCapture } from "./src/p3/online-capture.js";
+import { createP3OutboxStore } from "./src/p3/outbox-store.js";
+import { createHttpBridgeWriter } from "./src/p3/remote-writer.js";
+import { createP3Worker } from "./src/p3/worker.js";
 import { resolveReadPlan } from "./src/router/read-router.js";
 import { createBridgeMemoryGetTool } from "./src/tools/memory-get-tool.js";
 import { createBridgeMemorySearchTool } from "./src/tools/memory-search-tool.js";
@@ -45,6 +50,11 @@ const memoryMem0GraphitiBridgePlugin = {
       ttlMs: 5 * 60 * 1000,
     });
     const shadowReporter = createShadowReporter(api.logger);
+    const resolvedOutboxDbPath = api.resolvePath(
+      flags.outbox.db_path ?? ".openclaw/memory-bridge-p3.sqlite",
+    );
+    const shouldCaptureWrites = flags.write_mode !== "off";
+    const shouldRunServiceWorker = flags.p3.auto_worker && shouldCaptureWrites;
 
     if (!flags.plugin_load) {
       api.logger.info("memory-mem0-graphiti-bridge: plugin_load=false, skipping registration");
@@ -119,8 +129,98 @@ const memoryMem0GraphitiBridgePlugin = {
       { commands: ["memory-bridge-p2"] },
     );
 
+    api.registerCli(
+      ({ program, workspaceDir, logger }) => {
+        registerMemoryBridgeP3Cli({
+          program,
+          workspaceDir,
+          logger,
+          flags,
+        });
+      },
+      { commands: ["memory-bridge-p3"] },
+    );
+
+    if (shouldCaptureWrites) {
+      const outbox = createP3OutboxStore({
+        dbPath: resolvedOutboxDbPath,
+      });
+      const capture = createOnlineIncrementalCapture({
+        writeMode: flags.write_mode,
+        outbox,
+        effectiveModel: flags.p3.model,
+      });
+
+      api.on("agent_end", async (event, ctx) => {
+        await capture.onAgentEnd(event, {
+          sessionKey: ctx.sessionKey,
+        });
+      });
+    }
+
+    if (shouldRunServiceWorker) {
+      let timer: NodeJS.Timeout | null = null;
+      let serviceOutbox: ReturnType<typeof createP3OutboxStore> | null = null;
+
+      api.registerService({
+        id: "memory-mem0-graphiti-bridge-p3-worker",
+        start: () => {
+          serviceOutbox = createP3OutboxStore({
+            dbPath: resolvedOutboxDbPath,
+          });
+
+          const worker = createP3Worker({
+            outbox: serviceOutbox,
+            maxAttempts: flags.p3.max_attempts,
+            baseBackoffMs: flags.p3.base_backoff_ms,
+            maxBackoffMs: flags.p3.max_backoff_ms,
+            jitterRatio: flags.p3.jitter_ratio,
+            lowConfidenceThreshold: flags.p3.low_confidence_threshold,
+            mem0Write: createHttpBridgeWriter({
+              source: "mem0",
+              baseUrl: flags.mem0.base_url,
+              apiKey: flags.mem0.api_key,
+              timeoutMs: flags.p3.write_timeout_ms,
+              path: flags.p3.mem0_write_path,
+            }),
+            graphitiWrite: createHttpBridgeWriter({
+              source: "graphiti",
+              baseUrl: flags.graphiti.base_url,
+              apiKey: flags.graphiti.api_key,
+              timeoutMs: flags.p3.write_timeout_ms,
+              path: flags.p3.graphiti_write_path,
+            }),
+          });
+
+          const run = () => {
+            worker.processOnce().catch((error) => {
+              api.logger.warn(
+                `memory-mem0-graphiti-bridge: p3 worker tick failed: ${String(error)}`,
+              );
+            });
+          };
+
+          run();
+          timer = setInterval(run, flags.p3.worker_interval_ms);
+          timer.unref?.();
+          api.logger.info(
+            `memory-mem0-graphiti-bridge: p3 worker service started (interval=${String(flags.p3.worker_interval_ms)}ms, model=${flags.p3.model})`,
+          );
+        },
+        stop: () => {
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+          serviceOutbox?.close();
+          serviceOutbox = null;
+          api.logger.info("memory-mem0-graphiti-bridge: p3 worker service stopped");
+        },
+      });
+    }
+
     api.logger.info(
-      `memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=${flags.read_mode}, candidate=${readinessPlan.candidateRoute}, user_route=${readinessPlan.userRoute})`,
+      `memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=${flags.read_mode}, write_mode=${flags.write_mode}, model=${flags.p3.model}, candidate=${readinessPlan.candidateRoute}, user_route=${readinessPlan.userRoute})`,
     );
   },
 };

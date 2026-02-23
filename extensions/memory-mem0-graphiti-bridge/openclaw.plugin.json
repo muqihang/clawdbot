@@ -23,6 +23,10 @@
     "request_timeout_ms": {
       "label": "Request Timeout",
       "help": "Remote request timeout budget in milliseconds"
+    },
+    "p3": {
+      "label": "P3 Governance",
+      "help": "Outbox/worker governance and model selection"
     }
   },
   "configSchema": {
@@ -133,6 +137,70 @@
           },
           "db_path": {
             "type": "string"
+          }
+        }
+      },
+      "p3": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "model": {
+            "type": "string",
+            "default": "gpt-5.1-codex-mini"
+          },
+          "max_attempts": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 50,
+            "default": 5
+          },
+          "base_backoff_ms": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 120000,
+            "default": 1000
+          },
+          "max_backoff_ms": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 600000,
+            "default": 300000
+          },
+          "jitter_ratio": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.15
+          },
+          "low_confidence_threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0.7
+          },
+          "write_timeout_ms": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 120000,
+            "default": 5000
+          },
+          "mem0_write_path": {
+            "type": "string",
+            "default": "/memories"
+          },
+          "graphiti_write_path": {
+            "type": "string",
+            "default": "/items"
+          },
+          "worker_interval_ms": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 120000,
+            "default": 60000
+          },
+          "auto_worker": {
+            "type": "boolean",
+            "default": false
           }
         }
       },

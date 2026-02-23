@@ -32,6 +32,29 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.cutover_percent).toBe(35);
   });
 
+  it("resolves P3 model selection from config/env", () => {
+    const previous = process.env.MEMORY_BRIDGE_P3_MODEL;
+    process.env.MEMORY_BRIDGE_P3_MODEL = "gpt-5.3-codex";
+
+    try {
+      const fromEnv = resolveBridgeFlags(undefined);
+      expect(fromEnv.p3.model).toBe("gpt-5.3-codex");
+
+      const fromConfig = resolveBridgeFlags({
+        p3: {
+          model: "gpt-5.1-codex-mini",
+        },
+      });
+      expect(fromConfig.p3.model).toBe("gpt-5.1-codex-mini");
+    } finally {
+      if (typeof previous === "string") {
+        process.env.MEMORY_BRIDGE_P3_MODEL = previous;
+      } else {
+        delete process.env.MEMORY_BRIDGE_P3_MODEL;
+      }
+    }
+  });
+
   it("clamps invalid percent and timeout values", () => {
     const flags = resolveBridgeFlags({
       cutover_percent: 150,

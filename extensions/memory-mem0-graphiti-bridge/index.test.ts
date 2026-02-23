@@ -61,6 +61,8 @@ describe("memory-mem0-graphiti-bridge", () => {
     };
     const registerTool = vi.fn();
     const registerCli = vi.fn();
+    const registerService = vi.fn();
+    const registerTypedHook = vi.fn();
     const createMemorySearchTool = vi.fn(() => searchTool);
     const createMemoryGetTool = vi.fn(() => getTool);
     const registerMemoryCli = vi.fn();
@@ -82,14 +84,20 @@ describe("memory-mem0-graphiti-bridge", () => {
         warn: vi.fn(),
         error: vi.fn(),
       },
+      resolvePath: (input: string) => input,
+      on: registerTypedHook,
       registerTool,
       registerCli,
+      registerService,
     } as unknown as OpenClawPluginApi;
 
     plugin.register(api);
 
     expect(registerTool).toHaveBeenCalledTimes(1);
-    expect(registerCli).toHaveBeenCalledTimes(2);
+    expect(registerCli).toHaveBeenCalledTimes(3);
+    expect(registerTypedHook).toHaveBeenCalledTimes(1);
+    expect(registerTypedHook).toHaveBeenCalledWith("agent_end", expect.any(Function));
+    expect(registerService).not.toHaveBeenCalled();
 
     const [factory, options] = registerTool.mock.calls[0] as [
       (ctx: { config?: unknown; sessionKey?: string }) => unknown,
@@ -146,5 +154,11 @@ describe("memory-mem0-graphiti-bridge", () => {
       { commands: string[] },
     ];
     expect(p2CliOptions.commands).toEqual(["memory-bridge-p2"]);
+
+    const [_p3CliFactory, p3CliOptions] = registerCli.mock.calls[2] as [
+      (ctx: { program: unknown }) => void,
+      { commands: string[] },
+    ];
+    expect(p3CliOptions.commands).toEqual(["memory-bridge-p3"]);
   });
 });

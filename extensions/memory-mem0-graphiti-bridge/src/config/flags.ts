@@ -25,6 +25,20 @@ export type BridgeOutboxFlags = {
   db_path?: string;
 };
 
+export type BridgeP3Flags = {
+  model: string;
+  max_attempts: number;
+  base_backoff_ms: number;
+  max_backoff_ms: number;
+  jitter_ratio: number;
+  low_confidence_threshold: number;
+  write_timeout_ms: number;
+  mem0_write_path: string;
+  graphiti_write_path: string;
+  worker_interval_ms: number;
+  auto_worker: boolean;
+};
+
 export type BridgeFlags = {
   plugin_load: boolean;
   read_mode: BridgeReadMode;
@@ -36,6 +50,7 @@ export type BridgeFlags = {
   mem0: BridgeRemoteServiceFlags;
   graphiti: BridgeRemoteServiceFlags;
   outbox: BridgeOutboxFlags;
+  p3: BridgeP3Flags;
   localHierarchy: {
     enabled: boolean;
   };
@@ -73,6 +88,19 @@ const DEFAULT_FLAGS: BridgeFlags = {
   graphiti: {},
   outbox: {
     enabled: false,
+  },
+  p3: {
+    model: "gpt-5.1-codex-mini",
+    max_attempts: 5,
+    base_backoff_ms: 1000,
+    max_backoff_ms: 300000,
+    jitter_ratio: 0.15,
+    low_confidence_threshold: 0.7,
+    write_timeout_ms: 5000,
+    mem0_write_path: "/memories",
+    graphiti_write_path: "/items",
+    worker_interval_ms: 60000,
+    auto_worker: false,
   },
   localHierarchy: {
     enabled: true,
@@ -175,6 +203,52 @@ const readPercent = (value: unknown): number => {
   return Math.floor(numericValue);
 };
 
+const readPositiveInt = (
+  value: unknown,
+  fallback: number,
+  minimum = 1,
+  maximum = 1_000_000,
+): number => {
+  const numericValue =
+    typeof value === "number"
+      ? value
+      : typeof value === "string"
+        ? Number.parseInt(value, 10)
+        : Number.NaN;
+
+  if (!Number.isFinite(numericValue)) {
+    return fallback;
+  }
+
+  const normalized = Math.floor(numericValue);
+  if (normalized < minimum) {
+    return minimum;
+  }
+  if (normalized > maximum) {
+    return maximum;
+  }
+  return normalized;
+};
+
+const readRatio = (value: unknown, fallback: number): number => {
+  const numericValue =
+    typeof value === "number"
+      ? value
+      : typeof value === "string"
+        ? Number.parseFloat(value)
+        : Number.NaN;
+  if (!Number.isFinite(numericValue)) {
+    return fallback;
+  }
+  if (numericValue <= 0) {
+    return 0;
+  }
+  if (numericValue >= 1) {
+    return 1;
+  }
+  return Math.round(numericValue * 1000) / 1000;
+};
+
 const readRemoteServiceFlags = (value: unknown): BridgeRemoteServiceFlags => {
   const raw = asRecord(value);
   return {
@@ -188,6 +262,7 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const routingRaw = asRecord(raw.routing);
   const timeoutRaw = asRecord(raw.timeoutMs);
   const outboxRaw = asRecord(raw.outbox);
+  const p3Raw = asRecord(raw.p3);
   const localHierarchyRaw = asRecord(raw.localHierarchy);
   const contractRaw = asRecord(raw.contract);
 
@@ -195,6 +270,7 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const envMem0ApiKey = normalizeString(process.env.MEM0_API_KEY);
   const envGraphitiBaseUrl = normalizeString(process.env.GRAPHITI_BASE_URL);
   const envGraphitiApiKey = normalizeString(process.env.GRAPHITI_API_KEY);
+  const envP3Model = normalizeString(process.env.MEMORY_BRIDGE_P3_MODEL);
 
   const mem0Config = readRemoteServiceFlags(raw.mem0);
   const graphitiConfig = readRemoteServiceFlags(raw.graphiti);
@@ -257,6 +333,52 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
       enabled: readBoolean(outboxRaw.enabled, DEFAULT_FLAGS.outbox.enabled),
       db_path: normalizeString(readRawValue(outboxRaw, ["db_path", "dbPath"])),
     },
+    p3: {
+      model:
+        normalizeString(readRawValue(p3Raw, ["model", "write_model", "writeModel"])) ??
+        envP3Model ??
+        DEFAULT_FLAGS.p3.model,
+      max_attempts: readPositiveInt(
+        readRawValue(p3Raw, ["max_attempts", "maxAttempts"]),
+        DEFAULT_FLAGS.p3.max_attempts,
+        1,
+        50,
+      ),
+      base_backoff_ms: readTimeout(
+        readRawValue(p3Raw, ["base_backoff_ms", "baseBackoffMs"]),
+        DEFAULT_FLAGS.p3.base_backoff_ms,
+      ),
+      max_backoff_ms: readTimeout(
+        readRawValue(p3Raw, ["max_backoff_ms", "maxBackoffMs"]),
+        DEFAULT_FLAGS.p3.max_backoff_ms,
+      ),
+      jitter_ratio: readRatio(
+        readRawValue(p3Raw, ["jitter_ratio", "jitterRatio"]),
+        DEFAULT_FLAGS.p3.jitter_ratio,
+      ),
+      low_confidence_threshold: readRatio(
+        readRawValue(p3Raw, ["low_confidence_threshold", "lowConfidenceThreshold"]),
+        DEFAULT_FLAGS.p3.low_confidence_threshold,
+      ),
+      write_timeout_ms: readTimeout(
+        readRawValue(p3Raw, ["write_timeout_ms", "writeTimeoutMs"]),
+        DEFAULT_FLAGS.p3.write_timeout_ms,
+      ),
+      mem0_write_path:
+        normalizeString(readRawValue(p3Raw, ["mem0_write_path", "mem0WritePath"])) ??
+        DEFAULT_FLAGS.p3.mem0_write_path,
+      graphiti_write_path:
+        normalizeString(readRawValue(p3Raw, ["graphiti_write_path", "graphitiWritePath"])) ??
+        DEFAULT_FLAGS.p3.graphiti_write_path,
+      worker_interval_ms: readTimeout(
+        readRawValue(p3Raw, ["worker_interval_ms", "workerIntervalMs"]),
+        DEFAULT_FLAGS.p3.worker_interval_ms,
+      ),
+      auto_worker: readBoolean(
+        readRawValue(p3Raw, ["auto_worker", "autoWorker"]),
+        DEFAULT_FLAGS.p3.auto_worker,
+      ),
+    },
     localHierarchy: {
       enabled: readBoolean(localHierarchyRaw.enabled, DEFAULT_FLAGS.localHierarchy.enabled),
     },
@@ -293,6 +415,10 @@ export const mem0GraphitiBridgeConfigSchema = {
     request_timeout_ms: {
       label: "Request Timeout (ms)",
       help: "Remote timeout budget for later phases",
+    },
+    p3: {
+      label: "P3 Governance",
+      help: "P3 outbox/worker governance settings",
     },
   },
 };
