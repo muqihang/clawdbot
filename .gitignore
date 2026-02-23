@@ -103,3 +103,7 @@ package-lock.json
 apps/ios/LocalSigning.xcconfig
 # Generated protocol schema (produced via pnpm protocol:gen)
 dist/protocol.schema.json
+
+# memory-stack local artifacts
+scripts/memory-stack/__pycache__/
+nohup.out
