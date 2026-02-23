@@ -1,0 +1,161 @@
+{
+  "id": "memory-mem0-graphiti-bridge",
+  "kind": "memory",
+  "name": "Memory (Mem0 + Graphiti Bridge)",
+  "description": "Local-first memory bridge with phased mem0 + graphiti rollout",
+  "uiHints": {
+    "plugin_load": {
+      "label": "Plugin Load",
+      "help": "Enable/disable this bridge without changing memory slot"
+    },
+    "read_mode": {
+      "label": "Read Mode",
+      "help": "Requested read policy; Phase0 still enforces local-only user route"
+    },
+    "write_mode": {
+      "label": "Write Mode",
+      "help": "Write governance mode; Phase0 defaults to off"
+    },
+    "cutover_percent": {
+      "label": "Cutover Percent",
+      "help": "Primary canary ratio (0-100) for later phases"
+    },
+    "request_timeout_ms": {
+      "label": "Request Timeout",
+      "help": "Remote request timeout budget in milliseconds"
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "plugin_load": {
+        "type": "boolean",
+        "default": true
+      },
+      "read_mode": {
+        "type": "string",
+        "enum": ["local", "shadow", "primary", "remote"],
+        "default": "local"
+      },
+      "write_mode": {
+        "type": "string",
+        "enum": ["off", "propose_only", "propose_commit"],
+        "default": "off"
+      },
+      "cutover_percent": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100,
+        "default": 0
+      },
+      "request_timeout_ms": {
+        "type": "number",
+        "minimum": 100,
+        "maximum": 120000,
+        "default": 3000
+      },
+      "routing": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "default_route": {
+            "type": "string",
+            "enum": ["local", "mem0", "graphiti"],
+            "default": "local"
+          },
+          "timeline_route": {
+            "type": "string",
+            "enum": ["mem0", "graphiti"],
+            "default": "graphiti"
+          },
+          "semantic_route": {
+            "type": "string",
+            "enum": ["mem0", "graphiti"],
+            "default": "mem0"
+          },
+          "fallback_route": {
+            "type": "string",
+            "enum": ["local", "mem0", "graphiti"],
+            "default": "local"
+          }
+        }
+      },
+      "timeoutMs": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "search": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 120000,
+            "default": 3000
+          },
+          "get": {
+            "type": "number",
+            "minimum": 100,
+            "maximum": 120000,
+            "default": 3000
+          }
+        }
+      },
+      "mem0": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "base_url": {
+            "type": "string"
+          },
+          "api_key": {
+            "type": "string"
+          }
+        }
+      },
+      "graphiti": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "base_url": {
+            "type": "string"
+          },
+          "api_key": {
+            "type": "string"
+          }
+        }
+      },
+      "outbox": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "db_path": {
+            "type": "string"
+          }
+        }
+      },
+      "localHierarchy": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "contract": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "enforce_compat": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      }
+    }
+  }
+}
