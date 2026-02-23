@@ -89,7 +89,7 @@ describe("memory-mem0-graphiti-bridge", () => {
     plugin.register(api);
 
     expect(registerTool).toHaveBeenCalledTimes(1);
-    expect(registerCli).toHaveBeenCalledTimes(1);
+    expect(registerCli).toHaveBeenCalledTimes(2);
 
     const [factory, options] = registerTool.mock.calls[0] as [
       (ctx: { config?: unknown; sessionKey?: string }) => unknown,
@@ -140,5 +140,11 @@ describe("memory-mem0-graphiti-bridge", () => {
     const program = {};
     cliFactory({ program });
     expect(registerMemoryCli).toHaveBeenCalledWith(program);
+
+    const [_p2CliFactory, p2CliOptions] = registerCli.mock.calls[1] as [
+      (ctx: { program: unknown }) => void,
+      { commands: string[] },
+    ];
+    expect(p2CliOptions.commands).toEqual(["memory-bridge-p2"]);
   });
 });

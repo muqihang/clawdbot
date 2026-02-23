@@ -4,6 +4,7 @@ import { createGraphitiClient } from "./src/client/graphiti-client.js";
 import { createMem0Client } from "./src/client/mem0-client.js";
 import { mem0GraphitiBridgeConfigSchema, resolveBridgeFlags } from "./src/config/flags.js";
 import { createShadowReporter } from "./src/metrics/shadow-reporter.js";
+import { registerMemoryBridgeP2Cli } from "./src/p2/manual-cli.js";
 import { resolveReadPlan } from "./src/router/read-router.js";
 import { createBridgeMemoryGetTool } from "./src/tools/memory-get-tool.js";
 import { createBridgeMemorySearchTool } from "./src/tools/memory-search-tool.js";
@@ -105,6 +106,17 @@ const memoryMem0GraphitiBridgePlugin = {
         api.runtime.tools.registerMemoryCli(program);
       },
       { commands: ["memory"] },
+    );
+
+    api.registerCli(
+      ({ program, workspaceDir, logger }) => {
+        registerMemoryBridgeP2Cli({
+          program,
+          workspaceDir,
+          logger,
+        });
+      },
+      { commands: ["memory-bridge-p2"] },
     );
 
     api.logger.info(
