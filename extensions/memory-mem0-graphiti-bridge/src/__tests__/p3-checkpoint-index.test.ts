@@ -105,6 +105,81 @@ describe("P3 index consistency check", () => {
     expect(result.metrics.indexReferenceCount).toBe(2);
   });
 
+  it("supports p1.5-lite path:: index lines and metadata bullets", async () => {
+    await mkdir(path.join(tempDir, "memory", "people"), { recursive: true });
+    await mkdir(path.join(tempDir, "memory", "projects"), { recursive: true });
+    await mkdir(path.join(tempDir, "memory", "topics"), { recursive: true });
+
+    await writeFile(
+      path.join(tempDir, "MEMORY.md"),
+      [
+        "# Memory Index",
+        "",
+        "## People Index",
+        "- person::person.demo | path::memory/people/demo.md | status::active",
+        "",
+        "## Projects Index",
+        "- project::project.demo | path::memory/projects/demo.md | status::active",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    await writeFile(
+      path.join(tempDir, "memory", "people", "demo.md"),
+      [
+        "# person.demo",
+        "",
+        "## Metadata",
+        "- canonical_id: person.demo",
+        "- source_ref: MEMORY.md",
+        "- status: active",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    await writeFile(
+      path.join(tempDir, "memory", "projects", "demo.md"),
+      [
+        "# project.demo",
+        "",
+        "## Metadata",
+        "- canonical_id: project.demo",
+        "- source_ref: MEMORY.md",
+        "- status: active",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    await writeFile(
+      path.join(tempDir, "memory", "topics", "README.md"),
+      ["# topics", "", "documentation only"].join("\n"),
+      "utf8",
+    );
+
+    await writeFile(
+      path.join(tempDir, "memory", "topics", "demo-topic.md"),
+      [
+        "# topic.demo",
+        "",
+        "## Metadata",
+        "- topic_id: topic.demo",
+        "- authority: derived_view",
+        "- status: active",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const result = await runIndexConsistencyCheck({ workspaceDir: tempDir });
+
+    expect(result.ok).toBe(true);
+    expect(result.failures).toHaveLength(0);
+    expect(result.metrics.indexReferenceCount).toBe(2);
+  });
+
   it("fails when topic file is authoritative or reference is missing", async () => {
     await mkdir(path.join(tempDir, "memory", "topics"), { recursive: true });
 

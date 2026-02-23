@@ -1,7 +1,25 @@
 import { access, readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 
-const REQUIRED_CANONICAL_META_FIELDS = ["memory_id", "source_event_id", "status"];
+const REQUIRED_CANONICAL_META_RULES = [
+  {
+    label: "canonical_id",
+    keys: ["canonical_id", "memory_id", "person_id", "project_id", "decision_id", "context_id"],
+  },
+  {
+    label: "source_ref",
+    keys: ["source_ref", "source_event_id"],
+  },
+  {
+    label: "status",
+    keys: ["status"],
+  },
+];
+
+const CANONICAL_DETAIL_PATHS = [
+  /^memory\/(canonical|details?)\//i,
+  /^memory\/(people|projects|decisions|context)\//i,
+];
 
 const exists = async (filePath: string): Promise<boolean> => {
   try {
@@ -30,6 +48,24 @@ const parseMarkdownLinks = (content: string): string[] => {
   return links;
 };
 
+const parsePathEntries = (content: string): string[] => {
+  const targets: string[] = [];
+
+  for (const line of content.split(/\r?\n/)) {
+    const match = line.match(/(?:^|\|)\s*path::([^|]+)/i);
+    const target = match?.[1]?.trim().replace(/^`|`$/g, "");
+    if (!target) {
+      continue;
+    }
+    if (target.startsWith("http://") || target.startsWith("https://")) {
+      continue;
+    }
+    targets.push(target);
+  }
+
+  return targets;
+};
+
 const parseFrontmatter = (content: string): Record<string, string> => {
   if (!content.startsWith("---\n")) {
     return {};
@@ -54,6 +90,109 @@ const parseFrontmatter = (content: string): Record<string, string> => {
     }
   }
   return result;
+};
+
+const parseMetadataSection = (content: string): Record<string, string> => {
+  const lines = content.split(/\r?\n/);
+  const metadataHeadingIndex = lines.findIndex((line) => /^##\s+metadata\b/i.test(line.trim()));
+
+  if (metadataHeadingIndex < 0) {
+    return {};
+  }
+
+  const metadata: Record<string, string> = {};
+
+  for (let i = metadataHeadingIndex + 1; i < lines.length; i += 1) {
+    const line = lines[i]?.trim() ?? "";
+    if (/^##\s+/.test(line)) {
+      break;
+    }
+
+    const match = line.match(/^-\s*([a-zA-Z0-9_.-]+)\s*:\s*(.+)$/);
+    if (!match) {
+      continue;
+    }
+
+    const key = match[1]?.trim();
+    const value = match[2]?.trim();
+    if (!key || !value) {
+      continue;
+    }
+
+    metadata[key] = value;
+  }
+
+  return metadata;
+};
+
+const parseDocumentMetadata = (content: string): Record<string, string> => {
+  return {
+    ...parseFrontmatter(content),
+    ...parseMetadataSection(content),
+  };
+};
+
+const hasAnyMetadataKey = (metadata: Record<string, string>, keys: string[]): boolean => {
+  for (const key of keys) {
+    const value = metadata[key];
+    if (typeof value === "string" && value.trim().length > 0) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const normalizeRelativePath = (value: string): string => value.replace(/\\/g, "/");
+
+const isCanonicalDetailPath = (relativePath: string): boolean => {
+  const normalized = normalizeRelativePath(relativePath);
+  return CANONICAL_DETAIL_PATHS.some((pattern) => pattern.test(normalized));
+};
+
+const isContextCanonicalPath = (relativePath: string): boolean => {
+  return /^memory\/context\//i.test(normalizeRelativePath(relativePath));
+};
+
+const resolveIndexTargetPath = (params: {
+  target: string;
+  workspaceDir: string;
+  indexPath: string;
+}): string => {
+  const normalizedTarget = params.target.trim();
+  if (path.isAbsolute(normalizedTarget)) {
+    return normalizedTarget;
+  }
+
+  const normalizedSlashes = normalizeRelativePath(normalizedTarget);
+  if (normalizedSlashes.startsWith("memory/")) {
+    return path.resolve(params.workspaceDir, normalizedSlashes);
+  }
+
+  return path.resolve(path.dirname(params.indexPath), normalizedTarget);
+};
+
+const isDerivedTopic = (metadata: Record<string, string>): boolean => {
+  const authority = metadata.authority?.toLowerCase();
+  const derivedView = metadata.derived_view?.toLowerCase();
+
+  if (authority === "derived" || authority === "derived_view" || authority === "derived-view") {
+    return true;
+  }
+
+  return derivedView === "true" || derivedView === "1" || derivedView === "yes";
+};
+
+const isAuthoritativeTopic = (metadata: Record<string, string>): boolean => {
+  const authority = metadata.authority?.toLowerCase();
+  const authoritative = metadata.authoritative?.toLowerCase();
+
+  if (authoritative === "true" || authoritative === "1" || authoritative === "yes") {
+    return true;
+  }
+
+  return (
+    authority === "authoritative" || authority === "canonical" || authority === "source_of_truth"
+  );
 };
 
 const collectMarkdownFiles = async (dir: string): Promise<string[]> => {
@@ -118,10 +257,16 @@ export async function runIndexConsistencyCheck(params: {
 
   const indexContent = await readFile(indexPath, "utf8");
   const linkTargets = parseMarkdownLinks(indexContent);
-  metrics.indexReferenceCount = linkTargets.length;
+  const pathTargets = parsePathEntries(indexContent);
+  const indexTargets = Array.from(new Set([...linkTargets, ...pathTargets]));
+  metrics.indexReferenceCount = indexTargets.length;
 
-  for (const target of linkTargets) {
-    const referenced = path.resolve(path.dirname(indexPath), target);
+  for (const target of indexTargets) {
+    const referenced = resolveIndexTargetPath({
+      target,
+      workspaceDir: params.workspaceDir,
+      indexPath,
+    });
     const relativeReferenced = path.relative(params.workspaceDir, referenced);
 
     if (!(await exists(referenced))) {
@@ -130,30 +275,36 @@ export async function runIndexConsistencyCheck(params: {
       continue;
     }
 
-    if (!/memory\/(canonical|details?)\//i.test(relativeReferenced.replace(/\\/g, "/"))) {
+    if (!isCanonicalDetailPath(relativeReferenced)) {
+      continue;
+    }
+
+    if (isContextCanonicalPath(relativeReferenced)) {
       continue;
     }
 
     const content = await readFile(referenced, "utf8");
-    const metadata = parseFrontmatter(content);
+    const metadata = parseDocumentMetadata(content);
 
-    for (const key of REQUIRED_CANONICAL_META_FIELDS) {
-      if (metadata[key]) {
+    for (const rule of REQUIRED_CANONICAL_META_RULES) {
+      if (hasAnyMetadataKey(metadata, rule.keys)) {
         continue;
       }
       metrics.missingMetadataCount += 1;
-      failures.push(`canonical metadata missing (${key}): ${relativeReferenced}`);
+      failures.push(`canonical metadata missing (${rule.label}): ${relativeReferenced}`);
     }
   }
 
   const topicFiles = await collectMarkdownFiles(path.join(params.workspaceDir, "memory", "topics"));
   for (const filePath of topicFiles) {
-    const content = await readFile(filePath, "utf8");
-    const metadata = parseFrontmatter(content);
-    const derivedView = metadata.derived_view?.toLowerCase();
-    const authoritative = metadata.authoritative?.toLowerCase();
+    if (path.basename(filePath).toLowerCase() === "readme.md") {
+      continue;
+    }
 
-    if (derivedView !== "true" || authoritative === "true") {
+    const content = await readFile(filePath, "utf8");
+    const metadata = parseDocumentMetadata(content);
+
+    if (!isDerivedTopic(metadata) || isAuthoritativeTopic(metadata)) {
       metrics.topicRuleViolationCount += 1;
       failures.push(
         `topic file must be derived_view and non-authoritative: ${path.relative(params.workspaceDir, filePath)}`,
