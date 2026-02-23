@@ -14,6 +14,8 @@ scripts/memory-stack/bootstrap.sh
 scripts/memory-stack/start.sh
 scripts/memory-stack/smoke.sh
 scripts/memory-stack/status.sh
+scripts/memory-stack/backfill.sh
+scripts/memory-stack/verify-backfill.sh
 scripts/memory-stack/stop.sh
 ```
 

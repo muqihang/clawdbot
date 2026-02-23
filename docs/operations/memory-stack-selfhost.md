@@ -66,8 +66,75 @@ Expected smoke output includes:
 - `graphiti episodes>=1 facts>=1`
 - `mem0 add_results>=1 search_results>=1`
 
+## Canonical-first batch backfill
+
+### Dry-run
+
+```bash
+scripts/memory-stack/backfill.sh --source-root /Users/muqihang/clawd --phase canonical --dry-run
+```
+
+### Phase-by-phase apply
+
+```bash
+scripts/memory-stack/backfill.sh --source-root /Users/muqihang/clawd --phase canonical --apply
+scripts/memory-stack/backfill.sh --source-root /Users/muqihang/clawd --phase topics --apply
+scripts/memory-stack/backfill.sh --source-root /Users/muqihang/clawd --phase daily --days 14 --apply
+```
+
+### `--phase all` order
+
+`--phase all` always executes in this order:
+
+1. `canonical`
+2. `topics`
+3. `daily`
+
+Topics are ingested as derived records (`source_tier=topic_derived`) and reconciliation never lets topic-derived ownership overwrite canonical ownership.
+
+### Resume and retry behavior
+
+- Deterministic chunk id: `sha256(source_path + heading + normalized_chunk_text)`
+- Persistent resumable state: `~/.openclaw-memory-stack/run/backfill-state.json`
+- Audit log: `~/.openclaw-memory-stack/run/backfill-*.audit.jsonl`
+- Summary report: `~/.openclaw-memory-stack/run/backfill-*.summary.json`
+- Retry policy covers timeout/429/5xx with exponential backoff (default attempts: 5)
+- Bounded concurrency defaults to `2` and can be tuned via `--concurrency`
+
+### Idempotency rerun check
+
+Re-run canonical apply to prove idempotency and bounded duplicate behavior:
+
+```bash
+scripts/memory-stack/backfill.sh --source-root /Users/muqihang/clawd --phase canonical --apply
+```
+
+On the second apply, `skipped_existing` should increase significantly while success counts should not show duplicate explosion.
+
+### Verification command and pass criteria
+
+```bash
+scripts/memory-stack/verify-backfill.sh
+```
+
+Required pass criteria:
+
+- Mem0 probes: at least `3/5` with non-zero search results
+- Graphiti probes: at least `3/5` with non-zero search/facts/episodes evidence
+
+Probe set used by verification:
+
+- `牧启航`
+- `Telegram 优先`
+- `Jarvis OS`
+- `Mem0 Graphiti 记忆升级`
+- `thinktank/topology`
+
 ## Rollback
 
 - Stop stack only: `scripts/memory-stack/stop.sh`
+- Keep `write_mode=off` and avoid enabling runtime outbox/write chain during rollback
+- Resume from previous successful progress by keeping `~/.openclaw-memory-stack/run/backfill-state.json`
+- Force replay from scratch by moving the state file aside (for example, rename to `backfill-state.<timestamp>.json`) and re-running phased apply
 - Rebuild same pinned environment: rerun `scripts/memory-stack/bootstrap.sh`
 - Change upstream refs by editing `scripts/memory-stack/common.sh`, then rerun bootstrap
