@@ -13,14 +13,14 @@ export type ReadPlanInput = {
 };
 
 export type ReadPlan = {
-  userRoute: "local";
+  userRoute: BridgeRoute;
   candidateRoute: BridgeRoute;
   shadowCompare: boolean;
   intent: QueryIntent;
   readMode: BridgeReadMode;
   cutoverPercent: number;
-  phase0LocalOnly: true;
-  reason: "phase0_local_default" | "phase0_local_only_guard";
+  phase0LocalOnly: boolean;
+  reason: "phase0_local_default" | "phase0_local_only_guard" | "read_cutover_candidate_enabled";
 };
 
 const TIMELINE_QUERY_PATTERN =
@@ -99,6 +99,16 @@ const resolveCandidateRoute = (params: {
   return bucket < params.cutoverPercent ? remoteRoute : "local";
 };
 
+const resolveUserRoute = (params: {
+  readMode: BridgeReadMode;
+  candidateRoute: BridgeRoute;
+}): BridgeRoute => {
+  if (params.readMode === "local" || params.readMode === "shadow") {
+    return "local";
+  }
+  return params.candidateRoute;
+};
+
 export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
   const cutoverPercent = clampPercent(input.cutoverPercent);
   const intent = classifyIntent(input.query);
@@ -116,18 +126,28 @@ export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
     semanticRoute,
     intent,
   });
+  const userRoute = resolveUserRoute({
+    readMode: input.readMode,
+    candidateRoute,
+  });
 
-  // Phase0 guardrail: never return remote user route, only surface shadow intent.
   const shadowCompare = input.readMode === "shadow" && candidateRoute !== "local";
+  const phase0LocalOnly = userRoute === "local";
+  const reason =
+    phase0LocalOnly && candidateRoute !== "local"
+      ? "phase0_local_only_guard"
+      : phase0LocalOnly
+        ? "phase0_local_default"
+        : "read_cutover_candidate_enabled";
 
   return {
-    userRoute: "local",
+    userRoute,
     candidateRoute,
     shadowCompare,
     intent,
     readMode: input.readMode,
     cutoverPercent,
-    phase0LocalOnly: true,
-    reason: candidateRoute === "local" ? "phase0_local_default" : "phase0_local_only_guard",
+    phase0LocalOnly,
+    reason,
   };
 }

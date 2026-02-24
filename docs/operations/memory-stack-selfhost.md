@@ -147,6 +147,36 @@ Expected output keys:
 - `structure_coverage`
 - `alias_recall`
 
+### Troubleshooting: episodes/nodes remain near-zero
+
+1. Check Graphiti write/read error mix:
+
+```bash
+grep -c '"POST /messages HTTP/1.1" 202' ~/chelingxi_workspace/.openclaw-memory-stack/logs/graphiti.log
+grep -c '"POST /messages HTTP/1.1" 422' ~/chelingxi_workspace/.openclaw-memory-stack/logs/graphiti.log
+grep -c '"POST /items HTTP/1.1" 404' ~/chelingxi_workspace/.openclaw-memory-stack/logs/graphiti.log
+```
+
+2. If `/items` 404 is non-zero, force Graphiti writer path to `/messages` and restart the writer process only (do not restart gateway):
+
+- Ensure bridge config sets `p3.graphiti_write_path=/messages`.
+- New bridge code normalizes legacy `/items` to `/messages`, but existing long-running workers must be restarted.
+
+3. If `/messages` 422 appears, payload contract is invalid. Require both fields on every write:
+
+- `group_id` (string)
+- `messages` (non-empty array with `content`)
+
+4. Remember `202 Accepted` is enqueue-only. Confirm ingestion landed:
+
+```bash
+curl -fsS "http://127.0.0.1:8000/episodes/openclaw-backfill-canonical?last_n=500" | jq 'length'
+curl -fsS "http://127.0.0.1:8000/episodes/agent%3Amain%3Amain?last_n=500" | jq 'length'
+curl -fsS -X POST "http://127.0.0.1:8000/search" -H 'content-type: application/json' -d '{"query":"Jarvis OS"}' | jq '{facts:(.facts|length),episodes:(.episodes|length),nodes:(.nodes|length)}'
+```
+
+5. If backfill groups still stay near zero, replay phased apply from a fresh state file and rerun verification.
+
 ## Rollback
 
 - Stop stack only: `scripts/memory-stack/stop.sh`

@@ -393,6 +393,12 @@ importers:
         specifier: workspace:*
         version: link:../..
 
+  extensions/memory-jarvis-bridge:
+    devDependencies:
+      openclaw:
+        specifier: workspace:*
+        version: link:../..
+
   extensions/memory-lancedb:
     dependencies:
       '@lancedb/lancedb':

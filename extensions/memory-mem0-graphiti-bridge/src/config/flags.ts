@@ -143,6 +143,15 @@ const normalizeString = (value: unknown): string | undefined => {
   return trimmed.length > 0 ? trimmed : undefined;
 };
 
+const normalizeGraphitiWritePath = (value: unknown): string | undefined => {
+  const normalized = normalizeString(value);
+  if (!normalized) {
+    return undefined;
+  }
+
+  return /^\/?items\/?$/i.test(normalized) ? "/messages" : normalized;
+};
+
 const readRawValue = (raw: Record<string, unknown>, keys: readonly string[]): unknown => {
   for (const key of keys) {
     if (Object.prototype.hasOwnProperty.call(raw, key)) {
@@ -393,8 +402,9 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         normalizeString(readRawValue(p3Raw, ["mem0_write_path", "mem0WritePath"])) ??
         DEFAULT_FLAGS.p3.mem0_write_path,
       graphiti_write_path:
-        normalizeString(readRawValue(p3Raw, ["graphiti_write_path", "graphitiWritePath"])) ??
-        DEFAULT_FLAGS.p3.graphiti_write_path,
+        normalizeGraphitiWritePath(
+          readRawValue(p3Raw, ["graphiti_write_path", "graphitiWritePath"]),
+        ) ?? DEFAULT_FLAGS.p3.graphiti_write_path,
       worker_interval_ms: readTimeout(
         readRawValue(p3Raw, ["worker_interval_ms", "workerIntervalMs"]),
         DEFAULT_FLAGS.p3.worker_interval_ms,

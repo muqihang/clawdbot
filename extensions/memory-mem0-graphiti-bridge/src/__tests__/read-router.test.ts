@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { resolveReadPlan } from "../router/read-router.js";
 
-describe("mem0-graphiti read router (Phase0 local baseline)", () => {
+describe("mem0-graphiti read router", () => {
   it("returns local route in local mode", () => {
     const plan = resolveReadPlan({
       readMode: "local",
@@ -25,32 +25,44 @@ describe("mem0-graphiti read router (Phase0 local baseline)", () => {
     expect(plan.userRoute).toBe("local");
     expect(plan.candidateRoute).toBe("graphiti");
     expect(plan.shadowCompare).toBe(true);
-    expect(plan.reason).toBe("phase0_local_only_guard");
+    expect(plan.phase0LocalOnly).toBe(true);
   });
 
-  it("keeps user route local in primary canary mode", () => {
-    const plan = resolveReadPlan({
+  it("routes primary mode with 100% cutover to remote route by intent", () => {
+    const timelinePlan = resolveReadPlan({
       readMode: "primary",
       cutoverPercent: 100,
       query: "timeline migration",
       routeSeed: "always-remote-if-not-guarded",
     });
 
-    expect(plan.userRoute).toBe("local");
-    expect(plan.candidateRoute).toBe("graphiti");
-    expect(plan.shadowCompare).toBe(false);
-    expect(plan.phase0LocalOnly).toBe(true);
-  });
-
-  it("keeps user route local even when read mode is remote", () => {
-    const plan = resolveReadPlan({
-      readMode: "remote",
+    const semanticPlan = resolveReadPlan({
+      readMode: "primary",
       cutoverPercent: 100,
       query: "search memory profile",
+      routeSeed: "always-remote-if-not-guarded",
+    });
+
+    expect(timelinePlan.userRoute).toBe("graphiti");
+    expect(timelinePlan.candidateRoute).toBe("graphiti");
+    expect(timelinePlan.shadowCompare).toBe(false);
+    expect(timelinePlan.phase0LocalOnly).toBe(false);
+
+    expect(semanticPlan.userRoute).toBe("mem0");
+    expect(semanticPlan.candidateRoute).toBe("mem0");
+    expect(semanticPlan.shadowCompare).toBe(false);
+    expect(semanticPlan.phase0LocalOnly).toBe(false);
+  });
+
+  it("keeps primary mode on local route with 0% cutover", () => {
+    const plan = resolveReadPlan({
+      readMode: "primary",
+      cutoverPercent: 0,
+      query: "timeline migration",
     });
 
     expect(plan.userRoute).toBe("local");
-    expect(plan.candidateRoute).toBe("mem0");
+    expect(plan.candidateRoute).toBe("local");
     expect(plan.phase0LocalOnly).toBe(true);
   });
 });

@@ -39,6 +39,22 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.cutover_percent).toBe(35);
   });
 
+  it("normalizes legacy graphiti write path /items to /messages", () => {
+    const snakeCase = resolveBridgeFlags({
+      p3: {
+        graphiti_write_path: "/items",
+      },
+    });
+    const camelCase = resolveBridgeFlags({
+      p3: {
+        graphitiWritePath: "items/",
+      },
+    });
+
+    expect(snakeCase.p3.graphiti_write_path).toBe("/messages");
+    expect(camelCase.p3.graphiti_write_path).toBe("/messages");
+  });
+
   it("resolves P3 model selection from config/env", () => {
     const previous = process.env.MEMORY_BRIDGE_P3_MODEL;
     process.env.MEMORY_BRIDGE_P3_MODEL = "gpt-5.3-codex";
