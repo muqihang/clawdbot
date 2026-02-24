@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
 import { createRemoteSnippetStore } from "./src/bridge/remote-snippet-store.js";
 import { createGraphitiClient } from "./src/client/graphiti-client.js";
@@ -5,6 +6,7 @@ import { createMem0Client } from "./src/client/mem0-client.js";
 import { mem0GraphitiBridgeConfigSchema, resolveBridgeFlags } from "./src/config/flags.js";
 import { createShadowReporter } from "./src/metrics/shadow-reporter.js";
 import { registerMemoryBridgeP2Cli } from "./src/p2/manual-cli.js";
+import { runIndexConsistencyCheck } from "./src/p3/index-check.js";
 import { registerMemoryBridgeP3Cli } from "./src/p3/manual-cli.js";
 import { createOnlineIncrementalCapture } from "./src/p3/online-capture.js";
 import { createP3OutboxStore } from "./src/p3/outbox-store.js";
@@ -13,6 +15,62 @@ import { createP3Worker } from "./src/p3/worker.js";
 import { resolveReadPlan } from "./src/router/read-router.js";
 import { createBridgeMemoryGetTool } from "./src/tools/memory-get-tool.js";
 import { createBridgeMemorySearchTool } from "./src/tools/memory-search-tool.js";
+
+const INDEX_CHECK_CACHE_TTL_MS = 60_000;
+
+const createCachedIndexCheckProvider = (params: {
+  workspaceDir: string;
+  indexPath: string;
+  logger: Pick<OpenClawPluginApi["logger"], "warn">;
+  ttlMs?: number;
+}) => {
+  const ttlMs = params.ttlMs ?? INDEX_CHECK_CACHE_TTL_MS;
+  let cacheExpiresAt = 0;
+  let cachedValue = false;
+  let inFlight: Promise<boolean> | null = null;
+
+  return async (): Promise<boolean> => {
+    const nowMs = Date.now();
+    if (nowMs < cacheExpiresAt) {
+      return cachedValue;
+    }
+
+    if (inFlight) {
+      return inFlight;
+    }
+
+    inFlight = (async () => {
+      try {
+        const result = await runIndexConsistencyCheck({
+          workspaceDir: params.workspaceDir,
+          indexPath: params.indexPath,
+        });
+        cachedValue = result.ok;
+
+        if (!result.ok) {
+          const reason = result.failures[0] ?? "unknown";
+          params.logger.warn(
+            `memory-mem0-graphiti-bridge: index consistency check not ready: ${reason}`,
+          );
+        }
+      } catch (error) {
+        cachedValue = false;
+        params.logger.warn(
+          `memory-mem0-graphiti-bridge: index consistency check failed: ${String(error)}`,
+        );
+      }
+
+      cacheExpiresAt = Date.now() + ttlMs;
+      return cachedValue;
+    })();
+
+    try {
+      return await inFlight;
+    } finally {
+      inFlight = null;
+    }
+  };
+};
 
 const memoryMem0GraphitiBridgePlugin = {
   id: "memory-mem0-graphiti-bridge",
@@ -145,10 +203,17 @@ const memoryMem0GraphitiBridgePlugin = {
       const outbox = createP3OutboxStore({
         dbPath: resolvedOutboxDbPath,
       });
+      const resolvedIndexPath = api.resolvePath("MEMORY.md");
+      const indexCheckProvider = createCachedIndexCheckProvider({
+        workspaceDir: path.dirname(resolvedIndexPath),
+        indexPath: resolvedIndexPath,
+        logger: api.logger,
+      });
       const capture = createOnlineIncrementalCapture({
         writeMode: flags.write_mode,
         outbox,
         effectiveModel: flags.p3.model,
+        indexCheckProvider: async (_context) => indexCheckProvider(),
       });
 
       api.on("agent_end", async (event, ctx) => {

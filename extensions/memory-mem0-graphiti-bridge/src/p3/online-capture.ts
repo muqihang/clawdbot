@@ -120,11 +120,32 @@ export function extractCandidateFromTurn(params: {
   };
 }
 
+export type OnlineIndexCheckProvider = (params: {
+  sessionKey: string;
+  sourceRef: string;
+}) => Promise<boolean>;
+
+const resolveIndexCheckOk = async (
+  provider: OnlineIndexCheckProvider | undefined,
+  params: { sessionKey: string; sourceRef: string },
+): Promise<boolean> => {
+  if (!provider) {
+    return false;
+  }
+
+  try {
+    return (await provider(params)) === true;
+  } catch {
+    return false;
+  }
+};
+
 export function createOnlineIncrementalCapture(params: {
   writeMode: P3WriteMode;
   outbox: P3OutboxStore;
   now?: () => number;
   effectiveModel: string;
+  indexCheckProvider?: OnlineIndexCheckProvider;
 }) {
   const now = params.now ?? Date.now;
 
@@ -153,6 +174,11 @@ export function createOnlineIncrementalCapture(params: {
         return;
       }
 
+      const indexCheckOk = await resolveIndexCheckOk(params.indexCheckProvider, {
+        sessionKey: ctx.sessionKey,
+        sourceRef: extracted.sourceRef,
+      });
+
       params.outbox.enqueue({
         idempotencyKey: extracted.idempotencyKey,
         sessionKey: ctx.sessionKey,
@@ -165,6 +191,7 @@ export function createOnlineIncrementalCapture(params: {
           metadata: {
             userText: extracted.userText,
             assistantText: extracted.assistantText,
+            indexCheckOk,
           },
         },
       });
