@@ -5,6 +5,7 @@ import type { DatabaseSync } from "node:sqlite";
 import type { BridgeFactRecord } from "../p2/types.js";
 import { requireNodeSqlite } from "./sqlite.js";
 import type {
+  P3AttemptErrorBucket,
   P3CandidatePayload,
   P3DeadLetterRecord,
   P3EventStatus,
@@ -145,8 +146,14 @@ const mapAttemptRow = (row: Record<string, unknown>): P3OutboxAttemptRecord => {
     status: String(row.status ?? "error") as "ok" | "error" | "skipped",
     latency_ms: typeof row.latency_ms === "number" ? row.latency_ms : null,
     error_message: normalizeText(row.error_message),
+    error_bucket: normalizeText(row.error_bucket) as P3AttemptErrorBucket | null,
     created_at: String(row.created_at ?? ""),
   };
+};
+
+const hasColumn = (db: DatabaseSync, table: string, column: string): boolean => {
+  const rows = db.prepare(`PRAGMA table_info(${table})`).all() as Array<{ name?: unknown }>;
+  return rows.some((row) => String(row.name ?? "") === column);
 };
 
 const mapDeadLetterRow = (row: Record<string, unknown>): P3DeadLetterRecord => {
@@ -240,9 +247,13 @@ const ensureSchema = (db: DatabaseSync): void => {
       status TEXT NOT NULL,
       latency_ms INTEGER,
       error_message TEXT,
+      error_bucket TEXT,
       created_at TEXT NOT NULL
     );
   `);
+  if (!hasColumn(db, "outbox_attempts", "error_bucket")) {
+    db.exec(`ALTER TABLE outbox_attempts ADD COLUMN error_bucket TEXT`);
+  }
   db.exec(`
     CREATE TABLE IF NOT EXISTS outbox_dead_letter (
       event_id TEXT PRIMARY KEY,
@@ -467,16 +478,18 @@ export function createP3OutboxStore(options: CreateP3OutboxStoreOptions) {
       status: "ok" | "error" | "skipped";
       latencyMs?: number;
       errorMessage?: string;
+      errorBucket?: P3AttemptErrorBucket;
     }): void {
       db.prepare(
-        `INSERT INTO outbox_attempts(event_id, target, status, latency_ms, error_message, created_at)
-         VALUES (?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO outbox_attempts(event_id, target, status, latency_ms, error_message, error_bucket, created_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
       ).run(
         params.eventId,
         params.target,
         params.status,
         typeof params.latencyMs === "number" ? Math.round(params.latencyMs) : null,
         params.errorMessage ?? null,
+        params.errorBucket ?? null,
         new Date(now()).toISOString(),
       );
     },

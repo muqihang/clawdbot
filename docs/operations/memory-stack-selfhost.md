@@ -95,9 +95,9 @@ Topics are ingested as derived records (`source_tier=topic_derived`) and reconci
 ### Resume and retry behavior
 
 - Deterministic chunk id: `sha256(source_path + heading + normalized_chunk_text)`
-- Persistent resumable state: `~/.openclaw-memory-stack/run/backfill-state.json`
-- Audit log: `~/.openclaw-memory-stack/run/backfill-*.audit.jsonl`
-- Summary report: `~/.openclaw-memory-stack/run/backfill-*.summary.json`
+- Persistent resumable state: `~/chelingxi_workspace/.openclaw-memory-stack/run/backfill-state.json`
+- Audit log: `~/chelingxi_workspace/.openclaw-memory-stack/run/backfill-*.audit.jsonl`
+- Summary report: `~/chelingxi_workspace/.openclaw-memory-stack/run/backfill-*.summary.json`
 - Retry policy covers timeout/429/5xx with exponential backoff (default attempts: 5)
 - Bounded concurrency defaults to `2` and can be tuned via `--concurrency`
 
@@ -130,11 +130,28 @@ Probe set used by verification:
 - `Mem0 Graphiti 记忆升级`
 - `thinktank/topology`
 
+### Bridge retrieval eval (P2)
+
+```bash
+node /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs memory-bridge-p3 retrieval-eval \
+  --dataset /tmp/p3-retrieval-dataset.json \
+  --out /tmp/p3-retrieval-eval.json
+
+jq '{hit_at_1, hit_at_3, structure_coverage, alias_recall}' /tmp/p3-retrieval-eval.json
+```
+
+Expected output keys:
+
+- `hit_at_1`
+- `hit_at_3`
+- `structure_coverage`
+- `alias_recall`
+
 ## Rollback
 
 - Stop stack only: `scripts/memory-stack/stop.sh`
 - Keep `write_mode=off` and avoid enabling runtime outbox/write chain during rollback
-- Resume from previous successful progress by keeping `~/.openclaw-memory-stack/run/backfill-state.json`
+- Resume from previous successful progress by keeping `~/chelingxi_workspace/.openclaw-memory-stack/run/backfill-state.json`
 - Force replay from scratch by moving the state file aside (for example, rename to `backfill-state.<timestamp>.json`) and re-running phased apply
 - Rebuild same pinned environment: rerun `scripts/memory-stack/bootstrap.sh`
 - Change upstream refs by editing `scripts/memory-stack/common.sh`, then rerun bootstrap

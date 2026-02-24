@@ -146,7 +146,7 @@ describe("P3 integration", () => {
           source: "graphiti",
           baseUrl: graphiti.url,
           timeoutMs: 500,
-          path: "/items",
+          path: "/messages",
         }),
         onReport: async () => undefined,
       });
@@ -154,6 +154,33 @@ describe("P3 integration", () => {
       const once = await worker.processOnce();
       expect(once.succeeded).toBe(1);
       expect(outbox.listCanonicalFacts()).toHaveLength(0);
+      expect(mem0.requests[0]).toEqual(
+        expect.objectContaining({
+          method: "POST",
+          path: "/memories",
+          body: expect.objectContaining({
+            messages: [
+              expect.objectContaining({ role: "user" }),
+              expect.objectContaining({ role: "assistant" }),
+            ],
+            user_id: "session-capture",
+            run_id: expect.any(String),
+          }),
+        }),
+      );
+      expect(graphiti.requests[0]).toEqual(
+        expect.objectContaining({
+          method: "POST",
+          path: "/messages",
+          body: expect.objectContaining({
+            group_id: "session-capture",
+            messages: [
+              expect.objectContaining({ role_type: "user", role: "user" }),
+              expect.objectContaining({ role_type: "assistant", role: "assistant" }),
+            ],
+          }),
+        }),
+      );
 
       outbox.enqueue({
         idempotencyKey: "session-commit:1",
@@ -286,7 +313,7 @@ describe("P3 integration", () => {
           source: "graphiti",
           baseUrl: graphiti.url,
           timeoutMs: 20,
-          path: "/items",
+          path: "/messages",
         }),
         onReport: async () => undefined,
       });

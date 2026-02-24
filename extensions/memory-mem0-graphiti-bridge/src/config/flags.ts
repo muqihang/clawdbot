@@ -25,6 +25,10 @@ export type BridgeOutboxFlags = {
   db_path?: string;
 };
 
+export type BridgeReadFlags = {
+  alias_normalization: boolean;
+};
+
 export type BridgeP3Flags = {
   model: string;
   max_attempts: number;
@@ -37,6 +41,11 @@ export type BridgeP3Flags = {
   graphiti_write_path: string;
   worker_interval_ms: number;
   auto_worker: boolean;
+  admission_enabled: boolean;
+  commit_canary_ratio: number;
+  commit_require_index_check: boolean;
+  commit_require_non_sensitive: boolean;
+  commit_require_dual_write_ok: boolean;
 };
 
 export type BridgeFlags = {
@@ -50,6 +59,7 @@ export type BridgeFlags = {
   mem0: BridgeRemoteServiceFlags;
   graphiti: BridgeRemoteServiceFlags;
   outbox: BridgeOutboxFlags;
+  read: BridgeReadFlags;
   p3: BridgeP3Flags;
   localHierarchy: {
     enabled: boolean;
@@ -89,6 +99,9 @@ const DEFAULT_FLAGS: BridgeFlags = {
   outbox: {
     enabled: false,
   },
+  read: {
+    alias_normalization: true,
+  },
   p3: {
     model: "gpt-5.1-codex-mini",
     max_attempts: 5,
@@ -98,9 +111,14 @@ const DEFAULT_FLAGS: BridgeFlags = {
     low_confidence_threshold: 0.7,
     write_timeout_ms: 5000,
     mem0_write_path: "/memories",
-    graphiti_write_path: "/items",
+    graphiti_write_path: "/messages",
     worker_interval_ms: 60000,
     auto_worker: false,
+    admission_enabled: false,
+    commit_canary_ratio: 0,
+    commit_require_index_check: true,
+    commit_require_non_sensitive: true,
+    commit_require_dual_write_ok: true,
   },
   localHierarchy: {
     enabled: true,
@@ -262,6 +280,7 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const routingRaw = asRecord(raw.routing);
   const timeoutRaw = asRecord(raw.timeoutMs);
   const outboxRaw = asRecord(raw.outbox);
+  const readRaw = asRecord(raw.read);
   const p3Raw = asRecord(raw.p3);
   const localHierarchyRaw = asRecord(raw.localHierarchy);
   const contractRaw = asRecord(raw.contract);
@@ -333,6 +352,12 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
       enabled: readBoolean(outboxRaw.enabled, DEFAULT_FLAGS.outbox.enabled),
       db_path: normalizeString(readRawValue(outboxRaw, ["db_path", "dbPath"])),
     },
+    read: {
+      alias_normalization: readBoolean(
+        readRawValue(readRaw, ["alias_normalization", "aliasNormalization"]),
+        DEFAULT_FLAGS.read.alias_normalization,
+      ),
+    },
     p3: {
       model:
         normalizeString(readRawValue(p3Raw, ["model", "write_model", "writeModel"])) ??
@@ -377,6 +402,26 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
       auto_worker: readBoolean(
         readRawValue(p3Raw, ["auto_worker", "autoWorker"]),
         DEFAULT_FLAGS.p3.auto_worker,
+      ),
+      admission_enabled: readBoolean(
+        readRawValue(p3Raw, ["admission_enabled", "admissionEnabled"]),
+        DEFAULT_FLAGS.p3.admission_enabled,
+      ),
+      commit_canary_ratio: readRatio(
+        readRawValue(p3Raw, ["commit_canary_ratio", "commitCanaryRatio"]),
+        DEFAULT_FLAGS.p3.commit_canary_ratio,
+      ),
+      commit_require_index_check: readBoolean(
+        readRawValue(p3Raw, ["commit_require_index_check", "commitRequireIndexCheck"]),
+        DEFAULT_FLAGS.p3.commit_require_index_check,
+      ),
+      commit_require_non_sensitive: readBoolean(
+        readRawValue(p3Raw, ["commit_require_non_sensitive", "commitRequireNonSensitive"]),
+        DEFAULT_FLAGS.p3.commit_require_non_sensitive,
+      ),
+      commit_require_dual_write_ok: readBoolean(
+        readRawValue(p3Raw, ["commit_require_dual_write_ok", "commitRequireDualWriteOk"]),
+        DEFAULT_FLAGS.p3.commit_require_dual_write_ok,
       ),
     },
     localHierarchy: {

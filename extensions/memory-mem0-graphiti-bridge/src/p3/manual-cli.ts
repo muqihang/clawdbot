@@ -2,6 +2,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Command } from "commander";
 import type { PluginLogger } from "openclaw/plugin-sdk";
+import { createGraphitiClient } from "../client/graphiti-client.js";
+import { createMem0Client } from "../client/mem0-client.js";
 import type { BridgeFlags } from "../config/flags.js";
 import { runWritePathAbEvaluation, type AbValidationSample } from "./ab-eval.js";
 import { createCheckpointStore } from "./checkpoint-store.js";
@@ -9,6 +11,7 @@ import { runIndexConsistencyCheck } from "./index-check.js";
 import { createP3OutboxStore } from "./outbox-store.js";
 import { createHttpBridgeWriter } from "./remote-writer.js";
 import { buildP3RunSummary, buildP3SnapshotMetrics } from "./reporting.js";
+import { parseRetrievalDataset, runRetrievalEvaluation } from "./retrieval-eval.js";
 import { createP3Worker } from "./worker.js";
 
 const DEFAULT_DB_RELATIVE_PATH = path.join(".openclaw", "memory-bridge-p3.sqlite");
@@ -27,6 +30,10 @@ const DEFAULT_AB_DATASET_RELATIVE_PATH = path.join(
   "p3",
   "fixtures",
   "ab-validation-set.json",
+);
+const DEFAULT_RETRIEVAL_DATASET_RELATIVE_PATH = path.join(
+  ".openclaw",
+  "memory-bridge-p3-retrieval-dataset.json",
 );
 
 const toInt = (value: unknown, fallback: number): number => {
@@ -127,6 +134,13 @@ type AbCliOptions = {
   out?: string;
 };
 
+type RetrievalEvalCliOptions = {
+  dataset?: string;
+  out?: string;
+  route?: string;
+  topK?: string;
+};
+
 const loadValidationSet = async (datasetPath: string): Promise<AbValidationSample[]> => {
   const content = await readFile(datasetPath, "utf8");
   const parsed = parseJsonSafe<unknown>(content, []);
@@ -222,6 +236,11 @@ export function registerMemoryBridgeP3Cli(params: {
         maxBackoffMs: toInt(opts.maxBackoffMs, params.flags.p3.max_backoff_ms),
         jitterRatio: params.flags.p3.jitter_ratio,
         lowConfidenceThreshold: params.flags.p3.low_confidence_threshold,
+        admissionEnabled: params.flags.p3.admission_enabled,
+        commitCanaryRatio: params.flags.p3.commit_canary_ratio,
+        commitRequireIndexCheck: params.flags.p3.commit_require_index_check,
+        commitRequireNonSensitive: params.flags.p3.commit_require_non_sensitive,
+        commitRequireDualWriteOk: params.flags.p3.commit_require_dual_write_ok,
         mem0Write: createHttpBridgeWriter({
           source: "mem0",
           baseUrl: params.flags.mem0.base_url,
@@ -470,6 +489,68 @@ export function registerMemoryBridgeP3Cli(params: {
       await writeFile(reportTextPath, `${summary}\n`, "utf8");
 
       console.log(summary);
+    });
+
+  root
+    .command("retrieval-eval")
+    .description("Evaluate retrieval quality (hit@k + structure coverage + alias recall)")
+    .option("--dataset <path>", "Retrieval eval dataset path")
+    .option("--out <path>", "Output JSON path")
+    .option("--route <provider>", "Provider: graphiti|mem0", "graphiti")
+    .option("--top-k <n>", "Top-k for hit metrics", "3")
+    .action(async (opts: RetrievalEvalCliOptions) => {
+      const datasetPath = resolveCliPath({
+        workspaceDir,
+        value: opts.dataset,
+        defaultRelativePath: DEFAULT_RETRIEVAL_DATASET_RELATIVE_PATH,
+      });
+      const outputPath = resolveCliPath({
+        workspaceDir,
+        value: opts.out,
+        defaultRelativePath: path.join(".openclaw", "memory-bridge-p3-retrieval-eval.json"),
+      });
+      const provider = normalizeString(opts.route) === "mem0" ? "mem0" : "graphiti";
+      const topK = Math.max(1, toInt(opts.topK, 3));
+
+      const rawDataset = await readFile(datasetPath, "utf8");
+      const dataset = parseRetrievalDataset(parseJsonSafe(rawDataset, []));
+      const client =
+        provider === "mem0"
+          ? createMem0Client({
+              baseUrl: params.flags.mem0.base_url,
+              apiKey: params.flags.mem0.api_key,
+              timeoutMs: params.flags.timeoutMs.search,
+              getTimeoutMs: params.flags.timeoutMs.get,
+            })
+          : createGraphitiClient({
+              baseUrl: params.flags.graphiti.base_url,
+              apiKey: params.flags.graphiti.api_key,
+              timeoutMs: params.flags.timeoutMs.search,
+              getTimeoutMs: params.flags.timeoutMs.get,
+            });
+
+      const summary = await runRetrievalEvaluation({
+        dataset,
+        client,
+        topK,
+      });
+
+      const report = {
+        provider,
+        dataset_path: datasetPath,
+        ...summary,
+      };
+
+      await mkdir(path.dirname(outputPath), { recursive: true });
+      await writeFile(outputPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
+
+      console.log(`provider: ${provider}`);
+      console.log(`sample_size: ${String(summary.sample_size)}`);
+      console.log(`hit_at_1: ${String(summary.hit_at_1)}`);
+      console.log(`hit_at_3: ${String(summary.hit_at_3)}`);
+      console.log(`structure_coverage: ${String(summary.structure_coverage)}`);
+      console.log(`alias_recall: ${String(summary.alias_recall)}`);
+      console.log(JSON.stringify(report, null, 2));
     });
 
   root

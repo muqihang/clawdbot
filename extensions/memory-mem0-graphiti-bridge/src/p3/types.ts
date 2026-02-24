@@ -6,6 +6,8 @@ export type P3EventStatus = "pending" | "inflight" | "succeeded" | "failed" | "d
 
 export type P3TargetStatus = "pending" | "succeeded" | "failed" | "skipped";
 
+export type P3AttemptErrorBucket = "4xx" | "5xx" | "timeout" | "contract" | "unknown";
+
 export type P3SourceTier = "online_incremental" | "manual" | "replay";
 
 export type P3CandidatePayload = {
@@ -14,6 +16,7 @@ export type P3CandidatePayload = {
     userText?: string;
     assistantText?: string;
     tags?: string[];
+    indexCheckOk?: boolean;
   };
 };
 
@@ -44,6 +47,7 @@ export type P3OutboxAttemptRecord = {
   status: "ok" | "error" | "skipped";
   latency_ms: number | null;
   error_message: string | null;
+  error_bucket: P3AttemptErrorBucket | null;
   created_at: string;
 };
 

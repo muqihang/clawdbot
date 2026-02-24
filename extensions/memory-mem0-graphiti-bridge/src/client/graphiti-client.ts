@@ -6,11 +6,70 @@ import {
 
 export type CreateGraphitiClientOptions = Omit<CreateRemoteClientOptions, "source">;
 
+const asRecord = (value: unknown): Record<string, unknown> | undefined => {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return undefined;
+  }
+  return value as Record<string, unknown>;
+};
+
+const asArray = (value: unknown): unknown[] => {
+  return Array.isArray(value) ? value : [];
+};
+
+const appendStructuredItems = (params: {
+  payload: Record<string, unknown>;
+  key: "facts" | "episodes" | "nodes";
+  output: unknown[];
+}): void => {
+  for (const item of asArray(params.payload[params.key])) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) {
+      continue;
+    }
+
+    params.output.push({
+      ...(item as Record<string, unknown>),
+      structure: params.key,
+      structure_type: params.key,
+    });
+  }
+};
+
+const extractGraphitiSearchItems = (payload: unknown): unknown[] => {
+  if (Array.isArray(payload)) {
+    return payload;
+  }
+
+  const record = asRecord(payload);
+  if (!record) {
+    return [];
+  }
+
+  const output: unknown[] = [];
+  output.push(...asArray(record.results));
+  output.push(...asArray(record.items));
+  output.push(...asArray(record.hits));
+
+  appendStructuredItems({ payload: record, key: "facts", output });
+  appendStructuredItems({ payload: record, key: "episodes", output });
+  appendStructuredItems({ payload: record, key: "nodes", output });
+
+  const dataRecord = asRecord(record.data);
+  if (dataRecord) {
+    appendStructuredItems({ payload: dataRecord, key: "facts", output });
+    appendStructuredItems({ payload: dataRecord, key: "episodes", output });
+    appendStructuredItems({ payload: dataRecord, key: "nodes", output });
+  }
+
+  return output;
+};
+
 export function createGraphitiClient(options: CreateGraphitiClientOptions): RemoteMemoryClient {
   return createRemoteClient({
     source: "graphiti",
     searchPath: "/search",
     getPath: (id) => `/items/${encodeURIComponent(id)}`,
+    extractSearchItems: extractGraphitiSearchItems,
     ...options,
   });
 }

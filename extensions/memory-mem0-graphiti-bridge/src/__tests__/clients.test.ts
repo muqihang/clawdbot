@@ -146,4 +146,72 @@ describe("mem0 + graphiti clients", () => {
       }),
     );
   });
+
+  it("parses graphiti facts/episodes/nodes search payload", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      toJsonResponse(200, {
+        facts: [
+          {
+            uuid: "fact-1",
+            fact: "Telegram is preferred",
+            score: 0.91,
+          },
+        ],
+        episodes: [
+          {
+            uuid: "episode-1",
+            summary: "Preference changed in Q1",
+            score: 0.84,
+          },
+        ],
+        nodes: [
+          {
+            uuid: "node-1",
+            name: "Telegram",
+            score: 0.8,
+          },
+        ],
+      }),
+    );
+
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    const hits = await client.search("telegram preference");
+    expect(hits).toEqual([
+      {
+        path: "bridge/graphiti/fact-1",
+        startLine: 1,
+        endLine: 1,
+        score: 0.91,
+        snippet: "Telegram is preferred",
+        source: "graphiti",
+        remoteId: "fact-1",
+        structure: "facts",
+      },
+      {
+        path: "bridge/graphiti/episode-1",
+        startLine: 1,
+        endLine: 1,
+        score: 0.84,
+        snippet: "Preference changed in Q1",
+        source: "graphiti",
+        remoteId: "episode-1",
+        structure: "episodes",
+      },
+      {
+        path: "bridge/graphiti/node-1",
+        startLine: 1,
+        endLine: 1,
+        score: 0.8,
+        snippet: "Telegram",
+        source: "graphiti",
+        remoteId: "node-1",
+        structure: "nodes",
+      },
+    ]);
+  });
 });

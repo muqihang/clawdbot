@@ -13,6 +13,13 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.routing.default_route).toBe("local");
     expect(flags.routing.timeline_route).toBe("graphiti");
     expect(flags.routing.semantic_route).toBe("mem0");
+    expect(flags.read.alias_normalization).toBe(true);
+    expect(flags.p3.graphiti_write_path).toBe("/messages");
+    expect(flags.p3.admission_enabled).toBe(false);
+    expect(flags.p3.commit_canary_ratio).toBe(0);
+    expect(flags.p3.commit_require_index_check).toBe(true);
+    expect(flags.p3.commit_require_non_sensitive).toBe(true);
+    expect(flags.p3.commit_require_dual_write_ok).toBe(true);
   });
 
   it("accepts read/write mode combinations", () => {
@@ -69,5 +76,27 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.request_timeout_ms).toBe(100);
     expect(flags.timeoutMs.search).toBe(120000);
     expect(flags.timeoutMs.get).toBe(100);
+  });
+
+  it("parses P3 admission and canary flags", () => {
+    const flags = resolveBridgeFlags({
+      p3: {
+        admission_enabled: true,
+        commit_canary_ratio: 1.5,
+        commit_require_index_check: false,
+        commit_require_non_sensitive: false,
+        commit_require_dual_write_ok: false,
+      },
+      read: {
+        alias_normalization: false,
+      },
+    });
+
+    expect(flags.p3.admission_enabled).toBe(true);
+    expect(flags.p3.commit_canary_ratio).toBe(1);
+    expect(flags.p3.commit_require_index_check).toBe(false);
+    expect(flags.p3.commit_require_non_sensitive).toBe(false);
+    expect(flags.p3.commit_require_dual_write_ok).toBe(false);
+    expect(flags.read.alias_normalization).toBe(false);
   });
 });

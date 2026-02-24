@@ -8,6 +8,7 @@ export type BridgeSearchHit = {
   snippet: string;
   source: BridgeRemoteSource;
   remoteId: string;
+  structure?: string;
 };
 
 export type RemoteSnippetRecord = {
@@ -49,6 +50,7 @@ export type CreateRemoteClientOptions = {
   errorReporter?: RemoteErrorReporter;
   searchPath?: string;
   getPath?: (id: string) => string;
+  extractSearchItems?: (payload: unknown) => unknown[];
 };
 
 export type CreateMem0ClientOptions = Omit<CreateRemoteClientOptions, "source">;
@@ -126,7 +128,8 @@ const parseSearchHit = (source: BridgeRemoteSource, item: unknown): BridgeSearch
     normalizeString(record.id) ??
     normalizeString(record.remoteId) ??
     normalizeString(record.memory_id) ??
-    normalizeString(record.uuid);
+    normalizeString(record.uuid) ??
+    normalizeString(record.fact_id);
   if (!id) {
     return null;
   }
@@ -136,16 +139,25 @@ const parseSearchHit = (source: BridgeRemoteSource, item: unknown): BridgeSearch
     normalizeString(record.text) ??
     normalizeString(record.content) ??
     normalizeString(record.memory) ??
+    normalizeString(record.summary) ??
+    normalizeString(record.name) ??
+    normalizeString(record.fact) ??
     "";
+
+  const structure =
+    normalizeString(record.structure) ??
+    normalizeString(record.structure_type) ??
+    normalizeString(record.type);
 
   return {
     path: toBridgePath(source, id),
     startLine: 1,
     endLine: 1,
-    score: parseScore(record.score),
+    score: parseScore(record.score ?? record.rank_score),
     snippet,
     source,
     remoteId: id,
+    structure,
   };
 };
 
@@ -284,7 +296,11 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
           return [];
         }
 
-        const hits = parseSearchItems(payload)
+        const searchItems = options.extractSearchItems
+          ? options.extractSearchItems(payload)
+          : parseSearchItems(payload);
+
+        const hits = searchItems
           .map((item) => parseSearchHit(options.source, item))
           .filter((item): item is BridgeSearchHit => Boolean(item));
 

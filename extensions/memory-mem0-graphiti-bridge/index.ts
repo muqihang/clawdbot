@@ -176,6 +176,11 @@ const memoryMem0GraphitiBridgePlugin = {
             maxBackoffMs: flags.p3.max_backoff_ms,
             jitterRatio: flags.p3.jitter_ratio,
             lowConfidenceThreshold: flags.p3.low_confidence_threshold,
+            admissionEnabled: flags.p3.admission_enabled,
+            commitCanaryRatio: flags.p3.commit_canary_ratio,
+            commitRequireIndexCheck: flags.p3.commit_require_index_check,
+            commitRequireNonSensitive: flags.p3.commit_require_non_sensitive,
+            commitRequireDualWriteOk: flags.p3.commit_require_dual_write_ok,
             mem0Write: createHttpBridgeWriter({
               source: "mem0",
               baseUrl: flags.mem0.base_url,

@@ -22,6 +22,15 @@ type JsonResult = {
   details: unknown;
 };
 
+const ALIAS_GROUPS = [
+  ["telegram", "tg", "电报"],
+  ["imessage", "苹果短信"],
+  ["graphiti", "知识图谱", "图谱"],
+  ["topology", "拓扑"],
+  ["memory upgrade", "记忆升级"],
+  ["openclaw", "clawdbot", "open claw"],
+] as const;
+
 const asRecord = (value: unknown): Record<string, unknown> | undefined => {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     return undefined;
@@ -58,28 +67,87 @@ const readQuery = (params: unknown): string | null => {
   return normalized.length > 0 ? normalized : null;
 };
 
-const resolveResponseRoute = (
-  readMode: BridgeFlags["read_mode"],
-  candidateRoute: BridgeRoute,
-): BridgeRoute => {
-  if (readMode === "local" || readMode === "shadow") {
-    return "local";
+const uniqueQueries = (queries: string[]): string[] => {
+  const seen = new Set<string>();
+  const output: string[] = [];
+
+  for (const query of queries) {
+    const normalized = query.trim();
+    if (normalized.length === 0) {
+      continue;
+    }
+    const key = normalized.toLowerCase();
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    output.push(normalized);
   }
-  return candidateRoute;
+
+  return output;
+};
+
+const expandAliasQueries = (query: string): string[] => {
+  const variants = [query];
+  const lowered = query.toLowerCase();
+
+  for (const group of ALIAS_GROUPS) {
+    const matched = group.find((alias) => lowered.includes(alias.toLowerCase()));
+    if (!matched) {
+      continue;
+    }
+
+    for (const alias of group) {
+      if (alias.toLowerCase() === matched.toLowerCase()) {
+        continue;
+      }
+
+      variants.push(query.replace(new RegExp(matched, "ig"), alias));
+    }
+  }
+
+  return uniqueQueries(variants).slice(0, 4);
+};
+
+const dedupeHits = (hits: BridgeSearchHit[]): BridgeSearchHit[] => {
+  const seen = new Set<string>();
+  const output: BridgeSearchHit[] = [];
+
+  for (const hit of hits) {
+    const key = `${hit.source}:${hit.remoteId}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    output.push(hit);
+  }
+
+  return output;
 };
 
 const searchRemote = async (params: {
   route: BridgeRoute;
   query: string;
   clients: BridgeSearchToolDeps["clients"];
+  aliasNormalization: boolean;
 }): Promise<BridgeSearchHit[]> => {
-  if (params.route === "mem0") {
-    return await params.clients.mem0.search(params.query);
+  const searchQueries = params.aliasNormalization
+    ? expandAliasQueries(params.query)
+    : [params.query];
+  const allHits: BridgeSearchHit[] = [];
+
+  for (const query of searchQueries) {
+    const hits =
+      params.route === "mem0"
+        ? await params.clients.mem0.search(query)
+        : params.route === "graphiti"
+          ? await params.clients.graphiti.search(query)
+          : [];
+
+    allHits.push(...hits);
   }
-  if (params.route === "graphiti") {
-    return await params.clients.graphiti.search(params.query);
-  }
-  return [];
+
+  return dedupeHits(allHits);
 };
 
 const mapBridgeHitsToMemoryResults = (hits: BridgeSearchHit[]): Array<Record<string, unknown>> => {
@@ -90,7 +158,29 @@ const mapBridgeHitsToMemoryResults = (hits: BridgeSearchHit[]): Array<Record<str
     score: hit.score,
     snippet: hit.snippet,
     source: "memory",
+    structure: hit.structure,
   }));
+};
+
+const buildStructureMetrics = (hits: BridgeSearchHit[]): Record<string, number> => {
+  const counts = {
+    facts: 0,
+    episodes: 0,
+    nodes: 0,
+  };
+
+  for (const hit of hits) {
+    const structure = String(hit.structure ?? "").toLowerCase();
+    if (structure === "facts") {
+      counts.facts += 1;
+    } else if (structure === "episodes") {
+      counts.episodes += 1;
+    } else if (structure === "nodes") {
+      counts.nodes += 1;
+    }
+  }
+
+  return counts;
 };
 
 const toRemotePayload = (params: {
@@ -98,6 +188,7 @@ const toRemotePayload = (params: {
   remoteRoute: BridgeRoute;
   remoteHits: BridgeSearchHit[];
   readMode: BridgeFlags["read_mode"];
+  aliasNormalization: boolean;
 }): Record<string, unknown> => {
   const payload = {
     ...(params.localDetails ?? {}),
@@ -105,6 +196,8 @@ const toRemotePayload = (params: {
     provider: params.remoteRoute,
     model: params.remoteRoute,
     mode: params.readMode,
+    alias_normalization: params.aliasNormalization,
+    structures: buildStructureMetrics(params.remoteHits),
   };
 
   if (!Object.prototype.hasOwnProperty.call(payload, "citations")) {
@@ -141,13 +234,15 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         semanticRoute: deps.flags.routing.semantic_route,
       });
 
-      const responseRoute = resolveResponseRoute(deps.flags.read_mode, readPlan.candidateRoute);
+      const responseRoute = readPlan.userRoute;
+      const aliasNormalization = deps.flags.read.alias_normalization;
 
       if (deps.flags.read_mode === "shadow" && readPlan.candidateRoute !== "local") {
         const remoteHits = await searchRemote({
           route: readPlan.candidateRoute,
           query,
           clients: deps.clients,
+          aliasNormalization,
         });
 
         deps.snippetStore.setFromSearchHits(remoteHits);
@@ -172,6 +267,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         route: responseRoute,
         query,
         clients: deps.clients,
+        aliasNormalization,
       });
       if (remoteHits.length === 0) {
         return localResult;
@@ -184,6 +280,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           remoteRoute: responseRoute,
           remoteHits,
           readMode: deps.flags.read_mode,
+          aliasNormalization,
         }),
       );
     },

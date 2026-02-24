@@ -140,6 +140,16 @@
           }
         }
       },
+      "read": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "alias_normalization": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
       "p3": {
         "type": "object",
         "additionalProperties": false,
@@ -190,7 +200,7 @@
           },
           "graphiti_write_path": {
             "type": "string",
-            "default": "/items"
+            "default": "/messages"
           },
           "worker_interval_ms": {
             "type": "number",
@@ -201,6 +211,28 @@
           "auto_worker": {
             "type": "boolean",
             "default": false
+          },
+          "admission_enabled": {
+            "type": "boolean",
+            "default": false
+          },
+          "commit_canary_ratio": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "default": 0
+          },
+          "commit_require_index_check": {
+            "type": "boolean",
+            "default": true
+          },
+          "commit_require_non_sensitive": {
+            "type": "boolean",
+            "default": true
+          },
+          "commit_require_dual_write_ok": {
+            "type": "boolean",
+            "default": true
           }
         }
       },

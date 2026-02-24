@@ -26,6 +26,27 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     outbox: {
       enabled: false,
     },
+    p3: {
+      model: "gpt-5.1-codex-mini",
+      max_attempts: 5,
+      base_backoff_ms: 1000,
+      max_backoff_ms: 300000,
+      jitter_ratio: 0.15,
+      low_confidence_threshold: 0.7,
+      write_timeout_ms: 5000,
+      mem0_write_path: "/memories",
+      graphiti_write_path: "/messages",
+      worker_interval_ms: 60000,
+      auto_worker: false,
+      admission_enabled: false,
+      commit_canary_ratio: 0,
+      commit_require_index_check: true,
+      commit_require_non_sensitive: true,
+      commit_require_dual_write_ok: true,
+    },
+    read: {
+      alias_normalization: true,
+    },
     localHierarchy: {
       enabled: true,
     },
@@ -44,6 +65,14 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     timeoutMs: {
       ...base.timeoutMs,
       ...(overrides.timeoutMs ?? {}),
+    },
+    p3: {
+      ...base.p3,
+      ...(overrides.p3 ?? {}),
+    },
+    read: {
+      ...base.read,
+      ...(overrides.read ?? {}),
     },
   };
 };
@@ -174,5 +203,99 @@ describe("memory search bridge tool", () => {
       }),
     );
     expect(snippetStore.get("graphiti", "abc")).toBe("remote graphiti hit");
+  });
+
+  it("expands alias queries when alias normalization is enabled", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(async (query: string) => {
+      if (query.includes("telegram")) {
+        return [
+          {
+            path: "bridge/mem0/m1",
+            startLine: 1,
+            endLine: 1,
+            score: 0.9,
+            snippet: "telegram preferred",
+            source: "mem0" as const,
+            remoteId: "m1",
+          },
+        ];
+      }
+      return [];
+    });
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "tg priority" });
+    expect(mem0Search.mock.calls.length).toBeGreaterThanOrEqual(2);
+    expect(result.details).toEqual(
+      expect.objectContaining({
+        results: [
+          expect.objectContaining({
+            path: "bridge/mem0/m1",
+          }),
+        ],
+      }),
+    );
+  });
+
+  it("can disable alias normalization and keep single query", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(async () => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        read: {
+          alias_normalization: false,
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "tg priority" });
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(result.details).toEqual(
+      expect.objectContaining({
+        provider: "builtin",
+      }),
+    );
   });
 });

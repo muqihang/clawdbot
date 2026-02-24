@@ -221,4 +221,121 @@ describe("P3 outbox + worker", () => {
     expect(mem0Write).toHaveBeenCalledTimes(1);
     expect(graphitiWrite).toHaveBeenCalledTimes(2);
   });
+
+  it("commits canary samples in propose_only when admission passes", async () => {
+    const now = 1_700_000_020_000;
+    const outbox = createP3OutboxStore({
+      dbPath: path.join(tempDir, "p3.sqlite"),
+      now: () => now,
+    });
+
+    outbox.enqueue({
+      idempotencyKey: "session-3:evt-canary",
+      sessionKey: "session-3",
+      sourceRef: "agent_end:4",
+      sourceTier: "online_incremental",
+      writeMode: "propose_only",
+      effectiveModel: "gpt-5.1-codex-mini",
+      payload: {
+        candidate: {
+          memory_id: "fact-canary-1",
+          fact_key: "prefs.terminal",
+          fact_value: "iTerm2",
+          ttl_class: "conversation",
+          confidence: 0.95,
+          status: "active",
+          source_event_id: "evt-canary-1",
+          detail_path: "memory/2026-02-24.md",
+          trigger_keywords: [],
+          active_context: true,
+          event_time: "2026-02-24T00:00:00.000Z",
+          ingest_time: "2026-02-24T00:00:00.000Z",
+        },
+      },
+    });
+
+    const worker = createP3Worker({
+      outbox,
+      now: () => now,
+      maxAttempts: 3,
+      baseBackoffMs: 1_000,
+      maxBackoffMs: 60_000,
+      jitterRatio: 0,
+      mem0Write: vi.fn(async () => ({ remoteId: "mem0-canary" })),
+      graphitiWrite: vi.fn(async () => ({ remoteId: "graphiti-canary" })),
+      admissionEnabled: true,
+      commitCanaryRatio: 1,
+      commitRequireIndexCheck: false,
+      commitRequireNonSensitive: true,
+      commitRequireDualWriteOk: true,
+      onReport: async () => undefined,
+    });
+
+    const summary = await worker.processOnce();
+    expect(summary.succeeded).toBe(1);
+
+    const runDate = new Date(now).toISOString().slice(0, 10);
+    const counters = outbox.getAuditCounters(runDate);
+    expect(counters.addedCount).toBe(1);
+
+    const proposals = outbox.listProposalStates();
+    expect(proposals).toHaveLength(1);
+    expect(proposals[0]?.status).toBe("committed");
+  });
+
+  it("records error buckets for timeout and contract failures", async () => {
+    let now = 1_700_000_030_000;
+    const outbox = createP3OutboxStore({
+      dbPath: path.join(tempDir, "p3.sqlite"),
+      now: () => now,
+    });
+
+    const enqueued = outbox.enqueue({
+      idempotencyKey: "session-4:evt-bucket",
+      sessionKey: "session-4",
+      sourceRef: "agent_end:5",
+      sourceTier: "online_incremental",
+      writeMode: "propose_only",
+      effectiveModel: "gpt-5.1-codex-mini",
+      payload: {
+        candidate: {
+          memory_id: "fact-bucket",
+          fact_key: "prefs.keyboard",
+          fact_value: "HHKB",
+          ttl_class: "conversation",
+          confidence: 0.9,
+          status: "active",
+          source_event_id: "evt-bucket",
+          detail_path: "memory/2026-02-24.md",
+          trigger_keywords: [],
+          active_context: true,
+          event_time: "2026-02-24T00:00:00.000Z",
+          ingest_time: "2026-02-24T00:00:00.000Z",
+        },
+      },
+    });
+
+    const worker = createP3Worker({
+      outbox,
+      now: () => now,
+      maxAttempts: 2,
+      baseBackoffMs: 100,
+      maxBackoffMs: 100,
+      jitterRatio: 0,
+      mem0Write: vi.fn(async () => {
+        throw new Error("remote mem0 write failed: status 422");
+      }),
+      graphitiWrite: vi.fn(async () => {
+        throw Object.assign(new Error("timed out"), { name: "TimeoutError" });
+      }),
+      onReport: async () => undefined,
+    });
+
+    await worker.processOnce();
+
+    const attempts = outbox.listAttempts(enqueued.eventId);
+    expect(attempts).toHaveLength(2);
+    expect(attempts[0]?.error_bucket).toBe("contract");
+    expect(attempts[1]?.error_bucket).toBe("timeout");
+  });
 });
