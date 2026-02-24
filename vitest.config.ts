@@ -41,6 +41,7 @@ export default defineConfig({
       "analysis/Jarvis-Clawdbot活系统/contracts/**/*.test.mts",
       "analysis/Jarvis-Clawdbot活系统/contracts/tests/**/*.spec.mts",
       "ui/src/ui/views/usage-render-details.test.ts",
+      "ui/src/ui/controllers/agents.test.ts",
     ],
     setupFiles: ["test/setup.ts"],
     exclude: [
