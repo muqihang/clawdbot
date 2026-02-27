@@ -238,3 +238,131 @@ export function resolveThreadSessionKeys(params: {
     : params.baseSessionKey;
   return { sessionKey, parentSessionKey: params.parentSessionKey };
 }
+
+const OC_CHANNELS = [
+  "telegram",
+  "whatsapp",
+  "discord",
+  "irc",
+  "googlechat",
+  "slack",
+  "signal",
+  "imessage",
+] as const;
+
+type OcChannel = (typeof OC_CHANNELS)[number];
+
+const OC_CHANNEL_SET: ReadonlySet<string> = new Set<string>(OC_CHANNELS);
+const OC_SANITIZE_RE = /[^a-z0-9:_\-.]+/g;
+const OC_LEADING_NON_ALNUM_RE = /^[^a-z0-9]+/;
+const OC_TRAILING_SEPARATOR_RE = /[:._-]+$/;
+
+export const OC_USER_ID_REGEX =
+  /^ocu_v1:(telegram|whatsapp|discord|irc|googlechat|slack|signal|imessage):[a-z0-9][a-z0-9:_\-.]{0,127}$/;
+export const OC_THREAD_ID_REGEX =
+  /^oct_v1:(telegram|whatsapp|discord|irc|googlechat|slack|signal|imessage):[a-z0-9][a-z0-9:_\-.]{0,191}$/;
+export const OC_MESSAGE_ID_REGEX =
+  /^ocm_v1:(telegram|whatsapp|discord|irc|googlechat|slack|signal|imessage):[a-z0-9][a-z0-9:_\-.]{0,191}$/;
+
+const normalizeOcPart = (value: string, maxLength: number): string => {
+  const normalized = value
+    .trim()
+    .toLowerCase()
+    .replace(OC_SANITIZE_RE, "-")
+    .replace(OC_LEADING_NON_ALNUM_RE, "")
+    .replace(OC_TRAILING_SEPARATOR_RE, "");
+  const sliced = normalized.slice(0, maxLength).replace(OC_TRAILING_SEPARATOR_RE, "");
+  return sliced || "0";
+};
+
+const resolveOcChannel = (sessionKey: string): OcChannel => {
+  const requestKey = toAgentRequestSessionKey(sessionKey) ?? sessionKey;
+  const tokens = requestKey
+    .split(":")
+    .map((token) => token.trim().toLowerCase())
+    .filter((token) => token.length > 0);
+  for (const token of tokens) {
+    if (OC_CHANNEL_SET.has(token)) {
+      return token as OcChannel;
+    }
+  }
+  return "telegram";
+};
+
+const resolveOcUserSeed = (sessionKey: string): string => {
+  const requestKey = toAgentRequestSessionKey(sessionKey) ?? sessionKey;
+  const tokens = requestKey
+    .split(":")
+    .map((token) => token.trim())
+    .filter((token) => token.length > 0);
+  const directIndex = tokens.findIndex((token) => token.toLowerCase() === "direct");
+  if (directIndex >= 0 && directIndex < tokens.length - 1) {
+    return tokens[directIndex + 1] ?? requestKey;
+  }
+  return requestKey;
+};
+
+const buildOcIdentityId = (params: {
+  prefix: "ocu_v1" | "oct_v1" | "ocm_v1";
+  channel: OcChannel;
+  seed: string;
+  maxLength: number;
+}): string => {
+  const part = normalizeOcPart(params.seed, params.maxLength);
+  return `${params.prefix}:${params.channel}:${part}`;
+};
+
+export type OcIdentityFields = {
+  oc_user_id: string;
+  oc_thread_id: string;
+  oc_message_id: string;
+};
+
+export function buildOcIdentityFields(params: {
+  sessionKey: string;
+  sourceRef?: string | null;
+  idempotencyKey?: string | null;
+  candidateMemoryId?: string | null;
+}): OcIdentityFields {
+  const sessionKey = (params.sessionKey ?? "").trim() || "session";
+  const requestKey = toAgentRequestSessionKey(sessionKey) ?? sessionKey;
+  const channel = resolveOcChannel(sessionKey);
+  const messageSeed =
+    (params.sourceRef ?? "").trim() ||
+    (params.idempotencyKey ?? "").trim() ||
+    (params.candidateMemoryId ?? "").trim() ||
+    requestKey;
+
+  return {
+    oc_user_id: buildOcIdentityId({
+      prefix: "ocu_v1",
+      channel,
+      seed: resolveOcUserSeed(sessionKey),
+      maxLength: 128,
+    }),
+    oc_thread_id: buildOcIdentityId({
+      prefix: "oct_v1",
+      channel,
+      seed: requestKey,
+      maxLength: 192,
+    }),
+    oc_message_id: buildOcIdentityId({
+      prefix: "ocm_v1",
+      channel,
+      seed: messageSeed,
+      maxLength: 192,
+    }),
+  };
+}
+
+export function isValidOcUserId(value: unknown): value is string {
+  return typeof value === "string" && OC_USER_ID_REGEX.test(value);
+}
+
+export function isValidOcThreadId(value: unknown): value is string {
+  return typeof value === "string" && OC_THREAD_ID_REGEX.test(value);
+}
+
+export function isValidOcMessageId(value: unknown): value is string {
+  return typeof value === "string" && OC_MESSAGE_ID_REGEX.test(value);
+}
