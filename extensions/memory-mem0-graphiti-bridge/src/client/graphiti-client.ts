@@ -68,7 +68,7 @@ export function createGraphitiClient(options: CreateGraphitiClientOptions): Remo
   return createRemoteClient({
     source: "graphiti",
     searchPath: "/search",
-    getPath: (id) => `/items/${encodeURIComponent(id)}`,
+    getPath: (id) => `/entity-edge/${encodeURIComponent(id)}`,
     extractSearchItems: extractGraphitiSearchItems,
     ...options,
   });

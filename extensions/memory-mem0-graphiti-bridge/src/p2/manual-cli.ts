@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Command } from "commander";
-import type { PluginLogger } from "openclaw/plugin-sdk";
+import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
 import {
   resolveFactConflicts,
   type ConflictResolutionResult,
@@ -17,6 +17,8 @@ import {
   type ReconciliationReport,
 } from "./reconciliation-report.js";
 import type { BridgeFactRecord } from "./types.js";
+
+type PluginLogger = OpenClawPluginApi["logger"];
 
 type P2StateSnapshot = {
   records: BridgeFactRecord[];

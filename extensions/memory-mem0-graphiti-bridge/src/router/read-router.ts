@@ -10,11 +10,13 @@ export type ReadPlanInput = {
   defaultRoute?: BridgeRoute;
   timelineRoute?: BridgeRemoteRoute;
   semanticRoute?: BridgeRemoteRoute;
+  fallbackRoute?: BridgeRoute;
 };
 
 export type ReadPlan = {
   userRoute: BridgeRoute;
   candidateRoute: BridgeRoute;
+  fallbackRoute: BridgeRoute;
   shadowCompare: boolean;
   intent: QueryIntent;
   readMode: BridgeReadMode;
@@ -115,6 +117,7 @@ export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
   const defaultRoute = input.defaultRoute ?? "local";
   const timelineRoute = input.timelineRoute ?? "graphiti";
   const semanticRoute = input.semanticRoute ?? "mem0";
+  const fallbackRoute = input.fallbackRoute ?? "local";
   const routeSeed = input.routeSeed?.trim() || input.query;
 
   const candidateRoute = resolveCandidateRoute({
@@ -143,6 +146,7 @@ export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
   return {
     userRoute,
     candidateRoute,
+    fallbackRoute,
     shadowCompare,
     intent,
     readMode: input.readMode,

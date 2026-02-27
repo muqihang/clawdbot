@@ -1,7 +1,8 @@
 import { createHash } from "node:crypto";
+import { buildOcIdentityFields } from "../../../../src/routing/session-key.js";
 import type { BridgeFactRecord } from "../p2/types.js";
 import type { P3OutboxStore } from "./outbox-store.js";
-import type { P3WriteMode } from "./types.js";
+import { P3_MESSAGE_ROLE_VALUES, type P3MessageRole, type P3WriteMode } from "./types.js";
 
 type AgentLikeMessage = {
   role?: string;
@@ -37,6 +38,34 @@ const buildMemoryId = (parts: string[]): string => {
 
 const shortHash = (value: string): string => {
   return createHash("sha1").update(value, "utf8").digest("hex").slice(0, 8);
+};
+
+const MESSAGE_ROLE_SET = new Set<P3MessageRole>(P3_MESSAGE_ROLE_VALUES);
+
+const normalizeMessageRole = (value: unknown): P3MessageRole | undefined => {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (!MESSAGE_ROLE_SET.has(normalized as P3MessageRole)) {
+    return undefined;
+  }
+  return normalized as P3MessageRole;
+};
+
+const normalizeIgnoreRoles = (value: unknown): P3MessageRole[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const deduped = new Set<P3MessageRole>();
+  for (const item of value) {
+    const role = normalizeMessageRole(item);
+    if (role) {
+      deduped.add(role);
+    }
+  }
+  return Array.from(deduped);
 };
 
 export type ExtractedTurnCandidate = {
@@ -146,6 +175,10 @@ export function createOnlineIncrementalCapture(params: {
   now?: () => number;
   effectiveModel: string;
   indexCheckProvider?: OnlineIndexCheckProvider;
+  messageEnvelope?: {
+    enabled?: boolean;
+    ignoreRoles?: unknown;
+  };
 }) {
   const now = params.now ?? Date.now;
 
@@ -178,6 +211,28 @@ export function createOnlineIncrementalCapture(params: {
         sessionKey: ctx.sessionKey,
         sourceRef: extracted.sourceRef,
       });
+      const ocIdentity = buildOcIdentityFields({
+        sessionKey: ctx.sessionKey,
+        sourceRef: extracted.sourceRef,
+        idempotencyKey: extracted.idempotencyKey,
+        candidateMemoryId: extracted.candidate.memory_id,
+      });
+      const envelopeEnabled = params.messageEnvelope?.enabled === true;
+      const envelopeIgnoreRoles = normalizeIgnoreRoles(params.messageEnvelope?.ignoreRoles);
+      const messageEnvelope = envelopeEnabled
+        ? {
+            role: "user" as const,
+            name: ocIdentity.oc_user_id ?? `session:${ctx.sessionKey}`,
+            created_at: extracted.candidate.event_time,
+            metadata: {
+              session_key: ctx.sessionKey,
+              source_ref: extracted.sourceRef,
+              model: params.effectiveModel,
+              ...ocIdentity,
+            },
+            ignore_roles: envelopeIgnoreRoles,
+          }
+        : undefined;
 
       params.outbox.enqueue({
         idempotencyKey: extracted.idempotencyKey,
@@ -192,7 +247,9 @@ export function createOnlineIncrementalCapture(params: {
             userText: extracted.userText,
             assistantText: extracted.assistantText,
             indexCheckOk,
+            ...ocIdentity,
           },
+          ...(messageEnvelope ? { message_envelope: messageEnvelope } : {}),
         },
       });
     },

@@ -1,11 +1,13 @@
 import type { BridgeSearchHit, RemoteMemoryClient } from "../client/mem0-client.js";
 
+type RetrievalStructure = "facts" | "episodes" | "nodes";
+
 export type RetrievalEvalSample = {
   id: string;
   query: string;
   aliases?: string[];
   expected_ids?: string[];
-  expected_structures?: Array<"facts" | "episodes" | "nodes">;
+  expected_structures?: RetrievalStructure[];
 };
 
 export type RetrievalEvalSummary = {
@@ -25,6 +27,10 @@ export type RunRetrievalEvaluationOptions = {
 };
 
 const round = (value: number): number => Math.round(value * 10_000) / 10_000;
+
+const isRetrievalStructure = (value: string): value is RetrievalStructure => {
+  return value === "facts" || value === "episodes" || value === "nodes";
+};
 
 const normalizeSample = (value: unknown): RetrievalEvalSample | null => {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -51,10 +57,7 @@ const normalizeSample = (value: unknown): RetrievalEvalSample | null => {
   const expectedStructures = Array.isArray(record.expected_structures)
     ? record.expected_structures
         .map((item) => (typeof item === "string" ? item.trim().toLowerCase() : ""))
-        .filter(
-          (item): item is "facts" | "episodes" | "nodes" =>
-            item === "facts" || item === "episodes" || item === "nodes",
-        )
+        .filter(isRetrievalStructure)
     : [];
 
   return {
@@ -87,21 +90,21 @@ const hitWithinTopK = (hits: BridgeSearchHit[], expectedIds: string[], topK: num
 
 const structureScore = (
   hits: BridgeSearchHit[],
-  expectedStructures: string[],
+  expectedStructures: RetrievalStructure[],
   topK: number,
 ): number => {
   const hitStructures = new Set(
     hits
       .slice(0, topK)
       .map((hit) => String(hit.structure ?? "").toLowerCase())
-      .filter((item) => item === "facts" || item === "episodes" || item === "nodes"),
+      .filter(isRetrievalStructure),
   );
 
   if (expectedStructures.length === 0) {
     return hitStructures.size > 0 ? 1 : 0;
   }
 
-  const expected = new Set(expectedStructures.map((item) => item.toLowerCase()));
+  const expected = new Set(expectedStructures);
   let matched = 0;
 
   for (const structure of expected) {

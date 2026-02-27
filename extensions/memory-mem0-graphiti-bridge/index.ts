@@ -213,6 +213,10 @@ const memoryMem0GraphitiBridgePlugin = {
         writeMode: flags.write_mode,
         outbox,
         effectiveModel: flags.p3.model,
+        messageEnvelope: {
+          enabled: flags.p3.message_envelope.enabled,
+          ignoreRoles: flags.p3.message_envelope.ignore_roles,
+        },
         indexCheckProvider: async (_context) => indexCheckProvider(),
       });
 

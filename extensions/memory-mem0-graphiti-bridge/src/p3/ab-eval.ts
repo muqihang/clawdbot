@@ -325,7 +325,7 @@ const evaluateModelSimulated = (model: string, samples: AbValidationSample[]): A
 
     const existing = canonicalByFactKey.get(extracted.candidate.fact_key);
     const predictedConflict =
-      Boolean(existing) &&
+      existing !== undefined &&
       existing.memoryId !== extracted.candidate.memory_id &&
       existing.confidence > 0;
 

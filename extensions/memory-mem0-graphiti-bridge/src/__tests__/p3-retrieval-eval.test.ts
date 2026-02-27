@@ -1,4 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
+import { createGraphitiClient } from "../client/graphiti-client.js";
+import { createMem0Client } from "../client/mem0-client.js";
 import {
   parseRetrievalDataset,
   runRetrievalEvaluation,
@@ -6,6 +8,71 @@ import {
 } from "../p3/retrieval-eval.js";
 
 describe("P3 retrieval evaluation", () => {
+  it("stabilizes top1 selection on all-zero score ties", async () => {
+    const fetchMock = vi
+      .fn<typeof fetch>()
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            facts: [
+              { uuid: "b-hit", fact: "second" },
+              { uuid: "a-hit", fact: "first" },
+            ],
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        ),
+      )
+      .mockResolvedValueOnce(
+        new Response(
+          JSON.stringify({
+            facts: [
+              { uuid: "a-hit", fact: "first" },
+              { uuid: "b-hit", fact: "second" },
+            ],
+          }),
+          { status: 200, headers: { "content-type": "application/json" } },
+        ),
+      );
+
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    const first = await client.search("tie-query");
+    const second = await client.search("tie-query");
+
+    expect(first[0]?.remoteId).toBe("a-hit");
+    expect(second[0]?.remoteId).toBe("a-hit");
+  });
+
+  it("dedupes repeated remoteId hits by keeping the highest score", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          results: [
+            { id: "dup", memory: "low", score: 0.2 },
+            { id: "other", memory: "mid", score: 0.7 },
+            { id: "dup", memory: "high", score: 0.91 },
+          ],
+        }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      ),
+    );
+
+    const client = createMem0Client({
+      baseUrl: "https://mem0.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    const hits = await client.search("dedupe-query");
+
+    expect(hits.map((hit) => hit.remoteId)).toEqual(["dup", "other"]);
+    expect(hits[0]?.score).toBe(0.91);
+  });
+
   it("computes hit, structure, and alias metrics", async () => {
     const dataset: RetrievalEvalSample[] = [
       {

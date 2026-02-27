@@ -1,3 +1,4 @@
+import type { AgentToolResult } from "@mariozechner/pi-agent-core";
 import type { AnyAgentTool } from "openclaw/plugin-sdk";
 import { decodeBridgePath } from "../bridge/path-codec.js";
 import type { RemoteSnippetStore } from "../bridge/remote-snippet-store.js";
@@ -10,11 +11,6 @@ type BridgeGetToolDeps = {
     mem0: RemoteMemoryClient;
     graphiti: RemoteMemoryClient;
   };
-};
-
-type JsonResult = {
-  content: Array<{ type: string; text: string }>;
-  details: unknown;
 };
 
 const asRecord = (value: unknown): Record<string, unknown> | undefined => {
@@ -56,7 +52,7 @@ const clampBridgeText = (params: { text: string; from?: number; lines?: number }
   return allLines.slice(startIndex, startIndex + maxLines).join("\n");
 };
 
-const jsonResult = (payload: unknown): JsonResult => {
+const jsonResult = (payload: unknown): AgentToolResult<unknown> => {
   return {
     content: [
       {

@@ -29,6 +29,13 @@ export type BridgeReadFlags = {
   alias_normalization: boolean;
 };
 
+type BridgeMessageEnvelopeRole = "user" | "assistant" | "system" | "tool";
+
+export type BridgeP3MessageEnvelopeFlags = {
+  enabled: boolean;
+  ignore_roles: BridgeMessageEnvelopeRole[];
+};
+
 export type BridgeP3Flags = {
   model: string;
   max_attempts: number;
@@ -46,6 +53,7 @@ export type BridgeP3Flags = {
   commit_require_index_check: boolean;
   commit_require_non_sensitive: boolean;
   commit_require_dual_write_ok: boolean;
+  message_envelope: BridgeP3MessageEnvelopeFlags;
 };
 
 export type BridgeFlags = {
@@ -73,6 +81,7 @@ const ROUTES: BridgeRoute[] = ["local", "mem0", "graphiti"];
 const REMOTE_ROUTES: BridgeRemoteRoute[] = ["mem0", "graphiti"];
 const READ_MODES: BridgeReadMode[] = ["local", "shadow", "primary", "remote"];
 const WRITE_MODES: BridgeWriteMode[] = ["off", "propose_only", "propose_commit"];
+const MESSAGE_ENVELOPE_ROLES: BridgeMessageEnvelopeRole[] = ["user", "assistant", "system", "tool"];
 
 const DEFAULT_TIMEOUT_MS = 3000;
 const MIN_TIMEOUT_MS = 100;
@@ -119,6 +128,10 @@ const DEFAULT_FLAGS: BridgeFlags = {
     commit_require_index_check: true,
     commit_require_non_sensitive: true,
     commit_require_dual_write_ok: true,
+    message_envelope: {
+      enabled: false,
+      ignore_roles: [],
+    },
   },
   localHierarchy: {
     enabled: true,
@@ -284,6 +297,25 @@ const readRemoteServiceFlags = (value: unknown): BridgeRemoteServiceFlags => {
   };
 };
 
+const readMessageEnvelopeRoles = (
+  value: unknown,
+  fallback: BridgeMessageEnvelopeRole[],
+): BridgeMessageEnvelopeRole[] => {
+  if (!Array.isArray(value)) {
+    return [...fallback];
+  }
+
+  const deduped = new Set<BridgeMessageEnvelopeRole>();
+  for (const item of value) {
+    const normalized = normalizeString(item)?.toLowerCase();
+    if (normalized && MESSAGE_ENVELOPE_ROLES.includes(normalized as BridgeMessageEnvelopeRole)) {
+      deduped.add(normalized as BridgeMessageEnvelopeRole);
+    }
+  }
+
+  return Array.from(deduped);
+};
+
 export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const raw = asRecord(value);
   const routingRaw = asRecord(raw.routing);
@@ -291,6 +323,9 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const outboxRaw = asRecord(raw.outbox);
   const readRaw = asRecord(raw.read);
   const p3Raw = asRecord(raw.p3);
+  const p3MessageEnvelopeRaw = asRecord(
+    readRawValue(p3Raw, ["message_envelope", "messageEnvelope"]),
+  );
   const localHierarchyRaw = asRecord(raw.localHierarchy);
   const contractRaw = asRecord(raw.contract);
 
@@ -433,6 +468,16 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         readRawValue(p3Raw, ["commit_require_dual_write_ok", "commitRequireDualWriteOk"]),
         DEFAULT_FLAGS.p3.commit_require_dual_write_ok,
       ),
+      message_envelope: {
+        enabled: readBoolean(
+          readRawValue(p3MessageEnvelopeRaw, ["enabled"]),
+          DEFAULT_FLAGS.p3.message_envelope.enabled,
+        ),
+        ignore_roles: readMessageEnvelopeRoles(
+          readRawValue(p3MessageEnvelopeRaw, ["ignore_roles", "ignoreRoles"]),
+          DEFAULT_FLAGS.p3.message_envelope.ignore_roles,
+        ),
+      },
     },
     localHierarchy: {
       enabled: readBoolean(localHierarchyRaw.enabled, DEFAULT_FLAGS.localHierarchy.enabled),

@@ -1,4 +1,15 @@
-import type { P3CandidatePayload, P3OutboxEventRecord } from "./types.js";
+import {
+  isValidOcMessageId,
+  isValidOcThreadId,
+  isValidOcUserId,
+} from "../../../../src/routing/session-key.js";
+import {
+  P3_MESSAGE_ROLE_VALUES,
+  type P3CandidatePayload,
+  type P3MessageEnvelope,
+  type P3MessageRole,
+  type P3OutboxEventRecord,
+} from "./types.js";
 
 type FetchLike = typeof fetch;
 
@@ -49,6 +60,114 @@ const normalizeString = (value: unknown): string | undefined => {
   }
   const trimmed = value.trim();
   return trimmed.length > 0 ? trimmed : undefined;
+};
+
+const MESSAGE_ROLE_SET = new Set<P3MessageRole>(P3_MESSAGE_ROLE_VALUES);
+
+const normalizeMessageRole = (value: unknown): P3MessageRole | undefined => {
+  if (typeof value !== "string") {
+    return undefined;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (!MESSAGE_ROLE_SET.has(normalized as P3MessageRole)) {
+    return undefined;
+  }
+  return normalized as P3MessageRole;
+};
+
+const normalizeIgnoreRoles = (value: unknown): P3MessageRole[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const deduped = new Set<P3MessageRole>();
+  for (const item of value) {
+    const role = normalizeMessageRole(item);
+    if (role) {
+      deduped.add(role);
+    }
+  }
+
+  return Array.from(deduped);
+};
+
+const normalizeEnvelopeMetadata = (value: unknown): Record<string, unknown> => {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return {};
+  }
+  return value as Record<string, unknown>;
+};
+
+type ResolvedMessageEnvelope = {
+  role: P3MessageRole;
+  name?: string;
+  created_at: string;
+  metadata: Record<string, unknown>;
+  ignore_roles: P3MessageRole[];
+};
+
+const resolveMessageEnvelope = (payload: P3CandidatePayload): ResolvedMessageEnvelope | null => {
+  const envelope = payload.message_envelope;
+  if (!envelope) {
+    return null;
+  }
+
+  const role = normalizeMessageRole(envelope.role) ?? "user";
+  const createdAt = normalizeString(envelope.created_at) ?? payload.candidate.event_time;
+  const createdAtFallback = Number.isFinite(Date.parse(createdAt))
+    ? createdAt
+    : payload.candidate.event_time;
+
+  return {
+    role,
+    name: normalizeString(envelope.name),
+    created_at: createdAtFallback,
+    metadata: normalizeEnvelopeMetadata(envelope.metadata),
+    ignore_roles: normalizeIgnoreRoles(envelope.ignore_roles),
+  };
+};
+
+type BaseWriteMessage = {
+  role: P3MessageRole;
+  content: string;
+  timestamp: string;
+};
+
+type FilteredWriteMessages = {
+  messages: BaseWriteMessage[];
+  filteredRoles: P3MessageRole[];
+  effectiveRoles: P3MessageRole[];
+};
+
+const filterWriteMessages = (params: {
+  source: "mem0" | "graphiti";
+  messages: BaseWriteMessage[];
+  envelope: ResolvedMessageEnvelope | null;
+}): FilteredWriteMessages => {
+  const ignoreRoleSet = new Set<P3MessageRole>(params.envelope?.ignore_roles ?? []);
+
+  const filteredRoles = Array.from(
+    new Set(
+      params.messages
+        .filter((message) => ignoreRoleSet.has(message.role))
+        .map((message) => message.role),
+    ),
+  );
+  const effectiveMessages = params.messages.filter((message) => !ignoreRoleSet.has(message.role));
+
+  if (effectiveMessages.length === 0) {
+    throw new P3RemoteWriteError({
+      source: params.source,
+      bucket: "contract",
+      message: `${params.source} write contract invalid: ignore_roles filtered all messages (${filteredRoles.join(",") || "none"})`,
+    });
+  }
+
+  return {
+    messages: effectiveMessages,
+    filteredRoles,
+    effectiveRoles: effectiveMessages.map((message) => message.role),
+  };
 };
 
 const trimRightSlash = (value: string): string => value.replace(/\/+$/, "");
@@ -111,8 +230,40 @@ const resolveWriteTexts = (
   };
 };
 
+const resolveOcIdentityMetadata = (
+  payload: P3CandidatePayload,
+): Partial<{
+  oc_user_id: string;
+  oc_thread_id: string;
+  oc_message_id: string;
+}> => {
+  const metadata = payload.metadata;
+  if (!metadata) {
+    return {};
+  }
+
+  const identity: Partial<{
+    oc_user_id: string;
+    oc_thread_id: string;
+    oc_message_id: string;
+  }> = {};
+
+  if (isValidOcUserId(metadata.oc_user_id)) {
+    identity.oc_user_id = metadata.oc_user_id;
+  }
+  if (isValidOcThreadId(metadata.oc_thread_id)) {
+    identity.oc_thread_id = metadata.oc_thread_id;
+  }
+  if (isValidOcMessageId(metadata.oc_message_id)) {
+    identity.oc_message_id = metadata.oc_message_id;
+  }
+
+  return identity;
+};
+
 const buildMem0Body = (input: P3RemoteWriteInput): Record<string, unknown> => {
   const { userText, assistantText } = resolveWriteTexts(input.payload);
+  const envelope = resolveMessageEnvelope(input.payload);
 
   if (userText.length === 0 || assistantText.length === 0) {
     throw new P3RemoteWriteError({
@@ -122,17 +273,28 @@ const buildMem0Body = (input: P3RemoteWriteInput): Record<string, unknown> => {
     });
   }
 
-  return {
+  const filtered = filterWriteMessages({
+    source: "mem0",
+    envelope,
     messages: [
       {
         role: "user",
         content: userText,
+        timestamp: input.payload.candidate.event_time,
       },
       {
         role: "assistant",
         content: assistantText,
+        timestamp: input.payload.candidate.ingest_time,
       },
     ],
+  });
+
+  return {
+    messages: filtered.messages.map((message) => ({
+      role: message.role,
+      content: message.content,
+    })),
     user_id: input.event.session_key,
     agent_id: "openclaw-memory-bridge-p3",
     run_id: input.event.event_id,
@@ -146,12 +308,30 @@ const buildMem0Body = (input: P3RemoteWriteInput): Record<string, unknown> => {
       source_tier: input.event.source_tier,
       candidate_memory_id: input.payload.candidate.memory_id,
       fact_key: input.payload.candidate.fact_key,
+      ...(envelope
+        ? {
+            message_envelope: {
+              role: envelope.role,
+              name: envelope.name,
+              created_at: envelope.created_at,
+              metadata: envelope.metadata,
+              ignore_roles: envelope.ignore_roles,
+              filtered_roles: filtered.filteredRoles,
+              effective_roles: filtered.effectiveRoles,
+            } satisfies P3MessageEnvelope & {
+              filtered_roles: P3MessageRole[];
+              effective_roles: P3MessageRole[];
+            },
+          }
+        : {}),
+      ...resolveOcIdentityMetadata(input.payload),
     },
   };
 };
 
 const buildGraphitiBody = (input: P3RemoteWriteInput): Record<string, unknown> => {
   const { userText, assistantText } = resolveWriteTexts(input.payload);
+  const envelope = resolveMessageEnvelope(input.payload);
 
   if (!normalizeString(input.event.session_key)) {
     throw new P3RemoteWriteError({
@@ -169,22 +349,31 @@ const buildGraphitiBody = (input: P3RemoteWriteInput): Record<string, unknown> =
     });
   }
 
-  return {
-    group_id: input.event.session_key,
+  const filtered = filterWriteMessages({
+    source: "graphiti",
+    envelope,
     messages: [
       {
-        content: userText,
-        role_type: "user",
         role: "user",
+        content: userText,
         timestamp: input.payload.candidate.event_time,
       },
       {
-        content: assistantText,
-        role_type: "assistant",
         role: "assistant",
+        content: assistantText,
         timestamp: input.payload.candidate.ingest_time,
       },
     ],
+  });
+
+  return {
+    group_id: input.event.session_key,
+    messages: filtered.messages.map((message) => ({
+      content: message.content,
+      role_type: message.role,
+      role: message.role,
+      timestamp: message.timestamp,
+    })),
   };
 };
 

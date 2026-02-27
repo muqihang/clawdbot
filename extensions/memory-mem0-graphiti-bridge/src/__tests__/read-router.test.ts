@@ -11,6 +11,7 @@ describe("mem0-graphiti read router", () => {
 
     expect(plan.userRoute).toBe("local");
     expect(plan.candidateRoute).toBe("local");
+    expect(plan.fallbackRoute).toBe("local");
     expect(plan.shadowCompare).toBe(false);
     expect(plan.phase0LocalOnly).toBe(true);
   });
@@ -24,6 +25,7 @@ describe("mem0-graphiti read router", () => {
 
     expect(plan.userRoute).toBe("local");
     expect(plan.candidateRoute).toBe("graphiti");
+    expect(plan.fallbackRoute).toBe("local");
     expect(plan.shadowCompare).toBe(true);
     expect(plan.phase0LocalOnly).toBe(true);
   });
@@ -45,11 +47,13 @@ describe("mem0-graphiti read router", () => {
 
     expect(timelinePlan.userRoute).toBe("graphiti");
     expect(timelinePlan.candidateRoute).toBe("graphiti");
+    expect(timelinePlan.fallbackRoute).toBe("local");
     expect(timelinePlan.shadowCompare).toBe(false);
     expect(timelinePlan.phase0LocalOnly).toBe(false);
 
     expect(semanticPlan.userRoute).toBe("mem0");
     expect(semanticPlan.candidateRoute).toBe("mem0");
+    expect(semanticPlan.fallbackRoute).toBe("local");
     expect(semanticPlan.shadowCompare).toBe(false);
     expect(semanticPlan.phase0LocalOnly).toBe(false);
   });
@@ -63,6 +67,20 @@ describe("mem0-graphiti read router", () => {
 
     expect(plan.userRoute).toBe("local");
     expect(plan.candidateRoute).toBe("local");
+    expect(plan.fallbackRoute).toBe("local");
     expect(plan.phase0LocalOnly).toBe(true);
+  });
+
+  it("keeps configured fallback route for runtime fallback decisions", () => {
+    const plan = resolveReadPlan({
+      readMode: "primary",
+      cutoverPercent: 100,
+      query: "find semantic memory",
+      fallbackRoute: "graphiti",
+    });
+
+    expect(plan.userRoute).toBe("mem0");
+    expect(plan.candidateRoute).toBe("mem0");
+    expect(plan.fallbackRoute).toBe("graphiti");
   });
 });

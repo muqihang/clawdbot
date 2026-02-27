@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import type { Command } from "commander";
-import type { PluginLogger } from "openclaw/plugin-sdk";
+import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
 import { createGraphitiClient } from "../client/graphiti-client.js";
 import { createMem0Client } from "../client/mem0-client.js";
 import type { BridgeFlags } from "../config/flags.js";
@@ -10,9 +10,11 @@ import { createCheckpointStore } from "./checkpoint-store.js";
 import { runIndexConsistencyCheck } from "./index-check.js";
 import { createP3OutboxStore } from "./outbox-store.js";
 import { createHttpBridgeWriter } from "./remote-writer.js";
-import { buildP3RunSummary, buildP3SnapshotMetrics } from "./reporting.js";
+import { buildP3RunSummary, buildP3SnapshotMetrics, buildP3WeeklyGateFields } from "./reporting.js";
 import { parseRetrievalDataset, runRetrievalEvaluation } from "./retrieval-eval.js";
 import { createP3Worker } from "./worker.js";
+
+type PluginLogger = OpenClawPluginApi["logger"];
 
 const DEFAULT_DB_RELATIVE_PATH = path.join(".openclaw", "memory-bridge-p3.sqlite");
 const DEFAULT_REPORT_JSON_RELATIVE_PATH = path.join(
@@ -73,6 +75,19 @@ const resolveCliPath = (params: {
   return path.isAbsolute(normalized)
     ? normalized
     : path.join(params.workspaceDir, normalized.replace(/^\.\//, ""));
+};
+
+const resolveReportOutputPath = (params: {
+  workspaceDir: string;
+  value?: string;
+  defaultRelativePath: string;
+}): string => {
+  const normalized = normalizeString(params.value);
+  if (!normalized) {
+    return path.join(params.workspaceDir, params.defaultRelativePath);
+  }
+
+  return path.isAbsolute(normalized) ? normalized : path.resolve(process.cwd(), normalized);
 };
 
 const parseJsonSafe = <T>(text: string, fallback: T): T => {
@@ -139,6 +154,50 @@ type RetrievalEvalCliOptions = {
   out?: string;
   route?: string;
   topK?: string;
+};
+
+type P3OutboxStatusCounts = {
+  pending: number;
+  inflight: number;
+  succeeded: number;
+  failed: number;
+  dead: number;
+};
+
+const deriveWeeklyGateFields = (params: {
+  outbox: ReturnType<typeof createP3OutboxStore>;
+  outboxCounts: P3OutboxStatusCounts;
+  flags: BridgeFlags;
+}) => {
+  const events = params.outbox.listEvents();
+  const proposalStates = params.outbox.listProposalStates();
+
+  const canaryCommitCount = events.filter(
+    (event) =>
+      event.source_tier === "online_incremental" &&
+      event.status === "succeeded" &&
+      event.write_mode === "propose_commit",
+  ).length;
+
+  const manualProposeCommitCount = events.filter(
+    (event) => event.source_tier === "manual" && event.status === "succeeded",
+  ).length;
+
+  const pendingReviewCount = proposalStates.filter(
+    (proposalState) => proposalState.status === "pending_review",
+  ).length;
+
+  return buildP3WeeklyGateFields({
+    proposal_count: proposalStates.length,
+    canary_commit_count: canaryCommitCount,
+    manual_propose_commit_count: manualProposeCommitCount,
+    pending_review_count: pendingReviewCount,
+    failed_count: params.outboxCounts.failed,
+    dead_count: params.outboxCounts.dead,
+    admission_enabled: params.flags.p3.admission_enabled,
+    commit_canary_ratio: params.flags.p3.commit_canary_ratio,
+    effective_write_mode: params.flags.write_mode,
+  });
 };
 
 const loadValidationSet = async (datasetPath: string): Promise<AbValidationSample[]> => {
@@ -270,12 +329,18 @@ export function registerMemoryBridgeP3Cli(params: {
           indexConsistencyFailureCount: counters.indexConsistencyFailureCount,
           outbox: outboxCounts,
         });
+        const weeklyGateFields = deriveWeeklyGateFields({
+          outbox,
+          outboxCounts,
+          flags: params.flags,
+        });
 
         const report = {
           runDate,
           generatedAt: new Date().toISOString(),
           effectiveModel,
           metrics,
+          weekly_gate_fields: weeklyGateFields,
         };
 
         await mkdir(path.dirname(reportJsonPath), { recursive: true });
@@ -284,6 +349,7 @@ export function registerMemoryBridgeP3Cli(params: {
           metrics,
           runDate,
           effectiveModel,
+          weeklyGateFields,
         });
         await writeFile(reportTextPath, `${summaryText}\n`, "utf8");
 
@@ -447,12 +513,12 @@ export function registerMemoryBridgeP3Cli(params: {
         value: opts.dbPath ?? params.flags.outbox.db_path,
         defaultRelativePath: DEFAULT_DB_RELATIVE_PATH,
       });
-      const reportJsonPath = resolveCliPath({
+      const reportJsonPath = resolveReportOutputPath({
         workspaceDir,
         value: opts.reportJson,
         defaultRelativePath: DEFAULT_REPORT_JSON_RELATIVE_PATH,
       });
-      const reportTextPath = resolveCliPath({
+      const reportTextPath = resolveReportOutputPath({
         workspaceDir,
         value: opts.reportText,
         defaultRelativePath: DEFAULT_REPORT_TXT_RELATIVE_PATH,
@@ -462,6 +528,7 @@ export function registerMemoryBridgeP3Cli(params: {
 
       const outbox = createP3OutboxStore({ dbPath });
       const counters = outbox.getAuditCounters(runDate);
+      const outboxCounts = outbox.getOutboxStatusCounts();
       const metrics = buildP3SnapshotMetrics({
         candidateCount: counters.candidateCount,
         addedCount: counters.addedCount,
@@ -469,7 +536,12 @@ export function registerMemoryBridgeP3Cli(params: {
         conflictCount: counters.conflictCount,
         sensitiveInterceptedCount: counters.sensitiveInterceptedCount,
         indexConsistencyFailureCount: counters.indexConsistencyFailureCount,
-        outbox: outbox.getOutboxStatusCounts(),
+        outbox: outboxCounts,
+      });
+      const weeklyGateFields = deriveWeeklyGateFields({
+        outbox,
+        outboxCounts,
+        flags: params.flags,
       });
 
       const report = {
@@ -477,11 +549,13 @@ export function registerMemoryBridgeP3Cli(params: {
         generatedAt: new Date().toISOString(),
         effectiveModel,
         metrics,
+        weekly_gate_fields: weeklyGateFields,
       };
       const summary = buildP3RunSummary({
         runDate,
         effectiveModel,
         metrics,
+        weeklyGateFields,
       });
 
       await mkdir(path.dirname(reportJsonPath), { recursive: true });
@@ -499,31 +573,33 @@ export function registerMemoryBridgeP3Cli(params: {
     .option("--route <provider>", "Provider: graphiti|mem0", "graphiti")
     .option("--top-k <n>", "Top-k for hit metrics", "3")
     .action(async (opts: RetrievalEvalCliOptions) => {
-      const datasetPath = resolveCliPath({
+      const datasetPath = resolveReportOutputPath({
         workspaceDir,
         value: opts.dataset,
         defaultRelativePath: DEFAULT_RETRIEVAL_DATASET_RELATIVE_PATH,
       });
-      const outputPath = resolveCliPath({
+      const outputPath = resolveReportOutputPath({
         workspaceDir,
         value: opts.out,
         defaultRelativePath: path.join(".openclaw", "memory-bridge-p3-retrieval-eval.json"),
       });
       const provider = normalizeString(opts.route) === "mem0" ? "mem0" : "graphiti";
       const topK = Math.max(1, toInt(opts.topK, 3));
+      const mem0BaseUrl = params.flags.mem0.base_url ?? "http://127.0.0.1:8766";
+      const graphitiBaseUrl = params.flags.graphiti.base_url ?? "http://127.0.0.1:8000";
 
       const rawDataset = await readFile(datasetPath, "utf8");
       const dataset = parseRetrievalDataset(parseJsonSafe(rawDataset, []));
       const client =
         provider === "mem0"
           ? createMem0Client({
-              baseUrl: params.flags.mem0.base_url,
+              baseUrl: mem0BaseUrl,
               apiKey: params.flags.mem0.api_key,
               timeoutMs: params.flags.timeoutMs.search,
               getTimeoutMs: params.flags.timeoutMs.get,
             })
           : createGraphitiClient({
-              baseUrl: params.flags.graphiti.base_url,
+              baseUrl: graphitiBaseUrl,
               apiKey: params.flags.graphiti.api_key,
               timeoutMs: params.flags.timeoutMs.search,
               getTimeoutMs: params.flags.timeoutMs.get,

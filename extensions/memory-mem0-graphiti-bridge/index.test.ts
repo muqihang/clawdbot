@@ -1,4 +1,4 @@
-import type { OpenClawPluginApi } from "openclaw/plugin-sdk";
+import type { AnyAgentTool, OpenClawPluginApi } from "openclaw/plugin-sdk";
 import { describe, expect, it, vi } from "vitest";
 
 describe("memory-mem0-graphiti-bridge", () => {
@@ -163,7 +163,7 @@ describe("memory-mem0-graphiti-bridge", () => {
     expect(registerService).not.toHaveBeenCalled();
 
     const [factory, options] = registerTool.mock.calls[0] as [
-      (ctx: { config?: unknown; sessionKey?: string }) => unknown,
+      (ctx: { config?: unknown; sessionKey?: string }) => AnyAgentTool[],
       { names: string[] },
     ];
 
@@ -171,10 +171,10 @@ describe("memory-mem0-graphiti-bridge", () => {
 
     const registeredTools = factory({ config: {}, sessionKey: "session-1" });
     expect(registeredTools).toHaveLength(2);
-    expect(registeredTools?.[0]).not.toBe(searchTool);
-    expect(registeredTools?.[1]).not.toBe(getTool);
+    expect(registeredTools[0]).not.toBe(searchTool);
+    expect(registeredTools[1]).not.toBe(getTool);
 
-    const bridgedSearchTool = registeredTools?.[0];
+    const bridgedSearchTool = registeredTools[0];
     if (!bridgedSearchTool?.execute) {
       throw new Error("expected bridged memory_search tool with execute");
     }
@@ -189,7 +189,7 @@ describe("memory-mem0-graphiti-bridge", () => {
       }),
     );
 
-    const bridgedGetTool = registeredTools?.[1];
+    const bridgedGetTool = registeredTools[1];
     if (!bridgedGetTool?.execute) {
       throw new Error("expected bridged memory_get tool with execute");
     }
@@ -242,9 +242,16 @@ describe("memory-mem0-graphiti-bridge", () => {
         },
       }));
 
-      const createOnlineIncrementalCapture = vi.fn(() => ({
-        onAgentEnd: vi.fn(async () => undefined),
-      }));
+      const createOnlineIncrementalCapture = vi.fn(
+        (_params: {
+          indexCheckProvider?: (input: {
+            sessionKey: string;
+            sourceRef: string;
+          }) => Promise<boolean>;
+        }) => ({
+          onAgentEnd: vi.fn(async () => undefined),
+        }),
+      );
 
       vi.doMock("./src/p3/index-check.js", () => ({
         runIndexConsistencyCheck,
@@ -287,13 +294,9 @@ describe("memory-mem0-graphiti-bridge", () => {
       plugin.register(api);
 
       expect(createOnlineIncrementalCapture).toHaveBeenCalledTimes(1);
-      const captureParams = createOnlineIncrementalCapture.mock.calls[0]?.[0] as {
-        indexCheckProvider?: (input: { sessionKey: string; sourceRef: string }) => Promise<boolean>;
-      };
-
-      expect(captureParams?.indexCheckProvider).toBeDefined();
-
-      const indexCheckProvider = captureParams.indexCheckProvider;
+      const captureParams = createOnlineIncrementalCapture.mock.calls[0]?.[0];
+      expect(captureParams).toBeDefined();
+      const indexCheckProvider = captureParams?.indexCheckProvider;
       if (!indexCheckProvider) {
         throw new Error("expected indexCheckProvider");
       }

@@ -1,6 +1,7 @@
 import type { AnyAgentTool } from "openclaw/plugin-sdk";
 import { describe, expect, it, vi } from "vitest";
 import { createRemoteSnippetStore } from "../bridge/remote-snippet-store.js";
+import type { BridgeSearchHit } from "../client/mem0-client.js";
 import type { BridgeFlags } from "../config/flags.js";
 import { createBridgeMemorySearchTool } from "../tools/memory-search-tool.js";
 
@@ -122,17 +123,19 @@ describe("memory search bridge tool", () => {
           getById: vi.fn(async () => null),
         },
         graphiti: {
-          search: vi.fn(async () => [
-            {
-              path: "bridge/graphiti/g1",
-              startLine: 1,
-              endLine: 1,
-              score: 0.8,
-              snippet: "remote timeline snippet",
-              source: "graphiti",
-              remoteId: "g1",
-            },
-          ]),
+          search: vi.fn(
+            async (): Promise<BridgeSearchHit[]> => [
+              {
+                path: "bridge/graphiti/g1",
+                startLine: 1,
+                endLine: 1,
+                score: 0.8,
+                snippet: "remote timeline snippet",
+                source: "graphiti",
+                remoteId: "g1",
+              },
+            ],
+          ),
           getById: vi.fn(async () => null),
         },
       },
@@ -171,17 +174,19 @@ describe("memory search bridge tool", () => {
           getById: vi.fn(async () => null),
         },
         graphiti: {
-          search: vi.fn(async () => [
-            {
-              path: "bridge/graphiti/abc",
-              startLine: 1,
-              endLine: 1,
-              score: 0.95,
-              snippet: "remote graphiti hit",
-              source: "graphiti",
-              remoteId: "abc",
-            },
-          ]),
+          search: vi.fn(
+            async (): Promise<BridgeSearchHit[]> => [
+              {
+                path: "bridge/graphiti/abc",
+                startLine: 1,
+                endLine: 1,
+                score: 0.95,
+                snippet: "remote graphiti hit",
+                source: "graphiti",
+                remoteId: "abc",
+              },
+            ],
+          ),
           getById: vi.fn(async () => null),
         },
       },
@@ -297,5 +302,192 @@ describe("memory search bridge tool", () => {
         provider: "builtin",
       }),
     );
+  });
+
+  it("uses fallback_route after primary remote empty results", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/fallback-1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.89,
+          snippet: "fallback graphiti hit",
+          source: "graphiti",
+          remoteId: "fallback-1",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "mem0",
+          fallback_route: "graphiti",
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "semantic lookup" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const routeRecord = detailsRecord.route as Record<string, unknown>;
+    const fallbackRecord = detailsRecord.fallback as Record<string, unknown>;
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(result.details).toEqual(
+      expect.objectContaining({
+        provider: "graphiti",
+        source: "graphiti",
+        results: [
+          expect.objectContaining({
+            path: "bridge/graphiti/fallback-1",
+          }),
+        ],
+      }),
+    );
+    expect(routeRecord.primary_route).toBe("mem0");
+    expect(routeRecord.fallback_route).toBe("graphiti");
+    expect(routeRecord.selected_route).toBe("graphiti");
+    expect(fallbackRecord.triggered).toBe(true);
+    expect(fallbackRecord.reason).toBe("empty_results");
+    expect(Number(fallbackRecord.primary_latency_ms)).toBeGreaterThanOrEqual(0);
+  });
+
+  it("attaches context_assemble output for exact_id without breaking baseline schema", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/mem0/id-hit",
+          startLine: 1,
+          endLine: 1,
+          score: 0.97,
+          snippet: "resolved identity record",
+          source: "mem0",
+          remoteId: "id-hit",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", {
+      query: "find exact id",
+      bucket: "exact_id",
+      oc_user_id: "ocu_v1:telegram:123456",
+      message_envelope: {
+        role: "user",
+        created_at: "2026-02-02T10:00:00Z",
+      },
+    });
+
+    expect(result.details).toEqual(
+      expect.objectContaining({
+        results: [
+          expect.objectContaining({
+            path: "bridge/mem0/id-hit",
+          }),
+        ],
+        provider: "mem0",
+        model: "mem0",
+      }),
+    );
+    const detailsRecord = result.details as Record<string, unknown>;
+    const assembled = detailsRecord.context_assemble as Record<string, unknown>;
+    expect(assembled.template_id).toBe("T1");
+    expect(assembled.decision).toBe("answer");
+  });
+
+  it("attaches explainable degrade result when timeline inputs are insufficient", async () => {
+    const localTool = createLocalTool();
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async (): Promise<BridgeSearchHit[]> => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(
+            async (): Promise<BridgeSearchHit[]> => [
+              {
+                path: "bridge/graphiti/tl-1",
+                startLine: 1,
+                endLine: 1,
+                score: 0.78,
+                snippet: "one timeline event",
+                source: "graphiti",
+                remoteId: "tl-1",
+              },
+            ],
+          ),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", {
+      query: "timeline migration",
+      bucket: "timeline",
+    });
+
+    const detailsRecord = result.details as Record<string, unknown>;
+    const assembled = detailsRecord.context_assemble as Record<string, unknown>;
+    expect(assembled.template_id).toBe("T2");
+    expect(assembled.decision).toBe("degrade");
+    expect(typeof assembled.degrade_reason).toBe("string");
+    expect(String(assembled.degrade_reason).length).toBeGreaterThan(0);
   });
 });

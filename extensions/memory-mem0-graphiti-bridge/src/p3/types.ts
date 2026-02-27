@@ -10,6 +10,97 @@ export type P3AttemptErrorBucket = "4xx" | "5xx" | "timeout" | "contract" | "unk
 
 export type P3SourceTier = "online_incremental" | "manual" | "replay";
 
+export const P3_MESSAGE_ROLE_VALUES = ["user", "assistant", "system", "tool"] as const;
+
+export type P3MessageRole = (typeof P3_MESSAGE_ROLE_VALUES)[number];
+
+export type P3MessageEnvelope = {
+  role?: P3MessageRole;
+  name?: string;
+  created_at?: string;
+  metadata?: Record<string, unknown>;
+  ignore_roles?: P3MessageRole[];
+};
+
+export type P3ContextBucket = "exact_id" | "timeline" | "decision_reason";
+
+export type P3ContextRetrievalHit = {
+  source_id: string;
+  snippet: string;
+  score: number;
+  created_at?: string;
+};
+
+export type P3ContextDecision = "answer" | "degrade";
+
+type P3ContextBaseResult = {
+  decision: P3ContextDecision;
+  answer_text: string;
+  confidence: number;
+  degrade_reason: string | null;
+  trim_report: string[];
+  token_usage: {
+    input: number;
+    output: number;
+  };
+};
+
+export type P3ContextT1Result = P3ContextBaseResult & {
+  template_id: "T1";
+  resolved_id: string | null;
+  resolved_id_type: "oc_user_id" | "oc_thread_id" | "oc_message_id" | null;
+  evidence: Array<{
+    source_id: string;
+    snippet: string;
+    score: number;
+  }>;
+};
+
+export type P3ContextT2Result = P3ContextBaseResult & {
+  template_id: "T2";
+  timeline: Array<{
+    ts: string;
+    event: string;
+    source_id: string;
+  }>;
+  coverage: {
+    events_used: number;
+    events_total: number;
+  };
+};
+
+export type P3ContextT3Result = P3ContextBaseResult & {
+  template_id: "T3";
+  claim: string;
+  rationale: Array<{
+    point: string;
+    source_id: string;
+  }>;
+  counter_evidence: Array<{
+    point: string;
+    source_id: string;
+  }>;
+  final_recommendation: "keep" | "revise" | "rollback" | "unknown";
+};
+
+export type P3ContextAssembleResult = P3ContextT1Result | P3ContextT2Result | P3ContextT3Result;
+
+export type P3ContextAssembleInput = {
+  query_id: string;
+  query_text: string;
+  bucket: P3ContextBucket;
+  retrieval_hits: P3ContextRetrievalHit[];
+  oc_user_id?: string;
+  oc_thread_id?: string;
+  oc_message_id?: string;
+  aliases?: string[];
+  message_envelope?: P3MessageEnvelope;
+  timezone_hint?: string;
+  max_events?: number;
+  constraints?: string[];
+  risk_flags?: string[];
+};
+
 export type P3CandidatePayload = {
   candidate: BridgeFactRecord;
   metadata?: {
@@ -17,7 +108,11 @@ export type P3CandidatePayload = {
     assistantText?: string;
     tags?: string[];
     indexCheckOk?: boolean;
+    oc_user_id?: string;
+    oc_thread_id?: string;
+    oc_message_id?: string;
   };
+  message_envelope?: P3MessageEnvelope;
 };
 
 export type P3OutboxEventRecord = {
@@ -77,4 +172,16 @@ export type P3SnapshotMetrics = {
     failed: number;
     dead: number;
   };
+};
+
+export type P3WeeklyGateFields = {
+  proposal_count: number;
+  canary_commit_count: number;
+  manual_propose_commit_count: number;
+  pending_review_count: number;
+  failed_count: number;
+  dead_count: number;
+  admission_enabled: boolean;
+  commit_canary_ratio: number;
+  effective_write_mode: P3WriteMode;
 };

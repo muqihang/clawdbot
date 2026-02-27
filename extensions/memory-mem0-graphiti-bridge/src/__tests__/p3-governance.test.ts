@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { resolveBridgeFlags } from "../config/flags.js";
 import { resolveFactConflicts } from "../p2/conflict-resolver.js";
 import type { BridgeFactRecord } from "../p2/types.js";
 import { createSensitiveInterceptor } from "../p3/sensitive-interceptor.js";
@@ -102,5 +103,48 @@ describe("P3 sensitive interceptor", () => {
   it("allows normal preference text", () => {
     const decision = interceptor.inspect("I prefer dark mode and concise answers");
     expect(decision.intercepted).toBe(false);
+  });
+});
+
+describe("P3 message envelope flags", () => {
+  it("defaults to legacy-compatible message envelope off", () => {
+    const flags = resolveBridgeFlags(undefined);
+    const messageEnvelope = (
+      flags.p3 as {
+        message_envelope?: {
+          enabled?: boolean;
+          ignore_roles?: string[];
+        };
+      }
+    ).message_envelope;
+
+    expect(messageEnvelope).toEqual({
+      enabled: false,
+      ignore_roles: [],
+    });
+  });
+
+  it("normalizes ignore_roles to valid deduplicated role list", () => {
+    const flags = resolveBridgeFlags({
+      p3: {
+        message_envelope: {
+          enabled: true,
+          ignore_roles: ["assistant", " ASSISTANT ", "invalid", "tool"],
+        },
+      },
+    });
+    const messageEnvelope = (
+      flags.p3 as {
+        message_envelope?: {
+          enabled?: boolean;
+          ignore_roles?: string[];
+        };
+      }
+    ).message_envelope;
+
+    expect(messageEnvelope).toEqual({
+      enabled: true,
+      ignore_roles: ["assistant", "tool"],
+    });
   });
 });

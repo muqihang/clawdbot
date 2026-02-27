@@ -147,6 +147,32 @@ describe("mem0 + graphiti clients", () => {
     );
   });
 
+  it("aligns graphiti getById path with OpenAPI and parses fact payload", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      toJsonResponse(200, {
+        uuid: "edge-1",
+        name: "PREFERS",
+        fact: "Telegram is preferred",
+      }),
+    );
+
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    const record = await client.getById("edge-1");
+
+    expect(record).toEqual({ text: "Telegram is preferred" });
+    expect(fetchMock).toHaveBeenCalledWith(
+      "https://graphiti.test/entity-edge/edge-1",
+      expect.objectContaining({
+        method: "GET",
+      }),
+    );
+  });
+
   it("parses graphiti facts/episodes/nodes search payload", async () => {
     const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
       toJsonResponse(200, {

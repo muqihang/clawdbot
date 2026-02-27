@@ -13,6 +13,7 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.routing.default_route).toBe("local");
     expect(flags.routing.timeline_route).toBe("graphiti");
     expect(flags.routing.semantic_route).toBe("mem0");
+    expect(flags.routing.fallback_route).toBe("local");
     expect(flags.read.alias_normalization).toBe(true);
     expect(flags.p3.graphiti_write_path).toBe("/messages");
     expect(flags.p3.admission_enabled).toBe(false);
@@ -31,12 +32,14 @@ describe("mem0-graphiti bridge flags", () => {
         default_route: "local",
         timeline_route: "graphiti",
         semantic_route: "mem0",
+        fallback_route: "graphiti",
       },
     });
 
     expect(flags.read_mode).toBe("shadow");
     expect(flags.write_mode).toBe("propose_only");
     expect(flags.cutover_percent).toBe(35);
+    expect(flags.routing.fallback_route).toBe("graphiti");
   });
 
   it("normalizes legacy graphiti write path /items to /messages", () => {

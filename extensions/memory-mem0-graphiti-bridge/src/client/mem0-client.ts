@@ -116,6 +116,87 @@ const parseScore = (value: unknown): number => {
   return 0;
 };
 
+const compareAsciiStrings = (left: string, right: string): number => {
+  if (left < right) {
+    return -1;
+  }
+  if (left > right) {
+    return 1;
+  }
+  return 0;
+};
+
+const compareRemoteIds = (left: string, right: string): number => {
+  const leftLowered = left.toLowerCase();
+  const rightLowered = right.toLowerCase();
+
+  const loweredCompare = compareAsciiStrings(leftLowered, rightLowered);
+  if (loweredCompare !== 0) {
+    return loweredCompare;
+  }
+
+  return compareAsciiStrings(left, right);
+};
+
+const compareScoresDesc = (left: number, right: number): number => {
+  if (left === right) {
+    return 0;
+  }
+  return left > right ? -1 : 1;
+};
+
+const chooseBetterHit = (
+  candidate: BridgeSearchHit,
+  existing: BridgeSearchHit,
+): BridgeSearchHit => {
+  if (candidate.score !== existing.score) {
+    return candidate.score > existing.score ? candidate : existing;
+  }
+
+  // Prefer the hit with the longer snippet on ties to keep more context.
+  if (candidate.snippet.length !== existing.snippet.length) {
+    return candidate.snippet.length > existing.snippet.length ? candidate : existing;
+  }
+
+  // Final deterministic tie-breaker for identical remoteId: keep the lexicographically smallest snippet.
+  const snippetCompare = compareAsciiStrings(candidate.snippet, existing.snippet);
+  return snippetCompare < 0 ? candidate : existing;
+};
+
+const normalizeSearchHits = (hits: BridgeSearchHit[]): BridgeSearchHit[] => {
+  if (hits.length <= 1) {
+    return hits;
+  }
+
+  const bestByRemoteId = new Map<string, BridgeSearchHit>();
+  for (const hit of hits) {
+    const key = hit.remoteId.toLowerCase();
+    const existing = bestByRemoteId.get(key);
+    if (!existing) {
+      bestByRemoteId.set(key, hit);
+      continue;
+    }
+    bestByRemoteId.set(key, chooseBetterHit(hit, existing));
+  }
+
+  const deduped = Array.from(bestByRemoteId.values());
+  deduped.sort((left, right) => {
+    const scoreCompare = compareScoresDesc(left.score, right.score);
+    if (scoreCompare !== 0) {
+      return scoreCompare;
+    }
+
+    const remoteIdCompare = compareRemoteIds(left.remoteId, right.remoteId);
+    if (remoteIdCompare !== 0) {
+      return remoteIdCompare;
+    }
+
+    return compareAsciiStrings(left.path, right.path);
+  });
+
+  return deduped;
+};
+
 const toBridgePath = (source: BridgeRemoteSource, id: string): string => `bridge/${source}/${id}`;
 
 const parseSearchHit = (source: BridgeRemoteSource, item: unknown): BridgeSearchHit | null => {
@@ -193,7 +274,10 @@ const parseTextRecord = (payload: unknown): string | undefined => {
     normalizeString(record.text) ??
     normalizeString(record.snippet) ??
     normalizeString(record.content) ??
-    normalizeString(record.memory)
+    normalizeString(record.memory) ??
+    normalizeString(record.fact) ??
+    normalizeString(record.summary) ??
+    normalizeString(record.name)
   );
 };
 
@@ -304,7 +388,7 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
           .map((item) => parseSearchHit(options.source, item))
           .filter((item): item is BridgeSearchHit => Boolean(item));
 
-        return hits;
+        return normalizeSearchHits(hits);
       } catch (error) {
         reportError(
           options.errorReporter,

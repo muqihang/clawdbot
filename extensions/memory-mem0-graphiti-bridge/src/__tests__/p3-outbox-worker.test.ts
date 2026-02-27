@@ -2,8 +2,16 @@ import { mkdtemp, rm } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { createOnlineIncrementalCapture } from "../p3/online-capture.js";
 import { createP3OutboxStore } from "../p3/outbox-store.js";
 import { createP3Worker } from "../p3/worker.js";
+
+const OC_USER_ID_RE =
+  /^ocu_v1:(telegram|whatsapp|discord|irc|googlechat|slack|signal|imessage):[a-z0-9][a-z0-9:_\-.]{0,127}$/;
+const OC_THREAD_ID_RE =
+  /^oct_v1:(telegram|whatsapp|discord|irc|googlechat|slack|signal|imessage):[a-z0-9][a-z0-9:_\-.]{0,191}$/;
+const OC_MESSAGE_ID_RE =
+  /^ocm_v1:(telegram|whatsapp|discord|irc|googlechat|slack|signal|imessage):[a-z0-9][a-z0-9:_\-.]{0,191}$/;
 
 describe("P3 outbox + worker", () => {
   let tempDir = "";
@@ -281,6 +289,72 @@ describe("P3 outbox + worker", () => {
     const proposals = outbox.listProposalStates();
     expect(proposals).toHaveLength(1);
     expect(proposals[0]?.status).toBe("committed");
+  });
+
+  it("keeps legacy metadata and carries oc_* ids for captured events", async () => {
+    let now = 1_700_000_025_000;
+    const outbox = createP3OutboxStore({
+      dbPath: path.join(tempDir, "p3.sqlite"),
+      now: () => now,
+    });
+
+    const capture = createOnlineIncrementalCapture({
+      writeMode: "propose_only",
+      outbox,
+      now: () => now,
+      effectiveModel: "gpt-5.1-codex-mini",
+    });
+
+    await capture.onAgentEnd(
+      {
+        success: true,
+        messages: [
+          { role: "user", content: "my editor is helix" },
+          { role: "assistant", content: "好的，记住你用 helix。" },
+        ],
+      },
+      { sessionKey: "agent:main:slack:direct:u01abc" },
+    );
+
+    const captured = outbox.listEvents()[0];
+    expect(captured?.payload.metadata?.userText).toBe("my editor is helix");
+    expect(captured?.payload.metadata?.assistantText).toBe("好的，记住你用 helix。");
+    expect(captured?.payload.metadata?.oc_user_id).toBe("ocu_v1:slack:u01abc");
+    expect(captured?.payload.metadata?.oc_thread_id).toBe("oct_v1:slack:slack:direct:u01abc");
+    expect(captured?.payload.metadata?.oc_message_id).toMatch(OC_MESSAGE_ID_RE);
+    expect(captured?.payload.metadata?.oc_message_id).toContain(
+      "ocm_v1:slack:agent_end:agent:main:slack:direct:u01abc:",
+    );
+
+    const mem0Write = vi.fn(async () => ({ remoteId: "mem0-oc" }));
+    const graphitiWrite = vi.fn(async () => ({ remoteId: "graphiti-oc" }));
+    const worker = createP3Worker({
+      outbox,
+      now: () => now,
+      maxAttempts: 2,
+      baseBackoffMs: 100,
+      maxBackoffMs: 1_000,
+      jitterRatio: 0,
+      mem0Write,
+      graphitiWrite,
+      onReport: async () => undefined,
+    });
+
+    const result = await worker.processOnce();
+    expect(result.succeeded).toBe(1);
+    expect(mem0Write).toHaveBeenCalledWith(
+      expect.objectContaining({
+        payload: expect.objectContaining({
+          metadata: expect.objectContaining({
+            userText: "my editor is helix",
+            assistantText: "好的，记住你用 helix。",
+            oc_user_id: expect.stringMatching(OC_USER_ID_RE),
+            oc_thread_id: expect.stringMatching(OC_THREAD_ID_RE),
+            oc_message_id: expect.stringMatching(OC_MESSAGE_ID_RE),
+          }),
+        }),
+      }),
+    );
   });
 
   it("records error buckets for timeout and contract failures", async () => {
