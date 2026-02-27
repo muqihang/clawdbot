@@ -86,7 +86,7 @@ export function applyQuotaDegradePolicy(
       throttleDelayMs = computeThrottleDelayMs(input.currentQps, input.policy.qpsLimit);
       if (status === "within_budget") {
         status = "throttled";
-      } else if (status !== "blocked") {
+      } else {
         status = "degraded";
       }
     }
