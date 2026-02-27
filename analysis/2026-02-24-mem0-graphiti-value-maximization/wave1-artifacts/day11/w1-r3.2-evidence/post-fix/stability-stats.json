@@ -1,0 +1,14 @@
+{
+  "runDate": "2026-02-27",
+  "provider": "graphiti",
+  "stability_runs": 10,
+  "hit_at_1": {
+    "min": 0.2,
+    "max": 0.2,
+    "mean": 0.2,
+    "counts": {
+      "0.2": 10
+    },
+    "values": [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+  }
+}

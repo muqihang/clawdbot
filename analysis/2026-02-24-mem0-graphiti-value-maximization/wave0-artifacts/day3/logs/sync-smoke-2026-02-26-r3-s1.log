@@ -1,0 +1,136 @@
+# S1 依赖与类型检查
+started_utc=2026-02-26T03:10:03Z
+started_utc8=2026-02-26T11:10:03+0800
+$ pnpm install
+Scope: all 37 workspace projects
+ ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY  Aborted removal of modules directory due to no TTY
+
+If you are running pnpm in CI, set the CI environment variable to "true".
+install_primary_exit_code=1
+fallback_trigger=install_no_tty_or_frozen_lockfile
+$ CI=true pnpm install
+Scope: all 37 workspace projects
+Recreating /Users/muqihang/chelingxi_workspace/clawdbot/node_modules
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +990
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 990, reused 1, downloaded 0, added 0
+Progress: resolved 990, reused 33, downloaded 0, added 0
+Progress: resolved 990, reused 210, downloaded 0, added 0
+Progress: resolved 990, reused 989, downloaded 0, added 18
+Progress: resolved 990, reused 989, downloaded 0, added 392
+Progress: resolved 990, reused 989, downloaded 0, added 553
+Progress: resolved 990, reused 989, downloaded 0, added 637
+Progress: resolved 990, reused 989, downloaded 0, added 846
+Progress: resolved 990, reused 989, downloaded 0, added 990, done
+.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
+.../node_modules/node-llama-cpp postinstall$ node ./dist/cli/cli.js postinstall
+.../node_modules/node-llama-cpp postinstall: Done
+.../sharp@0.34.5/node_modules/sharp install: Done
+.../node_modules/@whiskeysockets/baileys preinstall$ node ./engine-requirements.js
+.../node_modules/@whiskeysockets/baileys preinstall: Done
+
+dependencies:
++ @agentclientprotocol/sdk 0.14.1
++ @aws-sdk/client-bedrock 3.995.0
++ @buape/carbon 0.0.0-beta-20260216184201
++ @clack/prompts 1.0.1
++ @discordjs/voice 0.19.0
++ @grammyjs/runner 2.0.3
++ @grammyjs/transformer-throttler 1.2.1
++ @homebridge/ciao 1.3.5
++ @larksuiteoapi/node-sdk 1.59.0
++ @line/bot-sdk 10.6.0
++ @lydell/node-pty 1.2.0-beta.3
++ @mariozechner/pi-agent-core 0.54.1
++ @mariozechner/pi-ai 0.54.1
++ @mariozechner/pi-coding-agent 0.54.1
++ @mariozechner/pi-tui 0.54.1
++ @mozilla/readability 0.6.0
++ @napi-rs/canvas 0.1.92
++ @sinclair/typebox 0.34.48
++ @slack/bolt 4.6.0
++ @slack/web-api 7.14.1
++ @whiskeysockets/baileys 7.0.0-rc.9
++ ajv 8.18.0
++ chalk 5.6.2
++ chokidar 5.0.0
++ cli-highlight 2.1.11
++ commander 14.0.3
++ croner 10.0.1
++ discord-api-types 0.38.40
++ dotenv 17.3.1
++ express 5.2.1
++ file-type 21.3.0
++ grammy 1.40.0
++ https-proxy-agent 7.0.6
++ ipaddr.js 2.3.0
++ jiti 2.6.1
++ json5 2.2.3
++ jszip 3.10.1
++ linkedom 0.18.12
++ long 5.3.2
++ markdown-it 14.1.1
++ node-edge-tts 1.2.10
++ node-llama-cpp 3.15.1
++ opusscript 0.0.8
++ osc-progress 0.3.0
++ pdfjs-dist 5.4.624
++ playwright-core 1.58.2
++ qrcode-terminal 0.12.0
++ sharp 0.34.5
++ sqlite-vec 0.1.7-alpha.2
++ tar 7.5.9
++ tslog 4.10.2
++ undici 7.22.0
++ ws 8.19.0
++ yaml 2.8.2
++ zod 4.3.6
+
+optionalDependencies:
++ @discordjs/opus 0.10.0
+
+devDependencies:
++ @grammyjs/types 3.24.0
++ @lit-labs/signals 0.2.0
++ @lit/context 1.1.6
++ @types/express 5.0.6
++ @types/markdown-it 14.1.2
++ @types/node 25.3.0
++ @types/qrcode-terminal 0.12.2
++ @types/ws 8.18.1
++ @typescript/native-preview 7.0.0-dev.20260222.1
++ @vitest/coverage-v8 4.0.18
++ lit 3.3.2
++ oxfmt 0.34.0
++ oxlint 1.49.0
++ oxlint-tsgolint 0.14.2
++ signal-utils 0.21.1
++ tsdown 0.20.3
++ tsx 4.21.0
++ typescript 5.9.3
++ vitest 4.0.18
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @discordjs/opus.                                    │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+. prepare$ command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath git-hooks || exit 0
+. prepare: Done
+Done in 1m 6s using pnpm v10.23.0
+install_primary_exit_code=1
+install_final_exit_code=0
+install_used=fallback
+$ pnpm tsgo
+tsgo_exit_code=0
+used_command=fallback
+fallback_trigger=install_no_tty_or_frozen_lockfile
+step_status=pass
+step_exit_code=0
+ended_utc=2026-02-26T03:11:34Z
+ended_utc8=2026-02-26T11:11:34+0800

@@ -1,0 +1,41 @@
+
+ RUN  v4.0.18 /Users/muqihang/chelingxi_workspace/clawdbot
+
+ ❯ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts (4 tests | 2 failed) 32ms
+     ✓ resolves explicit relative report outputs from cwd instead of workspaceDir 20ms
+     ✓ resolves explicit relative retrieval-eval dataset and out paths from cwd 3ms
+     × uses graphiti local default base URL for retrieval-eval when flags and env are absent 5ms
+     × uses mem0 local default base URL for retrieval-eval when flags and env are absent 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts > P3 manual CLI path resolution > uses graphiti local default base URL for retrieval-eval when flags and env are absent
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts:182:25
+    180|       );
+    181| 
+    182|       expect(fetchMock).toHaveBeenCalled();
+       |                         ^
+    183|       expect(fetchMock.mock.calls[0]?.[0]).toBe("http://127.0.0.1:8000…
+    184|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts > P3 manual CLI path resolution > uses mem0 local default base URL for retrieval-eval when flags and env are absent
+AssertionError: expected "vi.fn()" to be called at least once
+ ❯ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts:263:25
+    261|       );
+    262| 
+    263|       expect(fetchMock).toHaveBeenCalled();
+       |                         ^
+    264|       expect(fetchMock.mock.calls[0]?.[0]).toBe("http://127.0.0.1:8766…
+    265|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 2 passed (4)
+   Start at  16:51:56
+   Duration  409ms (transform 222ms, setup 160ms, import 113ms, tests 32ms, environment 0ms)
+

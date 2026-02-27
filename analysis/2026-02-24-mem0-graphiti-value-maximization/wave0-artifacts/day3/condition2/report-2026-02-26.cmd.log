@@ -1,0 +1,34 @@
+timestamp_utc: 2026-02-26T07:44:12Z
+run_date: 2026-02-26
+primary_cmd: pnpm openclaw memory-bridge-p3 report --run-date 2026-02-26 --report-json /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/condition2/report-2026-02-26.json --report-text /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/condition2/report-2026-02-26.txt
+fallback_cmd: node openclaw.mjs memory-bridge-p3 report --run-date 2026-02-26 --report-json /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/condition2/report-2026-02-26.json --report-text /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/condition2/report-2026-02-26.txt
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 report --run-date 2026-02-26 --report-json /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/condition2/report-2026-02-26.json --report-text /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/condition2/report-2026-02-26.txt
+
+[plugins] memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=primary, write_mode=propose_only, model=gpt-5.1-codex-mini, candidate=mem0, user_route=mem0)
+run_date: 2026-02-26
+effective_model: gpt-5.1-codex-mini
+candidate_count: 22
+added_count: 0
+duplicate_skipped_count: 1
+conflict_count: 0
+sensitive_intercepted_count: 6
+index_consistency_failure_count: 0
+outbox_pending: 0
+outbox_inflight: 0
+outbox_succeeded: 163
+outbox_failed: 0
+outbox_dead: 0
+weekly_gate_fields.proposal_count: 163
+weekly_gate_fields.canary_commit_count: 0
+weekly_gate_fields.manual_propose_commit_count: 5
+weekly_gate_fields.pending_review_count: 0
+weekly_gate_fields.failed_count: 0
+weekly_gate_fields.dead_count: 0
+weekly_gate_fields.admission_enabled: true
+weekly_gate_fields.commit_canary_ratio: 0.05
+weekly_gate_fields.effective_write_mode: propose_only
+runner_used: pnpm openclaw
+fallback_triggered: false
+final_exit_code: 0

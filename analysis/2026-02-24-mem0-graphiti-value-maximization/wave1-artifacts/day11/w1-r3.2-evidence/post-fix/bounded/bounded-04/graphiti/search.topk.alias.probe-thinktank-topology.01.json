@@ -1,0 +1,29 @@
+{
+  "hit_count": 10,
+  "top_k": 3,
+  "all_topk_scores_equal": true,
+  "all_topk_scores_zero": true,
+  "topk": [
+    {
+      "rank": 1,
+      "remoteId": "16268e81-6341-4fcc-9b17-c112f20677d5",
+      "score": 0,
+      "snippet": "COMBINES",
+      "structure": "facts"
+    },
+    {
+      "rank": 2,
+      "remoteId": "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "score": 0,
+      "snippet": "HAS_MISSION",
+      "structure": "facts"
+    },
+    {
+      "rank": 3,
+      "remoteId": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+      "score": 0,
+      "snippet": "IS_PLANNING_UPGRADE_WITH",
+      "structure": "facts"
+    }
+  ]
+}

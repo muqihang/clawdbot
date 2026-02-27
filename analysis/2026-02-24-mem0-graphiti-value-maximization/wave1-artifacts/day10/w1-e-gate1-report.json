@@ -1,0 +1,64 @@
+{
+  "runDate": "2026-02-27",
+  "generatedAt": "2026-02-27T03:29:29.460Z",
+  "effectiveModel": "gpt-5.1-codex-mini",
+  "strict_12_4": {
+    "primary": 0,
+    "fallback_triggered": false,
+    "final_exit_basis": "primary",
+    "final_exit_code": 0
+  },
+  "metrics": {
+    "candidateCount": 8,
+    "addedCount": 0,
+    "duplicateSkippedCount": 0,
+    "conflictCount": 0,
+    "sensitiveInterceptedCount": 1,
+    "indexConsistencyFailureCount": 0,
+    "outbox": {
+      "pending": 0,
+      "inflight": 0,
+      "succeeded": 181,
+      "failed": 0,
+      "dead": 19
+    }
+  },
+  "weekly_gate_fields": {
+    "proposal_count": 200,
+    "canary_commit_count": 0,
+    "manual_propose_commit_count": 5,
+    "pending_review_count": 0,
+    "failed_count": 0,
+    "dead_count": 19,
+    "admission_enabled": true,
+    "commit_canary_ratio": 0.05,
+    "effective_write_mode": "propose_only"
+  },
+  "fur_baseline": 0,
+  "fur_current": 0,
+  "p95_total_baseline_ms": 44,
+  "p95_total_current_ms": 47,
+  "fur_improvement_pp": 0,
+  "p95_degradation_pct": 6.818181818181818,
+  "gate1_conclusion": "No-Go",
+  "evidence": {
+    "strict_12_4": {
+      "primary_exit_code": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-closure-checklist.md:12",
+      "fallback_triggered": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-closure-checklist.md:13",
+      "final_exit_basis": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-closure-checklist.md:14",
+      "final_exit_code": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-closure-checklist.md:15"
+    },
+    "fur_baseline": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:7",
+    "fur_current": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-retrieval-eval.absprobe.json:7",
+    "p95_total_baseline_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:14",
+    "p95_total_current_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:25",
+    "formula": {
+      "fur_improvement_pp": "(fur_current - fur_baseline) * 100",
+      "p95_degradation_pct": "((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100"
+    },
+    "reason": "fur_improvement_pp = 0 < 6"
+  },
+  "changed_files": [],
+  "acceptance_check": "pass",
+  "unresolved": []
+}

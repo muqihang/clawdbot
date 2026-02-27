@@ -1,0 +1,12 @@
+INFO:     Started server process [29173]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+Got a job: (size of remaining queue: 0)
+INFO:     127.0.0.1:50116 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50132 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50134 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50136 - "POST /messages HTTP/1.1" 202 Accepted
+Got a job: (size of remaining queue: 0)
+INFO:     127.0.0.1:50147 - "GET /episodes/smoke-g-1772177584?last_n=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50151 - "POST /search HTTP/1.1" 200 OK

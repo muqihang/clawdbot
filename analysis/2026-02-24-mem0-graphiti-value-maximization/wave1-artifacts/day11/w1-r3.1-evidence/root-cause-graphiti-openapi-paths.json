@@ -1,0 +1,12 @@
+[
+  "/clear",
+  "/entity-edge/{uuid}",
+  "/entity-node",
+  "/episode/{uuid}",
+  "/episodes/{group_id}",
+  "/get-memory",
+  "/group/{group_id}",
+  "/healthcheck",
+  "/messages",
+  "/search"
+]

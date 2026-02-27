@@ -1,0 +1,11 @@
+# S5 retrieval-eval
+started_utc=2026-02-25T09:23:16Z
+started_utc8=2026-02-25T17:23:16+0800
+dataset_path=/Users/muqihang/.openclaw/memory-bridge-p3-retrieval-dataset.json
+dataset_exists=0
+used_command=skip
+step_status=skip
+step_exit_code=n/a
+skip_reason=dataset_missing
+ended_utc=2026-02-25T09:23:16Z
+ended_utc8=2026-02-25T17:23:16+0800

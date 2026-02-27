@@ -1,0 +1,29 @@
+# S4 自托管栈健康检查 + nodes 校验
+started_utc=2026-02-25T09:22:07Z
+started_utc8=2026-02-25T17:22:07+0800
+$ scripts/memory-stack/status.sh
+graphiti   pid=39496    alive=yes port=8000  health=ok
+mem0       pid=39499    alive=yes port=8766  health=ok
+status_exit_code=0
+$ scripts/memory-stack/smoke.sh
+graphiti episodes=1 facts=1
+mem0 add_results=1 search_results=1
+[memory-stack] smoke passed
+smoke_exit_code=0
+nodes_query_trigger=smoke_missing_nodes
+$ curl -fsS -X POST "http://127.0.0.1:8000/search" -H "content-type: application/json" -d "{"query":"Jarvis OS"}" | jq "{facts:(.facts|length),episodes:(.episodes|length),nodes:(.nodes|length)}"
+{
+  "facts": 10,
+  "episodes": 4,
+  "nodes": 10
+}
+nodes_query_exit_code=0
+nodes_source=search_fallback
+nodes_count=10
+nodes_nonzero=1
+used_command=primary
+step_status=pass
+step_exit_code=0
+nodes_evidence_path=analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s4-nodes.json
+ended_utc=2026-02-25T09:22:57Z
+ended_utc8=2026-02-25T17:22:57+0800

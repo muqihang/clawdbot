@@ -1,0 +1,110 @@
+{
+  "runDate": "2026-02-27",
+  "generatedAt": "2026-02-27T09:02:00Z",
+  "effectiveModel": "gpt-5.1-codex-mini",
+  "mode": "W1-E-GATE1-FINAL",
+  "scope": "W1-R3.1 only",
+  "inputs": {
+    "fur_baseline": 0,
+    "fur_current": 0,
+    "p95_total_baseline_ms": 44,
+    "p95_total_current_ms": 47
+  },
+  "runtime_exit": {
+    "live_stack_r3_1": {
+      "start_exit": 0,
+      "status_exit": 0,
+      "smoke_exit": 0
+    }
+  },
+  "retrieval_final": {
+    "max_attempts": 5,
+    "selection_rule": "first attempt where hit_at_1 > 0; if none, use last attempt",
+    "selected_attempt": 5,
+    "selection_reason": "no_hit_at_1_gt_0_use_last_attempt",
+    "retr_primary_exit": 0,
+    "retr_fallback_exit": "SKIPPED",
+    "retr_final_exit_basis": "primary",
+    "retr_final_exit_code": 0,
+    "hit_at_1": 0,
+    "hit_at_3": 0.2,
+    "structure_coverage": 0.8,
+    "alias_recall": 0.6
+  },
+  "root_cause": {
+    "type": "QUERY_PATH + RANKING_ORDER",
+    "primary": "QUERY_PATH",
+    "secondary": ["RANKING_ORDER"],
+    "classification_doc": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/root-cause-classification.md:1"
+  },
+  "formula": {
+    "fur_improvement_pp": "(fur_current - fur_baseline) * 100",
+    "p95_degradation_pct": "((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100"
+  },
+  "threshold": {
+    "rule": "fur_improvement_pp >= 6 && p95_degradation_pct <= 10",
+    "force_no_go_if": ["missing_fields", "p95_total_baseline_ms <= 0"]
+  },
+  "computed": {
+    "fur_improvement_pp": 0,
+    "p95_degradation_pct": 6.818181818181818
+  },
+  "validation": {
+    "missing_fields": false,
+    "p95_total_baseline_ms_positive": true,
+    "fur_check_pass": false,
+    "p95_check_pass": true,
+    "force_no_go_triggered": false
+  },
+  "gate1_conclusion": "No-Go",
+  "decision_reason": "BLOCKER-R3-RET-HIT1-000: bounded retrieval attempts 1-5 all have hit_at_1=0, so fur_improvement_pp remains 0 (< 6).",
+  "acceptance_check": "fail",
+  "unresolved": [
+    {
+      "code": "BLOCKER-R3-RET-HIT1-000",
+      "reason": "retrieval attempts 1-5 all reported hit_at_1=0; no attempt satisfies hit_at_1 > 0 selection target, so fur_improvement_pp cannot reach >= 6.",
+      "minimal_next_executable_fix": {
+        "title": "Implement deterministic ranking normalization in retrieval path",
+        "files": [
+          "extensions/memory-mem0-graphiti-bridge/src/client/mem0-client.ts",
+          "extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-retrieval-eval.test.ts"
+        ],
+        "steps": [
+          "Normalize search hits before metric evaluation: dedupe by remoteId keeping highest score, then stable sort by score desc and remoteId asc tie-break.",
+          "Add focused test that reproduces zero-score tie and asserts deterministic top1 expected-id precedence.",
+          "Re-run bounded retrieval attempts (max 5) with existing command-compat policy and regenerate Gate-1 final artifacts."
+        ]
+      },
+      "evidence": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-attempts-summary.txt:9",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-attempts-summary.txt:17",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-attempts-summary.txt:25",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-attempts-summary.txt:33",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-attempts-summary.txt:41",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-summary.txt:6"
+      ]
+    }
+  ],
+  "evidence": {
+    "runtime_start_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/final-live-summary.txt:1",
+    "runtime_status_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/final-live-summary.txt:2",
+    "runtime_smoke_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/final-live-summary.txt:3",
+    "retrieval_selected_attempt": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-summary.txt:5",
+    "retrieval_selection_reason": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-summary.txt:6",
+    "retrieval_hit_at_1": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-eval.json:7",
+    "fur_baseline": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:7",
+    "fur_current": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/retrieval-eval.json:7",
+    "p95_total_baseline_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:14",
+    "p95_total_current_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:25",
+    "root_cause_top5": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/root-cause-top5.json:1",
+    "root_cause_existence_matrix": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/root-cause-existence-matrix.json:1"
+  },
+  "changed_files": [
+    "extensions/memory-mem0-graphiti-bridge/src/p3/manual-cli.ts",
+    "extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-evidence/root-cause-classification.md",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3.1-execution-review.md",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-report.json",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-receipt.md"
+  ]
+}

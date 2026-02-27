@@ -1,0 +1,99 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "topology blueprint",
+  "payload": {
+    "facts": [
+      {
+        "uuid": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+        "name": "OPERATES_IN_SCOPE",
+        "fact": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907343+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用graphiti。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704694+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "9efde0bf-c914-4454-a721-783f1d03165f",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.635025+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "4bdb77fb-9de4-4fd1-804e-bcf8c7224070",
+        "name": "ASSESSED",
+        "fact": "self-improvement audit assessed behavior-drift risk as low due to bootstrap-only trigger, though repeated unresolved environment errors and one scope-drift incident showed small but real overhead",
+        "valid_at": "2026-02-25T12:10:29+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:45:36.901464+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6",
+        "name": "KEPT_UNCHANGED_FOR_NEXT_WEEK_BY",
+        "fact": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision",
+        "valid_at": "2026-02-25T12:10:29+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:45:36.901566+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "f0e9fc3d-50d9-4ca8-a06c-682570b1bb43",
+        "name": "IS_MERGED_INTO",
+        "fact": "openclaw PATH errors are merged into one canonical entry in learning logs",
+        "valid_at": "2026-02-25T12:10:29.903000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:46:20.006475+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+        "name": "IS_CURRENT_OPERATIONAL_MODE_FOR",
+        "fact": "bootstrap-only mode is the current operational mode for self-improvement hooks",
+        "valid_at": "2026-02-25T12:10:29.903000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:46:20.006083+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+        "name": "RESULTS_IN_RETENTION_OF",
+        "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271784+00:00",
+        "expired_at": null
+      }
+    ]
+  }
+}

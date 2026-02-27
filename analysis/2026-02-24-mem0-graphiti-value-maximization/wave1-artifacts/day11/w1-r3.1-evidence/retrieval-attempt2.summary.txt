@@ -1,0 +1,9 @@
+attempt=2
+primary_exit=0
+fallback_exit=SKIPPED
+final_exit_basis=primary
+final_exit_code=0
+hit_at_1=0
+hit_at_3=0.2
+structure_coverage=0.8
+alias_recall=0.6

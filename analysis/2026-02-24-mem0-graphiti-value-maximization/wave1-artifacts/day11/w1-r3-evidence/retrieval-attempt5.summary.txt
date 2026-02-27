@@ -1,0 +1,11 @@
+attempt=5
+primary_exit=0
+fallback_exit=SKIPPED
+final_exit_basis=primary
+final_exit_code=0
+output=analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempt5.json
+hit_at_1=0
+hit_at_3=0.2
+structure_coverage=0.8
+alias_recall=0.6
+completed_at_utc=2026-02-27T08:14:29Z

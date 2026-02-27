@@ -1,0 +1,155 @@
+{
+  "generated_at": "2026-02-27T08:47:05.793Z",
+  "dataset_path": "/Users/muqihang/chelingxi_workspace/clawdbot/.openclaw/memory-bridge-p3-retrieval-dataset.json",
+  "providers": {
+    "graphiti": {
+      "base_url": "http://127.0.0.1:8000"
+    },
+    "mem0": {
+      "base_url": "http://127.0.0.1:8766"
+    }
+  },
+  "sample_count": 5,
+  "samples": [
+    {
+      "sample_id": "probe-mu-qihang",
+      "query": "牧启航",
+      "expected_ids": [
+        {
+          "remote_id": "69244698-050a-42b5-9b03-3ce6b6909fd2",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        },
+        {
+          "remote_id": "43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "probe-telegram-priority",
+      "query": "Telegram 优先",
+      "expected_ids": [
+        {
+          "remote_id": "f13f1629-87a0-419b-ae31-d79ad59bad8f",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        },
+        {
+          "remote_id": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "probe-jarvis-os",
+      "query": "Jarvis OS",
+      "expected_ids": [
+        {
+          "remote_id": "312073bf-e0c8-40f8-8d49-c67527691d49",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        },
+        {
+          "remote_id": "242955ff-7ba4-44ff-ba89-292986df4520",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "probe-memory-upgrade",
+      "query": "Mem0 Graphiti 记忆升级",
+      "expected_ids": [
+        {
+          "remote_id": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        },
+        {
+          "remote_id": "a3daae93-f61f-43d7-8f01-23e25471417e",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        }
+      ]
+    },
+    {
+      "sample_id": "probe-thinktank-topology",
+      "query": "thinktank/topology",
+      "expected_ids": [
+        {
+          "remote_id": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        },
+        {
+          "remote_id": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+          "graphiti": {
+            "exists": false,
+            "text_length": 0
+          },
+          "mem0": {
+            "exists": false,
+            "text_length": 0
+          }
+        }
+      ]
+    }
+  ]
+}

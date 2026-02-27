@@ -1,0 +1,241 @@
+# S1 依赖与类型检查
+started_utc=2026-02-25T09:16:40Z
+started_utc8=2026-02-25T17:16:40+0800
+$ pnpm install
+Scope: all 37 workspace projects
+ ERR_PNPM_ABORTED_REMOVE_MODULES_DIR_NO_TTY  Aborted removal of modules directory due to no TTY
+
+If you are running pnpm in CI, set the CI environment variable to "true".
+install_primary_exit_code=1
+fallback_trigger=install_no_tty_or_frozen_lockfile
+$ CI=true pnpm install
+Scope: all 37 workspace projects
+Recreating /Users/muqihang/chelingxi_workspace/clawdbot/node_modules
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +990
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 990, reused 0, downloaded 0, added 0
+Progress: resolved 990, reused 0, downloaded 8, added 8
+Progress: resolved 990, reused 0, downloaded 21, added 21
+Progress: resolved 990, reused 0, downloaded 47, added 45
+Progress: resolved 990, reused 0, downloaded 72, added 69
+Progress: resolved 990, reused 0, downloaded 111, added 110
+Progress: resolved 990, reused 0, downloaded 149, added 148
+Progress: resolved 990, reused 0, downloaded 196, added 196
+Progress: resolved 990, reused 0, downloaded 229, added 223
+Progress: resolved 990, reused 0, downloaded 270, added 269
+Progress: resolved 990, reused 0, downloaded 314, added 313
+Progress: resolved 990, reused 0, downloaded 336, added 335
+Progress: resolved 990, reused 0, downloaded 345, added 337
+Progress: resolved 990, reused 0, downloaded 364, added 355
+Progress: resolved 990, reused 0, downloaded 371, added 364
+Progress: resolved 990, reused 0, downloaded 392, added 392
+Progress: resolved 990, reused 0, downloaded 405, added 402
+Progress: resolved 990, reused 0, downloaded 420, added 415
+Progress: resolved 990, reused 0, downloaded 436, added 425
+Progress: resolved 990, reused 0, downloaded 466, added 466
+Progress: resolved 990, reused 0, downloaded 505, added 505
+Progress: resolved 990, reused 0, downloaded 544, added 543
+Progress: resolved 990, reused 0, downloaded 572, added 571
+Progress: resolved 990, reused 0, downloaded 588, added 584
+Progress: resolved 990, reused 0, downloaded 606, added 590
+Progress: resolved 990, reused 0, downloaded 629, added 628
+Progress: resolved 990, reused 0, downloaded 650, added 650
+Progress: resolved 990, reused 0, downloaded 660, added 657
+Progress: resolved 990, reused 0, downloaded 669, added 665
+Progress: resolved 990, reused 0, downloaded 677, added 673
+Progress: resolved 990, reused 0, downloaded 688, added 683
+Progress: resolved 990, reused 0, downloaded 702, added 693
+Progress: resolved 990, reused 0, downloaded 719, added 699
+Progress: resolved 990, reused 0, downloaded 730, added 703
+Progress: resolved 990, reused 0, downloaded 740, added 710
+Progress: resolved 990, reused 0, downloaded 763, added 764
+Progress: resolved 990, reused 0, downloaded 797, added 798
+Progress: resolved 990, reused 0, downloaded 825, added 823
+Progress: resolved 990, reused 0, downloaded 869, added 870
+Progress: resolved 990, reused 0, downloaded 897, added 897
+Progress: resolved 990, reused 0, downloaded 917, added 918
+Progress: resolved 990, reused 0, downloaded 943, added 944
+Progress: resolved 990, reused 0, downloaded 960, added 961
+Progress: resolved 990, reused 0, downloaded 981, added 982
+Progress: resolved 990, reused 0, downloaded 983, added 984
+Progress: resolved 990, reused 0, downloaded 986, added 987
+Progress: resolved 990, reused 0, downloaded 988, added 989
+Progress: resolved 990, reused 0, downloaded 989, added 990, done
+.../node_modules/protobufjs postinstall$ node scripts/postinstall
+.../esbuild@0.27.3/node_modules/esbuild postinstall$ node install.js
+.../koffi@2.15.1/node_modules/koffi install$ node src/cnoke/cnoke.js -p . -d src/koffi --prebuild
+.../node_modules/protobufjs postinstall$ node scripts/postinstall
+.../sharp@0.34.5/node_modules/sharp install$ node install/check.js || npm run build
+.../node_modules/protobufjs postinstall: Done
+.../node_modules/protobufjs postinstall: Done
+.../node_modules/node-llama-cpp postinstall$ node ./dist/cli/cli.js postinstall
+.../node_modules/protobufjs postinstall$ node scripts/postinstall
+.../node_modules/protobufjs postinstall: Done
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall$ node download-lib.js
+.../esbuild@0.27.3/node_modules/esbuild postinstall: Done
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall: Downloading lib matrix-sdk-crypto.darwin-arm64.node from https://github.com/matrix-org/matrix-rust-sdk-crypto-nodejs/releases/download/v0.4.0/matrix-sdk-crypto.darwin-arm64.node
+.../koffi@2.15.1/node_modules/koffi install: Done
+.../node_modules/node-llama-cpp postinstall: Done
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall: 0 b/s - 0.1% [16.0 kB/11.5 MB]
+.../sharp@0.34.5/node_modules/sharp install: Done
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall: 496.0 kB/s - 8.5% [1003.0 kB/11.5 MB]
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall: 7.4 MB/s - 87.7% [10.1 MB/11.5 MB]
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall: Download Completed
+.../@matrix-org/matrix-sdk-crypto-nodejs postinstall: Done
+.../node_modules/@whiskeysockets/baileys preinstall$ node ./engine-requirements.js
+.../node_modules/@whiskeysockets/baileys preinstall: Done
+
+dependencies:
++ @agentclientprotocol/sdk 0.14.1
++ @aws-sdk/client-bedrock 3.995.0
++ @buape/carbon 0.0.0-beta-20260216184201
++ @clack/prompts 1.0.1
++ @discordjs/voice 0.19.0
++ @grammyjs/runner 2.0.3
++ @grammyjs/transformer-throttler 1.2.1
++ @homebridge/ciao 1.3.5
++ @larksuiteoapi/node-sdk 1.59.0
++ @line/bot-sdk 10.6.0
++ @lydell/node-pty 1.2.0-beta.3
++ @mariozechner/pi-agent-core 0.54.1
++ @mariozechner/pi-ai 0.54.1
++ @mariozechner/pi-coding-agent 0.54.1
++ @mariozechner/pi-tui 0.54.1
++ @mozilla/readability 0.6.0
++ @napi-rs/canvas 0.1.92
++ @sinclair/typebox 0.34.48
++ @slack/bolt 4.6.0
++ @slack/web-api 7.14.1
++ @whiskeysockets/baileys 7.0.0-rc.9
++ ajv 8.18.0
++ chalk 5.6.2
++ chokidar 5.0.0
++ cli-highlight 2.1.11
++ commander 14.0.3
++ croner 10.0.1
++ discord-api-types 0.38.40
++ dotenv 17.3.1
++ express 5.2.1
++ file-type 21.3.0
++ grammy 1.40.0
++ https-proxy-agent 7.0.6
++ ipaddr.js 2.3.0
++ jiti 2.6.1
++ json5 2.2.3
++ jszip 3.10.1
++ linkedom 0.18.12
++ long 5.3.2
++ markdown-it 14.1.1
++ node-edge-tts 1.2.10
++ node-llama-cpp 3.15.1
++ opusscript 0.0.8
++ osc-progress 0.3.0
++ pdfjs-dist 5.4.624
++ playwright-core 1.58.2
++ qrcode-terminal 0.12.0
++ sharp 0.34.5
++ sqlite-vec 0.1.7-alpha.2
++ tar 7.5.9
++ tslog 4.10.2
++ undici 7.22.0
++ ws 8.19.0
++ yaml 2.8.2
++ zod 4.3.6
+
+optionalDependencies:
++ @discordjs/opus 0.10.0
+
+devDependencies:
++ @grammyjs/types 3.24.0
++ @lit-labs/signals 0.2.0
++ @lit/context 1.1.6
++ @types/express 5.0.6
++ @types/markdown-it 14.1.2
++ @types/node 25.3.0
++ @types/qrcode-terminal 0.12.2
++ @types/ws 8.18.1
++ @typescript/native-preview 7.0.0-dev.20260222.1
++ @vitest/coverage-v8 4.0.18
++ lit 3.3.2
++ oxfmt 0.34.0
++ oxlint 1.49.0
++ oxlint-tsgolint 0.14.2
++ signal-utils 0.21.1
++ tsdown 0.20.3
++ tsx 4.21.0
++ typescript 5.9.3
++ vitest 4.0.18
+
+╭ Warning ─────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│   Ignored build scripts: @discordjs/opus.                                    │
+│   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+│   to run scripts.                                                            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+. prepare$ command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath git-hooks || exit 0
+. prepare: error: could not lock config file .git/config: Operation not permitted
+. prepare: Done
+Done in 1m 2.8s using pnpm v10.23.0
+install_fallback_exit_code=0
+$ pnpm tsgo
+extensions/memory-jarvis-bridge/src/quota/degrade-policy.ts(89,18): error TS2367: This comparison appears to be unintentional because the types '"degraded"' and '"blocked"' have no overlap.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(174,12): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type '{}'.
+  Property '0' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(175,12): error TS7053: Element implicitly has an 'any' type because expression of type '1' can't be used to index type '{}'.
+  Property '1' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(177,31): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type '{}'.
+  Property '0' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(192,28): error TS7053: Element implicitly has an 'any' type because expression of type '1' can't be used to index type '{}'.
+  Property '1' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(290,29): error TS2352: Conversion of type 'undefined' to type '{ indexCheckProvider?: ((input: { sessionKey: string; sourceRef: string; }) => Promise<boolean>) | undefined; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(290,76): error TS2493: Tuple type '[]' of length '0' has no element at index '0'.
+extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts(125,11): error TS2322: Type 'Mock<() => Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>>' is not assignable to type '(query: string) => Promise<BridgeSearchHit[]>'.
+  Type 'Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>' is not assignable to type 'Promise<BridgeSearchHit[]>'.
+    Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]' is not assignable to type 'BridgeSearchHit[]'.
+      Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }' is not assignable to type 'BridgeSearchHit'.
+        Types of property 'source' are incompatible.
+          Type 'string' is not assignable to type 'BridgeRemoteSource'.
+extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts(174,11): error TS2322: Type 'Mock<() => Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>>' is not assignable to type '(query: string) => Promise<BridgeSearchHit[]>'.
+  Type 'Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>' is not assignable to type 'Promise<BridgeSearchHit[]>'.
+    Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]' is not assignable to type 'BridgeSearchHit[]'.
+      Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }' is not assignable to type 'BridgeSearchHit'.
+        Types of property 'source' are incompatible.
+          Type 'string' is not assignable to type 'BridgeRemoteSource'.
+extensions/memory-mem0-graphiti-bridge/src/p2/manual-cli.ts(4,15): error TS2305: Module '"openclaw/plugin-sdk"' has no exported member 'PluginLogger'.
+extensions/memory-mem0-graphiti-bridge/src/p3/ab-eval.ts(329,7): error TS18048: 'existing' is possibly 'undefined'.
+extensions/memory-mem0-graphiti-bridge/src/p3/ab-eval.ts(330,7): error TS18048: 'existing' is possibly 'undefined'.
+extensions/memory-mem0-graphiti-bridge/src/p3/manual-cli.ts(4,15): error TS2305: Module '"openclaw/plugin-sdk"' has no exported member 'PluginLogger'.
+extensions/memory-mem0-graphiti-bridge/src/p3/retrieval-eval.ts(108,27): error TS2345: Argument of type 'string' is not assignable to parameter of type '"episodes" | "facts" | "nodes"'.
+extensions/memory-mem0-graphiti-bridge/src/tools/memory-get-tool.ts(75,5): error TS2322: Type '(toolCallId: string, params: any) => Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type '(toolCallId: string, params: any, signal?: AbortSignal | undefined, onUpdate?: AgentToolUpdateCallback<unknown> | undefined) => Promise<AgentToolResult<unknown>>'.
+  Type 'Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type 'Promise<AgentToolResult<unknown>>'.
+    Type 'AgentToolResult<unknown> | JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+      Type 'JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+        Types of property 'content' are incompatible.
+          Type '{ type: string; text: string; }[]' is not assignable to type '(ImageContent | TextContent)[]'.
+            Type '{ type: string; text: string; }' is not assignable to type 'ImageContent | TextContent'.
+              Type '{ type: string; text: string; }' is not assignable to type 'TextContent'.
+                Types of property 'type' are incompatible.
+                  Type 'string' is not assignable to type '"text"'.
+extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts(204,13): error TS2339: Property 'citations' does not exist on type '{ results: Record<string, unknown>[]; provider: BridgeRoute; model: BridgeRoute; mode: BridgeReadMode; alias_normalization: boolean; structures: Record<...>; }'.
+extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts(214,5): error TS2322: Type '(toolCallId: string, params: any) => Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type '(toolCallId: string, params: any, signal?: AbortSignal | undefined, onUpdate?: AgentToolUpdateCallback<unknown> | undefined) => Promise<AgentToolResult<unknown>>'.
+  Type 'Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type 'Promise<AgentToolResult<unknown>>'.
+    Type 'AgentToolResult<unknown> | JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+      Type 'JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+        Types of property 'content' are incompatible.
+          Type '{ type: string; text: string; }[]' is not assignable to type '(ImageContent | TextContent)[]'.
+            Type '{ type: string; text: string; }' is not assignable to type 'ImageContent | TextContent'.
+              Type '{ type: string; text: string; }' is not assignable to type 'TextContent'.
+                Types of property 'type' are incompatible.
+                  Type 'string' is not assignable to type '"text"'.
+tsgo_primary_exit_code=2
+install_used_command=fallback
+tsgo_used_command=primary
+final_used_command=fallback
+final_status=fail
+final_step_exit_code=1
+ended_utc=2026-02-25T09:17:57Z
+ended_utc8=2026-02-25T17:17:57+0800

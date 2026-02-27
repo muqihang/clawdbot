@@ -1,0 +1,104 @@
+{
+  "run_id": "r3",
+  "run_date": "2026-02-26",
+  "executor": "子代理 #W0-U2-Implementer（解除 No-Go-P2 + r3 复跑）",
+  "started_at": "2026-02-26T03:10:03Z",
+  "ended_at": "2026-02-26T03:14:55Z",
+  "started_at_utc8": "2026-02-26T11:10:03+08:00",
+  "ended_at_utc8": "2026-02-26T11:14:55+08:00",
+  "duration_minutes": 4.87,
+  "S1": {
+    "status": "pass",
+    "used_command": "fallback",
+    "exit_code": 0,
+    "fallback_trigger": "install_no_tty_or_frozen_lockfile",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s1.log:6",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s1.log:10",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s1.log:130",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s1.log:133",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s1.log:134"
+    ]
+  },
+  "S2": {
+    "status": "pass",
+    "used_command": "primary",
+    "exit_code": 0,
+    "fallback_trigger": "not_used",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s2.log:15",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s2.log:16",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s2.log:23"
+    ]
+  },
+  "S3": {
+    "status": "pass",
+    "used_command": "primary",
+    "exit_code": 0,
+    "fallback_trigger": "not_used",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3.log:24",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3.log:43",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3.log:64",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3.log:65",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3.log:71"
+    ],
+    "report_artifacts": {
+      "json": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.json",
+      "text": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.txt"
+    }
+  },
+  "S4": {
+    "status": "pass",
+    "used_command": "primary",
+    "exit_code": 0,
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s4.log:7",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s4.log:12",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s4.log:23",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s4-nodes.json:4"
+    ]
+  },
+  "S5": {
+    "status": "skip",
+    "used_command": "skip",
+    "exit_code": "n/a",
+    "skip_reason": "dataset_missing",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s5.log:5",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s5.log:8",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s5.log:10"
+    ]
+  },
+  "closure_mode": "closed_pass_path",
+  "overall_result": "pass",
+  "no_go_preconditions": [
+    {
+      "id": "No-Go-P1",
+      "condition": "S1 must pass (install + tsgo both exit 0)",
+      "status": "cleared",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s1.log:133"
+    },
+    {
+      "id": "No-Go-P2",
+      "condition": "S3 report command must succeed and generate non-empty JSON/TXT",
+      "status": "cleared",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3.log:64"
+    }
+  ],
+  "remaining_gate_gaps": [
+    {
+      "id": "U3",
+      "condition": "W0->W1 前提纠偏闭环证据完成并维持可审计激活"
+    },
+    {
+      "id": "U4",
+      "condition": "fallback 行为规范 + 故障注入计划冻结证据完成"
+    },
+    {
+      "id": "U5",
+      "condition": "指标口径字典 v1 签字证据完成"
+    }
+  ],
+  "go_decision": "not_granted"
+}

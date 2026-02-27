@@ -1,0 +1,4 @@
+chat_curl_exit=0
+chat_http_code=404
+responses_curl_exit=0
+responses_http_code=502

@@ -1,0 +1,110 @@
+{
+  "run_id": "r2",
+  "run_date": "2026-02-25",
+  "executor": "子代理 #W0-07-Implementer-Fix1（Wave 0 Day3）",
+  "started_at": "2026-02-25T09:16:40Z",
+  "ended_at": "2026-02-25T09:23:16Z",
+  "started_at_utc8": "2026-02-25T17:16:40+08:00",
+  "ended_at_utc8": "2026-02-25T17:23:16+08:00",
+  "duration_minutes": 6.6,
+  "S1": {
+    "status": "fail",
+    "used_command": "fallback",
+    "exit_code": 1,
+    "fallback_trigger": "install_no_tty_or_frozen_lockfile",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s1.log:6",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s1.log:183",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s1.log:234",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s1.log:238"
+    ]
+  },
+  "S2": {
+    "status": "pass",
+    "used_command": "primary",
+    "exit_code": 0,
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s2.log:15",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s2.log:23"
+    ]
+  },
+  "S3": {
+    "status": "fail",
+    "used_command": "primary",
+    "exit_code": 1,
+    "fallback_trigger": "not_triggered_primary_available_non_unavailable_error",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:21",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:30",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:36",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:57",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:64"
+    ]
+  },
+  "S4": {
+    "status": "pass",
+    "used_command": "primary",
+    "exit_code": 0,
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s4.log:7",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s4.log:12",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s4.log:23",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s4-nodes.json:4"
+    ]
+  },
+  "S5": {
+    "status": "skip",
+    "used_command": "skip",
+    "exit_code": "n/a",
+    "skip_reason": "dataset_missing",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s5.log:5",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s5.log:9"
+    ]
+  },
+  "closure_mode": "closed_fail_path",
+  "overall_result": "fail",
+  "no_go_preconditions": [
+    {
+      "id": "No-Go-P1",
+      "condition": "S1 must pass (install + tsgo both exit 0)",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s1.log:238"
+    },
+    {
+      "id": "No-Go-P2",
+      "condition": "S3 report command must succeed and generate non-empty JSON/TXT",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:57"
+    }
+  ],
+  "rollback_or_freeze_actions": [
+    {
+      "id": "freeze-wave1-wave5",
+      "action": "Mark Wave0 Gate as No-Go and freeze Wave1~Wave5 rollout until No-Go preconditions are cleared"
+    },
+    {
+      "id": "switch-to-manual-min-probes",
+      "action": "Use runbook section 7 manual minimum probes as temporary health checks"
+    },
+    {
+      "id": "rerun-after-unblock",
+      "action": "Only after S1 and S3 blockers cleared, rerun as r3 and require pass_path criteria"
+    }
+  ],
+  "unblock_conditions": [
+    "pnpm tsgo exits with code 0",
+    "pnpm openclaw memory-bridge-p3 report exits with code 0 and emits non-empty report JSON/TXT",
+    "r3 run satisfies S1-S4 all pass and S5 pass or skip(dataset_missing)"
+  ],
+  "blockers": [
+    {
+      "step": "S1",
+      "reason": "tsgo typecheck still fails after successful install fallback",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s1.log:234"
+    },
+    {
+      "step": "S3",
+      "reason": "report command cannot create target directory (EPERM), causing missing report artifacts",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-r2-s3.log:30"
+    }
+  ]
+}

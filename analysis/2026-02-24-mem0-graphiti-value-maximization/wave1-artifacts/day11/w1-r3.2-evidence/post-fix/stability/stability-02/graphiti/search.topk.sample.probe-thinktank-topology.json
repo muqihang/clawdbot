@@ -1,0 +1,29 @@
+{
+  "hit_count": 10,
+  "top_k": 3,
+  "all_topk_scores_equal": true,
+  "all_topk_scores_zero": true,
+  "topk": [
+    {
+      "rank": 1,
+      "remoteId": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "score": 0,
+      "snippet": "IS_IN_EXECUTION_MODE",
+      "structure": "facts"
+    },
+    {
+      "rank": 2,
+      "remoteId": "727a7391-214d-4ed3-a508-28f2b285d7d0",
+      "score": 0,
+      "snippet": "IS_EVALUATING_ENABLEMENT_OF",
+      "structure": "facts"
+    },
+    {
+      "rank": 3,
+      "remoteId": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+      "score": 0,
+      "snippet": "IS_PLANNING_UPGRADE_WITH",
+      "structure": "facts"
+    }
+  ]
+}

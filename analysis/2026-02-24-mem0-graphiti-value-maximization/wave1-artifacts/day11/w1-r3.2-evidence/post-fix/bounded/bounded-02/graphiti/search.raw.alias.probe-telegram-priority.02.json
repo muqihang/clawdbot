@@ -1,0 +1,99 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "tg priority",
+  "payload": {
+    "facts": [
+      {
+        "uuid": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+        "name": "HAS_FOUNDER_PRIORITY",
+        "fact": "P2's founder priority is Telegram",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440445+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用graphiti。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704694+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "df23f75f-f28d-4df8-b28e-e1de7c1af8d6",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Decision quality is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271591+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+        "name": "PREFERS_VECTOR_MODEL",
+        "fact": "user(user) (Muqihang) 的向量模型偏好是 text-embedding-v4。",
+        "valid_at": "2026-02-23T09:43:09+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T09:43:42.291317+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6957cc28-bc15-456f-bf08-b20ac92ff4c9",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Rework rate is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271626+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271549+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "9efde0bf-c914-4454-a721-783f1d03165f",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.635025+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "f13f1629-87a0-419b-ae31-d79ad59bad8f",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用sub2api。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704600+00:00",
+        "expired_at": null
+      }
+    ]
+  }
+}

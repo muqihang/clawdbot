@@ -1,0 +1,29 @@
+{
+  "hit_count": 10,
+  "top_k": 3,
+  "all_topk_scores_equal": true,
+  "all_topk_scores_zero": true,
+  "topk": [
+    {
+      "rank": 1,
+      "remoteId": "43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+      "score": 0,
+      "snippet": "PREFERS_VECTOR_MODEL",
+      "structure": "facts"
+    },
+    {
+      "rank": 2,
+      "remoteId": "69244698-050a-42b5-9b03-3ce6b6909fd2",
+      "score": 0,
+      "snippet": "IS_NAMED",
+      "structure": "facts"
+    },
+    {
+      "rank": 3,
+      "remoteId": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+      "score": 0,
+      "snippet": "PREFERS",
+      "structure": "facts"
+    }
+  ]
+}

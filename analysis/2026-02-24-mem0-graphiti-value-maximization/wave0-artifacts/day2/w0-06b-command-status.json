@@ -1,0 +1,47 @@
+{
+  "fix_round": 2,
+  "rerun_env": {
+    "stack_root": "/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717",
+    "graphiti_port": 18082,
+    "mem0_port": 18768
+  },
+  "command_results": [
+    {
+      "name": "bootstrap",
+      "exit_code": 0,
+      "log_evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day2/w0-06b-rebuild-verify.log:473"
+    },
+    {
+      "name": "start",
+      "exit_code": 0,
+      "log_evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day2/w0-06b-rebuild-verify.log:506"
+    },
+    {
+      "name": "smoke",
+      "exit_code": 0,
+      "log_evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day2/w0-06b-rebuild-verify.log:521"
+    },
+    {
+      "name": "status",
+      "exit_code": 0,
+      "log_evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day2/w0-06b-rebuild-verify.log:535"
+    }
+  ],
+  "diagnostics": [
+    {
+      "name": "prestart_py_compile_openai_client",
+      "exit_code": 0,
+      "log_evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day2/w0-06b-rebuild-verify.log:482"
+    },
+    {
+      "name": "prestart_literal_backslash_n_markers",
+      "exit_code": 0,
+      "log_evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day2/w0-06b-rebuild-verify.log:484"
+    }
+  ],
+  "closure_check": {
+    "py_compile_openai_client_pass": "pass",
+    "clean_rebuild_chain_complete": "pass",
+    "rebuild_auto_effective_claim": "pass"
+  }
+}

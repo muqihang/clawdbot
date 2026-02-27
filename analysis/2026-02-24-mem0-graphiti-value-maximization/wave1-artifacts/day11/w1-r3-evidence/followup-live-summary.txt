@@ -1,0 +1,7 @@
+start_exit=0
+status_exit=0
+smoke_exit=0
+OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack
+MEM0_BASE_URL=http://127.0.0.1:8766
+GRAPHITI_BASE_URL=http://127.0.0.1:8000
+completed_at_utc=2026-02-27T08:10:56Z

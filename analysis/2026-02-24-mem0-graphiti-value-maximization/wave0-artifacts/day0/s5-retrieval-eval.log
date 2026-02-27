@@ -1,0 +1,22 @@
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 retrieval-eval --dataset /Users/muqihang/chelingxi_workspace/clawdbot/.openclaw/memory-bridge-p3-retrieval-dataset.json --route graphiti --top-k 3 --out /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json
+
+[plugins] memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=primary, write_mode=propose_only, model=gpt-5.1-codex-mini, candidate=mem0, user_route=mem0)
+provider: graphiti
+sample_size: 5
+hit_at_1: 0
+hit_at_3: 0
+structure_coverage: 0
+alias_recall: 0
+{
+  "provider": "graphiti",
+  "dataset_path": "/Users/muqihang/chelingxi_workspace/clawdbot/.openclaw/memory-bridge-p3-retrieval-dataset.json",
+  "generated_at": "2026-02-25T03:21:22.628Z",
+  "sample_size": 5,
+  "top_k": 3,
+  "hit_at_1": 0,
+  "hit_at_3": 0,
+  "structure_coverage": 0,
+  "alias_recall": 0
+}

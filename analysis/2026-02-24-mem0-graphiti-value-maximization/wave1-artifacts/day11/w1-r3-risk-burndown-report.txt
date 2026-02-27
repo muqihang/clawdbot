@@ -1,0 +1,69 @@
+run_date: 2026-02-27
+generated_at: 2026-02-27T08:18:53Z
+effective_model: gpt-5.1-codex-mini
+mode: W1-R3-RISK-BURNDOWN
+runtime.round1.start_exit: 0
+runtime.round1.status_exit: 0
+runtime.round1.smoke_exit: 0
+runtime.round1.fingerprint: NO_MATCH
+runtime.round2.start_exit: 0
+runtime.round2.status_exit: 0
+runtime.round2.smoke_exit: 0
+runtime.round2.fingerprint: NO_MATCH
+runtime.round3.start_exit: 0
+runtime.round3.status_exit: 0
+runtime.round3.smoke_exit: 0
+runtime.round3.fingerprint: NO_MATCH
+live_rerun.start_exit: 0
+live_rerun.status_exit: 0
+live_rerun.smoke_exit: 0
+live_rerun.same_shell_session: true
+retrieval.max_attempts: 5
+retrieval.primary_command: pnpm openclaw memory-bridge-p3 retrieval-eval --dataset .openclaw/memory-bridge-p3-retrieval-dataset.json --out analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempt${i}.json --route graphiti --top-k 3
+retrieval.fallback_command: node openclaw.mjs memory-bridge-p3 retrieval-eval --dataset .openclaw/memory-bridge-p3-retrieval-dataset.json --out analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempt${i}.json --route graphiti --top-k 3
+retrieval.selection_rule: first attempt where hit_at_1 > 0; if none, use last attempt
+retrieval.attempt1.hit_at_1: 0
+retrieval.attempt2.hit_at_1: 0
+retrieval.attempt3.hit_at_1: 0
+retrieval.attempt4.hit_at_1: 0
+retrieval.attempt5.hit_at_1: 0
+retrieval.selected_attempt: 5
+retrieval.selection_reason: no_hit_at_1_gt_0_use_last_attempt
+retrieval.final_exit_basis: primary
+retrieval.final_exit_code: 0
+retrieval.hit_at_1: 0
+retrieval.hit_at_3: 0.2
+retrieval.structure_coverage: 0.8
+retrieval.alias_recall: 0.6
+gate.fur_baseline: 0
+gate.fur_current: 0
+gate.p95_total_baseline_ms: 44
+gate.p95_total_current_ms: 47
+formula.fur_improvement_pp: (fur_current - fur_baseline) * 100
+formula.p95_degradation_pct: ((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100
+computed.fur_improvement_pp: 0
+computed.p95_degradation_pct: 6.818181818181818
+threshold.rule: fur_improvement_pp >= 6 && p95_degradation_pct <= 10
+validation.missing_fields: false
+validation.p95_total_baseline_ms_positive: true
+validation.force_no_go_triggered: false
+validation.fur_check_pass: false
+validation.p95_check_pass: true
+gate1_conclusion: No-Go
+decision_reason: BLOCKER-R3-RET-HIT1-000 all retrieval attempts have hit_at_1=0, fur_improvement_pp remains 0 (<6)
+acceptance_check: fail
+unresolved.1.code: BLOCKER-R3-RET-HIT1-000
+unresolved.1.reason: retrieval attempts 1-5 all reported hit_at_1=0; no attempt satisfies hit_at_1 > 0 target, so fur_improvement_pp cannot reach >= 6.
+evidence.live_start_exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/followup-live-summary.txt:1
+evidence.live_status_exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/followup-live-summary.txt:2
+evidence.live_smoke_exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/followup-live-summary.txt:3
+evidence.attempt1_hit_at_1: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:9
+evidence.attempt2_hit_at_1: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:17
+evidence.attempt3_hit_at_1: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:25
+evidence.attempt4_hit_at_1: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:33
+evidence.attempt5_hit_at_1: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:41
+evidence.gate1_conclusion: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-report.json:74
+changed_files.1: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-risk-burndown-report.json
+changed_files.2: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-risk-burndown-report.txt
+changed_files.3: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-report.json
+changed_files.4: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-receipt.md

@@ -1,0 +1,77 @@
+{
+  "run_date": "2026-02-25",
+  "executor": "子代理 #W0-07-Implementer（Wave 0 Day3）",
+  "started_at": "2026-02-25T07:18:18Z",
+  "ended_at": "2026-02-25T07:21:58Z",
+  "started_at_utc8": "2026-02-25T15:18:18+08:00",
+  "ended_at_utc8": "2026-02-25T15:21:58+08:00",
+  "duration_minutes": 3.67,
+  "S1": {
+    "status": "fail",
+    "used_command": "fallback",
+    "exit_code": "nonzero",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s1.log:6",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s1.log:74",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s1.log:110"
+    ]
+  },
+  "S2": {
+    "status": "fail",
+    "used_command": "fallback",
+    "exit_code": "nonzero",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s2.log:10",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s2.log:30",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s2.log:32"
+    ]
+  },
+  "S3": {
+    "status": "fail",
+    "used_command": "primary",
+    "exit_code": "nonzero",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3.log:13",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3.log:52",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3.log:55"
+    ]
+  },
+  "S4": {
+    "status": "pass",
+    "used_command": "primary",
+    "exit_code": 0,
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s4.log:7",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s4.log:24",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s4-nodes.json:4"
+    ]
+  },
+  "S5": {
+    "status": "skip",
+    "used_command": "skip",
+    "exit_code": "n/a",
+    "skip_reason": "dataset_missing",
+    "evidence": [
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s5.log:5",
+      "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s5.log:7"
+    ]
+  },
+  "overall_result": "fail",
+  "blockers": [
+    {
+      "step": "S1",
+      "reason": "dependency/typecheck chain failed: no-tty install + outdated lockfile + tsgo fallback binary missing",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s1.log:74"
+    },
+    {
+      "step": "S2",
+      "reason": "vitest command unavailable and fallback module missing",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s2.log:16"
+    },
+    {
+      "step": "S3",
+      "reason": "openclaw CLI missing dist/entry build output",
+      "evidence": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3.log:13"
+    }
+  ]
+}

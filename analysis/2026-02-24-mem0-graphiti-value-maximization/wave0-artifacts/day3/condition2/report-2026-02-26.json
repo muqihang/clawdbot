@@ -1,0 +1,31 @@
+{
+  "runDate": "2026-02-26",
+  "generatedAt": "2026-02-26T07:44:18.823Z",
+  "effectiveModel": "gpt-5.1-codex-mini",
+  "metrics": {
+    "candidateCount": 22,
+    "addedCount": 0,
+    "duplicateSkippedCount": 1,
+    "conflictCount": 0,
+    "sensitiveInterceptedCount": 6,
+    "indexConsistencyFailureCount": 0,
+    "outbox": {
+      "pending": 0,
+      "inflight": 0,
+      "succeeded": 163,
+      "failed": 0,
+      "dead": 0
+    }
+  },
+  "weekly_gate_fields": {
+    "proposal_count": 163,
+    "canary_commit_count": 0,
+    "manual_propose_commit_count": 5,
+    "pending_review_count": 0,
+    "failed_count": 0,
+    "dead_count": 0,
+    "admission_enabled": true,
+    "commit_canary_ratio": 0.05,
+    "effective_write_mode": "propose_only"
+  }
+}

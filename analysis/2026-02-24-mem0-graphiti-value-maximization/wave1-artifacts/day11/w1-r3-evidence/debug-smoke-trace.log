@@ -1,0 +1,48 @@
++ set -euo pipefail
++++ dirname scripts/memory-stack/smoke.sh
+++ cd scripts/memory-stack
+++ pwd
++ SCRIPT_DIR=/Users/muqihang/chelingxi_workspace/clawdbot/scripts/memory-stack
++ source /Users/muqihang/chelingxi_workspace/clawdbot/scripts/memory-stack/common.sh
+++ set -euo pipefail
+++++ dirname /Users/muqihang/chelingxi_workspace/clawdbot/scripts/memory-stack/common.sh
++++ cd /Users/muqihang/chelingxi_workspace/clawdbot/scripts/memory-stack
++++ pwd
+++ SCRIPT_DIR=/Users/muqihang/chelingxi_workspace/clawdbot/scripts/memory-stack
++++ cd /Users/muqihang/chelingxi_workspace/clawdbot/scripts/memory-stack/../..
++++ pwd
+++ REPO_ROOT=/Users/muqihang/chelingxi_workspace/clawdbot
+++ STACK_ROOT=/tmp/openclaw-memory-stack
+++ SRC_ROOT=/tmp/openclaw-memory-stack/src
+++ RUN_ROOT=/tmp/openclaw-memory-stack/run
+++ LOG_ROOT=/tmp/openclaw-memory-stack/logs
+++ PID_ROOT=/tmp/openclaw-memory-stack/pids
+++ ENV_ROOT=/tmp/openclaw-memory-stack/env
+++ GRAPHITI_SRC_DIR=/tmp/openclaw-memory-stack/src/graphiti
+++ MEM0_SRC_DIR=/tmp/openclaw-memory-stack/src/mem0
+++ GRAPHITI_SERVER_DIR=/tmp/openclaw-memory-stack/src/graphiti/server
+++ MEM0_SERVER_DIR=/tmp/openclaw-memory-stack/src/mem0/server
+++ GRAPHITI_PORT=8000
+++ MEM0_PORT=8766
+++ QDRANT_HOST=127.0.0.1
+++ QDRANT_PORT=6333
+++ QDRANT_COLLECTION_NAME=openclaw_mem0
+++ GRAPHITI_REPO=https://github.com/getzep/graphiti.git
+++ GRAPHITI_REF=510bd50d5408477bc172b63b5567b753b50b9d11
+++ MEM0_REPO=https://github.com/mem0ai/mem0.git
+++ MEM0_REF=db15d5c6297ee2afaed2e91d86796a86f383949e
+++ STACK_ENV_FILE=/tmp/openclaw-memory-stack/env/memory-stack.env
+++ CHELINGXI_ENV_PATH=/Users/muqihang/chelingxi_workspace/chelingxi-os/.env.local
++ need_cmd jq
++ local cmd=jq
++ command -v jq
+++ date +%s
++ GROUP=smoke-g-1772177708
+++ date +%s
++ USER_ID=smoke-u-1772177708
+++ date +%s
++ RUN_ID=smoke-r-1772177708
+++ date -u +%Y-%m-%dT%H:%M:%SZ
++ TS=2026-02-27T07:35:08Z
++ curl -fsS -X POST http://127.0.0.1:8000/messages -H 'content-type: application/json' -d '{"group_id":"smoke-g-1772177708","messages":[{"content":"我偏好text-embedding-v4。","role_type":"user","role":"user","timestamp":"2026-02-27T07:35:08Z"}]}'
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Couldn't connect to server

@@ -1,0 +1,8 @@
+4: ❯ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts (4 tests | 2 failed) 32ms
+10:⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+12: FAIL  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts > P3 manual CLI path resolution > uses graphiti local default base URL for retrieval-eval when flags and env are absent
+13:AssertionError: expected "vi.fn()" to be called at least once
+24: FAIL  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts > P3 manual CLI path resolution > uses mem0 local default base URL for retrieval-eval when flags and env are absent
+25:AssertionError: expected "vi.fn()" to be called at least once
+37: Test Files  1 failed (1)
+38:      Tests  2 failed | 2 passed (4)

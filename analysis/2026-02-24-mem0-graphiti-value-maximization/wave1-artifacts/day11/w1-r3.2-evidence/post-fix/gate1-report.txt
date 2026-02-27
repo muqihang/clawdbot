@@ -1,0 +1,10 @@
+run_date: 2026-02-27
+generated_at: 2026-02-27T10:04:54.560Z
+fur_baseline: 0
+fur_current: 0.2
+fur_improvement_pp: 20
+p95_total_baseline_ms: 44
+p95_total_current_ms: 47
+p95_degradation_pct: 6.8182
+gate1_conclusion: Go
+selection_reason: first_hit_at_1_gt_0

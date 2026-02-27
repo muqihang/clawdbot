@@ -1,0 +1,73 @@
+{
+  "snapshot_version": "w1-e-metrics-snapshot-v1",
+  "source_report_json": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-gate1-report.json",
+  "source_report_text": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-gate1-report.txt",
+  "run_date_utc": "2026-02-27",
+  "source_command_exit_code": 0,
+  "hf3_source_files": {
+    "fur_baseline": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json",
+    "fur_current": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-retrieval-eval.absprobe.json",
+    "p95_total_baseline_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json",
+    "p95_total_current_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json"
+  },
+  "required_fields": [
+    "fur_baseline",
+    "fur_current",
+    "p95_total_baseline_ms",
+    "p95_total_current_ms"
+  ],
+  "observed_fields": {
+    "runDate": "2026-02-27",
+    "weekly_gate_fields": {
+      "proposal_count": 200,
+      "canary_commit_count": 0,
+      "manual_propose_commit_count": 5,
+      "pending_review_count": 0,
+      "failed_count": 0,
+      "dead_count": 19,
+      "admission_enabled": true,
+      "commit_canary_ratio": 0.05,
+      "effective_write_mode": "propose_only"
+    }
+  },
+  "observed_required_fields": {
+    "fur_baseline": {
+      "value": 0,
+      "mapping": "day0.hit_at_1",
+      "source_path_line": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:7"
+    },
+    "fur_current": {
+      "value": 0,
+      "mapping": "day10_retrieval_absprobe.hit_at_1",
+      "source_path_line": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-retrieval-eval.absprobe.json:7"
+    },
+    "p95_total_baseline_ms": {
+      "value": 44,
+      "mapping": "day10_ab_eval_absprobe.modelA.metrics.p95WriteLatencyMs",
+      "source_path_line": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:14",
+      "proxy_for": "p95_total"
+    },
+    "p95_total_current_ms": {
+      "value": 47,
+      "mapping": "day10_ab_eval_absprobe.modelB.metrics.p95WriteLatencyMs",
+      "source_path_line": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:25",
+      "proxy_for": "p95_total"
+    }
+  },
+  "missing_fields": [],
+  "formula": {
+    "fur_improvement_pp": "(fur_current - fur_baseline) * 100",
+    "p95_degradation_pct": "((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100"
+  },
+  "result": {
+    "fur_improvement_pp": 0,
+    "p95_degradation_pct": 6.818181818181818,
+    "threshold_eval": {
+      "fur_improvement_pp_ge_6": false,
+      "p95_degradation_pct_le_10": true
+    },
+    "gate1_conclusion": "No-Go",
+    "reason": "fur_improvement_pp = 0 < 6",
+    "note": "p95_degradation_pct computed from p95WriteLatencyMs proxy fields, not canonical p95_total"
+  }
+}

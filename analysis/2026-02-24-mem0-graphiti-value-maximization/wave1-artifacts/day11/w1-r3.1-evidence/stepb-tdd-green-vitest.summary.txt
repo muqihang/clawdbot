@@ -1,0 +1,3 @@
+6: Test Files  1 passed (1)
+7:      Tests  4 passed (4)
+9:   Duration  473ms (transform 272ms, setup 209ms, import 124ms, tests 32ms, environment 0ms)

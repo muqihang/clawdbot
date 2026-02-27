@@ -1,0 +1,57 @@
+# S3 P3 CLI 合约 smoke
+started_utc=2026-02-25T07:20:07Z
+started_utc8=2026-02-25T15:20:07+0800
+$ pnpm openclaw memory-bridge-p3 index-check --json
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 index-check --json
+
+file:///Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs:55
+  throw new Error("openclaw: missing dist/entry.(m)js (build output).");
+        ^
+
+Error: openclaw: missing dist/entry.(m)js (build output).
+    at file:///Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs:55:9
+
+Node.js v24.7.0
+ ELIFECYCLE  Command failed with exit code 1.
+index_check_primary_exit_code=1
+index_check_used=primary
+$ pnpm openclaw memory-bridge-p3 report --run-date 2026-02-25 --report-json analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3-report.json --report-text analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3-report.txt
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 report --run-date 2026-02-25 --report-json analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3-report.json --report-text analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-25-s3-report.txt
+
+file:///Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs:55
+  throw new Error("openclaw: missing dist/entry.(m)js (build output).");
+        ^
+
+Error: openclaw: missing dist/entry.(m)js (build output).
+    at file:///Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs:55:9
+
+Node.js v24.7.0
+ ELIFECYCLE  Command failed with exit code 1.
+report_primary_exit_code=1
+report_used=primary
+$ pnpm openclaw memory-bridge-p3 rollback-hints
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 rollback-hints
+
+file:///Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs:55
+  throw new Error("openclaw: missing dist/entry.(m)js (build output).");
+        ^
+
+Error: openclaw: missing dist/entry.(m)js (build output).
+    at file:///Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs:55:9
+
+Node.js v24.7.0
+ ELIFECYCLE  Command failed with exit code 1.
+rollback_hints_primary_exit_code=1
+rollback_hints_used=primary
+report_json_exists=0
+report_txt_exists=0
+used_command=primary
+step_exit_code=1
+ended_utc=2026-02-25T07:20:09Z
+ended_utc8=2026-02-25T15:20:09+0800

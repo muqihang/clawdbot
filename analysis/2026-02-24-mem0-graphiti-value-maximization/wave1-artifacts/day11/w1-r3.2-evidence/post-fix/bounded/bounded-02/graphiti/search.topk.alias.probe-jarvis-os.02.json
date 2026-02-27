@@ -1,0 +1,29 @@
+{
+  "hit_count": 10,
+  "top_k": 3,
+  "all_topk_scores_equal": true,
+  "all_topk_scores_zero": true,
+  "topk": [
+    {
+      "rank": 1,
+      "remoteId": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "score": 0,
+      "snippet": "IS_IN_EXECUTION_MODE",
+      "structure": "facts"
+    },
+    {
+      "rank": 2,
+      "remoteId": "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "score": 0,
+      "snippet": "HAS_MISSION",
+      "structure": "facts"
+    },
+    {
+      "rank": 3,
+      "remoteId": "707b1035-23bc-44fa-bcf0-695960197883",
+      "score": 0,
+      "snippet": "HAS_MISSION",
+      "structure": "facts"
+    }
+  ]
+}

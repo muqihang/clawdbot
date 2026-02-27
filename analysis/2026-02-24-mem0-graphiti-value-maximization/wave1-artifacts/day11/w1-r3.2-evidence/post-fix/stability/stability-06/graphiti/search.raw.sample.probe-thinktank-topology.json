@@ -1,0 +1,99 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "thinktank/topology",
+  "payload": {
+    "facts": [
+      {
+        "uuid": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666687+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "e6125703-30e1-4541-9ea3-687c72f2dc70",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666721+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666595+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "c90aba32-87f4-48c0-aa82-92bbd7b368a3",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666650+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "727a7391-214d-4ed3-a508-28f2b285d7d0",
+        "name": "IS_EVALUATING_ENABLEMENT_OF",
+        "fact": "user is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.665238+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用graphiti。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704694+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+        "name": "RESULTS_IN_RETENTION_OF",
+        "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271784+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+        "name": "IS_IN_EXECUTION_MODE",
+        "fact": "Jarvis is online and in execution mode",
+        "valid_at": "2026-02-26T03:04:24+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:05:16.447280+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+        "name": "MAY_BE_INCORPORATED_INTO",
+        "fact": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271723+00:00",
+        "expired_at": null
+      }
+    ]
+  }
+}

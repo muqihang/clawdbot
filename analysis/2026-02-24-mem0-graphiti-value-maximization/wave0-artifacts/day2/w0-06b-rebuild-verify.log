@@ -1,0 +1,535 @@
+# W0-06B Rebuild Verify Log
+# timezone: UTC+08:00
+# generated_at_utc: 2026-02-25T05:26:44Z
+# generated_at_utc8: 2026-02-25T13:26:44+0800
+
+## command: bootstrap
+- started_utc: 2026-02-25T05:26:44Z
+- started_utc8: 2026-02-25T13:26:44+0800
+- run: scripts/memory-stack/bootstrap.sh
+- output_begin
+Can't do inplace edit on /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/env/memory-stack.env: Cannot make temp name: Operation not permitted.
+Can't do inplace edit on /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/env/memory-stack.env: Cannot make temp name: Operation not permitted.
+Can't do inplace edit on /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/env/memory-stack.env: Cannot make temp name: Operation not permitted.
+Can't do inplace edit on /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/env/memory-stack.env: Cannot make temp name: Operation not permitted.
+Can't do inplace edit on /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/env/memory-stack.env: Cannot make temp name: Operation not permitted.
+Can't do inplace edit on /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/env/memory-stack.env: Cannot make temp name: Operation not permitted.
+[memory-stack] stack root: /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack
+[memory-stack] graphiti ref: 510bd50d5408477bc172b63b5567b753b50b9d11
+[memory-stack] mem0 ref: db15d5c6297ee2afaed2e91d86796a86f383949e
+error: cannot open '.git/FETCH_HEAD': Operation not permitted
+- output_end
+- ended_utc: 2026-02-25T05:26:45Z
+- ended_utc8: 2026-02-25T13:26:45+0800
+- elapsed_seconds: 1
+- exit_code: 255
+
+## command: start
+- started_utc: 2026-02-25T05:26:45Z
+- started_utc8: 2026-02-25T13:26:45+0800
+- run: scripts/memory-stack/start.sh
+- output_begin
+rm: /Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/pids/graphiti.pid: Operation not permitted
+- output_end
+- ended_utc: 2026-02-25T05:26:45Z
+- ended_utc8: 2026-02-25T13:26:45+0800
+- elapsed_seconds: 0
+- exit_code: 1
+
+## command: smoke
+- started_utc: 2026-02-25T05:26:45Z
+- started_utc8: 2026-02-25T13:26:45+0800
+- run: scripts/memory-stack/smoke.sh
+- output_begin
+graphiti episodes=1 facts=1
+mem0 add_results=1 search_results=1
+[memory-stack] smoke passed
+- output_end
+- ended_utc: 2026-02-25T05:27:34Z
+- ended_utc8: 2026-02-25T13:27:34+0800
+- elapsed_seconds: 49
+- exit_code: 0
+
+## command: status
+- started_utc: 2026-02-25T05:27:34Z
+- started_utc8: 2026-02-25T13:27:34+0800
+- run: scripts/memory-stack/status.sh
+- output_begin
+graphiti   pid=39496    alive=yes port=8000  health=ok
+mem0       pid=39499    alive=yes port=8766  health=ok
+- output_end
+- ended_utc: 2026-02-25T05:27:34Z
+- ended_utc8: 2026-02-25T13:27:34+0800
+- elapsed_seconds: 0
+- exit_code: 0
+
+
+## Fix1 command: bootstrap
+- started_utc: 2026-02-25T05:47:58Z
+- started_utc8: 2026-02-25T13:47:58+0800
+- run: scripts/memory-stack/bootstrap.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758 GRAPHITI_PORT=18080 MEM0_PORT=18766
+- output_begin
+[memory-stack] created env template: /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/env/memory-stack.env
+[memory-stack] stack root: /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758
+[memory-stack] graphiti ref: 510bd50d5408477bc172b63b5567b753b50b9d11
+[memory-stack] mem0 ref: db15d5c6297ee2afaed2e91d86796a86f383949e
+Cloning into '/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti'...
+Note: switching to '510bd50d5408477bc172b63b5567b753b50b9d11'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 510bd50 @hanxiao has signed the CLA in getzep/graphiti#1257
+Cloning into '/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/mem0'...
+Note: switching to 'db15d5c6297ee2afaed2e91d86796a86f383949e'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at db15d5c6 fix(oss): validate LLM fact output via FactRetrievalSchema before embedding (#4083)
+WARNING: The directory '/Users/muqihang/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Requirement already satisfied: pip in ./.venv/lib/python3.13/site-packages (26.0)
+Collecting pip
+  Downloading https://mirrors.aliyun.com/pypi/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 3.7 MB/s  0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 26.0
+    Uninstalling pip-26.0:
+      Successfully uninstalled pip-26.0
+Successfully installed pip-26.0.1
+WARNING: The directory '/Users/muqihang/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Obtaining file:///private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Installing backend dependencies: started
+  Installing backend dependencies: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Collecting fastapi>=0.115.0 (from graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/bf/b4/023e75a2ec3f5440e380df6caf4d28edc0806d007193e6fb0707237886a4/fastapi-0.133.0-py3-none-any.whl (104 kB)
+Collecting graphiti-core>=0.28.1 (from graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/03/38/30ee63b4b07691f500e392929224368e0df78fa9ec3f5e743bde48461ce2/graphiti_core-0.28.1-py3-none-any.whl (311 kB)
+Collecting httpx>=0.28.1 (from graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl (73 kB)
+Collecting pydantic-settings>=2.4.0 (from graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/00/4b/ccc026168948fec4f7555b9164c724cf4125eac006e176541483d2c959be/pydantic_settings-2.13.1-py3-none-any.whl (58 kB)
+Collecting uvicorn>=0.30.6 (from graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/83/e4/d04a086285c20886c0daad0e026f250869201013d18f81d9ff5eada73a88/uvicorn-0.41.0-py3-none-any.whl (68 kB)
+Collecting starlette>=0.40.0 (from fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/81/0d/13d1d239a25cbfb19e740db83143e95c772a1fe10202dda4b76792b114dd/starlette-0.52.1-py3-none-any.whl (74 kB)
+Collecting pydantic>=2.7.0 (from fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/5a/87/b70ad306ebb6f9b585f114d0ac2137d792b48be34d732d60e597c2f8465a/pydantic-2.12.5-py3-none-any.whl (463 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Collecting typing-inspection>=0.4.2 (from fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/dc/9b/47798a6c91d8bdb567fe2698fe81e0c6b7cb7ef4d13da4114b41d239f65d/typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/1e/d3/26bf1008eb3d2daa8ef4cacc7f3bfdc11818d111f7e2d0201bc6e3b49d45/annotated_doc-0.0.4-py3-none-any.whl (5.3 kB)
+Collecting neo4j>=5.26.0 (from graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/70/5c/ee71e2dd955045425ef44283f40ba1da67673cf06404916ca2950ac0cd39/neo4j-6.1.0-py3-none-any.whl (325 kB)
+Collecting numpy>=1.0.0 (from graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/da/b4/f805ab79293c728b9a99438775ce51885fd4f31b76178767cfc718701a39/numpy-2.4.2-cp313-cp313-macosx_14_0_arm64.whl (5.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 3.5 MB/s  0:00:01
+Collecting openai>=1.91.0 (from graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/c9/30/844dc675ee6902579b8eef01ed23917cc9319a1c9c0c14ec6e39340c96d0/openai-2.24.0-py3-none-any.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 3.8 MB/s  0:00:00
+Collecting posthog>=3.0.0 (from graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/11/7e/0e06a96823fa7c11ce73920e6ff77e82445db62ac4eae0b6f211edb4c4c2/posthog-7.9.3-py3-none-any.whl (197 kB)
+Collecting python-dotenv>=1.0.1 (from graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/14/1b/a298b06749107c305e1fe0f814c6c74aea7b2f1e10989cb30f544a1b3253/python_dotenv-1.2.1-py3-none-any.whl (21 kB)
+Collecting tenacity>=9.0.0 (from graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/d7/c1/eb8f9debc45d3b7918a32ab756658a0904732f75e555402972246b0b8e71/tenacity-9.1.4-py3-none-any.whl (28 kB)
+Collecting anyio (from httpx>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/38/0e/27be9fdef66e72d64c0cdc3cc2823101b80585f8119b5c112c2e8f5f7dab/anyio-4.12.1-py3-none-any.whl (113 kB)
+Collecting certifi (from httpx>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/9a/3c/c17fb3ca2d9c3acff52e30b309f538586f9f5b9c9cf454f3845fc9af4881/certifi-2026.2.25-py3-none-any.whl (153 kB)
+Collecting httpcore==1.* (from httpx>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl (78 kB)
+Collecting idna (from httpx>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl (71 kB)
+Collecting h11>=0.16 (from httpcore==1.*->httpx>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting pytz (from neo4j>=5.26.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/81/c4/34e93fe5f5429d7570ec1fa436f1986fb1f00c3e0f43a589fe2bbcd22c3f/pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Collecting distro<2,>=1.7.0 (from openai>=1.91.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl (20 kB)
+Collecting jiter<1,>=0.10.0 (from openai>=1.91.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/7c/02/be5b870d1d2be5dd6a91bdfb90f248fbb7dcbd21338f092c6b89817c3dbf/jiter-0.13.0-cp313-cp313-macosx_11_0_arm64.whl (317 kB)
+Collecting sniffio (from openai>=1.91.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl (10 kB)
+Collecting tqdm>4 (from openai>=1.91.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/16/e1/3079a9ff9b8e11b846c6ac5c8b5bfb7ff225eee721825310c91b3b50304f/tqdm-4.67.3-py3-none-any.whl (78 kB)
+Collecting annotated-types>=0.6.0 (from pydantic>=2.7.0->fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Collecting pydantic-core==2.41.5 (from pydantic>=2.7.0->fastapi>=0.115.0->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/94/02/abfa0e0bda67faa65fef1c84971c7e45928e108fe24333c81f3bfe35d5f5/pydantic_core-2.41.5-cp313-cp313-macosx_11_0_arm64.whl (1.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.9/1.9 MB 4.9 MB/s  0:00:00
+Collecting requests<3.0,>=2.7 (from posthog>=3.0.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl (64 kB)
+Collecting six>=1.5 (from posthog>=3.0.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl (11 kB)
+Collecting python-dateutil>=2.2 (from posthog>=3.0.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Collecting backoff>=1.10.0 (from posthog>=3.0.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/df/73/b6e24bd22e6720ca8ee9a85a0c4a2971af8497d8f3193fa05390cbd46e09/backoff-2.2.1-py3-none-any.whl (15 kB)
+Collecting charset_normalizer<4,>=2 (from requests<3.0,>=2.7->posthog>=3.0.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/97/45/4b3a1239bbacd321068ea6e7ac28875b03ab8bc0aa0966452db17cd36714/charset_normalizer-3.4.4-cp313-cp313-macosx_10_13_universal2.whl (208 kB)
+Collecting urllib3<3,>=1.21.1 (from requests<3.0,>=2.7->posthog>=3.0.0->graphiti-core>=0.28.1->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl (131 kB)
+Collecting click>=7.0 (from uvicorn>=0.30.6->graph-service==0.1.0)
+  Downloading https://mirrors.aliyun.com/pypi/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl (108 kB)
+Building wheels for collected packages: graph-service
+  Building editable for graph-service (pyproject.toml): started
+  Building editable for graph-service (pyproject.toml): finished with status 'done'
+  Created wheel for graph-service: filename=graph_service-0.1.0-py3-none-any.whl size=2319 sha256=307cb358ccb78bf428cb16ca7ccc3f08bd398d18e12c8aeeae6f86e07f13a6e6
+  Stored in directory: /private/var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/pip-ephem-wheel-cache-il344q59/wheels/ce/16/d0/163cfce2df54439a03e7ecb6382638dda2bd82ca79f0a5e6ca
+Successfully built graph-service
+Installing collected packages: pytz, urllib3, typing-extensions, tqdm, tenacity, sniffio, six, python-dotenv, numpy, neo4j, jiter, idna, h11, distro, click, charset_normalizer, certifi, backoff, annotated-types, annotated-doc, uvicorn, typing-inspection, requests, python-dateutil, pydantic-core, httpcore, anyio, starlette, pydantic, posthog, httpx, pydantic-settings, openai, fastapi, graphiti-core, graph-service
+
+Successfully installed annotated-doc-0.0.4 annotated-types-0.7.0 anyio-4.12.1 backoff-2.2.1 certifi-2026.2.25 charset_normalizer-3.4.4 click-8.3.1 distro-1.9.0 fastapi-0.133.0 graph-service-0.1.0 graphiti-core-0.28.1 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.11 jiter-0.13.0 neo4j-6.1.0 numpy-2.4.2 openai-2.24.0 posthog-7.9.3 pydantic-2.12.5 pydantic-core-2.41.5 pydantic-settings-2.13.1 python-dateutil-2.9.0.post0 python-dotenv-1.2.1 pytz-2025.2 requests-2.32.5 six-1.17.0 sniffio-1.3.1 starlette-0.52.1 tenacity-9.1.4 tqdm-4.67.3 typing-extensions-4.15.0 typing-inspection-0.4.2 urllib3-2.6.3 uvicorn-0.41.0
+patched /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py
+WARNING: The directory '/Users/muqihang/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Requirement already satisfied: pip in ./.venv/lib/python3.13/site-packages (26.0)
+Collecting pip
+  Downloading https://mirrors.aliyun.com/pypi/packages/de/f0/c81e05b613866b76d2d1066490adf1a3dbc4ee9d9c839961c3fc8a6997af/pip-26.0.1-py3-none-any.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 5.4 MB/s  0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 26.0
+    Uninstalling pip-26.0:
+      Successfully uninstalled pip-26.0
+Successfully installed pip-26.0.1
+WARNING: The directory '/Users/muqihang/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+Looking in indexes: https://mirrors.aliyun.com/pypi/simple/
+Collecting fastapi==0.115.8 (from -r requirements.txt (line 1))
+  Downloading https://mirrors.aliyun.com/pypi/packages/8f/7d/2d6ce181d7a5f51dedb8c06206cbf0ec026a99bf145edd309f9e17c3282f/fastapi-0.115.8-py3-none-any.whl (94 kB)
+Collecting uvicorn==0.34.0 (from -r requirements.txt (line 2))
+  Downloading https://mirrors.aliyun.com/pypi/packages/61/14/33a3a1352cfa71812a3a21e8c9bfb83f60b0011f5e36f2b1399d51928209/uvicorn-0.34.0-py3-none-any.whl (62 kB)
+Collecting pydantic==2.10.4 (from -r requirements.txt (line 3))
+  Downloading https://mirrors.aliyun.com/pypi/packages/f3/26/3e1bbe954fde7ee22a6e7d31582c642aad9e84ffe4b5fb61e63b87cd326f/pydantic-2.10.4-py3-none-any.whl (431 kB)
+Collecting mem0ai>=0.1.48 (from -r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/b0/da/67f023b4269d77336bce950c7419ebd554272a5bfe1bc9c8ed79e8907eaa/mem0ai-1.0.4-py3-none-any.whl (275 kB)
+Collecting python-dotenv==1.0.1 (from -r requirements.txt (line 5))
+  Downloading https://mirrors.aliyun.com/pypi/packages/6a/3e/b68c118422ec867fa7ab88444e1274aa40681c606d59ac27de5a5588f082/python_dotenv-1.0.1-py3-none-any.whl (19 kB)
+Collecting psycopg>=3.2.8 (from -r requirements.txt (line 6))
+  Downloading https://mirrors.aliyun.com/pypi/packages/c8/5b/181e2e3becb7672b502f0ed7f16ed7352aca7c109cfb94cf3878a9186db9/psycopg-3.3.3-py3-none-any.whl (212 kB)
+Collecting starlette<0.46.0,>=0.40.0 (from fastapi==0.115.8->-r requirements.txt (line 1))
+  Downloading https://mirrors.aliyun.com/pypi/packages/d9/61/f2b52e107b1fc8944b33ef56bf6ac4ebbe16d91b94d2b87ce013bf63fb84/starlette-0.45.3-py3-none-any.whl (71 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi==0.115.8->-r requirements.txt (line 1))
+  Downloading https://mirrors.aliyun.com/pypi/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Collecting annotated-types>=0.6.0 (from pydantic==2.10.4->-r requirements.txt (line 3))
+  Downloading https://mirrors.aliyun.com/pypi/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Collecting pydantic-core==2.27.2 (from pydantic==2.10.4->-r requirements.txt (line 3))
+  Downloading https://mirrors.aliyun.com/pypi/packages/10/6c/e62b8657b834f3eb2961b49ec8e301eb99946245e70bf42c8817350cbefc/pydantic_core-2.27.2-cp313-cp313-macosx_11_0_arm64.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 5.4 MB/s  0:00:00
+Collecting click>=7.0 (from uvicorn==0.34.0->-r requirements.txt (line 2))
+  Downloading https://mirrors.aliyun.com/pypi/packages/98/78/01c019cdb5d6498122777c1a43056ebb3ebfeef2076d9d026bfe15583b2b/click-8.3.1-py3-none-any.whl (108 kB)
+Collecting h11>=0.8 (from uvicorn==0.34.0->-r requirements.txt (line 2))
+  Downloading https://mirrors.aliyun.com/pypi/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting anyio<5,>=3.6.2 (from starlette<0.46.0,>=0.40.0->fastapi==0.115.8->-r requirements.txt (line 1))
+  Downloading https://mirrors.aliyun.com/pypi/packages/38/0e/27be9fdef66e72d64c0cdc3cc2823101b80585f8119b5c112c2e8f5f7dab/anyio-4.12.1-py3-none-any.whl (113 kB)
+Collecting idna>=2.8 (from anyio<5,>=3.6.2->starlette<0.46.0,>=0.40.0->fastapi==0.115.8->-r requirements.txt (line 1))
+  Downloading https://mirrors.aliyun.com/pypi/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl (71 kB)
+Collecting openai>=1.90.0 (from mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/c9/30/844dc675ee6902579b8eef01ed23917cc9319a1c9c0c14ec6e39340c96d0/openai-2.24.0-py3-none-any.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 5.6 MB/s  0:00:00
+Collecting posthog>=3.5.0 (from mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/11/7e/0e06a96823fa7c11ce73920e6ff77e82445db62ac4eae0b6f211edb4c4c2/posthog-7.9.3-py3-none-any.whl (197 kB)
+Collecting protobuf<6.0.0,>=5.29.0 (from mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/06/db/49b05966fd208ae3f44dcd33837b6243b4915c57561d730a43f881f24dea/protobuf-5.29.6-cp38-abi3-macosx_10_9_universal2.whl (418 kB)
+Collecting pytz>=2024.1 (from mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/81/c4/34e93fe5f5429d7570ec1fa436f1986fb1f00c3e0f43a589fe2bbcd22c3f/pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Collecting qdrant-client>=1.9.1 (from mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/c1/15/dfadbc9d8c9872e8ac45fa96f5099bb2855f23426bfea1bbcdc85e64ef6e/qdrant_client-1.17.0-py3-none-any.whl (390 kB)
+Collecting sqlalchemy>=2.0.31 (from mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/4a/e5/0af64ce7d8f60ec5328c10084e2f449e7912a9b8bdbefdcfb44454a25f49/sqlalchemy-2.0.47-cp313-cp313-macosx_11_0_arm64.whl (2.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 5.5 MB/s  0:00:00
+Collecting distro<2,>=1.7.0 (from openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl (20 kB)
+Collecting httpx<1,>=0.23.0 (from openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl (73 kB)
+Collecting jiter<1,>=0.10.0 (from openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/7c/02/be5b870d1d2be5dd6a91bdfb90f248fbb7dcbd21338f092c6b89817c3dbf/jiter-0.13.0-cp313-cp313-macosx_11_0_arm64.whl (317 kB)
+Collecting sniffio (from openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl (10 kB)
+Collecting tqdm>4 (from openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/16/e1/3079a9ff9b8e11b846c6ac5c8b5bfb7ff225eee721825310c91b3b50304f/tqdm-4.67.3-py3-none-any.whl (78 kB)
+Collecting certifi (from httpx<1,>=0.23.0->openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/9a/3c/c17fb3ca2d9c3acff52e30b309f538586f9f5b9c9cf454f3845fc9af4881/certifi-2026.2.25-py3-none-any.whl (153 kB)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->openai>=1.90.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl (78 kB)
+Collecting requests<3.0,>=2.7 (from posthog>=3.5.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl (64 kB)
+Collecting six>=1.5 (from posthog>=3.5.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl (11 kB)
+Collecting python-dateutil>=2.2 (from posthog>=3.5.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Collecting backoff>=1.10.0 (from posthog>=3.5.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/df/73/b6e24bd22e6720ca8ee9a85a0c4a2971af8497d8f3193fa05390cbd46e09/backoff-2.2.1-py3-none-any.whl (15 kB)
+Collecting charset_normalizer<4,>=2 (from requests<3.0,>=2.7->posthog>=3.5.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/97/45/4b3a1239bbacd321068ea6e7ac28875b03ab8bc0aa0966452db17cd36714/charset_normalizer-3.4.4-cp313-cp313-macosx_10_13_universal2.whl (208 kB)
+Collecting urllib3<3,>=1.21.1 (from requests<3.0,>=2.7->posthog>=3.5.0->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl (131 kB)
+Collecting grpcio>=1.41.0 (from qdrant-client>=1.9.1->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/5c/84/6267d1266f8bc335d3a8b7ccf981be7de41e3ed8bd3a49e57e588212b437/grpcio-1.78.1-cp313-cp313-macosx_11_0_universal2.whl (11.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.8/11.8 MB 5.2 MB/s  0:00:02
+Collecting numpy>=2.1.0 (from qdrant-client>=1.9.1->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/da/b4/f805ab79293c728b9a99438775ce51885fd4f31b76178767cfc718701a39/numpy-2.4.2-cp313-cp313-macosx_14_0_arm64.whl (5.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.2/5.2 MB 5.3 MB/s  0:00:00
+Collecting portalocker<4.0,>=2.7.0 (from qdrant-client>=1.9.1->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/4b/a6/38c8e2f318bf67d338f4d629e93b0b4b9af331f455f0390ea8ce4a099b26/portalocker-3.2.0-py3-none-any.whl (22 kB)
+Collecting h2<5,>=3 (from httpx[http2]>=0.20.0->qdrant-client>=1.9.1->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/69/b2/119f6e6dcbd96f9069ce9a2665e0146588dc9f88f29549711853645e736a/h2-4.3.0-py3-none-any.whl (61 kB)
+Collecting hyperframe<7,>=6.1 (from h2<5,>=3->httpx[http2]>=0.20.0->qdrant-client>=1.9.1->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/48/30/47d0bf6072f7252e6521f3447ccfa40b421b6824517f82854703d0f5a98b/hyperframe-6.1.0-py3-none-any.whl (13 kB)
+Collecting hpack<5,>=4.1 (from h2<5,>=3->httpx[http2]>=0.20.0->qdrant-client>=1.9.1->mem0ai>=0.1.48->-r requirements.txt (line 4))
+  Downloading https://mirrors.aliyun.com/pypi/packages/07/c6/80c95b1b2b94682a72cbdbfb85b81ae2daffa4291fbfa1b1464502ede10d/hpack-4.1.0-py3-none-any.whl (34 kB)
+Installing collected packages: pytz, urllib3, typing-extensions, tqdm, sniffio, six, python-dotenv, psycopg, protobuf, portalocker, numpy, jiter, idna, hyperframe, hpack, h11, distro, click, charset_normalizer, certifi, backoff, annotated-types, uvicorn, sqlalchemy, requests, python-dateutil, pydantic-core, httpcore, h2, grpcio, anyio, starlette, pydantic, posthog, httpx, openai, fastapi, qdrant-client, mem0ai
+
+Successfully installed annotated-types-0.7.0 anyio-4.12.1 backoff-2.2.1 certifi-2026.2.25 charset_normalizer-3.4.4 click-8.3.1 distro-1.9.0 fastapi-0.115.8 grpcio-1.78.1 h11-0.16.0 h2-4.3.0 hpack-4.1.0 httpcore-1.0.9 httpx-0.28.1 hyperframe-6.1.0 idna-3.11 jiter-0.13.0 mem0ai-1.0.4 numpy-2.4.2 openai-2.24.0 portalocker-3.2.0 posthog-7.9.3 protobuf-5.29.6 psycopg-3.3.3 pydantic-2.10.4 pydantic-core-2.27.2 python-dateutil-2.9.0.post0 python-dotenv-1.0.1 pytz-2025.2 qdrant-client-1.17.0 requests-2.32.5 six-1.17.0 sniffio-1.3.1 sqlalchemy-2.0.47 starlette-0.45.3 tqdm-4.67.3 typing-extensions-4.15.0 urllib3-2.6.3 uvicorn-0.34.0
+patched /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/llms/openai.py
+[memory-stack] bootstrap complete
+[memory-stack] env file: /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/env/memory-stack.env
+- output_end
+- ended_utc: 2026-02-25T05:49:09Z
+- ended_utc8: 2026-02-25T13:49:09+0800
+- elapsed_seconds: 70
+- exit_code: 0
+
+## Fix1 command: start
+- started_utc: 2026-02-25T05:49:09Z
+- started_utc8: 2026-02-25T13:49:09+0800
+- run: scripts/memory-stack/start.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758 GRAPHITI_PORT=18080 MEM0_PORT=18766
+- output_begin
+[memory-stack] ERROR: graphiti did not become healthy
+- output_end
+- ended_utc: 2026-02-25T05:49:54Z
+- ended_utc8: 2026-02-25T13:49:54+0800
+- elapsed_seconds: 45
+- exit_code: 1
+
+## Fix1 command: smoke
+- started_utc: 2026-02-25T05:49:54Z
+- started_utc8: 2026-02-25T13:49:54+0800
+- run: scripts/memory-stack/smoke.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758 GRAPHITI_PORT=18080 MEM0_PORT=18766
+- output_begin
+curl: (7) Failed to connect to 127.0.0.1 port 18080 after 0 ms: Couldn't connect to server
+- output_end
+- ended_utc: 2026-02-25T05:49:54Z
+- ended_utc8: 2026-02-25T13:49:54+0800
+- elapsed_seconds: 0
+- exit_code: 7
+
+## Fix1 command: status
+- started_utc: 2026-02-25T05:49:54Z
+- started_utc8: 2026-02-25T13:49:54+0800
+- run: scripts/memory-stack/status.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758 GRAPHITI_PORT=18080 MEM0_PORT=18766
+- output_begin
+graphiti   pid=79541    alive=no  port=18080 health=down
+mem0       pid=79544    alive=yes port=18766 health=ok
+- output_end
+- ended_utc: 2026-02-25T05:49:54Z
+- ended_utc8: 2026-02-25T13:49:54+0800
+- elapsed_seconds: 0
+- exit_code: 0
+
+## Fix1 diagnostic: graphiti-log-tail
+- started_utc: 2026-02-25T05:50:45Z
+- started_utc8: 2026-02-25T13:50:45+0800
+- run: tail -n 120 /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/logs/graphiti.log
+- output_begin
+diagnostic_source: /tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/logs/graphiti.log
+Traceback (most recent call last):
+  File "/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/bin/uvicorn", line 6, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/click/core.py", line 1485, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/click/core.py", line 1406, in main
+    rv = self.invoke(ctx)
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/click/core.py", line 1269, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/click/core.py", line 824, in invoke
+    return callback(*args, **kwargs)
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/main.py", line 433, in main
+    run(
+    ~~~^
+        app,
+        ^^^^
+    ...<47 lines>...
+        h11_max_incomplete_event_size=h11_max_incomplete_event_size,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/main.py", line 606, in run
+    server.run()
+    ~~~~~~~~~~^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/server.py", line 75, in run
+    return asyncio_run(self.serve(sockets=sockets), loop_factory=self.config.get_loop_factory())
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/server.py", line 79, in serve
+    await self._serve(sockets)
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/server.py", line 86, in _serve
+    config.load()
+    ~~~~~~~~~~~^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/config.py", line 441, in load
+    self.loaded_app = import_from_string(self.app)
+                      ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/importer.py", line 19, in import_from_string
+    module = importlib.import_module(module_str)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py", line 88, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 1023, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/graph_service/main.py", line 7, in <module>
+    from graph_service.routers import ingest, retrieve
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/graph_service/routers/ingest.py", line 6, in <module>
+    from graphiti_core.nodes import EpisodeType  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/__init__.py", line 1, in <module>
+    from .graphiti import Graphiti
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 26, in <module>
+    from graphiti_core.cross_encoder.client import CrossEncoderClient
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/cross_encoder/__init__.py", line 18, in <module>
+    from .openai_reranker_client import OpenAIRerankerClient
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/cross_encoder/openai_reranker_client.py", line 25, in <module>
+    from ..llm_client import LLMConfig, OpenAIClient, RateLimitError
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/__init__.py", line 20, in <module>
+    from .openai_client import OpenAIClient
+  File "/private/tmp/openclaw-memory-stack-w06b-fix1-20260225-134758/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 39
+    return "
+           ^
+SyntaxError: unterminated string literal (detected at line 39)
+- output_end
+- ended_utc: 2026-02-25T05:50:45Z
+- ended_utc8: 2026-02-25T13:50:45+0800
+- elapsed_seconds: 0
+- exit_code: 0
+
+## Fix2 command: bootstrap
+- started_utc: 2026-02-25T06:17:44Z
+- started_utc8: 2026-02-25T14:17:44+0800
+- run: scripts/memory-stack/bootstrap.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717 GRAPHITI_PORT=18082 MEM0_PORT=18768
+- output_begin
+patched /tmp/openclaw-memory-stack-w06b-fix2-20260225-141717/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py
+[memory-stack] bootstrap complete
+[memory-stack] env file: /tmp/openclaw-memory-stack-w06b-fix2-20260225-141717/env/memory-stack.env
+- output_end
+- ended_utc: 2026-02-25T06:18:52Z
+- ended_utc8: 2026-02-25T14:18:52+0800
+- elapsed_seconds: 68
+- exit_code: 0
+
+## Fix2 diagnostic: prestart-openai-client-check
+- started_utc: 2026-02-25T06:34:47Z
+- started_utc8: 2026-02-25T14:34:47+0800
+- run: python3.13 -m py_compile /tmp/openclaw-memory-stack-w06b-fix2-20260225-141717/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py && grep -nF literal-\\n markers
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717 GRAPHITI_PORT=18082 MEM0_PORT=18768
+- output_begin
+target_file=/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py
+py_compile=ok
+literal_backslash_n_checks:
+39:        return "\n".join(parts)
+71:    content_blob = '\n'.join(
+82:        patched[0]['content'] = f"{base}\n{hint}".strip()
+- output_end
+- ended_utc: 2026-02-25T06:34:47Z
+- ended_utc8: 2026-02-25T14:34:47+0800
+- elapsed_seconds: 0
+- exit_code: 0
+
+## Fix2 command: start
+- started_utc: 2026-02-25T06:34:47Z
+- started_utc8: 2026-02-25T14:34:47+0800
+- run: scripts/memory-stack/start.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717 GRAPHITI_PORT=18082 MEM0_PORT=18768
+- output_begin
+[memory-stack] started graphiti + mem0
+graphiti   pid=93454    alive=yes port=18082 health=ok
+mem0       pid=93457    alive=yes port=18768 health=ok
+- output_end
+- ended_utc: 2026-02-25T06:35:09Z
+- ended_utc8: 2026-02-25T14:35:09+0800
+- elapsed_seconds: 22
+- exit_code: 0
+
+## Fix2 command: smoke
+- started_utc: 2026-02-25T06:35:09Z
+- started_utc8: 2026-02-25T14:35:09+0800
+- run: scripts/memory-stack/smoke.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717 GRAPHITI_PORT=18082 MEM0_PORT=18768
+- output_begin
+graphiti episodes=1 facts=1
+mem0 add_results=1 search_results=1
+[memory-stack] smoke passed
+- output_end
+- ended_utc: 2026-02-25T06:35:56Z
+- ended_utc8: 2026-02-25T14:35:56+0800
+- elapsed_seconds: 47
+- exit_code: 0
+
+## Fix2 command: status
+- started_utc: 2026-02-25T06:35:56Z
+- started_utc8: 2026-02-25T14:35:56+0800
+- run: scripts/memory-stack/status.sh
+- env: OPENCLAW_MEMORY_STACK_ROOT=/tmp/openclaw-memory-stack-w06b-fix2-20260225-141717 GRAPHITI_PORT=18082 MEM0_PORT=18768
+- output_begin
+graphiti   pid=93454    alive=yes port=18082 health=ok
+mem0       pid=93457    alive=yes port=18768 health=ok
+- output_end
+- ended_utc: 2026-02-25T06:35:56Z
+- ended_utc8: 2026-02-25T14:35:56+0800
+- elapsed_seconds: 0
+- exit_code: 0

@@ -1,0 +1,46 @@
+{
+  "captured_at_utc": "2026-02-25T03:22:34Z",
+  "captured_at_local": "2026-02-25T11:22:34+0800",
+  "timezone": "CST",
+  "commands": [
+    {
+      "name": "config_snapshot",
+      "attempted": ["jq"],
+      "used": "jq",
+      "exit_code": 0,
+      "output_paths": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/config-snapshot.json"
+      ]
+    },
+    {
+      "name": "index_check",
+      "attempted": ["pnpm", "node_fallback"],
+      "used": "pnpm",
+      "exit_code": 0,
+      "output_paths": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/index-check.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/index-check.raw.log"
+      ]
+    },
+    {
+      "name": "report",
+      "attempted": ["pnpm", "node_fallback"],
+      "used": "pnpm",
+      "exit_code": 0,
+      "output_paths": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/report.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/report.txt"
+      ]
+    },
+    {
+      "name": "s5_retrieval_eval",
+      "attempted": ["pnpm", "node_fallback"],
+      "used": "pnpm",
+      "exit_code": 0,
+      "output_paths": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.log"
+      ]
+    }
+  ]
+}

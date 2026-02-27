@@ -1,0 +1,8 @@
+[
+  "/configure",
+  "/memories",
+  "/memories/{memory_id}",
+  "/memories/{memory_id}/history",
+  "/reset",
+  "/search"
+]

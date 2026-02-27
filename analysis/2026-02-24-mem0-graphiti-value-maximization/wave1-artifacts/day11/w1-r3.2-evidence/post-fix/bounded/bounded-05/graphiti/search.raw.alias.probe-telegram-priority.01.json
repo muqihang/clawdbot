@@ -1,0 +1,99 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Telegram preference",
+  "payload": {
+    "facts": [
+      {
+        "uuid": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+        "name": "HAS_FOUNDER_PRIORITY",
+        "fact": "P2's founder priority is Telegram",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440445+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "f13f1629-87a0-419b-ae31-d79ad59bad8f",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用sub2api。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704600+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用graphiti。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704694+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "242955ff-7ba4-44ff-ba89-292986df4520",
+        "name": "HAS_PRIMARY_BUSINESS",
+        "fact": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907314+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+        "name": "PREFERS_VECTOR_MODEL",
+        "fact": "user(user) (Muqihang) 的向量模型偏好是 text-embedding-v4。",
+        "valid_at": "2026-02-23T09:43:09+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T09:43:42.291317+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d8e7db45-8a56-41ab-b3c8-aba4adc5c5c3",
+        "name": "LIKES",
+        "fact": "user(user)表示自己喜欢阿里云text-embedding-v4。",
+        "valid_at": "2026-02-23T09:41:30.063085+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T09:41:58.255786+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "69244698-050a-42b5-9b03-3ce6b6909fd2",
+        "name": "IS_NAMED",
+        "fact": "user(user)自称名字是Muqihang。",
+        "valid_at": "2026-02-23T09:41:30.063085+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T09:41:58.254386+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a3daae93-f61f-43d7-8f01-23e25471417e",
+        "name": "PREFERS",
+        "fact": "user(user)偏好的向量模型是text-embedding-v4。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704707+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "c2312c79-e87a-4089-a88e-f4c78b961fdf",
+        "name": "DOCUMENTS_HYGIENE_RULE",
+        "fact": "The weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.",
+        "valid_at": "2026-02-26T03:01:46+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:03:38.695582+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "703d034b-1e37-4872-967c-2c56d2d35ed1",
+        "name": "IS_INSTRUCTED_TO_READ",
+        "fact": "user is instructed to read HEARTBEAT.md if it exists",
+        "valid_at": "2026-02-24T10:01:31.007000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:01:59.540880+00:00",
+        "expired_at": null
+      }
+    ]
+  }
+}

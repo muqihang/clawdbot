@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "failures": [],
+  "metrics": {
+    "indexReferenceCount": 16,
+    "missingReferenceCount": 0,
+    "missingMetadataCount": 0,
+    "topicRuleViolationCount": 0
+  }
+}

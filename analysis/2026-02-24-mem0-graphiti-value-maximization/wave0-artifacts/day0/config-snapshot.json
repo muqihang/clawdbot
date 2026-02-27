@@ -1,0 +1,9 @@
+{
+  "snapshot_at_utc": "2026-02-25T03:19:44Z",
+  "read_mode": "primary",
+  "write_mode": "propose_only",
+  "admission_enabled": true,
+  "commit_canary_ratio": 0.05,
+  "outbox_enabled": false,
+  "fallback_route": null
+}

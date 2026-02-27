@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 /Users/muqihang/chelingxi_workspace/clawdbot
+
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-manual-cli-path-resolution.test.ts (4 tests) 32ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  16:52:21
+   Duration  473ms (transform 272ms, setup 209ms, import 124ms, tests 32ms, environment 0ms)
+

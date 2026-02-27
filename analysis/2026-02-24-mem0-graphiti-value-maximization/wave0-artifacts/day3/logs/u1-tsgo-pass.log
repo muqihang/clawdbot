@@ -1,0 +1,5 @@
+# U1 tsgo pass evidence
+started_utc=2026-02-26T03:08:43Z
+$ pnpm tsgo
+tsgo_exit_code=0
+ended_utc=2026-02-26T03:08:58Z

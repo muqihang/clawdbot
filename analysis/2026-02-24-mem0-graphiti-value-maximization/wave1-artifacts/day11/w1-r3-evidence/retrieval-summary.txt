@@ -1,0 +1,12 @@
+retrieval_primary_exit=0
+retrieval_fallback_exit=SKIPPED
+retrieval_final_exit_basis=primary
+retrieval_final_exit_code=0
+retrieval_selected_attempt=5
+retrieval_selection_reason=no_hit_at_1_gt_0_use_last_attempt
+retrieval_output=analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-eval.json
+retrieval_hit_at_1=0
+retrieval_hit_at_3=0.2
+retrieval_structure_coverage=0.8
+retrieval_alias_recall=0.6
+completed_at_utc=2026-02-27T08:14:29Z

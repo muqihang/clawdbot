@@ -1,0 +1,58 @@
+{
+  "runDate": "2026-02-27",
+  "generatedAt": "2026-02-27T07:01:08Z",
+  "effectiveModel": "gpt-5.1-codex-mini",
+  "mode": "W1-E-RERUN",
+  "inputs": {
+    "fur_baseline": 0,
+    "fur_current": 0.2,
+    "p95_total_baseline_ms": 44,
+    "p95_total_current_ms": 47,
+    "p95_proxy_note": "p95_total_* continues Day10 proxy from p95WriteLatencyMs"
+  },
+  "runtime_exit": {
+    "start_exit": 0,
+    "status_exit": 0,
+    "smoke_exit": 22,
+    "retr_primary_exit": 0,
+    "retr_fallback_exit": "SKIPPED"
+  },
+  "formula": {
+    "fur_improvement_pp": "(fur_current - fur_baseline) * 100",
+    "p95_degradation_pct": "((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100"
+  },
+  "threshold": {
+    "rule": "fur_improvement_pp >= 6 && p95_degradation_pct <= 10",
+    "force_no_go_if": ["missing_fields", "p95_total_baseline_ms <= 0"]
+  },
+  "computed": {
+    "fur_improvement_pp": 20,
+    "p95_degradation_pct": 6.818181818181818
+  },
+  "validation": {
+    "missing_fields": false,
+    "p95_total_baseline_ms_positive": true,
+    "fur_check_pass": true,
+    "p95_check_pass": true
+  },
+  "gate1_conclusion": "Go",
+  "risk_log": [
+    "smoke_exit=22 (500) indicates runtime stability risk remains.",
+    "graphiti semantic chain stability risk remains based on Day11 runtime observations."
+  ],
+  "evidence": {
+    "fur_baseline": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:7",
+    "fur_current": "/tmp/w1-r2c-retrieval.json:7",
+    "p95_total_baseline_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:14",
+    "p95_total_current_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:25",
+    "runtime_start_exit": "/tmp/w1-r2c-exit.txt:1",
+    "runtime_status_exit": "/tmp/w1-r2c-exit.txt:2",
+    "runtime_smoke_exit": "/tmp/w1-r2c-exit.txt:3",
+    "runtime_retr_primary_exit": "/tmp/w1-r2c-exit.txt:4",
+    "runtime_retr_fallback_exit": "/tmp/w1-r2c-exit.txt:5",
+    "graphiti_semantic_chain_risk": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r2-runtime-stack-bringup-receipt.md:177"
+  },
+  "changed_files": [],
+  "acceptance_check": "pass",
+  "unresolved": ["smoke_exit=22（500）稳定性风险", "graphiti 语义链路稳定性持续观察"]
+}

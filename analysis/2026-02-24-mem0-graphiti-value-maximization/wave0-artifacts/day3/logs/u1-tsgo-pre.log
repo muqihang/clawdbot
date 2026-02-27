@@ -1,0 +1,49 @@
+extensions/memory-jarvis-bridge/src/quota/degrade-policy.ts(89,18): error TS2367: This comparison appears to be unintentional because the types '"degraded"' and '"blocked"' have no overlap.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(174,12): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type '{}'.
+  Property '0' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(175,12): error TS7053: Element implicitly has an 'any' type because expression of type '1' can't be used to index type '{}'.
+  Property '1' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(177,31): error TS7053: Element implicitly has an 'any' type because expression of type '0' can't be used to index type '{}'.
+  Property '0' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(192,28): error TS7053: Element implicitly has an 'any' type because expression of type '1' can't be used to index type '{}'.
+  Property '1' does not exist on type '{}'.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(290,29): error TS2352: Conversion of type 'undefined' to type '{ indexCheckProvider?: ((input: { sessionKey: string; sourceRef: string; }) => Promise<boolean>) | undefined; }' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+extensions/memory-mem0-graphiti-bridge/index.test.ts(290,76): error TS2493: Tuple type '[]' of length '0' has no element at index '0'.
+extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts(125,11): error TS2322: Type 'Mock<() => Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>>' is not assignable to type '(query: string) => Promise<BridgeSearchHit[]>'.
+  Type 'Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>' is not assignable to type 'Promise<BridgeSearchHit[]>'.
+    Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]' is not assignable to type 'BridgeSearchHit[]'.
+      Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }' is not assignable to type 'BridgeSearchHit'.
+        Types of property 'source' are incompatible.
+          Type 'string' is not assignable to type 'BridgeRemoteSource'.
+extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts(174,11): error TS2322: Type 'Mock<() => Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>>' is not assignable to type '(query: string) => Promise<BridgeSearchHit[]>'.
+  Type 'Promise<{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]>' is not assignable to type 'Promise<BridgeSearchHit[]>'.
+    Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }[]' is not assignable to type 'BridgeSearchHit[]'.
+      Type '{ path: string; startLine: number; endLine: number; score: number; snippet: string; source: string; remoteId: string; }' is not assignable to type 'BridgeSearchHit'.
+        Types of property 'source' are incompatible.
+          Type 'string' is not assignable to type 'BridgeRemoteSource'.
+extensions/memory-mem0-graphiti-bridge/src/p2/manual-cli.ts(4,15): error TS2305: Module '"openclaw/plugin-sdk"' has no exported member 'PluginLogger'.
+extensions/memory-mem0-graphiti-bridge/src/p3/ab-eval.ts(329,7): error TS18048: 'existing' is possibly 'undefined'.
+extensions/memory-mem0-graphiti-bridge/src/p3/ab-eval.ts(330,7): error TS18048: 'existing' is possibly 'undefined'.
+extensions/memory-mem0-graphiti-bridge/src/p3/manual-cli.ts(4,15): error TS2305: Module '"openclaw/plugin-sdk"' has no exported member 'PluginLogger'.
+extensions/memory-mem0-graphiti-bridge/src/p3/retrieval-eval.ts(108,27): error TS2345: Argument of type 'string' is not assignable to parameter of type '"episodes" | "facts" | "nodes"'.
+extensions/memory-mem0-graphiti-bridge/src/tools/memory-get-tool.ts(75,5): error TS2322: Type '(toolCallId: string, params: any) => Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type '(toolCallId: string, params: any, signal?: AbortSignal | undefined, onUpdate?: AgentToolUpdateCallback<unknown> | undefined) => Promise<AgentToolResult<unknown>>'.
+  Type 'Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type 'Promise<AgentToolResult<unknown>>'.
+    Type 'AgentToolResult<unknown> | JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+      Type 'JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+        Types of property 'content' are incompatible.
+          Type '{ type: string; text: string; }[]' is not assignable to type '(ImageContent | TextContent)[]'.
+            Type '{ type: string; text: string; }' is not assignable to type 'ImageContent | TextContent'.
+              Type '{ type: string; text: string; }' is not assignable to type 'TextContent'.
+                Types of property 'type' are incompatible.
+                  Type 'string' is not assignable to type '"text"'.
+extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts(204,13): error TS2339: Property 'citations' does not exist on type '{ results: Record<string, unknown>[]; provider: BridgeRoute; model: BridgeRoute; mode: BridgeReadMode; alias_normalization: boolean; structures: Record<...>; }'.
+extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts(214,5): error TS2322: Type '(toolCallId: string, params: any) => Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type '(toolCallId: string, params: any, signal?: AbortSignal | undefined, onUpdate?: AgentToolUpdateCallback<unknown> | undefined) => Promise<AgentToolResult<unknown>>'.
+  Type 'Promise<AgentToolResult<unknown> | JsonResult>' is not assignable to type 'Promise<AgentToolResult<unknown>>'.
+    Type 'AgentToolResult<unknown> | JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+      Type 'JsonResult' is not assignable to type 'AgentToolResult<unknown>'.
+        Types of property 'content' are incompatible.
+          Type '{ type: string; text: string; }[]' is not assignable to type '(ImageContent | TextContent)[]'.
+            Type '{ type: string; text: string; }' is not assignable to type 'ImageContent | TextContent'.
+              Type '{ type: string; text: string; }' is not assignable to type 'TextContent'.
+                Types of property 'type' are incompatible.
+                  Type 'string' is not assignable to type '"text"'.

@@ -1,0 +1,13 @@
+run_date: 2026-02-25
+effective_model: gpt-5.1-codex-mini
+candidate_count: 7
+added_count: 0
+duplicate_skipped_count: 0
+conflict_count: 0
+sensitive_intercepted_count: 0
+index_consistency_failure_count: 0
+outbox_pending: 0
+outbox_inflight: 0
+outbox_succeeded: 116
+outbox_failed: 0
+outbox_dead: 0

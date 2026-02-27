@@ -1,0 +1,99 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Jarvis thinktank",
+  "payload": {
+    "facts": [
+      {
+        "uuid": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+        "name": "IS_IN_EXECUTION_MODE",
+        "fact": "Jarvis is online and in execution mode",
+        "valid_at": "2026-02-26T03:04:24+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:05:16.447280+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "707b1035-23bc-44fa-bcf0-695960197883",
+        "name": "HAS_MISSION",
+        "fact": "Jarvis OS mission is second-hand car AI SaaS",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440723+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82e05f53-ba5d-4a0b-b70c-324f982dbffc",
+        "name": "PLANS_TO_INTEGRATE",
+        "fact": "user plans to study how to integrate upgrade iteration into Jarvis OS",
+        "valid_at": "2026-02-24T11:29:57.029000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:30:53.888435+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+        "name": "MAY_BE_INCORPORATED_INTO",
+        "fact": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271723+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "312073bf-e0c8-40f8-8d49-c67527691d49",
+        "name": "HAS_MISSION",
+        "fact": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.906737+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "853034e2-f97a-41f3-be57-6e23a7281f22",
+        "name": "WILL_BE_FORMALIZED_INTO",
+        "fact": "If the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271754+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+        "name": "PREFERS",
+        "fact": "user(user)偏好使用graphiti。",
+        "valid_at": "2026-02-23T10:05:03+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T10:05:37.704694+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "242955ff-7ba4-44ff-ba89-292986df4520",
+        "name": "HAS_PRIMARY_BUSINESS",
+        "fact": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907314+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+        "name": "PREFERS_VECTOR_MODEL",
+        "fact": "user(user) (Muqihang) 的向量模型偏好是 text-embedding-v4。",
+        "valid_at": "2026-02-23T09:43:09+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T09:43:42.291317+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "bc201f13-c8b8-43d1-9811-24bbde19cc0a",
+        "name": "MEASURED",
+        "fact": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable",
+        "valid_at": "2026-02-25T12:10:29+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:45:36.901422+00:00",
+        "expired_at": null
+      }
+    ]
+  }
+}

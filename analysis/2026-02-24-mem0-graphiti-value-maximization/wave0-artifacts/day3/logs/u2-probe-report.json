@@ -1,0 +1,20 @@
+{
+  "runDate": "2026-02-25",
+  "generatedAt": "2026-02-26T02:56:28.919Z",
+  "effectiveModel": "gpt-5.1-codex-mini",
+  "metrics": {
+    "candidateCount": 32,
+    "addedCount": 0,
+    "duplicateSkippedCount": 2,
+    "conflictCount": 0,
+    "sensitiveInterceptedCount": 2,
+    "indexConsistencyFailureCount": 0,
+    "outbox": {
+      "pending": 0,
+      "inflight": 0,
+      "succeeded": 146,
+      "failed": 0,
+      "dead": 0
+    }
+  }
+}

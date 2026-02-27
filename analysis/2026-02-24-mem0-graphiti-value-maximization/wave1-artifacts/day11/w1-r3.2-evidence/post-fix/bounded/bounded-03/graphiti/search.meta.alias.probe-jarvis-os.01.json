@@ -1,0 +1,11 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Jarvis thinktank",
+  "score_fields": {
+    "score_present": 0,
+    "rank_score_present": 0,
+    "any_score_like_present": 0,
+    "total_items": 10
+  }
+}

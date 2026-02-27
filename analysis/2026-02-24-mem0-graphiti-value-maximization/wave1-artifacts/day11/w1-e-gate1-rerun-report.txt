@@ -1,0 +1,42 @@
+run_date: 2026-02-27
+generated_at: 2026-02-27T07:01:08Z
+effective_model: gpt-5.1-codex-mini
+mode: W1-E-RERUN
+fur_baseline: 0
+fur_current: 0.2
+p95_total_baseline_ms: 44
+p95_total_current_ms: 47
+p95_proxy_note: p95_total_* continues Day10 proxy from p95WriteLatencyMs
+runtime.start_exit: 0
+runtime.status_exit: 0
+runtime.smoke_exit: 22
+runtime.retr_primary_exit: 0
+runtime.retr_fallback_exit: SKIPPED
+formula.fur_improvement_pp: (fur_current - fur_baseline) * 100
+formula.p95_degradation_pct: ((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100
+threshold.rule: fur_improvement_pp >= 6 && p95_degradation_pct <= 10
+threshold.force_no_go_if.1: missing_fields
+threshold.force_no_go_if.2: p95_total_baseline_ms <= 0
+computed.fur_improvement_pp: 20
+computed.p95_degradation_pct: 6.818181818181818
+validation.missing_fields: false
+validation.p95_total_baseline_ms_positive: true
+validation.fur_check_pass: true
+validation.p95_check_pass: true
+gate1_conclusion: Go
+risk_log.1: smoke_exit=22 (500) indicates runtime stability risk remains.
+risk_log.2: graphiti semantic chain stability risk remains based on Day11 runtime observations.
+evidence.fur_baseline_source: analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:7
+evidence.fur_current_source: /tmp/w1-r2c-retrieval.json:7
+evidence.p95_total_baseline_ms_source: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:14
+evidence.p95_total_current_ms_source: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:25
+evidence.runtime_start_exit_source: /tmp/w1-r2c-exit.txt:1
+evidence.runtime_status_exit_source: /tmp/w1-r2c-exit.txt:2
+evidence.runtime_smoke_exit_source: /tmp/w1-r2c-exit.txt:3
+evidence.runtime_retr_primary_exit_source: /tmp/w1-r2c-exit.txt:4
+evidence.runtime_retr_fallback_exit_source: /tmp/w1-r2c-exit.txt:5
+evidence.graphiti_semantic_chain_risk_source: analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r2-runtime-stack-bringup-receipt.md:177
+changed_files: []
+acceptance_check: pass
+unresolved.1: smoke_exit=22（500）稳定性风险
+unresolved.2: graphiti 语义链路稳定性持续观察

@@ -1,0 +1,74 @@
+# S3 P3 CLI 合约 smoke
+started_utc=2026-02-26T03:12:41Z
+started_utc8=2026-02-26T11:12:41+0800
+$ pnpm openclaw memory-bridge-p3 index-check --json
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 index-check --json
+
+[plugins] memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=primary, write_mode=propose_only, model=gpt-5.1-codex-mini, candidate=mem0, user_route=mem0)
+{
+  "ok": true,
+  "failures": [],
+  "metrics": {
+    "indexReferenceCount": 16,
+    "missingReferenceCount": 0,
+    "missingMetadataCount": 0,
+    "topicRuleViolationCount": 0
+  }
+}
+effective_model: gpt-5.1-codex-mini
+index_check_primary_exit_code=0
+index_check_used=primary
+index_check_exit_code=0
+$ pnpm openclaw memory-bridge-p3 report --run-date 2026-02-26 --report-json /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.json --report-text /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.txt
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 report --run-date 2026-02-26 --report-json /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.json --report-text /Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.txt
+
+[plugins] memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=primary, write_mode=propose_only, model=gpt-5.1-codex-mini, candidate=mem0, user_route=mem0)
+run_date: 2026-02-26
+effective_model: gpt-5.1-codex-mini
+candidate_count: 8
+added_count: 0
+duplicate_skipped_count: 0
+conflict_count: 0
+sensitive_intercepted_count: 1
+index_consistency_failure_count: 0
+outbox_pending: 0
+outbox_inflight: 0
+outbox_succeeded: 149
+outbox_failed: 0
+outbox_dead: 0
+report_primary_exit_code=0
+report_used=primary
+report_exit_code=0
+$ pnpm openclaw memory-bridge-p3 rollback-hints
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 rollback-hints
+
+[plugins] memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=primary, write_mode=propose_only, model=gpt-5.1-codex-mini, candidate=mem0, user_route=mem0)
+rollback_read_mode: local
+rollback_write_mode: off
+rollback_worker: pause memory-bridge-p3 worker/service
+rollback_outbox: preserved (safe for replay)
+effective_model: gpt-5.1-codex-mini
+rollback_hints_primary_exit_code=0
+rollback_hints_used=primary
+rollback_hints_exit_code=0
+report_json_path=/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.json
+report_txt_path=/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day3/logs/sync-smoke-2026-02-26-r3-s3-report.txt
+report_json_exists=1
+report_txt_exists=1
+report_json_nonempty=1
+report_txt_nonempty=1
+index_check_final_exit_code=0
+report_final_exit_code=0
+rollback_hints_final_exit_code=0
+used_command=primary
+fallback_trigger=not_used
+step_status=pass
+step_exit_code=0
+ended_utc=2026-02-26T03:12:55Z
+ended_utc8=2026-02-26T11:12:55+0800

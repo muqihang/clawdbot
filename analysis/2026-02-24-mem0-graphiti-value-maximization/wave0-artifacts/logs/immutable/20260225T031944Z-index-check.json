@@ -1,0 +1,16 @@
+
+> openclaw@2026.2.23 openclaw /Users/muqihang/chelingxi_workspace/clawdbot
+> node scripts/run-node.mjs memory-bridge-p3 index-check --json
+
+[plugins] memory-mem0-graphiti-bridge: Phase1 local-first active (read_mode=primary, write_mode=propose_only, model=gpt-5.1-codex-mini, candidate=mem0, user_route=mem0)
+{
+  "ok": true,
+  "failures": [],
+  "metrics": {
+    "indexReferenceCount": 16,
+    "missingReferenceCount": 0,
+    "missingMetadataCount": 0,
+    "topicRuleViolationCount": 0
+  }
+}
+effective_model: gpt-5.1-codex-mini

@@ -1,0 +1,187 @@
+{
+  "runDate": "2026-02-27",
+  "generatedAt": "2026-02-27T08:18:53Z",
+  "effectiveModel": "gpt-5.1-codex-mini",
+  "mode": "W1-R3-RISK-BURNDOWN",
+  "runtime_rounds": [
+    {
+      "round": 1,
+      "start_exit": 0,
+      "status_exit": 0,
+      "smoke_exit": 0,
+      "fingerprint_result": "NO_MATCH"
+    },
+    {
+      "round": 2,
+      "start_exit": 0,
+      "status_exit": 0,
+      "smoke_exit": 0,
+      "fingerprint_result": "NO_MATCH"
+    },
+    {
+      "round": 3,
+      "start_exit": 0,
+      "status_exit": 0,
+      "smoke_exit": 0,
+      "fingerprint_result": "NO_MATCH"
+    }
+  ],
+  "live_stack_rerun": {
+    "start_exit": 0,
+    "status_exit": 0,
+    "smoke_exit": 0,
+    "same_shell_session": true,
+    "env_exports": ["OPENCLAW_MEMORY_STACK_ROOT", "MEM0_BASE_URL", "GRAPHITI_BASE_URL"]
+  },
+  "retrieval_eval": {
+    "max_attempts": 5,
+    "primary_command": "pnpm openclaw memory-bridge-p3 retrieval-eval --dataset .openclaw/memory-bridge-p3-retrieval-dataset.json --out analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempt${i}.json --route graphiti --top-k 3",
+    "fallback_command": "node openclaw.mjs memory-bridge-p3 retrieval-eval --dataset .openclaw/memory-bridge-p3-retrieval-dataset.json --out analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempt${i}.json --route graphiti --top-k 3",
+    "attempts": [
+      {
+        "attempt": 1,
+        "primary_exit": 0,
+        "fallback_exit": "SKIPPED",
+        "final_exit_basis": "primary",
+        "final_exit_code": 0,
+        "hit_at_1": 0,
+        "hit_at_3": 0.2,
+        "structure_coverage": 0.4,
+        "alias_recall": 0.5
+      },
+      {
+        "attempt": 2,
+        "primary_exit": 0,
+        "fallback_exit": "SKIPPED",
+        "final_exit_basis": "primary",
+        "final_exit_code": 0,
+        "hit_at_1": 0,
+        "hit_at_3": 0.2,
+        "structure_coverage": 0.4,
+        "alias_recall": 0.5
+      },
+      {
+        "attempt": 3,
+        "primary_exit": 0,
+        "fallback_exit": "SKIPPED",
+        "final_exit_basis": "primary",
+        "final_exit_code": 0,
+        "hit_at_1": 0,
+        "hit_at_3": 0.2,
+        "structure_coverage": 0.6,
+        "alias_recall": 0.5
+      },
+      {
+        "attempt": 4,
+        "primary_exit": 0,
+        "fallback_exit": "SKIPPED",
+        "final_exit_basis": "primary",
+        "final_exit_code": 0,
+        "hit_at_1": 0,
+        "hit_at_3": 0.2,
+        "structure_coverage": 0.4,
+        "alias_recall": 0.5
+      },
+      {
+        "attempt": 5,
+        "primary_exit": 0,
+        "fallback_exit": "SKIPPED",
+        "final_exit_basis": "primary",
+        "final_exit_code": 0,
+        "hit_at_1": 0,
+        "hit_at_3": 0.2,
+        "structure_coverage": 0.8,
+        "alias_recall": 0.6
+      }
+    ],
+    "selection_rule": "first attempt where hit_at_1 > 0; if none, use last attempt",
+    "selected_attempt": 5,
+    "selection_reason": "no_hit_at_1_gt_0_use_last_attempt",
+    "final_exit_basis": "primary",
+    "final_exit_code": 0,
+    "output": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-eval.json",
+    "hit_at_1": 0,
+    "hit_at_3": 0.2,
+    "structure_coverage": 0.8,
+    "alias_recall": 0.6
+  },
+  "gate_inputs": {
+    "fur_baseline": 0,
+    "fur_current": 0,
+    "p95_total_baseline_ms": 44,
+    "p95_total_current_ms": 47
+  },
+  "formula": {
+    "fur_improvement_pp": "(fur_current - fur_baseline) * 100",
+    "p95_degradation_pct": "((p95_total_current_ms - p95_total_baseline_ms) / p95_total_baseline_ms) * 100"
+  },
+  "threshold": {
+    "rule": "fur_improvement_pp >= 6 && p95_degradation_pct <= 10",
+    "force_no_go_if": ["missing_fields", "p95_total_baseline_ms <= 0"]
+  },
+  "computed": {
+    "fur_improvement_pp": 0,
+    "p95_degradation_pct": 6.818181818181818
+  },
+  "validation": {
+    "missing_fields": false,
+    "p95_total_baseline_ms_positive": true,
+    "fur_check_pass": false,
+    "p95_check_pass": true,
+    "force_no_go_triggered": false
+  },
+  "gate1_conclusion": "No-Go",
+  "decision_reason": "BLOCKER-R3-RET-HIT1-000: retrieval attempts 1-5 all have hit_at_1=0, so fur_improvement_pp remains 0 (< 6)",
+  "acceptance": {
+    "r1_clear": true,
+    "r2_clear": true,
+    "live_stack_sequence_clear": true,
+    "retrieval_primary_rule_respected": true,
+    "retrieval_final_selected_by_policy": true,
+    "gate_recomputed": true,
+    "gate1_is_go": false
+  },
+  "evidence": {
+    "round1_summary": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/round1-summary.txt:1",
+    "round2_summary": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/round2-summary.txt:1",
+    "round3_summary": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/round3-summary.txt:1",
+    "round1_fingerprint": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/round1-fingerprint-check.txt:1",
+    "round2_fingerprint": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/round2-fingerprint-check.txt:1",
+    "round3_fingerprint": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/round3-fingerprint-check.txt:1",
+    "live_start_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/followup-live-summary.txt:1",
+    "live_status_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/followup-live-summary.txt:2",
+    "live_smoke_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/followup-live-summary.txt:3",
+    "retrieval_attempt1_hit_at_1": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:9",
+    "retrieval_attempt2_hit_at_1": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:17",
+    "retrieval_attempt3_hit_at_1": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:25",
+    "retrieval_attempt4_hit_at_1": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:33",
+    "retrieval_attempt5_hit_at_1": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:41",
+    "retrieval_selected_attempt": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-summary.txt:5",
+    "retrieval_selection_reason": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-summary.txt:6",
+    "fur_baseline": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:7",
+    "fur_current": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-eval.json:7",
+    "p95_total_baseline_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:14",
+    "p95_total_current_ms": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:25"
+  },
+  "changed_files": [
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-risk-burndown-report.json",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-risk-burndown-report.txt",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-report.json",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-e-gate1-final-receipt.md"
+  ],
+  "acceptance_check": "fail",
+  "unresolved": [
+    {
+      "code": "BLOCKER-R3-RET-HIT1-000",
+      "reason": "retrieval attempts 1-5 all reported hit_at_1=0; no attempt satisfies hit_at_1 > 0 selection target, so fur_improvement_pp cannot reach >= 6.",
+      "evidence": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:9",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:17",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:25",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:33",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-attempts-summary.txt:41",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day11/w1-r3-evidence/retrieval-summary.txt:6"
+      ]
+    }
+  ]
+}
