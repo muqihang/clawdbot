@@ -76,8 +76,11 @@ def ensure_helper_block(text: str) -> tuple[str, bool]:
         return text, False
 
     pattern = r"(from \.openai_base_client import DEFAULT_REASONING, DEFAULT_VERBOSITY, BaseOpenAIClient\n)"
-    replacement = r"\1\n" + HELPER_BLOCK + "\n"
-    new_text, count = re.subn(pattern, replacement, text, count=1)
+    def helper_replacement(match: re.Match[str]) -> str:
+        anchor = match.group(1)
+        return f"{anchor}\n{HELPER_BLOCK}\n"
+
+    new_text, count = re.subn(pattern, helper_replacement, text, count=1)
     if count == 0:
         raise RuntimeError("failed to locate openai_base_client import anchor")
     return new_text, True

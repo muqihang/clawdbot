@@ -92,6 +92,7 @@ USER.md
 
 # Agent credentials and memory (NEVER COMMIT)
 /memory/
+.openclaw/
 .agent/*.json
 !.agent/workflows/
 /local/
@@ -120,3 +121,6 @@ dist/protocol.schema.json
 # memory-stack local artifacts
 scripts/memory-stack/__pycache__/
 nohup.out
+
+# Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
