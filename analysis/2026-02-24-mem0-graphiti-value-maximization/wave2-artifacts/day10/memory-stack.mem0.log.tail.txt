@@ -1,0 +1,26 @@
+--- mem0.log tail
+2026-02-28 12:28:46,265 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,283 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,328 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,329 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 12:28:46,344 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,345 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 12:28:46,386 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,386 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 12:28:46,395 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,395 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 12:28:46,416 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,423 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,435 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,435 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 12:28:46,438 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,439 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 12:28:46,443 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,443 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 12:28:46,447 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 12:28:46,447 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 12:28:46,456 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     Started server process [38973]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)

@@ -1,0 +1,4 @@
+--- ps graphiti
+  PID  PPID STAT ELAPSED COMMAND
+--- ps mem0
+  PID  PPID STAT ELAPSED COMMAND

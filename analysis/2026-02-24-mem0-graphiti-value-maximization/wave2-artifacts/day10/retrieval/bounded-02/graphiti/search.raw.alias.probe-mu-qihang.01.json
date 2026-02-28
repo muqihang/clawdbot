@@ -1,0 +1,157 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Muqi Hang",
+  "requestBody": {
+    "query": "Muqi Hang"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "c2312c79-e87a-4089-a88e-f4c78b961fdf",
+        "name": "DOCUMENTS_HYGIENE_RULE",
+        "fact": "The weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.",
+        "valid_at": "2026-02-26T03:01:46+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:03:38.695582+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+        "name": "IS_CURRENT_OPERATIONAL_MODE_FOR",
+        "fact": "bootstrap-only mode is the current operational mode for self-improvement hooks",
+        "valid_at": "2026-02-25T12:10:29.903000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:46:20.006083+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "242955ff-7ba4-44ff-ba89-292986df4520",
+        "name": "HAS_PRIMARY_BUSINESS",
+        "fact": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907314+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+        "name": "HAS_FOUNDER_PRIORITY",
+        "fact": "P2's founder priority is Telegram",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440445+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666595+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+        "name": "RESULTS_IN_RETENTION_OF",
+        "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271784+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "9798fc72-0d27-446d-9e9f-15eca1e8aaca",
+        "name": "牧启航",
+        "summary": "牧启航被系统提醒于2026-02-24进行memory召回质量复盘；收到关于暂不启用第二阶段sessionMemory的明确结论及技术依据，包括相关性中偏低、关键事实命中率偏低、噪音偏高等问题；建议先修复检索基础可用性并满足灰度门槛后再评估开启。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T03:00:38.214187+00:00"
+      },
+      {
+        "uuid": "58bad8b9-b4c1-4a11-ba18-c052a9fec6c4",
+        "name": "assistant",
+        "summary": "Acknowledged P2 close probe for mem0+graphiti hybrid plan in response to user's statement about founder priority being Telegram and Jarvis OS mission being second-hand car AI SaaS.\nThe weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070578+00:00"
+      },
+      {
+        "uuid": "cc9069ac-3475-4c24-b69f-0acf45b312ad",
+        "name": "user",
+        "summary": "user plans to study how to integrate upgrade iteration into Jarvis OS\nuser intends to evaluate upgrade iteration during its ongoing process\nuser is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser approves the execution of the three actions derived from the one-week self-improvement audit",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848583+00:00"
+      },
+      {
+        "uuid": "3c4532b4-d97d-4913-95af-c7f335828930",
+        "name": "P2",
+        "summary": "P2's founder priority is Telegram\nP2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.407671+00:00"
+      },
+      {
+        "uuid": "eed4c27d-5546-476c-acde-37c021e0b60b",
+        "name": "/Users/muqihang/clawd/.learnings/POLICY.md",
+        "summary": "The weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.\nThe commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:03:06.865555+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "ff4cee59-b472-4b70-9cc4-2b959fc5d6aa",
+        "name": "graphiti",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070728+00:00"
+      },
+      {
+        "uuid": "2e17e8c7-ba3d-4bfc-8324-bc88aebf5b2d",
+        "name": "/Users/muqihang/clawd/.learnings/ERRORS.md",
+        "summary": "The file /Users/muqihang/clawd/.learnings/ERRORS.md contains a canonical error entry ERR-20260223-001 that consolidates repeated openclaw PATH errors.\nThe commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:03:06.865485+00:00"
+      },
+      {
+        "uuid": "7cd08087-8302-4ac5-8f2e-1d00d7034f97",
+        "name": "e9eac72",
+        "summary": "The commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.\nThe commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:03:06.865571+00:00"
+      },
+      {
+        "uuid": "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "name": "Telegram",
+        "summary": "P2's founder priority is Telegram",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409025+00:00"
+      }
+    ]
+  }
+}

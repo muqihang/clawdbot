@@ -1,0 +1,52 @@
+[
+  {
+    "id": "probe-mu-qihang",
+    "query": "牧启航",
+    "aliases": ["Mu Qihang", "Muqi Hang"],
+    "expected_ids": [
+      "69244698-050a-42b5-9b03-3ce6b6909fd2",
+      "43d762a8-e0d1-4c09-99de-5d5dd5b73b57"
+    ],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "probe-telegram-priority",
+    "query": "Telegram 优先",
+    "aliases": ["Telegram preference", "tg priority"],
+    "expected_ids": [
+      "f13f1629-87a0-419b-ae31-d79ad59bad8f",
+      "830b2f50-d12e-448c-860e-05ac7c18f28c"
+    ],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "probe-jarvis-os",
+    "query": "Jarvis OS",
+    "aliases": ["Jarvis thinktank", "Jarvis 操作系统"],
+    "expected_ids": [
+      "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "242955ff-7ba4-44ff-ba89-292986df4520"
+    ],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "probe-memory-upgrade",
+    "query": "Mem0 Graphiti 记忆升级",
+    "aliases": ["Graphiti memory upgrade", "mem0 graphiti bridge"],
+    "expected_ids": [
+      "830b2f50-d12e-448c-860e-05ac7c18f28c",
+      "a3daae93-f61f-43d7-8f01-23e25471417e"
+    ],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "probe-thinktank-topology",
+    "query": "thinktank/topology",
+    "aliases": ["thinktank topology", "topology blueprint"],
+    "expected_ids": [
+      "830b2f50-d12e-448c-860e-05ac7c18f28c",
+      "d2f79d6d-6fe7-4567-abbe-4722c22dc38a"
+    ],
+    "expected_structures": ["facts"]
+  }
+]

@@ -1,0 +1,6 @@
+--- lsof 8000
+COMMAND   PID     USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  40014 muqihang   35u  IPv4 0x4a28a70d424c29b8      0t0  TCP 127.0.0.1:8000 (LISTEN)
+--- lsof 8766
+COMMAND   PID     USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  40017 muqihang    7u  IPv4 0xd081d9e7c3a05b6e      0t0  TCP 127.0.0.1:8766 (LISTEN)

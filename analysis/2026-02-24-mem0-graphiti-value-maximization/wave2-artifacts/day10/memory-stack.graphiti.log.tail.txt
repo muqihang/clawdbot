@@ -1,0 +1,3 @@
+--- graphiti.log tail
+INFO:     Started server process [38970]
+INFO:     Waiting for application startup.

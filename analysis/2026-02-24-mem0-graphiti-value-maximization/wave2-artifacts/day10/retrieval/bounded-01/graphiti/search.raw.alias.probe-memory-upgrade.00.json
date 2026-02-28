@@ -1,0 +1,163 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Graphiti memory upgrade",
+  "requestBody": {
+    "query": "Graphiti memory upgrade"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "c90aba32-87f4-48c0-aa82-92bbd7b368a3",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666650+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "e6125703-30e1-4541-9ea3-687c72f2dc70",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666721+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "727a7391-214d-4ed3-a508-28f2b285d7d0",
+        "name": "IS_EVALUATING_ENABLEMENT_OF",
+        "fact": "user is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.665238+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "fb6c3400-96bc-45ca-ab21-0416b72abcef",
+        "name": "IS_TREATED_AS",
+        "fact": "The upgrade iteration is treated as a real-run experiment.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271212+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "2210a741-0907-4d12-9eb6-1b733baecf41",
+        "name": "EVALUATES_DURING",
+        "fact": "user intends to evaluate upgrade iteration during its ongoing process",
+        "valid_at": "2026-02-24T11:29:57.029000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:30:53.889014+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [
+      {
+        "uuid": "85dad033-dd4c-4feb-9d77-104503033edf",
+        "name": "",
+        "content": "user(user): System: [2026-02-24 21:28:13 GMT+8] Cron (error): 提醒牧启航：现在是 2 天后的 memory 召回质量复盘时间。\n\n基于最近 2 天实际对话与检索表现（`memory/2026-02-22.md:3`、`memory/2026-02-22.md:10`、`memory/2026-02-22.md:32`，以及近两次 cron 审计与主会话检索记录），结论如下：\n\n- 相关性：中偏低；有成功命中（如人设/Jarvis OS 相关），但也出现明显跑偏（如 D0-A 查询返回不相关历史文档），稳定性不足。  \n- 去重：中等；成功结果里常集中在同源主题（index/topic/person），信息有重复倾向。  \n- 多样性：中等；能覆盖 `MEMORY.md` + people/project/topic，但跨源融合质量不稳。  \n- 新鲜度：中等；2/22~2/23 事实在文件层是新的，但 2/24 在线检索可用性波动，实时召回可信度下降。  \n- 关键事实命中率：偏低；精确 ID（如 `-1003727754459`）在审计里出现“明明存在但检不出”的情况。  \n- 噪音：偏高；出现空结果、provider/db 异常、以及 query-意图不匹配结果，影响决策可用性。  \n\n明确结论：**暂不建议启用第二阶段 sessionMemory（否）**。  \n理由：当前核心瓶颈不是“记忆量不够”，而是“检索可用性与精确性不稳定”；此时上 sessionMemory 会把短期上下文噪音放大，增加误召回与误决策风险。  \n主要风险（若现在强开）：  \n- 错误或过时上下文被短期强化，造成“看起来更聪明、实际更偏”。  \n- 精确键（ID/错误码/决策版本）继续漏召回，影响执行指令正确性。  \n- 排障面扩大（provider + embedding + session层），定位成本上升。\n\n建议动作（先做再评估开关）：\n1. 先修复检索基础可用性（embedding/provider/db open 问题），把 `memory_search` 稳定性拉到可连续通过。  \n2. 建 20 条回归集（身份事实/精确ID/新旧冲突）并每天跑：重点看 Top1 命中、精确召回、噪音率。  \n3. 设启用门槛：连续 3 天满足“可用性>=99%、精确ID Top1>=95%、冲突最近事实优先>=90%、噪音<=10%”，再灰度开启 sessionMemory（shadow -> 小流量）。  \n\n发送对象/位置：牧启航（Telegram 主会话，`agent:main:main`）。\n\nConversation info (untrusted metadata):\n```json\n{\n  \"message_id\": \"628\",\n  \"reply_to_id\": \"627\",\n  \"sender_id\": \"8000351513\",\n  \"sender\": \"8000351513\"\n}\n```\n\nReplied message (untrusted, for context):\n```json\n{\n  \"sender_label\": \"司南\",\n  \"body\": \"到两天复盘点了，我给你一个直接结论：现在不建议开启第二阶段 sessionMemory。\\n\\n这两天的实际表现看下来：\\n\\n• 相关性是“中偏低”：有命中人设/Jarvis OS，但也有明显跑偏（问 D0-A 却回不相关旧文档）。\\n• 去重和多样性“中等”：能覆盖 MEMORY.md、people/project/topic，但融合稳定性一般。\\n• 新鲜度“中等”：文件层新事实有写入，但在线检索可用性在波动。\\n• 关键事实命中“偏低”：精确 ID 类场景存在“明明有却检不出”。\\n• 噪音“偏高”：空结果、provider/db 异常、意图不匹配都在影响可用性。\\n\\n为什么现在不该开 sessionMemory：\\n\\n• 现在的问题不是“记忆不够多”，而是“检索不够稳、不够准”。\\n• 这时强上 sessionMemory，会放大短期噪音，增加误召回和误决策。\\n\\n建议先做这三步，再评估开关：\\n\\n1. 先把检索基础可用性修稳（embedding/provider/db）。\\n2. 建 20 条回归集（日跑）：身份事实、精确 ID、新旧冲突三类。\\n3. 设开关门槛：连续 3 天同时满足\\n\\n• 可用性 >= 99%\\n• 精确 ID Top1 >= 95%\\n• 冲突场景“最近事实优先” >= 90%\\n• 噪音 <= 10%\\n满足后再走 shadow -> 小流量 灰度开启。\"\n}\n```\n\n目前我们正在将记忆机制迭代升级，也就是Mem0 + Graphiti+本地官方内置的 混合路由方案。 所以你觉得我们是否应该迭代升级完成后再开sessionMemory？ 对了sessionMemory什么意思？我都忘了，跟我解释一下",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T03:00:21.878859+00:00"
+      },
+      {
+        "uuid": "d05404db-aa18-447d-9f59-64d73200d8cf",
+        "name": "",
+        "content": "assistant(assistant): P2 close probe acknowledged for mem0+graphiti hybrid plan",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:42.362498+00:00"
+      }
+    ],
+    "nodes": [
+      {
+        "uuid": "ff4cee59-b472-4b70-9cc4-2b959fc5d6aa",
+        "name": "graphiti",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070728+00:00"
+      },
+      {
+        "uuid": "24796f10-db8d-4219-8fac-1f2b3803f547",
+        "name": "upgrade iteration",
+        "summary": "user intends to evaluate upgrade iteration during its ongoing process\nThe upgrade iteration is treated as a real-run experiment.\nExecution efficiency is one of the three signals tracked during the upgrade iteration.\nDecision quality is one of the three signals tracked during the upgrade iteration.\nRework rate is one of the three signals tracked during the upgrade iteration.\nPhase-end review produces output about what to retain, remove, or automate.\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nIf the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848903+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "cc9069ac-3475-4c24-b69f-0acf45b312ad",
+        "name": "user",
+        "summary": "user plans to study how to integrate upgrade iteration into Jarvis OS\nuser intends to evaluate upgrade iteration during its ongoing process\nuser is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser approves the execution of the three actions derived from the one-week self-improvement audit",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848583+00:00"
+      },
+      {
+        "uuid": "3cf8d586-346a-4117-94e9-dab311a39979",
+        "name": "sessionMemory",
+        "summary": "user is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T03:00:38.214319+00:00"
+      },
+      {
+        "uuid": "b4a41947-a810-4557-b331-b6aa1c5047a7",
+        "name": "hybrid plan",
+        "summary": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan\nhybrid plan combines mem0 and graphiti\nhybrid plan combines mem0 and graphiti",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070749+00:00"
+      },
+      {
+        "uuid": "a96f0578-5ac6-4c78-bc37-21a064c91e56",
+        "name": "real-run experiment",
+        "summary": "The upgrade iteration is treated as a real-run experiment.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922076+00:00"
+      },
+      {
+        "uuid": "31320924-cfa9-422e-a90e-8dd9f6905c18",
+        "name": "execution efficiency",
+        "summary": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922118+00:00"
+      },
+      {
+        "uuid": "281cc229-8e0a-4438-ad3d-4f59c08e56ea",
+        "name": "decision quality",
+        "summary": "Decision quality is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922147+00:00"
+      },
+      {
+        "uuid": "3c4532b4-d97d-4913-95af-c7f335828930",
+        "name": "P2",
+        "summary": "P2's founder priority is Telegram\nP2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.407671+00:00"
+      }
+    ]
+  }
+}

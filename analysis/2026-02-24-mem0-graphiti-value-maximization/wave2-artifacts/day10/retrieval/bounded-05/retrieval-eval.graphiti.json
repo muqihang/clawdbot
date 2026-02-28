@@ -1,0 +1,11 @@
+{
+  "provider": "graphiti",
+  "dataset_path": "/Users/muqihang/chelingxi_workspace/clawdbot/.openclaw/memory-bridge-p3-retrieval-dataset.json",
+  "generated_at": "2026-02-28T04:41:27.194Z",
+  "sample_size": 5,
+  "top_k": 3,
+  "hit_at_1": 0,
+  "hit_at_3": 0.2,
+  "structure_coverage": 0.8,
+  "alias_recall": 0.1
+}

@@ -1,0 +1,165 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "tg priority",
+  "requestBody": {
+    "query": "tg priority"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+        "name": "HAS_FOUNDER_PRIORITY",
+        "fact": "P2's founder priority is Telegram",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440445+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "df23f75f-f28d-4df8-b28e-e1de7c1af8d6",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Decision quality is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271591+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6957cc28-bc15-456f-bf08-b20ac92ff4c9",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Rework rate is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271626+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271549+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+        "name": "RESULTS_IN_RETENTION_OF",
+        "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271784+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "c90aba32-87f4-48c0-aa82-92bbd7b368a3",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666650+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [
+      {
+        "uuid": "33ecf325-a101-443a-b4f9-d722374de4c9",
+        "name": "",
+        "content": "user(user): P2 close probe: founder priority is Telegram and Jarvis OS mission is second-hand car AI SaaS",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:23.817915+00:00"
+      }
+    ],
+    "nodes": [
+      {
+        "uuid": "3c4532b4-d97d-4913-95af-c7f335828930",
+        "name": "P2",
+        "summary": "P2's founder priority is Telegram\nP2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.407671+00:00"
+      },
+      {
+        "uuid": "58bad8b9-b4c1-4a11-ba18-c052a9fec6c4",
+        "name": "assistant",
+        "summary": "Acknowledged P2 close probe for mem0+graphiti hybrid plan in response to user's statement about founder priority being Telegram and Jarvis OS mission being second-hand car AI SaaS.\nThe weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070578+00:00"
+      },
+      {
+        "uuid": "a60acf70-c141-4462-af96-2bd485848b06",
+        "name": "productivity",
+        "summary": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:20.715280+00:00"
+      },
+      {
+        "uuid": "4f135a90-3383-4ac8-ad4a-16996ca1526a",
+        "name": "user(user)",
+        "summary": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.\nuser(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.\nuser(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+        "group_id": "openclaw-backfill-canonical",
+        "created_at": "2026-02-23T13:13:05.091450+00:00"
+      },
+      {
+        "uuid": "804d4c8f-b110-4a45-a222-208a9b370b69",
+        "name": "pending entries",
+        "summary": "pending entries older than 7 days must be closed or promoted to keep learning logs actionable",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:46:06.810875+00:00"
+      },
+      {
+        "uuid": "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "name": "Telegram",
+        "summary": "P2's founder priority is Telegram",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409025+00:00"
+      },
+      {
+        "uuid": "ff4cee59-b472-4b70-9cc4-2b959fc5d6aa",
+        "name": "graphiti",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070728+00:00"
+      },
+      {
+        "uuid": "cc9069ac-3475-4c24-b69f-0acf45b312ad",
+        "name": "user",
+        "summary": "user plans to study how to integrate upgrade iteration into Jarvis OS\nuser intends to evaluate upgrade iteration during its ongoing process\nuser is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser approves the execution of the three actions derived from the one-week self-improvement audit",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848583+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "24796f10-db8d-4219-8fac-1f2b3803f547",
+        "name": "upgrade iteration",
+        "summary": "user intends to evaluate upgrade iteration during its ongoing process\nThe upgrade iteration is treated as a real-run experiment.\nExecution efficiency is one of the three signals tracked during the upgrade iteration.\nDecision quality is one of the three signals tracked during the upgrade iteration.\nRework rate is one of the three signals tracked during the upgrade iteration.\nPhase-end review produces output about what to retain, remove, or automate.\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nIf the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848903+00:00"
+      }
+    ]
+  }
+}

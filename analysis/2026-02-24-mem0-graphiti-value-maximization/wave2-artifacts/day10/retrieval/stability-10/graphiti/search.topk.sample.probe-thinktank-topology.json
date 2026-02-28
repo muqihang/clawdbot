@@ -1,0 +1,23 @@
+{
+  "top_k": 3,
+  "hits": [
+    {
+      "remoteId": "179f4bb4-c769-47e2-b76d-f24acd24952c",
+      "score": 0,
+      "path": "bridge/graphiti/179f4bb4-c769-47e2-b76d-f24acd24952c",
+      "structure": "nodes"
+    },
+    {
+      "remoteId": "2e17e8c7-ba3d-4bfc-8324-bc88aebf5b2d",
+      "score": 0,
+      "path": "bridge/graphiti/2e17e8c7-ba3d-4bfc-8324-bc88aebf5b2d",
+      "structure": "nodes"
+    },
+    {
+      "remoteId": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "score": 0,
+      "path": "bridge/graphiti/30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "structure": "facts"
+    }
+  ]
+}
