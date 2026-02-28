@@ -1,5 +1,14 @@
 import type { P3SnapshotMetrics, P3WeeklyGateFields, P3WriteMode } from "./types.js";
 
+const P3_WEEKLY_GATE_SPLIT_FIELDS = [
+  "proposal_count",
+  "canary_commit_count",
+  "manual_propose_commit_count",
+  "pending_review_count",
+  "failed_count",
+  "dead_count",
+] as const;
+
 const toNonNegative = (value: unknown): number => {
   if (typeof value !== "number" || !Number.isFinite(value)) {
     return 0;
@@ -61,6 +70,62 @@ export function buildP3WeeklyGateFields(input: Partial<P3WeeklyGateFields>): P3W
     admission_enabled: toBoolean(input.admission_enabled),
     commit_canary_ratio: toUnitInterval(input.commit_canary_ratio),
     effective_write_mode: toWriteMode(input.effective_write_mode),
+  };
+}
+
+export type P3WeeklyGateFieldsStrictValidationResult =
+  | { ok: true; value: P3WeeklyGateFields }
+  | { ok: false; issues: string[] };
+
+const isRecord = (value: unknown): value is Record<string, unknown> => {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+};
+
+const isFiniteNumber = (value: unknown): value is number => {
+  return typeof value === "number" && Number.isFinite(value);
+};
+
+export function validateP3WeeklyGateFieldsStrict(
+  value: unknown,
+): P3WeeklyGateFieldsStrictValidationResult {
+  if (!isRecord(value)) {
+    return {
+      ok: false,
+      issues: ["weekly_gate_fields:expected_object"],
+    };
+  }
+
+  const issues: string[] = [];
+
+  for (const field of P3_WEEKLY_GATE_SPLIT_FIELDS) {
+    if (!isFiniteNumber(value[field])) {
+      issues.push(`missing_or_invalid:${field}`);
+    }
+  }
+
+  if (typeof value.admission_enabled !== "boolean") {
+    issues.push("missing_or_invalid:admission_enabled");
+  }
+
+  if (!isFiniteNumber(value.commit_canary_ratio)) {
+    issues.push("missing_or_invalid:commit_canary_ratio");
+  }
+
+  const writeMode = value.effective_write_mode;
+  if (writeMode !== "off" && writeMode !== "propose_only" && writeMode !== "propose_commit") {
+    issues.push("missing_or_invalid:effective_write_mode");
+  }
+
+  if (issues.length > 0) {
+    return {
+      ok: false,
+      issues,
+    };
+  }
+
+  return {
+    ok: true,
+    value: value as P3WeeklyGateFields,
   };
 }
 

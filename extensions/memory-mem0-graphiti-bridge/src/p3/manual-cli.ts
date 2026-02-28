@@ -172,15 +172,16 @@ const deriveWeeklyGateFields = (params: {
   const events = params.outbox.listEvents();
   const proposalStates = params.outbox.listProposalStates();
 
+  const committedEventIds = new Set(
+    proposalStates.filter((state) => state.status === "committed").map((state) => state.event_id),
+  );
+
   const canaryCommitCount = events.filter(
-    (event) =>
-      event.source_tier === "online_incremental" &&
-      event.status === "succeeded" &&
-      event.write_mode === "propose_commit",
+    (event) => committedEventIds.has(event.event_id) && event.write_mode === "propose_only",
   ).length;
 
   const manualProposeCommitCount = events.filter(
-    (event) => event.source_tier === "manual" && event.status === "succeeded",
+    (event) => committedEventIds.has(event.event_id) && event.write_mode === "propose_commit",
   ).length;
 
   const pendingReviewCount = proposalStates.filter(
