@@ -1,0 +1,26 @@
+[dataset-v1] generated_at_utc=2026-02-28T06:36:36.742Z
+[dataset-v1] graphiti_base_url=http://127.0.0.1:8000
+[dataset-v1] max_facts=50
+[dataset-v1] timeout_ms=20000
+[dataset-v1] target_size=34
+[dataset-v1] seeds_count=19
+[seed] query="mem0 graphiti bridge" facts=7
+[seed] query="hybrid plan combines mem0 and graphiti" facts=6
+[seed] query="记忆 机制 升级" facts=7
+[seed] query="Mem0 Graphiti 记忆升级" facts=7
+[seed] query="graphiti" facts=7
+[seed] query="mem0" facts=7
+[seed] query="偏好 使用 graphiti" facts=7
+[seed] query="偏好 使用 sub2api" facts=8
+[seed] query="embedding model text-embedding-v4" facts=7
+[seed] query="Gate-2" facts=8
+[seed] query="weekly hygiene rule" facts=9
+[seed] query="bootstrap-only mode" facts=10
+[seed] query="Jarvis OS mission" facts=10
+[seed] query="Jarvis thinktank" facts=10
+[seed] query="Jarvis 操作系统" facts=10
+[seed] query="founder priority Telegram" facts=8
+[seed] query="Telegram 优先" facts=9
+[seed] query="thinktank topology" facts=7
+[seed] query="topology blueprint" facts=9
+[candidates] unique_uuids=38

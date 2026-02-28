@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-02-28T05:55:48Z",
+  "base_url": "http://127.0.0.1:8000",
+  "count": 8,
+  "results": [
+    {
+      "id": "69244698-050a-42b5-9b03-3ce6b6909fd2",
+      "url": "http://127.0.0.1:8000/entity-edge/69244698-050a-42b5-9b03-3ce6b6909fd2",
+      "status": null,
+      "elapsed_ms": 10032,
+      "error": "timed out",
+      "body_preview": null
+    },
+    {
+      "id": "43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+      "url": "http://127.0.0.1:8000/entity-edge/43d762a8-e0d1-4c09-99de-5d5dd5b73b57",
+      "status": null,
+      "elapsed_ms": 10004,
+      "error": "timed out",
+      "body_preview": null
+    },
+    {
+      "id": "f13f1629-87a0-419b-ae31-d79ad59bad8f",
+      "url": "http://127.0.0.1:8000/entity-edge/f13f1629-87a0-419b-ae31-d79ad59bad8f",
+      "status": 200,
+      "elapsed_ms": 3699,
+      "error": null,
+      "body_preview": "{\"uuid\":\"f13f1629-87a0-419b-ae31-d79ad59bad8f\",\"name\":\"PREFERS\",\"fact\":\"user(user)\u504f\u597d\u4f7f\u7528sub2api\u3002\",\"valid_at\":\"2026-02-23T10:05:03+00:00\",\"invalid_at\":null,\"created_at\":\"2026-02-23T10:05:37.704600+00:00\""
+    },
+    {
+      "id": "830b2f50-d12e-448c-860e-05ac7c18f28c",
+      "url": "http://127.0.0.1:8000/entity-edge/830b2f50-d12e-448c-860e-05ac7c18f28c",
+      "status": 200,
+      "elapsed_ms": 598,
+      "error": null,
+      "body_preview": "{\"uuid\":\"830b2f50-d12e-448c-860e-05ac7c18f28c\",\"name\":\"PREFERS\",\"fact\":\"user(user)\u504f\u597d\u4f7f\u7528graphiti\u3002\",\"valid_at\":\"2026-02-23T10:05:03+00:00\",\"invalid_at\":null,\"created_at\":\"2026-02-23T10:05:37.704694+00:00"
+    },
+    {
+      "id": "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "url": "http://127.0.0.1:8000/entity-edge/312073bf-e0c8-40f8-8d49-c67527691d49",
+      "status": 200,
+      "elapsed_ms": 625,
+      "error": null,
+      "body_preview": "{\"uuid\":\"312073bf-e0c8-40f8-8d49-c67527691d49\",\"name\":\"HAS_MISSION\",\"fact\":\"user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.\",\"valid_at\":\"2026-02-23T12"
+    },
+    {
+      "id": "242955ff-7ba4-44ff-ba89-292986df4520",
+      "url": "http://127.0.0.1:8000/entity-edge/242955ff-7ba4-44ff-ba89-292986df4520",
+      "status": 200,
+      "elapsed_ms": 641,
+      "error": null,
+      "body_preview": "{\"uuid\":\"242955ff-7ba4-44ff-ba89-292986df4520\",\"name\":\"HAS_PRIMARY_BUSINESS\",\"fact\":\"user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car in"
+    },
+    {
+      "id": "a3daae93-f61f-43d7-8f01-23e25471417e",
+      "url": "http://127.0.0.1:8000/entity-edge/a3daae93-f61f-43d7-8f01-23e25471417e",
+      "status": 200,
+      "elapsed_ms": 626,
+      "error": null,
+      "body_preview": "{\"uuid\":\"a3daae93-f61f-43d7-8f01-23e25471417e\",\"name\":\"PREFERS\",\"fact\":\"user(user)\u504f\u597d\u7684\u5411\u91cf\u6a21\u578b\u662ftext-embedding-v4\u3002\",\"valid_at\":\"2026-02-23T10:05:03+00:00\",\"invalid_at\":null,\"created_at\":\"2026-02-23T10:05:37"
+    },
+    {
+      "id": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+      "url": "http://127.0.0.1:8000/entity-edge/d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+      "status": 200,
+      "elapsed_ms": 625,
+      "error": null,
+      "body_preview": "{\"uuid\":\"d2f79d6d-6fe7-4567-abbe-4722c22dc38a\",\"name\":\"OPERATES_IN_SCOPE\",\"fact\":\"user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their"
+    }
+  ]
+}

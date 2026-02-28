@@ -1,0 +1,212 @@
+{
+  "generatedAt": "2026-02-28T06:39:36.288Z",
+  "graphitiBaseUrl": "http://127.0.0.1:8000",
+  "seeds": [
+    "mem0 graphiti bridge",
+    "hybrid plan combines mem0 and graphiti",
+    "记忆 机制 升级",
+    "Mem0 Graphiti 记忆升级",
+    "graphiti",
+    "mem0",
+    "偏好 使用 graphiti",
+    "偏好 使用 sub2api",
+    "embedding model text-embedding-v4",
+    "Gate-2",
+    "weekly hygiene rule",
+    "bootstrap-only mode",
+    "Jarvis OS mission",
+    "Jarvis thinktank",
+    "Jarvis 操作系统",
+    "founder priority Telegram",
+    "Telegram 优先",
+    "thinktank topology",
+    "topology blueprint"
+  ],
+  "verified": [
+    {
+      "uuid": "02997c4b-be77-472f-b0fa-97b944cc400c",
+      "name": "OBSERVES",
+      "fact": "user observes that there are 4个Step"
+    },
+    {
+      "uuid": "140943d4-23d4-4c79-979d-f6e488d07c7c",
+      "name": "RECOMMENDS_SYSTEMATIC_REPAIR_FOR_GO_STATUS",
+      "fact": "assistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status"
+    },
+    {
+      "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+      "name": "COMBINES",
+      "fact": "hybrid plan combines mem0 and graphiti"
+    },
+    {
+      "uuid": "242955ff-7ba4-44ff-ba89-292986df4520",
+      "name": "HAS_PRIMARY_BUSINESS",
+      "fact": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry."
+    },
+    {
+      "uuid": "274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+      "name": "IS_CURRENT_OPERATIONAL_MODE_FOR",
+      "fact": "bootstrap-only mode is the current operational mode for self-improvement hooks"
+    },
+    {
+      "uuid": "27ed29a1-6196-4452-a9a8-9792d2844f4f",
+      "name": "ADDRESSES",
+      "fact": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset."
+    },
+    {
+      "uuid": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "name": "IS_IN_EXECUTION_MODE",
+      "fact": "Jarvis is online and in execution mode"
+    },
+    {
+      "uuid": "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "name": "HAS_MISSION",
+      "fact": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization."
+    },
+    {
+      "uuid": "4bdb77fb-9de4-4fd1-804e-bcf8c7224070",
+      "name": "ASSESSED",
+      "fact": "self-improvement audit assessed behavior-drift risk as low due to bootstrap-only trigger, though repeated unresolved environment errors and one scope-drift incident showed small but real overhead"
+    },
+    {
+      "uuid": "60931d99-029d-4a2a-83a7-c53e82cdae65",
+      "name": "EVALUATED",
+      "fact": "self-improvement audit evaluated learning-log quality and found it mostly good signal with 2 meaningful behavior corrections"
+    },
+    {
+      "uuid": "670c1afe-add8-4bd4-b2d6-127dffbac2eb",
+      "name": "IS_SUPERSEDED_BY",
+      "fact": "The error entries ERR-20260222-001 and ERR-20260222-002 are marked as superseded and point to the canonical entry ERR-20260223-001."
+    },
+    {
+      "uuid": "707b1035-23bc-44fa-bcf0-695960197883",
+      "name": "HAS_MISSION",
+      "fact": "Jarvis OS mission is second-hand car AI SaaS"
+    },
+    {
+      "uuid": "727a7391-214d-4ed3-a508-28f2b285d7d0",
+      "name": "IS_EVALUATING_ENABLEMENT_OF",
+      "fact": "user is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade"
+    },
+    {
+      "uuid": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+      "name": "IS_PLANNING_UPGRADE_WITH",
+      "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing"
+    },
+    {
+      "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+      "name": "RESULTS_IN_RETENTION_OF",
+      "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained."
+    },
+    {
+      "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+      "name": "IS_ACKNOWLEDGED_FOR",
+      "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan"
+    },
+    {
+      "uuid": "82e05f53-ba5d-4a0b-b70c-324f982dbffc",
+      "name": "PLANS_TO_INTEGRATE",
+      "fact": "user plans to study how to integrate upgrade iteration into Jarvis OS"
+    },
+    {
+      "uuid": "84412083-5453-40a2-8281-6c2ba446cfca",
+      "name": "PRECEDES",
+      "fact": "Step 1 is required before Step 2, Step 3, and Step 4 can be meaningfully executed."
+    },
+    {
+      "uuid": "853034e2-f97a-41f3-be57-6e23a7281f22",
+      "name": "WILL_BE_FORMALIZED_INTO",
+      "fact": "If the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS."
+    },
+    {
+      "uuid": "9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6",
+      "name": "KEPT_UNCHANGED_FOR_NEXT_WEEK_BY",
+      "fact": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision"
+    },
+    {
+      "uuid": "9efde0bf-c914-4454-a721-783f1d03165f",
+      "name": "COMBINES",
+      "fact": "hybrid plan combines mem0 and graphiti"
+    },
+    {
+      "uuid": "a2a3e1ad-ff40-4cff-b5d3-b855230b85c9",
+      "name": "MUST_BE_PROCESSED_BY",
+      "fact": "pending entries older than 7 days must be closed or promoted to keep learning logs actionable"
+    },
+    {
+      "uuid": "a4e7e953-be0b-4699-874a-0c3c3fc6bd86",
+      "name": "ASKS_ABOUT",
+      "fact": "user asks why only Step 1 is being done, noting there are 4个Step"
+    },
+    {
+      "uuid": "afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+      "name": "MAY_BE_INCORPORATED_INTO",
+      "fact": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS."
+    },
+    {
+      "uuid": "b8cad503-6f5b-4531-bb6e-92f998d25177",
+      "name": "APPROVES_ACTION",
+      "fact": "user approves the execution of the three actions derived from the one-week self-improvement audit"
+    },
+    {
+      "uuid": "bc201f13-c8b8-43d1-9811-24bbde19cc0a",
+      "name": "MEASURED",
+      "fact": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable"
+    },
+    {
+      "uuid": "c43f91c1-b43a-4deb-ab52-3aaadd9234d2",
+      "name": "INVOLVES",
+      "fact": "Step 2 involves performance and sorting optimization."
+    },
+    {
+      "uuid": "c90aba32-87f4-48c0-aa82-92bbd7b368a3",
+      "name": "IS_PLANNING_UPGRADE_WITH",
+      "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing"
+    },
+    {
+      "uuid": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+      "name": "OPERATES_IN_SCOPE",
+      "fact": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope."
+    },
+    {
+      "uuid": "d36efb9a-41e1-4bae-9840-66c6fb2c080e",
+      "name": "INVOLVES",
+      "fact": "Step 2 involves performance and sorting optimization."
+    },
+    {
+      "uuid": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+      "name": "IS_TRACKED_DURING",
+      "fact": "Execution efficiency is one of the three signals tracked during the upgrade iteration."
+    },
+    {
+      "uuid": "d95b26eb-6f66-479d-a515-6ca9ef6bf102",
+      "name": "SPECIFIES_EXECUTION_REQUIREMENTS_FOR",
+      "fact": "assistant specifies execution requirements for W2 including feedback tabulation, P0 issue prioritization, evidence packaging, and binary go/no-go reporting"
+    },
+    {
+      "uuid": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+      "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+      "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution"
+    },
+    {
+      "uuid": "df79c1ca-1cc3-4355-89c1-95e3066d9962",
+      "name": "UNDERMINES_CREDIBILITY_OF",
+      "fact": "sample_size<30 is a problem that undermines the credibility of evaluation results used in Gate-2."
+    },
+    {
+      "uuid": "e807ecd8-d193-4ab8-93b9-c6104bc78678",
+      "name": "IMPLEMENTS",
+      "fact": "The commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule."
+    },
+    {
+      "uuid": "f0e9fc3d-50d9-4ca8-a06c-682570b1bb43",
+      "name": "IS_MERGED_INTO",
+      "fact": "openclaw PATH errors are merged into one canonical entry in learning logs"
+    },
+    {
+      "uuid": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+      "name": "HAS_FOUNDER_PRIORITY",
+      "fact": "P2's founder priority is Telegram"
+    }
+  ]
+}

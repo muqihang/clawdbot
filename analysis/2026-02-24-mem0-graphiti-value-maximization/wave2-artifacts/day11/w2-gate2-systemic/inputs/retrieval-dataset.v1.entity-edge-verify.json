@@ -1,0 +1,350 @@
+{
+  "generated_at_utc": "2026-02-28T06:40:56Z",
+  "base_url": "http://127.0.0.1:8000",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/inputs/retrieval-dataset.v1.json",
+  "sample_size": 34,
+  "pass_count": 34,
+  "pass_rate": 1.0,
+  "results": [
+    {
+      "sample_id": "g2v1-addresses-27ed29a1",
+      "expected_id": "27ed29a1-6196-4452-a9a8-9792d2844f4f",
+      "url": "http://127.0.0.1:8000/entity-edge/27ed29a1-6196-4452-a9a8-9792d2844f4f",
+      "status": 200,
+      "elapsed_ms": 3878,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset."
+    },
+    {
+      "sample_id": "g2v1-approves-action-b8cad503",
+      "expected_id": "b8cad503-6f5b-4531-bb6e-92f998d25177",
+      "url": "http://127.0.0.1:8000/entity-edge/b8cad503-6f5b-4531-bb6e-92f998d25177",
+      "status": 200,
+      "elapsed_ms": 733,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user approves the execution of the three actions derived from the one-week self-improvement audit"
+    },
+    {
+      "sample_id": "g2v1-asks-about-a4e7e953",
+      "expected_id": "a4e7e953-be0b-4699-874a-0c3c3fc6bd86",
+      "url": "http://127.0.0.1:8000/entity-edge/a4e7e953-be0b-4699-874a-0c3c3fc6bd86",
+      "status": 200,
+      "elapsed_ms": 754,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user asks why only Step 1 is being done, noting there are 4\u4e2aStep"
+    },
+    {
+      "sample_id": "g2v1-assessed-4bdb77fb",
+      "expected_id": "4bdb77fb-9de4-4fd1-804e-bcf8c7224070",
+      "url": "http://127.0.0.1:8000/entity-edge/4bdb77fb-9de4-4fd1-804e-bcf8c7224070",
+      "status": 200,
+      "elapsed_ms": 733,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "self-improvement audit assessed behavior-drift risk as low due to bootstrap-only trigger, though repeated unresolved environment errors and one scope-drift inci"
+    },
+    {
+      "sample_id": "g2v1-combines-16268e81",
+      "expected_id": "16268e81-6341-4fcc-9b17-c112f20677d5",
+      "url": "http://127.0.0.1:8000/entity-edge/16268e81-6341-4fcc-9b17-c112f20677d5",
+      "status": 200,
+      "elapsed_ms": 689,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "hybrid plan combines mem0 and graphiti"
+    },
+    {
+      "sample_id": "g2v1-evaluated-60931d99",
+      "expected_id": "60931d99-029d-4a2a-83a7-c53e82cdae65",
+      "url": "http://127.0.0.1:8000/entity-edge/60931d99-029d-4a2a-83a7-c53e82cdae65",
+      "status": 200,
+      "elapsed_ms": 731,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "self-improvement audit evaluated learning-log quality and found it mostly good signal with 2 meaningful behavior corrections"
+    },
+    {
+      "sample_id": "g2v1-has-founder-priority-f33f6ad0",
+      "expected_id": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+      "url": "http://127.0.0.1:8000/entity-edge/f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+      "status": 200,
+      "elapsed_ms": 728,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "P2's founder priority is Telegram"
+    },
+    {
+      "sample_id": "g2v1-has-mission-312073bf",
+      "expected_id": "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "url": "http://127.0.0.1:8000/entity-edge/312073bf-e0c8-40f8-8d49-c67527691d49",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization."
+    },
+    {
+      "sample_id": "g2v1-has-mission-707b1035",
+      "expected_id": "707b1035-23bc-44fa-bcf0-695960197883",
+      "url": "http://127.0.0.1:8000/entity-edge/707b1035-23bc-44fa-bcf0-695960197883",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Jarvis OS mission is second-hand car AI SaaS"
+    },
+    {
+      "sample_id": "g2v1-has-primary-business-242955ff",
+      "expected_id": "242955ff-7ba4-44ff-ba89-292986df4520",
+      "url": "http://127.0.0.1:8000/entity-edge/242955ff-7ba4-44ff-ba89-292986df4520",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry."
+    },
+    {
+      "sample_id": "g2v1-implements-e807ecd8",
+      "expected_id": "e807ecd8-d193-4ab8-93b9-c6104bc78678",
+      "url": "http://127.0.0.1:8000/entity-edge/e807ecd8-d193-4ab8-93b9-c6104bc78678",
+      "status": 200,
+      "elapsed_ms": 779,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "The commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule."
+    },
+    {
+      "sample_id": "g2v1-involves-c43f91c1",
+      "expected_id": "c43f91c1-b43a-4deb-ab52-3aaadd9234d2",
+      "url": "http://127.0.0.1:8000/entity-edge/c43f91c1-b43a-4deb-ab52-3aaadd9234d2",
+      "status": 200,
+      "elapsed_ms": 700,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Step 2 involves performance and sorting optimization."
+    },
+    {
+      "sample_id": "g2v1-is-acknowledged-for-82b07beb",
+      "expected_id": "82b07beb-0a79-424f-b2a7-727246ce982d",
+      "url": "http://127.0.0.1:8000/entity-edge/82b07beb-0a79-424f-b2a7-727246ce982d",
+      "status": 200,
+      "elapsed_ms": 734,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan"
+    },
+    {
+      "sample_id": "g2v1-is-current-operational-mode-for-274619b0",
+      "expected_id": "274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+      "url": "http://127.0.0.1:8000/entity-edge/274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+      "status": 200,
+      "elapsed_ms": 3982,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "bootstrap-only mode is the current operational mode for self-improvement hooks"
+    },
+    {
+      "sample_id": "g2v1-is-evaluating-enablement-of-727a7391",
+      "expected_id": "727a7391-214d-4ed3-a508-28f2b285d7d0",
+      "url": "http://127.0.0.1:8000/entity-edge/727a7391-214d-4ed3-a508-28f2b285d7d0",
+      "status": 200,
+      "elapsed_ms": 735,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade"
+    },
+    {
+      "sample_id": "g2v1-is-in-execution-mode-30a97d8b",
+      "expected_id": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "url": "http://127.0.0.1:8000/entity-edge/30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "status": 200,
+      "elapsed_ms": 727,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Jarvis is online and in execution mode"
+    },
+    {
+      "sample_id": "g2v1-is-iterating-memory-mechanism-with-de2618ee",
+      "expected_id": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+      "url": "http://127.0.0.1:8000/entity-edge/de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+      "status": 200,
+      "elapsed_ms": 731,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution"
+    },
+    {
+      "sample_id": "g2v1-is-merged-into-f0e9fc3d",
+      "expected_id": "f0e9fc3d-50d9-4ca8-a06c-682570b1bb43",
+      "url": "http://127.0.0.1:8000/entity-edge/f0e9fc3d-50d9-4ca8-a06c-682570b1bb43",
+      "status": 200,
+      "elapsed_ms": 696,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "openclaw PATH errors are merged into one canonical entry in learning logs"
+    },
+    {
+      "sample_id": "g2v1-is-planning-upgrade-with-73f72be0",
+      "expected_id": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+      "url": "http://127.0.0.1:8000/entity-edge/73f72be0-4ba3-4c62-acda-b28d1375d940",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing"
+    },
+    {
+      "sample_id": "g2v1-is-superseded-by-670c1afe",
+      "expected_id": "670c1afe-add8-4bd4-b2d6-127dffbac2eb",
+      "url": "http://127.0.0.1:8000/entity-edge/670c1afe-add8-4bd4-b2d6-127dffbac2eb",
+      "status": 200,
+      "elapsed_ms": 700,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "The error entries ERR-20260222-001 and ERR-20260222-002 are marked as superseded and point to the canonical entry ERR-20260223-001."
+    },
+    {
+      "sample_id": "g2v1-is-tracked-during-d8a1c0c2",
+      "expected_id": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+      "url": "http://127.0.0.1:8000/entity-edge/d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+      "status": 200,
+      "elapsed_ms": 728,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Execution efficiency is one of the three signals tracked during the upgrade iteration."
+    },
+    {
+      "sample_id": "g2v1-kept-unchanged-for-next-week-by-9b9e9ab9",
+      "expected_id": "9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6",
+      "url": "http://127.0.0.1:8000/entity-edge/9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6",
+      "status": 200,
+      "elapsed_ms": 727,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision"
+    },
+    {
+      "sample_id": "g2v1-may-be-incorporated-into-afa8a298",
+      "expected_id": "afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+      "url": "http://127.0.0.1:8000/entity-edge/afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS."
+    },
+    {
+      "sample_id": "g2v1-measured-bc201f13",
+      "expected_id": "bc201f13-c8b8-43d1-9811-24bbde19cc0a",
+      "url": "http://127.0.0.1:8000/entity-edge/bc201f13-c8b8-43d1-9811-24bbde19cc0a",
+      "status": 200,
+      "elapsed_ms": 728,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable"
+    },
+    {
+      "sample_id": "g2v1-must-be-processed-by-a2a3e1ad",
+      "expected_id": "a2a3e1ad-ff40-4cff-b5d3-b855230b85c9",
+      "url": "http://127.0.0.1:8000/entity-edge/a2a3e1ad-ff40-4cff-b5d3-b855230b85c9",
+      "status": 200,
+      "elapsed_ms": 728,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "pending entries older than 7 days must be closed or promoted to keep learning logs actionable"
+    },
+    {
+      "sample_id": "g2v1-observes-02997c4b",
+      "expected_id": "02997c4b-be77-472f-b0fa-97b944cc400c",
+      "url": "http://127.0.0.1:8000/entity-edge/02997c4b-be77-472f-b0fa-97b944cc400c",
+      "status": 200,
+      "elapsed_ms": 691,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user observes that there are 4\u4e2aStep"
+    },
+    {
+      "sample_id": "g2v1-operates-in-scope-d2f79d6d",
+      "expected_id": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+      "url": "http://127.0.0.1:8000/entity-edge/d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope."
+    },
+    {
+      "sample_id": "g2v1-plans-to-integrate-82e05f53",
+      "expected_id": "82e05f53-ba5d-4a0b-b70c-324f982dbffc",
+      "url": "http://127.0.0.1:8000/entity-edge/82e05f53-ba5d-4a0b-b70c-324f982dbffc",
+      "status": 200,
+      "elapsed_ms": 3982,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "user plans to study how to integrate upgrade iteration into Jarvis OS"
+    },
+    {
+      "sample_id": "g2v1-precedes-84412083",
+      "expected_id": "84412083-5453-40a2-8281-6c2ba446cfca",
+      "url": "http://127.0.0.1:8000/entity-edge/84412083-5453-40a2-8281-6c2ba446cfca",
+      "status": 200,
+      "elapsed_ms": 728,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "Step 1 is required before Step 2, Step 3, and Step 4 can be meaningfully executed."
+    },
+    {
+      "sample_id": "g2v1-recommends-systematic-repair-for-go-status-140943d4",
+      "expected_id": "140943d4-23d4-4c79-979d-f6e488d07c7c",
+      "url": "http://127.0.0.1:8000/entity-edge/140943d4-23d4-4c79-979d-f6e488d07c7c",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "assistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status"
+    },
+    {
+      "sample_id": "g2v1-results-in-retention-of-7af9ea39",
+      "expected_id": "7af9ea39-7b15-456b-adf6-681376b86a28",
+      "url": "http://127.0.0.1:8000/entity-edge/7af9ea39-7b15-456b-adf6-681376b86a28",
+      "status": 200,
+      "elapsed_ms": 745,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained."
+    },
+    {
+      "sample_id": "g2v1-specifies-execution-requirements-for-d95b26eb",
+      "expected_id": "d95b26eb-6f66-479d-a515-6ca9ef6bf102",
+      "url": "http://127.0.0.1:8000/entity-edge/d95b26eb-6f66-479d-a515-6ca9ef6bf102",
+      "status": 200,
+      "elapsed_ms": 747,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "assistant specifies execution requirements for W2 including feedback tabulation, P0 issue prioritization, evidence packaging, and binary go/no-go reporting"
+    },
+    {
+      "sample_id": "g2v1-undermines-credibility-of-df79c1ca",
+      "expected_id": "df79c1ca-1cc3-4355-89c1-95e3066d9962",
+      "url": "http://127.0.0.1:8000/entity-edge/df79c1ca-1cc3-4355-89c1-95e3066d9962",
+      "status": 200,
+      "elapsed_ms": 728,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "sample_size<30 is a problem that undermines the credibility of evaluation results used in Gate-2."
+    },
+    {
+      "sample_id": "g2v1-will-be-formalized-into-853034e2",
+      "expected_id": "853034e2-f97a-41f3-be57-6e23a7281f22",
+      "url": "http://127.0.0.1:8000/entity-edge/853034e2-f97a-41f3-be57-6e23a7281f22",
+      "status": 200,
+      "elapsed_ms": 729,
+      "ok_fact_exact_match": true,
+      "error": null,
+      "fact_preview": "If the upgrade iteration yields good results, effective practices will be\u56fa\u5316 (formalized) into Jarvis OS."
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+  "requestBody": {
+    "query": "Execution efficiency is one of the three signals tracked during the upgrade iteration."
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271549+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "2210a741-0907-4d12-9eb6-1b733baecf41",
+        "name": "EVALUATES_DURING",
+        "fact": "user intends to evaluate upgrade iteration during its ongoing process",
+        "valid_at": "2026-02-24T11:29:57.029000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:30:53.889014+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6957cc28-bc15-456f-bf08-b20ac92ff4c9",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Rework rate is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271626+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "df23f75f-f28d-4df8-b28e-e1de7c1af8d6",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Decision quality is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271591+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b8cad503-6f5b-4531-bb6e-92f998d25177",
+        "name": "APPROVES_ACTION",
+        "fact": "user approves the execution of the three actions derived from the one-week self-improvement audit",
+        "valid_at": "2026-02-26T03:01:46+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:02:47.334223+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "fb6c3400-96bc-45ca-ab21-0416b72abcef",
+        "name": "IS_TREATED_AS",
+        "fact": "The upgrade iteration is treated as a real-run experiment.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271212+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+        "name": "MAY_BE_INCORPORATED_INTO",
+        "fact": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271723+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+        "name": "RESULTS_IN_RETENTION_OF",
+        "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271784+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "3771b6b1-8b4e-408b-86a5-3690e03401d6",
+        "name": "OBSERVED_DURING",
+        "fact": "environment errors were observed during the self-improvement audit as part of repeated unresolved issues contributing to overhead",
+        "valid_at": "2026-02-25T12:10:29+00:00",
+        "invalid_at": "2026-02-25T12:10:29.903000+00:00",
+        "created_at": "2026-02-25T12:45:36.901499+00:00",
+        "expired_at": "2026-02-25T12:46:29.574500+00:00"
+      },
+      {
+        "uuid": "24ef598a-fda5-4170-b5d3-11dbcb3e12a2",
+        "name": "OBSERVED_DURING",
+        "fact": "scope-drift incident was observed during the self-improvement audit as part of overhead contributing to behavior-drift risk assessment",
+        "valid_at": "2026-02-25T12:10:29+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:45:36.901533+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [
+      {
+        "uuid": "2037385d-b37b-467b-b529-d646ed818785",
+        "name": "",
+        "content": "user(user): A new session was started via /new or /reset. Execute your Session Startup sequence now - read the required files before responding to the user. Then greet the user in your configured persona, if one is provided. Be yourself - use your defined voice, mannerisms, and mood. Keep it to 1-3 sentences and ask what they want to do. If the runtime model differs from default_model in the system prompt, mention the default model. Do not mention internal steps, files, tools, or reasoning.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:04:37.286847+00:00"
+      },
+      {
+        "uuid": "23982bd8-eeb6-4b5b-afe7-0c13a426cae6",
+        "name": "",
+        "content": "user(user): System: [2026-02-25 18:43:05 GMT+8] Cron (error): One-week self-improvement audit complete (this is the scheduled 1-week review after enabling the low-risk setup).\n\nDecision: tighten policy (lightly), not disable.\n\nKey evidence:\n- Hook safety is still correct: `~/.openclaw/openclaw.json` only enables `hooks.internal.entries.self-improvement`, and the hook implementation is bootstrap-only (`agent:bootstrap`) in `hooks/self-improvement/HOOK.md` and `hooks/self-improvement/handler.ts`; no `UserPromptSubmit`/`PostToolUse` defaults are enabled.\n- Learning-log quality is mostly good signal: `.learnings/LEARNINGS.md` has 2 meaningful behavior corrections (docs-vs-runtime boundary, scope-control after user correction), both high value.\n- Error-log quality is mixed: `.learnings/ERRORS.md` has 5 entries, with a duplicate cluster around `openclaw` PATH issues (similar root cause logged multiple times), so dedup discipline can improve.\n- Sensitive-data risk is low: no raw tokens/passwords seen in the three files reviewed; content is mostly operational context and file paths.\n- Productivity and drift impact over the week: net positive (important corrections captured and reusable), with low behavior-drift risk due to bootstrap-only trigger; however, repeated unresolved environment errors and one scope-drift incident show small but real overhead.\n\nNext 1-3 actions:\n1) Merge duplicate PATH-related errors into one canonical entry with one validated fix path, then mark superseded duplicates.\n2) Add weekly hygiene rule: close or promote `pending` learnings/errors older than 7 days to keep logs actionable.\n3) Keep bootstrap-only mode unchanged for next week; do not enable high-frequency hooks unless missed-learning rate is demonstrably high.\n\nConversation info (untrusted metadata):\n```json\n{\n  \"message_id\": \"631\",\n  \"sender_id\": \"8000351513\",\n  \"sender\": \"8000351513\"\n}\n```\n\n什么意思？我没明白？你说的“接下来建议就做这 3 件事”就是你一周复盘学习到的吗？",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:05.107691+00:00"
+      },
+      {
+        "uuid": "33ecf325-a101-443a-b4f9-d722374de4c9",
+        "name": "",
+        "content": "user(user): P2 close probe: founder priority is Telegram and Jarvis OS mission is second-hand car AI SaaS",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:23.817915+00:00"
+      }
+    ],
+    "nodes": [
+      {
+        "uuid": "31320924-cfa9-422e-a90e-8dd9f6905c18",
+        "name": "execution efficiency",
+        "summary": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922118+00:00"
+      },
+      {
+        "uuid": "24796f10-db8d-4219-8fac-1f2b3803f547",
+        "name": "upgrade iteration",
+        "summary": "user intends to evaluate upgrade iteration during its ongoing process\nThe upgrade iteration is treated as a real-run experiment.\nExecution efficiency is one of the three signals tracked during the upgrade iteration.\nDecision quality is one of the three signals tracked during the upgrade iteration.\nRework rate is one of the three signals tracked during the upgrade iteration.\nPhase-end review produces output about what to retain, remove, or automate.\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nIf the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848903+00:00"
+      },
+      {
+        "uuid": "281cc229-8e0a-4438-ad3d-4f59c08e56ea",
+        "name": "decision quality",
+        "summary": "Decision quality is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922147+00:00"
+      },
+      {
+        "uuid": "f803e91a-3d06-4f56-9751-4ab86c80d3e4",
+        "name": "rework rate",
+        "summary": "Rework rate is one of the three signals tracked during the upgrade iteration.\nSimulation team mechanism is evaluated via rework rate to assess its value.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922174+00:00"
+      },
+      {
+        "uuid": "cc9069ac-3475-4c24-b69f-0acf45b312ad",
+        "name": "user",
+        "summary": "user plans to study how to integrate upgrade iteration into Jarvis OS\nuser intends to evaluate upgrade iteration during its ongoing process\nuser is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser asks why only Step 1 is being done, noting there are 4个Step\nuser observes that there are 4个Step",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848583+00:00"
+      },
+      {
+        "uuid": "e698dfc1-534a-42bb-a33c-d501ddf195d2",
+        "name": "Jarvis OS",
+        "summary": "Jarvis OS mission is second-hand car AI SaaS\nuser plans to study how to integrate upgrade iteration into Jarvis OS\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nJarvis is online and in execution mode\nJarvis is online and in execution mode",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409060+00:00"
+      },
+      {
+        "uuid": "a96f0578-5ac6-4c78-bc37-21a064c91e56",
+        "name": "real-run experiment",
+        "summary": "The upgrade iteration is treated as a real-run experiment.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922076+00:00"
+      },
+      {
+        "uuid": "76e0971d-364d-4191-a61c-7f8cc3710656",
+        "name": "lightweight version",
+        "summary": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922251+00:00"
+      },
+      {
+        "uuid": "2e25acc0-bf88-4901-8424-25def5b34032",
+        "name": "environment errors",
+        "summary": "environment errors were observed during the self-improvement audit as part of repeated unresolved issues contributing to overhead",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:20.715321+00:00"
+      },
+      {
+        "uuid": "3f45c5bf-81dc-4cd3-bd1f-13940753cf59",
+        "name": "scope-drift incident",
+        "summary": "scope-drift incident was observed during the self-improvement audit as part of overhead contributing to behavior-drift risk assessment",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:20.715342+00:00"
+      }
+    ]
+  }
+}

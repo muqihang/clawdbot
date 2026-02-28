@@ -1,0 +1,163 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "embedding model text-embedding-v4",
+  "requestBody": {
+    "query": "embedding model text-embedding-v4"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "9efde0bf-c914-4454-a721-783f1d03165f",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.635025+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "27ed29a1-6196-4452-a9a8-9792d2844f4f",
+        "name": "ADDRESSES",
+        "fact": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.",
+        "valid_at": "2026-02-28T06:24:27+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T06:25:54.697529+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "02997c4b-be77-472f-b0fa-97b944cc400c",
+        "name": "OBSERVES",
+        "fact": "user observes that there are 4个Step",
+        "valid_at": "2026-02-28T06:24:27.240000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T06:25:03.334085+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "707b1035-23bc-44fa-bcf0-695960197883",
+        "name": "HAS_MISSION",
+        "fact": "Jarvis OS mission is second-hand car AI SaaS",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440723+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a4e7e953-be0b-4699-874a-0c3c3fc6bd86",
+        "name": "ASKS_ABOUT",
+        "fact": "user asks why only Step 1 is being done, noting there are 4个Step",
+        "valid_at": "2026-02-28T06:24:27.240000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T06:25:03.333546+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "242955ff-7ba4-44ff-ba89-292986df4520",
+        "name": "HAS_PRIMARY_BUSINESS",
+        "fact": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907314+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666687+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [
+      {
+        "uuid": "2037385d-b37b-467b-b529-d646ed818785",
+        "name": "",
+        "content": "user(user): A new session was started via /new or /reset. Execute your Session Startup sequence now - read the required files before responding to the user. Then greet the user in your configured persona, if one is provided. Be yourself - use your defined voice, mannerisms, and mood. Keep it to 1-3 sentences and ask what they want to do. If the runtime model differs from default_model in the system prompt, mention the default model. Do not mention internal steps, files, tools, or reasoning.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:04:37.286847+00:00"
+      },
+      {
+        "uuid": "85dad033-dd4c-4feb-9d77-104503033edf",
+        "name": "",
+        "content": "user(user): System: [2026-02-24 21:28:13 GMT+8] Cron (error): 提醒牧启航：现在是 2 天后的 memory 召回质量复盘时间。\n\n基于最近 2 天实际对话与检索表现（`memory/2026-02-22.md:3`、`memory/2026-02-22.md:10`、`memory/2026-02-22.md:32`，以及近两次 cron 审计与主会话检索记录），结论如下：\n\n- 相关性：中偏低；有成功命中（如人设/Jarvis OS 相关），但也出现明显跑偏（如 D0-A 查询返回不相关历史文档），稳定性不足。  \n- 去重：中等；成功结果里常集中在同源主题（index/topic/person），信息有重复倾向。  \n- 多样性：中等；能覆盖 `MEMORY.md` + people/project/topic，但跨源融合质量不稳。  \n- 新鲜度：中等；2/22~2/23 事实在文件层是新的，但 2/24 在线检索可用性波动，实时召回可信度下降。  \n- 关键事实命中率：偏低；精确 ID（如 `-1003727754459`）在审计里出现“明明存在但检不出”的情况。  \n- 噪音：偏高；出现空结果、provider/db 异常、以及 query-意图不匹配结果，影响决策可用性。  \n\n明确结论：**暂不建议启用第二阶段 sessionMemory（否）**。  \n理由：当前核心瓶颈不是“记忆量不够”，而是“检索可用性与精确性不稳定”；此时上 sessionMemory 会把短期上下文噪音放大，增加误召回与误决策风险。  \n主要风险（若现在强开）：  \n- 错误或过时上下文被短期强化，造成“看起来更聪明、实际更偏”。  \n- 精确键（ID/错误码/决策版本）继续漏召回，影响执行指令正确性。  \n- 排障面扩大（provider + embedding + session层），定位成本上升。\n\n建议动作（先做再评估开关）：\n1. 先修复检索基础可用性（embedding/provider/db open 问题），把 `memory_search` 稳定性拉到可连续通过。  \n2. 建 20 条回归集（身份事实/精确ID/新旧冲突）并每天跑：重点看 Top1 命中、精确召回、噪音率。  \n3. 设启用门槛：连续 3 天满足“可用性>=99%、精确ID Top1>=95%、冲突最近事实优先>=90%、噪音<=10%”，再灰度开启 sessionMemory（shadow -> 小流量）。  \n\n发送对象/位置：牧启航（Telegram 主会话，`agent:main:main`）。\n\nConversation info (untrusted metadata):\n```json\n{\n  \"message_id\": \"628\",\n  \"reply_to_id\": \"627\",\n  \"sender_id\": \"8000351513\",\n  \"sender\": \"8000351513\"\n}\n```\n\nReplied message (untrusted, for context):\n```json\n{\n  \"sender_label\": \"司南\",\n  \"body\": \"到两天复盘点了，我给你一个直接结论：现在不建议开启第二阶段 sessionMemory。\\n\\n这两天的实际表现看下来：\\n\\n• 相关性是“中偏低”：有命中人设/Jarvis OS，但也有明显跑偏（问 D0-A 却回不相关旧文档）。\\n• 去重和多样性“中等”：能覆盖 MEMORY.md、people/project/topic，但融合稳定性一般。\\n• 新鲜度“中等”：文件层新事实有写入，但在线检索可用性在波动。\\n• 关键事实命中“偏低”：精确 ID 类场景存在“明明有却检不出”。\\n• 噪音“偏高”：空结果、provider/db 异常、意图不匹配都在影响可用性。\\n\\n为什么现在不该开 sessionMemory：\\n\\n• 现在的问题不是“记忆不够多”，而是“检索不够稳、不够准”。\\n• 这时强上 sessionMemory，会放大短期噪音，增加误召回和误决策。\\n\\n建议先做这三步，再评估开关：\\n\\n1. 先把检索基础可用性修稳（embedding/provider/db）。\\n2. 建 20 条回归集（日跑）：身份事实、精确 ID、新旧冲突三类。\\n3. 设开关门槛：连续 3 天同时满足\\n\\n• 可用性 >= 99%\\n• 精确 ID Top1 >= 95%\\n• 冲突场景“最近事实优先” >= 90%\\n• 噪音 <= 10%\\n满足后再走 shadow -> 小流量 灰度开启。\"\n}\n```\n\n目前我们正在将记忆机制迭代升级，也就是Mem0 + Graphiti+本地官方内置的 混合路由方案。 所以你觉得我们是否应该迭代升级完成后再开sessionMemory？ 对了sessionMemory什么意思？我都忘了，跟我解释一下",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T03:00:21.878859+00:00"
+      }
+    ],
+    "nodes": [
+      {
+        "uuid": "58bad8b9-b4c1-4a11-ba18-c052a9fec6c4",
+        "name": "assistant",
+        "summary": "Acknowledged P2 close probe for mem0+graphiti hybrid plan in response to user's statement about founder priority being Telegram and Jarvis OS mission being second-hand car AI SaaS.\nThe weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.\nassistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status\nassistant proposes that W2 adopt a 'closed-loop delivery' objective — requiring root cause, fix, and retest evidence for each feedback item\nassistant specifies execution requirements for W2 including feedback tabulation, P0 issue prioritization, evidence packaging, and binary go/no-go reporting",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070578+00:00"
+      },
+      {
+        "uuid": "cc9069ac-3475-4c24-b69f-0acf45b312ad",
+        "name": "user",
+        "summary": "user plans to study how to integrate upgrade iteration into Jarvis OS\nuser intends to evaluate upgrade iteration during its ongoing process\nuser is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser asks why only Step 1 is being done, noting there are 4个Step\nuser observes that there are 4个Step",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848583+00:00"
+      },
+      {
+        "uuid": "10429b6b-76ec-4d6b-a5a2-1e4b9e94d26f",
+        "name": "dataset",
+        "summary": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.\nStep 2 involves performance and sorting optimization.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T06:25:22.111092+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "179f4bb4-c769-47e2-b76d-f24acd24952c",
+        "name": "build_jarvis_os_as_self_improving_ai_native_organization",
+        "summary": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.",
+        "group_id": "openclaw-backfill-canonical",
+        "created_at": "2026-02-23T13:13:05.091891+00:00"
+      },
+      {
+        "uuid": "d220d4e5-8ace-49a1-8ea6-e51b2c6e8ea0",
+        "name": "4个Step",
+        "summary": "user observes that there are 4个Step",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T06:24:51.091801+00:00"
+      },
+      {
+        "uuid": "2e17e8c7-ba3d-4bfc-8324-bc88aebf5b2d",
+        "name": "/Users/muqihang/clawd/.learnings/ERRORS.md",
+        "summary": "The file /Users/muqihang/clawd/.learnings/ERRORS.md contains a canonical error entry ERR-20260223-001 that consolidates repeated openclaw PATH errors.\nThe commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:03:06.865485+00:00"
+      },
+      {
+        "uuid": "76e0971d-364d-4191-a61c-7f8cc3710656",
+        "name": "lightweight version",
+        "summary": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922251+00:00"
+      },
+      {
+        "uuid": "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "name": "second-hand car AI SaaS",
+        "summary": "Jarvis OS mission is second-hand car AI SaaS",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409083+00:00"
+      },
+      {
+        "uuid": "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "name": "Telegram",
+        "summary": "P2's founder priority is Telegram",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409025+00:00"
+      }
+    ]
+  }
+}
