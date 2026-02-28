@@ -10,11 +10,12 @@
 
 > 规则：每次只改一个变量；每次改动后必须 bounded 5 + stability 10；所有证据必须给出路径。
 
-| iter | date       | variable | summary                                                                                                  | hit@1 |  hit@3 | sample_size | stability_unique_hit@1 | gate2 | evidence_path                                                                                   |
-| ---: | ---------- | -------- | -------------------------------------------------------------------------------------------------------- | ----: | -----: | ----------: | ---------------------- | ----- | ----------------------------------------------------------------------------------------------- |
-|    0 | 2026-02-28 | baseline | day10 No-Go（仅记录，不改动）                                                                            |   0.0 |    0.2 |           5 | `[0]`                  | No-Go | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day10/`                   |
-|    1 | 2026-02-28 | plan     | 产出 root-cause matrix + fix plan（未执行修复）                                                          |     - |      - |           - | -                      | -     | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/` |
-|    2 | 2026-02-28 | DATASET  | dataset 扩到 34（解除 low_confidence）；bounded#1-#4 hit@1=0.0294，但冻结选择规则选 attempt#5（hit@1=0） |   0.0 | 0.0294 |          34 | `[0.0294,0]`           | No-Go | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/` |
+| iter | date       | variable      | summary                                                                                                  |  hit@1 |  hit@3 | sample_size | stability_unique_hit@1 | gate2 | evidence_path                                                                                        |
+| ---: | ---------- | ------------- | -------------------------------------------------------------------------------------------------------- | -----: | -----: | ----------: | ---------------------- | ----- | ---------------------------------------------------------------------------------------------------- |
+|    0 | 2026-02-28 | baseline      | day10 No-Go（仅记录，不改动）                                                                            |    0.0 |    0.2 |           5 | `[0]`                  | No-Go | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day10/`                        |
+|    1 | 2026-02-28 | plan          | 产出 root-cause matrix + fix plan（未执行修复）                                                          |      - |      - |           - | -                      | -     | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/`      |
+|    2 | 2026-02-28 | DATASET       | dataset 扩到 34（解除 low_confidence）；bounded#1-#4 hit@1=0.0294，但冻结选择规则选 attempt#5（hit@1=0） |    0.0 | 0.0294 |          34 | `[0.0294,0]`           | No-Go | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/`      |
+|    3 | 2026-02-28 | RANKING_ORDER | 排序归一化改为 `score→structure→rank→remoteId→path`，并按 remote rank 去重 tie-break（facts 优先）       | 0.6471 | 0.7353 |          34 | `[0.6471]`             | No-Go | `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day12/w2-step2-ranking-order/` |
 
 ## Notes
 

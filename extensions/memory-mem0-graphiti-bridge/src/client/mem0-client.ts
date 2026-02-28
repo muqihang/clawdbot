@@ -154,22 +154,46 @@ const compareScoresDesc = (left: number, right: number): number => {
   return left > right ? -1 : 1;
 };
 
+type RankedSearchHit = {
+  hit: BridgeSearchHit;
+  rank: number;
+  structurePriority: number;
+};
+
+const normalizeStructure = (value: string | undefined): string => {
+  return value?.trim().toLowerCase() ?? "";
+};
+
+const structurePriority = (structure: string | undefined): number => {
+  const normalized = normalizeStructure(structure);
+
+  if (normalized === "facts" || normalized === "fact") {
+    return 0;
+  }
+  if (normalized === "episodes" || normalized === "episode") {
+    return 1;
+  }
+  if (normalized === "nodes" || normalized === "node") {
+    return 2;
+  }
+
+  return 3;
+};
+
 const chooseBetterHit = (
-  candidate: BridgeSearchHit,
-  existing: BridgeSearchHit,
-): BridgeSearchHit => {
-  if (candidate.score !== existing.score) {
-    return candidate.score > existing.score ? candidate : existing;
+  candidate: RankedSearchHit,
+  existing: RankedSearchHit,
+): RankedSearchHit => {
+  if (candidate.hit.score !== existing.hit.score) {
+    return candidate.hit.score > existing.hit.score ? candidate : existing;
   }
 
-  // Prefer the hit with the longer snippet on ties to keep more context.
-  if (candidate.snippet.length !== existing.snippet.length) {
-    return candidate.snippet.length > existing.snippet.length ? candidate : existing;
+  if (candidate.rank !== existing.rank) {
+    return candidate.rank < existing.rank ? candidate : existing;
   }
 
-  // Final deterministic tie-breaker for identical remoteId: keep the lexicographically smallest snippet.
-  const snippetCompare = compareAsciiStrings(candidate.snippet, existing.snippet);
-  return snippetCompare < 0 ? candidate : existing;
+  const pathCompare = compareAsciiStrings(candidate.hit.path, existing.hit.path);
+  return pathCompare <= 0 ? candidate : existing;
 };
 
 const normalizeSearchHits = (hits: BridgeSearchHit[]): BridgeSearchHit[] => {
@@ -177,33 +201,47 @@ const normalizeSearchHits = (hits: BridgeSearchHit[]): BridgeSearchHit[] => {
     return hits;
   }
 
-  const bestByRemoteId = new Map<string, BridgeSearchHit>();
-  for (const hit of hits) {
+  const bestByRemoteId = new Map<string, RankedSearchHit>();
+  for (const [index, hit] of hits.entries()) {
+    const rankedHit: RankedSearchHit = {
+      hit,
+      rank: index,
+      structurePriority: structurePriority(hit.structure),
+    };
+
     const key = hit.remoteId.toLowerCase();
     const existing = bestByRemoteId.get(key);
     if (!existing) {
-      bestByRemoteId.set(key, hit);
+      bestByRemoteId.set(key, rankedHit);
       continue;
     }
-    bestByRemoteId.set(key, chooseBetterHit(hit, existing));
+    bestByRemoteId.set(key, chooseBetterHit(rankedHit, existing));
   }
 
   const deduped = Array.from(bestByRemoteId.values());
   deduped.sort((left, right) => {
-    const scoreCompare = compareScoresDesc(left.score, right.score);
+    const scoreCompare = compareScoresDesc(left.hit.score, right.hit.score);
     if (scoreCompare !== 0) {
       return scoreCompare;
     }
 
-    const remoteIdCompare = compareRemoteIds(left.remoteId, right.remoteId);
+    if (left.structurePriority !== right.structurePriority) {
+      return left.structurePriority < right.structurePriority ? -1 : 1;
+    }
+
+    if (left.rank !== right.rank) {
+      return left.rank < right.rank ? -1 : 1;
+    }
+
+    const remoteIdCompare = compareRemoteIds(left.hit.remoteId, right.hit.remoteId);
     if (remoteIdCompare !== 0) {
       return remoteIdCompare;
     }
 
-    return compareAsciiStrings(left.path, right.path);
+    return compareAsciiStrings(left.hit.path, right.hit.path);
   });
 
-  return deduped;
+  return deduped.map((item) => item.hit);
 };
 
 const toBridgePath = (source: BridgeRemoteSource, id: string): string => `bridge/${source}/${id}`;

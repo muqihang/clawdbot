@@ -8,7 +8,7 @@ import {
 } from "../p3/retrieval-eval.js";
 
 describe("P3 retrieval evaluation", () => {
-  it("stabilizes top1 selection on all-zero score ties", async () => {
+  it("preserves remote rank for all-zero ties within the same structure", async () => {
     const fetchMock = vi
       .fn<typeof fetch>()
       .mockResolvedValueOnce(
@@ -43,8 +43,34 @@ describe("P3 retrieval evaluation", () => {
     const first = await client.search("tie-query");
     const second = await client.search("tie-query");
 
-    expect(first[0]?.remoteId).toBe("a-hit");
-    expect(second[0]?.remoteId).toBe("a-hit");
+    expect(first.map((hit) => hit.remoteId)).toEqual(["b-hit", "a-hit"]);
+    expect(second.map((hit) => hit.remoteId)).toEqual(["a-hit", "b-hit"]);
+  });
+
+  it("keeps facts ahead of episodes and nodes on all-zero ties", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      new Response(
+        JSON.stringify({
+          results: [
+            { id: "000-episode", summary: "episode-first", structure: "episodes" },
+            { id: "001-node", name: "node-second", structure: "nodes" },
+            { id: "999-fact", fact: "fact-third", structure: "facts" },
+          ],
+        }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      ),
+    );
+
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    const hits = await client.search("structure-priority-query");
+
+    expect(hits[0]?.remoteId).toBe("999-fact");
+    expect(hits.map((hit) => hit.remoteId)).toEqual(["999-fact", "000-episode", "001-node"]);
   });
 
   it("dedupes repeated remoteId hits by keeping the highest score", async () => {
