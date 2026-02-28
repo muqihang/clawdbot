@@ -15,6 +15,15 @@ export type RemoteSnippetRecord = {
   text: string;
 };
 
+export type RemoteSearchFilters = Record<string, unknown>;
+export type RemoteSearchCriteria = Record<string, unknown>;
+
+export type RemoteSearchOptions = {
+  filters?: RemoteSearchFilters;
+  criteria?: RemoteSearchCriteria;
+  strategy?: string;
+};
+
 export type RemoteClientOperation = "search" | "get";
 
 export type RemoteClientErrorCode =
@@ -34,7 +43,7 @@ export type RemoteClientError = {
 export type RemoteErrorReporter = (error: RemoteClientError) => void;
 
 export interface RemoteMemoryClient {
-  search(query: string): Promise<BridgeSearchHit[]>;
+  search(query: string, options?: RemoteSearchOptions): Promise<BridgeSearchHit[]>;
   getById(id: string): Promise<RemoteSnippetRecord | null>;
 }
 
@@ -335,6 +344,24 @@ const reportError = (reporter: RemoteErrorReporter | undefined, error: RemoteCli
   reporter?.(error);
 };
 
+const toSearchBody = (query: string, options?: RemoteSearchOptions): Record<string, unknown> => {
+  const body: Record<string, unknown> = {
+    query,
+  };
+
+  if (options?.filters !== undefined) {
+    body.filters = options.filters;
+  }
+  if (options?.criteria !== undefined) {
+    body.criteria = options.criteria;
+  }
+  if (options?.strategy !== undefined) {
+    body.strategy = options.strategy;
+  }
+
+  return body;
+};
+
 export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMemoryClient {
   const fetchImpl = options.fetchImpl ?? globalThis.fetch;
   const baseUrl = normalizeString(options.baseUrl);
@@ -357,12 +384,12 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
   const headers = createHeaders(options.apiKey);
 
   return {
-    async search(query: string): Promise<BridgeSearchHit[]> {
+    async search(query: string, searchOptions?: RemoteSearchOptions): Promise<BridgeSearchHit[]> {
       try {
         const response = await fetchImpl(`${resolvedBaseUrl}${searchPath}`, {
           method: "POST",
           headers,
-          body: JSON.stringify({ query }),
+          body: JSON.stringify(toSearchBody(query, searchOptions)),
           signal: AbortSignal.timeout(options.timeoutMs),
         });
 

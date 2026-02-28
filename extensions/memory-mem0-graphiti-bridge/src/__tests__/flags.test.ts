@@ -15,6 +15,9 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.routing.semantic_route).toBe("mem0");
     expect(flags.routing.fallback_route).toBe("local");
     expect(flags.read.alias_normalization).toBe(true);
+    expect(flags.read.precision_guard.enabled).toBe(false);
+    expect(flags.read.mem0_filters_criteria_shadow.enabled).toBe(false);
+    expect(flags.read.mem0_filters_criteria_shadow.sample_percent).toBe(0);
     expect(flags.p3.graphiti_write_path).toBe("/messages");
     expect(flags.p3.admission_enabled).toBe(false);
     expect(flags.p3.commit_canary_ratio).toBe(0);

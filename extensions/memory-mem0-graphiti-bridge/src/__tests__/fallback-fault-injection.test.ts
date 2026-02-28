@@ -47,6 +47,13 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     },
     read: {
       alias_normalization: false,
+      precision_guard: {
+        enabled: false,
+      },
+      mem0_filters_criteria_shadow: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,

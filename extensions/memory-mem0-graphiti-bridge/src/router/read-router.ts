@@ -1,4 +1,5 @@
 import type { BridgeReadMode, BridgeRemoteRoute, BridgeRoute } from "../config/flags.js";
+import type { QuerySignature } from "./query-signature.js";
 
 export type QueryIntent = "timeline" | "semantic";
 
@@ -6,6 +7,7 @@ export type ReadPlanInput = {
   readMode: BridgeReadMode;
   cutoverPercent: number;
   query: string;
+  querySignature?: QuerySignature;
   routeSeed?: string;
   defaultRoute?: BridgeRoute;
   timelineRoute?: BridgeRemoteRoute;
@@ -19,6 +21,7 @@ export type ReadPlan = {
   fallbackRoute: BridgeRoute;
   shadowCompare: boolean;
   intent: QueryIntent;
+  signature: QuerySignature | null;
   readMode: BridgeReadMode;
   cutoverPercent: number;
   phase0LocalOnly: boolean;
@@ -113,7 +116,8 @@ const resolveUserRoute = (params: {
 
 export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
   const cutoverPercent = clampPercent(input.cutoverPercent);
-  const intent = classifyIntent(input.query);
+  const signature = input.querySignature ?? null;
+  const intent = signature?.precisionKey ? "semantic" : classifyIntent(input.query);
   const defaultRoute = input.defaultRoute ?? "local";
   const timelineRoute = input.timelineRoute ?? "graphiti";
   const semanticRoute = input.semanticRoute ?? "mem0";
@@ -149,6 +153,7 @@ export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
     fallbackRoute,
     shadowCompare,
     intent,
+    signature,
     readMode: input.readMode,
     cutoverPercent,
     phase0LocalOnly,

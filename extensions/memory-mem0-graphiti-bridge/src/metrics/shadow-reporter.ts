@@ -8,6 +8,7 @@ export type ShadowCompareRecord = {
   localCount: number;
   remoteCount: number;
   timestamp: string;
+  shadow_filters_criteria?: boolean;
 };
 
 export type ShadowReporter = {

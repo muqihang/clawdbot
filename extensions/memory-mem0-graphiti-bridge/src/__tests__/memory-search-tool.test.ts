@@ -47,6 +47,13 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     },
     read: {
       alias_normalization: true,
+      precision_guard: {
+        enabled: false,
+      },
+      mem0_filters_criteria_shadow: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,
@@ -107,6 +114,92 @@ const createLocalTool = (): AnyAgentTool => {
 };
 
 describe("memory search bridge tool", () => {
+  it("keeps precision guard deterministic across repeated calls and stable on ties", async () => {
+    let flipOrder = false;
+    const localTool: AnyAgentTool = {
+      name: "memory_search",
+      label: "Memory Search",
+      description: "local search tool",
+      parameters: {},
+      execute: vi.fn(async () => {
+        flipOrder = !flipOrder;
+        const first = {
+          path: "MEMORY-A.md",
+          startLine: 1,
+          endLine: 1,
+          score: 0.9,
+          snippet: "commit deadbeef touched router/read-router.ts",
+          source: "memory",
+        };
+        const second = {
+          path: "MEMORY-B.md",
+          startLine: 2,
+          endLine: 2,
+          score: 0.9,
+          snippet: "commit deadbeef fixed error_code handling",
+          source: "memory",
+        };
+        const results = flipOrder ? [first, second] : [second, first];
+
+        return {
+          content: [],
+          details: {
+            results,
+            provider: "builtin",
+            model: "builtin",
+            citations: "auto",
+          },
+        };
+      }),
+    };
+
+    const shadowReporter = {
+      record: vi.fn(),
+    };
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        read: {
+          precision_guard: {
+            enabled: true,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter,
+      sessionKey: "session-1",
+    });
+
+    const first = await tool.execute("1", { query: "commit deadbeef" });
+    const second = await tool.execute("2", { query: "commit deadbeef" });
+
+    const firstDetails = first.details as Record<string, unknown>;
+    const secondDetails = second.details as Record<string, unknown>;
+    const firstResults = firstDetails.results as Array<Record<string, unknown>>;
+    const secondResults = secondDetails.results as Array<Record<string, unknown>>;
+
+    expect(String(firstDetails.source ?? "")).toBe("local");
+    expect(String(secondDetails.source ?? "")).toBe("local");
+
+    expect(firstResults[0]?.path).toBe("MEMORY-A.md");
+    expect(secondResults[0]?.path).toBe("MEMORY-A.md");
+
+    expect(firstDetails.guard).toEqual(secondDetails.guard);
+  });
+
   it("returns local result in shadow mode and still runs remote compare", async () => {
     const localTool = createLocalTool();
     const shadowReporter = {
@@ -155,6 +248,68 @@ describe("memory search bridge tool", () => {
       }),
     );
     expect(shadowReporter.record).toHaveBeenCalledTimes(1);
+  });
+
+  it("sends mem0 filters+criteria during shadow compare without impacting user route", async () => {
+    const localTool = createLocalTool();
+    const shadowReporter = {
+      record: vi.fn(),
+    };
+
+    const mem0Search = vi.fn(async () => []);
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "shadow",
+        cutover_percent: 100,
+        read: {
+          mem0_filters_criteria_shadow: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter,
+      sessionKey: "session-1",
+    });
+
+    const filters = { oc_user_id: "ocu_v1:telegram:123456" };
+    const criteria = { mode: "shadow", strict: true };
+
+    const result = await tool.execute("1", {
+      query: "what preferences did we store",
+      filters,
+      criteria,
+    });
+
+    expect(result.details).toEqual(
+      expect.objectContaining({
+        provider: "builtin",
+      }),
+    );
+    expect(mem0Search).toHaveBeenCalledWith(
+      "what preferences did we store",
+      expect.objectContaining({
+        filters,
+        criteria,
+      }),
+    );
+    expect(shadowReporter.record).toHaveBeenCalledWith(
+      expect.objectContaining({
+        shadow_filters_criteria: true,
+      }),
+    );
   });
 
   it("returns remote result in primary mode when route selected", async () => {

@@ -27,6 +27,13 @@ export type BridgeOutboxFlags = {
 
 export type BridgeReadFlags = {
   alias_normalization: boolean;
+  precision_guard: {
+    enabled: boolean;
+  };
+  mem0_filters_criteria_shadow: {
+    enabled: boolean;
+    sample_percent: number;
+  };
 };
 
 type BridgeMessageEnvelopeRole = "user" | "assistant" | "system" | "tool";
@@ -110,6 +117,13 @@ const DEFAULT_FLAGS: BridgeFlags = {
   },
   read: {
     alias_normalization: true,
+    precision_guard: {
+      enabled: false,
+    },
+    mem0_filters_criteria_shadow: {
+      enabled: false,
+      sample_percent: 0,
+    },
   },
   p3: {
     model: "gpt-5.1-codex-mini",
@@ -243,6 +257,26 @@ const readPercent = (value: unknown): number => {
   return Math.floor(numericValue);
 };
 
+const readPercentWithFallback = (value: unknown, fallback: number): number => {
+  const numericValue =
+    typeof value === "number"
+      ? value
+      : typeof value === "string"
+        ? Number.parseFloat(value)
+        : Number.NaN;
+
+  if (!Number.isFinite(numericValue)) {
+    return fallback;
+  }
+  if (numericValue <= 0) {
+    return 0;
+  }
+  if (numericValue >= 100) {
+    return 100;
+  }
+  return Math.floor(numericValue);
+};
+
 const readPositiveInt = (
   value: unknown,
   fallback: number,
@@ -322,6 +356,12 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const timeoutRaw = asRecord(raw.timeoutMs);
   const outboxRaw = asRecord(raw.outbox);
   const readRaw = asRecord(raw.read);
+  const precisionGuardRaw = asRecord(
+    readRawValue(readRaw, ["precision_guard", "precisionGuard"]),
+  );
+  const mem0FiltersCriteriaShadowRaw = asRecord(
+    readRawValue(readRaw, ["mem0_filters_criteria_shadow", "mem0FiltersCriteriaShadow"]),
+  );
   const p3Raw = asRecord(raw.p3);
   const p3MessageEnvelopeRaw = asRecord(
     readRawValue(p3Raw, ["message_envelope", "messageEnvelope"]),
@@ -401,6 +441,19 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         readRawValue(readRaw, ["alias_normalization", "aliasNormalization"]),
         DEFAULT_FLAGS.read.alias_normalization,
       ),
+      precision_guard: {
+        enabled: readBoolean(precisionGuardRaw.enabled, DEFAULT_FLAGS.read.precision_guard.enabled),
+      },
+      mem0_filters_criteria_shadow: {
+        enabled: readBoolean(
+          mem0FiltersCriteriaShadowRaw.enabled,
+          DEFAULT_FLAGS.read.mem0_filters_criteria_shadow.enabled,
+        ),
+        sample_percent: readPercentWithFallback(
+          readRawValue(mem0FiltersCriteriaShadowRaw, ["sample_percent", "samplePercent"]),
+          DEFAULT_FLAGS.read.mem0_filters_criteria_shadow.sample_percent,
+        ),
+      },
     },
     p3: {
       model:
