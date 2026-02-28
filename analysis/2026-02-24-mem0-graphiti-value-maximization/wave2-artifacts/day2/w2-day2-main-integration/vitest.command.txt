@@ -1,0 +1,10 @@
+pnpm vitest run --config vitest.extensions.config.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/query-signature.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/flags.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/fallback-fault-injection.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/read-router.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/clients.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-reporting.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-weekly-gate-fields-split.test.ts \
+  extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-retrieval-eval.test.ts

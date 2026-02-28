@@ -1,0 +1,18 @@
+
+ RUN  v4.0.18 /Users/muqihang/chelingxi_workspace/clawdbot
+
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/clients.test.ts (6 tests) 7ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-retrieval-eval.test.ts (4 tests) 19ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts (9 tests) 14ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/fallback-fault-injection.test.ts (3 tests) 10ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-weekly-gate-fields-split.test.ts (3 tests) 47ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/flags.test.ts (6 tests) 4ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/read-router.test.ts (5 tests) 3ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-reporting.test.ts (1 test) 2ms
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/query-signature.test.ts (1 test) 3ms
+
+ Test Files  9 passed (9)
+      Tests  38 passed (38)
+   Start at  11:17:52
+   Duration  694ms (transform 982ms, setup 1.08s, import 348ms, tests 108ms, environment 1ms)
+
