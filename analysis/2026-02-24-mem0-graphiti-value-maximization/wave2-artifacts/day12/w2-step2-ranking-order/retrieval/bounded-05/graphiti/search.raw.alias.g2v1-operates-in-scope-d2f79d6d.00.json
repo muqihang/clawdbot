@@ -1,0 +1,148 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:18000/search",
+  "query": "thinktank topology",
+  "requestBody": {
+    "query": "thinktank topology"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666687+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+        "name": "OPERATES_IN_SCOPE",
+        "fact": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907343+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666595+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "312073bf-e0c8-40f8-8d49-c67527691d49",
+        "name": "HAS_MISSION",
+        "fact": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.906737+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7af9ea39-7b15-456b-adf6-681376b86a28",
+        "name": "RESULTS_IN_RETENTION_OF",
+        "fact": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271784+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "ff4cee59-b472-4b70-9cc4-2b959fc5d6aa",
+        "name": "graphiti",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070728+00:00"
+      },
+      {
+        "uuid": "337f6d88-96a8-4a98-9e42-b28277836f79",
+        "name": "query",
+        "summary": "Step 2 involves performance and sorting optimization.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T06:25:22.111126+00:00"
+      },
+      {
+        "uuid": "10429b6b-76ec-4d6b-a5a2-1e4b9e94d26f",
+        "name": "dataset",
+        "summary": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.\nStep 2 involves performance and sorting optimization.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T06:25:22.111092+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "695f47d5-297c-4e06-b64c-536d3872a854",
+        "name": "product_architecture_development_ops_marketing_finance_relationship_workflows",
+        "summary": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+        "group_id": "openclaw-backfill-canonical",
+        "created_at": "2026-02-23T13:13:05.091935+00:00"
+      },
+      {
+        "uuid": "31320924-cfa9-422e-a90e-8dd9f6905c18",
+        "name": "execution efficiency",
+        "summary": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922118+00:00"
+      },
+      {
+        "uuid": "e698dfc1-534a-42bb-a33c-d501ddf195d2",
+        "name": "Jarvis OS",
+        "summary": "Jarvis OS mission is second-hand car AI SaaS\nuser plans to study how to integrate upgrade iteration into Jarvis OS\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nJarvis is online and in execution mode\nJarvis is online and in execution mode",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409060+00:00"
+      },
+      {
+        "uuid": "179f4bb4-c769-47e2-b76d-f24acd24952c",
+        "name": "build_jarvis_os_as_self_improving_ai_native_organization",
+        "summary": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.",
+        "group_id": "openclaw-backfill-canonical",
+        "created_at": "2026-02-23T13:13:05.091891+00:00"
+      },
+      {
+        "uuid": "2e25acc0-bf88-4901-8424-25def5b34032",
+        "name": "environment errors",
+        "summary": "environment errors were observed during the self-improvement audit as part of repeated unresolved issues contributing to overhead",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:20.715321+00:00"
+      },
+      {
+        "uuid": "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "name": "Telegram",
+        "summary": "P2's founder priority is Telegram",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409025+00:00"
+      }
+    ]
+  }
+}

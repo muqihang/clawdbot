@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-02-28T08:51:38.466Z",
+  "sampleSize": 4,
+  "evaluationMode": "simulated",
+  "dataSource": "local_simulated_estimator",
+  "costAssumption": "estimated from heuristic token count (chars/4) with static per-model USD rates",
+  "modelA": {
+    "model": "gpt-5.1-codex-mini",
+    "metrics": {
+      "extractionPrecision": 1,
+      "conflictFalsePositiveRate": 0,
+      "pendingReviewRatio": 0,
+      "supersedeCorrectnessRate": 1,
+      "p95WriteLatencyMs": 44,
+      "estimatedCostPer1kChunksUsd": 0.0075
+    }
+  },
+  "modelB": {
+    "model": "gpt-5.3-codex",
+    "metrics": {
+      "extractionPrecision": 1,
+      "conflictFalsePositiveRate": 0,
+      "pendingReviewRatio": 0,
+      "supersedeCorrectnessRate": 1,
+      "p95WriteLatencyMs": 47,
+      "estimatedCostPer1kChunksUsd": 0.0225
+    }
+  }
+}

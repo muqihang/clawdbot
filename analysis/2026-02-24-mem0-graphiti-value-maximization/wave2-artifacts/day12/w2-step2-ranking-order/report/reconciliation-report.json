@@ -1,0 +1,31 @@
+{
+  "runDate": "2026-02-28",
+  "generatedAt": "2026-02-28T08:51:38.472Z",
+  "effectiveModel": "unknown",
+  "metrics": {
+    "candidateCount": 0,
+    "addedCount": 0,
+    "duplicateSkippedCount": 0,
+    "conflictCount": 0,
+    "sensitiveInterceptedCount": 0,
+    "indexConsistencyFailureCount": 0,
+    "outbox": {
+      "pending": 0,
+      "inflight": 0,
+      "succeeded": 0,
+      "failed": 0,
+      "dead": 0
+    }
+  },
+  "weekly_gate_fields": {
+    "proposal_count": 0,
+    "canary_commit_count": 0,
+    "manual_propose_commit_count": 0,
+    "pending_review_count": 0,
+    "failed_count": 0,
+    "dead_count": 0,
+    "admission_enabled": false,
+    "commit_canary_ratio": 0,
+    "effective_write_mode": "off"
+  }
+}

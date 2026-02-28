@@ -1,0 +1,11 @@
+{
+  "provider": "graphiti",
+  "dataset_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/inputs/retrieval-dataset.v1.json",
+  "generated_at": "2026-02-28T08:51:38.137Z",
+  "sample_size": 34,
+  "top_k": 3,
+  "hit_at_1": 0.6471,
+  "hit_at_3": 0.7353,
+  "structure_coverage": 0.9706,
+  "alias_recall": 0.3939
+}

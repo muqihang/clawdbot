@@ -1,0 +1,511 @@
+{
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/inputs/retrieval-dataset.v1.json",
+  "run_dir": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti",
+  "sample_size": 34,
+  "present_in_payload_count": 24,
+  "present_in_payload_rate": 0.7058823529411765,
+  "in_top3_count": 1,
+  "in_top3_rate": 0.029411764705882353,
+  "in_top1_count": 0,
+  "in_top1_rate": 0.0,
+  "results": [
+    {
+      "sample_id": "g2v1-addresses-27ed29a1",
+      "expected_id": "27ed29a1-6196-4452-a9a8-9792d2844f4f",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "10429b6b-76ec-4d6b-a5a2-1e4b9e94d26f"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-addresses-27ed29a1.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-addresses-27ed29a1.json"
+    },
+    {
+      "sample_id": "g2v1-approves-action-b8cad503",
+      "expected_id": "b8cad503-6f5b-4531-bb6e-92f998d25177",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6",
+        "24796f10-db8d-4219-8fac-1f2b3803f547"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-approves-action-b8cad503.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-approves-action-b8cad503.json"
+    },
+    {
+      "sample_id": "g2v1-asks-about-a4e7e953",
+      "expected_id": "a4e7e953-be0b-4699-874a-0c3c3fc6bd86",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 1]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "02997c4b-be77-472f-b0fa-97b944cc400c",
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-asks-about-a4e7e953.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-asks-about-a4e7e953.json"
+    },
+    {
+      "sample_id": "g2v1-assessed-4bdb77fb",
+      "expected_id": "4bdb77fb-9de4-4fd1-804e-bcf8c7224070",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "179f4bb4-c769-47e2-b76d-f24acd24952c",
+        "20c1e33a-5fbf-4628-adee-4ae44b1af08c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-assessed-4bdb77fb.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-assessed-4bdb77fb.json"
+    },
+    {
+      "sample_id": "g2v1-combines-16268e81",
+      "expected_id": "16268e81-6341-4fcc-9b17-c112f20677d5",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-combines-16268e81.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-combines-16268e81.json"
+    },
+    {
+      "sample_id": "g2v1-evaluated-60931d99",
+      "expected_id": "60931d99-029d-4a2a-83a7-c53e82cdae65",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "2037385d-b37b-467b-b529-d646ed818785"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-evaluated-60931d99.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-evaluated-60931d99.json"
+    },
+    {
+      "sample_id": "g2v1-has-founder-priority-f33f6ad0",
+      "expected_id": "f33f6ad0-1074-42cc-8a10-693016bc3e6e",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "2037385d-b37b-467b-b529-d646ed818785"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-has-founder-priority-f33f6ad0.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-has-founder-priority-f33f6ad0.json"
+    },
+    {
+      "sample_id": "g2v1-has-mission-312073bf",
+      "expected_id": "312073bf-e0c8-40f8-8d49-c67527691d49",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "179f4bb4-c769-47e2-b76d-f24acd24952c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-has-mission-312073bf.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-has-mission-312073bf.json"
+    },
+    {
+      "sample_id": "g2v1-has-mission-707b1035",
+      "expected_id": "707b1035-23bc-44fa-bcf0-695960197883",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "1b74a89a-162d-4bde-95bd-0c2ece3ebde0"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-has-mission-707b1035.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-has-mission-707b1035.json"
+    },
+    {
+      "sample_id": "g2v1-has-primary-business-242955ff",
+      "expected_id": "242955ff-7ba4-44ff-ba89-292986df4520",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "0cd18f6d-a677-414b-a534-621a18cb73ac"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-has-primary-business-242955ff.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-has-primary-business-242955ff.json"
+    },
+    {
+      "sample_id": "g2v1-implements-e807ecd8",
+      "expected_id": "e807ecd8-d193-4ab8-93b9-c6104bc78678",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "2037385d-b37b-467b-b529-d646ed818785",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-implements-e807ecd8.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-implements-e807ecd8.json"
+    },
+    {
+      "sample_id": "g2v1-involves-c43f91c1",
+      "expected_id": "c43f91c1-b43a-4deb-ab52-3aaadd9234d2",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "02997c4b-be77-472f-b0fa-97b944cc400c",
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-involves-c43f91c1.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-involves-c43f91c1.json"
+    },
+    {
+      "sample_id": "g2v1-is-acknowledged-for-82b07beb",
+      "expected_id": "82b07beb-0a79-424f-b2a7-727246ce982d",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "05205ba3-aa5f-481b-8bf7-b189e05f92b9",
+        "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-acknowledged-for-82b07beb.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-acknowledged-for-82b07beb.json"
+    },
+    {
+      "sample_id": "g2v1-is-current-operational-mode-for-274619b0",
+      "expected_id": "274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-current-operational-mode-for-274619b0.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-current-operational-mode-for-274619b0.json"
+    },
+    {
+      "sample_id": "g2v1-is-evaluating-enablement-of-727a7391",
+      "expected_id": "727a7391-214d-4ed3-a508-28f2b285d7d0",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "2037385d-b37b-467b-b529-d646ed818785",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-evaluating-enablement-of-727a7391.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-evaluating-enablement-of-727a7391.json"
+    },
+    {
+      "sample_id": "g2v1-is-in-execution-mode-30a97d8b",
+      "expected_id": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-in-execution-mode-30a97d8b.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-in-execution-mode-30a97d8b.json"
+    },
+    {
+      "sample_id": "g2v1-is-iterating-memory-mechanism-with-de2618ee",
+      "expected_id": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "2037385d-b37b-467b-b529-d646ed818785"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-iterating-memory-mechanism-with-de2618ee.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-iterating-memory-mechanism-with-de2618ee.json"
+    },
+    {
+      "sample_id": "g2v1-is-merged-into-f0e9fc3d",
+      "expected_id": "f0e9fc3d-50d9-4ca8-a06c-682570b1bb43",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 1]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "02997c4b-be77-472f-b0fa-97b944cc400c",
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-merged-into-f0e9fc3d.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-merged-into-f0e9fc3d.json"
+    },
+    {
+      "sample_id": "g2v1-is-planning-upgrade-with-73f72be0",
+      "expected_id": "73f72be0-4ba3-4c62-acda-b28d1375d940",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "2037385d-b37b-467b-b529-d646ed818785",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-planning-upgrade-with-73f72be0.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-planning-upgrade-with-73f72be0.json"
+    },
+    {
+      "sample_id": "g2v1-is-superseded-by-670c1afe",
+      "expected_id": "670c1afe-add8-4bd4-b2d6-127dffbac2eb",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "20c1e33a-5fbf-4628-adee-4ae44b1af08c",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-superseded-by-670c1afe.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-superseded-by-670c1afe.json"
+    },
+    {
+      "sample_id": "g2v1-is-tracked-during-d8a1c0c2",
+      "expected_id": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "2037385d-b37b-467b-b529-d646ed818785",
+        "2210a741-0907-4d12-9eb6-1b733baecf41",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-is-tracked-during-d8a1c0c2.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-is-tracked-during-d8a1c0c2.json"
+    },
+    {
+      "sample_id": "g2v1-kept-unchanged-for-next-week-by-9b9e9ab9",
+      "expected_id": "9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "20c1e33a-5fbf-4628-adee-4ae44b1af08c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-kept-unchanged-for-next-week-by-9b9e9ab9.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-kept-unchanged-for-next-week-by-9b9e9ab9.json"
+    },
+    {
+      "sample_id": "g2v1-may-be-incorporated-into-afa8a298",
+      "expected_id": "afa8a298-c777-4ba1-9fb3-7ed878ca5076",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "179f4bb4-c769-47e2-b76d-f24acd24952c",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6",
+        "24796f10-db8d-4219-8fac-1f2b3803f547"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-may-be-incorporated-into-afa8a298.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-may-be-incorporated-into-afa8a298.json"
+    },
+    {
+      "sample_id": "g2v1-measured-bc201f13",
+      "expected_id": "bc201f13-c8b8-43d1-9811-24bbde19cc0a",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "10429b6b-76ec-4d6b-a5a2-1e4b9e94d26f",
+        "179f4bb4-c769-47e2-b76d-f24acd24952c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-measured-bc201f13.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-measured-bc201f13.json"
+    },
+    {
+      "sample_id": "g2v1-must-be-processed-by-a2a3e1ad",
+      "expected_id": "a2a3e1ad-ff40-4cff-b5d3-b855230b85c9",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-must-be-processed-by-a2a3e1ad.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-must-be-processed-by-a2a3e1ad.json"
+    },
+    {
+      "sample_id": "g2v1-observes-02997c4b",
+      "expected_id": "02997c4b-be77-472f-b0fa-97b944cc400c",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-observes-02997c4b.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-observes-02997c4b.json"
+    },
+    {
+      "sample_id": "g2v1-operates-in-scope-d2f79d6d",
+      "expected_id": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+      "present_in_payload": false,
+      "payload_matches": [],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "16268e81-6341-4fcc-9b17-c112f20677d5"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-operates-in-scope-d2f79d6d.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-operates-in-scope-d2f79d6d.json"
+    },
+    {
+      "sample_id": "g2v1-plans-to-integrate-82e05f53",
+      "expected_id": "82e05f53-ba5d-4a0b-b70c-324f982dbffc",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f",
+        "179f4bb4-c769-47e2-b76d-f24acd24952c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-plans-to-integrate-82e05f53.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-plans-to-integrate-82e05f53.json"
+    },
+    {
+      "sample_id": "g2v1-precedes-84412083",
+      "expected_id": "84412083-5453-40a2-8281-6c2ba446cfca",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "02997c4b-be77-472f-b0fa-97b944cc400c",
+        "0454c8d0-23ee-4235-bb4d-25b2234ab43f"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-precedes-84412083.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-precedes-84412083.json"
+    },
+    {
+      "sample_id": "g2v1-recommends-systematic-repair-for-go-status-140943d4",
+      "expected_id": "140943d4-23d4-4c79-979d-f6e488d07c7c",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": true,
+      "top3_ids": [
+        "02997c4b-be77-472f-b0fa-97b944cc400c",
+        "0cd18f6d-a677-414b-a534-621a18cb73ac",
+        "140943d4-23d4-4c79-979d-f6e488d07c7c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-recommends-systematic-repair-for-go-status-140943d4.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-recommends-systematic-repair-for-go-status-140943d4.json"
+    },
+    {
+      "sample_id": "g2v1-results-in-retention-of-7af9ea39",
+      "expected_id": "7af9ea39-7b15-456b-adf6-681376b86a28",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "2210a741-0907-4d12-9eb6-1b733baecf41",
+        "23982bd8-eeb6-4b5b-afe7-0c13a426cae6"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-results-in-retention-of-7af9ea39.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-results-in-retention-of-7af9ea39.json"
+    },
+    {
+      "sample_id": "g2v1-specifies-execution-requirements-for-d95b26eb",
+      "expected_id": "d95b26eb-6f66-479d-a515-6ca9ef6bf102",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "0cd18f6d-a677-414b-a534-621a18cb73ac",
+        "140943d4-23d4-4c79-979d-f6e488d07c7c",
+        "179f4bb4-c769-47e2-b76d-f24acd24952c"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-specifies-execution-requirements-for-d95b26eb.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-specifies-execution-requirements-for-d95b26eb.json"
+    },
+    {
+      "sample_id": "g2v1-undermines-credibility-of-df79c1ca",
+      "expected_id": "df79c1ca-1cc3-4355-89c1-95e3066d9962",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "04c9fa6c-0c42-4bf0-858c-22e2e027f76b",
+        "10429b6b-76ec-4d6b-a5a2-1e4b9e94d26f",
+        "2037385d-b37b-467b-b529-d646ed818785"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-undermines-credibility-of-df79c1ca.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-undermines-credibility-of-df79c1ca.json"
+    },
+    {
+      "sample_id": "g2v1-will-be-formalized-into-853034e2",
+      "expected_id": "853034e2-f97a-41f3-be57-6e23a7281f22",
+      "present_in_payload": true,
+      "payload_matches": [["facts", 0]],
+      "in_top1": false,
+      "in_top3": false,
+      "top3_ids": [
+        "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "179f4bb4-c769-47e2-b76d-f24acd24952c",
+        "2210a741-0907-4d12-9eb6-1b733baecf41"
+      ],
+      "raw_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.raw.sample.g2v1-will-be-formalized-into-853034e2.json",
+      "topk_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day11/w2-gate2-systemic/retrieval/bounded-05/graphiti/search.topk.sample.g2v1-will-be-formalized-into-853034e2.json"
+    }
+  ]
+}

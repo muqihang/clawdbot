@@ -1,0 +1,223 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:18000/search",
+  "query": "Jarvis is online and in execution mode",
+  "requestBody": {
+    "query": "Jarvis is online and in execution mode"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "30a97d8b-2be0-4459-a15f-f0edf59e41f5",
+        "name": "IS_IN_EXECUTION_MODE",
+        "fact": "Jarvis is online and in execution mode",
+        "valid_at": "2026-02-26T03:04:24+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:05:16.447280+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "274619b0-93ff-4d41-9e5b-da7a0d7cb8cc",
+        "name": "IS_CURRENT_OPERATIONAL_MODE_FOR",
+        "fact": "bootstrap-only mode is the current operational mode for self-improvement hooks",
+        "valid_at": "2026-02-25T12:10:29.903000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:46:20.006083+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "707b1035-23bc-44fa-bcf0-695960197883",
+        "name": "HAS_MISSION",
+        "fact": "Jarvis OS mission is second-hand car AI SaaS",
+        "valid_at": "2026-02-24T10:03:23.817544+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:03:36.440723+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6",
+        "name": "KEPT_UNCHANGED_FOR_NEXT_WEEK_BY",
+        "fact": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision",
+        "valid_at": "2026-02-25T12:10:29+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T12:45:36.901566+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52",
+        "name": "IS_TRACKED_DURING",
+        "fact": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "valid_at": "2026-02-24T11:29:57+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T11:31:44.271549+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "de2618ee-90cd-4bde-9b57-ed6e34b26bb4",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666687+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d95b26eb-6f66-479d-a515-6ca9ef6bf102",
+        "name": "SPECIFIES_EXECUTION_REQUIREMENTS_FOR",
+        "fact": "assistant specifies execution requirements for W2 including feedback tabulation, P0 issue prioritization, evidence packaging, and binary go/no-go reporting",
+        "valid_at": "2026-02-28T05:34:38+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T05:36:46.408321+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "c2312c79-e87a-4089-a88e-f4c78b961fdf",
+        "name": "DOCUMENTS_HYGIENE_RULE",
+        "fact": "The weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.",
+        "valid_at": "2026-02-26T03:01:46+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-26T03:03:38.695582+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "27ed29a1-6196-4452-a9a8-9792d2844f4f",
+        "name": "ADDRESSES",
+        "fact": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.",
+        "valid_at": "2026-02-28T06:24:27+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T06:25:54.697529+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [
+      {
+        "uuid": "697e5f2d-bb0e-42d8-a7d1-3be9aa511bb8",
+        "name": "",
+        "content": "assistant(assistant): [[reply_to_current]] Jarvis 在线，进入执行模式了 ⚙️。你现在最想先推进哪一块：产品架构、代码落地，还是业务上的关键决策支持？",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:05:02.737093+00:00"
+      },
+      {
+        "uuid": "92bd31d2-5b16-41f8-a43d-4dd136a8ce43",
+        "name": "",
+        "content": "assistant(assistant): [[reply_to_current]] 好，就按这个节奏走最稳。\n\n- 先把这轮升级当“真实运行实验”，边执行边记录，不先过度设计组织形态。\n- 我会重点跟踪三类信号：执行效率、决策质量、返工率（看模拟团队机制到底值不值）。\n- 每个阶段结束我给你一页复盘：保留什么、砍掉什么、自动化什么。\n- 如果效果好，再把有效做法固化进 Jarvis OS；效果一般就只保留轻量版。\n\n你继续推进，我这边盯节奏和质量，及时给你纠偏。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:07.207737+00:00"
+      },
+      {
+        "uuid": "2037385d-b37b-467b-b529-d646ed818785",
+        "name": "",
+        "content": "user(user): A new session was started via /new or /reset. Execute your Session Startup sequence now - read the required files before responding to the user. Then greet the user in your configured persona, if one is provided. Be yourself - use your defined voice, mannerisms, and mood. Keep it to 1-3 sentences and ask what they want to do. If the runtime model differs from default_model in the system prompt, mention the default model. Do not mention internal steps, files, tools, or reasoning.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:04:37.286847+00:00"
+      },
+      {
+        "uuid": "33ecf325-a101-443a-b4f9-d722374de4c9",
+        "name": "",
+        "content": "user(user): P2 close probe: founder priority is Telegram and Jarvis OS mission is second-hand car AI SaaS",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:23.817915+00:00"
+      },
+      {
+        "uuid": "23982bd8-eeb6-4b5b-afe7-0c13a426cae6",
+        "name": "",
+        "content": "user(user): System: [2026-02-25 18:43:05 GMT+8] Cron (error): One-week self-improvement audit complete (this is the scheduled 1-week review after enabling the low-risk setup).\n\nDecision: tighten policy (lightly), not disable.\n\nKey evidence:\n- Hook safety is still correct: `~/.openclaw/openclaw.json` only enables `hooks.internal.entries.self-improvement`, and the hook implementation is bootstrap-only (`agent:bootstrap`) in `hooks/self-improvement/HOOK.md` and `hooks/self-improvement/handler.ts`; no `UserPromptSubmit`/`PostToolUse` defaults are enabled.\n- Learning-log quality is mostly good signal: `.learnings/LEARNINGS.md` has 2 meaningful behavior corrections (docs-vs-runtime boundary, scope-control after user correction), both high value.\n- Error-log quality is mixed: `.learnings/ERRORS.md` has 5 entries, with a duplicate cluster around `openclaw` PATH issues (similar root cause logged multiple times), so dedup discipline can improve.\n- Sensitive-data risk is low: no raw tokens/passwords seen in the three files reviewed; content is mostly operational context and file paths.\n- Productivity and drift impact over the week: net positive (important corrections captured and reusable), with low behavior-drift risk due to bootstrap-only trigger; however, repeated unresolved environment errors and one scope-drift incident show small but real overhead.\n\nNext 1-3 actions:\n1) Merge duplicate PATH-related errors into one canonical entry with one validated fix path, then mark superseded duplicates.\n2) Add weekly hygiene rule: close or promote `pending` learnings/errors older than 7 days to keep logs actionable.\n3) Keep bootstrap-only mode unchanged for next week; do not enable high-frequency hooks unless missed-learning rate is demonstrably high.\n\nConversation info (untrusted metadata):\n```json\n{\n  \"message_id\": \"631\",\n  \"sender_id\": \"8000351513\",\n  \"sender\": \"8000351513\"\n}\n```\n\n什么意思？我没明白？你说的“接下来建议就做这 3 件事”就是你一周复盘学习到的吗？",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:05.107691+00:00"
+      },
+      {
+        "uuid": "e2111e16-b056-4edb-be73-bd06aef5ed7f",
+        "name": "",
+        "content": "user(user): Conversation info (untrusted metadata):\n```json\n{\n  \"message_id\": \"625\",\n  \"sender_id\": \"8000351513\",\n  \"sender\": \"8000351513\"\n}\n```\n\n好的，这样吧，随着这次升级迭代过程看看整个过程如何，到时候根据情况研究一下我们如何吸收进我们的jarvis os。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:29.122860+00:00"
+      },
+      {
+        "uuid": "8891d60c-9cfa-474a-a884-d0f1f4ad5989",
+        "name": "",
+        "content": "assistant(assistant): [[reply_to_current]] 已做完，已经落地并提交了 ✅\n\n- 已把 PATH 重复错误合并为 1 条 canonical：`/Users/muqihang/clawd/.learnings/ERRORS.md`\n- 已将重复条目标记为 superseded（`ERR-20260222-001`、`ERR-20260222-002`），并指向 canonical `ERR-20260223-001`\n- canonical 里写了统一“已验证修复路径”：\n  - `cd /Users/muqihang/chelingxi_workspace/clawdbot && pnpm openclaw <subcommand>`\n  - `node /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs <subcommand>`\n- 已加入每周卫生规则（pending 超过 7 天必须 close/promote/wont_fix）：`/Users/muqihang/clawd/.learnings/POLICY.md`\n- 当前检查：暂时没有超过 7 天的 pending 项（所以本轮无需额外关单）\n\n已提交：\n- `e9eac72` — `learnings: dedupe openclaw PATH errors and add weekly hygiene rule`",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-26T03:03:00.462576+00:00"
+      },
+      {
+        "uuid": "85dad033-dd4c-4feb-9d77-104503033edf",
+        "name": "",
+        "content": "user(user): System: [2026-02-24 21:28:13 GMT+8] Cron (error): 提醒牧启航：现在是 2 天后的 memory 召回质量复盘时间。\n\n基于最近 2 天实际对话与检索表现（`memory/2026-02-22.md:3`、`memory/2026-02-22.md:10`、`memory/2026-02-22.md:32`，以及近两次 cron 审计与主会话检索记录），结论如下：\n\n- 相关性：中偏低；有成功命中（如人设/Jarvis OS 相关），但也出现明显跑偏（如 D0-A 查询返回不相关历史文档），稳定性不足。  \n- 去重：中等；成功结果里常集中在同源主题（index/topic/person），信息有重复倾向。  \n- 多样性：中等；能覆盖 `MEMORY.md` + people/project/topic，但跨源融合质量不稳。  \n- 新鲜度：中等；2/22~2/23 事实在文件层是新的，但 2/24 在线检索可用性波动，实时召回可信度下降。  \n- 关键事实命中率：偏低；精确 ID（如 `-1003727754459`）在审计里出现“明明存在但检不出”的情况。  \n- 噪音：偏高；出现空结果、provider/db 异常、以及 query-意图不匹配结果，影响决策可用性。  \n\n明确结论：**暂不建议启用第二阶段 sessionMemory（否）**。  \n理由：当前核心瓶颈不是“记忆量不够”，而是“检索可用性与精确性不稳定”；此时上 sessionMemory 会把短期上下文噪音放大，增加误召回与误决策风险。  \n主要风险（若现在强开）：  \n- 错误或过时上下文被短期强化，造成“看起来更聪明、实际更偏”。  \n- 精确键（ID/错误码/决策版本）继续漏召回，影响执行指令正确性。  \n- 排障面扩大（provider + embedding + session层），定位成本上升。\n\n建议动作（先做再评估开关）：\n1. 先修复检索基础可用性（embedding/provider/db open 问题），把 `memory_search` 稳定性拉到可连续通过。  \n2. 建 20 条回归集（身份事实/精确ID/新旧冲突）并每天跑：重点看 Top1 命中、精确召回、噪音率。  \n3. 设启用门槛：连续 3 天满足“可用性>=99%、精确ID Top1>=95%、冲突最近事实优先>=90%、噪音<=10%”，再灰度开启 sessionMemory（shadow -> 小流量）。  \n\n发送对象/位置：牧启航（Telegram 主会话，`agent:main:main`）。\n\nConversation info (untrusted metadata):\n```json\n{\n  \"message_id\": \"628\",\n  \"reply_to_id\": \"627\",\n  \"sender_id\": \"8000351513\",\n  \"sender\": \"8000351513\"\n}\n```\n\nReplied message (untrusted, for context):\n```json\n{\n  \"sender_label\": \"司南\",\n  \"body\": \"到两天复盘点了，我给你一个直接结论：现在不建议开启第二阶段 sessionMemory。\\n\\n这两天的实际表现看下来：\\n\\n• 相关性是“中偏低”：有命中人设/Jarvis OS，但也有明显跑偏（问 D0-A 却回不相关旧文档）。\\n• 去重和多样性“中等”：能覆盖 MEMORY.md、people/project/topic，但融合稳定性一般。\\n• 新鲜度“中等”：文件层新事实有写入，但在线检索可用性在波动。\\n• 关键事实命中“偏低”：精确 ID 类场景存在“明明有却检不出”。\\n• 噪音“偏高”：空结果、provider/db 异常、意图不匹配都在影响可用性。\\n\\n为什么现在不该开 sessionMemory：\\n\\n• 现在的问题不是“记忆不够多”，而是“检索不够稳、不够准”。\\n• 这时强上 sessionMemory，会放大短期噪音，增加误召回和误决策。\\n\\n建议先做这三步，再评估开关：\\n\\n1. 先把检索基础可用性修稳（embedding/provider/db）。\\n2. 建 20 条回归集（日跑）：身份事实、精确 ID、新旧冲突三类。\\n3. 设开关门槛：连续 3 天同时满足\\n\\n• 可用性 >= 99%\\n• 精确 ID Top1 >= 95%\\n• 冲突场景“最近事实优先” >= 90%\\n• 噪音 <= 10%\\n满足后再走 shadow -> 小流量 灰度开启。\"\n}\n```\n\n目前我们正在将记忆机制迭代升级，也就是Mem0 + Graphiti+本地官方内置的 混合路由方案。 所以你觉得我们是否应该迭代升级完成后再开sessionMemory？ 对了sessionMemory什么意思？我都忘了，跟我解释一下",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T03:00:21.878859+00:00"
+      }
+    ],
+    "nodes": [
+      {
+        "uuid": "e698dfc1-534a-42bb-a33c-d501ddf195d2",
+        "name": "Jarvis OS",
+        "summary": "Jarvis OS mission is second-hand car AI SaaS\nuser plans to study how to integrate upgrade iteration into Jarvis OS\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nJarvis is online and in execution mode\nJarvis is online and in execution mode",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409060+00:00"
+      },
+      {
+        "uuid": "31320924-cfa9-422e-a90e-8dd9f6905c18",
+        "name": "execution efficiency",
+        "summary": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922118+00:00"
+      },
+      {
+        "uuid": "9ea11b52-1556-4df3-94fc-9fc250f4014d",
+        "name": "bootstrap-only mode",
+        "summary": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision\nbootstrap-only mode is the current operational mode for self-improvement hooks",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:20.715363+00:00"
+      },
+      {
+        "uuid": "025b8255-e2f3-47d8-b56f-1c9019a2c1fe",
+        "name": "learning-log",
+        "summary": "self-improvement audit evaluated learning-log quality and found it mostly good signal with 2 meaningful behavior corrections\nbootstrap-only mode is the current operational mode for self-improvement hooks\npending entries older than 7 days must be closed or promoted to keep learning logs actionable\nopenclaw PATH errors are merged into one canonical entry in learning logs",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-25T12:11:20.715215+00:00"
+      },
+      {
+        "uuid": "cc9069ac-3475-4c24-b69f-0acf45b312ad",
+        "name": "user",
+        "summary": "user plans to study how to integrate upgrade iteration into Jarvis OS\nuser intends to evaluate upgrade iteration during its ongoing process\nuser is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser approves the execution of the three actions derived from the one-week self-improvement audit\nuser asks why only Step 1 is being done, noting there are 4个Step\nuser observes that there are 4个Step",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:30:40.848583+00:00"
+      },
+      {
+        "uuid": "58bad8b9-b4c1-4a11-ba18-c052a9fec6c4",
+        "name": "assistant",
+        "summary": "Acknowledged P2 close probe for mem0+graphiti hybrid plan in response to user's statement about founder priority being Telegram and Jarvis OS mission being second-hand car AI SaaS.\nThe weekly hygiene rule is documented in /Users/muqihang/clawd/.learnings/POLICY.md.\nassistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status\nassistant proposes that W2 adopt a 'closed-loop delivery' objective — requiring root cause, fix, and retest evidence for each feedback item\nassistant specifies execution requirements for W2 including feedback tabulation, P0 issue prioritization, evidence packaging, and binary go/no-go reporting",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070578+00:00"
+      },
+      {
+        "uuid": "049fce75-ac8c-4014-81c8-0a61bcdd01a7",
+        "name": "second-hand car AI SaaS",
+        "summary": "Jarvis OS mission is second-hand car AI SaaS",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409083+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "ff4cee59-b472-4b70-9cc4-2b959fc5d6aa",
+        "name": "graphiti",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070728+00:00"
+      },
+      {
+        "uuid": "942d81d5-1267-4dd2-984e-ad8184eb5eec",
+        "name": "sample_size<30",
+        "summary": "sample_size<30 is a problem that undermines the credibility of evaluation results used in Gate-2.\nStep 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T06:25:22.111075+00:00"
+      }
+    ]
+  }
+}
