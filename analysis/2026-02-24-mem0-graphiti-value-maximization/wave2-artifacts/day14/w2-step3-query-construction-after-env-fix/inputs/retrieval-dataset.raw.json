@@ -1,0 +1,240 @@
+[
+  {
+    "id": "g2v1-addresses-27ed29a1",
+    "query": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.",
+    "aliases": ["embedding model text-embedding-v4"],
+    "expected_ids": ["27ed29a1-6196-4452-a9a8-9792d2844f4f"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-approves-action-b8cad503",
+    "query": "user approves the execution of the three actions derived from the one-week self-improvement audit",
+    "aliases": ["weekly hygiene rule"],
+    "expected_ids": ["b8cad503-6f5b-4531-bb6e-92f998d25177"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-asks-about-a4e7e953",
+    "query": "user asks why only Step 1 is being done, noting there are 4个Step",
+    "aliases": ["记忆 机制 升级"],
+    "expected_ids": ["a4e7e953-be0b-4699-874a-0c3c3fc6bd86"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-assessed-4bdb77fb",
+    "query": "self-improvement audit assessed behavior-drift risk as low due to bootstrap-only trigger, though repeated unresolved environment errors and one scope-drift incident showed small but real overhead",
+    "aliases": ["bootstrap-only mode"],
+    "expected_ids": ["4bdb77fb-9de4-4fd1-804e-bcf8c7224070"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-combines-16268e81",
+    "query": "hybrid plan combines mem0 and graphiti",
+    "aliases": [],
+    "expected_ids": ["16268e81-6341-4fcc-9b17-c112f20677d5"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-evaluated-60931d99",
+    "query": "self-improvement audit evaluated learning-log quality and found it mostly good signal with 2 meaningful behavior corrections",
+    "aliases": ["Gate-2"],
+    "expected_ids": ["60931d99-029d-4a2a-83a7-c53e82cdae65"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-has-founder-priority-f33f6ad0",
+    "query": "P2's founder priority is Telegram",
+    "aliases": ["偏好 使用 sub2api"],
+    "expected_ids": ["f33f6ad0-1074-42cc-8a10-693016bc3e6e"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-has-mission-312073bf",
+    "query": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.",
+    "aliases": ["Jarvis OS mission"],
+    "expected_ids": ["312073bf-e0c8-40f8-8d49-c67527691d49"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-has-mission-707b1035",
+    "query": "Jarvis OS mission is second-hand car AI SaaS",
+    "aliases": ["embedding model text-embedding-v4"],
+    "expected_ids": ["707b1035-23bc-44fa-bcf0-695960197883"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-has-primary-business-242955ff",
+    "query": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.",
+    "aliases": ["graphiti"],
+    "expected_ids": ["242955ff-7ba4-44ff-ba89-292986df4520"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-implements-e807ecd8",
+    "query": "The commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.",
+    "aliases": ["weekly hygiene rule"],
+    "expected_ids": ["e807ecd8-d193-4ab8-93b9-c6104bc78678"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-involves-c43f91c1",
+    "query": "Step 2 involves performance and sorting optimization.",
+    "aliases": ["hybrid plan combines mem0 and graphiti"],
+    "expected_ids": ["c43f91c1-b43a-4deb-ab52-3aaadd9234d2"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-acknowledged-for-82b07beb",
+    "query": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+    "aliases": ["mem0 graphiti bridge"],
+    "expected_ids": ["82b07beb-0a79-424f-b2a7-727246ce982d"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-current-operational-mode-for-274619b0",
+    "query": "bootstrap-only mode is the current operational mode for self-improvement hooks",
+    "aliases": ["偏好 使用 sub2api"],
+    "expected_ids": ["274619b0-93ff-4d41-9e5b-da7a0d7cb8cc"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-evaluating-enablement-of-727a7391",
+    "query": "user is evaluating whether to enable sessionMemory after completing the Mem0 + Graphiti + local official built-in hybrid routing upgrade",
+    "aliases": ["mem0 graphiti bridge"],
+    "expected_ids": ["727a7391-214d-4ed3-a508-28f2b285d7d0"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-in-execution-mode-30a97d8b",
+    "query": "Jarvis is online and in execution mode",
+    "aliases": ["mem0 graphiti bridge"],
+    "expected_ids": ["30a97d8b-2be0-4459-a15f-f0edf59e41f5"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-iterating-memory-mechanism-with-de2618ee",
+    "query": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+    "aliases": ["mem0 graphiti bridge"],
+    "expected_ids": ["de2618ee-90cd-4bde-9b57-ed6e34b26bb4"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-merged-into-f0e9fc3d",
+    "query": "openclaw PATH errors are merged into one canonical entry in learning logs",
+    "aliases": ["Jarvis 操作系统"],
+    "expected_ids": ["f0e9fc3d-50d9-4ca8-a06c-682570b1bb43"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-planning-upgrade-with-73f72be0",
+    "query": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+    "aliases": ["mem0 graphiti bridge"],
+    "expected_ids": ["73f72be0-4ba3-4c62-acda-b28d1375d940"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-superseded-by-670c1afe",
+    "query": "The error entries ERR-20260222-001 and ERR-20260222-002 are marked as superseded and point to the canonical entry ERR-20260223-001.",
+    "aliases": ["Gate-2"],
+    "expected_ids": ["670c1afe-add8-4bd4-b2d6-127dffbac2eb"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-is-tracked-during-d8a1c0c2",
+    "query": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+    "aliases": ["Mem0 Graphiti 记忆升级"],
+    "expected_ids": ["d8a1c0c2-c754-492d-9fcc-fe1a43b9fc52"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-kept-unchanged-for-next-week-by-9b9e9ab9",
+    "query": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision",
+    "aliases": ["weekly hygiene rule"],
+    "expected_ids": ["9b9e9ab9-7cb2-4202-a49c-feb8d444a1e6"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-may-be-incorporated-into-afa8a298",
+    "query": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS.",
+    "aliases": ["Jarvis OS mission"],
+    "expected_ids": ["afa8a298-c777-4ba1-9fb3-7ed878ca5076"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-measured-bc201f13",
+    "query": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable",
+    "aliases": ["weekly hygiene rule"],
+    "expected_ids": ["bc201f13-c8b8-43d1-9811-24bbde19cc0a"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-must-be-processed-by-a2a3e1ad",
+    "query": "pending entries older than 7 days must be closed or promoted to keep learning logs actionable",
+    "aliases": ["founder priority Telegram"],
+    "expected_ids": ["a2a3e1ad-ff40-4cff-b5d3-b855230b85c9"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-observes-02997c4b",
+    "query": "user observes that there are 4个Step",
+    "aliases": ["记忆 机制 升级"],
+    "expected_ids": ["02997c4b-be77-472f-b0fa-97b944cc400c"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-operates-in-scope-d2f79d6d",
+    "query": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+    "aliases": ["thinktank topology"],
+    "expected_ids": ["d2f79d6d-6fe7-4567-abbe-4722c22dc38a"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-plans-to-integrate-82e05f53",
+    "query": "user plans to study how to integrate upgrade iteration into Jarvis OS",
+    "aliases": ["Jarvis OS mission"],
+    "expected_ids": ["82e05f53-ba5d-4a0b-b70c-324f982dbffc"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-precedes-84412083",
+    "query": "Step 1 is required before Step 2, Step 3, and Step 4 can be meaningfully executed.",
+    "aliases": ["Gate-2"],
+    "expected_ids": ["84412083-5453-40a2-8281-6c2ba446cfca"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-recommends-systematic-repair-for-go-status-140943d4",
+    "query": "assistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status",
+    "aliases": ["Gate-2"],
+    "expected_ids": ["140943d4-23d4-4c79-979d-f6e488d07c7c"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-results-in-retention-of-7af9ea39",
+    "query": "If the upgrade iteration yields suboptimal results, only a lightweight version will be retained.",
+    "aliases": ["mem0 graphiti bridge"],
+    "expected_ids": ["7af9ea39-7b15-456b-adf6-681376b86a28"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-specifies-execution-requirements-for-d95b26eb",
+    "query": "assistant specifies execution requirements for W2 including feedback tabulation, P0 issue prioritization, evidence packaging, and binary go/no-go reporting",
+    "aliases": ["Jarvis OS mission"],
+    "expected_ids": ["d95b26eb-6f66-479d-a515-6ca9ef6bf102"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-undermines-credibility-of-df79c1ca",
+    "query": "sample_size<30 is a problem that undermines the credibility of evaluation results used in Gate-2.",
+    "aliases": ["Gate-2"],
+    "expected_ids": ["df79c1ca-1cc3-4355-89c1-95e3066d9962"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v1-will-be-formalized-into-853034e2",
+    "query": "If the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.",
+    "aliases": ["记忆 机制 升级"],
+    "expected_ids": ["853034e2-f97a-41f3-be57-6e23a7281f22"],
+    "expected_structures": ["facts"]
+  }
+]

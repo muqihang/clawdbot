@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 /Users/muqihang/chelingxi_workspace/clawdbot
+
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/p3-retrieval-eval.test.ts (5 tests) 19ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  17:35:35
+   Duration  353ms (transform 202ms, setup 224ms, import 18ms, tests 19ms, environment 0ms)
+

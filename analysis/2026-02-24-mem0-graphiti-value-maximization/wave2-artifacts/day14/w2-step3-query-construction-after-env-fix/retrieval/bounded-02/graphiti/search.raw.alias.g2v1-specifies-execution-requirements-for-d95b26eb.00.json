@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Jarvis OS mission",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Jarvis OS mission"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "weekly hygiene rule",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "weekly hygiene rule"
+  },
+  "payload": null
+}

@@ -1,0 +1,91 @@
+2026-02-28 20:13:45,542 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,563 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,634 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,634 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 20:13:45,662 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,662 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 20:13:45,683 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,683 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 20:13:45,700 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,700 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 20:13:45,733 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,741 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,761 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,761 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 20:13:45,766 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,766 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 20:13:45,775 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,775 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 20:13:45,787 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:13:45,787 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 20:13:45,828 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     Started server process [76620]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:61739 - "GET /docs HTTP/1.1" 200 OK
+2026-02-28 20:14:06,594 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,604 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,616 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,616 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 20:14:06,622 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,622 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 20:14:06,635 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,635 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 20:14:06,641 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,642 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 20:14:06,667 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,673 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,687 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,687 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 20:14:06,694 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,695 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 20:14:06,702 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,702 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 20:14:06,716 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 20:14:06,716 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 20:14:06,727 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:61740 - "POST /configure HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61755 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61757 - "GET /docs HTTP/1.1" 200 OK
+2026-02-28 20:15:20,442 - INFO - HTTP Request: POST http://127.0.0.1:18081/v1/chat/completions "HTTP/1.1 404 Not Found"
+2026-02-28 20:15:20,443 - ERROR - Error in add_memory:
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/main.py", line 120, in add_memory
+    response = MEMORY_INSTANCE.add(messages=[m.model_dump() for m in memory_create.messages], **params)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/memory/main.py", line 375, in add
+    vector_store_result = future1.result()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/memory/main.py", line 434, in _add_to_vector_store
+    response = self.llm.generate_response(
+        messages=[
+    ...<3 lines>...
+        response_format={"type": "json_object"},
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/llms/openai.py", line 175, in generate_response
+    response = self.client.chat.completions.create(**params)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1192, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found
+INFO:     127.0.0.1:61795 - "POST /memories HTTP/1.1" 500 Internal Server Error

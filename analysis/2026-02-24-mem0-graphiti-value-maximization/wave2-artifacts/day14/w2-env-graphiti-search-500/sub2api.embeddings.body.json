@@ -1,0 +1,5 @@
+{
+  "capture_format": "raw_text",
+  "raw": "404 page not found\n",
+  "note": "Captured response was not JSON; wrapped to keep evidence valid-json for repo format checks."
+}

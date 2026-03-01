@@ -1,0 +1,2 @@
+raw_total=569
+raw_without_max_facts_50=0

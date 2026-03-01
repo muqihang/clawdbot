@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing"
+  },
+  "payload": null
+}

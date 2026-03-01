@@ -1,0 +1,1065 @@
+{
+  "created_at": "2026-02-28T12:30:25Z",
+  "semantic_owner": {
+    "006d2a24325d0a2b2f2fef773b3be4471c2d7c4bcd458a46fd5a880dd0e59454": {
+      "chunk_id": "41215dde4a5c8a8a6ed567dd01558bd167eac14b3b070ee912fe02fee104967d",
+      "source_tier": "canonical"
+    },
+    "06011cdb6e18eb6d011fb934bb41c56f3e5d085fee64e88eec728bcecb09238a": {
+      "chunk_id": "dab1a926e6333c54f00655bc2b6843f7906f281c222abd732445175a24168318",
+      "source_tier": "topic_derived"
+    },
+    "17f5b243cdbcab5aa74c49f08d54f16cba3c81bfb6637d893f5e74365c11eaa1": {
+      "chunk_id": "bbc9d4d61e9e7bd86a5938f92377bdb71c0387837891859e10aa06f87dda4dbe",
+      "source_tier": "topic_derived"
+    },
+    "3473261044bea8b3124f3639352508a602fb0957ce85174fa1c9f89fea6d152b": {
+      "chunk_id": "fba42197b1053f3bb7b3303f72a91bc2f3ee04b113ea449eb391444e7cd77793",
+      "source_tier": "canonical"
+    },
+    "74e8af6ae7e2a4039d1fd71fee328ef01f660b5520f46c34be7f140eb7dea20d": {
+      "chunk_id": "f7de9c815e8c2c65ac45baf2ea9a088a4eeb5d775a309294e8c34c5f742c0bf9",
+      "source_tier": "topic_derived"
+    },
+    "7f0b1839f21e919a52ece7b6eadd254910d04415ee6e24517109d414fc918cc3": {
+      "chunk_id": "82f2fce3975c5bf6ba193f6dded746a1773faf57a2250f0f00228d40e88157a6",
+      "source_tier": "topic_derived"
+    },
+    "828aa82c80f538f9a8054e503c7b0cec8bc180cf3b2da7d80b7b4639b38c9b8a": {
+      "chunk_id": "9fea1cac3d3eef1b12bf61f570c8732c71161a7e7f5dc43e663115b08e96ae58",
+      "source_tier": "canonical"
+    },
+    "8368c997bfd96c9bcc0c272d287ba01f2358618002e51cbeded319e5354f27bb": {
+      "chunk_id": "90ad153d496804164a76c05deb4d3d1c808462a67c2b9b88181f0c2909194540",
+      "source_tier": "daily_log"
+    },
+    "88d589e366561e4ef5909e7c92d057dbf8178864a5a8dc3e2a60cdfb034a2845": {
+      "chunk_id": "b97e8b6000706b2f28a8578b51efa16714ba00fe6b023aec2b20a003e7b0b53a",
+      "source_tier": "canonical"
+    },
+    "a114a4a0f4926fe0a5197002bb2bf65bdd754bfd02f587d3ced17ef332bae490": {
+      "chunk_id": "f1c4ae8cbc3cb96a2626c53f76e4a2b8235ce27389101ebead34b0f089febf31",
+      "source_tier": "canonical"
+    },
+    "bd90d6d52d5fd58e0ab69bf2c0371d4b2df4d6dd610879bae404f2c16bb15f4d": {
+      "chunk_id": "07031b6cd532a9d3fda474239483dc1cb9b277cc0a6e2d9cca649c44880ae80f",
+      "source_tier": "daily_log"
+    },
+    "e811848693589e22726e9ce0305b0d88627ab81dda40542db665da6e8e8d995a": {
+      "chunk_id": "ff7ac9140ee8b59e9bbb11e6b318e1b5af5975319a271ef1f5f6b4b468c1ac30",
+      "source_tier": "canonical"
+    },
+    "f41104f63aa01690901876631adb66ed856df3b10adf0fe3266145b7f8e65bab": {
+      "chunk_id": "9f28c58e3ecca12334825c0b3f10d1c9a4c74edb287b5277b4eec0f172d5d407",
+      "source_tier": "canonical"
+    }
+  },
+  "targets": {
+    "graphiti": {
+      "01b4defb2a350098e09c8e339f2f6bbcc7c807c5672f57aa9c3de6d8740ca310": {
+        "at": "2026-02-28T12:45:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "03049e9282d6b78ccc89bf0037b6986c990c7778d3dc5540dab9fa8f06ee91ce": {
+        "at": "2026-02-28T12:42:49Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "07031b6cd532a9d3fda474239483dc1cb9b277cc0a6e2d9cca649c44880ae80f": {
+        "at": "2026-02-28T12:47:21Z",
+        "phase": "daily",
+        "source_tier": "daily_log"
+      },
+      "08f0bd6eb7dc3d40b954f954a169615ad53ad2b4f2d52c4a6b9fd50eef95abec": {
+        "at": "2026-02-28T12:41:14Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "0b4227b499f1ea9f138ea90ea29a027ac31beabf657582913e28678be9cd5b8f": {
+        "at": "2026-02-28T12:41:32Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "0bc3668b6b473d5e78a22e2408ff8a40a2cce90bd8d4e3bc424be05f2c637b2d": {
+        "at": "2026-02-28T12:46:30Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "0d606d93570eb70f1c469848fcd1a3250231dfa260f17f0f67fccd72be12e183": {
+        "at": "2026-02-28T12:45:46Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "0e1ec33f36ae74761ea38cffc2ebf085e0076cd4eebc43c0d923505498b61c75": {
+        "at": "2026-02-28T12:40:28Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "11e5b3b94385b5fc9d7431a5d196aeede441e3951b79f85846f133e548b32226": {
+        "at": "2026-02-28T12:41:58Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1297ec6eb3c346016903f1b2bf86efdd7c20812d6f586bc641e3765182746d11": {
+        "at": "2026-02-28T12:42:24Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "142a1cd021c9dca6aedcb0940c9432f86dd6d75fa1ec6170025468dbd5462c12": {
+        "at": "2026-02-28T12:43:53Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "16c47b34d671b387ad6fcb7c28049bd355fa37f7ad193c821c8118c03eb46a61": {
+        "at": "2026-02-28T12:44:44Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1800ffa89f788adcfd3c3c98b06d1873b823d79840d0a4bd19b039c0de9a8679": {
+        "at": "2026-02-28T12:31:36Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "19d98ded918a41226a9c925bc9f7425aff51c813b999084359ea7ce997e5df38": {
+        "at": "2026-02-28T12:46:38Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "1c0da0ca268d35eb86c3f96dc9f79a52eb092d93839340acd84d8113e67995a0": {
+        "at": "2026-02-28T12:43:34Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1d9abfdc3437d60d36fcbf26d2b109f494a6f3041b9cdaaa8f6651b9e24251aa": {
+        "at": "2026-02-28T12:43:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1e7173192585a340f0eeabb955d3cfc7ae7f8262ad91fa159b14fe917214b286": {
+        "at": "2026-02-28T12:41:46Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "23b1cbd25d96d9fd023dbbe74e7dafa5d2cff29537dd3ece2bf826da14bad6bc": {
+        "at": "2026-02-28T12:44:24Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "2526bff035a59e7a3d7821a840ffe99dcacde72594bab04456efa9d55125d6e6": {
+        "at": "2026-02-28T12:43:32Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "2771448bc187cf9776cb2edea774024c4e76d1a231176a3886d075b1e5cce45a": {
+        "at": "2026-02-28T12:43:17Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "298ea024863af4496f10647af96ef60bcf37024a7e00ea7c86b42ea71497acd4": {
+        "at": "2026-02-28T12:45:47Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "29c8d4f3f99f9f10fc0f54f58e448c54c4960a9e24d7cd6b2ddea9433e3c66c1": {
+        "at": "2026-02-28T12:31:19Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "2eb1d005409ee7b948dffa5c5a2cbf89c62f1b697df3f614a5fa63694bc85f4d": {
+        "at": "2026-02-28T12:41:05Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "32c2fb50656ad0c754210ae1eb8ca217dc0a72a9ae85ac1714084f2a094dc974": {
+        "at": "2026-02-28T12:44:37Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "36f6c413e7f986ea0a9f8a01b3f4bc627e03bf0db884b1b76cc54b85b433f45d": {
+        "at": "2026-02-28T12:43:31Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "376bd52bbed97dc059608ba12d14a55140cf27f53e301f058dd3ea37bdc51e60": {
+        "at": "2026-02-28T12:46:29Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "3df674ce84ba8bd4e97e93bc78de658801e898df566b3bef178099db4627858d": {
+        "at": "2026-02-28T12:46:49Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "41215dde4a5c8a8a6ed567dd01558bd167eac14b3b070ee912fe02fee104967d": {
+        "at": "2026-02-28T12:40:29Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "419d46ba3d42fefcfb05e6cb5d2d2318960c996ca9a2c81ed7ee18f1911fbace": {
+        "at": "2026-02-28T12:46:37Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "479384524044c29ecb349d527c26b6d0aa953b4002d219572e7a5ebd16895e17": {
+        "at": "2026-02-28T12:41:07Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "49996e4e4670bdc0fba941e37e07be0a75d3c5fabae4fb7328af65612104337e": {
+        "at": "2026-02-28T12:45:59Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "49f053316fceb701b2a9d64aa1bfb2557c1cfaec413a69a055ea064e3021ed5c": {
+        "at": "2026-02-28T12:47:08Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "4cbf319ffc206afce3828c7adde2725f3b16ef1bfe090f568332c5c3984e4192": {
+        "at": "2026-02-28T12:42:52Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "4d55735d26286e898482b4c845b1d656e88c92c8aa228dce79429c6130a140fc": {
+        "at": "2026-02-28T12:43:03Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "50d26979a664353a231f4279899cbd800bb0e95415cf43a33b9653432e9ecb9d": {
+        "at": "2026-02-28T12:47:30Z",
+        "phase": "daily",
+        "source_tier": "daily_log"
+      },
+      "5e4c07e6bed43ba1f30774132495101478adb88fa8d5a458680eee1a2a3a01ba": {
+        "at": "2026-02-28T12:31:18Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "607ad0b4c5b4f42d666085a61dd5dade782e81b84fe88e31f2472d8b72d00436": {
+        "at": "2026-02-28T12:47:02Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "62523f01f42082e2e93dbfe930239b302cad63a612538cc7639d4a49643b054c": {
+        "at": "2026-02-28T12:45:36Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "62613262814f674de5d228068b7db4852c3cdca642b209dba36f6c8a2ba7e4cc": {
+        "at": "2026-02-28T12:45:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "68ccc2fece990bc70c1582a943a9efb760c9103067aeaece758aa17dc675dd24": {
+        "at": "2026-02-28T12:40:20Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "68f6fae91567a43e8c0fec1119c323a82049edeebc55e3873a6bf5a42c6ed01e": {
+        "at": "2026-02-28T12:46:46Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "6a01380743113978709970b1c3305a219daf239b3184609b081d35615748dd96": {
+        "at": "2026-02-28T12:41:00Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "70659cae4f6373fb81c4f541b830ee66ebb825d85998d2942eac94615c71da9a": {
+        "at": "2026-02-28T12:41:12Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "73fee5a5a607db8faa150327648b8a8ab089c2834b3d654eb022227ebead7ab4": {
+        "at": "2026-02-28T12:47:10Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "76ddfbf9a65b7fea3e5a26b1409c3b158da126bbcae0f47c28a3f2034f74f6e8": {
+        "at": "2026-02-28T12:41:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "79d8befd83116e24f538d6ab34e1e262acc6898c16c5f4af710722222fedb304": {
+        "at": "2026-02-28T12:43:20Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "7a6a4c901f0ca3cb53c653264b57744b93f34170d49161b7284f97d00a95a406": {
+        "at": "2026-02-28T12:45:45Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "812b10de29fb627d19cd9e83b161ed657245d010ac23e4efe3aa64ef2efe5d4b": {
+        "at": "2026-02-28T12:42:51Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "82f2fce3975c5bf6ba193f6dded746a1773faf57a2250f0f00228d40e88157a6": {
+        "at": "2026-02-28T12:46:28Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "881c81a6333675bf6b48bfa952e968cb4e29fb55178a752e11d85a5ed0c51c0b": {
+        "at": "2026-02-28T12:46:13Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "8a6afa0893c8aa79c9625461dc7f7480bbcb7fb126879749cc81befd90360485": {
+        "at": "2026-02-28T12:41:03Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "8d074279605d973037ca83691fa9866defd0696abc69f98ad9232b8d922c5ce4": {
+        "at": "2026-02-28T12:42:40Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "906daeb8c541973ff89dca759043eda0966b6d5047e6d48edabd329ea8d22136": {
+        "at": "2026-02-28T12:47:09Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "90ad153d496804164a76c05deb4d3d1c808462a67c2b9b88181f0c2909194540": {
+        "at": "2026-02-28T12:47:31Z",
+        "phase": "daily",
+        "source_tier": "daily_log"
+      },
+      "93f69663d7fa0225b28af043cf4d71578ba4885b86a6eda175a009707ed513fe": {
+        "at": "2026-02-28T12:42:15Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "95cd78cc75d2765017476cb0cf205b86da1b3c0a0081c7f5a643fbd3cb4649ec": {
+        "at": "2026-02-28T12:41:02Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "98717f8caadc6361d00d9594c5ae61d704b54d7712173e0521c74526ca5eb30c": {
+        "at": "2026-02-28T12:31:15Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9a19eaf924a05fa53abf65c97671652c1664d41a52def9d54875027bef5ea668": {
+        "at": "2026-02-28T12:40:44Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9a425dde347b1b277c836bbeadf83b5cd9c3fefae9507dbbefd7e162fb673344": {
+        "at": "2026-02-28T12:41:10Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9a791814c8c356ec25521255af17984d9f58d83e6ab3d004fcac502b577e80e5": {
+        "at": "2026-02-28T12:41:13Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9bc665f7528880fd487ded0093a19c73266a3bb4979d643f118b95842d89623c": {
+        "at": "2026-02-28T12:40:53Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9f28c58e3ecca12334825c0b3f10d1c9a4c74edb287b5277b4eec0f172d5d407": {
+        "at": "2026-02-28T12:31:12Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9fea1cac3d3eef1b12bf61f570c8732c71161a7e7f5dc43e663115b08e96ae58": {
+        "at": "2026-02-28T12:40:59Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a01fc8309d941f754e7db652118771a9d11a8d0bba4eaeeb38158d94beecd8f4": {
+        "at": "2026-02-28T12:47:06Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "a122679f0c8b75017ed4c40ae1bfd50752b8ac3f3615fe23ed75f7abfcd57fc6": {
+        "at": "2026-02-28T12:46:26Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a1245e5799776dbf7b2fda08c73fe4d79233628c7a78cbc17696f99aae1cb734": {
+        "at": "2026-02-28T12:46:48Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "a1ca56ec109cf9b00f33a53f1c254e3cbd3a8ff0fcfae3cfc49e556cfcfcb247": {
+        "at": "2026-02-28T12:40:58Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a29ef7583e5d1972ff442b10f04edeef5bb1880bc2937fcc06b904befe38b5f7": {
+        "at": "2026-02-28T12:43:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a731c3f4b5011b14e441a93fab88ae3eb0bb4bbd7bb4b974e4f174e9ca9f485d": {
+        "at": "2026-02-28T12:45:09Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "ace836514f12516a26507c60c60ea2d1f94464315e64f08888a73f0890daf865": {
+        "at": "2026-02-28T12:43:19Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b0d6762ca2d70af4f030c825553ae00f933d5aa48a84f393bf1eb5c4f131158f": {
+        "at": "2026-02-28T12:43:18Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b40893fad2f60019fb7f8fbdb802c9961b9e1c8cf866e2003abc8b3e4f4e12da": {
+        "at": "2026-02-28T12:40:45Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b562922b82875fe741ff4d6bb8db1bf53e02009812dea08a15512c1b621a91c9": {
+        "at": "2026-02-28T12:41:09Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b7315096e7a76d85fe7751bd836582fecd0929dfa5580591b0a289319f2cb18c": {
+        "at": "2026-02-28T12:39:38Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b80c10268cdb5f1c3218a390b6fe0f49b0ed9bd0c615bfbc57788189c23da68a": {
+        "at": "2026-02-28T12:40:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b8f00ad23d1e525ffe7ba83cae368ea1df3d2c9e8f6948208be8b784b70f0ac6": {
+        "at": "2026-02-28T12:40:27Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b97e8b6000706b2f28a8578b51efa16714ba00fe6b023aec2b20a003e7b0b53a": {
+        "at": "2026-02-28T12:43:46Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "bb5c962173e23fb165c0d117aa784f4e2b71f625a7bc97c8ff04c9a18c4a835e": {
+        "at": "2026-02-28T12:45:00Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "bbc9d4d61e9e7bd86a5938f92377bdb71c0387837891859e10aa06f87dda4dbe": {
+        "at": "2026-02-28T12:46:47Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "bc617476ab9e759ddb0fb75d88f75ed6cae41031e441f4d501bf9f1dc44b70c6": {
+        "at": "2026-02-28T12:46:31Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "c3a20717e1a23cc8dc39d43ea275811174bdb4b32a38071b3c5b6afd5d6bde92": {
+        "at": "2026-02-28T12:43:31Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "c46b2e4531483c220fcf682b49b5fe7c3412a42ab9bfecc47d9164a117accc40": {
+        "at": "2026-02-28T12:40:23Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "cd3fd0dfd27c9de94120fa76590809ada5f8d08dd0e87960f4880d3f586a3a12": {
+        "at": "2026-02-28T12:46:27Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "cf3d2dab60f72c526b0aab6d92c0aec68409c153390297acb957f070006b5bd6": {
+        "at": "2026-02-28T12:43:33Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "d005a06b256422edeeeebf3cefed64dea70f2e97c445e4778ad6db90a5eee6a5": {
+        "at": "2026-02-28T12:45:37Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "d2d804b84ba91c90ce48a2ac1879664baa75121c8263e181ec9bae153aa5e01d": {
+        "at": "2026-02-28T12:43:04Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "dab1a926e6333c54f00655bc2b6843f7906f281c222abd732445175a24168318": {
+        "at": "2026-02-28T12:46:32Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "dbcfd9fe65a92491d774c29a42095372f99697c9b0558bc860fbd416fbfd77a3": {
+        "at": "2026-02-28T12:43:39Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "dc2cb38af6eea593b4e6201d10274e6d29f0034daaf8ab971f88f4df50b2cc7c": {
+        "at": "2026-02-28T12:39:32Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "e6433aa58d9d6b5ba7a1bdad1d2aba5bb105351884a1ecb003ed10c2ec5cdd1e": {
+        "at": "2026-02-28T12:41:19Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "ed35eb3eadd454c5cb84b3db56f89ab97cf82ee0662fc331eb8d393c2629d23f": {
+        "at": "2026-02-28T12:42:50Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f1c4ae8cbc3cb96a2626c53f76e4a2b8235ce27389101ebead34b0f089febf31": {
+        "at": "2026-02-28T12:41:06Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f2bc05eb354206a9cd0dd64407d245d50e08c593ccb69afc1d8b625281525493": {
+        "at": "2026-02-28T12:44:53Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f365282a426bac3a3bf212e1255b5a5a48f5a8438d6329066c478f709f38d728": {
+        "at": "2026-02-28T12:44:14Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f70bb5c77c2627cfcc3f5ba520c37304030f85f06000bb3d31682c463371b826": {
+        "at": "2026-02-28T12:31:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f7de9c815e8c2c65ac45baf2ea9a088a4eeb5d775a309294e8c34c5f742c0bf9": {
+        "at": "2026-02-28T12:47:03Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "f8309e5b2ef207c1995065b5677fa149c7e4e01f4c72d897145ae54ca1da82db": {
+        "at": "2026-02-28T12:44:12Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "fb1631afbedbc25dddb327cf5caae54db663156a53a7cf24934eb7d8b3552930": {
+        "at": "2026-02-28T12:44:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "fba42197b1053f3bb7b3303f72a91bc2f3ee04b113ea449eb391444e7cd77793": {
+        "at": "2026-02-28T12:45:01Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "ff7ac9140ee8b59e9bbb11e6b318e1b5af5975319a271ef1f5f6b4b468c1ac30": {
+        "at": "2026-02-28T12:40:22Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "fff31991f410713b46dea5525fac00a5c92d097736a5f32b72f20f8a0cce4858": {
+        "at": "2026-02-28T12:42:17Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      }
+    },
+    "mem0": {
+      "01b4defb2a350098e09c8e339f2f6bbcc7c807c5672f57aa9c3de6d8740ca310": {
+        "at": "2026-02-28T12:45:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "03049e9282d6b78ccc89bf0037b6986c990c7778d3dc5540dab9fa8f06ee91ce": {
+        "at": "2026-02-28T12:42:49Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "07031b6cd532a9d3fda474239483dc1cb9b277cc0a6e2d9cca649c44880ae80f": {
+        "at": "2026-02-28T12:47:21Z",
+        "phase": "daily",
+        "source_tier": "daily_log"
+      },
+      "08f0bd6eb7dc3d40b954f954a169615ad53ad2b4f2d52c4a6b9fd50eef95abec": {
+        "at": "2026-02-28T12:41:14Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "0b4227b499f1ea9f138ea90ea29a027ac31beabf657582913e28678be9cd5b8f": {
+        "at": "2026-02-28T12:41:32Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "0bc3668b6b473d5e78a22e2408ff8a40a2cce90bd8d4e3bc424be05f2c637b2d": {
+        "at": "2026-02-28T12:46:30Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "0d606d93570eb70f1c469848fcd1a3250231dfa260f17f0f67fccd72be12e183": {
+        "at": "2026-02-28T12:45:46Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "0e1ec33f36ae74761ea38cffc2ebf085e0076cd4eebc43c0d923505498b61c75": {
+        "at": "2026-02-28T12:40:28Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "11e5b3b94385b5fc9d7431a5d196aeede441e3951b79f85846f133e548b32226": {
+        "at": "2026-02-28T12:41:58Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1297ec6eb3c346016903f1b2bf86efdd7c20812d6f586bc641e3765182746d11": {
+        "at": "2026-02-28T12:42:24Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "142a1cd021c9dca6aedcb0940c9432f86dd6d75fa1ec6170025468dbd5462c12": {
+        "at": "2026-02-28T12:43:53Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "16c47b34d671b387ad6fcb7c28049bd355fa37f7ad193c821c8118c03eb46a61": {
+        "at": "2026-02-28T12:44:44Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1800ffa89f788adcfd3c3c98b06d1873b823d79840d0a4bd19b039c0de9a8679": {
+        "at": "2026-02-28T12:31:36Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "19d98ded918a41226a9c925bc9f7425aff51c813b999084359ea7ce997e5df38": {
+        "at": "2026-02-28T12:46:38Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "1c0da0ca268d35eb86c3f96dc9f79a52eb092d93839340acd84d8113e67995a0": {
+        "at": "2026-02-28T12:43:34Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1d9abfdc3437d60d36fcbf26d2b109f494a6f3041b9cdaaa8f6651b9e24251aa": {
+        "at": "2026-02-28T12:43:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "1e7173192585a340f0eeabb955d3cfc7ae7f8262ad91fa159b14fe917214b286": {
+        "at": "2026-02-28T12:41:46Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "23b1cbd25d96d9fd023dbbe74e7dafa5d2cff29537dd3ece2bf826da14bad6bc": {
+        "at": "2026-02-28T12:44:24Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "2526bff035a59e7a3d7821a840ffe99dcacde72594bab04456efa9d55125d6e6": {
+        "at": "2026-02-28T12:43:32Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "2771448bc187cf9776cb2edea774024c4e76d1a231176a3886d075b1e5cce45a": {
+        "at": "2026-02-28T12:43:17Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "298ea024863af4496f10647af96ef60bcf37024a7e00ea7c86b42ea71497acd4": {
+        "at": "2026-02-28T12:45:47Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "29c8d4f3f99f9f10fc0f54f58e448c54c4960a9e24d7cd6b2ddea9433e3c66c1": {
+        "at": "2026-02-28T12:31:19Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "2eb1d005409ee7b948dffa5c5a2cbf89c62f1b697df3f614a5fa63694bc85f4d": {
+        "at": "2026-02-28T12:41:05Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "32c2fb50656ad0c754210ae1eb8ca217dc0a72a9ae85ac1714084f2a094dc974": {
+        "at": "2026-02-28T12:44:37Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "36f6c413e7f986ea0a9f8a01b3f4bc627e03bf0db884b1b76cc54b85b433f45d": {
+        "at": "2026-02-28T12:43:31Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "376bd52bbed97dc059608ba12d14a55140cf27f53e301f058dd3ea37bdc51e60": {
+        "at": "2026-02-28T12:46:29Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "3df674ce84ba8bd4e97e93bc78de658801e898df566b3bef178099db4627858d": {
+        "at": "2026-02-28T12:46:49Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "41215dde4a5c8a8a6ed567dd01558bd167eac14b3b070ee912fe02fee104967d": {
+        "at": "2026-02-28T12:40:29Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "419d46ba3d42fefcfb05e6cb5d2d2318960c996ca9a2c81ed7ee18f1911fbace": {
+        "at": "2026-02-28T12:46:37Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "479384524044c29ecb349d527c26b6d0aa953b4002d219572e7a5ebd16895e17": {
+        "at": "2026-02-28T12:41:07Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "49996e4e4670bdc0fba941e37e07be0a75d3c5fabae4fb7328af65612104337e": {
+        "at": "2026-02-28T12:45:59Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "49f053316fceb701b2a9d64aa1bfb2557c1cfaec413a69a055ea064e3021ed5c": {
+        "at": "2026-02-28T12:47:08Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "4cbf319ffc206afce3828c7adde2725f3b16ef1bfe090f568332c5c3984e4192": {
+        "at": "2026-02-28T12:42:52Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "4d55735d26286e898482b4c845b1d656e88c92c8aa228dce79429c6130a140fc": {
+        "at": "2026-02-28T12:43:03Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "50d26979a664353a231f4279899cbd800bb0e95415cf43a33b9653432e9ecb9d": {
+        "at": "2026-02-28T12:47:30Z",
+        "phase": "daily",
+        "source_tier": "daily_log"
+      },
+      "5e4c07e6bed43ba1f30774132495101478adb88fa8d5a458680eee1a2a3a01ba": {
+        "at": "2026-02-28T12:31:18Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "607ad0b4c5b4f42d666085a61dd5dade782e81b84fe88e31f2472d8b72d00436": {
+        "at": "2026-02-28T12:47:02Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "62523f01f42082e2e93dbfe930239b302cad63a612538cc7639d4a49643b054c": {
+        "at": "2026-02-28T12:45:36Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "62613262814f674de5d228068b7db4852c3cdca642b209dba36f6c8a2ba7e4cc": {
+        "at": "2026-02-28T12:45:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "68ccc2fece990bc70c1582a943a9efb760c9103067aeaece758aa17dc675dd24": {
+        "at": "2026-02-28T12:40:20Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "68f6fae91567a43e8c0fec1119c323a82049edeebc55e3873a6bf5a42c6ed01e": {
+        "at": "2026-02-28T12:46:46Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "6a01380743113978709970b1c3305a219daf239b3184609b081d35615748dd96": {
+        "at": "2026-02-28T12:41:00Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "70659cae4f6373fb81c4f541b830ee66ebb825d85998d2942eac94615c71da9a": {
+        "at": "2026-02-28T12:41:12Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "73fee5a5a607db8faa150327648b8a8ab089c2834b3d654eb022227ebead7ab4": {
+        "at": "2026-02-28T12:47:10Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "76ddfbf9a65b7fea3e5a26b1409c3b158da126bbcae0f47c28a3f2034f74f6e8": {
+        "at": "2026-02-28T12:41:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "79d8befd83116e24f538d6ab34e1e262acc6898c16c5f4af710722222fedb304": {
+        "at": "2026-02-28T12:43:20Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "7a6a4c901f0ca3cb53c653264b57744b93f34170d49161b7284f97d00a95a406": {
+        "at": "2026-02-28T12:45:45Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "812b10de29fb627d19cd9e83b161ed657245d010ac23e4efe3aa64ef2efe5d4b": {
+        "at": "2026-02-28T12:42:51Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "82f2fce3975c5bf6ba193f6dded746a1773faf57a2250f0f00228d40e88157a6": {
+        "at": "2026-02-28T12:46:28Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "881c81a6333675bf6b48bfa952e968cb4e29fb55178a752e11d85a5ed0c51c0b": {
+        "at": "2026-02-28T12:46:13Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "8a6afa0893c8aa79c9625461dc7f7480bbcb7fb126879749cc81befd90360485": {
+        "at": "2026-02-28T12:41:03Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "8d074279605d973037ca83691fa9866defd0696abc69f98ad9232b8d922c5ce4": {
+        "at": "2026-02-28T12:42:40Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "906daeb8c541973ff89dca759043eda0966b6d5047e6d48edabd329ea8d22136": {
+        "at": "2026-02-28T12:47:09Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "90ad153d496804164a76c05deb4d3d1c808462a67c2b9b88181f0c2909194540": {
+        "at": "2026-02-28T12:47:31Z",
+        "phase": "daily",
+        "source_tier": "daily_log"
+      },
+      "93f69663d7fa0225b28af043cf4d71578ba4885b86a6eda175a009707ed513fe": {
+        "at": "2026-02-28T12:42:15Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "95cd78cc75d2765017476cb0cf205b86da1b3c0a0081c7f5a643fbd3cb4649ec": {
+        "at": "2026-02-28T12:41:02Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "98717f8caadc6361d00d9594c5ae61d704b54d7712173e0521c74526ca5eb30c": {
+        "at": "2026-02-28T12:31:15Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9a19eaf924a05fa53abf65c97671652c1664d41a52def9d54875027bef5ea668": {
+        "at": "2026-02-28T12:40:44Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9a425dde347b1b277c836bbeadf83b5cd9c3fefae9507dbbefd7e162fb673344": {
+        "at": "2026-02-28T12:41:10Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9a791814c8c356ec25521255af17984d9f58d83e6ab3d004fcac502b577e80e5": {
+        "at": "2026-02-28T12:41:13Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9bc665f7528880fd487ded0093a19c73266a3bb4979d643f118b95842d89623c": {
+        "at": "2026-02-28T12:40:53Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9f28c58e3ecca12334825c0b3f10d1c9a4c74edb287b5277b4eec0f172d5d407": {
+        "at": "2026-02-28T12:31:12Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "9fea1cac3d3eef1b12bf61f570c8732c71161a7e7f5dc43e663115b08e96ae58": {
+        "at": "2026-02-28T12:40:59Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a01fc8309d941f754e7db652118771a9d11a8d0bba4eaeeb38158d94beecd8f4": {
+        "at": "2026-02-28T12:47:06Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "a122679f0c8b75017ed4c40ae1bfd50752b8ac3f3615fe23ed75f7abfcd57fc6": {
+        "at": "2026-02-28T12:46:26Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a1245e5799776dbf7b2fda08c73fe4d79233628c7a78cbc17696f99aae1cb734": {
+        "at": "2026-02-28T12:46:48Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "a1ca56ec109cf9b00f33a53f1c254e3cbd3a8ff0fcfae3cfc49e556cfcfcb247": {
+        "at": "2026-02-28T12:40:58Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a29ef7583e5d1972ff442b10f04edeef5bb1880bc2937fcc06b904befe38b5f7": {
+        "at": "2026-02-28T12:43:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "a731c3f4b5011b14e441a93fab88ae3eb0bb4bbd7bb4b974e4f174e9ca9f485d": {
+        "at": "2026-02-28T12:45:09Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "ace836514f12516a26507c60c60ea2d1f94464315e64f08888a73f0890daf865": {
+        "at": "2026-02-28T12:43:19Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b0d6762ca2d70af4f030c825553ae00f933d5aa48a84f393bf1eb5c4f131158f": {
+        "at": "2026-02-28T12:43:18Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b40893fad2f60019fb7f8fbdb802c9961b9e1c8cf866e2003abc8b3e4f4e12da": {
+        "at": "2026-02-28T12:40:45Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b562922b82875fe741ff4d6bb8db1bf53e02009812dea08a15512c1b621a91c9": {
+        "at": "2026-02-28T12:41:09Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b80c10268cdb5f1c3218a390b6fe0f49b0ed9bd0c615bfbc57788189c23da68a": {
+        "at": "2026-02-28T12:40:30Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b8f00ad23d1e525ffe7ba83cae368ea1df3d2c9e8f6948208be8b784b70f0ac6": {
+        "at": "2026-02-28T12:40:27Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "b97e8b6000706b2f28a8578b51efa16714ba00fe6b023aec2b20a003e7b0b53a": {
+        "at": "2026-02-28T12:43:46Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "bb5c962173e23fb165c0d117aa784f4e2b71f625a7bc97c8ff04c9a18c4a835e": {
+        "at": "2026-02-28T12:45:00Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "bbc9d4d61e9e7bd86a5938f92377bdb71c0387837891859e10aa06f87dda4dbe": {
+        "at": "2026-02-28T12:46:47Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "bc617476ab9e759ddb0fb75d88f75ed6cae41031e441f4d501bf9f1dc44b70c6": {
+        "at": "2026-02-28T12:46:31Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "c3a20717e1a23cc8dc39d43ea275811174bdb4b32a38071b3c5b6afd5d6bde92": {
+        "at": "2026-02-28T12:43:31Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "c46b2e4531483c220fcf682b49b5fe7c3412a42ab9bfecc47d9164a117accc40": {
+        "at": "2026-02-28T12:40:23Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "cd3fd0dfd27c9de94120fa76590809ada5f8d08dd0e87960f4880d3f586a3a12": {
+        "at": "2026-02-28T12:46:27Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "cf3d2dab60f72c526b0aab6d92c0aec68409c153390297acb957f070006b5bd6": {
+        "at": "2026-02-28T12:43:33Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "d005a06b256422edeeeebf3cefed64dea70f2e97c445e4778ad6db90a5eee6a5": {
+        "at": "2026-02-28T12:45:37Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "d2d804b84ba91c90ce48a2ac1879664baa75121c8263e181ec9bae153aa5e01d": {
+        "at": "2026-02-28T12:43:04Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "dab1a926e6333c54f00655bc2b6843f7906f281c222abd732445175a24168318": {
+        "at": "2026-02-28T12:46:32Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "dbcfd9fe65a92491d774c29a42095372f99697c9b0558bc860fbd416fbfd77a3": {
+        "at": "2026-02-28T12:43:39Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "e6433aa58d9d6b5ba7a1bdad1d2aba5bb105351884a1ecb003ed10c2ec5cdd1e": {
+        "at": "2026-02-28T12:41:19Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "ed35eb3eadd454c5cb84b3db56f89ab97cf82ee0662fc331eb8d393c2629d23f": {
+        "at": "2026-02-28T12:42:50Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f1c4ae8cbc3cb96a2626c53f76e4a2b8235ce27389101ebead34b0f089febf31": {
+        "at": "2026-02-28T12:41:06Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f2bc05eb354206a9cd0dd64407d245d50e08c593ccb69afc1d8b625281525493": {
+        "at": "2026-02-28T12:44:53Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f365282a426bac3a3bf212e1255b5a5a48f5a8438d6329066c478f709f38d728": {
+        "at": "2026-02-28T12:44:14Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f70bb5c77c2627cfcc3f5ba520c37304030f85f06000bb3d31682c463371b826": {
+        "at": "2026-02-28T12:31:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "f7de9c815e8c2c65ac45baf2ea9a088a4eeb5d775a309294e8c34c5f742c0bf9": {
+        "at": "2026-02-28T12:47:03Z",
+        "phase": "topics",
+        "source_tier": "topic_derived"
+      },
+      "f8309e5b2ef207c1995065b5677fa149c7e4e01f4c72d897145ae54ca1da82db": {
+        "at": "2026-02-28T12:44:12Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "fb1631afbedbc25dddb327cf5caae54db663156a53a7cf24934eb7d8b3552930": {
+        "at": "2026-02-28T12:44:16Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "fba42197b1053f3bb7b3303f72a91bc2f3ee04b113ea449eb391444e7cd77793": {
+        "at": "2026-02-28T12:45:01Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "ff7ac9140ee8b59e9bbb11e6b318e1b5af5975319a271ef1f5f6b4b468c1ac30": {
+        "at": "2026-02-28T12:40:22Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      },
+      "fff31991f410713b46dea5525fac00a5c92d097736a5f32b72f20f8a0cce4858": {
+        "at": "2026-02-28T12:42:17Z",
+        "phase": "canonical",
+        "source_tier": "canonical"
+      }
+    }
+  },
+  "updated_at": "2026-02-28T12:47:31Z",
+  "version": 1
+}

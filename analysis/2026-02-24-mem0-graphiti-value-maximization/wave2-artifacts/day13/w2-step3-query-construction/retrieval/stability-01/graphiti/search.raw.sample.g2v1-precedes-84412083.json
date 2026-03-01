@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Step 1 is required before Step 2, Step 3, and Step 4 can be meaningfully executed.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Step 1 is required before Step 2, Step 3, and Step 4 can be meaningfully executed."
+  },
+  "payload": null
+}

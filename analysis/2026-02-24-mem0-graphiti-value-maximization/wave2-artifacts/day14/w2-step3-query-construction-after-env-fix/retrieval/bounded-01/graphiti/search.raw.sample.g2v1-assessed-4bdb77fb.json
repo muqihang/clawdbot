@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "self-improvement audit assessed behavior-drift risk as low due to bootstrap-only trigger, though repeated unresolved environment errors and one scope-drift incident showed small but real overhead",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "self-improvement audit assessed behavior-drift risk as low due to bootstrap-only trigger, though repeated unresolved environment errors and one scope-drift incident showed small but real overhead"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

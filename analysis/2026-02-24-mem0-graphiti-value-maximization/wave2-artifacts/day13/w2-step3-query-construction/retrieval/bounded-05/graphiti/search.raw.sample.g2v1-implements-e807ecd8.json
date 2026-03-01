@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "The commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "The commit e9eac72 implements the deduplication of openclaw PATH errors and adds the weekly hygiene rule."
+  },
+  "payload": null
+}

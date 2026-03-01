@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user(user) is pursuing the mission to build Jarvis OS as a self-improving AI-native organization."
+  },
+  "payload": null
+}

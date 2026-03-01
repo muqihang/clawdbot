@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user(user) centers around a primary business focused on a production-grade AI agent SaaS for the second-hand car industry."
+  },
+  "payload": null
+}

@@ -1,0 +1,149 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "thinktank topology",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "thinktank topology"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "e6125703-30e1-4541-9ea3-687c72f2dc70",
+        "name": "IS_ITERATING_MEMORY_MECHANISM_WITH",
+        "fact": "user is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666721+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "bd669def-424b-49c6-ab03-fa090b339a0e",
+        "name": "IS_FOUNDATIONAL_LAYER_OF",
+        "fact": "平台主干 is the foundational layer of the 经营操作系统, comprising unified data model, timeline, permissions/audit, workflow/task, and Agent entry points.",
+        "valid_at": "2026-02-28T09:05:18.688000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T09:07:20.392043+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82b07beb-0a79-424f-b2a7-727246ce982d",
+        "name": "IS_ACKNOWLEDGED_FOR",
+        "fact": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634730+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d2f79d6d-6fe7-4567-abbe-4722c22dc38a",
+        "name": "OPERATES_IN_SCOPE",
+        "fact": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+        "valid_at": "2026-02-23T12:25:14+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-23T13:13:19.907343+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "43eff858-cf74-4001-8870-656114e42f9f",
+        "name": "RUNS_ON_SERVERS",
+        "fact": "openclaw is currently running on servers",
+        "valid_at": "2026-02-28T08:54:42.258000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T08:56:34.736669+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "16268e81-6341-4fcc-9b17-c112f20677d5",
+        "name": "COMBINES",
+        "fact": "hybrid plan combines mem0 and graphiti",
+        "valid_at": "2026-02-24T10:03:23+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-24T10:04:00.634972+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "c90aba32-87f4-48c0-aa82-92bbd7b368a3",
+        "name": "IS_PLANNING_UPGRADE_WITH",
+        "fact": "user is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing",
+        "valid_at": "2026-02-25T02:59:28+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-25T03:01:05.666650+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "ff4cee59-b472-4b70-9cc4-2b959fc5d6aa",
+        "name": "graphiti",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070728+00:00"
+      },
+      {
+        "uuid": "fe10380b-87f6-413f-b038-784c81da8b2e",
+        "name": "ta",
+        "summary": "user wants exa and ta to be used to learn about 大搜车 and 大风车",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T09:09:56.601955+00:00"
+      },
+      {
+        "uuid": "10429b6b-76ec-4d6b-a5a2-1e4b9e94d26f",
+        "name": "dataset",
+        "summary": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.\nStep 2 involves performance and sorting optimization.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T06:25:22.111092+00:00"
+      },
+      {
+        "uuid": "ca87ff87-36c1-4058-b8e9-eca7214b3904",
+        "name": "BMB",
+        "summary": "BMB is not currently installed; it is deferred until productization of the used-car industry expert module.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T08:51:50.849388+00:00"
+      },
+      {
+        "uuid": "5c4ff9fe-b40a-47b4-94b5-0f99df759189",
+        "name": "mem0",
+        "summary": "hybrid plan combines mem0 and graphiti\nuser is planning to upgrade memory mechanism using Mem0 + Graphiti + local official built-in hybrid routing\nuser is currently iterating and upgrading the memory mechanism toward a Mem0 + Graphiti + local official built-in hybrid routing solution",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:46.070707+00:00"
+      },
+      {
+        "uuid": "f9ca774e-a9ed-44f1-8b5e-8ff3fc9aee4b",
+        "name": "Gate-0",
+        "summary": "BMAD is used after Gate-0/1/2 to support decision-making or execution\nGate-0, Gate-1, and Gate-2 collectively define 'what to do, why to do it, boundaries and red lines, north star metrics, and value narrative (PRFAQ)'\nBMAD is used to translate strategic decisions from Gate-0/1/2 into deliverable product and engineering outputs.\nGate-0 outputs problem-1pager.md which serves as input context for BMAD.\nGate-0/1/2 is used to define the 经营操作系统's北极星指标组合, core object model, red lines, and PRFAQ.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T08:50:40.655445+00:00"
+      },
+      {
+        "uuid": "9b2eb14d-9605-4d2a-b1c1-a923bb2d8d9e",
+        "name": "BMAD",
+        "summary": "BMAD is used after Gate-0/1/2 to support decision-making or execution\nBMAD is used after Gate-0/1/2 to support decision-making or execution\nBMAD is used after Gate-0/1/2 to support decision-making or execution\nBMAD is used to translate strategic decisions from Gate-0/1/2 into deliverable product and engineering outputs.\nBMAD is used to translate strategic decisions from Gate-0/1/2 into deliverable product and engineering outputs.\nBMAD is used to translate strategic decisions from Gate-0/1/2 into deliverable product and engineering outputs.\nGate-0 outputs problem-1pager.md which serves as input context for BMAD.\nGate-1 outputs evidence-pack.md which serves as input context for BMAD.\nGate-2 outputs PRFAQ.md which serves as input context for BMAD.\nBMM is a core methodological module of BMAD.\nCIS is an optional module of BMAD for structured brainstorming.\nBMB is not currently installed; it is deferred until productization of the used-car industry expert module.\n/Users/muqihang/chelingxi_workspace/used-car-agent-saas is the proposed directory for the product repository where BMAD will be installed.\nBMAD is used to decompose the 经营操作系统 into a product engineering structure including PRD, architecture, and epics/stories.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T08:50:40.655408+00:00"
+      },
+      {
+        "uuid": "695f47d5-297c-4e06-b64c-536d3872a854",
+        "name": "product_architecture_development_ops_marketing_finance_relationship_workflows",
+        "summary": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+        "group_id": "openclaw-backfill-canonical",
+        "created_at": "2026-02-23T13:13:05.091935+00:00"
+      },
+      {
+        "uuid": "31320924-cfa9-422e-a90e-8dd9f6905c18",
+        "name": "execution efficiency",
+        "summary": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T11:31:15.922118+00:00"
+      },
+      {
+        "uuid": "e698dfc1-534a-42bb-a33c-d501ddf195d2",
+        "name": "Jarvis OS",
+        "summary": "Jarvis OS mission is second-hand car AI SaaS\nuser plans to study how to integrate upgrade iteration into Jarvis OS\nEffective practices from the upgrade iteration may be incorporated into Jarvis OS.\nIf the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.\nJarvis is online and in execution mode\nJarvis is online and in execution mode",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-24T10:03:27.409060+00:00"
+      }
+    ]
+  }
+}

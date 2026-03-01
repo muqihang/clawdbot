@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "P2 close probe is acknowledged for the mem0+graphiti hybrid plan"
+  },
+  "payload": null
+}

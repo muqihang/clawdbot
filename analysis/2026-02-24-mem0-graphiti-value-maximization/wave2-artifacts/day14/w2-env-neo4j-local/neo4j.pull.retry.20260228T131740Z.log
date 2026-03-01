@@ -1,0 +1,19 @@
+5.20.0: Pulling from library/neo4j
+ca4da1869379: Pulling fs layer
+862444d8385e: Pulling fs layer
+7db58bd6f940: Pulling fs layer
+4a424b41feca: Pulling fs layer
+90406efe4064: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+4a424b41feca: Waiting
+90406efe4064: Waiting
+4f4fb700ef54: Waiting
+7db58bd6f940: Verifying Checksum
+7db58bd6f940: Download complete
+4a424b41feca: Verifying Checksum
+4a424b41feca: Download complete
+ca4da1869379: Verifying Checksum
+ca4da1869379: Download complete
+ca4da1869379: Pull complete
+4f4fb700ef54: Verifying Checksum
+4f4fb700ef54: Download complete

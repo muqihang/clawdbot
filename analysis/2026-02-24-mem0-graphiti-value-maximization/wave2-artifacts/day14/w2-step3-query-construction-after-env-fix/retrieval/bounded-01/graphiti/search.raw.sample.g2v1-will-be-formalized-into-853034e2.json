@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "If the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "If the upgrade iteration yields good results, effective practices will be固化 (formalized) into Jarvis OS."
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

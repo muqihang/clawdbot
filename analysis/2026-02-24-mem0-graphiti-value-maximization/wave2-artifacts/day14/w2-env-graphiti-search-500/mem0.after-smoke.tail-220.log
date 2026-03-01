@@ -1,0 +1,91 @@
+2026-02-28 19:08:41,585 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,617 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,729 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,737 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 19:08:41,780 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,781 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 19:08:41,830 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,831 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 19:08:41,854 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,854 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 19:08:41,909 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,922 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,951 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,951 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 19:08:41,957 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,957 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 19:08:41,963 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,963 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 19:08:41,970 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:08:41,970 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 19:08:42,015 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     Started server process [57337]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57577 - "GET /docs HTTP/1.1" 200 OK
+2026-02-28 19:09:00,367 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,437 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,672 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,674 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 19:09:00,694 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,696 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 19:09:00,715 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,716 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 19:09:00,749 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,750 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 19:09:00,854 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,877 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,951 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:00,951 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 19:09:01,000 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:01,000 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 19:09:01,042 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:01,043 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 19:09:01,060 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 19:09:01,061 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 19:09:01,137 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:57578 - "POST /configure HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57593 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57595 - "GET /docs HTTP/1.1" 200 OK
+2026-02-28 19:10:15,528 - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2026-02-28 19:10:15,550 - ERROR - Error in add_memory:
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/main.py", line 120, in add_memory
+    response = MEMORY_INSTANCE.add(messages=[m.model_dump() for m in memory_create.messages], **params)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/memory/main.py", line 375, in add
+    vector_store_result = future1.result()
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Cellar/python@3.13/3.13.12_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/memory/main.py", line 434, in _add_to_vector_store
+    response = self.llm.generate_response(
+        messages=[
+    ...<3 lines>...
+        response_format={"type": "json_object"},
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/mem0/llms/openai.py", line 175, in generate_response
+    response = self.client.chat.completions.create(**params)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/_utils/_utils.py", line 286, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 1192, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/chat/completions",
+        ^^^^^^^^^^^^^^^^^^^^
+    ...<47 lines>...
+        stream_cls=Stream[ChatCompletionChunk],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1297, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/mem0/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1070, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-87072ef9-d933-9e2b-a09a-2af0604bfa84', 'request_id': '87072ef9-d933-9e2b-a09a-2af0604bfa84'}
+INFO:     127.0.0.1:57658 - "POST /memories HTTP/1.1" 500 Internal Server Error

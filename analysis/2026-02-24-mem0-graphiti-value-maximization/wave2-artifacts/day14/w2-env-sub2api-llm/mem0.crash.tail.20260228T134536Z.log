@@ -1,0 +1,49 @@
+2026-02-28 21:44:38,294 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,308 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,376 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,377 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 21:44:38,390 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,390 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 21:44:38,401 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,402 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 21:44:38,407 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,407 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 21:44:38,430 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,438 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,447 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,448 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 21:44:38,453 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,453 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 21:44:38,456 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,456 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 21:44:38,461 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:44:38,461 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 21:44:38,468 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     Started server process [98106]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8766 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52557 - "GET /docs HTTP/1.1" 200 OK
+2026-02-28 21:45:02,464 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,481 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,492 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,492 - INFO - Created index for user_id in collection openclaw_mem0
+2026-02-28 21:45:02,496 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,496 - INFO - Created index for agent_id in collection openclaw_mem0
+2026-02-28 21:45:02,501 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,501 - INFO - Created index for run_id in collection openclaw_mem0
+2026-02-28 21:45:02,505 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/openclaw_mem0/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,505 - INFO - Created index for actor_id in collection openclaw_mem0
+2026-02-28 21:45:02,523 - INFO - HTTP Request: GET http://127.0.0.1:6333 "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,529 - INFO - HTTP Request: GET http://127.0.0.1:6333/collections "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,537 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,538 - INFO - Created index for user_id in collection mem0migrations
+2026-02-28 21:45:02,542 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,543 - INFO - Created index for agent_id in collection mem0migrations
+2026-02-28 21:45:02,547 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,547 - INFO - Created index for run_id in collection mem0migrations
+2026-02-28 21:45:02,551 - INFO - HTTP Request: PUT http://127.0.0.1:6333/collections/mem0migrations/index?wait=true "HTTP/1.1 200 OK"
+2026-02-28 21:45:02,551 - INFO - Created index for actor_id in collection mem0migrations
+2026-02-28 21:45:02,555 - INFO - HTTP Request: POST http://127.0.0.1:6333/collections/mem0migrations/points "HTTP/1.1 200 OK"
+INFO:     127.0.0.1:52558 - "POST /configure HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52573 - "GET /docs HTTP/1.1" 200 OK

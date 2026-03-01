@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "The error entries ERR-20260222-001 and ERR-20260222-002 are marked as superseded and point to the canonical entry ERR-20260223-001.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "The error entries ERR-20260222-001 and ERR-20260222-002 are marked as superseded and point to the canonical entry ERR-20260223-001."
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

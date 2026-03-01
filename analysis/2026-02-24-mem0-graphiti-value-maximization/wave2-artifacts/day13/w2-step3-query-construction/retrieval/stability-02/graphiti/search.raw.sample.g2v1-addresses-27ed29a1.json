@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Step 1 involves fixing issues with sample_size<30 and semantic mismatch in dataset."
+  },
+  "payload": null
+}

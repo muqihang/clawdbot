@@ -1,0 +1,13 @@
+run_date: 2026-02-28
+generated_at: 2026-02-28T10:25:26.905Z
+gate2_conclusion: No-Go
+top1_exact_id_proxy: 0
+top1_exact_id_proxy_sample_size: 34
+cfp_proxy: 0
+cfp_proxy_baseline: 0
+fallback_failure_rate_proxy: 0
+fallback_failed_count: 0
+fallback_dead_count: 0
+stability_unique_hit_at_1_values: [0]
+low_confidence: false
+selection_reason: no_hit_at_1_ge_0.93_use_last_attempt

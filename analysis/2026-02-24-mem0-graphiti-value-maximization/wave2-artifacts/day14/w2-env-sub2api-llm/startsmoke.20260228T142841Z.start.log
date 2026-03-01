@@ -1,0 +1,4 @@
+[memory-stack] started graphiti + mem0
+graphiti   pid=7720     alive=yes port=8000  health=ok
+mem0       pid=7723     alive=yes port=8766  health=ok
+embeddings pid=7673     alive=yes port=18082 health=ok

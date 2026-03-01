@@ -1,0 +1,2 @@
+{'neo4j_uri': 'neo4j+s://c9211d70.databases.neo4j.io', 'neo4j_user': None, 'neo4j_username': 'neo4j', 'resolved_neo4j_user': 'neo4j', 'llm_base_url': 'http://127.0.0.1:18081/v1', 'llm_model_name': 'gpt-4o-mini', 'embedding_base_url': 'http://127.0.0.1:18081/v1', 'embedding_model_name': 'text-embedding-3-small'}
+initialize_graphiti: ok

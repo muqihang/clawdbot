@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Jarvis OS mission is second-hand car AI SaaS",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Jarvis OS mission is second-hand car AI SaaS"
+  },
+  "payload": null
+}

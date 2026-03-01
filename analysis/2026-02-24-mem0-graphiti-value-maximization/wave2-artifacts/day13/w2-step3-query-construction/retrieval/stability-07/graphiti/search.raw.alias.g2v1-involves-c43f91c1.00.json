@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "hybrid plan combines mem0 and graphiti",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "hybrid plan combines mem0 and graphiti"
+  },
+  "payload": null
+}

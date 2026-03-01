@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "self-improvement audit measured productivity and found net positive impact over the week with important corrections captured and reusable"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

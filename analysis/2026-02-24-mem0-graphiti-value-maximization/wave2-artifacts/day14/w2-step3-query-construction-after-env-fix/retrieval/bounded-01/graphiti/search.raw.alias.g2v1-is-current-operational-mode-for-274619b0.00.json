@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "偏好 使用 sub2api",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "偏好 使用 sub2api"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Jarvis is online and in execution mode",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Jarvis is online and in execution mode"
+  },
+  "payload": null
+}

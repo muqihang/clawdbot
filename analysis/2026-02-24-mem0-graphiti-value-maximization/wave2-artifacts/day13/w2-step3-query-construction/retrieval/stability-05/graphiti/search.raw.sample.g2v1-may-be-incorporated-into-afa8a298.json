@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Effective practices from the upgrade iteration may be incorporated into Jarvis OS."
+  },
+  "payload": null
+}

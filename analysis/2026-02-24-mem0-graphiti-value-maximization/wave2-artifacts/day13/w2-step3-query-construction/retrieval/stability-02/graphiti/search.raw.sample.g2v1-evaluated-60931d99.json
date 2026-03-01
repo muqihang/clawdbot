@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "self-improvement audit evaluated learning-log quality and found it mostly good signal with 2 meaningful behavior corrections",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "self-improvement audit evaluated learning-log quality and found it mostly good signal with 2 meaningful behavior corrections"
+  },
+  "payload": null
+}

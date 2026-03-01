@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "sample_size<30 is a problem that undermines the credibility of evaluation results used in Gate-2.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "sample_size<30 is a problem that undermines the credibility of evaluation results used in Gate-2."
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

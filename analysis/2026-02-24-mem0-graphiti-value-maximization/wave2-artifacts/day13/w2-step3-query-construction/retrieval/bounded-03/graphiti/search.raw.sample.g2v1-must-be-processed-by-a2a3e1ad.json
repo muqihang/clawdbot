@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "pending entries older than 7 days must be closed or promoted to keep learning logs actionable",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "pending entries older than 7 days must be closed or promoted to keep learning logs actionable"
+  },
+  "payload": null
+}

@@ -1,0 +1,2 @@
+graphiti   pid=82544    alive=yes port=8000  health=ok
+mem0       pid=82547    alive=yes port=8766  health=ok

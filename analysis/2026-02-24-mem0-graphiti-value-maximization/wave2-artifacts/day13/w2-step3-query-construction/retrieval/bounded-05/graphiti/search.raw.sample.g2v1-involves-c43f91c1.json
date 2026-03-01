@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Step 2 involves performance and sorting optimization.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Step 2 involves performance and sorting optimization."
+  },
+  "payload": null
+}

@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Execution efficiency is one of the three signals tracked during the upgrade iteration.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "Execution efficiency is one of the three signals tracked during the upgrade iteration."
+  },
+  "payload": null
+}

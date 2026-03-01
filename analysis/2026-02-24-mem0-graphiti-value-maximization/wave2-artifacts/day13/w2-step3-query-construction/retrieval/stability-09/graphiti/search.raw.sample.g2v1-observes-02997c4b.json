@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user observes that there are 4个Step",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user observes that there are 4个Step"
+  },
+  "payload": null
+}

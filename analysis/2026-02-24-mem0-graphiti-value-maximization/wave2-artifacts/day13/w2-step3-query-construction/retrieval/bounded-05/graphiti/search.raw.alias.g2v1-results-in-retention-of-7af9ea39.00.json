@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "mem0 graphiti bridge",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "mem0 graphiti bridge"
+  },
+  "payload": null
+}

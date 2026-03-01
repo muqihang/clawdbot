@@ -1,0 +1,5 @@
+{
+  "capture_format": "raw_http",
+  "raw": "HTTP/1.1 404 Not Found\r\ndate: Sat, 28 Feb 2026 11:45:30 GMT\r\nserver: uvicorn\r\ncontent-length: 64\r\ncontent-type: application/json\r\n\r\n",
+  "note": "Captured response was not JSON (curl -i style); wrapped to keep evidence valid-json for repo format checks."
+}

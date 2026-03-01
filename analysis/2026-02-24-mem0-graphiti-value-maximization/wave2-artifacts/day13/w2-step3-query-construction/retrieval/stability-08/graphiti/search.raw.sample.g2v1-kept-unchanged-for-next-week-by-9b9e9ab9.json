@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "bootstrap-only mode is kept unchanged for next week per self-improvement audit decision"
+  },
+  "payload": null
+}

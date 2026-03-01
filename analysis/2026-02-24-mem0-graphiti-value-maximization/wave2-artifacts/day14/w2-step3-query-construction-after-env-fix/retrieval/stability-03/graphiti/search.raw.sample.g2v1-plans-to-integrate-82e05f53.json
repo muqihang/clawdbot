@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user plans to study how to integrate upgrade iteration into Jarvis OS",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user plans to study how to integrate upgrade iteration into Jarvis OS"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

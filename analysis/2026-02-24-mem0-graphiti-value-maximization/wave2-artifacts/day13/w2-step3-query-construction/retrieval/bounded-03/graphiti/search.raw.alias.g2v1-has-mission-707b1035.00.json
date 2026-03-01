@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "embedding model text-embedding-v4",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "embedding model text-embedding-v4"
+  },
+  "payload": null
+}

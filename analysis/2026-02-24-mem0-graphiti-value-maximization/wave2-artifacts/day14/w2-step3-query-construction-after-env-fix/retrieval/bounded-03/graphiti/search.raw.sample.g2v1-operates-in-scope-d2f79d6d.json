@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope.",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user(user) covers product, architecture, development, ops, marketing, finance, and relationship workflows within their scope."
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

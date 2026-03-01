@@ -1,0 +1,157 @@
+INFO:     Started server process [2733]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54246 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54262 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54264 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54281 - "POST /messages HTTP/1.1" 202 Accepted
+Error in generating LLM response: Error code: 502 - {'error': {'message': 'Upstream request failed', 'type': 'upstream_error'}}
+graphiti ingest worker job failed: Error code: 502 - {'error': {'message': 'Upstream request failed', 'type': 'upstream_error'}}
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 31, in worker
+    await job()
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 78, in add_messages_task
+    await graphiti.add_episode(
+    ...<7 lines>...
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1035, in add_episode
+    raise e
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 930, in add_episode
+    extracted_nodes = await extract_nodes(
+                      ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 89, in extract_nodes
+    extracted_entities = await _extract_nodes_single(llm_client, episode, context)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 140, in _extract_nodes_single
+    llm_response = await _call_extraction_llm(llm_client, episode, context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 165, in _call_extraction_llm
+    return await llm_client.generate_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 245, in generate_response
+    response, input_tokens, output_tokens = await self._generate_response(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        messages, response_model, max_tokens, model_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 172, in _generate_response
+    response = await self._create_structured_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 167, in _create_structured_completion
+    return await self.client.responses.create(**request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/responses/responses.py", line 1990, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<37 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.InternalServerError: Error code: 502 - {'error': {'message': 'Upstream request failed', 'type': 'upstream_error'}}
+Got a job: (size of remaining queue: 0)
+INFO:     127.0.0.1:54330 - "GET /episodes/smoke-g-1772287604?last_n=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54334 - "POST /search HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/retrieve.py", line 57, in search
+    graph_results = await graphiti.search_(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/decorators.py", line 96, in wrapper
+    return await func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1425, in search_
+    return await search(
+           ^^^^^^^^^^^^^
+    ...<8 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/search/search.py", line 106, in search
+    else await embedder.create(input_data=[query.replace('\n', ' ')])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/embedder/openai.py", line 57, in create
+    result = await self.client.embeddings.create(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        input=input_data, model=self.config.embedding_model
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/embeddings.py", line 245, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.NotFoundError: 404 page not found

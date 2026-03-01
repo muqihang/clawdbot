@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "<stdin>", line 4, in <module>
+  File "<frozen os>", line 717, in __getitem__
+KeyError: 'NEO4J_URI'

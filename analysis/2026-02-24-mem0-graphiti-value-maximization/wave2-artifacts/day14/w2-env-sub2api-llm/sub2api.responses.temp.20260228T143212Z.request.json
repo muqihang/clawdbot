@@ -1,0 +1,22 @@
+{
+  "model": "claude-sonnet-4-5-20250929",
+  "input": [
+    { "role": "system", "content": "Return a valid JSON object only." },
+    { "role": "user", "content": "Say ok." }
+  ],
+  "temperature": 0.2,
+  "max_output_tokens": 512,
+  "text": {
+    "format": {
+      "type": "json_schema",
+      "name": "Smoke",
+      "schema": {
+        "type": "object",
+        "properties": { "ok": { "type": "boolean" } },
+        "required": ["ok"],
+        "additionalProperties": false
+      },
+      "strict": true
+    }
+  }
+}

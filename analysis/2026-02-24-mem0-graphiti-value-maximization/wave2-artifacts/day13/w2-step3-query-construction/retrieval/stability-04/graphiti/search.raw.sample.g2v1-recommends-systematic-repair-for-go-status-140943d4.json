@@ -1,0 +1,10 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "assistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "assistant recommends that W2 enter a systematic troubleshooting and repair process to achieve 'go' status"
+  },
+  "payload": null
+}

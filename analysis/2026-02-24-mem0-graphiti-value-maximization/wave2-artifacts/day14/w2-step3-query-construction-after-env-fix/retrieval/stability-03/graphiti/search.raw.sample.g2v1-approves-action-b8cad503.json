@@ -1,0 +1,14 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "user approves the execution of the three actions derived from the one-week self-improvement audit",
+  "requestBody": {
+    "max_facts": 50,
+    "query": "user approves the execution of the three actions derived from the one-week self-improvement audit"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": []
+  }
+}

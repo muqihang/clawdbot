@@ -1,0 +1,10 @@
+usage: backfill.py [-h] --source-root SOURCE_ROOT
+                   [--phase {canonical,topics,daily,all}] [--days DAYS]
+                   (--dry-run | --apply) [--concurrency CONCURRENCY]
+                   [--timeout TIMEOUT] [--max-attempts MAX_ATTEMPTS]
+                   [--backoff-base BACKOFF_BASE] [--backoff-max BACKOFF_MAX]
+                   [--state-file STATE_FILE] [--summary-dir SUMMARY_DIR]
+                   [--audit-file AUDIT_FILE] [--mem0-url MEM0_URL]
+                   [--graphiti-url GRAPHITI_URL] [--mem0-user-id MEM0_USER_ID]
+                   [--graphiti-group-prefix GRAPHITI_GROUP_PREFIX]
+backfill.py: error: the following arguments are required: --source-root

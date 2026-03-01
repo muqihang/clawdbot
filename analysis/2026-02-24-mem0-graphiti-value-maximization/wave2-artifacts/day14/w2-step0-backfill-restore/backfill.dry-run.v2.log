@@ -1,0 +1,132 @@
+{
+  "audit_file": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day14/w2-step0-backfill-restore/backfill-20260228T123025Z.audit.jsonl",
+  "concurrency": 2,
+  "days": 14,
+  "finished_at": "2026-02-28T12:30:25Z",
+  "mode": "dry-run",
+  "phase_arg": "all",
+  "phase_order": [
+    "canonical",
+    "topics",
+    "daily"
+  ],
+  "phases": [
+    {
+      "chunks": 81,
+      "duplicate_chunk_ids": 0,
+      "files": 14,
+      "graphiti": {
+        "attempted": 0,
+        "failed": 0,
+        "planned": 81,
+        "retried": 0,
+        "skipped_existing": 0,
+        "succeeded": 0
+      },
+      "mem0": {
+        "attempted": 0,
+        "failed": 0,
+        "planned": 81,
+        "retried": 0,
+        "skipped_existing": 0,
+        "succeeded": 0
+      },
+      "phase": "canonical",
+      "reconciliation": {
+        "canonical_guarded_chunks": 0,
+        "semantic_owner_updates": 0
+      },
+      "source_tier": "canonical"
+    },
+    {
+      "chunks": 17,
+      "duplicate_chunk_ids": 0,
+      "files": 4,
+      "graphiti": {
+        "attempted": 0,
+        "failed": 0,
+        "planned": 17,
+        "retried": 0,
+        "skipped_existing": 0,
+        "succeeded": 0
+      },
+      "mem0": {
+        "attempted": 0,
+        "failed": 0,
+        "planned": 17,
+        "retried": 0,
+        "skipped_existing": 0,
+        "succeeded": 0
+      },
+      "phase": "topics",
+      "reconciliation": {
+        "canonical_guarded_chunks": 0,
+        "semantic_owner_updates": 0
+      },
+      "source_tier": "topic_derived"
+    },
+    {
+      "chunks": 57,
+      "duplicate_chunk_ids": 0,
+      "files": 7,
+      "graphiti": {
+        "attempted": 0,
+        "failed": 0,
+        "planned": 57,
+        "retried": 0,
+        "skipped_existing": 0,
+        "succeeded": 0
+      },
+      "mem0": {
+        "attempted": 0,
+        "failed": 0,
+        "planned": 57,
+        "retried": 0,
+        "skipped_existing": 0,
+        "succeeded": 0
+      },
+      "phase": "daily",
+      "reconciliation": {
+        "canonical_guarded_chunks": 0,
+        "semantic_owner_updates": 0
+      },
+      "source_tier": "daily_log"
+    }
+  ],
+  "retry": {
+    "backoff_base": 1.0,
+    "backoff_max": 12.0,
+    "max_attempts": 5,
+    "timeout": 30.0
+  },
+  "run_id": "backfill-20260228T123025Z",
+  "source_root": "/Users/muqihang/clawd",
+  "started_at": "2026-02-28T12:30:25Z",
+  "state_file": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day14/w2-step0-backfill-restore/backfill-state.day14.json",
+  "summary_file": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day14/w2-step0-backfill-restore/backfill-20260228T123025Z.summary.json",
+  "totals": {
+    "chunks": 155,
+    "duplicate_chunk_ids": 0,
+    "files": 25,
+    "graphiti": {
+      "attempted": 0,
+      "failed": 0,
+      "planned": 155,
+      "retried": 0,
+      "skipped_existing": 0,
+      "succeeded": 0
+    },
+    "mem0": {
+      "attempted": 0,
+      "failed": 0,
+      "planned": 155,
+      "retried": 0,
+      "skipped_existing": 0,
+      "succeeded": 0
+    },
+    "reconciliation": {
+      "canonical_guarded_chunks": 0,
+      "semantic_owner_updates": 0
+    }
+  }
+}

@@ -1,0 +1,400 @@
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 165, in _call_extraction_llm
+    return await llm_client.generate_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 245, in generate_response
+    response, input_tokens, output_tokens = await self._generate_response(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        messages, response_model, max_tokens, model_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 172, in _generate_response
+    response = await self._create_structured_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 151, in _create_structured_completion
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 2454, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-f30e4735-f8d7-958e-9b80-e550a75b5e2e', 'request_id': 'f30e4735-f8d7-958e-9b80-e550a75b5e2e'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-a7eef7b5-f559-959c-a9f1-d80d98819d1c', 'request_id': 'a7eef7b5-f559-959c-a9f1-d80d98819d1c'}
+Retrying after application error (attempt 1/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-a7eef7b5-f559-959c-a9f1-d80d98819d1c', 'request_id': 'a7eef7b5-f559-959c-a9f1-d80d98819d1c'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-d8da4e52-0e27-9544-8cf5-a5b89a59ad0a', 'request_id': 'd8da4e52-0e27-9544-8cf5-a5b89a59ad0a'}
+Retrying after application error (attempt 2/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-d8da4e52-0e27-9544-8cf5-a5b89a59ad0a', 'request_id': 'd8da4e52-0e27-9544-8cf5-a5b89a59ad0a'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-1a577fb4-2244-984f-bc0a-24e855a9c6a2', 'request_id': '1a577fb4-2244-984f-bc0a-24e855a9c6a2'}
+Max retries (2) exceeded. Last error: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-1a577fb4-2244-984f-bc0a-24e855a9c6a2', 'request_id': '1a577fb4-2244-984f-bc0a-24e855a9c6a2'}
+graphiti ingest worker job failed: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-1a577fb4-2244-984f-bc0a-24e855a9c6a2', 'request_id': '1a577fb4-2244-984f-bc0a-24e855a9c6a2'}
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 31, in worker
+    await job()
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 78, in add_messages_task
+    await graphiti.add_episode(
+    ...<7 lines>...
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1035, in add_episode
+    raise e
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 930, in add_episode
+    extracted_nodes = await extract_nodes(
+                      ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 89, in extract_nodes
+    extracted_entities = await _extract_nodes_single(llm_client, episode, context)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 140, in _extract_nodes_single
+    llm_response = await _call_extraction_llm(llm_client, episode, context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 165, in _call_extraction_llm
+    return await llm_client.generate_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 245, in generate_response
+    response, input_tokens, output_tokens = await self._generate_response(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        messages, response_model, max_tokens, model_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 172, in _generate_response
+    response = await self._create_structured_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 151, in _create_structured_completion
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 2454, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-1a577fb4-2244-984f-bc0a-24e855a9c6a2', 'request_id': '1a577fb4-2244-984f-bc0a-24e855a9c6a2'}
+Got a job: (size of remaining queue: 1)
+Got a job: (size of remaining queue: 0)
+INFO:     127.0.0.1:56119 - "POST /messages HTTP/1.1" 202 Accepted
+[#D65E]  _: <CONNECTION> error: Failed to write data to connection IPv4Address(('si-c9211d70-2b89.production-orch-0702.neo4j.io', 7687)) (ResolvedIPv4Address(('198.18.0.41', 7687))): ConnectionResetError('Connection lost')
+Transaction failed and will be retried in 0.9852001624454636s (Failed to write data to connection IPv4Address(('si-c9211d70-2b89.production-orch-0702.neo4j.io', 7687)) (ResolvedIPv4Address(('198.18.0.41', 7687))))
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-43a9e954-0ed1-9958-90d3-deb38dda4b82', 'request_id': '43a9e954-0ed1-9958-90d3-deb38dda4b82'}
+Retrying after application error (attempt 1/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-43a9e954-0ed1-9958-90d3-deb38dda4b82', 'request_id': '43a9e954-0ed1-9958-90d3-deb38dda4b82'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-cc0f44b8-4581-9ec8-aa7f-d53153f7b706', 'request_id': 'cc0f44b8-4581-9ec8-aa7f-d53153f7b706'}
+Retrying after application error (attempt 2/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-cc0f44b8-4581-9ec8-aa7f-d53153f7b706', 'request_id': 'cc0f44b8-4581-9ec8-aa7f-d53153f7b706'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d', 'request_id': 'a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d'}
+Max retries (2) exceeded. Last error: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d', 'request_id': 'a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d'}
+graphiti ingest worker job failed: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d', 'request_id': 'a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d'}
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 31, in worker
+    await job()
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 78, in add_messages_task
+    await graphiti.add_episode(
+    ...<7 lines>...
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1035, in add_episode
+    raise e
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 930, in add_episode
+    extracted_nodes = await extract_nodes(
+                      ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 89, in extract_nodes
+    extracted_entities = await _extract_nodes_single(llm_client, episode, context)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 140, in _extract_nodes_single
+    llm_response = await _call_extraction_llm(llm_client, episode, context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 165, in _call_extraction_llm
+    return await llm_client.generate_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 245, in generate_response
+    response, input_tokens, output_tokens = await self._generate_response(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        messages, response_model, max_tokens, model_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 172, in _generate_response
+    response = await self._create_structured_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 151, in _create_structured_completion
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 2454, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d', 'request_id': 'a5f89d1f-ecdd-9086-9e3c-69bdc041ce3d'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-0ec8e105-e201-9322-b5a2-beea22ff9f74', 'request_id': '0ec8e105-e201-9322-b5a2-beea22ff9f74'}
+Retrying after application error (attempt 1/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-0ec8e105-e201-9322-b5a2-beea22ff9f74', 'request_id': '0ec8e105-e201-9322-b5a2-beea22ff9f74'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-bcf93266-6862-9061-96ee-943ed5c412a0', 'request_id': 'bcf93266-6862-9061-96ee-943ed5c412a0'}
+Retrying after application error (attempt 2/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-bcf93266-6862-9061-96ee-943ed5c412a0', 'request_id': 'bcf93266-6862-9061-96ee-943ed5c412a0'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-0ed0e4ab-8ab9-93f4-bdae-6943e20eee97', 'request_id': '0ed0e4ab-8ab9-93f4-bdae-6943e20eee97'}
+Max retries (2) exceeded. Last error: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-0ed0e4ab-8ab9-93f4-bdae-6943e20eee97', 'request_id': '0ed0e4ab-8ab9-93f4-bdae-6943e20eee97'}
+graphiti ingest worker job failed: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-0ed0e4ab-8ab9-93f4-bdae-6943e20eee97', 'request_id': '0ed0e4ab-8ab9-93f4-bdae-6943e20eee97'}
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 31, in worker
+    await job()
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 78, in add_messages_task
+    await graphiti.add_episode(
+    ...<7 lines>...
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1035, in add_episode
+    raise e
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 930, in add_episode
+    extracted_nodes = await extract_nodes(
+                      ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 89, in extract_nodes
+    extracted_entities = await _extract_nodes_single(llm_client, episode, context)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 140, in _extract_nodes_single
+    llm_response = await _call_extraction_llm(llm_client, episode, context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 165, in _call_extraction_llm
+    return await llm_client.generate_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 245, in generate_response
+    response, input_tokens, output_tokens = await self._generate_response(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        messages, response_model, max_tokens, model_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 172, in _generate_response
+    response = await self._create_structured_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 151, in _create_structured_completion
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 2454, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-0ed0e4ab-8ab9-93f4-bdae-6943e20eee97', 'request_id': '0ed0e4ab-8ab9-93f4-bdae-6943e20eee97'}
+Got a job: (size of remaining queue: 1)
+Got a job: (size of remaining queue: 0)
+INFO:     127.0.0.1:56343 - "GET /healthcheck HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56357 - "POST /messages HTTP/1.1" 202 Accepted
+[#DB43]  _: <CONNECTION> error: Failed to write data to connection IPv4Address(('si-c9211d70-2b89.production-orch-0702.neo4j.io', 7687)) (ResolvedIPv4Address(('198.18.0.41', 7687))): ConnectionResetError('Connection lost')
+Transaction failed and will be retried in 1.160607611031219s (Failed to write data to connection IPv4Address(('si-c9211d70-2b89.production-orch-0702.neo4j.io', 7687)) (ResolvedIPv4Address(('198.18.0.41', 7687))))
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-ee8bbe48-a8d1-9255-b1b5-ad9a178ee8ed', 'request_id': 'ee8bbe48-a8d1-9255-b1b5-ad9a178ee8ed'}
+Retrying after application error (attempt 1/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-ee8bbe48-a8d1-9255-b1b5-ad9a178ee8ed', 'request_id': 'ee8bbe48-a8d1-9255-b1b5-ad9a178ee8ed'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-1b3fb130-da6a-9971-8e0d-fe486e1b0bd1', 'request_id': '1b3fb130-da6a-9971-8e0d-fe486e1b0bd1'}
+Retrying after application error (attempt 2/2): Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-1b3fb130-da6a-9971-8e0d-fe486e1b0bd1', 'request_id': '1b3fb130-da6a-9971-8e0d-fe486e1b0bd1'}
+Error in generating LLM response: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-82b49faf-d6e1-98cc-ac99-892553033edd', 'request_id': '82b49faf-d6e1-98cc-ac99-892553033edd'}
+Max retries (2) exceeded. Last error: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-82b49faf-d6e1-98cc-ac99-892553033edd', 'request_id': '82b49faf-d6e1-98cc-ac99-892553033edd'}
+graphiti ingest worker job failed: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-82b49faf-d6e1-98cc-ac99-892553033edd', 'request_id': '82b49faf-d6e1-98cc-ac99-892553033edd'}
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 31, in worker
+    await job()
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/ingest.py", line 78, in add_messages_task
+    await graphiti.add_episode(
+    ...<7 lines>...
+    )
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1035, in add_episode
+    raise e
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 930, in add_episode
+    extracted_nodes = await extract_nodes(
+                      ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 89, in extract_nodes
+    extracted_entities = await _extract_nodes_single(llm_client, episode, context)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 140, in _extract_nodes_single
+    llm_response = await _call_extraction_llm(llm_client, episode, context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/utils/maintenance/node_operations.py", line 165, in _call_extraction_llm
+    return await llm_client.generate_response(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 245, in generate_response
+    response, input_tokens, output_tokens = await self._generate_response(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        messages, response_model, max_tokens, model_size
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_base_client.py", line 172, in _generate_response
+    response = await self._create_structured_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/llm_client/openai_client.py", line 151, in _create_structured_completion
+    response = await self.client.chat.completions.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<12 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/chat/completions/completions.py", line 2454, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<45 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': 'chatcmpl-82b49faf-d6e1-98cc-ac99-892553033edd', 'request_id': '82b49faf-d6e1-98cc-ac99-892553033edd'}
+Got a job: (size of remaining queue: 0)
+INFO:     127.0.0.1:56395 - "GET /episodes/smoke-g-1772276105?last_n=10 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56400 - "POST /search HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+    await super().__call__(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/graph_service/routers/retrieve.py", line 57, in search
+    graph_results = await graphiti.search_(
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/decorators.py", line 96, in wrapper
+    return await func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/graphiti.py", line 1425, in search_
+    return await search(
+           ^^^^^^^^^^^^^
+    ...<8 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/search/search.py", line 106, in search
+    else await embedder.create(input_data=[query.replace('\n', ' ')])
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/graphiti_core/embedder/openai.py", line 57, in create
+    result = await self.client.embeddings.create(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        input=input_data, model=self.config.embedding_model
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/resources/embeddings.py", line 245, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+    )
+    ^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1784, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/muqihang/chelingxi_workspace/.openclaw-memory-stack/src/graphiti/server/.venv/lib/python3.13/site-packages/openai/_base_client.py", line 1584, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.BadRequestError: Error code: 400 - {'error': {'message': 'Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment', 'type': 'Arrearage', 'param': None, 'code': 'Arrearage'}, 'id': '36e63646-0af7-9d94-956d-fa478ccad0db', 'request_id': '36e63646-0af7-9d94-956d-fa478ccad0db'}
