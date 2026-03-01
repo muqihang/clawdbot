@@ -64,7 +64,9 @@ last_commit_error=''
 run_git_commit() {
   local stderr_log
   stderr_log=$(mktemp)
-  if git commit -m "$commit_message" -- "${files[@]}" 2> >(tee "$stderr_log" >&2); then
+  # Commit from the index (do not pass a pathspec) so that any pre-commit
+  # auto-fixes (oxlint/oxfmt) are included in the commit rather than left staged.
+  if git commit -m "$commit_message" 2> >(tee "$stderr_log" >&2); then
     rm -f "$stderr_log"
     last_commit_error=''
     return 0
