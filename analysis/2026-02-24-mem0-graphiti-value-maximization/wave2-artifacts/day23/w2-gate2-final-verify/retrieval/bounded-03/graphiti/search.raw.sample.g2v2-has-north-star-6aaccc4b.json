@@ -1,0 +1,147 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "6aaccc4b-b2d9-42c7-ba36-59329cf23a24",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184571+00:00",
+        "expired_at": "2026-02-28T16:01:03.014420+00:00"
+      },
+      {
+        "uuid": "8f74c566-e157-4b67-8f95-f83827ee9a74",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184795+00:00",
+        "expired_at": "2026-02-28T16:01:03.014452+00:00"
+      },
+      {
+        "uuid": "33dc6070-694b-47bd-9c92-5f7bb59e0289",
+        "name": "IS_FACT_BASE_OF",
+        "fact": "assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184726+00:00",
+        "expired_at": "2026-02-28T16:01:03.014438+00:00"
+      },
+      {
+        "uuid": "84c81332-2ca5-456b-b623-2be99d129549",
+        "name": "EMPHASIZES_NEED_FOR",
+        "fact": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061679+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b8b71207-021d-41a3-ade3-4fdf8c3ad826",
+        "name": "IS_DEFINED_AS",
+        "fact": "SoE 被 assistant(assistant) 定义为 System of Engagement",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.182430+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "0cf1802e-7a44-4a46-829f-38ff9c96ed31",
+        "name": "BENEFITS",
+        "fact": "assistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184825+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b05ce560-df57-43e0-97ff-4fba1e64b21a",
+        "name": "EVALUATES",
+        "fact": "assistant(assistant) 认为 OpenClaw 的趋势是 runtime 商品化并抬高安全争议",
+        "valid_at": "2026-02-28T17:57:37.068000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T17:58:44.238136+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a54cde8e-d14b-4993-a486-a947919286b8",
+        "name": "ARGUES_FOR_UNIFIED",
+        "fact": "assistant(assistant) 强调控制面应当统一以保证个人 Agent 网络的能力",
+        "valid_at": "2026-02-28T17:57:37.068000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T17:58:44.238125+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+        "name": "PROPOSES_NAMING",
+        "fact": "assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184512+00:00",
+        "expired_at": "2026-02-28T16:01:03.014479+00:00"
+      },
+      {
+        "uuid": "1d520547-2489-4326-9ba5-569d573399e4",
+        "name": "EVALUATES_NEGATIVELY",
+        "fact": "assistant(assistant) 认为自部署模式会削弱双脑架构的可携带性",
+        "valid_at": "2026-02-28T17:57:37.068000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T17:58:44.238111+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "7b170674-8f85-4bff-b4cb-67eed1be22fa",
+        "name": "内部北极星",
+        "summary": "在对话中被描述为仍然是“OS + 生态”，代表内部长期方向或核心目标。\n北极星 被定义为以组织级治理与生态为目标而非 runtime 本身\n北极星 被定义为以生态为核心目标之一",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627450+00:00"
+      },
+      {
+        "uuid": "34eee794-1e10-4bdb-b792-3ed7c3c6c37d",
+        "name": "assistant(assistant)",
+        "summary": "System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统\nSystem of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统\nassistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口\nassistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态\nassistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式\nassistant(assistant) 表示内部北极星仍然是 OS + 生态\nassistant 认为大风车当前更多是一个事后记录系统或高级记事本\nassistant 指出大风车体现的是数字化表象和模拟化内核的状态\nassistant 认为库存管理与营销分发是车商愿意付费的核心循环\nassistant 认为库存管理与微店展示构成车商愿意付费的核心循环\nassistant 指出直播发车是车商核心循环的一部分\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在微信中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在电话中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在纸笔中\nassistant 认为财务深度功能在大风车中往往成为数字幽灵\nassistant 认为电子审批在大风车中往往成为数字幽灵\nassistant 认为CRM 深度录入在大风车中往往成为数字幽灵\nassistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值\nassistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列\nassistant 认为要把关键环节拉回系统需要决策简报\nassistant 认为要把关键环节拉回系统需要人审队列\nassistant(assistant) 建议默认采用多租户架构以服务中小车商\nassistant(assistant) 认为单租户架构会对运维成本和迭代速度产生不利影响\nassistant(assistant) 认为自部署模式会削弱双脑架构的可携带性\nassistant(assistant) 认为 Tiered Hybrid 部署策略可以同时获得规模效应和向上销售空间\nassistant(assistant) 强调控制面应当统一以保证个人 Agent 网络的能力\nassistant(assistant) 认为中国市场竞品倾向封闭，使得需要依靠产品价值与低迁移摩擦进行竞争\nassistant(assistant) 认为 OpenClaw 的趋势是 runtime 商品化并抬高安全争议\nassistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262442+00:00"
+      },
+      {
+        "uuid": "c0c17fc3-7cde-4595-9b86-23ec97dbc9ce",
+        "name": "经营 OS",
+        "summary": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式\nassistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262784+00:00"
+      },
+      {
+        "uuid": "9cfa9c1b-518a-496d-906b-d6d56b89d634",
+        "name": "SoE",
+        "summary": "与 SoR 一起被讨论为一种战略或系统定位，用户询问 SoE→SoR 是否采纳，以及“对外先 SoE”的具体含义。\nSoE 被 assistant(assistant) 定义为 System of Engagement",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627476+00:00"
+      },
+      {
+        "uuid": "6955f63e-491d-4066-9770-d71b6d1a6ae1",
+        "name": "AI",
+        "summary": "在此上下文中，AI 指用于二手车场景的 AI Agent，通过高质量任务执行与自动化，基于车商完整业务与经营数据，提供评估、内容生成、提醒、审批等能力。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.729497+00:00"
+      }
+    ]
+  }
+}

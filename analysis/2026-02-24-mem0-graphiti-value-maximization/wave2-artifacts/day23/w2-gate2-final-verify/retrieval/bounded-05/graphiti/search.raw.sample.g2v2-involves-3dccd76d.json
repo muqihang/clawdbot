@@ -1,0 +1,182 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "车商的业务数据经营数据 涉及 采购与销售、财务数据结构"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "3dccd76d-447a-4201-bc8d-050f78cc4f2e",
+        "name": "INVOLVES",
+        "fact": "车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244933+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "bbd0aae3-45c9-4659-89ef-e3f20d857d9b",
+        "name": "DEPENDS_ON",
+        "fact": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244923+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "9e42e65a-9bc5-44ae-893e-8e906d282fc0",
+        "name": "COVERS_PART_OF",
+        "fact": "采购助手/工具 只覆盖 采购与销售、财务数据结构 中的采购部分",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244995+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "d196988e-847d-47e1-a484-1a6dbab194b0",
+        "name": "DEPENDS_ON",
+        "fact": "以销带采模式 依赖 采购与销售、财务数据结构 形成良性循环",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244959+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "f33cbefd-a327-4c81-b2ea-066d3f393295",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖采购、销售、整备和财务",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061711+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "29c14e41-44d0-4c0b-831a-f43ad78b0388",
+        "name": "USES_DATA_FROM",
+        "fact": "以销带采模式 利用 销售环节 的数据指导采购",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244950+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a565d044-23f8-4b7a-a91a-cda5fa774954",
+        "name": "SHOULD_SUPPORT",
+        "fact": "assistant 认为全链路数据结构应支持利润复盘",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061738+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "eeef93ad-95dc-4e21-9d0b-6db7eab446eb",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖财务",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061731+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7b41875a-78fd-4d5c-a6df-52ad97b83336",
+        "name": "INCLUDES",
+        "fact": "数据面被定义为包含证据链",
+        "valid_at": "2026-02-28T17:57:37.068000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T17:58:44.238017+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "43b6334a-d3ce-4fe2-943d-5acc644f76ed",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖销售",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061718+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "7ba48bb2-f873-468f-81fa-92ccc65d609e",
+        "name": "车商的业务数据经营数据",
+        "summary": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务\n车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442238+00:00"
+      },
+      {
+        "uuid": "58653a98-ab61-4a0a-a760-51805f60e886",
+        "name": "采购与销售、财务数据结构",
+        "summary": "车商的业务数据经营数据 涉及 采购与销售、财务数据结构\n采带销模式 基于 销售环节 之前的采购行为形成\n以销带采模式 依赖 采购与销售、财务数据结构 形成良性循环\n采购助手/工具 只覆盖 采购与销售、财务数据结构 中的采购部分",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442243+00:00"
+      },
+      {
+        "uuid": "2b8b096a-4002-4697-b770-3198ce18dce2",
+        "name": "主数据",
+        "summary": "System of Engagement 的核心不在于主数据而在于承载动作与协作\nSystem of Record 是结构化主数据和关键记录的权威系统",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262807+00:00"
+      },
+      {
+        "uuid": "3028f5e7-deda-4357-ac79-48db941b9a9f",
+        "name": "全链路经营数据",
+        "summary": "全链路经营数据指覆盖采购、销售、整备、财务与利润复盘等互相关联的数据结构，是让 AI Agent产生高质量价值及支持以销带采闭环的前提。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.729519+00:00"
+      },
+      {
+        "uuid": "fcb62818-47c5-45af-a512-60e692022608",
+        "name": "全链路数据结构",
+        "summary": "assistant 认为全链路数据结构和事件链路应该覆盖采购、销售、整备和财务\nassistant 认为全链路数据结构和事件链路应该覆盖销售\nassistant 认为全链路数据结构和事件链路应该覆盖整备\nassistant 认为全链路数据结构和事件链路应该覆盖财务\nassistant 认为全链路数据结构应支持利润复盘",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731314+00:00"
+      },
+      {
+        "uuid": "cdacc5b6-0581-4d52-a733-adcf874551cc",
+        "name": "过程数据",
+        "summary": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据\nassistant 指出如果没有成为一线动作发生地就难以获得过程数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731209+00:00"
+      },
+      {
+        "uuid": "a6ae022a-93bb-4d49-b8ed-494944bc91f4",
+        "name": "专属数据库",
+        "summary": "Tiered Hybrid 部署策略在升级时为客户提供专属数据库\nTier‑M 被描述为一种包含专属数据库的升级档位\nTier‑L 被描述为一种包含专属数据库的升级档位",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T17:58:12.567135+00:00"
+      },
+      {
+        "uuid": "92fcaf04-0b29-4787-b5f0-02bc23a00de1",
+        "name": "证据",
+        "summary": "assistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列\n数据面被定义为包含证据链",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724597+00:00"
+      },
+      {
+        "uuid": "91ff0528-a953-4878-9cfa-128a1344bc24",
+        "name": "台账与业务事实",
+        "summary": "在 二手车 场景中，System of Record 被描述为台账与业务事实的权威系统",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262887+00:00"
+      },
+      {
+        "uuid": "a303d963-869b-4d16-aeca-87c67e2c2987",
+        "name": "财务环节",
+        "summary": "采购助手/工具 如果不连接 财务环节 就难以形成数据闭环\nassistant 认为全链路数据结构和事件链路应该覆盖财务",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442281+00:00"
+      }
+    ]
+  }
+}

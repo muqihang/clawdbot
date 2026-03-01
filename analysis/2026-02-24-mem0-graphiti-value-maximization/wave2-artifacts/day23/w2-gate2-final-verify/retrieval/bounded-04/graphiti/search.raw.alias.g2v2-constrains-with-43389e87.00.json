@@ -1,0 +1,42 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "Gate-2",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "Gate-2"
+  },
+  "payload": {
+    "facts": [],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "95ac596e-9d60-465c-aec9-d403e6b46e3f",
+        "name": "Gate-0 硬约束",
+        "summary": "assistant 计划把Top5 功能变成Gate-0 硬约束的一部分",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.733540+00:00"
+      },
+      {
+        "uuid": "d3431784-cec8-4f47-9a48-b72d047caf78",
+        "name": "v0.2 战略基座",
+        "summary": "assistant 计划将用户选择的Top5 功能纳入v0.2 战略基座",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.733521+00:00"
+      },
+      {
+        "uuid": "cf81ef82-c71d-4c78-ba3a-22db73ae786a",
+        "name": "生态扩张方式",
+        "summary": "基于统一控制面、分发与计费机制，借助双脑架构和多层部署形态向更多组织和第三方合作方扩展的路径。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T17:58:12.567190+00:00"
+      }
+    ]
+  }
+}

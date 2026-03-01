@@ -1,0 +1,90 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "SoE",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "SoE"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "e818c7c7-949e-485b-8b32-c978e520c9c3",
+        "name": "USES_TO_OPTIMIZE",
+        "fact": "assistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184649+00:00",
+        "expired_at": "2026-02-28T16:01:03.014432+00:00"
+      },
+      {
+        "uuid": "b8b71207-021d-41a3-ade3-4fdf8c3ad826",
+        "name": "IS_DEFINED_AS",
+        "fact": "SoE 被 assistant(assistant) 定义为 System of Engagement",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.182430+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "5dc3de9f-7f20-4338-be0c-27bcefcb8e29",
+        "name": "AIMS_TO_IMPROVE",
+        "fact": "assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184695+00:00",
+        "expired_at": "2026-02-28T16:01:03.014407+00:00"
+      },
+      {
+        "uuid": "84c81332-2ca5-456b-b623-2be99d129549",
+        "name": "EMPHASIZES_NEED_FOR",
+        "fact": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061679+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b794907e-d19e-478a-b855-b222142288f4",
+        "name": "DESCRIBES_TRANSITION_TO",
+        "fact": "assistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184600+00:00",
+        "expired_at": "2026-02-28T16:01:03.014467+00:00"
+      },
+      {
+        "uuid": "6aaccc4b-b2d9-42c7-ba36-59329cf23a24",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184571+00:00",
+        "expired_at": "2026-02-28T16:01:03.014420+00:00"
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "9cfa9c1b-518a-496d-906b-d6d56b89d634",
+        "name": "SoE",
+        "summary": "与 SoR 一起被讨论为一种战略或系统定位，用户询问 SoE→SoR 是否采纳，以及“对外先 SoE”的具体含义。\nSoE 被 assistant(assistant) 定义为 System of Engagement",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627476+00:00"
+      },
+      {
+        "uuid": "5c766651-e453-485a-9466-3d847c1d2ea0",
+        "name": "SoE→SoR",
+        "summary": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.723638+00:00"
+      }
+    ]
+  }
+}

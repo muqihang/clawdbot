@@ -1,0 +1,16 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "报表 依赖 System of Record 提供一致的数据",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "报表 依赖 System of Record 提供一致的数据"
+  },
+  "payload": null
+}

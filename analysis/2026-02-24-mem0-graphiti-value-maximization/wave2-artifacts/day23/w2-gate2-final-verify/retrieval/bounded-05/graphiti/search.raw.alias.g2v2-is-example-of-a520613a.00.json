@@ -1,0 +1,88 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "SoR",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "SoR"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "e7212791-2909-4ece-982e-042e645742c0",
+        "name": "IS_DEFINED_AS",
+        "fact": "SoR 被 assistant(assistant) 定义为 System of Record",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.183661+00:00",
+        "expired_at": "2026-02-28T16:01:03.014448+00:00"
+      },
+      {
+        "uuid": "cafdd618-418f-42c2-8651-1f883f7c76e5",
+        "name": "EQUIVALENT_TO",
+        "fact": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061695+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "5dc3de9f-7f20-4338-be0c-27bcefcb8e29",
+        "name": "AIMS_TO_IMPROVE",
+        "fact": "assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184695+00:00",
+        "expired_at": "2026-02-28T16:01:03.014407+00:00"
+      },
+      {
+        "uuid": "84c81332-2ca5-456b-b623-2be99d129549",
+        "name": "EMPHASIZES_NEED_FOR",
+        "fact": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061679+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b794907e-d19e-478a-b855-b222142288f4",
+        "name": "DESCRIBES_TRANSITION_TO",
+        "fact": "assistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184600+00:00",
+        "expired_at": "2026-02-28T16:01:03.014467+00:00"
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "5b1926e7-c9e4-4064-b949-9e2d04955bb2",
+        "name": "SoR",
+        "summary": "与 SoE 一起被讨论为一种战略或系统定位，用户关心是否采纳从 SoE 过渡到 SoR 的方案。\nSoR 被 assistant(assistant) 定义为 System of Record",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627484+00:00"
+      },
+      {
+        "uuid": "5c766651-e453-485a-9466-3d847c1d2ea0",
+        "name": "SoE→SoR",
+        "summary": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.723638+00:00"
+      },
+      {
+        "uuid": "2b6bd047-dfe5-4cd1-85b6-43460a60c46a",
+        "name": "SoR-lite",
+        "summary": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731296+00:00"
+      }
+    ]
+  }
+}
