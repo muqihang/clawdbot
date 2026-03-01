@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "assistant(assistant) 导致什么",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

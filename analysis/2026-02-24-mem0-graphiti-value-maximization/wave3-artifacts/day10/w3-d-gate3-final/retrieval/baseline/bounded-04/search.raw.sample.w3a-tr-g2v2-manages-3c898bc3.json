@@ -1,0 +1,94 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 4,
+  "query": "在依赖顺序里，在 二手车 场景中，System of Record 管理库存 先于哪个事件，后于哪个事件？",
+  "requestBody": {
+    "query": "在依赖顺序里，在 二手车 场景中，System of Record 管理库存 先于哪个事件，后于哪个事件？"
+  },
+  "search_calls": [
+    {
+      "query": "在依赖顺序里，在 二手车 场景中，System of Record 管理库存 先于哪个事件，后于哪个事件？",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "在依赖顺序里，在 二手车 场景中，System of Record 管理库存 先于哪个事件，后于哪个事件？"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-baseline-w3a-tr-g2v2-manages-3c898bc3",
+            "score": 0.9,
+            "fact": "w3d baseline fact distractor for w3a-tr-g2v2-manages-3c898bc3"
+          },
+          {
+            "id": "w3d-baseline-alt-w3a-tr-g2v2-manages-3c898bc3",
+            "score": 0.85,
+            "fact": "w3d baseline alternate fact distractor for w3a-tr-g2v2-manages-3c898bc3"
+          }
+        ],
+        "episodes": [],
+        "nodes": []
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3d-baseline-w3a-tr-g2v2-manages-3c898bc3",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  }
+}

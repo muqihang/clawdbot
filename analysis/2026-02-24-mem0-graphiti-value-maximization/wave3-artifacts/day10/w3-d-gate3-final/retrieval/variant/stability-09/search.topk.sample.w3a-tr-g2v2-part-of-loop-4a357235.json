@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "4a357235-3250-4379-bf51-ea4b363f1d86",
+      "path": "bridge/graphiti/4a357235-3250-4379-bf51-ea4b363f1d86",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-part-of-loop-4a357235",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-part-of-loop-4a357235",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-part-of-loop-4a357235",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-part-of-loop-4a357235",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

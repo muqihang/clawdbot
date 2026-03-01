@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "在 timeline 第4天 里程碑中，assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

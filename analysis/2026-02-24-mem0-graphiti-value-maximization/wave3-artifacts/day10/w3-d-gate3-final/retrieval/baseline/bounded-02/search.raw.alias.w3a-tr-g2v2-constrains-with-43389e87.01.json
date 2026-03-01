@@ -1,0 +1,94 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 2,
+  "query": "Gate-2 触发后事件",
+  "requestBody": {
+    "query": "Gate-2 触发后事件"
+  },
+  "search_calls": [
+    {
+      "query": "Gate-2 触发后事件",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "Gate-2 触发后事件"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-baseline-w3a-tr-g2v2-constrains-with-43389e87",
+            "score": 0.9,
+            "fact": "w3d baseline fact distractor for w3a-tr-g2v2-constrains-with-43389e87"
+          },
+          {
+            "id": "w3d-baseline-alt-w3a-tr-g2v2-constrains-with-43389e87",
+            "score": 0.85,
+            "fact": "w3d baseline alternate fact distractor for w3a-tr-g2v2-constrains-with-43389e87"
+          }
+        ],
+        "episodes": [],
+        "nodes": []
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3d-baseline-w3a-tr-g2v2-constrains-with-43389e87",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  }
+}

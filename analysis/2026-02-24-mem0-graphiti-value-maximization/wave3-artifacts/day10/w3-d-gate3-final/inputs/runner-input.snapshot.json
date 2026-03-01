@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-03-01T10:59:04.476Z",
+  "git_sha": "2f3e812a41cdd1045114fd1438124db2472b93e3",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "mode": "W3-D-gate3-final",
+  "variable": "graphiti_recipe_routing + graphiti_focal_node + graphiti_temporal_filters",
+  "baseline_flags": {
+    "graphiti_recipe_routing": {
+      "enabled": false,
+      "sample_percent": 0
+    },
+    "graphiti_focal_node": {
+      "enabled": false,
+      "sample_percent": 0
+    },
+    "graphiti_temporal_filters": {
+      "enabled": false,
+      "sample_percent": 0
+    },
+    "graphiti_ontology_readback": {
+      "enabled": false,
+      "sample_percent": 0
+    }
+  },
+  "variant_flags": {
+    "graphiti_recipe_routing": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_focal_node": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_temporal_filters": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_ontology_readback": {
+      "enabled": false,
+      "sample_percent": 0
+    }
+  }
+}

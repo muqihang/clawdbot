@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 1,
+  "query": "在依赖顺序里，assistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

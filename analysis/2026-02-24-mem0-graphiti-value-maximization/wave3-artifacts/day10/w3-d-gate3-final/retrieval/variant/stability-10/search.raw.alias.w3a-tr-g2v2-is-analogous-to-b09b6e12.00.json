@@ -1,0 +1,103 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 10,
+  "query": "System of Engagement 导致什么",
+  "requestBody": {
+    "query": "System of Engagement 导致什么",
+    "strategy": "hybrid"
+  },
+  "search_calls": [
+    {
+      "query": "System of Engagement 导致什么",
+      "strategy": "hybrid",
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "System of Engagement 导致什么",
+        "strategy": "hybrid"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-fact-w3a-tr-g2v2-uses-8aa701e5",
+            "score": 0.6,
+            "fact": "w3d variant fact context for w3a-tr-g2v2-uses-8aa701e5"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "8aa701e5-4bef-4213-9271-66580475dae4",
+            "score": 0.99,
+            "summary": "w3d expected temporal episode for w3a-tr-g2v2-uses-8aa701e5"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3d-node-w3a-tr-g2v2-uses-8aa701e5",
+            "score": 0.7,
+            "name": "w3d node context for w3a-tr-g2v2-uses-8aa701e5"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "other",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "other",
+    "selected_recipe": "hybrid",
+    "requested_strategy": "hybrid",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3d-fact-w3a-tr-g2v2-uses-8aa701e5",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "non_temporal_query"
+  },
+  "temporal_filters": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "non_temporal_query"
+  }
+}

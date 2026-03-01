@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "timeline: 经营 OS",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+      "path": "bridge/graphiti/e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

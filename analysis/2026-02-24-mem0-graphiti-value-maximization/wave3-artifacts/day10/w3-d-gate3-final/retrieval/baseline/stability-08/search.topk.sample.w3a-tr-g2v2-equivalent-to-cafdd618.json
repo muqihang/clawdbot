@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 8,
+  "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

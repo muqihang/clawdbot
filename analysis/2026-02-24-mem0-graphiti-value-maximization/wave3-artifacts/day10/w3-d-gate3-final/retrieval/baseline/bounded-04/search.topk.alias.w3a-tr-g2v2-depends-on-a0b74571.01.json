@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 4,
+  "query": "System of Record 触发后事件",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-depends-on-a0b74571",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-depends-on-a0b74571",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-depends-on-a0b74571",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-depends-on-a0b74571",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

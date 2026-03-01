@@ -6,6 +6,7 @@
 
 - 最终 Gate-3 结论以 Day10 `w3-gate3-report.json` 为准：
   - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-gate3-report.json`
+- 最终结论：Gate-3 = GO（git_sha=2f3e812a41cdd1045114fd1438124db2472b93e3）
 
 ## superseded（仅指向，不删除历史）
 

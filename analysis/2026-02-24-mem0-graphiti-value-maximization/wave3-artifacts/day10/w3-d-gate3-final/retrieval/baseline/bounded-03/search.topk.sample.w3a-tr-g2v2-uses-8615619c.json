@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 3,
+  "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-uses-8615619c",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-uses-8615619c",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-uses-8615619c",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-uses-8615619c",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

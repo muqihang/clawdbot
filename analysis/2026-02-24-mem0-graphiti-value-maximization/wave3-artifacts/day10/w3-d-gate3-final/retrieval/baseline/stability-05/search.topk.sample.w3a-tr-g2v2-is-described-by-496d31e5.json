@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 5,
+  "query": "在依赖顺序里，System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-is-described-by-496d31e5",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-is-described-by-496d31e5",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-is-described-by-496d31e5",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-is-described-by-496d31e5",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

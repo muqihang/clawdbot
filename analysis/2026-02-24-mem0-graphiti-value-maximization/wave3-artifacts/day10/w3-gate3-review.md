@@ -19,14 +19,18 @@
 
 ## 结论
 
-- Gate-3：TBD（等待 runner + tests + W2 Gate-2 回归落盘后定稿）
+- Gate-3：**GO**
+- 单点事实锚点：`analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-gate3-report.json`
 
-## 指标摘要（TBD）
+## 指标摘要
 
-- hit@1: baseline=TBD variant=TBD delta_pp=TBD
-- hit@3: baseline=TBD variant=TBD
-- episodes coverage: baseline=TBD variant=TBD
-- nodes coverage: baseline=TBD variant=TBD
+- sample_size=34（>=30）
+- hit@1: baseline=0 / variant=1 / delta_pp=100（>=10）
+- hit@3: baseline=0 / variant=1
+- episodes_nonzero_coverage: baseline=0 / variant=1
+- nodes_nonzero_coverage: baseline=0 / variant=1
+- stability unique values（10 runs）：baseline/variant 各指标 unique-values=1
+- tests exit=0；W2 Gate-2 minimal regression exit=0
 
 ## baseline vs variant 开关差异
 

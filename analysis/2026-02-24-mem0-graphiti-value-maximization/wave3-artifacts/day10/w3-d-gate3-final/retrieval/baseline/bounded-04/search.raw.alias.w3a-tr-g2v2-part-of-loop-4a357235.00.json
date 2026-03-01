@@ -1,0 +1,94 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 4,
+  "query": "sub2api 导致什么",
+  "requestBody": {
+    "query": "sub2api 导致什么"
+  },
+  "search_calls": [
+    {
+      "query": "sub2api 导致什么",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "sub2api 导致什么"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-baseline-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.9,
+            "fact": "w3d baseline fact distractor for w3a-tr-g2v2-part-of-loop-4a357235"
+          },
+          {
+            "id": "w3d-baseline-alt-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.85,
+            "fact": "w3d baseline alternate fact distractor for w3a-tr-g2v2-part-of-loop-4a357235"
+          }
+        ],
+        "episodes": [],
+        "nodes": []
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "other",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3d-baseline-w3a-tr-g2v2-part-of-loop-4a357235",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  }
+}

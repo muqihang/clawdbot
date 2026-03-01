@@ -1,0 +1,140 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 3,
+  "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+  "requestBody": {
+    "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-uses-8615619c",
+    "temporal_filters": {
+      "kind": "relative_window",
+      "window_days": 7,
+      "matched_phrase": "第3天"
+    }
+  },
+  "search_calls": [
+    {
+      "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3d-focal-w3a-tr-g2v2-uses-8615619c",
+            "score": 0.98,
+            "name": "w3d focal node candidate for w3a-tr-g2v2-uses-8615619c"
+          }
+        ]
+      }
+    },
+    {
+      "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3d-focal-w3a-tr-g2v2-uses-8615619c",
+      "temporalFilters": {
+        "kind": "relative_window",
+        "window_days": 7,
+        "matched_phrase": "第3天"
+      },
+      "requestBody": {
+        "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-uses-8615619c",
+        "temporal_filters": {
+          "kind": "relative_window",
+          "window_days": 7,
+          "matched_phrase": "第3天"
+        }
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-fact-w3a-tr-g2v2-uses-8615619c",
+            "score": 0.6,
+            "fact": "w3d variant fact context for w3a-tr-g2v2-uses-8615619c"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "8615619c-ee65-4ee2-906e-5755d5c192ae",
+            "score": 0.99,
+            "summary": "w3d expected temporal episode for w3a-tr-g2v2-uses-8615619c"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3d-node-w3a-tr-g2v2-uses-8615619c",
+            "score": 0.7,
+            "name": "w3d node context for w3a-tr-g2v2-uses-8615619c"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "8615619c-ee65-4ee2-906e-5755d5c192ae",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-uses-8615619c",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  },
+  "temporal_filters": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "kind": "relative_window",
+    "window_days": 7,
+    "matched_phrase": "第3天",
+    "degrade_reason": null
+  }
+}

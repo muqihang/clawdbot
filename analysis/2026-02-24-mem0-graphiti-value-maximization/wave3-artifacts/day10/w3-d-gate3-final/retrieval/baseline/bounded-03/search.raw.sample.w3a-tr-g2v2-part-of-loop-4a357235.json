@@ -1,0 +1,94 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 3,
+  "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+  "requestBody": {
+    "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？"
+  },
+  "search_calls": [
+    {
+      "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-baseline-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.9,
+            "fact": "w3d baseline fact distractor for w3a-tr-g2v2-part-of-loop-4a357235"
+          },
+          {
+            "id": "w3d-baseline-alt-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.85,
+            "fact": "w3d baseline alternate fact distractor for w3a-tr-g2v2-part-of-loop-4a357235"
+          }
+        ],
+        "episodes": [],
+        "nodes": []
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3d-baseline-w3a-tr-g2v2-part-of-loop-4a357235",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  }
+}

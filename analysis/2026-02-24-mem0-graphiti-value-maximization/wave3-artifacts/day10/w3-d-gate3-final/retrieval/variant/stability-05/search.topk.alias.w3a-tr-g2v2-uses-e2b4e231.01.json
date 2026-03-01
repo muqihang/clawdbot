@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 5,
+  "query": "timeline: System of Engagement",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "e2b4e231-02e5-4380-a8a6-d7aea7faa760",
+      "path": "bridge/graphiti/e2b4e231-02e5-4380-a8a6-d7aea7faa760",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-uses-e2b4e231",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-uses-e2b4e231",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-uses-e2b4e231",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-uses-e2b4e231",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

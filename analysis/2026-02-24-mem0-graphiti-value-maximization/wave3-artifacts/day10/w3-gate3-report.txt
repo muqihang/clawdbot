@@ -1,14 +1,10 @@
 W3 Gate-3 Final (Day10)
-
-- conclusion: TBD
-- git_sha: TBD
-- sample_size: 34
-
-- hit@1: baseline=TBD variant=TBD delta_pp=TBD
-- hit@3: baseline=TBD variant=TBD
-- episodes_nonzero_coverage: baseline=TBD variant=TBD
-- nodes_nonzero_coverage: baseline=TBD variant=TBD
-- stability_unique_values: TBD
-
-evidence_dir:
-analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final
+conclusion: GO
+git_sha: 2f3e812a41cdd1045114fd1438124db2472b93e3
+sample_size: 34
+hit@1 baseline=0 variant=1 delta_pp=100
+hit@3 baseline=0 variant=1
+episodes_cov baseline=0 variant=1
+nodes_cov baseline=0 variant=1
+stability_unique_values baseline=[0] variant=[1]
+evidence_dir: analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final
