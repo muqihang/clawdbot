@@ -1,0 +1,1 @@
+pnpm -s vitest run --config vitest.extensions.config.ts extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts -t "keeps W2 exact-id bucket protected when recipe routing is enabled"

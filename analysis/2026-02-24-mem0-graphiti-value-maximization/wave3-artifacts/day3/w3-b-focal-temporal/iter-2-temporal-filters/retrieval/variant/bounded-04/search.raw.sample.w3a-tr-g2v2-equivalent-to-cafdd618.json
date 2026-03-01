@@ -1,0 +1,140 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 4,
+  "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+  "requestBody": {
+    "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-equivalent-to-cafdd618",
+    "temporal_filters": {
+      "kind": "relative_window",
+      "window_days": 1,
+      "matched_phrase": "Day 1"
+    }
+  },
+  "search_calls": [
+    {
+      "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3b-focal-w3a-tr-g2v2-equivalent-to-cafdd618",
+            "score": 0.98,
+            "name": "focal node for w3a-tr-g2v2-equivalent-to-cafdd618"
+          }
+        ]
+      }
+    },
+    {
+      "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3b-focal-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "temporalFilters": {
+        "kind": "relative_window",
+        "window_days": 1,
+        "matched_phrase": "Day 1"
+      },
+      "requestBody": {
+        "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-equivalent-to-cafdd618",
+        "temporal_filters": {
+          "kind": "relative_window",
+          "window_days": 1,
+          "matched_phrase": "Day 1"
+        }
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3b-fact-w3a-tr-g2v2-equivalent-to-cafdd618",
+            "score": 0.9,
+            "fact": "temporal-filtered facts context for w3a-tr-g2v2-equivalent-to-cafdd618"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "cafdd618-418f-42c2-8651-1f883f7c76e5",
+            "score": 0.97,
+            "summary": "temporal-filtered episode expected for w3a-tr-g2v2-equivalent-to-cafdd618"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-equivalent-to-cafdd618",
+            "score": 0.89,
+            "name": "temporal-filtered node context for w3a-tr-g2v2-equivalent-to-cafdd618"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "cafdd618-418f-42c2-8651-1f883f7c76e5",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-equivalent-to-cafdd618",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  },
+  "temporal_filters": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "kind": "relative_window",
+    "window_days": 1,
+    "matched_phrase": "Day 1",
+    "degrade_reason": null
+  }
+}

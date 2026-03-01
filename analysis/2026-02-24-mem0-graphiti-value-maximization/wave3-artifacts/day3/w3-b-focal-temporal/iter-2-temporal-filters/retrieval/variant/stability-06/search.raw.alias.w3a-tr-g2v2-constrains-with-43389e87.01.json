@@ -1,0 +1,106 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 6,
+  "query": "Gate-2 触发后事件",
+  "requestBody": {
+    "query": "Gate-2 触发后事件"
+  },
+  "search_calls": [
+    {
+      "query": "Gate-2 触发后事件",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "Gate-2 触发后事件"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "43389e87-2a15-4192-8d6d-65fd910c7a67",
+            "score": 0.96,
+            "fact": "baseline expected exists but not elevated for w3a-tr-g2v2-constrains-with-43389e87"
+          },
+          {
+            "id": "w3b-fact-alt-w3a-tr-g2v2-constrains-with-43389e87",
+            "score": 0.92,
+            "fact": "baseline facts alternate for w3a-tr-g2v2-constrains-with-43389e87"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "w3b-episode-miss-w3a-tr-g2v2-constrains-with-43389e87",
+            "score": 0.95,
+            "summary": "baseline episode distractor for w3a-tr-g2v2-constrains-with-43389e87"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-constrains-with-43389e87",
+            "score": 0.88,
+            "name": "baseline node context for w3a-tr-g2v2-constrains-with-43389e87"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "precision_key_bucket",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "43389e87-2a15-4192-8d6d-65fd910c7a67",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "precision_key_bucket"
+  },
+  "temporal_filters": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "precision_key_bucket"
+  }
+}

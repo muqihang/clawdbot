@@ -1,0 +1,126 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 2,
+  "query": "System of Engagement 第3天",
+  "requestBody": {
+    "query": "System of Engagement 第3天",
+    "strategy": "edge",
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-uses-8615619c"
+  },
+  "search_calls": [
+    {
+      "query": "System of Engagement 第3天",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "System of Engagement 第3天",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3b-focal-w3a-tr-g2v2-uses-8615619c",
+            "score": 0.98,
+            "name": "focal node for w3a-tr-g2v2-uses-8615619c"
+          }
+        ]
+      }
+    },
+    {
+      "query": "System of Engagement 第3天",
+      "strategy": "edge",
+      "focalNodeUuid": "w3b-focal-w3a-tr-g2v2-uses-8615619c",
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "System of Engagement 第3天",
+        "strategy": "edge",
+        "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-uses-8615619c"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "8615619c-ee65-4ee2-906e-5755d5c192ae",
+            "score": 0.95,
+            "fact": "focal-only expected stays in facts for w3a-tr-g2v2-uses-8615619c"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "w3b-episode-miss-w3a-tr-g2v2-uses-8615619c",
+            "score": 0.96,
+            "summary": "focal-only episode distractor for w3a-tr-g2v2-uses-8615619c"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-uses-8615619c",
+            "score": 0.9,
+            "name": "focal-only node context for w3a-tr-g2v2-uses-8615619c"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3b-episode-miss-w3a-tr-g2v2-uses-8615619c",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-uses-8615619c",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  }
+}

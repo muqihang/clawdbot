@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-03-01T07:11:59.674Z",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day3/w3-b-focal-temporal/iter-2-temporal-filters/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "mode": "W3-B-iter2",
+  "variable": "graphiti_temporal_filters",
+  "baseline_flags": {
+    "graphiti_recipe_routing": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_focal_node": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_temporal_filters": {
+      "enabled": false,
+      "sample_percent": 0
+    }
+  },
+  "variant_flags": {
+    "graphiti_recipe_routing": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_focal_node": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_temporal_filters": {
+      "enabled": true,
+      "sample_percent": 100
+    }
+  }
+}

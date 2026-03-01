@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 2,
+  "query": "assistant(assistant) 触发后事件",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3b-episode-miss-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "path": "bridge/graphiti/w3b-episode-miss-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "score": 0.96,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "33dc6070-694b-47bd-9c92-5f7bb59e0289",
+      "path": "bridge/graphiti/33dc6070-694b-47bd-9c92-5f7bb59e0289",
+      "score": 0.95,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3b-node-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "path": "bridge/graphiti/w3b-node-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "score": 0.9,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-03-01T07:12:00.656Z",
+  "hit_at_1_baseline": 0.0588,
+  "hit_at_1_variant": 0.2941,
+  "hit_at_1_delta_pp": 23.53,
+  "hit_at_3_baseline": 1,
+  "hit_at_3_variant": 1,
+  "hit_at_3_delta_pp": 0,
+  "episodes_nonzero_coverage_baseline": 1,
+  "episodes_nonzero_coverage_variant": 1,
+  "nodes_nonzero_coverage_baseline": 0.9412,
+  "nodes_nonzero_coverage_variant": 0.9412,
+  "stability_unique_values": {
+    "baseline": {
+      "hit_at_1": [
+        0.0588
+      ],
+      "hit_at_3": [
+        1
+      ],
+      "episodes_nonzero_coverage": [
+        1
+      ],
+      "nodes_nonzero_coverage": [
+        0.9412
+      ]
+    },
+    "variant": {
+      "hit_at_1": [
+        0.2941
+      ],
+      "hit_at_3": [
+        1
+      ],
+      "episodes_nonzero_coverage": [
+        1
+      ],
+      "nodes_nonzero_coverage": [
+        0.9412
+      ]
+    }
+  }
+}

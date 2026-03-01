@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 2,
+  "query": "在时间线中，assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口 之前发生了什么？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3b-episode-miss-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "path": "bridge/graphiti/w3b-episode-miss-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "score": 0.96,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+      "path": "bridge/graphiti/e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+      "score": 0.95,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3b-node-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "path": "bridge/graphiti/w3b-node-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "score": 0.9,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}
