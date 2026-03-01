@@ -54,6 +54,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         enabled: false,
         sample_percent: 0,
       },
+      graphiti_recipe_routing: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,
