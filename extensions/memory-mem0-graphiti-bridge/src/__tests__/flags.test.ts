@@ -24,6 +24,8 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.read.graphiti_focal_node.sample_percent).toBe(0);
     expect(flags.read.graphiti_temporal_filters.enabled).toBe(false);
     expect(flags.read.graphiti_temporal_filters.sample_percent).toBe(0);
+    expect(flags.read.graphiti_ontology_readback.enabled).toBe(false);
+    expect(flags.read.graphiti_ontology_readback.sample_percent).toBe(0);
     expect(flags.p3.graphiti_write_path).toBe("/messages");
     expect(flags.p3.graphiti_ontology_v1.enabled).toBe(false);
     expect(flags.p3.graphiti_ontology_v1.sample_percent).toBe(0);
@@ -170,6 +172,20 @@ describe("mem0-graphiti bridge flags", () => {
 
     expect(flags.read.graphiti_temporal_filters.enabled).toBe(true);
     expect(flags.read.graphiti_temporal_filters.sample_percent).toBe(100);
+  });
+
+  it("parses graphiti ontology readback flags", () => {
+    const flags = resolveBridgeFlags({
+      read: {
+        graphiti_ontology_readback: {
+          enabled: true,
+          sample_percent: 137,
+        },
+      },
+    });
+
+    expect(flags.read.graphiti_ontology_readback.enabled).toBe(true);
+    expect(flags.read.graphiti_ontology_readback.sample_percent).toBe(100);
   });
 
   it("parses graphiti ontology-v1 write flags", () => {

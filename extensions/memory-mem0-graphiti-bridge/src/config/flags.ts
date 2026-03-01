@@ -46,6 +46,10 @@ export type BridgeReadFlags = {
     enabled: boolean;
     sample_percent: number;
   };
+  graphiti_ontology_readback: {
+    enabled: boolean;
+    sample_percent: number;
+  };
 };
 
 type BridgeMessageEnvelopeRole = "user" | "assistant" | "system" | "tool";
@@ -149,6 +153,10 @@ const DEFAULT_FLAGS: BridgeFlags = {
       sample_percent: 0,
     },
     graphiti_temporal_filters: {
+      enabled: false,
+      sample_percent: 0,
+    },
+    graphiti_ontology_readback: {
       enabled: false,
       sample_percent: 0,
     },
@@ -401,6 +409,9 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const graphitiTemporalFiltersRaw = asRecord(
     readRawValue(readRaw, ["graphiti_temporal_filters", "graphitiTemporalFilters"]),
   );
+  const graphitiOntologyReadbackRaw = asRecord(
+    readRawValue(readRaw, ["graphiti_ontology_readback", "graphitiOntologyReadback"]),
+  );
   const p3Raw = asRecord(raw.p3);
   const p3MessageEnvelopeRaw = asRecord(
     readRawValue(p3Raw, ["message_envelope", "messageEnvelope"]),
@@ -524,6 +535,16 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         sample_percent: readPercentWithFallback(
           readRawValue(graphitiTemporalFiltersRaw, ["sample_percent", "samplePercent"]),
           DEFAULT_FLAGS.read.graphiti_temporal_filters.sample_percent,
+        ),
+      },
+      graphiti_ontology_readback: {
+        enabled: readBoolean(
+          graphitiOntologyReadbackRaw.enabled,
+          DEFAULT_FLAGS.read.graphiti_ontology_readback.enabled,
+        ),
+        sample_percent: readPercentWithFallback(
+          readRawValue(graphitiOntologyReadbackRaw, ["sample_percent", "samplePercent"]),
+          DEFAULT_FLAGS.read.graphiti_ontology_readback.sample_percent,
         ),
       },
     },

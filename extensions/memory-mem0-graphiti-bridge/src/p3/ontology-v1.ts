@@ -72,6 +72,12 @@ export type BuildOntologyV1WriteResult = {
   trace: GraphitiOntologyV1WriteTrace;
 };
 
+export type OntologyV1MarkerParseResult = {
+  marker_present: boolean;
+  payload: OntologyV1MarkerPayload | null;
+  error: string | null;
+};
+
 const DECISION_FACT_KEY_PATTERN =
   /\b(decision|rationale|reason|trade[-_ ]?off|reject(?:ed)?|why)\b/i;
 const DECISION_TAG_PATTERN = /^(decision(?::|$)|decision_reason$|rationale$|reason$)/i;
@@ -392,4 +398,75 @@ export const buildOntologyV1WriteResult = (params: {
       degrade_reason: degradeReason,
     },
   };
+};
+
+const asRecord = (value: unknown): Record<string, unknown> | null => {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return null;
+  }
+  return value as Record<string, unknown>;
+};
+
+const isMarkerPayloadV1 = (value: unknown): value is OntologyV1MarkerPayload => {
+  const record = asRecord(value);
+  if (!record) {
+    return false;
+  }
+
+  return (
+    record.version === "1" &&
+    typeof record.group_id === "string" &&
+    typeof record.session_key === "string" &&
+    typeof record.decision === "object" &&
+    Array.isArray(record.reasons) &&
+    Array.isArray(record.rejected) &&
+    Array.isArray(record.relations)
+  );
+};
+
+export const parseOntologyV1MarkerFromSnippet = (snippet: string): OntologyV1MarkerParseResult => {
+  const markerLine = snippet
+    .split("\n")
+    .map((line) => line.trim())
+    .find((line) => line.startsWith(ONTOLOGY_V1_MARKER_PREFIX));
+
+  if (!markerLine) {
+    return {
+      marker_present: false,
+      payload: null,
+      error: null,
+    };
+  }
+
+  const rawJson = markerLine.slice(ONTOLOGY_V1_MARKER_PREFIX.length).trim();
+  if (rawJson.length === 0) {
+    return {
+      marker_present: true,
+      payload: null,
+      error: "empty_marker_payload",
+    };
+  }
+
+  try {
+    const parsed = JSON.parse(rawJson) as unknown;
+    if (!isMarkerPayloadV1(parsed)) {
+      return {
+        marker_present: true,
+        payload: null,
+        error: "invalid_marker_shape",
+      };
+    }
+
+    return {
+      marker_present: true,
+      payload: parsed,
+      error: null,
+    };
+  } catch {
+    return {
+      marker_present: true,
+      payload: null,
+      error: "invalid_marker_json",
+    };
+  }
 };

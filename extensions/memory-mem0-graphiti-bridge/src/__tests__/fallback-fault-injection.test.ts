@@ -44,6 +44,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
       commit_require_index_check: true,
       commit_require_non_sensitive: true,
       commit_require_dual_write_ok: true,
+      graphiti_ontology_v1: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     read: {
       alias_normalization: false,
@@ -63,6 +67,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         sample_percent: 0,
       },
       graphiti_temporal_filters: {
+        enabled: false,
+        sample_percent: 0,
+      },
+      graphiti_ontology_readback: {
         enabled: false,
         sample_percent: 0,
       },

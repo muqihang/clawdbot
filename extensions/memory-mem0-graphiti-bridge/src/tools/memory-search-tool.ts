@@ -9,6 +9,7 @@ import type {
 import type { BridgeFlags, BridgeRoute } from "../config/flags.js";
 import type { ShadowReporter } from "../metrics/shadow-reporter.js";
 import { contextAssemble } from "../p3/context-assemble.js";
+import { parseOntologyV1MarkerFromSnippet } from "../p3/ontology-v1.js";
 import type {
   P3ContextAssembleInput,
   P3ContextAssembleResult,
@@ -358,6 +359,50 @@ type TemporalFiltersDecision = {
   degradeReason: string | null;
 };
 
+type OntologyReadbackDecision = {
+  enabled: boolean;
+  sampled: boolean;
+  samplePercent: number;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
+  route: BridgeRoute;
+  active: boolean;
+  degradeReason: string | null;
+};
+
+type OntologyReadbackTrace = {
+  enabled: boolean;
+  sampled: boolean;
+  sample_percent: number;
+  query_type: QueryType;
+  query_bucket: QueryBucket;
+  route: BridgeRoute;
+  active: boolean;
+  top_k: number;
+  marker_presence_count: number;
+  marker_presence_rate: number;
+  parse_success_count: number;
+  parse_failure_count: number;
+  parse_success_rate: number;
+  entity_summary: {
+    decision_count: number;
+    project_count: number;
+    reason_count: number;
+    rejected_option_count: number;
+    relation_count: number;
+    has_rejected_options: boolean;
+  };
+  parse_failures: Array<{
+    remote_id: string;
+    path: string;
+    rank: number;
+    error: string;
+  }>;
+  degrade_reason: string | null;
+};
+
+const ONTOLOGY_READBACK_TOP_K = 3;
+
 const normalizeStructure = (value: string | undefined): string => {
   return value?.trim().toLowerCase() ?? "";
 };
@@ -593,6 +638,142 @@ const resolveTemporalFiltersDecision = (params: {
     windowDays: parsed.windowDays,
     matchedPhrase: parsed.matchedPhrase,
     degradeReason: null,
+  };
+};
+
+const resolveOntologyReadbackDecision = (params: {
+  enabled: boolean;
+  samplePercent: number;
+  route: BridgeRoute;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
+  sampleSeed: string;
+}): OntologyReadbackDecision => {
+  const samplePercent = clampPercent(params.samplePercent);
+  const sampled = samplePercent >= 100 || hashToPercentBucket(params.sampleSeed) < samplePercent;
+  const isDecisionReasonQuery =
+    params.queryType === "decision_reason" || params.queryBucket === "decision_reason";
+
+  let degradeReason: string | null = null;
+  if (!params.enabled) {
+    degradeReason = "flag_disabled";
+  } else if (params.route !== "graphiti") {
+    degradeReason = "non_graphiti_route";
+  } else if (params.queryBucket === "exact_id") {
+    degradeReason = "precision_key_bucket";
+  } else if (!isDecisionReasonQuery) {
+    degradeReason = "non_decision_reason_query";
+  } else if (samplePercent <= 0) {
+    degradeReason = "sample_percent_zero";
+  } else if (!sampled) {
+    degradeReason = "sample_skipped";
+  }
+
+  return {
+    enabled: params.enabled,
+    sampled,
+    samplePercent,
+    queryType: params.queryType,
+    queryBucket: params.queryBucket,
+    route: params.route,
+    active: degradeReason === null,
+    degradeReason,
+  };
+};
+
+const createOntologyReadbackTrace = (params: {
+  decision: OntologyReadbackDecision;
+  hits: BridgeSearchHit[];
+}): OntologyReadbackTrace => {
+  const topHits = params.hits.slice(0, ONTOLOGY_READBACK_TOP_K);
+
+  if (!params.decision.active) {
+    return {
+      enabled: params.decision.enabled,
+      sampled: params.decision.sampled,
+      sample_percent: params.decision.samplePercent,
+      query_type: params.decision.queryType,
+      query_bucket: params.decision.queryBucket,
+      route: params.decision.route,
+      active: false,
+      top_k: topHits.length,
+      marker_presence_count: 0,
+      marker_presence_rate: 0,
+      parse_success_count: 0,
+      parse_failure_count: 0,
+      parse_success_rate: 0,
+      entity_summary: {
+        decision_count: 0,
+        project_count: 0,
+        reason_count: 0,
+        rejected_option_count: 0,
+        relation_count: 0,
+        has_rejected_options: false,
+      },
+      parse_failures: [],
+      degrade_reason: params.decision.degradeReason,
+    };
+  }
+
+  let markerPresenceCount = 0;
+  let parseSuccessCount = 0;
+  let parseFailureCount = 0;
+  const parseFailures: OntologyReadbackTrace["parse_failures"] = [];
+  const entitySummary = {
+    decision_count: 0,
+    project_count: 0,
+    reason_count: 0,
+    rejected_option_count: 0,
+    relation_count: 0,
+    has_rejected_options: false,
+  };
+
+  for (const [index, hit] of topHits.entries()) {
+    const parsed = parseOntologyV1MarkerFromSnippet(hit.snippet);
+    if (!parsed.marker_present) {
+      continue;
+    }
+
+    markerPresenceCount += 1;
+    if (parsed.payload) {
+      parseSuccessCount += 1;
+      entitySummary.decision_count += 1;
+      entitySummary.project_count += parsed.payload.project ? 1 : 0;
+      entitySummary.reason_count += parsed.payload.reasons.length;
+      entitySummary.rejected_option_count += parsed.payload.rejected.length;
+      entitySummary.relation_count += parsed.payload.relations.length;
+      entitySummary.has_rejected_options =
+        entitySummary.has_rejected_options || parsed.payload.rejected.length > 0;
+      continue;
+    }
+
+    parseFailureCount += 1;
+    parseFailures.push({
+      remote_id: hit.remoteId,
+      path: hit.path,
+      rank: index + 1,
+      error: parsed.error ?? "unknown_parse_error",
+    });
+  }
+
+  const topK = topHits.length;
+  return {
+    enabled: params.decision.enabled,
+    sampled: params.decision.sampled,
+    sample_percent: params.decision.samplePercent,
+    query_type: params.decision.queryType,
+    query_bucket: params.decision.queryBucket,
+    route: params.decision.route,
+    active: true,
+    top_k: topK,
+    marker_presence_count: markerPresenceCount,
+    marker_presence_rate: topK > 0 ? markerPresenceCount / topK : 0,
+    parse_success_count: parseSuccessCount,
+    parse_failure_count: parseFailureCount,
+    parse_success_rate: markerPresenceCount > 0 ? parseSuccessCount / markerPresenceCount : 0,
+    entity_summary: entitySummary,
+    parse_failures: parseFailures,
+    degrade_reason: null,
   };
 };
 
@@ -1136,6 +1317,7 @@ const withLocalDiagnostics = (params: {
   recipeTrace?: Record<string, unknown>;
   focalNodeTrace?: Record<string, unknown>;
   temporalFiltersTrace?: Record<string, unknown>;
+  ontologyTrace?: OntologyReadbackTrace;
   resultsOverride?: Array<Record<string, unknown>>;
 }): AgentToolResult<unknown> => {
   const details: Record<string, unknown> = {
@@ -1159,6 +1341,9 @@ const withLocalDiagnostics = (params: {
   }
   if (params.temporalFiltersTrace) {
     details.temporal_filters = params.temporalFiltersTrace;
+  }
+  if (params.ontologyTrace) {
+    details.ontology_v1 = params.ontologyTrace;
   }
   if (params.resultsOverride) {
     details.results = params.resultsOverride;
@@ -1272,6 +1457,7 @@ const toRemotePayload = (params: {
   recipeTrace?: Record<string, unknown>;
   focalNodeTrace?: Record<string, unknown>;
   temporalFiltersTrace?: Record<string, unknown>;
+  ontologyTrace?: OntologyReadbackTrace;
 }): Record<string, unknown> => {
   const payload: Record<string, unknown> = {
     ...(params.localDetails ?? {}),
@@ -1300,6 +1486,9 @@ const toRemotePayload = (params: {
   }
   if (params.temporalFiltersTrace) {
     payload.temporal_filters = params.temporalFiltersTrace;
+  }
+  if (params.ontologyTrace) {
+    payload.ontology_v1 = params.ontologyTrace;
   }
 
   if (params.contextAssembleResult) {
@@ -1361,9 +1550,11 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       const recipeRoutingConfig = deps.flags.read.graphiti_recipe_routing;
       const focalNodeConfig = deps.flags.read.graphiti_focal_node;
       const temporalFiltersConfig = deps.flags.read.graphiti_temporal_filters;
+      const ontologyReadbackConfig = deps.flags.read.graphiti_ontology_readback;
       const recipeSeed = deps.sessionKey ?? query;
       const focalSeed = `${deps.sessionKey ?? query}:focal-node`;
       const temporalFiltersSeed = `${deps.sessionKey ?? query}:temporal-filters`;
+      const ontologyReadbackSeed = `${deps.sessionKey ?? query}:ontology-readback`;
 
       const resolveRecipeForRoute = (route: BridgeRoute): RecipeRoutingDecision => {
         return resolveRecipeRoutingDecision({
@@ -1464,6 +1655,28 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             matched_phrase: decision.matchedPhrase,
           },
         };
+      };
+
+      const resolveOntologyReadbackForRoute = (route: BridgeRoute): OntologyReadbackDecision => {
+        return resolveOntologyReadbackDecision({
+          enabled: ontologyReadbackConfig.enabled,
+          samplePercent: ontologyReadbackConfig.sample_percent,
+          route,
+          queryType: readPlan.queryType,
+          queryBucket: readPlan.queryBucket,
+          sampleSeed: `${ontologyReadbackSeed}:${route}`,
+        });
+      };
+
+      const createOntologyTraceForRoute = (
+        route: BridgeRoute,
+        hits: BridgeSearchHit[],
+      ): OntologyReadbackTrace => {
+        const decision = resolveOntologyReadbackForRoute(route);
+        return createOntologyReadbackTrace({
+          decision,
+          hits,
+        });
       };
 
       const guardTraceBase = (params: {
@@ -1574,6 +1787,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         });
         const focalNodeTrace = createFocalNodeTrace(shadowFocalDecision);
         const temporalFiltersTrace = createTemporalFiltersTrace(shadowTemporalFiltersDecision);
+        const ontologyTrace = createOntologyTraceForRoute(readPlan.candidateRoute, remoteHits);
 
         return withLocalDiagnostics({
           localResult,
@@ -1585,6 +1799,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           recipeTrace,
           focalNodeTrace,
           temporalFiltersTrace,
+          ontologyTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1598,6 +1813,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         });
         const focalNodeTrace = createFocalNodeTrace(focalNodeDecision);
         const temporalFiltersTrace = createTemporalFiltersTrace(temporalFiltersDecision);
+        const ontologyTrace = createOntologyTraceForRoute(responseRoute, []);
         const routeTrace = createRouteTrace({
           readMode: deps.flags.read_mode,
           readPlan,
@@ -1630,6 +1846,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           recipeTrace,
           focalNodeTrace,
           temporalFiltersTrace,
+          ontologyTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1669,6 +1886,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         });
         const focalNodeTrace = createFocalNodeTrace(focalNodeDecision);
         const temporalFiltersTrace = createTemporalFiltersTrace(temporalFiltersDecision);
+        const ontologyTrace = createOntologyTraceForRoute("local", []);
 
         return withLocalDiagnostics({
           localResult,
@@ -1680,6 +1898,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           recipeTrace,
           focalNodeTrace,
           temporalFiltersTrace,
+          ontologyTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1791,6 +2010,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               fallbackTemporalFiltersDecision ??
                 resolveTemporalFiltersForRoute(readPlan.fallbackRoute),
             );
+            const ontologyTrace = createOntologyTraceForRoute(readPlan.fallbackRoute, fallbackHits);
 
             return jsonResult(
               toRemotePayload({
@@ -1807,6 +2027,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
                 recipeTrace,
                 focalNodeTrace,
                 temporalFiltersTrace,
+                ontologyTrace,
               }),
             );
           }
@@ -1853,6 +2074,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             ? fallbackTemporalFiltersTraceDecision
             : primaryTemporalFiltersDecision,
         );
+        const ontologyTrace = createOntologyTraceForRoute("local", []);
         return withLocalDiagnostics({
           localResult,
           localDetails,
@@ -1863,6 +2085,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           recipeTrace,
           focalNodeTrace,
           temporalFiltersTrace,
+          ontologyTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1915,6 +2138,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       });
       const focalNodeTrace = createFocalNodeTrace(primaryFocalNodeDecision);
       const temporalFiltersTrace = createTemporalFiltersTrace(primaryTemporalFiltersDecision);
+      const ontologyTrace = createOntologyTraceForRoute(responseRoute, primaryHits);
       return jsonResult(
         toRemotePayload({
           localDetails,
@@ -1930,6 +2154,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           recipeTrace,
           focalNodeTrace,
           temporalFiltersTrace,
+          ontologyTrace,
         }),
       );
     },

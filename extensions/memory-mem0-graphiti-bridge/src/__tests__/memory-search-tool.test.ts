@@ -44,6 +44,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
       commit_require_index_check: true,
       commit_require_non_sensitive: true,
       commit_require_dual_write_ok: true,
+      graphiti_ontology_v1: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     read: {
       alias_normalization: true,
@@ -63,6 +67,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         sample_percent: 0,
       },
       graphiti_temporal_filters: {
+        enabled: false,
+        sample_percent: 0,
+      },
+      graphiti_ontology_readback: {
         enabled: false,
         sample_percent: 0,
       },
@@ -892,6 +900,9 @@ describe("memory search bridge tool", () => {
           timeline_route: "graphiti",
           semantic_route: "graphiti",
         },
+        read: {
+          alias_normalization: false,
+        },
       }),
       localTool,
       snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
@@ -1125,5 +1136,188 @@ describe("memory search bridge tool", () => {
     expect(recipeRecord.query_bucket).toBe("exact_id");
     expect(recipeRecord.active).toBe(false);
     expect(recipeRecord.degrade_reason).toBe("precision_key_bucket");
+  });
+
+  it("keeps ontology readback disabled by default even on decision_reason graphiti route", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/d1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet:
+            'decision snippet\nOC_ONTOLOGY_V1:{"version":"1","group_id":"session-1","session_key":"session-1","decision":{"type":"Decision","id":"decision:1","name":"decision.rollout","summary":"choose graphiti","source_ref":"agent_end:1","created_at":"2026-02-24T00:00:00.000Z","group_id":"session-1","session_key":"session-1"},"project":null,"reasons":[],"rejected":[],"relations":[]}',
+          source: "graphiti",
+          remoteId: "d1",
+          structure: "facts",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          alias_normalization: false,
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: { record: vi.fn() },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "why did we choose graphiti architecture" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const ontologyRecord = detailsRecord.ontology_v1 as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(ontologyRecord.enabled).toBe(false);
+    expect(ontologyRecord.active).toBe(false);
+    expect(ontologyRecord.degrade_reason).toBe("flag_disabled");
+  });
+
+  it("parses ontology marker from graphiti topK snippets when readback is enabled", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/d1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet:
+            'decision snippet\nOC_ONTOLOGY_V1:{"version":"1","group_id":"session-1","session_key":"session-1","decision":{"type":"Decision","id":"decision:1","name":"decision.rollout","summary":"choose graphiti","source_ref":"agent_end:1","created_at":"2026-02-24T00:00:00.000Z","group_id":"session-1","session_key":"session-1"},"project":{"type":"Project","id":"project:1","name":"memory-bridge","summary":"memory-bridge","source_ref":"agent_end:1","created_at":"2026-02-24T00:00:00.000Z","group_id":"session-1","session_key":"session-1"},"reasons":[{"type":"Reason","id":"reason:1","name":"auditability","summary":"auditability","source_ref":"agent_end:1","created_at":"2026-02-24T00:00:00.000Z","group_id":"session-1","session_key":"session-1"}],"rejected":[{"type":"RejectedOption","id":"rejected:1","name":"skip ontology","summary":"skip ontology","source_ref":"agent_end:1","created_at":"2026-02-24T00:00:00.000Z","group_id":"session-1","session_key":"session-1"}],"relations":[{"type":"Decision->Project","from_id":"decision:1","to_id":"project:1"},{"type":"Decision->Reason","from_id":"decision:1","to_id":"reason:1"},{"type":"Decision->RejectedOption","from_id":"decision:1","to_id":"rejected:1"}]}',
+          source: "graphiti",
+          remoteId: "d1",
+          structure: "facts",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          alias_normalization: false,
+          graphiti_ontology_readback: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: { record: vi.fn() },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "why did we choose graphiti architecture" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const ontologyRecord = detailsRecord.ontology_v1 as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(ontologyRecord.enabled).toBe(true);
+    expect(ontologyRecord.active).toBe(true);
+    expect(ontologyRecord.degrade_reason).toBeNull();
+    expect(ontologyRecord.marker_presence_rate).toBe(1);
+    expect(ontologyRecord.parse_success_rate).toBe(1);
+    expect(ontologyRecord.parse_success_count).toBe(1);
+    expect(ontologyRecord.parse_failure_count).toBe(0);
+  });
+
+  it("degrades ontology readback on exact_id bucket to preserve W2 gate-2", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/d1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet:
+            'decision snippet\nOC_ONTOLOGY_V1:{"version":"1","group_id":"session-1","session_key":"session-1","decision":{"type":"Decision","id":"decision:1","name":"decision.rollout","summary":"choose graphiti","source_ref":"agent_end:1","created_at":"2026-02-24T00:00:00.000Z","group_id":"session-1","session_key":"session-1"},"project":null,"reasons":[],"rejected":[],"relations":[]}',
+          source: "graphiti",
+          remoteId: "d1",
+          structure: "facts",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          alias_normalization: false,
+          graphiti_ontology_readback: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: { record: vi.fn() },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "commit deadbeef" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const ontologyRecord = detailsRecord.ontology_v1 as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(ontologyRecord.enabled).toBe(true);
+    expect(ontologyRecord.active).toBe(false);
+    expect(ontologyRecord.degrade_reason).toBe("precision_key_bucket");
   });
 });
