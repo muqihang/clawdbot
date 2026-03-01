@@ -1228,6 +1228,58 @@ const classifyFallbackReason = (attempt: RemoteSearchAttempt): string => {
   return "remote_error";
 };
 
+type FusionShadowAttemptTrace = {
+  attempted: boolean;
+  hit_count: number;
+  latency_ms: number;
+  error_kind: string | null;
+};
+
+type FusionShadowTrace = {
+  enabled: boolean;
+  candidate_route: BridgeRoute;
+  mem0: FusionShadowAttemptTrace;
+  graphiti: FusionShadowAttemptTrace;
+};
+
+const classifyErrorKind = (error: unknown): string => {
+  if (isTimeoutError(error)) {
+    return "timeout";
+  }
+
+  const status = readErrorStatus(error);
+  if (typeof status === "number") {
+    if (status >= 500 && status <= 599) {
+      return "http_5xx";
+    }
+    if (status >= 400 && status <= 499) {
+      return "http_4xx";
+    }
+  }
+
+  return "remote_error";
+};
+
+const toFusionShadowAttemptTrace = (
+  attempt: RemoteSearchAttempt | null,
+): FusionShadowAttemptTrace => {
+  if (!attempt) {
+    return {
+      attempted: false,
+      hit_count: 0,
+      latency_ms: 0,
+      error_kind: null,
+    };
+  }
+
+  return {
+    attempted: true,
+    hit_count: attempt.hits.length,
+    latency_ms: attempt.latencyMs,
+    error_kind: attempt.error ? classifyErrorKind(attempt.error) : null,
+  };
+};
+
 const createRouteTrace = (params: {
   readMode: BridgeFlags["read_mode"];
   readPlan: ReturnType<typeof resolveReadPlan>;
@@ -1312,6 +1364,7 @@ const withLocalDiagnostics = (params: {
   localDetails: Record<string, unknown> | undefined;
   routeTrace: Record<string, unknown>;
   fallbackTrace: Record<string, unknown>;
+  fusionShadowTrace?: FusionShadowTrace;
   signature?: QuerySignature;
   guardTrace?: Record<string, unknown>;
   recipeTrace?: Record<string, unknown>;
@@ -1326,6 +1379,10 @@ const withLocalDiagnostics = (params: {
     route: params.routeTrace,
     fallback: params.fallbackTrace,
   };
+
+  if (params.fusionShadowTrace) {
+    details.fusion_shadow = params.fusionShadowTrace;
+  }
 
   if (params.signature) {
     details.signature = params.signature;
@@ -1701,6 +1758,10 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       };
 
       if (deps.flags.read_mode === "shadow" && readPlan.candidateRoute !== "local") {
+        const fusionShadowEnabled = deps.flags.read.fusion.shadow_enabled;
+        const fusionOtherRoute: BridgeRoute =
+          readPlan.candidateRoute === "mem0" ? "graphiti" : "mem0";
+
         const shadowRecipeDecision = resolveRecipeForRoute(readPlan.candidateRoute);
         const shadowFocalDecision = await resolveFocalNodeForRoute(readPlan.candidateRoute);
         const shadowTemporalFiltersDecision = resolveTemporalFiltersForRoute(
@@ -1725,7 +1786,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               }
             : undefined;
 
-        const shadowAttempt = await searchRemoteWithDiagnostics({
+        const shadowAttemptPromise = searchRemoteWithDiagnostics({
           route: readPlan.candidateRoute,
           query,
           clients: deps.clients,
@@ -1737,6 +1798,32 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             buildTemporalFiltersSearchOptions(shadowTemporalFiltersDecision),
           ),
         });
+
+        const [shadowAttempt, fusionOtherAttempt] = fusionShadowEnabled
+          ? await Promise.all([
+              shadowAttemptPromise,
+              searchRemoteWithDiagnostics({
+                route: fusionOtherRoute,
+                query,
+                clients: deps.clients,
+                aliasNormalization,
+              }),
+            ])
+          : [await shadowAttemptPromise, null];
+
+        const fusionShadowTrace: FusionShadowTrace | undefined = fusionShadowEnabled
+          ? {
+              enabled: true,
+              candidate_route: readPlan.candidateRoute,
+              mem0: toFusionShadowAttemptTrace(
+                readPlan.candidateRoute === "mem0" ? shadowAttempt : fusionOtherAttempt,
+              ),
+              graphiti: toFusionShadowAttemptTrace(
+                readPlan.candidateRoute === "graphiti" ? shadowAttempt : fusionOtherAttempt,
+              ),
+            }
+          : undefined;
+
         const shadowReranked = precisionPattern
           ? rerankRemoteHits({ hits: shadowAttempt.hits, precisionPattern })
           : null;
@@ -1794,6 +1881,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           localDetails,
           routeTrace,
           fallbackTrace,
+          fusionShadowTrace,
           signature: querySignature,
           guardTrace,
           recipeTrace,

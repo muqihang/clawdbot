@@ -51,6 +51,9 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     },
     read: {
       alias_normalization: false,
+      fusion: {
+        shadow_enabled: false,
+      },
       precision_guard: {
         enabled: false,
       },

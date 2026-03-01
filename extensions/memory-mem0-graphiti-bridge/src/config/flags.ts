@@ -27,6 +27,9 @@ export type BridgeOutboxFlags = {
 
 export type BridgeReadFlags = {
   alias_normalization: boolean;
+  fusion: {
+    shadow_enabled: boolean;
+  };
   precision_guard: {
     enabled: boolean;
   };
@@ -137,6 +140,9 @@ const DEFAULT_FLAGS: BridgeFlags = {
   },
   read: {
     alias_normalization: true,
+    fusion: {
+      shadow_enabled: false,
+    },
     precision_guard: {
       enabled: false,
     },
@@ -396,6 +402,7 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const timeoutRaw = asRecord(raw.timeoutMs);
   const outboxRaw = asRecord(raw.outbox);
   const readRaw = asRecord(raw.read);
+  const fusionRaw = asRecord(readRawValue(readRaw, ["fusion"]));
   const precisionGuardRaw = asRecord(readRawValue(readRaw, ["precision_guard", "precisionGuard"]));
   const mem0FiltersCriteriaShadowRaw = asRecord(
     readRawValue(readRaw, ["mem0_filters_criteria_shadow", "mem0FiltersCriteriaShadow"]),
@@ -494,6 +501,12 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         readRawValue(readRaw, ["alias_normalization", "aliasNormalization"]),
         DEFAULT_FLAGS.read.alias_normalization,
       ),
+      fusion: {
+        shadow_enabled: readBoolean(
+          readRawValue(fusionRaw, ["shadow_enabled", "shadowEnabled"]),
+          DEFAULT_FLAGS.read.fusion.shadow_enabled,
+        ),
+      },
       precision_guard: {
         enabled: readBoolean(precisionGuardRaw.enabled, DEFAULT_FLAGS.read.precision_guard.enabled),
       },

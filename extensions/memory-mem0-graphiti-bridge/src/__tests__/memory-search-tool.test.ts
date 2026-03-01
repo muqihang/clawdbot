@@ -51,6 +51,9 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     },
     read: {
       alias_normalization: true,
+      fusion: {
+        shadow_enabled: false,
+      },
       precision_guard: {
         enabled: false,
       },
@@ -268,6 +271,101 @@ describe("memory search bridge tool", () => {
       }),
     );
     expect(shadowReporter.record).toHaveBeenCalledTimes(1);
+  });
+
+  it("runs mem0 + graphiti shadow recall in parallel without changing local results", async () => {
+    const localTool = createLocalTool();
+    const shadowReporter = {
+      record: vi.fn(),
+    };
+
+    const mem0Search = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/mem0/m-shadow",
+          startLine: 1,
+          endLine: 1,
+          score: 0.81,
+          snippet: "mem0 shadow snippet",
+          source: "mem0",
+          remoteId: "m-shadow",
+        },
+      ],
+    );
+
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/g-shadow",
+          startLine: 1,
+          endLine: 1,
+          score: 0.8,
+          snippet: "graphiti shadow snippet",
+          source: "graphiti",
+          remoteId: "g-shadow",
+        },
+      ],
+    );
+
+    const flags = createFlags({
+      read_mode: "shadow",
+      read: {
+        alias_normalization: false,
+        fusion: {
+          shadow_enabled: true,
+        },
+      },
+    });
+
+    const tool = createBridgeMemorySearchTool({
+      flags,
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter,
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "when did we migrate providers" });
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+
+    const detailsRecord = result.details as Record<string, unknown>;
+    expect(detailsRecord.source).toBe("local");
+
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+    expect(results[0]?.path).toBe("MEMORY.md");
+
+    const fusionShadow = detailsRecord.fusion_shadow as Record<string, unknown>;
+    expect(fusionShadow).toEqual(
+      expect.objectContaining({
+        enabled: true,
+        candidate_route: "graphiti",
+        mem0: expect.objectContaining({
+          attempted: true,
+          hit_count: 1,
+        }),
+        graphiti: expect.objectContaining({
+          attempted: true,
+          hit_count: 1,
+        }),
+      }),
+    );
+
+    const mem0Trace = fusionShadow.mem0 as Record<string, unknown>;
+    const graphitiTrace = fusionShadow.graphiti as Record<string, unknown>;
+    expect(Number(mem0Trace.latency_ms)).toBeGreaterThanOrEqual(0);
+    expect(Number(graphitiTrace.latency_ms)).toBeGreaterThanOrEqual(0);
   });
 
   it("sends mem0 filters+criteria during shadow compare without impacting user route", async () => {
