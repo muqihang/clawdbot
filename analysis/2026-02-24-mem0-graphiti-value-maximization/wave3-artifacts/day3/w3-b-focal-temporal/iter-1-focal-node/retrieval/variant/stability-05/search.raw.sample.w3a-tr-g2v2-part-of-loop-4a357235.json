@@ -1,0 +1,111 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 5,
+  "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+  "requestBody": {
+    "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-part-of-loop-4a357235"
+  },
+  "search_calls": [
+    {
+      "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3b-focal-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.98,
+            "name": "focal node for w3a-tr-g2v2-part-of-loop-4a357235"
+          }
+        ]
+      }
+    },
+    {
+      "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3b-focal-w3a-tr-g2v2-part-of-loop-4a357235",
+      "requestBody": {
+        "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-part-of-loop-4a357235"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3b-fact-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.9,
+            "fact": "focal facts context for w3a-tr-g2v2-part-of-loop-4a357235"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "4a357235-3250-4379-bf51-ea4b363f1d86",
+            "score": 0.97,
+            "summary": "focal episode expected for w3a-tr-g2v2-part-of-loop-4a357235"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-part-of-loop-4a357235",
+            "score": 0.89,
+            "name": "focal node context for w3a-tr-g2v2-part-of-loop-4a357235"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "4a357235-3250-4379-bf51-ea4b363f1d86",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-part-of-loop-4a357235",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  }
+}

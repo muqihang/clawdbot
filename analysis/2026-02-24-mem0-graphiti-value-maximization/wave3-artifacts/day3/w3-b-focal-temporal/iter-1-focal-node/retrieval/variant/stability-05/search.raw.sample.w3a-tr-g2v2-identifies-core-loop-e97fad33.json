@@ -1,0 +1,111 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 5,
+  "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+  "requestBody": {
+    "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-identifies-core-loop-e97fad33"
+  },
+  "search_calls": [
+    {
+      "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3b-focal-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+            "score": 0.98,
+            "name": "focal node for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+          }
+        ]
+      }
+    },
+    {
+      "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3b-focal-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "requestBody": {
+        "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-identifies-core-loop-e97fad33"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3b-fact-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+            "score": 0.9,
+            "fact": "focal facts context for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "e97fad33-e6ca-4314-a685-a557125b661e",
+            "score": 0.97,
+            "summary": "focal episode expected for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+            "score": 0.89,
+            "name": "focal node context for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "e97fad33-e6ca-4314-a685-a557125b661e",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  }
+}

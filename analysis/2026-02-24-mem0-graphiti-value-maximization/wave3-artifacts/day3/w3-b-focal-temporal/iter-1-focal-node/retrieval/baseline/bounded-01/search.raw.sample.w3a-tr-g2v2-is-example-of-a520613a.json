@@ -1,0 +1,92 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 1,
+  "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？",
+  "requestBody": {
+    "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？"
+  },
+  "search_calls": [
+    {
+      "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "a520613a-9168-4cae-92f1-8cca56d85052",
+            "score": 0.96,
+            "fact": "baseline expected exists but not elevated for w3a-tr-g2v2-is-example-of-a520613a"
+          },
+          {
+            "id": "w3b-fact-alt-w3a-tr-g2v2-is-example-of-a520613a",
+            "score": 0.92,
+            "fact": "baseline facts alternate for w3a-tr-g2v2-is-example-of-a520613a"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "w3b-episode-miss-w3a-tr-g2v2-is-example-of-a520613a",
+            "score": 0.95,
+            "summary": "baseline episode distractor for w3a-tr-g2v2-is-example-of-a520613a"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-is-example-of-a520613a",
+            "score": 0.88,
+            "name": "baseline node context for w3a-tr-g2v2-is-example-of-a520613a"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "precision_key_bucket",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "a520613a-9168-4cae-92f1-8cca56d85052",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  }
+}

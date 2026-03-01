@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 5,
+  "query": "sub2api 导致什么",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "4a357235-3250-4379-bf51-ea4b363f1d86",
+      "path": "bridge/graphiti/4a357235-3250-4379-bf51-ea4b363f1d86",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3b-fact-alt-w3a-tr-g2v2-part-of-loop-4a357235",
+      "path": "bridge/graphiti/w3b-fact-alt-w3a-tr-g2v2-part-of-loop-4a357235",
+      "score": 0.92,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3b-episode-miss-w3a-tr-g2v2-part-of-loop-4a357235",
+      "path": "bridge/graphiti/w3b-episode-miss-w3a-tr-g2v2-part-of-loop-4a357235",
+      "score": 0.95,
+      "structure": "episodes",
+      "source": "memory"
+    }
+  ]
+}

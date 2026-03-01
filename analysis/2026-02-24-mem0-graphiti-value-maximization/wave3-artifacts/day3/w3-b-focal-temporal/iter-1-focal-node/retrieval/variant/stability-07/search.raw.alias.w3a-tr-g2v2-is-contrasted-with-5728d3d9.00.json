@@ -1,0 +1,92 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "请说明 System of Engagement 的 precedes/follows 关系",
+  "requestBody": {
+    "query": "请说明 System of Engagement 的 precedes/follows 关系"
+  },
+  "search_calls": [
+    {
+      "query": "请说明 System of Engagement 的 precedes/follows 关系",
+      "strategy": null,
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "请说明 System of Engagement 的 precedes/follows 关系"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "5728d3d9-8eb7-4047-9adb-36166753305e",
+            "score": 0.96,
+            "fact": "baseline expected exists but not elevated for w3a-tr-g2v2-is-contrasted-with-5728d3d9"
+          },
+          {
+            "id": "w3b-fact-alt-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+            "score": 0.92,
+            "fact": "baseline facts alternate for w3a-tr-g2v2-is-contrasted-with-5728d3d9"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "w3b-episode-miss-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+            "score": 0.95,
+            "summary": "baseline episode distractor for w3a-tr-g2v2-is-contrasted-with-5728d3d9"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+            "score": 0.88,
+            "name": "baseline node context for w3a-tr-g2v2-is-contrasted-with-5728d3d9"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "precision_key_bucket",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "5728d3d9-8eb7-4047-9adb-36166753305e",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 2,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "exact_id",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "precision_key_bucket"
+  }
+}

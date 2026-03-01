@@ -1,0 +1,94 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 1,
+  "query": "在时间线中，System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统 之前发生了什么？",
+  "requestBody": {
+    "query": "在时间线中，System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统 之前发生了什么？",
+    "strategy": "edge"
+  },
+  "search_calls": [
+    {
+      "query": "在时间线中，System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统 之前发生了什么？",
+      "strategy": "edge",
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "在时间线中，System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统 之前发生了什么？",
+        "strategy": "edge"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "48f96cd4-b48b-40fe-b069-a0ec451710b0",
+            "score": 0.96,
+            "fact": "baseline expected exists but not elevated for w3a-tr-g2v2-is-described-by-48f96cd4"
+          },
+          {
+            "id": "w3b-fact-alt-w3a-tr-g2v2-is-described-by-48f96cd4",
+            "score": 0.92,
+            "fact": "baseline facts alternate for w3a-tr-g2v2-is-described-by-48f96cd4"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "w3b-episode-miss-w3a-tr-g2v2-is-described-by-48f96cd4",
+            "score": 0.95,
+            "summary": "baseline episode distractor for w3a-tr-g2v2-is-described-by-48f96cd4"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-is-described-by-48f96cd4",
+            "score": 0.88,
+            "name": "baseline node context for w3a-tr-g2v2-is-described-by-48f96cd4"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3b-episode-miss-w3a-tr-g2v2-is-described-by-48f96cd4",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 2,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  }
+}

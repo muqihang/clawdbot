@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 4,
+  "query": "因为 assistant 计划把Top5 功能变成Gate-0 硬约束的一部分，之后触发了什么变化？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "43389e87-2a15-4192-8d6d-65fd910c7a67",
+      "path": "bridge/graphiti/43389e87-2a15-4192-8d6d-65fd910c7a67",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3b-episode-miss-w3a-tr-g2v2-constrains-with-43389e87",
+      "path": "bridge/graphiti/w3b-episode-miss-w3a-tr-g2v2-constrains-with-43389e87",
+      "score": 0.95,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3b-fact-alt-w3a-tr-g2v2-constrains-with-43389e87",
+      "path": "bridge/graphiti/w3b-fact-alt-w3a-tr-g2v2-constrains-with-43389e87",
+      "score": 0.92,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

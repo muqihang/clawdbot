@@ -1,0 +1,119 @@
+{
+  "mode": "baseline",
+  "generated_at": "2026-03-01T07:01:52.624Z",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day3/w3-b-focal-temporal/iter-1-focal-node/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "selected_attempt": 1,
+  "bounded": [
+    {
+      "attempt": 1,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 2,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 3,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 4,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 5,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    }
+  ],
+  "stability": [
+    {
+      "attempt": 1,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 2,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 3,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 4,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 5,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 6,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 7,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 8,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 9,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    },
+    {
+      "attempt": 10,
+      "hit_at_1": 0.0588,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 1,
+      "nodes_nonzero_coverage": 0
+    }
+  ]
+}

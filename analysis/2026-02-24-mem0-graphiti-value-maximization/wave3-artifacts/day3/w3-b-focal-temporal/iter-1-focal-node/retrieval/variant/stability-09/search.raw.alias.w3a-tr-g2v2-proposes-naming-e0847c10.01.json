@@ -1,0 +1,111 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "timeline: 经营 OS",
+  "requestBody": {
+    "query": "timeline: 经营 OS",
+    "strategy": "edge",
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-proposes-naming-e0847c10"
+  },
+  "search_calls": [
+    {
+      "query": "timeline: 经营 OS",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "timeline: 经营 OS",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3b-focal-w3a-tr-g2v2-proposes-naming-e0847c10",
+            "score": 0.98,
+            "name": "focal node for w3a-tr-g2v2-proposes-naming-e0847c10"
+          }
+        ]
+      }
+    },
+    {
+      "query": "timeline: 经营 OS",
+      "strategy": "edge",
+      "focalNodeUuid": "w3b-focal-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "requestBody": {
+        "query": "timeline: 经营 OS",
+        "strategy": "edge",
+        "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-proposes-naming-e0847c10"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3b-fact-w3a-tr-g2v2-proposes-naming-e0847c10",
+            "score": 0.9,
+            "fact": "focal facts context for w3a-tr-g2v2-proposes-naming-e0847c10"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+            "score": 0.97,
+            "summary": "focal episode expected for w3a-tr-g2v2-proposes-naming-e0847c10"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-proposes-naming-e0847c10",
+            "score": 0.89,
+            "name": "focal node context for w3a-tr-g2v2-proposes-naming-e0847c10"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "e0847c10-1cb0-4da3-8180-a8c3276cbcf2",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-proposes-naming-e0847c10",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  }
+}

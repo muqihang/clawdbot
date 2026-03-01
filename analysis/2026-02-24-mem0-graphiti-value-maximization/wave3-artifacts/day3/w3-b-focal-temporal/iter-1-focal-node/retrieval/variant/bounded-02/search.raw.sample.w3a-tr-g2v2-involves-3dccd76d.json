@@ -1,0 +1,111 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 2,
+  "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+  "requestBody": {
+    "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-involves-3dccd76d"
+  },
+  "search_calls": [
+    {
+      "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "requestBody": {
+        "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3b-focal-w3a-tr-g2v2-involves-3dccd76d",
+            "score": 0.98,
+            "name": "focal node for w3a-tr-g2v2-involves-3dccd76d"
+          }
+        ]
+      }
+    },
+    {
+      "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3b-focal-w3a-tr-g2v2-involves-3dccd76d",
+      "requestBody": {
+        "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-involves-3dccd76d"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3b-fact-w3a-tr-g2v2-involves-3dccd76d",
+            "score": 0.9,
+            "fact": "focal facts context for w3a-tr-g2v2-involves-3dccd76d"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "3dccd76d-447a-4201-bc8d-050f78cc4f2e",
+            "score": 0.97,
+            "summary": "focal episode expected for w3a-tr-g2v2-involves-3dccd76d"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3b-node-w3a-tr-g2v2-involves-3dccd76d",
+            "score": 0.89,
+            "name": "focal node context for w3a-tr-g2v2-involves-3dccd76d"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "3dccd76d-447a-4201-bc8d-050f78cc4f2e",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3b-focal-w3a-tr-g2v2-involves-3dccd76d",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  }
+}
