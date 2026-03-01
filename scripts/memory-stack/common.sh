@@ -19,6 +19,9 @@ MEM0_SERVER_DIR="${MEM0_SRC_DIR}/server"
 
 GRAPHITI_PORT="${GRAPHITI_PORT:-8000}"
 MEM0_PORT="${MEM0_PORT:-8766}"
+LOCAL_EMBEDDING_HOST="${LOCAL_EMBEDDING_HOST:-127.0.0.1}"
+LOCAL_EMBEDDING_PORT="${LOCAL_EMBEDDING_PORT:-18082}"
+LOCAL_EMBEDDING_BASE_URL_DEFAULT="http://${LOCAL_EMBEDDING_HOST}:${LOCAL_EMBEDDING_PORT}/v1"
 QDRANT_HOST="${QDRANT_HOST:-127.0.0.1}"
 QDRANT_PORT="${QDRANT_PORT:-6333}"
 QDRANT_COLLECTION_NAME="${QDRANT_COLLECTION_NAME:-openclaw_mem0}"
@@ -256,7 +259,7 @@ wait_for_http() {
   started="$(date +%s)"
 
   while true; do
-    if curl -fsS "$url" >/dev/null 2>&1; then
+    if curl -fsS --max-time 2 "$url" >/dev/null 2>&1; then
       return 0
     fi
 
@@ -267,4 +270,3 @@ wait_for_http() {
     sleep 1
   done
 }
-

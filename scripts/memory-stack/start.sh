@@ -7,6 +7,7 @@ source "${SCRIPT_DIR}/common.sh"
 
 need_cmd curl
 need_cmd jq
+need_cmd python3
 
 ensure_dirs
 load_stack_env
@@ -18,6 +19,17 @@ fi
 
 stop_from_pid_file "graphiti"
 stop_from_pid_file "mem0"
+stop_from_pid_file "embeddings"
+
+if [[ "${EMBEDDING_BASE_URL}" == "${LOCAL_EMBEDDING_BASE_URL_DEFAULT}" ]]; then
+  kill_port_listener "$LOCAL_EMBEDDING_PORT"
+
+  EMBEDDINGS_LOG="${LOG_ROOT}/embeddings.log"
+  nohup python3 "${SCRIPT_DIR}/local-embeddings-server.py" >"$EMBEDDINGS_LOG" 2>&1 &
+  echo $! >"$(pid_file_for embeddings)"
+
+  wait_for_http "http://127.0.0.1:${LOCAL_EMBEDDING_PORT}/healthz" 20 || fail "local embeddings server did not start"
+fi
 
 GRAPHITI_LOG="${LOG_ROOT}/graphiti.log"
 MEM0_LOG="${LOG_ROOT}/mem0.log"
@@ -34,6 +46,7 @@ MEM0_LOG="${LOG_ROOT}/mem0.log"
   export EMBEDDING_API_KEY
   export EMBEDDING_BASE_URL
   export EMBEDDING_MODEL_NAME
+  export EMBEDDING_DIM
   nohup "$GRAPHITI_SERVER_DIR/.venv/bin/uvicorn" graph_service.main:app --host 127.0.0.1 --port "$GRAPHITI_PORT" >"$GRAPHITI_LOG" 2>&1 &
   echo $! >"$(pid_file_for graphiti)"
 )
@@ -56,8 +69,8 @@ MEM0_LOG="${LOG_ROOT}/mem0.log"
   echo $! >"$(pid_file_for mem0)"
 )
 
-wait_for_http "http://127.0.0.1:${GRAPHITI_PORT}/healthcheck" 45 || fail "graphiti did not become healthy"
-wait_for_http "http://127.0.0.1:${MEM0_PORT}/docs" 45 || fail "mem0 server did not start"
+wait_for_http "http://127.0.0.1:${GRAPHITI_PORT}/healthcheck" 120 || fail "graphiti did not become healthy"
+wait_for_http "http://127.0.0.1:${MEM0_PORT}/docs" 120 || fail "mem0 server did not start"
 
 CONFIG_PAYLOAD="${RUN_ROOT}/mem0-config.json"
 cat > "$CONFIG_PAYLOAD" <<JSON

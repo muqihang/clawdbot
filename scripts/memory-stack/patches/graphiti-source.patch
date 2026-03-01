@@ -217,3 +217,132 @@ index 097c9f3..9336e3d 100644
  
  
  def get_fact_result_from_edge(edge: EntityEdge):
+
+diff --git a/server/graph_service/routers/retrieve.py b/server/graph_service/routers/retrieve.py
+index d42df2a..dd0d0f6 100644
+--- a/server/graph_service/routers/retrieve.py
++++ b/server/graph_service/routers/retrieve.py
+@@ -1,29 +1,95 @@
++import re
+ from datetime import datetime, timezone
+ 
+ from fastapi import APIRouter, status
+ 
+ from graph_service.dto import (
++    EpisodeResult,
+     GetMemoryRequest,
+     GetMemoryResponse,
+     Message,
++    NodeResult,
+     SearchQuery,
+     SearchResults,
+ )
+ from graph_service.zep_graphiti import ZepGraphitiDep, get_fact_result_from_edge
++from graphiti_core.search.search_config_recipes import COMBINED_HYBRID_SEARCH_RRF  # type: ignore
+ 
+ router = APIRouter()
+ 
++_GROUP_ID_SANITIZER = re.compile(r'[^a-zA-Z0-9_-]+')
++_DEFAULT_SEARCH_GROUP_IDS = [
++    'openclaw-backfill-canonical',
++    'openclaw-backfill-topics',
++    'openclaw-backfill-daily',
++    'agent_main_main',
++]
++
++
++def normalize_group_id(group_id: str | None) -> str | None:
++    if not group_id:
++        return None
++    normalized = _GROUP_ID_SANITIZER.sub('_', group_id).strip('_')
++    return normalized or 'default'
++
++
++def normalize_group_ids(group_ids: list[str] | None) -> list[str] | None:
++    if not group_ids:
++        return None
++
++    deduped: list[str] = []
++    seen: set[str] = set()
++    for group_id in group_ids:
++        normalized = normalize_group_id(group_id)
++        if not normalized or normalized in seen:
++            continue
++        seen.add(normalized)
++        deduped.append(normalized)
++
++    return deduped or None
++
+ 
+ @router.post('/search', status_code=status.HTTP_200_OK)
+ async def search(query: SearchQuery, graphiti: ZepGraphitiDep):
+-    relevant_edges = await graphiti.search(
+-        group_ids=query.group_ids,
++    resolved_group_ids = normalize_group_ids(query.group_ids)
++    if resolved_group_ids is None:
++        resolved_group_ids = _DEFAULT_SEARCH_GROUP_IDS
++
++    graph_results = await graphiti.search_(
++        group_ids=resolved_group_ids,
+         query=query.query,
+-        num_results=query.max_facts,
++        config=COMBINED_HYBRID_SEARCH_RRF,
+     )
+-    facts = [get_fact_result_from_edge(edge) for edge in relevant_edges]
++
++    facts = [
++        get_fact_result_from_edge(edge)
++        for edge in (graph_results.edges or [])[: query.max_facts]
++    ]
++    episodes = [
++        EpisodeResult(
++            uuid=episode.uuid,
++            name=episode.name,
++            content=episode.content,
++            group_id=episode.group_id,
++            created_at=episode.created_at,
++        )
++        for episode in (graph_results.episodes or [])[: query.max_facts]
++    ]
++    nodes = [
++        NodeResult(
++            uuid=node.uuid,
++            name=node.name,
++            summary=node.summary,
++            group_id=node.group_id,
++            created_at=node.created_at,
++        )
++        for node in (graph_results.nodes or [])[: query.max_facts]
++    ]
++
+     return SearchResults(
+         facts=facts,
++        episodes=episodes,
++        nodes=nodes,
+     )
+ 
+ 
+@@ -35,8 +101,11 @@ async def get_entity_edge(uuid: str, graphiti: ZepGraphitiDep):
+ 
+ @router.get('/episodes/{group_id}', status_code=status.HTTP_200_OK)
+ async def get_episodes(group_id: str, last_n: int, graphiti: ZepGraphitiDep):
++    resolved_group_id = normalize_group_id(group_id)
+     episodes = await graphiti.retrieve_episodes(
+-        group_ids=[group_id], last_n=last_n, reference_time=datetime.now(timezone.utc)
++        group_ids=[resolved_group_id] if resolved_group_id else None,
++        last_n=last_n,
++        reference_time=datetime.now(timezone.utc),
+     )
+     return episodes
+ 
+@@ -47,8 +116,9 @@ async def get_memory(
+     graphiti: ZepGraphitiDep,
+ ):
+     combined_query = compose_query_from_messages(request.messages)
++    resolved_group_id = normalize_group_id(request.group_id)
+     result = await graphiti.search(
+-        group_ids=[request.group_id],
++        group_ids=[resolved_group_id] if resolved_group_id else None,
+         query=combined_query,
+         num_results=request.max_facts,
+     )

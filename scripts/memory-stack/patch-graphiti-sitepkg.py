@@ -152,23 +152,161 @@ def patch_structured_format(text: str) -> tuple[str, bool]:
 def patch_reasoning_kwargs(text: str) -> tuple[str, bool]:
     changed = False
 
-    old_line = "if is_reasoning_model and reasoning is not None:"
-    new_line = "if False and is_reasoning_model and reasoning is not None:"
-    if new_line not in text and old_line in text:
-        text = text.replace(old_line, new_line)
+    old_reasoning = "if is_reasoning_model and reasoning is not None:"
+    new_reasoning = "if False and is_reasoning_model and reasoning is not None:"
+    if new_reasoning not in text and old_reasoning in text:
+        text = text.replace(old_reasoning, new_reasoning)
         changed = True
 
-    old_line = "if is_reasoning_model and verbosity is not None:"
-    new_line = "if False and is_reasoning_model and verbosity is not None:"
-    if new_line not in text and old_line in text:
-        text = text.replace(old_line, new_line)
+    old_verbosity = "if is_reasoning_model and verbosity is not None:"
+    new_verbosity = "if False and is_reasoning_model and verbosity is not None:"
+    if new_verbosity not in text and old_verbosity in text:
+        text = text.replace(old_verbosity, new_verbosity)
         changed = True
 
-    if (
-        "if False and is_reasoning_model and reasoning is not None:" not in text
-        or "if False and is_reasoning_model and verbosity is not None:" not in text
-    ):
-        raise RuntimeError("failed to disable reasoning/verbosity kwargs")
+    # Some upstream versions no longer pass reasoning/verbosity kwargs at all.
+    # In that case, treat this patch as a no-op rather than a hard failure.
+    if old_reasoning in text and new_reasoning not in text:
+        raise RuntimeError("failed to disable reasoning kwargs")
+    if old_verbosity in text and new_verbosity not in text:
+        raise RuntimeError("failed to disable verbosity kwargs")
+
+    return text, changed
+
+
+def patch_chat_completions_to_responses(text: str) -> tuple[str, bool]:
+    """
+    Graphiti upstream has drifted between providers:
+
+    - Some versions use OpenAI Responses API (preferred for Sub2API gateway)
+    - Some versions fall back to chat.completions (which Sub2API does not expose)
+
+    We normalize to Responses API to keep the local memory stack compatible with
+    Sub2API's `/v1/responses` endpoint.
+    """
+
+    if "self.client.responses.create" in text:
+        return text, False
+
+    old_structured = """
+        response = await self.client.chat.completions.create(
+            model=model,
+            messages=patched_messages,
+            temperature=temperature if not is_reasoning_model else None,
+            max_tokens=max_tokens,
+            response_format={
+                'type': 'json_schema',
+                'json_schema': {
+                    'name': response_model.__name__,
+                    'schema': strict_schema,
+                    'strict': True,
+                },
+            },
+        )
+
+        content = '{}'
+        if response.choices and response.choices[0].message:
+            content = response.choices[0].message.content or '{}'
+
+        usage = getattr(response, 'usage', None)
+        normalized_usage = SimpleNamespace(
+            input_tokens=getattr(usage, 'prompt_tokens', 0) or 0,
+            output_tokens=getattr(usage, 'completion_tokens', 0) or 0,
+        )
+        return SimpleNamespace(output_text=content, usage=normalized_usage)
+""".lstrip("\n")
+
+    new_structured = """
+        request = {
+            'model': model,
+            'input': patched_messages,
+            'max_output_tokens': max_tokens,
+            'text': {
+                'format': {
+                    'type': 'json_schema',
+                    'name': response_model.__name__,
+                    'schema': strict_schema,
+                    'strict': True,
+                },
+            },
+        }
+        if not is_reasoning_model and temperature is not None:
+            request['temperature'] = temperature
+
+        return await self.client.responses.create(**request)
+""".lstrip("\n")
+
+    old_completion = """
+        return await self.client.chat.completions.create(
+            model=model,
+            messages=messages,
+            temperature=temperature if not is_reasoning_model else None,
+            max_tokens=max_tokens,
+            response_format={'type': 'json_object'},
+        )
+""".lstrip("\n")
+
+    new_completion = """
+        request = {
+            'model': model,
+            'input': messages,
+            'max_output_tokens': max_tokens,
+            'text': {'format': {'type': 'json_object'}},
+        }
+        if not is_reasoning_model and temperature is not None:
+            request['temperature'] = temperature
+
+        response = await self.client.responses.create(**request)
+        content = response.output_text or '{}'
+
+        usage = getattr(response, 'usage', None)
+        fake_usage = SimpleNamespace(
+            prompt_tokens=getattr(usage, 'input_tokens', 0) or 0,
+            completion_tokens=getattr(usage, 'output_tokens', 0) or 0,
+        )
+
+        fake_message = SimpleNamespace(content=content)
+        fake_choice = SimpleNamespace(message=fake_message)
+        return SimpleNamespace(choices=[fake_choice], usage=fake_usage)
+""".lstrip("\n")
+
+    changed = False
+    if old_structured in text:
+        text = text.replace(old_structured, new_structured)
+        changed = True
+    else:
+        raise RuntimeError("failed to patch structured chat.completions -> responses")
+
+    if old_completion in text:
+        text = text.replace(old_completion, new_completion)
+        changed = True
+    else:
+        raise RuntimeError("failed to patch completion chat.completions -> responses")
+
+    if "self.client.responses.create" not in text:
+        raise RuntimeError("verification failed: responses.create missing after patch")
+
+    return text, changed
+
+
+def patch_responses_temperature_kwargs(text: str) -> tuple[str, bool]:
+    """
+    Sub2API's OpenAI Responses compatibility layer is intentionally strict and may
+    not support every OpenAI parameter. In particular, `temperature` can cause
+    upstream failures (502) for some routes/models.
+
+    We remove the temperature passthrough when using Responses requests.
+    """
+
+    block = """
+        if not is_reasoning_model and temperature is not None:
+            request['temperature'] = temperature
+""".lstrip("\n")
+
+    changed = False
+    while block in text:
+        text = text.replace(block, "")
+        changed = True
 
     return text, changed
 
@@ -191,6 +329,8 @@ def main() -> int:
         text, _ = patch_input_messages(text)
         text, _ = patch_structured_format(text)
         text, _ = patch_reasoning_kwargs(text)
+        text, _ = patch_chat_completions_to_responses(text)
+        text, _ = patch_responses_temperature_kwargs(text)
     except RuntimeError as exc:
         print(f"patch failed: {exc}")
         return 1
@@ -205,12 +345,21 @@ def main() -> int:
         "_ensure_json_keyword_for_responses(messages)",
         "'type': 'json_schema'",
         "_make_strict_json_schema(response_model.model_json_schema())",
-        "if False and is_reasoning_model and reasoning is not None:",
-        "if False and is_reasoning_model and verbosity is not None:",
+        "self.client.responses.create",
     ]
     for marker in required:
         if marker not in verify:
             print(f"verification failed: {marker}")
+            return 1
+
+    forbidden = [
+        "if is_reasoning_model and reasoning is not None:",
+        "if is_reasoning_model and verbosity is not None:",
+        "request['temperature'] = temperature",
+    ]
+    for marker in forbidden:
+        if marker in verify:
+            print(f"verification failed: {marker} should be disabled/absent")
             return 1
 
     return 0

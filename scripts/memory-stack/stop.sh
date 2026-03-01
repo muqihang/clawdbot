@@ -7,7 +7,9 @@ source "${SCRIPT_DIR}/common.sh"
 
 stop_from_pid_file "graphiti"
 stop_from_pid_file "mem0"
+stop_from_pid_file "embeddings"
 kill_port_listener "$GRAPHITI_PORT"
 kill_port_listener "$MEM0_PORT"
+kill_port_listener "$LOCAL_EMBEDDING_PORT"
 
-log "stopped graphiti + mem0 (if running)"
+log "stopped graphiti + mem0 + embeddings (if running)"

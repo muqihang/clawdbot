@@ -35,3 +35,4 @@ print_service() {
 
 print_service "graphiti" "$GRAPHITI_PORT" "http://127.0.0.1:${GRAPHITI_PORT}/healthcheck"
 print_service "mem0" "$MEM0_PORT" "http://127.0.0.1:${MEM0_PORT}/docs"
+print_service "embeddings" "$LOCAL_EMBEDDING_PORT" "http://127.0.0.1:${LOCAL_EMBEDDING_PORT}/healthz"
