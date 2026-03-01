@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-03-01T00:00:00.000Z",
+  "wave": "W3-C",
+  "iteration": "iter-1",
+  "single_variable": "ontology_v1_spec_and_write_signal",
+  "scope": {
+    "ontology_spec_frozen": true,
+    "write_side_signal_only": true,
+    "default_flags_off": true,
+    "graphiti_contract_preserved": true,
+    "w2_gate2_protection": "precision_key_bucket_degrade"
+  },
+  "trace_fields": [
+    "enabled",
+    "sampled",
+    "sample_percent",
+    "active",
+    "ontology_summary",
+    "degrade_reason"
+  ],
+  "test_assertions": {
+    "flag_default_off_body_unchanged": true,
+    "flag_on_marker_appended_when_condition_met": true,
+    "precision_bucket_degrades_and_no_marker": true
+  },
+  "artifacts": {
+    "spec_markdown": "iter-1-ontology-spec-write/ontology-v1.md",
+    "spec_schema_json": "iter-1-ontology-spec-write/ontology-v1.schema.json",
+    "vitest_log": "iter-1-ontology-spec-write/tests/vitest.log",
+    "vitest_exit": "iter-1-ontology-spec-write/tests/vitest.exit",
+    "gate2_log": "iter-1-ontology-spec-write/gate2-regression/w2-gate2-minimal-verify.log",
+    "gate2_exit": "iter-1-ontology-spec-write/gate2-regression/w2-gate2-minimal-verify.exit"
+  }
+}

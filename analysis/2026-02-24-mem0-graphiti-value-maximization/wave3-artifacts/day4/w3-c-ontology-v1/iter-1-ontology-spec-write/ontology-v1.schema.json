@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw.ai/schemas/ontology-v1.schema.json",
+  "title": "OpenClaw Ontology v1 Marker Payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "group_id",
+    "session_key",
+    "decision",
+    "project",
+    "reasons",
+    "rejected",
+    "relations"
+  ],
+  "properties": {
+    "version": {
+      "const": "1"
+    },
+    "group_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "session_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "$ref": "#/$defs/entityDecision"
+    },
+    "project": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/entityProject"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entityReason"
+      }
+    },
+    "rejected": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entityRejectedOption"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    }
+  },
+  "$defs": {
+    "entityBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "id",
+        "name",
+        "summary",
+        "source_ref",
+        "created_at",
+        "group_id",
+        "session_key"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "group_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "session_key": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "entityDecision": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/entityBase"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "Decision"
+            }
+          }
+        }
+      ]
+    },
+    "entityProject": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/entityBase"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "Project"
+            }
+          }
+        }
+      ]
+    },
+    "entityReason": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/entityBase"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "Reason"
+            }
+          }
+        }
+      ]
+    },
+    "entityRejectedOption": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/entityBase"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "RejectedOption"
+            }
+          }
+        }
+      ]
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "from_id", "to_id"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["Decision->Project", "Decision->Reason", "Decision->RejectedOption"]
+        },
+        "from_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "to_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

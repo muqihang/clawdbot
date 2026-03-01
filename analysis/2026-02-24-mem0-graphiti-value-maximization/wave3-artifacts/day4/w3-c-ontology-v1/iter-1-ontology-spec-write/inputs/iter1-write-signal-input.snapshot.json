@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-03-01T00:00:00.000Z",
+  "wave": "W3-C",
+  "iteration": "iter-1",
+  "single_variable": "ontology_v1_spec_and_write_signal",
+  "flags": {
+    "p3": {
+      "graphiti_ontology_v1": {
+        "enabled": false,
+        "sample_percent": 0
+      }
+    }
+  },
+  "marker_prefix": "OC_ONTOLOGY_V1:",
+  "decision_tags_examples": [
+    "decision",
+    "project:memory-bridge",
+    "reason:retain auditable graph context",
+    "rejected:skip ontology extraction"
+  ],
+  "degrade_protection_tags": ["precision_key_bucket", "exact_id"]
+}
