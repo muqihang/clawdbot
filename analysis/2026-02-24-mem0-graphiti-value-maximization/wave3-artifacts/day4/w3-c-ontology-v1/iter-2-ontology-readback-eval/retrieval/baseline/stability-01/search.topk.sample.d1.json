@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 1,
+  "query": "why did we choose graphiti architecture",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "decision-d1",
+      "path": "bridge/graphiti/decision-d1",
+      "score": 0.97,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "distractor-d1",
+      "path": "bridge/graphiti/distractor-d1",
+      "score": 0.92,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "support-d1",
+      "path": "bridge/graphiti/support-d1",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

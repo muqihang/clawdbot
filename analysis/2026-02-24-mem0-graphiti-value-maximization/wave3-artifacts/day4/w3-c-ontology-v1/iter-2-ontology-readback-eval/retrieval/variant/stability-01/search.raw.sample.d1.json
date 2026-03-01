@@ -1,0 +1,113 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 1,
+  "query": "why did we choose graphiti architecture",
+  "requestBody": {
+    "query": "why did we choose graphiti architecture"
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "decision-d1",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 3,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "route": "graphiti",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  },
+  "ontology_v1": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "route": "graphiti",
+    "active": true,
+    "top_k": 3,
+    "marker_presence_count": 1,
+    "marker_presence_rate": 0.3333333333333333,
+    "parse_success_count": 1,
+    "parse_failure_count": 0,
+    "parse_success_rate": 1,
+    "entity_summary": {
+      "decision_count": 1,
+      "project_count": 1,
+      "reason_count": 1,
+      "rejected_option_count": 1,
+      "relation_count": 3,
+      "has_rejected_options": true
+    },
+    "parse_failures": [],
+    "degrade_reason": null
+  },
+  "payload": {
+    "facts": [
+      {
+        "id": "decision-d1",
+        "score": 0.97,
+        "fact": "decision rationale for d1\nOC_ONTOLOGY_V1:{\"version\":\"1\",\"group_id\":\"session-w3c\",\"session_key\":\"session-w3c\",\"decision\":{\"type\":\"Decision\",\"id\":\"decision:d1\",\"name\":\"decision.rollout\",\"summary\":\"decision summary for d1\",\"source_ref\":\"agent_end:d1\",\"created_at\":\"2026-02-24T00:00:00.000Z\",\"group_id\":\"session-w3c\",\"session_key\":\"session-w3c\"},\"project\":{\"type\":\"Project\",\"id\":\"project:d1\",\"name\":\"memory-bridge\",\"summary\":\"memory-bridge\",\"source_ref\":\"agent_end:d1\",\"created_at\":\"2026-02-24T00:00:00.000Z\",\"group_id\":\"session-w3c\",\"session_key\":\"session-w3c\"},\"reasons\":[{\"type\":\"Reason\",\"id\":\"reason:d1\",\"name\":\"auditability\",\"summary\":\"auditability\",\"source_ref\":\"agent_end:d1\",\"created_at\":\"2026-02-24T00:00:00.000Z\",\"group_id\":\"session-w3c\",\"session_key\":\"session-w3c\"}],\"rejected\":[{\"type\":\"RejectedOption\",\"id\":\"rejected:d1\",\"name\":\"local-only\",\"summary\":\"local-only\",\"source_ref\":\"agent_end:d1\",\"created_at\":\"2026-02-24T00:00:00.000Z\",\"group_id\":\"session-w3c\",\"session_key\":\"session-w3c\"}],\"relations\":[{\"type\":\"Decision->Project\",\"from_id\":\"decision:d1\",\"to_id\":\"project:d1\"},{\"type\":\"Decision->Reason\",\"from_id\":\"decision:d1\",\"to_id\":\"reason:d1\"},{\"type\":\"Decision->RejectedOption\",\"from_id\":\"decision:d1\",\"to_id\":\"rejected:d1\"}]}"
+      },
+      {
+        "id": "distractor-d1",
+        "score": 0.92,
+        "fact": "distractor for d1"
+      },
+      {
+        "id": "support-d1",
+        "score": 0.9,
+        "fact": "supporting reason for d1"
+      }
+    ],
+    "episodes": [],
+    "nodes": []
+  }
+}

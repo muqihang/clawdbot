@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-03-01T08:10:15.605Z",
+  "ontology_marker_presence_rate": {
+    "baseline": 0,
+    "variant": 0.3333,
+    "delta_pp": 33.33
+  },
+  "ontology_parse_success_rate": {
+    "baseline": 0,
+    "variant": 1,
+    "delta_pp": 100
+  },
+  "top1_hit_rate": {
+    "baseline": 1,
+    "variant": 1
+  },
+  "stability_unique_values": {
+    "baseline": {
+      "ontology_marker_presence_rate": [0],
+      "ontology_parse_success_rate": [0]
+    },
+    "variant": {
+      "ontology_marker_presence_rate": [0.3333],
+      "ontology_parse_success_rate": [1]
+    }
+  }
+}

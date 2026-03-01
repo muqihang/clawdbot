@@ -1,0 +1,23 @@
+[
+  {
+    "id": "d1",
+    "query": "why did we choose graphiti architecture",
+    "aliases": ["what was the reason to choose graphiti architecture"],
+    "expected_remote_ids": ["decision-d1"],
+    "bucket": "decision_reason"
+  },
+  {
+    "id": "d2",
+    "query": "why did we reject local-only retrieval",
+    "aliases": ["why not keep only local retrieval"],
+    "expected_remote_ids": ["decision-d2"],
+    "bucket": "decision_reason"
+  },
+  {
+    "id": "d3",
+    "query": "because of auditability, which option did we reject",
+    "aliases": ["what rejected option was discussed for auditability"],
+    "expected_remote_ids": ["decision-d3"],
+    "bucket": "decision_reason"
+  }
+]

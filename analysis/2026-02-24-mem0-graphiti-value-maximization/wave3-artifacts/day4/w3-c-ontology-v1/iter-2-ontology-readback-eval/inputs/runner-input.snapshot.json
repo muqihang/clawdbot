@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-03-01T08:10:15.535Z",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day4/w3-c-ontology-v1/iter-2-ontology-readback-eval/inputs/ontology-readback-dataset.v1.json",
+  "sample_size": 3,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "mode": "W3-C",
+  "variable": "graphiti_ontology_readback_and_reporting",
+  "baseline": {
+    "graphiti_ontology_readback": {
+      "enabled": false,
+      "sample_percent": 0
+    }
+  },
+  "variant": {
+    "graphiti_ontology_readback": {
+      "enabled": true,
+      "sample_percent": 100
+    }
+  }
+}

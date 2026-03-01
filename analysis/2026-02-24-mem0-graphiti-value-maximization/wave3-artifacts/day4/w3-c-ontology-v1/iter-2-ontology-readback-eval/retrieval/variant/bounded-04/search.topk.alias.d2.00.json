@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 4,
+  "query": "why not keep only local retrieval",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "decision-d2",
+      "path": "bridge/graphiti/decision-d2",
+      "score": 0.97,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "distractor-d2",
+      "path": "bridge/graphiti/distractor-d2",
+      "score": 0.92,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "support-d2",
+      "path": "bridge/graphiti/support-d2",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}
