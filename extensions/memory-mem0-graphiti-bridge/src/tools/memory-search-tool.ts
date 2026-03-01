@@ -342,8 +342,76 @@ type FocalNodeDecision = {
   degradeReason: string | null;
 };
 
+type TemporalFilterKind = "relative_window";
+
+type TemporalFiltersDecision = {
+  enabled: boolean;
+  sampled: boolean;
+  samplePercent: number;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
+  route: BridgeRoute;
+  active: boolean;
+  kind: TemporalFilterKind | null;
+  windowDays: number | null;
+  matchedPhrase: string | null;
+  degradeReason: string | null;
+};
+
 const normalizeStructure = (value: string | undefined): string => {
   return value?.trim().toLowerCase() ?? "";
+};
+
+const parseDayWindow = (value: number): number => {
+  if (value <= 1) {
+    return 1;
+  }
+  if (value <= 7) {
+    return 7;
+  }
+  return 30;
+};
+
+const parseTemporalWindow = (
+  query: string,
+): { kind: TemporalFilterKind; windowDays: number; matchedPhrase: string } | null => {
+  const dayMatch =
+    query.match(/\bday\s*(\d{1,3})\b/i) ??
+    query.match(/第\s*(\d{1,3})\s*天/i) ??
+    query.match(/d(?:ay)?\s*([0-9]{1,3})\b/i);
+  if (dayMatch && dayMatch[1]) {
+    const parsed = Number.parseInt(dayMatch[1], 10);
+    if (Number.isFinite(parsed) && parsed > 0) {
+      return {
+        kind: "relative_window",
+        windowDays: parseDayWindow(parsed),
+        matchedPhrase: dayMatch[0],
+      };
+    }
+  }
+
+  const windows: Array<{ pattern: RegExp; windowDays: number }> = [
+    { pattern: /\b(yesterday|last\s+day|previous\s+day)\b/i, windowDays: 1 },
+    { pattern: /(昨天|昨日|前一天)/i, windowDays: 1 },
+    { pattern: /\b(last\s+week|previous\s+week|past\s+week)\b/i, windowDays: 7 },
+    { pattern: /(上周|上一周|近一周)/i, windowDays: 7 },
+    { pattern: /\b(last\s+month|past\s+30\s+days|recent\s+30\s+days)\b/i, windowDays: 30 },
+    { pattern: /(上个月|近30天|最近30天|近一个月)/i, windowDays: 30 },
+  ];
+
+  for (const windowCandidate of windows) {
+    const matched = query.match(windowCandidate.pattern);
+    if (!matched) {
+      continue;
+    }
+    return {
+      kind: "relative_window",
+      windowDays: windowCandidate.windowDays,
+      matchedPhrase: matched[0],
+    };
+  }
+
+  return null;
 };
 
 const selectRecipeForQueryType = (queryType: QueryType): SearchRecipe => {
@@ -449,6 +517,83 @@ const resolveFocalNodeCandidate = (hits: BridgeSearchHit[]): BridgeSearchHit | n
   }
 
   return hits[0] ?? null;
+};
+
+const resolveTemporalFiltersDecision = (params: {
+  enabled: boolean;
+  samplePercent: number;
+  route: BridgeRoute;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
+  sampleSeed: string;
+  query: string;
+}): TemporalFiltersDecision => {
+  const samplePercent = clampPercent(params.samplePercent);
+  const sampled = samplePercent >= 100 || hashToPercentBucket(params.sampleSeed) < samplePercent;
+  const temporalQuery =
+    params.queryType === "temporal_relation" || params.queryBucket === "temporal_relation";
+
+  let degradeReason: string | null = null;
+  if (!params.enabled) {
+    degradeReason = "flag_disabled";
+  } else if (params.route !== "graphiti") {
+    degradeReason = "non_graphiti_route";
+  } else if (params.queryBucket === "exact_id") {
+    degradeReason = "precision_key_bucket";
+  } else if (!temporalQuery) {
+    degradeReason = "non_temporal_query";
+  } else if (samplePercent <= 0) {
+    degradeReason = "sample_percent_zero";
+  } else if (!sampled) {
+    degradeReason = "sample_skipped";
+  }
+
+  if (degradeReason !== null) {
+    return {
+      enabled: params.enabled,
+      sampled,
+      samplePercent,
+      queryType: params.queryType,
+      queryBucket: params.queryBucket,
+      route: params.route,
+      active: false,
+      kind: null,
+      windowDays: null,
+      matchedPhrase: null,
+      degradeReason,
+    };
+  }
+
+  const parsed = parseTemporalWindow(params.query);
+  if (!parsed) {
+    return {
+      enabled: params.enabled,
+      sampled,
+      samplePercent,
+      queryType: params.queryType,
+      queryBucket: params.queryBucket,
+      route: params.route,
+      active: false,
+      kind: null,
+      windowDays: null,
+      matchedPhrase: null,
+      degradeReason: "no_pattern",
+    };
+  }
+
+  return {
+    enabled: params.enabled,
+    sampled,
+    samplePercent,
+    queryType: params.queryType,
+    queryBucket: params.queryBucket,
+    route: params.route,
+    active: true,
+    kind: parsed.kind,
+    windowDays: parsed.windowDays,
+    matchedPhrase: parsed.matchedPhrase,
+    degradeReason: null,
+  };
 };
 
 const recipeStructurePriority = (recipe: SearchRecipe, structure: string | undefined): number => {
@@ -586,6 +731,9 @@ const mergeSearchOptions = (
     }
     if (option.focal_node_uuid !== undefined) {
       output.focal_node_uuid = option.focal_node_uuid;
+    }
+    if (option.temporal_filters !== undefined) {
+      output.temporal_filters = option.temporal_filters;
     }
   }
 
@@ -987,6 +1135,7 @@ const withLocalDiagnostics = (params: {
   guardTrace?: Record<string, unknown>;
   recipeTrace?: Record<string, unknown>;
   focalNodeTrace?: Record<string, unknown>;
+  temporalFiltersTrace?: Record<string, unknown>;
   resultsOverride?: Array<Record<string, unknown>>;
 }): AgentToolResult<unknown> => {
   const details: Record<string, unknown> = {
@@ -1007,6 +1156,9 @@ const withLocalDiagnostics = (params: {
   }
   if (params.focalNodeTrace) {
     details.focal_node = params.focalNodeTrace;
+  }
+  if (params.temporalFiltersTrace) {
+    details.temporal_filters = params.temporalFiltersTrace;
   }
   if (params.resultsOverride) {
     details.results = params.resultsOverride;
@@ -1090,6 +1242,22 @@ const createFocalNodeTrace = (decision: FocalNodeDecision): Record<string, unkno
   };
 };
 
+const createTemporalFiltersTrace = (decision: TemporalFiltersDecision): Record<string, unknown> => {
+  return {
+    enabled: decision.enabled,
+    sampled: decision.sampled,
+    sample_percent: decision.samplePercent,
+    query_type: decision.queryType,
+    query_bucket: decision.queryBucket,
+    route: decision.route,
+    active: decision.active,
+    kind: decision.kind,
+    window_days: decision.windowDays,
+    matched_phrase: decision.matchedPhrase,
+    degrade_reason: decision.degradeReason,
+  };
+};
+
 const toRemotePayload = (params: {
   localDetails: Record<string, unknown> | undefined;
   remoteRoute: BridgeRoute;
@@ -1103,6 +1271,7 @@ const toRemotePayload = (params: {
   guardTrace?: Record<string, unknown>;
   recipeTrace?: Record<string, unknown>;
   focalNodeTrace?: Record<string, unknown>;
+  temporalFiltersTrace?: Record<string, unknown>;
 }): Record<string, unknown> => {
   const payload: Record<string, unknown> = {
     ...(params.localDetails ?? {}),
@@ -1128,6 +1297,9 @@ const toRemotePayload = (params: {
   }
   if (params.focalNodeTrace) {
     payload.focal_node = params.focalNodeTrace;
+  }
+  if (params.temporalFiltersTrace) {
+    payload.temporal_filters = params.temporalFiltersTrace;
   }
 
   if (params.contextAssembleResult) {
@@ -1188,8 +1360,10 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       const shouldForceLocal = precisionPattern !== null && localExactMatchCount > 0;
       const recipeRoutingConfig = deps.flags.read.graphiti_recipe_routing;
       const focalNodeConfig = deps.flags.read.graphiti_focal_node;
+      const temporalFiltersConfig = deps.flags.read.graphiti_temporal_filters;
       const recipeSeed = deps.sessionKey ?? query;
       const focalSeed = `${deps.sessionKey ?? query}:focal-node`;
+      const temporalFiltersSeed = `${deps.sessionKey ?? query}:temporal-filters`;
 
       const resolveRecipeForRoute = (route: BridgeRoute): RecipeRoutingDecision => {
         return resolveRecipeRoutingDecision({
@@ -1264,6 +1438,34 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           : undefined;
       };
 
+      const resolveTemporalFiltersForRoute = (route: BridgeRoute): TemporalFiltersDecision => {
+        return resolveTemporalFiltersDecision({
+          enabled: temporalFiltersConfig.enabled,
+          samplePercent: temporalFiltersConfig.sample_percent,
+          route,
+          queryType: readPlan.queryType,
+          queryBucket: readPlan.queryBucket,
+          sampleSeed: `${temporalFiltersSeed}:${route}`,
+          query,
+        });
+      };
+
+      const buildTemporalFiltersSearchOptions = (
+        decision: TemporalFiltersDecision,
+      ): RemoteSearchOptions | undefined => {
+        if (!decision.active || !decision.kind || !decision.windowDays || !decision.matchedPhrase) {
+          return undefined;
+        }
+
+        return {
+          temporal_filters: {
+            kind: decision.kind,
+            window_days: decision.windowDays,
+            matched_phrase: decision.matchedPhrase,
+          },
+        };
+      };
+
       const guardTraceBase = (params: {
         selectedRoute: BridgeRoute;
         decision: string;
@@ -1288,6 +1490,9 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       if (deps.flags.read_mode === "shadow" && readPlan.candidateRoute !== "local") {
         const shadowRecipeDecision = resolveRecipeForRoute(readPlan.candidateRoute);
         const shadowFocalDecision = await resolveFocalNodeForRoute(readPlan.candidateRoute);
+        const shadowTemporalFiltersDecision = resolveTemporalFiltersForRoute(
+          readPlan.candidateRoute,
+        );
         const filters = readFilters(params);
         const criteria = readCriteria(params);
         const shadowConfig = deps.flags.read.mem0_filters_criteria_shadow;
@@ -1316,6 +1521,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             shadowFiltersCriteriaSearchOptions,
             buildRecipeSearchOptions(shadowRecipeDecision),
             buildFocalNodeSearchOptions(shadowFocalDecision),
+            buildTemporalFiltersSearchOptions(shadowTemporalFiltersDecision),
           ),
         });
         const shadowReranked = precisionPattern
@@ -1367,6 +1573,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           hits: remoteHits,
         });
         const focalNodeTrace = createFocalNodeTrace(shadowFocalDecision);
+        const temporalFiltersTrace = createTemporalFiltersTrace(shadowTemporalFiltersDecision);
 
         return withLocalDiagnostics({
           localResult,
@@ -1377,17 +1584,20 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           guardTrace,
           recipeTrace,
           focalNodeTrace,
+          temporalFiltersTrace,
           resultsOverride: localResultsOverride,
         });
       }
 
       if (shouldForceLocal && responseRoute !== "local") {
         const focalNodeDecision = await resolveFocalNodeForRoute(responseRoute);
+        const temporalFiltersDecision = resolveTemporalFiltersForRoute(responseRoute);
         const recipeTrace = createRecipeTrace({
           decision: resolveRecipeForRoute(responseRoute),
           hits: [],
         });
         const focalNodeTrace = createFocalNodeTrace(focalNodeDecision);
+        const temporalFiltersTrace = createTemporalFiltersTrace(temporalFiltersDecision);
         const routeTrace = createRouteTrace({
           readMode: deps.flags.read_mode,
           readPlan,
@@ -1419,6 +1629,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           guardTrace,
           recipeTrace,
           focalNodeTrace,
+          temporalFiltersTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1429,6 +1640,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         }
 
         const focalNodeDecision = await resolveFocalNodeForRoute(responseRoute);
+        const temporalFiltersDecision = resolveTemporalFiltersForRoute(responseRoute);
         const routeTrace = createRouteTrace({
           readMode: deps.flags.read_mode,
           readPlan,
@@ -1456,6 +1668,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           hits: [],
         });
         const focalNodeTrace = createFocalNodeTrace(focalNodeDecision);
+        const temporalFiltersTrace = createTemporalFiltersTrace(temporalFiltersDecision);
 
         return withLocalDiagnostics({
           localResult,
@@ -1466,12 +1679,14 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           guardTrace,
           recipeTrace,
           focalNodeTrace,
+          temporalFiltersTrace,
           resultsOverride: localResultsOverride,
         });
       }
 
       const primaryRecipeDecision = resolveRecipeForRoute(responseRoute);
       const primaryFocalNodeDecision = await resolveFocalNodeForRoute(responseRoute);
+      const primaryTemporalFiltersDecision = resolveTemporalFiltersForRoute(responseRoute);
       const primaryAttempt = await searchRemoteWithDiagnostics({
         route: responseRoute,
         query,
@@ -1480,6 +1695,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         searchOptions: mergeSearchOptions(
           buildRecipeSearchOptions(primaryRecipeDecision),
           buildFocalNodeSearchOptions(primaryFocalNodeDecision),
+          buildTemporalFiltersSearchOptions(primaryTemporalFiltersDecision),
         ),
       });
       const primaryReranked = precisionPattern
@@ -1499,10 +1715,12 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         let fallbackAttempt: RemoteSearchAttempt | undefined;
         let fallbackRecipeDecision: RecipeRoutingDecision | undefined;
         let fallbackFocalNodeDecision: FocalNodeDecision | undefined;
+        let fallbackTemporalFiltersDecision: TemporalFiltersDecision | undefined;
 
         if (readPlan.fallbackRoute !== "local" && readPlan.fallbackRoute !== responseRoute) {
           fallbackRecipeDecision = resolveRecipeForRoute(readPlan.fallbackRoute);
           fallbackFocalNodeDecision = await resolveFocalNodeForRoute(readPlan.fallbackRoute);
+          fallbackTemporalFiltersDecision = resolveTemporalFiltersForRoute(readPlan.fallbackRoute);
           fallbackAttempt = await searchRemoteWithDiagnostics({
             route: readPlan.fallbackRoute,
             query,
@@ -1511,6 +1729,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             searchOptions: mergeSearchOptions(
               buildRecipeSearchOptions(fallbackRecipeDecision),
               buildFocalNodeSearchOptions(fallbackFocalNodeDecision),
+              buildTemporalFiltersSearchOptions(fallbackTemporalFiltersDecision),
             ),
           });
           const fallbackReranked = precisionPattern
@@ -1568,6 +1787,10 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             const focalNodeTrace = createFocalNodeTrace(
               fallbackFocalNodeDecision ?? (await resolveFocalNodeForRoute(readPlan.fallbackRoute)),
             );
+            const temporalFiltersTrace = createTemporalFiltersTrace(
+              fallbackTemporalFiltersDecision ??
+                resolveTemporalFiltersForRoute(readPlan.fallbackRoute),
+            );
 
             return jsonResult(
               toRemotePayload({
@@ -1583,6 +1806,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
                 guardTrace,
                 recipeTrace,
                 focalNodeTrace,
+                temporalFiltersTrace,
               }),
             );
           }
@@ -1611,6 +1835,8 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           fallbackRecipeDecision ?? resolveRecipeForRoute(readPlan.fallbackRoute);
         const fallbackFocalNodeTraceDecision =
           fallbackFocalNodeDecision ?? (await resolveFocalNodeForRoute(readPlan.fallbackRoute));
+        const fallbackTemporalFiltersTraceDecision =
+          fallbackTemporalFiltersDecision ?? resolveTemporalFiltersForRoute(readPlan.fallbackRoute);
         const recipeTrace = createRecipeTrace({
           decision: fallbackRecipeTraceDecision.active
             ? fallbackRecipeTraceDecision
@@ -1622,6 +1848,11 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             ? fallbackFocalNodeTraceDecision
             : primaryFocalNodeDecision,
         );
+        const temporalFiltersTrace = createTemporalFiltersTrace(
+          fallbackTemporalFiltersTraceDecision.active
+            ? fallbackTemporalFiltersTraceDecision
+            : primaryTemporalFiltersDecision,
+        );
         return withLocalDiagnostics({
           localResult,
           localDetails,
@@ -1631,6 +1862,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           guardTrace,
           recipeTrace,
           focalNodeTrace,
+          temporalFiltersTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1682,6 +1914,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         hits: primaryHits,
       });
       const focalNodeTrace = createFocalNodeTrace(primaryFocalNodeDecision);
+      const temporalFiltersTrace = createTemporalFiltersTrace(primaryTemporalFiltersDecision);
       return jsonResult(
         toRemotePayload({
           localDetails,
@@ -1696,6 +1929,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           guardTrace,
           recipeTrace,
           focalNodeTrace,
+          temporalFiltersTrace,
         }),
       );
     },

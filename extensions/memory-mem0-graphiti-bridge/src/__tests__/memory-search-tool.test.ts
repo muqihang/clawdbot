@@ -62,6 +62,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         enabled: false,
         sample_percent: 0,
       },
+      graphiti_temporal_filters: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,
@@ -917,6 +921,135 @@ describe("memory search bridge tool", () => {
     expect(focalNodeRecord.active).toBe(false);
     expect(focalNodeRecord.focal_node_uuid).toBeNull();
     expect(focalNodeRecord.degrade_reason).toBe("flag_disabled");
+  });
+
+  it("applies temporal filters when temporal window phrases are matched", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/episode-1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet: "episode result with temporal filters",
+          source: "graphiti",
+          remoteId: "episode-1",
+          structure: "episodes",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          graphiti_recipe_routing: {
+            enabled: true,
+            sample_percent: 100,
+          },
+          graphiti_temporal_filters: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "what changed yesterday in timeline" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const temporalFiltersRecord = detailsRecord.temporal_filters as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch.mock.calls[0]?.[1]).toEqual(
+      expect.objectContaining({
+        strategy: "edge",
+        temporal_filters: expect.objectContaining({
+          kind: "relative_window",
+          window_days: 1,
+        }),
+      }),
+    );
+    expect(temporalFiltersRecord.enabled).toBe(true);
+    expect(temporalFiltersRecord.active).toBe(true);
+    expect(temporalFiltersRecord.kind).toBe("relative_window");
+    expect(temporalFiltersRecord.window_days).toBe(1);
+    expect(temporalFiltersRecord.matched_phrase).toBe("yesterday");
+    expect(temporalFiltersRecord.degrade_reason).toBeNull();
+  });
+
+  it("degrades temporal filters when no relative window phrase is matched", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          graphiti_temporal_filters: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "timeline migration history" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const temporalFiltersRecord = detailsRecord.temporal_filters as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch.mock.calls[0]?.[1]).toEqual(undefined);
+    expect(temporalFiltersRecord.enabled).toBe(true);
+    expect(temporalFiltersRecord.active).toBe(false);
+    expect(temporalFiltersRecord.kind).toBeNull();
+    expect(temporalFiltersRecord.window_days).toBeNull();
+    expect(temporalFiltersRecord.matched_phrase).toBeNull();
+    expect(temporalFiltersRecord.degrade_reason).toBe("no_pattern");
   });
 
   it("keeps W2 exact-id bucket protected when recipe routing is enabled", async () => {

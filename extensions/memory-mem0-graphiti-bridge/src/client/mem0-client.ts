@@ -23,6 +23,7 @@ export type RemoteSearchOptions = {
   criteria?: RemoteSearchCriteria;
   strategy?: string;
   focal_node_uuid?: string;
+  temporal_filters?: Record<string, unknown>;
 };
 
 export type RemoteClientOperation = "search" | "get";
@@ -405,6 +406,9 @@ const toSearchBody = (
   }
   if (options?.focal_node_uuid !== undefined) {
     body.focal_node_uuid = options.focal_node_uuid;
+  }
+  if (options?.temporal_filters !== undefined) {
+    body.temporal_filters = options.temporal_filters;
   }
 
   return body;
