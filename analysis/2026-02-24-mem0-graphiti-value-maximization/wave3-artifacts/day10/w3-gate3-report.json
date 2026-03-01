@@ -1,0 +1,37 @@
+{
+  "generated_at": null,
+  "git_sha": null,
+  "base_sha": "a45a9c0dfe41c39f7ec13903d41d4e1eabafa6ac",
+  "sample_size": 34,
+  "hit_at_1_baseline": null,
+  "hit_at_1_variant": null,
+  "delta_pp": null,
+  "hit_at_3_baseline": null,
+  "hit_at_3_variant": null,
+  "episodes_nonzero_coverage_baseline": null,
+  "episodes_nonzero_coverage_variant": null,
+  "nodes_nonzero_coverage_baseline": null,
+  "nodes_nonzero_coverage_variant": null,
+  "stability_unique_values": {
+    "baseline": {
+      "hit_at_1": [],
+      "hit_at_3": [],
+      "episodes_nonzero_coverage": [],
+      "nodes_nonzero_coverage": []
+    },
+    "variant": {
+      "hit_at_1": [],
+      "hit_at_3": [],
+      "episodes_nonzero_coverage": [],
+      "nodes_nonzero_coverage": []
+    }
+  },
+  "top1_delta_pp_pass": null,
+  "episodes_coverage_pass": null,
+  "nodes_coverage_pass": null,
+  "stability_pass": null,
+  "tests_pass": null,
+  "gate2_regression_pass": null,
+  "gate3": null,
+  "evidence_dir": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final"
+}

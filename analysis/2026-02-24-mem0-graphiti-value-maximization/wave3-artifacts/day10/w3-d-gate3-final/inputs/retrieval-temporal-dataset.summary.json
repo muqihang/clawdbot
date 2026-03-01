@@ -1,0 +1,8 @@
+{
+  "source_dataset": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day23/w2-gate2-final-verify/inputs/retrieval-dataset.v2.json",
+  "target_dataset": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day2/w3-a-recipe-routing/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "unique_queries": 34,
+  "unique_expected_ids": 34,
+  "generated_at": "2026-03-01T04:42:36.274Z"
+}
