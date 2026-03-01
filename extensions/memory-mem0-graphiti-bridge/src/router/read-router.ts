@@ -1,7 +1,9 @@
 import type { BridgeReadMode, BridgeRemoteRoute, BridgeRoute } from "../config/flags.js";
-import type { QuerySignature } from "./query-signature.js";
+import { resolveQuerySignature, type QuerySignature } from "./query-signature.js";
 
 export type QueryIntent = "timeline" | "semantic";
+export type QueryType = "temporal_relation" | "entity_attribute" | "decision_reason" | "other";
+export type QueryBucket = "exact_id" | QueryType;
 
 export type ReadPlanInput = {
   readMode: BridgeReadMode;
@@ -21,6 +23,8 @@ export type ReadPlan = {
   fallbackRoute: BridgeRoute;
   shadowCompare: boolean;
   intent: QueryIntent;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
   signature: QuerySignature | null;
   readMode: BridgeReadMode;
   cutoverPercent: number;
@@ -28,8 +32,12 @@ export type ReadPlan = {
   reason: "phase0_local_default" | "phase0_local_only_guard" | "read_cutover_candidate_enabled";
 };
 
-const TIMELINE_QUERY_PATTERN =
-  /\b(when|timeline|history|before|after|yesterday|last\s+week|switched|switch|migration|migrated|change)\b/i;
+const TEMPORAL_RELATION_QUERY_PATTERN =
+  /\b(when|timeline|history|before|after|earlier|later|then|first|next|yesterday|last\s+week|switch(?:ed)?|migrat(?:e|ed|ion)|change(?:d)?|precede(?:s|d)?|follow(?:s|ed)?|day\s*\d+)\b|[先前之].*(后|後)|之后|之后发生|之前|先于|后于|里程碑|第\d+天|触发后|随后/i;
+const ENTITY_ATTRIBUTE_QUERY_PATTERN =
+  /\b(what\s+is|who\s+is|which|owner|maintainer|config|setting|version|status|profile|attribute|property)\b|属性|配置|版本|负责人|维护者|参数|状态/i;
+const DECISION_REASON_QUERY_PATTERN =
+  /\b(why|reason|because|decision|trade-?off|chose|choose|reject(?:ed)?|rationale)\b|为什么|原因|因为|决策|取舍|选型|拒绝方案/i;
 
 const clampPercent = (value: number): number => {
   if (!Number.isFinite(value)) {
@@ -53,8 +61,17 @@ const hashToPercentBucket = (seed: string): number => {
   return hash % 100;
 };
 
-const classifyIntent = (query: string): QueryIntent => {
-  return TIMELINE_QUERY_PATTERN.test(query) ? "timeline" : "semantic";
+export const classifyQueryType = (query: string): QueryType => {
+  if (TEMPORAL_RELATION_QUERY_PATTERN.test(query)) {
+    return "temporal_relation";
+  }
+  if (DECISION_REASON_QUERY_PATTERN.test(query)) {
+    return "decision_reason";
+  }
+  if (ENTITY_ATTRIBUTE_QUERY_PATTERN.test(query)) {
+    return "entity_attribute";
+  }
+  return "other";
 };
 
 const resolveRemoteRoute = (params: {
@@ -116,8 +133,10 @@ const resolveUserRoute = (params: {
 
 export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
   const cutoverPercent = clampPercent(input.cutoverPercent);
-  const signature = input.querySignature ?? null;
-  const intent = signature?.precisionKey ? "semantic" : classifyIntent(input.query);
+  const signature = input.querySignature ?? resolveQuerySignature(input.query);
+  const queryType = signature?.precisionKey ? "other" : classifyQueryType(input.query);
+  const queryBucket: QueryBucket = signature?.precisionKey ? "exact_id" : queryType;
+  const intent = queryBucket === "temporal_relation" ? "timeline" : "semantic";
   const defaultRoute = input.defaultRoute ?? "local";
   const timelineRoute = input.timelineRoute ?? "graphiti";
   const semanticRoute = input.semanticRoute ?? "mem0";
@@ -153,6 +172,8 @@ export function resolveReadPlan(input: ReadPlanInput): ReadPlan {
     fallbackRoute,
     shadowCompare,
     intent,
+    queryType,
+    queryBucket,
     signature,
     readMode: input.readMode,
     cutoverPercent,

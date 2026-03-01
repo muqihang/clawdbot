@@ -34,6 +34,10 @@ export type BridgeReadFlags = {
     enabled: boolean;
     sample_percent: number;
   };
+  graphiti_recipe_routing: {
+    enabled: boolean;
+    sample_percent: number;
+  };
 };
 
 type BridgeMessageEnvelopeRole = "user" | "assistant" | "system" | "tool";
@@ -121,6 +125,10 @@ const DEFAULT_FLAGS: BridgeFlags = {
       enabled: false,
     },
     mem0_filters_criteria_shadow: {
+      enabled: false,
+      sample_percent: 0,
+    },
+    graphiti_recipe_routing: {
       enabled: false,
       sample_percent: 0,
     },
@@ -356,11 +364,12 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const timeoutRaw = asRecord(raw.timeoutMs);
   const outboxRaw = asRecord(raw.outbox);
   const readRaw = asRecord(raw.read);
-  const precisionGuardRaw = asRecord(
-    readRawValue(readRaw, ["precision_guard", "precisionGuard"]),
-  );
+  const precisionGuardRaw = asRecord(readRawValue(readRaw, ["precision_guard", "precisionGuard"]));
   const mem0FiltersCriteriaShadowRaw = asRecord(
     readRawValue(readRaw, ["mem0_filters_criteria_shadow", "mem0FiltersCriteriaShadow"]),
+  );
+  const graphitiRecipeRoutingRaw = asRecord(
+    readRawValue(readRaw, ["graphiti_recipe_routing", "graphitiRecipeRouting"]),
   );
   const p3Raw = asRecord(raw.p3);
   const p3MessageEnvelopeRaw = asRecord(
@@ -452,6 +461,16 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         sample_percent: readPercentWithFallback(
           readRawValue(mem0FiltersCriteriaShadowRaw, ["sample_percent", "samplePercent"]),
           DEFAULT_FLAGS.read.mem0_filters_criteria_shadow.sample_percent,
+        ),
+      },
+      graphiti_recipe_routing: {
+        enabled: readBoolean(
+          graphitiRecipeRoutingRaw.enabled,
+          DEFAULT_FLAGS.read.graphiti_recipe_routing.enabled,
+        ),
+        sample_percent: readPercentWithFallback(
+          readRawValue(graphitiRecipeRoutingRaw, ["sample_percent", "samplePercent"]),
+          DEFAULT_FLAGS.read.graphiti_recipe_routing.sample_percent,
         ),
       },
     },

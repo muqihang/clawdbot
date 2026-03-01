@@ -54,6 +54,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         enabled: false,
         sample_percent: 0,
       },
+      graphiti_recipe_routing: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,
@@ -644,5 +648,161 @@ describe("memory search bridge tool", () => {
     expect(assembled.decision).toBe("degrade");
     expect(typeof assembled.degrade_reason).toBe("string");
     expect(String(assembled.degrade_reason).length).toBeGreaterThan(0);
+  });
+
+  it("routes temporal queries to edge recipe when graphiti recipe routing is enabled", async () => {
+    const localTool = createLocalTool();
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+        },
+        read: {
+          graphiti_recipe_routing: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(
+            async (): Promise<BridgeSearchHit[]> => [
+              {
+                path: "bridge/graphiti/facts-1",
+                startLine: 1,
+                endLine: 1,
+                score: 0.95,
+                snippet: "facts top1 before rerank",
+                source: "graphiti",
+                remoteId: "facts-1",
+                structure: "facts",
+              },
+              {
+                path: "bridge/graphiti/episodes-1",
+                startLine: 1,
+                endLine: 1,
+                score: 0.92,
+                snippet: "episodes candidate",
+                source: "graphiti",
+                remoteId: "episodes-1",
+                structure: "episodes",
+              },
+              {
+                path: "bridge/graphiti/nodes-1",
+                startLine: 1,
+                endLine: 1,
+                score: 0.9,
+                snippet: "nodes candidate",
+                source: "graphiti",
+                remoteId: "nodes-1",
+                structure: "nodes",
+              },
+            ],
+          ),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "在迁移之后 timeline 发生了什么" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const recipeRecord = detailsRecord.recipe as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+
+    expect(results[0]?.path).toBe("bridge/graphiti/episodes-1");
+    expect(recipeRecord.query_type).toBe("temporal_relation");
+    expect(recipeRecord.query_bucket).toBe("temporal_relation");
+    expect(recipeRecord.selected_recipe).toBe("edge");
+    expect(recipeRecord.active).toBe(true);
+    expect(recipeRecord.degrade_reason).toBeNull();
+  });
+
+  it("keeps W2 exact-id bucket protected when recipe routing is enabled", async () => {
+    const localTool: AnyAgentTool = {
+      name: "memory_search",
+      label: "Memory Search",
+      description: "local search tool",
+      parameters: {},
+      execute: vi.fn(async () => ({
+        content: [],
+        details: {
+          results: [
+            {
+              path: "MEMORY.md",
+              startLine: 1,
+              endLine: 1,
+              score: 0.95,
+              snippet: "commit deadbeef rollout decision",
+              source: "memory",
+            },
+          ],
+          provider: "builtin",
+          model: "builtin",
+          citations: "auto",
+        },
+      })),
+    };
+
+    const graphitiSearch = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+        },
+        read: {
+          precision_guard: {
+            enabled: true,
+          },
+          graphiti_recipe_routing: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "commit deadbeef" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const recipeRecord = detailsRecord.recipe as Record<string, unknown>;
+    const guardRecord = detailsRecord.guard as Record<string, unknown>;
+
+    expect(graphitiSearch).not.toHaveBeenCalled();
+    expect(detailsRecord.source).toBe("local");
+    expect(guardRecord.forced_local).toBe(true);
+    expect(recipeRecord.query_bucket).toBe("exact_id");
+    expect(recipeRecord.active).toBe(false);
+    expect(recipeRecord.degrade_reason).toBe("precision_key_bucket");
   });
 });

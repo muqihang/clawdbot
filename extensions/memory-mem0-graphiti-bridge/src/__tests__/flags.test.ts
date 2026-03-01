@@ -18,6 +18,8 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.read.precision_guard.enabled).toBe(false);
     expect(flags.read.mem0_filters_criteria_shadow.enabled).toBe(false);
     expect(flags.read.mem0_filters_criteria_shadow.sample_percent).toBe(0);
+    expect(flags.read.graphiti_recipe_routing.enabled).toBe(false);
+    expect(flags.read.graphiti_recipe_routing.sample_percent).toBe(0);
     expect(flags.p3.graphiti_write_path).toBe("/messages");
     expect(flags.p3.admission_enabled).toBe(false);
     expect(flags.p3.commit_canary_ratio).toBe(0);
@@ -120,5 +122,19 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.p3.commit_require_non_sensitive).toBe(false);
     expect(flags.p3.commit_require_dual_write_ok).toBe(false);
     expect(flags.read.alias_normalization).toBe(false);
+  });
+
+  it("parses graphiti recipe routing shadow flags", () => {
+    const flags = resolveBridgeFlags({
+      read: {
+        graphiti_recipe_routing: {
+          enabled: true,
+          sample_percent: 150,
+        },
+      },
+    });
+
+    expect(flags.read.graphiti_recipe_routing.enabled).toBe(true);
+    expect(flags.read.graphiti_recipe_routing.sample_percent).toBe(100);
   });
 });

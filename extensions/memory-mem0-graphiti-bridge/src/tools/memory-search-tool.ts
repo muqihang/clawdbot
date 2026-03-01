@@ -16,8 +16,8 @@ import type {
   P3MessageEnvelope,
 } from "../p3/types.js";
 import type { PrecisionKeyMatch, QuerySignature } from "../router/query-signature.js";
-import { resolveReadPlan } from "../router/read-router.js";
 import { resolveQuerySignature } from "../router/query-signature.js";
+import { resolveReadPlan, type QueryBucket, type QueryType } from "../router/read-router.js";
 
 type BridgeSearchToolDeps = {
   flags: BridgeFlags;
@@ -96,11 +96,7 @@ const buildPrecisionKeyPattern = (match: PrecisionKeyMatch): RegExp => {
   return new RegExp(`\\b${escaped}\\b`, "i");
 };
 
-const isPrecisionKeyHit = (params: {
-  pattern: RegExp;
-  snippet: string;
-  path: string;
-}): boolean => {
+const isPrecisionKeyHit = (params: { pattern: RegExp; snippet: string; path: string }): boolean => {
   return params.pattern.test(params.snippet) || params.pattern.test(params.path);
 };
 
@@ -315,6 +311,206 @@ const rerankRemoteHits = (params: {
     hits: ranked.map((item) => item.hit),
     exactMatchCount,
   };
+};
+
+type SearchRecipe = "edge" | "node" | "hybrid";
+
+type RecipeRoutingDecision = {
+  enabled: boolean;
+  sampled: boolean;
+  samplePercent: number;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
+  selectedRecipe: SearchRecipe;
+  route: BridgeRoute;
+  active: boolean;
+  degradeReason: string | null;
+};
+
+const selectRecipeForQueryType = (queryType: QueryType): SearchRecipe => {
+  if (queryType === "temporal_relation") {
+    return "edge";
+  }
+  if (queryType === "entity_attribute") {
+    return "node";
+  }
+  return "hybrid";
+};
+
+const resolveRecipeRoutingDecision = (params: {
+  enabled: boolean;
+  samplePercent: number;
+  route: BridgeRoute;
+  queryType: QueryType;
+  queryBucket: QueryBucket;
+  sampleSeed: string;
+}): RecipeRoutingDecision => {
+  const samplePercent = clampPercent(params.samplePercent);
+  const selectedRecipe = selectRecipeForQueryType(params.queryType);
+  const sampled = samplePercent >= 100 || hashToPercentBucket(params.sampleSeed) < samplePercent;
+
+  let degradeReason: string | null = null;
+  if (!params.enabled) {
+    degradeReason = "flag_disabled";
+  } else if (params.route !== "graphiti") {
+    degradeReason = "non_graphiti_route";
+  } else if (params.queryBucket === "exact_id") {
+    degradeReason = "precision_key_bucket";
+  } else if (samplePercent <= 0) {
+    degradeReason = "sample_percent_zero";
+  } else if (!sampled) {
+    degradeReason = "sample_skipped";
+  }
+
+  return {
+    enabled: params.enabled,
+    sampled,
+    samplePercent,
+    queryType: params.queryType,
+    queryBucket: params.queryBucket,
+    selectedRecipe,
+    route: params.route,
+    active: degradeReason === null,
+    degradeReason,
+  };
+};
+
+const recipeStructurePriority = (recipe: SearchRecipe, structure: string | undefined): number => {
+  const normalized = String(structure ?? "")
+    .trim()
+    .toLowerCase();
+
+  if (recipe === "edge") {
+    if (normalized === "episodes" || normalized === "episode") {
+      return 0;
+    }
+    if (normalized === "facts" || normalized === "fact") {
+      return 1;
+    }
+    if (normalized === "nodes" || normalized === "node") {
+      return 2;
+    }
+    return 3;
+  }
+
+  if (recipe === "node") {
+    if (normalized === "nodes" || normalized === "node") {
+      return 0;
+    }
+    if (normalized === "facts" || normalized === "fact") {
+      return 1;
+    }
+    if (normalized === "episodes" || normalized === "episode") {
+      return 2;
+    }
+    return 3;
+  }
+
+  if (normalized === "facts" || normalized === "fact") {
+    return 0;
+  }
+  if (normalized === "episodes" || normalized === "episode") {
+    return 1;
+  }
+  if (normalized === "nodes" || normalized === "node") {
+    return 2;
+  }
+  return 3;
+};
+
+type RecipeRankedHit = {
+  index: number;
+  hit: BridgeSearchHit;
+  structurePriority: number;
+};
+
+const applyRecipeRerank = (params: {
+  hits: BridgeSearchHit[];
+  decision: RecipeRoutingDecision;
+}): BridgeSearchHit[] => {
+  if (!params.decision.active || params.hits.length <= 1) {
+    return params.hits;
+  }
+
+  const ranked: RecipeRankedHit[] = params.hits.map((hit, index) => ({
+    index,
+    hit,
+    structurePriority: recipeStructurePriority(params.decision.selectedRecipe, hit.structure),
+  }));
+
+  ranked.sort((left, right) => {
+    if (left.structurePriority !== right.structurePriority) {
+      return left.structurePriority < right.structurePriority ? -1 : 1;
+    }
+
+    const scoreCompare = compareNumbersDesc(left.hit.score, right.hit.score);
+    if (scoreCompare !== 0) {
+      return scoreCompare;
+    }
+
+    const remoteLowerCompare = compareAsciiStrings(
+      left.hit.remoteId.toLowerCase(),
+      right.hit.remoteId.toLowerCase(),
+    );
+    if (remoteLowerCompare !== 0) {
+      return remoteLowerCompare;
+    }
+    const remoteCompare = compareAsciiStrings(left.hit.remoteId, right.hit.remoteId);
+    if (remoteCompare !== 0) {
+      return remoteCompare;
+    }
+
+    const pathLowerCompare = compareAsciiStrings(
+      left.hit.path.toLowerCase(),
+      right.hit.path.toLowerCase(),
+    );
+    if (pathLowerCompare !== 0) {
+      return pathLowerCompare;
+    }
+    const pathCompare = compareAsciiStrings(left.hit.path, right.hit.path);
+    if (pathCompare !== 0) {
+      return pathCompare;
+    }
+
+    const snippetLowerCompare = compareAsciiStrings(
+      left.hit.snippet.toLowerCase(),
+      right.hit.snippet.toLowerCase(),
+    );
+    if (snippetLowerCompare !== 0) {
+      return snippetLowerCompare;
+    }
+    const snippetCompare = compareAsciiStrings(left.hit.snippet, right.hit.snippet);
+    if (snippetCompare !== 0) {
+      return snippetCompare;
+    }
+
+    return left.index - right.index;
+  });
+
+  return ranked.map((item) => item.hit);
+};
+
+const mergeSearchOptions = (
+  ...options: Array<RemoteSearchOptions | undefined>
+): RemoteSearchOptions | undefined => {
+  const output: RemoteSearchOptions = {};
+
+  for (const option of options) {
+    if (!option) {
+      continue;
+    }
+    if (option.filters !== undefined) {
+      output.filters = option.filters;
+    }
+    if (option.criteria !== undefined) {
+      output.criteria = option.criteria;
+    }
+    if (option.strategy !== undefined) {
+      output.strategy = option.strategy;
+    }
+  }
+
+  return Object.keys(output).length > 0 ? output : undefined;
 };
 
 const jsonResult = (payload: unknown): AgentToolResult<unknown> => {
@@ -634,6 +830,8 @@ const createRouteTrace = (params: {
     read_mode: params.readMode,
     reason: params.readPlan.reason,
     intent: params.readPlan.intent,
+    query_type: params.readPlan.queryType,
+    query_bucket: params.readPlan.queryBucket,
     user_route: params.readPlan.userRoute,
     candidate_route: params.readPlan.candidateRoute,
     primary_route: params.primaryRoute,
@@ -708,6 +906,7 @@ const withLocalDiagnostics = (params: {
   fallbackTrace: Record<string, unknown>;
   signature?: QuerySignature;
   guardTrace?: Record<string, unknown>;
+  recipeTrace?: Record<string, unknown>;
   resultsOverride?: Array<Record<string, unknown>>;
 }): AgentToolResult<unknown> => {
   const details: Record<string, unknown> = {
@@ -722,6 +921,9 @@ const withLocalDiagnostics = (params: {
   }
   if (params.guardTrace) {
     details.guard = params.guardTrace;
+  }
+  if (params.recipeTrace) {
+    details.recipe = params.recipeTrace;
   }
   if (params.resultsOverride) {
     details.results = params.resultsOverride;
@@ -766,6 +968,30 @@ const buildStructureMetrics = (hits: BridgeSearchHit[]): Record<string, number> 
   return counts;
 };
 
+const createRecipeTrace = (params: {
+  decision: RecipeRoutingDecision;
+  hits: BridgeSearchHit[];
+}): Record<string, unknown> => {
+  const topHit = params.hits[0];
+  return {
+    enabled: params.decision.enabled,
+    sampled: params.decision.sampled,
+    sample_percent: params.decision.samplePercent,
+    query_type: params.decision.queryType,
+    query_bucket: params.decision.queryBucket,
+    selected_recipe: params.decision.selectedRecipe,
+    requested_strategy: params.decision.active ? params.decision.selectedRecipe : null,
+    active: params.decision.active,
+    degraded: params.decision.degradeReason !== null,
+    degrade_reason: params.decision.degradeReason,
+    route: params.decision.route,
+    top1_source: topHit?.source ?? null,
+    top1_remote_id: topHit?.remoteId ?? null,
+    top1_structure: topHit?.structure ?? null,
+    structures: buildStructureMetrics(params.hits),
+  };
+};
+
 const toRemotePayload = (params: {
   localDetails: Record<string, unknown> | undefined;
   remoteRoute: BridgeRoute;
@@ -777,6 +1003,7 @@ const toRemotePayload = (params: {
   contextAssembleResult?: P3ContextAssembleResult;
   signature?: QuerySignature;
   guardTrace?: Record<string, unknown>;
+  recipeTrace?: Record<string, unknown>;
 }): Record<string, unknown> => {
   const payload: Record<string, unknown> = {
     ...(params.localDetails ?? {}),
@@ -796,6 +1023,9 @@ const toRemotePayload = (params: {
   }
   if (params.guardTrace) {
     payload.guard = params.guardTrace;
+  }
+  if (params.recipeTrace) {
+    payload.recipe = params.recipeTrace;
   }
 
   if (params.contextAssembleResult) {
@@ -854,6 +1084,29 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       const responseRoute = readPlan.userRoute;
       const aliasNormalization = deps.flags.read.alias_normalization;
       const shouldForceLocal = precisionPattern !== null && localExactMatchCount > 0;
+      const recipeRoutingConfig = deps.flags.read.graphiti_recipe_routing;
+      const recipeSeed = deps.sessionKey ?? query;
+
+      const resolveRecipeForRoute = (route: BridgeRoute): RecipeRoutingDecision => {
+        return resolveRecipeRoutingDecision({
+          enabled: recipeRoutingConfig.enabled,
+          samplePercent: recipeRoutingConfig.sample_percent,
+          route,
+          queryType: readPlan.queryType,
+          queryBucket: readPlan.queryBucket,
+          sampleSeed: recipeSeed,
+        });
+      };
+
+      const buildRecipeSearchOptions = (
+        decision: RecipeRoutingDecision,
+      ): RemoteSearchOptions | undefined => {
+        return decision.active
+          ? {
+              strategy: decision.selectedRecipe,
+            }
+          : undefined;
+      };
 
       const guardTraceBase = (params: {
         selectedRoute: BridgeRoute;
@@ -877,6 +1130,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       };
 
       if (deps.flags.read_mode === "shadow" && readPlan.candidateRoute !== "local") {
+        const shadowRecipeDecision = resolveRecipeForRoute(readPlan.candidateRoute);
         const filters = readFilters(params);
         const criteria = readCriteria(params);
         const shadowConfig = deps.flags.read.mem0_filters_criteria_shadow;
@@ -886,27 +1140,34 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           readPlan.candidateRoute === "mem0" &&
           samplePercent > 0 &&
           (filters || criteria) &&
-          (samplePercent >= 100 ||
-            hashToPercentBucket(deps.sessionKey ?? query) < samplePercent);
+          (samplePercent >= 100 || hashToPercentBucket(deps.sessionKey ?? query) < samplePercent);
 
-        const shadowSearchOptions: RemoteSearchOptions | undefined = shouldUseFiltersCriteria
-          ? {
-              filters,
-              criteria,
-            }
-          : undefined;
+        const shadowFiltersCriteriaSearchOptions: RemoteSearchOptions | undefined =
+          shouldUseFiltersCriteria
+            ? {
+                filters,
+                criteria,
+              }
+            : undefined;
 
         const shadowAttempt = await searchRemoteWithDiagnostics({
           route: readPlan.candidateRoute,
           query,
           clients: deps.clients,
           aliasNormalization,
-          searchOptions: shadowSearchOptions,
+          searchOptions: mergeSearchOptions(
+            shadowFiltersCriteriaSearchOptions,
+            buildRecipeSearchOptions(shadowRecipeDecision),
+          ),
         });
         const shadowReranked = precisionPattern
           ? rerankRemoteHits({ hits: shadowAttempt.hits, precisionPattern })
           : null;
-        const remoteHits = shadowReranked?.hits ?? shadowAttempt.hits;
+        const shadowHits = shadowReranked?.hits ?? shadowAttempt.hits;
+        const remoteHits = applyRecipeRerank({
+          hits: shadowHits,
+          decision: shadowRecipeDecision,
+        });
         const remoteExactMatchCount =
           precisionPattern !== null ? (shadowReranked?.exactMatchCount ?? 0) : null;
 
@@ -943,6 +1204,10 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           remoteExactMatchCount,
           forcedLocal: shouldForceLocal,
         });
+        const recipeTrace = createRecipeTrace({
+          decision: shadowRecipeDecision,
+          hits: remoteHits,
+        });
 
         return withLocalDiagnostics({
           localResult,
@@ -951,11 +1216,16 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           fallbackTrace,
           signature: querySignature,
           guardTrace,
+          recipeTrace,
           resultsOverride: localResultsOverride,
         });
       }
 
       if (shouldForceLocal && responseRoute !== "local") {
+        const recipeTrace = createRecipeTrace({
+          decision: resolveRecipeForRoute(responseRoute),
+          hits: [],
+        });
         const routeTrace = createRouteTrace({
           readMode: deps.flags.read_mode,
           readPlan,
@@ -985,6 +1255,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           fallbackTrace,
           signature: querySignature,
           guardTrace,
+          recipeTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1016,6 +1287,10 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           remoteExactMatchCount: null,
           forcedLocal: localExactMatchCount > 0,
         });
+        const recipeTrace = createRecipeTrace({
+          decision: resolveRecipeForRoute("local"),
+          hits: [],
+        });
 
         return withLocalDiagnostics({
           localResult,
@@ -1024,20 +1299,27 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           fallbackTrace,
           signature: querySignature,
           guardTrace,
+          recipeTrace,
           resultsOverride: localResultsOverride,
         });
       }
 
+      const primaryRecipeDecision = resolveRecipeForRoute(responseRoute);
       const primaryAttempt = await searchRemoteWithDiagnostics({
         route: responseRoute,
         query,
         clients: deps.clients,
         aliasNormalization,
+        searchOptions: buildRecipeSearchOptions(primaryRecipeDecision),
       });
       const primaryReranked = precisionPattern
         ? rerankRemoteHits({ hits: primaryAttempt.hits, precisionPattern })
         : null;
-      const primaryHits = primaryReranked?.hits ?? primaryAttempt.hits;
+      const primaryRawHits = primaryReranked?.hits ?? primaryAttempt.hits;
+      const primaryHits = applyRecipeRerank({
+        hits: primaryRawHits,
+        decision: primaryRecipeDecision,
+      });
       const primaryRemoteExactMatchCount =
         precisionPattern !== null ? (primaryReranked?.exactMatchCount ?? 0) : null;
       const primaryFailed = Boolean(primaryAttempt.error) || primaryHits.length === 0;
@@ -1045,18 +1327,25 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       if (primaryFailed) {
         const fallbackReason = classifyFallbackReason(primaryAttempt);
         let fallbackAttempt: RemoteSearchAttempt | undefined;
+        let fallbackRecipeDecision: RecipeRoutingDecision | undefined;
 
         if (readPlan.fallbackRoute !== "local" && readPlan.fallbackRoute !== responseRoute) {
+          fallbackRecipeDecision = resolveRecipeForRoute(readPlan.fallbackRoute);
           fallbackAttempt = await searchRemoteWithDiagnostics({
             route: readPlan.fallbackRoute,
             query,
             clients: deps.clients,
             aliasNormalization,
+            searchOptions: buildRecipeSearchOptions(fallbackRecipeDecision),
           });
           const fallbackReranked = precisionPattern
             ? rerankRemoteHits({ hits: fallbackAttempt.hits, precisionPattern })
             : null;
-          const fallbackHits = fallbackReranked?.hits ?? fallbackAttempt.hits;
+          const fallbackRawHits = fallbackReranked?.hits ?? fallbackAttempt.hits;
+          const fallbackHits = applyRecipeRerank({
+            hits: fallbackRawHits,
+            decision: fallbackRecipeDecision,
+          });
           const fallbackRemoteExactMatchCount =
             precisionPattern !== null ? (fallbackReranked?.exactMatchCount ?? 0) : null;
 
@@ -1097,6 +1386,10 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               remoteExactMatchCount: fallbackRemoteExactMatchCount,
               forcedLocal: false,
             });
+            const recipeTrace = createRecipeTrace({
+              decision: fallbackRecipeDecision,
+              hits: fallbackHits,
+            });
 
             return jsonResult(
               toRemotePayload({
@@ -1110,6 +1403,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
                 contextAssembleResult,
                 signature: querySignature,
                 guardTrace,
+                recipeTrace,
               }),
             );
           }
@@ -1134,6 +1428,14 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           remoteExactMatchCount: primaryRemoteExactMatchCount,
           forcedLocal: false,
         });
+        const fallbackRecipeTraceDecision =
+          fallbackRecipeDecision ?? resolveRecipeForRoute(readPlan.fallbackRoute);
+        const recipeTrace = createRecipeTrace({
+          decision: fallbackRecipeTraceDecision.active
+            ? fallbackRecipeTraceDecision
+            : primaryRecipeDecision,
+          hits: [],
+        });
         return withLocalDiagnostics({
           localResult,
           localDetails,
@@ -1141,6 +1443,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           fallbackTrace: localFallbackTrace,
           signature: querySignature,
           guardTrace,
+          recipeTrace,
           resultsOverride: localResultsOverride,
         });
       }
@@ -1177,13 +1480,19 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       const guardTrace = guardTraceBase({
         selectedRoute: responseRoute,
         decision:
-          precisionPattern !== null && primaryRemoteExactMatchCount && primaryRemoteExactMatchCount > 0
+          precisionPattern !== null &&
+          primaryRemoteExactMatchCount &&
+          primaryRemoteExactMatchCount > 0
             ? "remote_exact_match_promoted"
             : precisionPattern !== null
               ? "remote_no_exact_match"
               : "disabled",
         remoteExactMatchCount: primaryRemoteExactMatchCount,
         forcedLocal: false,
+      });
+      const recipeTrace = createRecipeTrace({
+        decision: primaryRecipeDecision,
+        hits: primaryHits,
       });
       return jsonResult(
         toRemotePayload({
@@ -1197,6 +1506,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           contextAssembleResult,
           signature: querySignature,
           guardTrace,
+          recipeTrace,
         }),
       );
     },

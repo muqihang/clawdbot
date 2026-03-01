@@ -2,6 +2,31 @@ import { describe, expect, it } from "vitest";
 import { resolveReadPlan } from "../router/read-router.js";
 
 describe("mem0-graphiti read router", () => {
+  it("classifies temporal relation query for timeline routing", () => {
+    const plan = resolveReadPlan({
+      readMode: "primary",
+      cutoverPercent: 100,
+      query: "在 timeline 中，切换到 graphiti 之后发生了什么",
+    });
+
+    expect(plan.queryType).toBe("temporal_relation");
+    expect(plan.queryBucket).toBe("temporal_relation");
+    expect(plan.intent).toBe("timeline");
+    expect(plan.userRoute).toBe("graphiti");
+  });
+
+  it("marks precision-key queries as exact-id bucket", () => {
+    const plan = resolveReadPlan({
+      readMode: "remote",
+      cutoverPercent: 100,
+      query: "commit deadbeef",
+    });
+
+    expect(plan.queryBucket).toBe("exact_id");
+    expect(plan.queryType).toBe("other");
+    expect(plan.intent).toBe("semantic");
+  });
+
   it("returns local route in local mode", () => {
     const plan = resolveReadPlan({
       readMode: "local",
