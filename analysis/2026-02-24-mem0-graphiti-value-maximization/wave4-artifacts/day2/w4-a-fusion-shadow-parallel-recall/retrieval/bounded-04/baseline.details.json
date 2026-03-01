@@ -1,0 +1,118 @@
+{
+  "results": [
+    {
+      "path": "MEMORY.md",
+      "startLine": 1,
+      "endLine": 1,
+      "score": 0.9,
+      "snippet": "local snippet",
+      "source": "memory"
+    }
+  ],
+  "provider": "builtin",
+  "model": "builtin",
+  "citations": "auto",
+  "source": "local",
+  "route": {
+    "read_mode": "shadow",
+    "reason": "phase0_local_only_guard",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "other",
+    "user_route": "local",
+    "candidate_route": "mem0",
+    "primary_route": "mem0",
+    "fallback_route": "local",
+    "selected_route": "local"
+  },
+  "fallback": {
+    "triggered": false,
+    "reason": null,
+    "result_route": "local",
+    "primary_error": null,
+    "primary_status": null,
+    "primary_latency_ms": 0,
+    "fallback_attempted": false,
+    "fallback_route_attempted": null,
+    "fallback_error": null,
+    "fallback_latency_ms": null,
+    "total_latency_ms": 0
+  },
+  "signature": {
+    "version": "v1",
+    "query": "what preferences did we store",
+    "normalizedQuery": "what preferences did we store",
+    "precisionKey": null
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "mem0",
+    "top1_source": "mem0",
+    "top1_remote_id": "m-shadow",
+    "top1_structure": null,
+    "structures": {
+      "facts": 0,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "mem0",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "mem0",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  },
+  "ontology_v1": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "other",
+    "query_bucket": "other",
+    "route": "mem0",
+    "active": false,
+    "top_k": 1,
+    "marker_presence_count": 0,
+    "marker_presence_rate": 0,
+    "parse_success_count": 0,
+    "parse_failure_count": 0,
+    "parse_success_rate": 0,
+    "entity_summary": {
+      "decision_count": 0,
+      "project_count": 0,
+      "reason_count": 0,
+      "rejected_option_count": 0,
+      "relation_count": 0,
+      "has_rejected_options": false
+    },
+    "parse_failures": [],
+    "degrade_reason": "flag_disabled"
+  }
+}
