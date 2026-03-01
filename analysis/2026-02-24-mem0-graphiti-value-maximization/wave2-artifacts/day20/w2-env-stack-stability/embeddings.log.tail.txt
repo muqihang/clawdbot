@@ -1,0 +1,6 @@
+[local-embeddings] listening on http://127.0.0.1:18082 dim=1536
+[local-embeddings] "GET /healthz HTTP/1.1" 200 -
+[local-embeddings] "GET /healthz HTTP/1.1" 200 -
+[local-embeddings] "GET /healthz HTTP/1.1" 200 -
+[local-embeddings] "GET /healthz HTTP/1.1" 200 -
+[local-embeddings] "GET /healthz HTTP/1.1" 200 -

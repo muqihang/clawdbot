@@ -1,0 +1,17 @@
+{
+  "top_k": 3,
+  "hits": [
+    {
+      "remoteId": "95ac596e-9d60-465c-aec9-d403e6b46e3f",
+      "score": 0,
+      "path": "bridge/graphiti/95ac596e-9d60-465c-aec9-d403e6b46e3f",
+      "structure": "nodes"
+    },
+    {
+      "remoteId": "d3431784-cec8-4f47-9a48-b72d047caf78",
+      "score": 0,
+      "path": "bridge/graphiti/d3431784-cec8-4f47-9a48-b72d047caf78",
+      "structure": "nodes"
+    }
+  ]
+}

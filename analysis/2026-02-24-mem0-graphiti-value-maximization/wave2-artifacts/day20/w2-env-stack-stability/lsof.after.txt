@@ -1,0 +1,6 @@
+COMMAND   PID     USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  24466 muqihang   20u  IPv4 0x34f277123d54dc56      0t0  TCP 127.0.0.1:8000 (LISTEN)
+COMMAND   PID     USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  24469 muqihang    7u  IPv4 0xdd7dce3992d2b12c      0t0  TCP 127.0.0.1:8766 (LISTEN)
+COMMAND   PID     USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  24409 muqihang    3u  IPv4 0xfaf7cfd4d1ee328d      0t0  TCP 127.0.0.1:18082 (LISTEN)

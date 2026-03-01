@@ -1,0 +1,124 @@
+[memory-stack] started graphiti + mem0
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=10s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=20s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=30s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=40s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=50s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=60s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=70s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=80s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=90s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=100s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=110s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=120s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=130s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=140s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=150s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=160s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=170s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=180s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=190s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=200s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=210s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=220s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=230s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=240s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=250s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=260s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=270s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=280s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=290s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok
+--- t=300s ---
+graphiti   pid=25326    alive=yes port=8000  health=ok
+mem0       pid=25329    alive=yes port=8766  health=ok
+embeddings pid=25272    alive=yes port=18082 health=ok

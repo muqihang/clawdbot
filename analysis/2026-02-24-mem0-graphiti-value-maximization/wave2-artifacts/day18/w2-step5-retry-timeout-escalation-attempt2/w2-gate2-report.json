@@ -1,0 +1,98 @@
+{
+  "runDate": "2026-02-28",
+  "generatedAt": "2026-02-28T18:10:08.680Z",
+  "mode": "W2-D",
+  "inputs": {
+    "top1_exact_id_proxy": 0,
+    "top1_exact_id_proxy_sample_size": 34,
+    "cfp_proxy": 0,
+    "cfp_proxy_baseline": 0,
+    "fallback_failure_rate_proxy": 0,
+    "fallback_failed_count": 0,
+    "fallback_dead_count": 0,
+    "fallback_proposal_count": 0
+  },
+  "computed": {
+    "top1_exact_id_pass": false,
+    "cfp_decreased_or_flat": true,
+    "fallback_controllable": true,
+    "stability_hit_at_1_constant": true,
+    "low_confidence": false
+  },
+  "threshold": {
+    "top1_exact_id_proxy_min": 0.93,
+    "fallback_failure_rate_proxy_max": 0.1,
+    "rule": "top1_exact_id_proxy >= 0.93 && cfp_proxy <= baseline && fallback_failure_rate_proxy < 0.10 && failed_count == 0 && stability_hit_at_1_constant && low_confidence == false",
+    "force_reject_if": []
+  },
+  "validation": {
+    "required_fields_present": true,
+    "weekly_gate_fields_strict_ok": true
+  },
+  "retrieval": {
+    "provider": "graphiti",
+    "dataset_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day18/w2-step5-retry-timeout-escalation-attempt2/inputs/retrieval-dataset.v2.json",
+    "bounded_runs": 5,
+    "stability_runs": 10,
+    "bounded": [
+      {
+        "attempt": 1,
+        "hit_at_1": 0,
+        "hit_at_3": 0
+      },
+      {
+        "attempt": 2,
+        "hit_at_1": 0,
+        "hit_at_3": 0
+      },
+      {
+        "attempt": 3,
+        "hit_at_1": 0,
+        "hit_at_3": 0
+      },
+      {
+        "attempt": 4,
+        "hit_at_1": 0,
+        "hit_at_3": 0
+      },
+      {
+        "attempt": 5,
+        "hit_at_1": 0,
+        "hit_at_3": 0
+      }
+    ],
+    "stability_hit_at_1_values": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "stability_unique_hit_at_1_values": [0],
+    "selected_attempt": 5,
+    "selection_reason": "no_hit_at_1_ge_0.93_use_last_attempt"
+  },
+  "baselines": {
+    "cfp_proxy_source": "ab-eval.simulated.json:modelA.metrics.conflictFalsePositiveRate",
+    "cfp_proxy_baseline_source": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-ab-eval.absprobe.json:modelA.metrics.conflictFalsePositiveRate",
+    "top1_proxy_baseline_source": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave0-artifacts/day0/s5-retrieval-eval.json:hit_at_1",
+    "fallback_baseline_source": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave1-artifacts/day10/w1-e-gate1-report.json:weekly_gate_fields.failed_count/dead_count/proposal_count"
+  },
+  "outbox": {
+    "reconciliation_report_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day18/w2-step5-retry-timeout-escalation-attempt2/report/reconciliation-report.json",
+    "weekly_gate_fields": {
+      "proposal_count": 0,
+      "canary_commit_count": 0,
+      "manual_propose_commit_count": 0,
+      "pending_review_count": 0,
+      "failed_count": 0,
+      "dead_count": 0,
+      "admission_enabled": false,
+      "commit_canary_ratio": 0,
+      "effective_write_mode": "off"
+    }
+  },
+  "changed_files": [
+    "extensions/memory-mem0-graphiti-bridge/src/client/mem0-client.ts",
+    "extensions/memory-mem0-graphiti-bridge/src/client/graphiti-client.ts",
+    "extensions/memory-mem0-graphiti-bridge/src/__tests__/graphiti-query-body.test.ts",
+    "analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day13/w2-step3-query-construction/run-w2-gate2-eval.ts"
+  ],
+  "acceptance_check": "fail",
+  "gate2_conclusion": "No-Go",
+  "unresolved": ["G4: top1_exact_id_proxy=0 < 0.93"]
+}

@@ -1,0 +1,82 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "经营 OS",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "经营 OS"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "33dc6070-694b-47bd-9c92-5f7bb59e0289",
+        "name": "IS_FACT_BASE_OF",
+        "fact": "assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184726+00:00",
+        "expired_at": "2026-02-28T16:01:03.014438+00:00"
+      },
+      {
+        "uuid": "6aaccc4b-b2d9-42c7-ba36-59329cf23a24",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184571+00:00",
+        "expired_at": "2026-02-28T16:01:03.014420+00:00"
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "c0c17fc3-7cde-4595-9b86-23ec97dbc9ce",
+        "name": "经营 OS",
+        "summary": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式\nassistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262784+00:00"
+      },
+      {
+        "uuid": "3028f5e7-deda-4357-ac79-48db941b9a9f",
+        "name": "全链路经营数据",
+        "summary": "全链路经营数据指覆盖采购、销售、整备、财务与利润复盘等互相关联的数据结构，是让 AI Agent产生高质量价值及支持以销带采闭环的前提。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.729519+00:00"
+      },
+      {
+        "uuid": "c2c92f85-1edb-4a8c-b28d-b7f627bd8b68",
+        "name": "OS + 生态",
+        "summary": "被用户认同为当前的内部北极星，即以 OS 为核心并建设相关生态的战略方向。\nassistant(assistant) 表示内部北极星仍然是 OS + 生态",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627467+00:00"
+      },
+      {
+        "uuid": "7ba48bb2-f873-468f-81fa-92ccc65d609e",
+        "name": "车商的业务数据经营数据",
+        "summary": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务\n车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442238+00:00"
+      },
+      {
+        "uuid": "942ccbb3-001c-4a7e-a808-65c97571c621",
+        "name": "营销分发",
+        "summary": "营销分发是车商围绕库存车辆进行的分发展示活动，包括微店展示、直播发车等，是大风车中车商高频使用并愿意为之付费的核心循环之一。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724158+00:00"
+      },
+      {
+        "uuid": "b508500f-2839-4cdd-b5fe-5a119c589e0f",
+        "name": "AI 执行工作台 / 经营执行层 / 行动入口",
+        "summary": "assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262892+00:00"
+      }
+    ]
+  }
+}
