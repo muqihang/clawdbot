@@ -263,6 +263,10 @@ const memoryMem0GraphitiBridgePlugin = {
               apiKey: flags.graphiti.api_key,
               timeoutMs: flags.p3.write_timeout_ms,
               path: flags.p3.graphiti_write_path,
+              ontologyV1: {
+                enabled: flags.p3.graphiti_ontology_v1.enabled,
+                sample_percent: flags.p3.graphiti_ontology_v1.sample_percent,
+              },
             }),
           });
 

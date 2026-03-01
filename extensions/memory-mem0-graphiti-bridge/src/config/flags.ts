@@ -73,6 +73,10 @@ export type BridgeP3Flags = {
   commit_require_non_sensitive: boolean;
   commit_require_dual_write_ok: boolean;
   message_envelope: BridgeP3MessageEnvelopeFlags;
+  graphiti_ontology_v1: {
+    enabled: boolean;
+    sample_percent: number;
+  };
 };
 
 export type BridgeFlags = {
@@ -169,6 +173,10 @@ const DEFAULT_FLAGS: BridgeFlags = {
     message_envelope: {
       enabled: false,
       ignore_roles: [],
+    },
+    graphiti_ontology_v1: {
+      enabled: false,
+      sample_percent: 0,
     },
   },
   localHierarchy: {
@@ -397,6 +405,9 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const p3MessageEnvelopeRaw = asRecord(
     readRawValue(p3Raw, ["message_envelope", "messageEnvelope"]),
   );
+  const p3GraphitiOntologyV1Raw = asRecord(
+    readRawValue(p3Raw, ["graphiti_ontology_v1", "graphitiOntologyV1"]),
+  );
   const localHierarchyRaw = asRecord(raw.localHierarchy);
   const contractRaw = asRecord(raw.contract);
 
@@ -590,6 +601,16 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         ignore_roles: readMessageEnvelopeRoles(
           readRawValue(p3MessageEnvelopeRaw, ["ignore_roles", "ignoreRoles"]),
           DEFAULT_FLAGS.p3.message_envelope.ignore_roles,
+        ),
+      },
+      graphiti_ontology_v1: {
+        enabled: readBoolean(
+          readRawValue(p3GraphitiOntologyV1Raw, ["enabled"]),
+          DEFAULT_FLAGS.p3.graphiti_ontology_v1.enabled,
+        ),
+        sample_percent: readPercentWithFallback(
+          readRawValue(p3GraphitiOntologyV1Raw, ["sample_percent", "samplePercent"]),
+          DEFAULT_FLAGS.p3.graphiti_ontology_v1.sample_percent,
         ),
       },
     },

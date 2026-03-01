@@ -4,12 +4,20 @@ import {
   isValidOcUserId,
 } from "../../../../src/routing/session-key.js";
 import {
+  appendOntologyMarkerLine,
+  buildOntologyV1WriteResult,
+  type GraphitiOntologyV1WriteOptions,
+  type GraphitiOntologyV1WriteTrace,
+} from "./ontology-v1.js";
+import {
   P3_MESSAGE_ROLE_VALUES,
   type P3CandidatePayload,
   type P3MessageEnvelope,
   type P3MessageRole,
   type P3OutboxEventRecord,
 } from "./types.js";
+
+export type { GraphitiOntologyV1WriteTrace } from "./ontology-v1.js";
 
 type FetchLike = typeof fetch;
 
@@ -30,6 +38,9 @@ export type CreateHttpBridgeWriterOptions = {
   apiKey?: string;
   path: string;
   timeoutMs: number;
+  ontologyV1?: GraphitiOntologyV1WriteOptions & {
+    onTrace?: (trace: GraphitiOntologyV1WriteTrace) => void;
+  };
   fetchImpl?: FetchLike;
 };
 
@@ -329,7 +340,11 @@ const buildMem0Body = (input: P3RemoteWriteInput): Record<string, unknown> => {
   };
 };
 
-const buildGraphitiBody = (input: P3RemoteWriteInput): Record<string, unknown> => {
+const buildGraphitiBody = (params: {
+  input: P3RemoteWriteInput;
+  ontologyV1?: CreateHttpBridgeWriterOptions["ontologyV1"];
+}): Record<string, unknown> => {
+  const { input } = params;
   const { userText, assistantText } = resolveWriteTexts(input.payload);
   const envelope = resolveMessageEnvelope(input.payload);
 
@@ -366,14 +381,35 @@ const buildGraphitiBody = (input: P3RemoteWriteInput): Record<string, unknown> =
     ],
   });
 
+  let ontologyMarkerLine: string | null = null;
+  if (params.ontologyV1) {
+    const ontologyResult = buildOntologyV1WriteResult({
+      event: input.event,
+      payload: input.payload,
+      options: params.ontologyV1,
+    });
+    ontologyMarkerLine = ontologyResult.marker_line;
+    params.ontologyV1.onTrace?.(ontologyResult.trace);
+  }
+
+  const messages = filtered.messages.map((message) => ({
+    content: message.content,
+    role_type: message.role,
+    role: message.role,
+    timestamp: message.timestamp,
+  }));
+  if (ontologyMarkerLine && messages.length > 0) {
+    const assistantIndex = messages.findLastIndex((message) => message.role === "assistant");
+    const targetIndex = assistantIndex >= 0 ? assistantIndex : messages.length - 1;
+    const target = messages[targetIndex];
+    if (target) {
+      target.content = appendOntologyMarkerLine(target.content, ontologyMarkerLine);
+    }
+  }
+
   return {
     group_id: input.event.session_key,
-    messages: filtered.messages.map((message) => ({
-      content: message.content,
-      role_type: message.role,
-      role: message.role,
-      timestamp: message.timestamp,
-    })),
+    messages,
   };
 };
 
@@ -411,14 +447,18 @@ const readJsonSafe = async (response: Response): Promise<unknown> => {
   }
 };
 
-const toRequestBody = (
-  source: "mem0" | "graphiti",
-  input: P3RemoteWriteInput,
-): Record<string, unknown> => {
-  if (source === "mem0") {
-    return buildMem0Body(input);
+const toRequestBody = (params: {
+  source: "mem0" | "graphiti";
+  input: P3RemoteWriteInput;
+  options: CreateHttpBridgeWriterOptions;
+}): Record<string, unknown> => {
+  if (params.source === "mem0") {
+    return buildMem0Body(params.input);
   }
-  return buildGraphitiBody(input);
+  return buildGraphitiBody({
+    input: params.input,
+    ontologyV1: params.options.ontologyV1,
+  });
 };
 
 export function createHttpBridgeWriter(options: CreateHttpBridgeWriterOptions): P3RemoteWriteFn {
@@ -448,7 +488,11 @@ export function createHttpBridgeWriter(options: CreateHttpBridgeWriterOptions): 
     let response: Response;
 
     try {
-      const body = toRequestBody(options.source, input);
+      const body = toRequestBody({
+        source: options.source,
+        input,
+        options,
+      });
       response = await fetchImpl(endpoint, {
         method: "POST",
         headers,

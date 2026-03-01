@@ -314,6 +314,10 @@ export function registerMemoryBridgeP3Cli(params: {
           apiKey: params.flags.graphiti.api_key,
           timeoutMs: params.flags.p3.write_timeout_ms,
           path: params.flags.p3.graphiti_write_path,
+          ontologyV1: {
+            enabled: params.flags.p3.graphiti_ontology_v1.enabled,
+            sample_percent: params.flags.p3.graphiti_ontology_v1.sample_percent,
+          },
         }),
       });
 
