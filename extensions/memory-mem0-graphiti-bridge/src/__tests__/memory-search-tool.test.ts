@@ -58,6 +58,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         enabled: false,
         sample_percent: 0,
       },
+      graphiti_focal_node: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,
@@ -729,6 +733,190 @@ describe("memory search bridge tool", () => {
     expect(recipeRecord.selected_recipe).toBe("edge");
     expect(recipeRecord.active).toBe(true);
     expect(recipeRecord.degrade_reason).toBeNull();
+  });
+
+  it("uses graphiti focal-node discovery for temporal_relation queries when enabled", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi
+      .fn()
+      .mockResolvedValueOnce([
+        {
+          path: "bridge/graphiti/focal-node-1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.93,
+          snippet: "candidate focal node",
+          source: "graphiti" as const,
+          remoteId: "focal-node-1",
+          structure: "nodes",
+        },
+      ])
+      .mockResolvedValueOnce([
+        {
+          path: "bridge/graphiti/episode-1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet: "episode result using focal node",
+          source: "graphiti" as const,
+          remoteId: "episode-1",
+          structure: "episodes",
+        },
+      ]);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          graphiti_recipe_routing: {
+            enabled: true,
+            sample_percent: 100,
+          },
+          graphiti_focal_node: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "when did we migrate providers" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const focalNodeRecord = detailsRecord.focal_node as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(2);
+    expect(graphitiSearch.mock.calls[0]?.[1]).toEqual(
+      expect.objectContaining({
+        strategy: "node",
+      }),
+    );
+    expect(graphitiSearch.mock.calls[1]?.[1]).toEqual(
+      expect.objectContaining({
+        strategy: "edge",
+        focal_node_uuid: "focal-node-1",
+      }),
+    );
+    expect(focalNodeRecord.enabled).toBe(true);
+    expect(focalNodeRecord.active).toBe(true);
+    expect(focalNodeRecord.focal_node_uuid).toBe("focal-node-1");
+    expect(focalNodeRecord.discovery_strategy).toBe("node");
+    expect(focalNodeRecord.degrade_reason).toBeNull();
+  });
+
+  it("degrades focal-node on exact_id bucket to protect W2 gate-2 behavior", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+        read: {
+          graphiti_focal_node: {
+            enabled: true,
+            sample_percent: 100,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "commit deadbeef" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const focalNodeRecord = detailsRecord.focal_node as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch.mock.calls[0]?.[1]).toEqual(undefined);
+    expect(focalNodeRecord.enabled).toBe(true);
+    expect(focalNodeRecord.active).toBe(false);
+    expect(focalNodeRecord.focal_node_uuid).toBeNull();
+    expect(focalNodeRecord.degrade_reason).toBe("precision_key_bucket");
+  });
+
+  it("keeps focal-node disabled by default", async () => {
+    const localTool = createLocalTool();
+    const graphitiSearch = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "graphiti",
+          timeline_route: "graphiti",
+          semantic_route: "graphiti",
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "when did we migrate providers" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const focalNodeRecord = detailsRecord.focal_node as Record<string, unknown>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch.mock.calls[0]?.[1]).toEqual(undefined);
+    expect(focalNodeRecord.enabled).toBe(false);
+    expect(focalNodeRecord.active).toBe(false);
+    expect(focalNodeRecord.focal_node_uuid).toBeNull();
+    expect(focalNodeRecord.degrade_reason).toBe("flag_disabled");
   });
 
   it("keeps W2 exact-id bucket protected when recipe routing is enabled", async () => {

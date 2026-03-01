@@ -20,6 +20,8 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.read.mem0_filters_criteria_shadow.sample_percent).toBe(0);
     expect(flags.read.graphiti_recipe_routing.enabled).toBe(false);
     expect(flags.read.graphiti_recipe_routing.sample_percent).toBe(0);
+    expect(flags.read.graphiti_focal_node.enabled).toBe(false);
+    expect(flags.read.graphiti_focal_node.sample_percent).toBe(0);
     expect(flags.p3.graphiti_write_path).toBe("/messages");
     expect(flags.p3.admission_enabled).toBe(false);
     expect(flags.p3.commit_canary_ratio).toBe(0);
@@ -136,5 +138,19 @@ describe("mem0-graphiti bridge flags", () => {
 
     expect(flags.read.graphiti_recipe_routing.enabled).toBe(true);
     expect(flags.read.graphiti_recipe_routing.sample_percent).toBe(100);
+  });
+
+  it("parses graphiti focal-node flags", () => {
+    const flags = resolveBridgeFlags({
+      read: {
+        graphiti_focal_node: {
+          enabled: true,
+          sample_percent: 124,
+        },
+      },
+    });
+
+    expect(flags.read.graphiti_focal_node.enabled).toBe(true);
+    expect(flags.read.graphiti_focal_node.sample_percent).toBe(100);
   });
 });

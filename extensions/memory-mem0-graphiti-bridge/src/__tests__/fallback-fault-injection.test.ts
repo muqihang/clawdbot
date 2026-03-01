@@ -58,6 +58,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
         enabled: false,
         sample_percent: 0,
       },
+      graphiti_focal_node: {
+        enabled: false,
+        sample_percent: 0,
+      },
     },
     localHierarchy: {
       enabled: true,

@@ -38,6 +38,10 @@ export type BridgeReadFlags = {
     enabled: boolean;
     sample_percent: number;
   };
+  graphiti_focal_node: {
+    enabled: boolean;
+    sample_percent: number;
+  };
 };
 
 type BridgeMessageEnvelopeRole = "user" | "assistant" | "system" | "tool";
@@ -129,6 +133,10 @@ const DEFAULT_FLAGS: BridgeFlags = {
       sample_percent: 0,
     },
     graphiti_recipe_routing: {
+      enabled: false,
+      sample_percent: 0,
+    },
+    graphiti_focal_node: {
       enabled: false,
       sample_percent: 0,
     },
@@ -371,6 +379,9 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
   const graphitiRecipeRoutingRaw = asRecord(
     readRawValue(readRaw, ["graphiti_recipe_routing", "graphitiRecipeRouting"]),
   );
+  const graphitiFocalNodeRaw = asRecord(
+    readRawValue(readRaw, ["graphiti_focal_node", "graphitiFocalNode"]),
+  );
   const p3Raw = asRecord(raw.p3);
   const p3MessageEnvelopeRaw = asRecord(
     readRawValue(p3Raw, ["message_envelope", "messageEnvelope"]),
@@ -471,6 +482,16 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         sample_percent: readPercentWithFallback(
           readRawValue(graphitiRecipeRoutingRaw, ["sample_percent", "samplePercent"]),
           DEFAULT_FLAGS.read.graphiti_recipe_routing.sample_percent,
+        ),
+      },
+      graphiti_focal_node: {
+        enabled: readBoolean(
+          graphitiFocalNodeRaw.enabled,
+          DEFAULT_FLAGS.read.graphiti_focal_node.enabled,
+        ),
+        sample_percent: readPercentWithFallback(
+          readRawValue(graphitiFocalNodeRaw, ["sample_percent", "samplePercent"]),
+          DEFAULT_FLAGS.read.graphiti_focal_node.sample_percent,
         ),
       },
     },
