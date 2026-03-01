@@ -6,18 +6,18 @@
 - baseline_retrieval_artifacts: `analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day10/retrieval/`
 - constraints: `Gate-2 门槛冻结（不允许降标准）；一次只改一个变量；每次改动后必须 bounded 5 + stability 10 并落盘证据`
 
-## TL;DR（当前阻断）
+## TL;DR（当前状态）
 
-- Gate-2 结论：**No-Go**
-- 阻断项（冻结门槛触发）：
-  - `top1_exact_id_proxy(hit@1)=0.6471 < 0.93`（sample_size=34，low_confidence=false）
-- 初步归因（按证据优先级）：
-  - **CANDIDATE_RECALL / QUERY_CONSTRUCTION**：在 bounded run 中，存在“expected_id 不在 raw payload（Graphiti /search 返回集合）”的样本（hit@3 也失败），属于召回域/容量/索引可见性问题的优先怀疑对象。
-  - **RANKING_ORDER（已缓解，但仍可能残留）**：Step2 已把 tie-break 改为保真 remote rank（并 facts 优先），但仍存在“expected_id 在 raw payload 内、却不是 top1”的样本（top3 可命中），说明 remote rank/无 score 的现实约束下仍可能需要 Step4（轻量 lexical scoring）作为最后手段。
+- Gate-2 结论：**Go**
+- 最新 Gate-2 report：`analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day23/w2-gate2-final-verify/w2-gate2-report.json`
+- 最新复核（review）：`analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day23/w2-gate2-final-verify/w2-gate2-review.md`
+- 指标（冻结门槛下）：`hit@1=1` / `hit@3=1` / `sample_size=34` / `stability_unique_hit@1_values=[1]`
+- Superseded（保留历史文件，不覆盖/不删除）：
+  - day10 baseline No-Go：`analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day10/w2-gate2-report.json`
+  - day16 stability 失败（hit@1 抖动）：`analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day16/w2-step4-stability-retry/w2-gate2-report.json`
+  - day22 首次 Go（已被 day23 fresh verify supersede）：`analysis/2026-02-24-mem0-graphiti-value-maximization/wave2-artifacts/day22/w2-step5-retry-timeout-escalation-inline-eval/w2-gate2-report.json`
 
-> Update@2026-02-28：iter=3（Step2 RANKING_ORDER）后样本量与稳定性已达标，但 top1 仍远低于门槛；详见 day12 报告与检索证据。
-
-> 本文件只做“根因矩阵 + 证据路径”，修复执行计划见 `fix-plan.md`。
+> 本文件主体用于记录 **No-Go 阶段的 5 层根因矩阵与证据路径**（历史诊断）；当前状态以 day23 Gate-2 report 为准。
 
 ## 证据索引（本轮新增）
 
