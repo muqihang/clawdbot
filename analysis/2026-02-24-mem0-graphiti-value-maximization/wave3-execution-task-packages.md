@@ -94,6 +94,7 @@ Wave3（第 21-35 天）目标：**Graphiti 结构价值释放**，让 Graphiti 
 - 数据集文件（冻结命名）：
   - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day2/inputs/retrieval-temporal-dataset.v1.json`
   - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day2/dataset-notes.md`
+  - 每次评测 run 必须在对应 step 的证据目录 `inputs/` 下 **复制一份 dataset 快照**（避免后续 dataset 演进导致历史 run 无法复验）。
 - 最小字段（冻结 schema；与 Wave2 dataset v2 保持同构，便于复用 runner）：
   - `id`：稳定 sample id（建议含短 hash，避免重名）
   - `query`：自然语言查询（尽量短，贴近真实使用）
