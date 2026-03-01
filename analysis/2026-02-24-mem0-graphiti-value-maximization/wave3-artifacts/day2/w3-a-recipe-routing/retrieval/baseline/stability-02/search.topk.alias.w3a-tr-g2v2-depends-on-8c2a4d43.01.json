@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 2,
+  "query": "System of Record 先于什么",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-manages-3c898bc3",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-manages-3c898bc3",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "3c898bc3-7584-4f73-a8da-13188dc694d4",
+      "path": "bridge/graphiti/3c898bc3-7584-4f73-a8da-13188dc694d4",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-manages-3c898bc3",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-manages-3c898bc3",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

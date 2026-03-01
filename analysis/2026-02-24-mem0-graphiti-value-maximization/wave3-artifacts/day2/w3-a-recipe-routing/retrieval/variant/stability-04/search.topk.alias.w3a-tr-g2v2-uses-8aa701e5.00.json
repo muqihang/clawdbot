@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 4,
+  "query": "System of Engagement 导致什么",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-uses-8aa701e5",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-uses-8aa701e5",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "8aa701e5-4bef-4213-9271-66580475dae4",
+      "path": "bridge/graphiti/8aa701e5-4bef-4213-9271-66580475dae4",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-uses-8aa701e5",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-uses-8aa701e5",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

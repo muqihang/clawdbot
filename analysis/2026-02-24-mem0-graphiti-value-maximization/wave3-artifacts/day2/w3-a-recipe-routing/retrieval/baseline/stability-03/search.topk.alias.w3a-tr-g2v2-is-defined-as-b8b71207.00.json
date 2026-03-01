@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 3,
+  "query": "assistant(assistant) 第5天",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-is-defined-as-b8b71207",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-is-defined-as-b8b71207",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "b8b71207-021d-41a3-ade3-4fdf8c3ad826",
+      "path": "bridge/graphiti/b8b71207-021d-41a3-ade3-4fdf8c3ad826",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-is-defined-as-b8b71207",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-is-defined-as-b8b71207",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

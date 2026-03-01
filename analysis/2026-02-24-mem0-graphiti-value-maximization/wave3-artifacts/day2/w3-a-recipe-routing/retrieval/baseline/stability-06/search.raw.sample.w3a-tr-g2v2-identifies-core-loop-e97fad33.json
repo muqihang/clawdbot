@@ -1,0 +1,64 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 6,
+  "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+  "requestBody": {
+    "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？"
+  },
+  "strategy": null,
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-miss-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+        "score": 0.96,
+        "fact": "baseline miss for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+      },
+      {
+        "id": "e97fad33-e6ca-4314-a685-a557125b661e",
+        "score": 0.9,
+        "fact": "baseline expected rank2 for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+      },
+      {
+        "id": "w3a-facts-alt-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+        "score": 0.88,
+        "fact": "baseline alternate for w3a-tr-g2v2-identifies-core-loop-e97fad33"
+      }
+    ],
+    "episodes": [],
+    "nodes": []
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3a-miss-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 3,
+      "episodes": 0,
+      "nodes": 0
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 3,
+  "query": "System of Record 第1天",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "494e4b38-115b-4ec6-85da-15dbc4c99c86",
+      "path": "bridge/graphiti/494e4b38-115b-4ec6-85da-15dbc4c99c86",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

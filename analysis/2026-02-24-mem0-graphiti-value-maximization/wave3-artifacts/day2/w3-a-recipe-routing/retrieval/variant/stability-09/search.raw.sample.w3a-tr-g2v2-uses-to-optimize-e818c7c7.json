@@ -1,0 +1,67 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "在依赖顺序里，assistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI 先于哪个事件，后于哪个事件？",
+  "requestBody": {
+    "query": "在依赖顺序里，assistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI 先于哪个事件，后于哪个事件？",
+    "strategy": "edge"
+  },
+  "strategy": "edge",
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-fact-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+        "score": 0.86,
+        "fact": "facts fallback for w3a-tr-g2v2-uses-to-optimize-e818c7c7"
+      }
+    ],
+    "episodes": [
+      {
+        "id": "e818c7c7-949e-485b-8b32-c978e520c9c3",
+        "score": 0.97,
+        "summary": "episode expected for w3a-tr-g2v2-uses-to-optimize-e818c7c7"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "w3a-node-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+        "score": 0.92,
+        "name": "node context for w3a-tr-g2v2-uses-to-optimize-e818c7c7"
+      }
+    ]
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "e818c7c7-949e-485b-8b32-c978e520c9c3",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  }
+}

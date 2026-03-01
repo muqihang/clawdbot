@@ -1,0 +1,64 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 3,
+  "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+  "requestBody": {
+    "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？"
+  },
+  "strategy": null,
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-miss-w3a-tr-g2v2-is-analogous-to-494e4b38",
+        "score": 0.96,
+        "fact": "baseline miss for w3a-tr-g2v2-is-analogous-to-494e4b38"
+      },
+      {
+        "id": "494e4b38-115b-4ec6-85da-15dbc4c99c86",
+        "score": 0.9,
+        "fact": "baseline expected rank2 for w3a-tr-g2v2-is-analogous-to-494e4b38"
+      },
+      {
+        "id": "w3a-facts-alt-w3a-tr-g2v2-is-analogous-to-494e4b38",
+        "score": 0.88,
+        "fact": "baseline alternate for w3a-tr-g2v2-is-analogous-to-494e4b38"
+      }
+    ],
+    "episodes": [],
+    "nodes": []
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3a-miss-w3a-tr-g2v2-is-analogous-to-494e4b38",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 3,
+      "episodes": 0,
+      "nodes": 0
+    }
+  }
+}

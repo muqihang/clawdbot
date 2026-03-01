@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 6,
+  "query": "请说明 System of Engagement 的 precedes/follows 关系",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "5728d3d9-8eb7-4047-9adb-36166753305e",
+      "path": "bridge/graphiti/5728d3d9-8eb7-4047-9adb-36166753305e",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

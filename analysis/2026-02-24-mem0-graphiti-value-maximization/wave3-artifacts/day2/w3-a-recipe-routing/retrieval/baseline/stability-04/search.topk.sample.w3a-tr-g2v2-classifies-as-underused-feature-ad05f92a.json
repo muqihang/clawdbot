@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 4,
+  "query": "在 timeline 第3天 里程碑中，assistant 认为CRM 深度录入在大风车中往往成为数字幽灵 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-classifies-as-underused-feature-ad05f92a",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-classifies-as-underused-feature-ad05f92a",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "ad05f92a-c0b7-46c2-a256-a21003be509e",
+      "path": "bridge/graphiti/ad05f92a-c0b7-46c2-a256-a21003be509e",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-classifies-as-underused-feature-ad05f92a",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-classifies-as-underused-feature-ad05f92a",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

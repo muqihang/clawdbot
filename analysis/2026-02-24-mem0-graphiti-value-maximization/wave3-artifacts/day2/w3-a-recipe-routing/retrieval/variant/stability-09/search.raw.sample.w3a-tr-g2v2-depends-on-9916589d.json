@@ -1,0 +1,67 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "在 timeline 第7天 里程碑中，审计 依赖 System of Record 提供一致的数据 属于哪个阶段？",
+  "requestBody": {
+    "query": "在 timeline 第7天 里程碑中，审计 依赖 System of Record 提供一致的数据 属于哪个阶段？",
+    "strategy": "edge"
+  },
+  "strategy": "edge",
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-fact-w3a-tr-g2v2-depends-on-9916589d",
+        "score": 0.86,
+        "fact": "facts fallback for w3a-tr-g2v2-depends-on-9916589d"
+      }
+    ],
+    "episodes": [
+      {
+        "id": "9916589d-b7df-4b7a-b6e2-4e2c1ec68e90",
+        "score": 0.97,
+        "summary": "episode expected for w3a-tr-g2v2-depends-on-9916589d"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "w3a-node-w3a-tr-g2v2-depends-on-9916589d",
+        "score": 0.92,
+        "name": "node context for w3a-tr-g2v2-depends-on-9916589d"
+      }
+    ]
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "9916589d-b7df-4b7a-b6e2-4e2c1ec68e90",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  }
+}

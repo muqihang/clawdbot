@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 9,
+  "query": "在时间线中，assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据 之前发生了什么？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "84c81332-2ca5-456b-b623-2be99d129549",
+      "path": "bridge/graphiti/84c81332-2ca5-456b-b623-2be99d129549",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

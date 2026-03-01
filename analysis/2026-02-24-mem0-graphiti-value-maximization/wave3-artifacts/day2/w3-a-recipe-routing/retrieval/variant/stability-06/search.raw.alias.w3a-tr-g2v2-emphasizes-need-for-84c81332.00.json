@@ -1,0 +1,67 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 6,
+  "query": "在时间线中，SoE 之后发生了什么？",
+  "requestBody": {
+    "query": "在时间线中，SoE 之后发生了什么？",
+    "strategy": "edge"
+  },
+  "strategy": "edge",
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-fact-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+        "score": 0.86,
+        "fact": "facts fallback for w3a-tr-g2v2-emphasizes-need-for-84c81332"
+      }
+    ],
+    "episodes": [
+      {
+        "id": "84c81332-2ca5-456b-b623-2be99d129549",
+        "score": 0.97,
+        "summary": "episode expected for w3a-tr-g2v2-emphasizes-need-for-84c81332"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "w3a-node-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+        "score": 0.92,
+        "name": "node context for w3a-tr-g2v2-emphasizes-need-for-84c81332"
+      }
+    ]
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "84c81332-2ca5-456b-b623-2be99d129549",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  }
+}

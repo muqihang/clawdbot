@@ -1,0 +1,10 @@
+
+ RUN  v4.0.18 /Users/muqihang/.codex/worktrees/209b/clawdbot
+
+ ✓ extensions/memory-mem0-graphiti-bridge/src/__tests__/memory-search-tool.test.ts (11 tests | 10 skipped) 6ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 10 skipped (11)
+   Start at  12:45:33
+   Duration  374ms (transform 218ms, setup 216ms, import 59ms, tests 6ms, environment 0ms)
+

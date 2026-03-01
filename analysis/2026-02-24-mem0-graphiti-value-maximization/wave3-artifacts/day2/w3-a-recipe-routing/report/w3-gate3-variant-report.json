@@ -1,0 +1,119 @@
+{
+  "mode": "variant",
+  "generated_at": "2026-03-01T04:42:49.583Z",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day2/w3-a-recipe-routing/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "selected_attempt": 1,
+  "bounded": [
+    {
+      "attempt": 1,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 2,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 3,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 4,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 5,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    }
+  ],
+  "stability": [
+    {
+      "attempt": 1,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 2,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 3,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 4,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 5,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 6,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 7,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 8,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 9,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    },
+    {
+      "attempt": 10,
+      "hit_at_1": 0.9412,
+      "hit_at_3": 1,
+      "episodes_nonzero_coverage": 0.9412,
+      "nodes_nonzero_coverage": 0.9412
+    }
+  ]
+}

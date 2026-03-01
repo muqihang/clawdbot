@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 1,
+  "query": "请说明 assistant(assistant) 的 precedes/follows 关系",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "e818c7c7-949e-485b-8b32-c978e520c9c3",
+      "path": "bridge/graphiti/e818c7c7-949e-485b-8b32-c978e520c9c3",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

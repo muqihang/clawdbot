@@ -1,0 +1,65 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 10,
+  "query": "sub2api 导致什么",
+  "requestBody": {
+    "query": "sub2api 导致什么",
+    "strategy": "hybrid"
+  },
+  "strategy": "hybrid",
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-miss-w3a-tr-g2v2-part-of-loop-4a357235",
+        "score": 0.96,
+        "fact": "baseline miss for w3a-tr-g2v2-part-of-loop-4a357235"
+      },
+      {
+        "id": "4a357235-3250-4379-bf51-ea4b363f1d86",
+        "score": 0.9,
+        "fact": "baseline expected rank2 for w3a-tr-g2v2-part-of-loop-4a357235"
+      },
+      {
+        "id": "w3a-facts-alt-w3a-tr-g2v2-part-of-loop-4a357235",
+        "score": 0.88,
+        "fact": "baseline alternate for w3a-tr-g2v2-part-of-loop-4a357235"
+      }
+    ],
+    "episodes": [],
+    "nodes": []
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "other",
+    "query_bucket": "other",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "other",
+    "query_bucket": "other",
+    "selected_recipe": "hybrid",
+    "requested_strategy": "hybrid",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3a-miss-w3a-tr-g2v2-part-of-loop-4a357235",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 3,
+      "episodes": 0,
+      "nodes": 0
+    }
+  }
+}

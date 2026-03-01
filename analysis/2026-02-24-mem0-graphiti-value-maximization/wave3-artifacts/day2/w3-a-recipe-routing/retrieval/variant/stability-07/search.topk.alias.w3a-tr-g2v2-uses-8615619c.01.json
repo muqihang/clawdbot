@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "System of Engagement milestone timeline",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "8615619c-ee65-4ee2-906e-5755d5c192ae",
+      "path": "bridge/graphiti/8615619c-ee65-4ee2-906e-5755d5c192ae",
+      "score": 0.97,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3a-fact-w3a-tr-g2v2-uses-8615619c",
+      "path": "bridge/graphiti/w3a-fact-w3a-tr-g2v2-uses-8615619c",
+      "score": 0.86,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-node-w3a-tr-g2v2-uses-8615619c",
+      "path": "bridge/graphiti/w3a-node-w3a-tr-g2v2-uses-8615619c",
+      "score": 0.92,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

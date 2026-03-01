@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 1,
+  "query": "在 timeline 第6天 里程碑中，在 二手车 场景中，System of Record 管理成交 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-manages-c5d7bcbb",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-manages-c5d7bcbb",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "c5d7bcbb-a57a-4888-b403-0faef7000668",
+      "path": "bridge/graphiti/c5d7bcbb-a57a-4888-b403-0faef7000668",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-manages-c5d7bcbb",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-manages-c5d7bcbb",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

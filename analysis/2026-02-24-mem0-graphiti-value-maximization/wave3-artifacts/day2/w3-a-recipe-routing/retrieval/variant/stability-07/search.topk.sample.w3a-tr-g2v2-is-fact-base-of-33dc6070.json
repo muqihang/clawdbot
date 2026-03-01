@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "因为 assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座，之后触发了什么变化？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "33dc6070-694b-47bd-9c92-5f7bb59e0289",
+      "path": "bridge/graphiti/33dc6070-694b-47bd-9c92-5f7bb59e0289",
+      "score": 0.97,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3a-fact-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "path": "bridge/graphiti/w3a-fact-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "score": 0.86,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-node-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "path": "bridge/graphiti/w3a-node-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "score": 0.92,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

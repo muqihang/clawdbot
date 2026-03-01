@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 8,
+  "query": "在时间线中，店长 在 二手车 场景中被描述为 System of Engagement 的使用者 之前发生了什么？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-uses-e2b4e231",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-uses-e2b4e231",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "e2b4e231-02e5-4380-a8a6-d7aea7faa760",
+      "path": "bridge/graphiti/e2b4e231-02e5-4380-a8a6-d7aea7faa760",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-uses-e2b4e231",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-uses-e2b4e231",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 1,
+  "query": "请说明 经营 OS 的 precedes/follows 关系",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-involves-3dccd76d",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-involves-3dccd76d",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "3dccd76d-447a-4201-bc8d-050f78cc4f2e",
+      "path": "bridge/graphiti/3dccd76d-447a-4201-bc8d-050f78cc4f2e",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-involves-3dccd76d",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-involves-3dccd76d",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

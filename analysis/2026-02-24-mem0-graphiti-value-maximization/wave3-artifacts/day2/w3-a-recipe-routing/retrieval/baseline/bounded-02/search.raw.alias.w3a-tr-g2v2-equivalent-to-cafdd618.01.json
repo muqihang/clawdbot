@@ -1,0 +1,64 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 2,
+  "query": "SoR 先于什么",
+  "requestBody": {
+    "query": "SoR 先于什么"
+  },
+  "strategy": null,
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-miss-w3a-tr-g2v2-equivalent-to-cafdd618",
+        "score": 0.96,
+        "fact": "baseline miss for w3a-tr-g2v2-equivalent-to-cafdd618"
+      },
+      {
+        "id": "cafdd618-418f-42c2-8651-1f883f7c76e5",
+        "score": 0.9,
+        "fact": "baseline expected rank2 for w3a-tr-g2v2-equivalent-to-cafdd618"
+      },
+      {
+        "id": "w3a-facts-alt-w3a-tr-g2v2-equivalent-to-cafdd618",
+        "score": 0.88,
+        "fact": "baseline alternate for w3a-tr-g2v2-equivalent-to-cafdd618"
+      }
+    ],
+    "episodes": [],
+    "nodes": []
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3a-miss-w3a-tr-g2v2-equivalent-to-cafdd618",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 3,
+      "episodes": 0,
+      "nodes": 0
+    }
+  }
+}

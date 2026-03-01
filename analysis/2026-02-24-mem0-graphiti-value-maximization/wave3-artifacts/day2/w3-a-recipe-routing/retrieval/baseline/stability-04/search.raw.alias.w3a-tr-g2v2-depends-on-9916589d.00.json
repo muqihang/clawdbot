@@ -1,0 +1,64 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 4,
+  "query": "System of Record 第7天",
+  "requestBody": {
+    "query": "System of Record 第7天"
+  },
+  "strategy": null,
+  "payload": {
+    "facts": [
+      {
+        "id": "w3a-miss-w3a-tr-g2v2-depends-on-9916589d",
+        "score": 0.96,
+        "fact": "baseline miss for w3a-tr-g2v2-depends-on-9916589d"
+      },
+      {
+        "id": "9916589d-b7df-4b7a-b6e2-4e2c1ec68e90",
+        "score": 0.9,
+        "fact": "baseline expected rank2 for w3a-tr-g2v2-depends-on-9916589d"
+      },
+      {
+        "id": "w3a-facts-alt-w3a-tr-g2v2-depends-on-9916589d",
+        "score": 0.88,
+        "fact": "baseline alternate for w3a-tr-g2v2-depends-on-9916589d"
+      }
+    ],
+    "episodes": [],
+    "nodes": []
+  },
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "w3a-miss-w3a-tr-g2v2-depends-on-9916589d",
+    "top1_structure": "facts",
+    "structures": {
+      "facts": 3,
+      "episodes": 0,
+      "nodes": 0
+    }
+  }
+}

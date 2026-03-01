@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-03-01T04:42:48.491Z",
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day2/w3-a-recipe-routing/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "mode": "W3-A",
+  "variable": "recipe_routing_and_trace_shadow_control"
+}

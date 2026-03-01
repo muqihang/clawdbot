@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 4,
+  "query": "在时间线中，assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI 之前发生了什么？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-aims-to-improve-5dc3de9f",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-aims-to-improve-5dc3de9f",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "5dc3de9f-7f20-4338-be0c-27bcefcb8e29",
+      "path": "bridge/graphiti/5dc3de9f-7f20-4338-be0c-27bcefcb8e29",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-aims-to-improve-5dc3de9f",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-aims-to-improve-5dc3de9f",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

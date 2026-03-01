@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 6,
+  "query": "在 timeline 第7天 里程碑中，审计 依赖 System of Record 提供一致的数据 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "9916589d-b7df-4b7a-b6e2-4e2c1ec68e90",
+      "path": "bridge/graphiti/9916589d-b7df-4b7a-b6e2-4e2c1ec68e90",
+      "score": 0.97,
+      "structure": "episodes",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3a-fact-w3a-tr-g2v2-depends-on-9916589d",
+      "path": "bridge/graphiti/w3a-fact-w3a-tr-g2v2-depends-on-9916589d",
+      "score": 0.86,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-node-w3a-tr-g2v2-depends-on-9916589d",
+      "path": "bridge/graphiti/w3a-node-w3a-tr-g2v2-depends-on-9916589d",
+      "score": 0.92,
+      "structure": "nodes",
+      "source": "memory"
+    }
+  ]
+}

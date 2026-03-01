@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 6,
+  "query": "System of Record 触发后事件",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-depends-on-a0b74571",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-depends-on-a0b74571",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "a0b74571-ec1a-4aff-8ab6-e4ec7a074c8d",
+      "path": "bridge/graphiti/a0b74571-ec1a-4aff-8ab6-e4ec7a074c8d",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-depends-on-a0b74571",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-depends-on-a0b74571",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}

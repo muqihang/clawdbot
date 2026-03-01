@@ -1,0 +1,33 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 3,
+  "query": "在依赖顺序里，assistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3a-miss-w3a-tr-g2v2-benefits-0cf1802e",
+      "path": "bridge/graphiti/w3a-miss-w3a-tr-g2v2-benefits-0cf1802e",
+      "score": 0.96,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 2,
+      "remoteId": "0cf1802e-7a44-4a46-829f-38ff9c96ed31",
+      "path": "bridge/graphiti/0cf1802e-7a44-4a46-829f-38ff9c96ed31",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "memory"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3a-facts-alt-w3a-tr-g2v2-benefits-0cf1802e",
+      "path": "bridge/graphiti/w3a-facts-alt-w3a-tr-g2v2-benefits-0cf1802e",
+      "score": 0.88,
+      "structure": "facts",
+      "source": "memory"
+    }
+  ]
+}
