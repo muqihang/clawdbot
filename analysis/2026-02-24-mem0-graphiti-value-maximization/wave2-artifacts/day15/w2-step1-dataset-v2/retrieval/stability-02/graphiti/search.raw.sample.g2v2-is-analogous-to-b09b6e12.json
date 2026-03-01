@@ -1,0 +1,175 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "在 二手车 场景中，System of Record 被比作 CRM",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "在 二手车 场景中，System of Record 被比作 CRM"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "b09b6e12-3641-4b59-a4d3-c10531e7a515",
+        "name": "IS_ANALOGOUS_TO",
+        "fact": "在 二手车 场景中，System of Record 被比作 CRM",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184301+00:00",
+        "expired_at": "2026-02-28T16:01:00.661505+00:00"
+      },
+      {
+        "uuid": "494e4b38-115b-4ec6-85da-15dbc4c99c86",
+        "name": "IS_ANALOGOUS_TO",
+        "fact": "在 二手车 场景中，System of Record 被比作 ERP",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184262+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "3c898bc3-7584-4f73-a8da-13188dc694d4",
+        "name": "MANAGES",
+        "fact": "在 二手车 场景中，System of Record 管理库存",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184333+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "c5d7bcbb-a57a-4888-b403-0faef7000668",
+        "name": "MANAGES",
+        "fact": "在 二手车 场景中，System of Record 管理成交",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184363+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "0dbffdb2-f1c6-4496-9fac-c3ed1928a18f",
+        "name": "MANAGES",
+        "fact": "在 二手车 场景中，System of Record 管理费用",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184392+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "54221c9b-526e-477d-a89c-041c6edcab8d",
+        "name": "IS_ANALOGOUS_TO",
+        "fact": "在 二手车 场景中，System of Record 被比作大风车那样的台账与业务事实系统",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184231+00:00",
+        "expired_at": "2026-02-28T15:58:46.552654+00:00"
+      },
+      {
+        "uuid": "3474f1f7-d94c-4477-8007-6cf9e80880ae",
+        "name": "MANAGES",
+        "fact": "在 二手车 场景中，System of Record 管理交付节点",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184451+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "13242e32-902a-4a73-8b43-b18b3818bd32",
+        "name": "MANAGES",
+        "fact": "在 二手车 场景中，System of Record 管理合同材料",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184421+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "fd3cdbd2-e960-422c-bfda-6bf136888c84",
+        "name": "IS_APPLIED_IN",
+        "fact": "在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184099+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "2ab10cab-081d-4cce-bf83-05d709d4d84b",
+        "name": "IS_APPLIED_IN",
+        "fact": "在 二手车 场景中，System of Engagement 被描述为销售在手机上完成跟进等操作的工作台",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184038+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "bcd20d9a-d389-4f8b-8c11-48d6ce143e32",
+        "name": "System of Record",
+        "summary": "SoR 被 assistant(assistant) 定义为 System of Record\nSystem of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统\nSystem of Record 是结构化主数据和关键记录的权威系统\n报表 依赖 System of Record 提供一致的数据\n结算 依赖 System of Record 提供一致的数据\n审计 依赖 System of Record 提供一致的数据\n法务 依赖 System of Record 提供一致的数据\n跨部门协同 依赖 System of Record 提供一致的数据\n在 二手车 场景中，System of Record 被比作大风车那样的台账与业务事实系统\n在 二手车 场景中，System of Record 被比作 ERP\n在 二手车 场景中，System of Record 被比作 CRM\n在 二手车 场景中，System of Record 管理库存\n在 二手车 场景中，System of Record 管理成交\n在 二手车 场景中，System of Record 管理费用\n在 二手车 场景中，System of Record 管理合同材料\n在 二手车 场景中，System of Record 管理交付节点\n在 二手车 场景中，System of Record 被描述为台账与业务事实的权威系统\nassistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record\nassistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座\nassistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262718+00:00"
+      },
+      {
+        "uuid": "7490ac24-2a60-4945-ae4f-4624da75b1eb",
+        "name": "二手车",
+        "summary": "在 二手车 场景中，System of Engagement 被描述为销售在手机上完成跟进等操作的工作台\n在 二手车 场景中，System of Engagement 被描述为评估师在手机上完成跟进等操作的工作台\n在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262726+00:00"
+      },
+      {
+        "uuid": "31e90988-b24c-46a4-aa05-7615765db394",
+        "name": "二手车商",
+        "summary": "文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况\n二手车商 习惯把 大风车 作为 高级记事本（大风车定位） 使用\nassistant 认为车商把信任外包给查博士报告\nassistant 指出以采带销是车商业务中的一种闭环模式\nassistant 指出以销带采是车商业务中的另一种闭环模式",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442202+00:00"
+      },
+      {
+        "uuid": "9cf565ce-3932-415c-84a3-aa24087d3f77",
+        "name": "新能源二手车",
+        "summary": "assistant 认为新能源二手车带来了动态定价的新痛点\nassistant 认为新能源二手车带来了电池健康的新痛点\nassistant 认为新能源二手车带来了权益解释的新痛点",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.729274+00:00"
+      },
+      {
+        "uuid": "0d0bf968-92c6-43d8-b994-3711ef97ffd4",
+        "name": "System of Engagement",
+        "summary": "SoE 被 assistant(assistant) 定义为 System of Engagement\nSystem of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统\nSystem of Engagement 的核心不在于主数据而在于承载动作与协作\n在 二手车 场景中，System of Engagement 被描述为销售在手机上完成跟进等操作的工作台\n在 二手车 场景中，System of Engagement 被描述为评估师在手机上完成跟进等操作的工作台\n在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台\n销售 在 二手车 场景中被描述为 System of Engagement 的使用者\n评估师 在 二手车 场景中被描述为 System of Engagement 的使用者\n店长 在 二手车 场景中被描述为 System of Engagement 的使用者\nassistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record\nassistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI\nassistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI\nassistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262694+00:00"
+      },
+      {
+        "uuid": "ae9ce888-9527-4a72-b4e3-1a392974a46c",
+        "name": "二手车SaaS战略机会",
+        "summary": "文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442296+00:00"
+      },
+      {
+        "uuid": "7ee63378-d9c4-4bc5-a253-d89efbdd15fe",
+        "name": "CRM",
+        "summary": "在 二手车 场景中，System of Record 被比作 CRM",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262765+00:00"
+      },
+      {
+        "uuid": "8b9c8c74-5706-4a00-a194-2d7154012e14",
+        "name": "/Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md",
+        "summary": "user(user) 建议优先阅读文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 中包含关于 大风车 的产品情况信息\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 提到 大风车 存在“数字幽灵：被低估与遗弃的功能”\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442210+00:00"
+      },
+      {
+        "uuid": "29ceb61a-74f9-4101-a39a-32b62a33f208",
+        "name": "/Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md",
+        "summary": "user(user) 建议随后阅读文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442216+00:00"
+      }
+    ]
+  }
+}

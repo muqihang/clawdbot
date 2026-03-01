@@ -1,0 +1,27 @@
+[dataset-v2] generated_at_utc=2026-02-28T16:04:41.969Z
+[dataset-v2] graphiti_base_url=http://127.0.0.1:8000
+[dataset-v2] graphiti_group_ids=["agent_main_main"]
+[dataset-v2] max_facts=50
+[dataset-v2] timeout_ms=20000
+[dataset-v2] target_size=34
+[dataset-v2] seeds_count=19
+[seed] query="assistant(assistant)" facts=10
+[seed] query="SoE" facts=8
+[seed] query="System of Engagement" facts=10
+[seed] query="SoR" facts=7
+[seed] query="System of Record" facts=10
+[seed] query="经营 OS" facts=7
+[seed] query="北极星" facts=2
+[seed] query="ERP" facts=2
+[seed] query="CRM" facts=3
+[seed] query="SOP" facts=1
+[seed] query="Gate-2" facts=1
+[seed] query="PRD" facts=0
+[seed] query="PRFAQ" facts=0
+[seed] query="BMAD" facts=0
+[seed] query="text-embedding-v4" facts=0
+[seed] query="Telegram" facts=0
+[seed] query="sub2api" facts=3
+[seed] query="graphiti" facts=0
+[seed] query="mem0" facts=0
+[candidates] unique_uuids=36

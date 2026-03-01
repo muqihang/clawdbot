@@ -1,0 +1,46 @@
+[
+  {
+    "id": "sample-1",
+    "user": "my editor is vim",
+    "assistant": "收到，我记住你偏好 vim。",
+    "expected": {
+      "extractable": true,
+      "conflict": false,
+      "pendingReview": false,
+      "supersedeCorrect": true
+    }
+  },
+  {
+    "id": "sample-2",
+    "user": "my editor is emacs",
+    "assistant": "了解，你现在改为 emacs。",
+    "expected": {
+      "extractable": true,
+      "conflict": true,
+      "pendingReview": false,
+      "supersedeCorrect": true
+    }
+  },
+  {
+    "id": "sample-3",
+    "user": "I prefer concise replies",
+    "assistant": "已记录：偏好简洁回复。",
+    "expected": {
+      "extractable": true,
+      "conflict": false,
+      "pendingReview": false,
+      "supersedeCorrect": true
+    }
+  },
+  {
+    "id": "sample-4",
+    "user": "today password is 123456",
+    "assistant": "不会记录敏感信息。",
+    "expected": {
+      "extractable": true,
+      "conflict": false,
+      "pendingReview": true,
+      "supersedeCorrect": true
+    }
+  }
+]

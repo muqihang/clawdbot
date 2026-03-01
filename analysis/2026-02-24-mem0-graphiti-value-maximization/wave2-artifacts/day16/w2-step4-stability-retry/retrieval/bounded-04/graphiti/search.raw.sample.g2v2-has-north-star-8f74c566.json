@@ -1,0 +1,168 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "assistant(assistant) 表示内部北极星仍然是 OS + 生态"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "8f74c566-e157-4b67-8f95-f83827ee9a74",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184795+00:00",
+        "expired_at": "2026-02-28T16:01:03.014452+00:00"
+      },
+      {
+        "uuid": "6aaccc4b-b2d9-42c7-ba36-59329cf23a24",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184571+00:00",
+        "expired_at": "2026-02-28T16:01:03.014420+00:00"
+      },
+      {
+        "uuid": "4a357235-3250-4379-bf51-ea4b363f1d86",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061836+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b86b94fc-f519-4eb7-8971-c7bb5eda5fa0",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为收车评估是车辆生命周期 killer loop 的一部分",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061785+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6315ce5b-fbda-4870-9084-4b8883a65323",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为微店是车辆生命周期 killer loop 中的展示与分发环节",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061822+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "938b483d-a72c-461b-ac7f-514fc8cf8854",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为线索和客户跟进是车辆生命周期 killer loop 的组成部分",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061844+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6c572bb6-431c-4c35-89b4-535dbaa0abbe",
+        "name": "DESCRIBES_AS",
+        "fact": "assistant 指出大风车体现的是数字化表象和模拟化内核的状态",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061518+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "07fd8f05-219b-474c-94f7-467c7e4f296d",
+        "name": "AIMS_TO_IMPROVE",
+        "fact": "assistant 认为车辆生命周期 killer loop 可以打穿 ROI",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061771+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "33dc6070-694b-47bd-9c92-5f7bb59e0289",
+        "name": "IS_FACT_BASE_OF",
+        "fact": "assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184726+00:00",
+        "expired_at": "2026-02-28T16:01:03.014438+00:00"
+      },
+      {
+        "uuid": "43389e87-2a15-4192-8d6d-65fd910c7a67",
+        "name": "CONSTRAINS_WITH",
+        "fact": "assistant 计划把Top5 功能变成Gate-0 硬约束的一部分",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061907+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "c2c92f85-1edb-4a8c-b28d-b7f627bd8b68",
+        "name": "OS + 生态",
+        "summary": "被用户认同为当前的内部北极星，即以 OS 为核心并建设相关生态的战略方向。\nassistant(assistant) 表示内部北极星仍然是 OS + 生态",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627467+00:00"
+      },
+      {
+        "uuid": "7b170674-8f85-4bff-b4cb-67eed1be22fa",
+        "name": "内部北极星",
+        "summary": "在对话中被描述为仍然是“OS + 生态”，代表内部长期方向或核心目标。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627450+00:00"
+      },
+      {
+        "uuid": "34eee794-1e10-4bdb-b792-3ed7c3c6c37d",
+        "name": "assistant(assistant)",
+        "summary": "System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统\nSystem of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统\nassistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口\nassistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态\nassistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式\nassistant(assistant) 表示内部北极星仍然是 OS + 生态\nassistant 认为大风车当前更多是一个事后记录系统或高级记事本\nassistant 指出大风车体现的是数字化表象和模拟化内核的状态\nassistant 认为库存管理与营销分发是车商愿意付费的核心循环\nassistant 认为库存管理与微店展示构成车商愿意付费的核心循环\nassistant 指出直播发车是车商核心循环的一部分\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在微信中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在电话中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在纸笔中\nassistant 认为财务深度功能在大风车中往往成为数字幽灵\nassistant 认为电子审批在大风车中往往成为数字幽灵\nassistant 认为CRM 深度录入在大风车中往往成为数字幽灵\nassistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值\nassistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列\nassistant 认为要把关键环节拉回系统需要决策简报\nassistant 认为要把关键环节拉回系统需要人审队列",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262442+00:00"
+      },
+      {
+        "uuid": "f850d94c-f9cb-4006-9b93-037149c21da7",
+        "name": "内容生成",
+        "summary": "assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.732759+00:00"
+      },
+      {
+        "uuid": "5c6b03cf-7e72-4740-b396-b1d0076def84",
+        "name": "报表",
+        "summary": "报表 依赖 System of Record 提供一致的数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262813+00:00"
+      },
+      {
+        "uuid": "27fa8d12-db34-4e42-848b-3475e8099dc9",
+        "name": "车辆生命周期 killer loop",
+        "summary": "assistant 建议将Phase 1 的核心闭环定义为车辆生命周期 killer loop\nassistant 认为车辆生命周期 killer loop 可以打穿 ROI\nassistant 认为收车评估是车辆生命周期 killer loop 的一部分\nassistant 认为微店是车辆生命周期 killer loop 中的展示与分发环节\nassistant 认为发车分发是车辆生命周期 killer loop 中的一个步骤\nassistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤\nassistant 认为线索和客户跟进是车辆生命周期 killer loop 的组成部分",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.732188+00:00"
+      },
+      {
+        "uuid": "b169e06e-41b1-4461-ac82-548d54345f1e",
+        "name": "数字化表象",
+        "summary": "数字化表象指车商表面上使用大风车等系统记录数据，但真实关键决策与沟通仍在线下或微信电话中进行，看起来数字化但本质业务未被系统驱动。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.723982+00:00"
+      },
+      {
+        "uuid": "95ac596e-9d60-465c-aec9-d403e6b46e3f",
+        "name": "Gate-0 硬约束",
+        "summary": "assistant 计划把Top5 功能变成Gate-0 硬约束的一部分",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.733540+00:00"
+      }
+    ]
+  }
+}

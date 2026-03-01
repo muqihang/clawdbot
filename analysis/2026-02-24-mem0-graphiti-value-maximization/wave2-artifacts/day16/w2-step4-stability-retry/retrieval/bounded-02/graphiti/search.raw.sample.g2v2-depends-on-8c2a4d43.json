@@ -1,0 +1,182 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "报表 依赖 System of Record 提供一致的数据",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "报表 依赖 System of Record 提供一致的数据"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "8c2a4d43-c247-41b6-ba79-18794dbf6003",
+        "name": "DEPENDS_ON",
+        "fact": "报表 依赖 System of Record 提供一致的数据",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.183865+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a0b74571-ec1a-4aff-8ab6-e4ec7a074c8d",
+        "name": "DEPENDS_ON",
+        "fact": "法务 依赖 System of Record 提供一致的数据",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.183971+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "9916589d-b7df-4b7a-b6e2-4e2c1ec68e90",
+        "name": "DEPENDS_ON",
+        "fact": "审计 依赖 System of Record 提供一致的数据",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.183926+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "3b4474d0-1474-4840-9426-9a66f3e8e926",
+        "name": "DEPENDS_ON",
+        "fact": "结算 依赖 System of Record 提供一致的数据",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.183896+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "82c7b056-1e99-4344-a2af-93b4b5d53ccc",
+        "name": "DEPENDS_ON",
+        "fact": "跨部门协同 依赖 System of Record 提供一致的数据",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.184006+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "bbd0aae3-45c9-4659-89ef-e3f20d857d9b",
+        "name": "DEPENDS_ON",
+        "fact": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244923+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "10fe5aac-1c98-4f5e-9471-82c592ecb474",
+        "name": "USES",
+        "fact": "System of Record 是结构化主数据和关键记录的权威系统",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.183831+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "3dccd76d-447a-4201-bc8d-050f78cc4f2e",
+        "name": "INVOLVES",
+        "fact": "车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:58:04.244933+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "33dc6070-694b-47bd-9c92-5f7bb59e0289",
+        "name": "IS_FACT_BASE_OF",
+        "fact": "assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184726+00:00",
+        "expired_at": "2026-02-28T16:01:03.014438+00:00"
+      },
+      {
+        "uuid": "5728d3d9-8eb7-4047-9adb-36166753305e",
+        "name": "IS_CONTRASTED_WITH",
+        "fact": "System of Engagement 的核心不在于主数据而在于承载动作与协作",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T15:28:34.183796+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "bcd20d9a-d389-4f8b-8c11-48d6ce143e32",
+        "name": "System of Record",
+        "summary": "SoR 被 assistant(assistant) 定义为 System of Record\nSystem of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统\nSystem of Record 是结构化主数据和关键记录的权威系统\n报表 依赖 System of Record 提供一致的数据\n结算 依赖 System of Record 提供一致的数据\n审计 依赖 System of Record 提供一致的数据\n法务 依赖 System of Record 提供一致的数据\n跨部门协同 依赖 System of Record 提供一致的数据\n在 二手车 场景中，System of Record 被比作大风车那样的台账与业务事实系统\n在 二手车 场景中，System of Record 被比作 ERP\n在 二手车 场景中，System of Record 被比作 CRM\n在 二手车 场景中，System of Record 管理库存\n在 二手车 场景中，System of Record 管理成交\n在 二手车 场景中，System of Record 管理费用\n在 二手车 场景中，System of Record 管理合同材料\n在 二手车 场景中，System of Record 管理交付节点\n在 二手车 场景中，System of Record 被描述为台账与业务事实的权威系统\nassistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record\nassistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座\nassistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262718+00:00"
+      },
+      {
+        "uuid": "5c6b03cf-7e72-4740-b396-b1d0076def84",
+        "name": "报表",
+        "summary": "报表 依赖 System of Record 提供一致的数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262813+00:00"
+      },
+      {
+        "uuid": "7ba48bb2-f873-468f-81fa-92ccc65d609e",
+        "name": "车商的业务数据经营数据",
+        "summary": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务\n车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442238+00:00"
+      },
+      {
+        "uuid": "0d0bf968-92c6-43d8-b994-3711ef97ffd4",
+        "name": "System of Engagement",
+        "summary": "SoE 被 assistant(assistant) 定义为 System of Engagement\nSystem of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统\nSystem of Engagement 的核心不在于主数据而在于承载动作与协作\n在 二手车 场景中，System of Engagement 被描述为销售在手机上完成跟进等操作的工作台\n在 二手车 场景中，System of Engagement 被描述为评估师在手机上完成跟进等操作的工作台\n在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台\n销售 在 二手车 场景中被描述为 System of Engagement 的使用者\n评估师 在 二手车 场景中被描述为 System of Engagement 的使用者\n店长 在 二手车 场景中被描述为 System of Engagement 的使用者\nassistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record\nassistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI\nassistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI\nassistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262694+00:00"
+      },
+      {
+        "uuid": "2b8b096a-4002-4697-b770-3198ce18dce2",
+        "name": "主数据",
+        "summary": "System of Engagement 的核心不在于主数据而在于承载动作与协作\nSystem of Record 是结构化主数据和关键记录的权威系统",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262807+00:00"
+      },
+      {
+        "uuid": "cdacc5b6-0581-4d52-a733-adcf874551cc",
+        "name": "过程数据",
+        "summary": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据\nassistant 指出如果没有成为一线动作发生地就难以获得过程数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731209+00:00"
+      },
+      {
+        "uuid": "b169e06e-41b1-4461-ac82-548d54345f1e",
+        "name": "数字化表象",
+        "summary": "数字化表象指车商表面上使用大风车等系统记录数据，但真实关键决策与沟通仍在线下或微信电话中进行，看起来数字化但本质业务未被系统驱动。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.723982+00:00"
+      },
+      {
+        "uuid": "d1bf252a-93a8-4673-b403-b248f062f002",
+        "name": "AI原生的产品",
+        "summary": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442228+00:00"
+      },
+      {
+        "uuid": "3028f5e7-deda-4357-ac79-48db941b9a9f",
+        "name": "全链路经营数据",
+        "summary": "全链路经营数据指覆盖采购、销售、整备、财务与利润复盘等互相关联的数据结构，是让 AI Agent产生高质量价值及支持以销带采闭环的前提。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.729519+00:00"
+      },
+      {
+        "uuid": "fcb62818-47c5-45af-a512-60e692022608",
+        "name": "全链路数据结构",
+        "summary": "assistant 认为全链路数据结构和事件链路应该覆盖采购、销售、整备和财务\nassistant 认为全链路数据结构和事件链路应该覆盖销售\nassistant 认为全链路数据结构和事件链路应该覆盖整备\nassistant 认为全链路数据结构和事件链路应该覆盖财务\nassistant 认为全链路数据结构应支持利润复盘",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731314+00:00"
+      }
+    ]
+  }
+}

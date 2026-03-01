@@ -1,0 +1,240 @@
+[
+  {
+    "id": "g2v2-aims-to-improve-5dc3de9f",
+    "query": "assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["5dc3de9f-7f20-4338-be0c-27bcefcb8e29"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-benefits-0cf1802e",
+    "query": "assistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径",
+    "aliases": ["SoE"],
+    "expected_ids": ["0cf1802e-7a44-4a46-829f-38ff9c96ed31"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-classifies-as-underused-feature-ad05f92a",
+    "query": "assistant 认为CRM 深度录入在大风车中往往成为数字幽灵",
+    "aliases": ["CRM"],
+    "expected_ids": ["ad05f92a-c0b7-46c2-a256-a21003be509e"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-constrains-with-43389e87",
+    "query": "assistant 计划把Top5 功能变成Gate-0 硬约束的一部分",
+    "aliases": ["Gate-2"],
+    "expected_ids": ["43389e87-2a15-4192-8d6d-65fd910c7a67"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-depends-on-3b4474d0",
+    "query": "结算 依赖 System of Record 提供一致的数据",
+    "aliases": ["System of Record"],
+    "expected_ids": ["3b4474d0-1474-4840-9426-9a66f3e8e926"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-depends-on-8c2a4d43",
+    "query": "报表 依赖 System of Record 提供一致的数据",
+    "aliases": ["System of Record"],
+    "expected_ids": ["8c2a4d43-c247-41b6-ba79-18794dbf6003"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-depends-on-9916589d",
+    "query": "审计 依赖 System of Record 提供一致的数据",
+    "aliases": ["System of Record"],
+    "expected_ids": ["9916589d-b7df-4b7a-b6e2-4e2c1ec68e90"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-depends-on-a0b74571",
+    "query": "法务 依赖 System of Record 提供一致的数据",
+    "aliases": ["System of Record"],
+    "expected_ids": ["a0b74571-ec1a-4aff-8ab6-e4ec7a074c8d"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-emphasizes-need-for-84c81332",
+    "query": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+    "aliases": ["SoE"],
+    "expected_ids": ["84c81332-2ca5-456b-b623-2be99d129549"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-equivalent-to-cafdd618",
+    "query": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+    "aliases": ["SoR"],
+    "expected_ids": ["cafdd618-418f-42c2-8651-1f883f7c76e5"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-has-north-star-6aaccc4b",
+    "query": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["6aaccc4b-b2d9-42c7-ba36-59329cf23a24"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-has-north-star-8f74c566",
+    "query": "assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["8f74c566-e157-4b67-8f95-f83827ee9a74"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-identifies-core-loop-e97fad33",
+    "query": "assistant 认为库存管理与营销分发是车商愿意付费的核心循环",
+    "aliases": ["经营 OS"],
+    "expected_ids": ["e97fad33-e6ca-4314-a685-a557125b661e"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-involves-3dccd76d",
+    "query": "车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+    "aliases": ["经营 OS"],
+    "expected_ids": ["3dccd76d-447a-4201-bc8d-050f78cc4f2e"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-analogous-to-494e4b38",
+    "query": "在 二手车 场景中，System of Record 被比作 ERP",
+    "aliases": ["System of Record"],
+    "expected_ids": ["494e4b38-115b-4ec6-85da-15dbc4c99c86"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-analogous-to-b09b6e12",
+    "query": "在 二手车 场景中，System of Record 被比作 CRM",
+    "aliases": ["System of Engagement"],
+    "expected_ids": ["b09b6e12-3641-4b59-a4d3-c10531e7a515"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-applied-in-fd3cdbd2",
+    "query": "在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台",
+    "aliases": ["System of Engagement"],
+    "expected_ids": ["fd3cdbd2-e960-422c-bfda-6bf136888c84"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-contrasted-with-5728d3d9",
+    "query": "System of Engagement 的核心不在于主数据而在于承载动作与协作",
+    "aliases": ["System of Engagement"],
+    "expected_ids": ["5728d3d9-8eb7-4047-9adb-36166753305e"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-defined-as-b8b71207",
+    "query": "SoE 被 assistant(assistant) 定义为 System of Engagement",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["b8b71207-021d-41a3-ade3-4fdf8c3ad826"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-defined-as-e7212791",
+    "query": "SoR 被 assistant(assistant) 定义为 System of Record",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["e7212791-2909-4ece-982e-042e645742c0"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-described-by-48f96cd4",
+    "query": "System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["48f96cd4-b48b-40fe-b069-a0ec451710b0"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-described-by-496d31e5",
+    "query": "System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["496d31e5-040e-4c23-98eb-0a2bbee33caa"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-example-of-a520613a",
+    "query": "assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据",
+    "aliases": ["SoR"],
+    "expected_ids": ["a520613a-9168-4cae-92f1-8cca56d85052"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-is-fact-base-of-33dc6070",
+    "query": "assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["33dc6070-694b-47bd-9c92-5f7bb59e0289"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-manages-0dbffdb2",
+    "query": "在 二手车 场景中，System of Record 管理费用",
+    "aliases": ["System of Record"],
+    "expected_ids": ["0dbffdb2-f1c6-4496-9fac-c3ed1928a18f"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-manages-3c898bc3",
+    "query": "在 二手车 场景中，System of Record 管理库存",
+    "aliases": ["System of Record"],
+    "expected_ids": ["3c898bc3-7584-4f73-a8da-13188dc694d4"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-manages-c5d7bcbb",
+    "query": "在 二手车 场景中，System of Record 管理成交",
+    "aliases": ["System of Record"],
+    "expected_ids": ["c5d7bcbb-a57a-4888-b403-0faef7000668"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-part-of-loop-4a357235",
+    "query": "assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤",
+    "aliases": ["sub2api"],
+    "expected_ids": ["4a357235-3250-4379-bf51-ea4b363f1d86"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-proposes-naming-e0847c10",
+    "query": "assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口",
+    "aliases": ["经营 OS"],
+    "expected_ids": ["e0847c10-1cb0-4da3-8180-a8c3276cbcf2"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-recommends-as-implementation-of-05167df4",
+    "query": "assistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态",
+    "aliases": ["SoE"],
+    "expected_ids": ["05167df4-ca7b-458a-bf9e-baf2f384f6b6"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-uses-8615619c",
+    "query": "评估师 在 二手车 场景中被描述为 System of Engagement 的使用者",
+    "aliases": ["System of Engagement"],
+    "expected_ids": ["8615619c-ee65-4ee2-906e-5755d5c192ae"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-uses-8aa701e5",
+    "query": "销售 在 二手车 场景中被描述为 System of Engagement 的使用者",
+    "aliases": ["System of Engagement"],
+    "expected_ids": ["8aa701e5-4bef-4213-9271-66580475dae4"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-uses-e2b4e231",
+    "query": "店长 在 二手车 场景中被描述为 System of Engagement 的使用者",
+    "aliases": ["System of Engagement"],
+    "expected_ids": ["e2b4e231-02e5-4380-a8a6-d7aea7faa760"],
+    "expected_structures": ["facts"]
+  },
+  {
+    "id": "g2v2-uses-to-optimize-e818c7c7",
+    "query": "assistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI",
+    "aliases": ["assistant(assistant)"],
+    "expected_ids": ["e818c7c7-949e-485b-8b32-c978e520c9c3"],
+    "expected_structures": ["facts"]
+  }
+]

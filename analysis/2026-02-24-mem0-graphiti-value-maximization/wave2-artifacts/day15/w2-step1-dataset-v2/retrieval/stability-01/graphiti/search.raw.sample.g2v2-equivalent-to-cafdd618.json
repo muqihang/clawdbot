@@ -1,0 +1,168 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "assistant 提出Day 1 全链路骨架应当是 SoR-lite"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "cafdd618-418f-42c2-8651-1f883f7c76e5",
+        "name": "EQUIVALENT_TO",
+        "fact": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061695+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "43b6334a-d3ce-4fe2-943d-5acc644f76ed",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖销售",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061718+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "5e9befaa-4fc0-4bb7-b749-4459fe63d12b",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖整备",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061724+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "eeef93ad-95dc-4e21-9d0b-6db7eab446eb",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖财务",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061731+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a565d044-23f8-4b7a-a91a-cda5fa774954",
+        "name": "SHOULD_SUPPORT",
+        "fact": "assistant 认为全链路数据结构应支持利润复盘",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061738+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "f33cbefd-a327-4c81-b2ea-066d3f393295",
+        "name": "SHOULD_COVER",
+        "fact": "assistant 认为全链路数据结构和事件链路应该覆盖采购、销售、整备和财务",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061711+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "a520613a-9168-4cae-92f1-8cca56d85052",
+        "name": "IS_EXAMPLE_OF",
+        "fact": "assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184755+00:00",
+        "expired_at": "2026-02-28T16:01:03.014401+00:00"
+      },
+      {
+        "uuid": "0d6dffcf-9dd6-467b-83da-28a968a9b839",
+        "name": "INCLUDES",
+        "fact": "assistant 指出客户跟进需要提醒",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061870+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "5dc3de9f-7f20-4338-be0c-27bcefcb8e29",
+        "name": "AIMS_TO_IMPROVE",
+        "fact": "assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184695+00:00",
+        "expired_at": "2026-02-28T16:01:03.014407+00:00"
+      },
+      {
+        "uuid": "84c81332-2ca5-456b-b623-2be99d129549",
+        "name": "EMPHASIZES_NEED_FOR",
+        "fact": "assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061679+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "a6446f44-99d5-4273-99bb-62d5bf067794",
+        "name": "Day 1 全链路骨架",
+        "summary": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731275+00:00"
+      },
+      {
+        "uuid": "3028f5e7-deda-4357-ac79-48db941b9a9f",
+        "name": "全链路经营数据",
+        "summary": "全链路经营数据指覆盖采购、销售、整备、财务与利润复盘等互相关联的数据结构，是让 AI Agent产生高质量价值及支持以销带采闭环的前提。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.729519+00:00"
+      },
+      {
+        "uuid": "fcb62818-47c5-45af-a512-60e692022608",
+        "name": "全链路数据结构",
+        "summary": "assistant 认为全链路数据结构和事件链路应该覆盖采购、销售、整备和财务\nassistant 认为全链路数据结构和事件链路应该覆盖销售\nassistant 认为全链路数据结构和事件链路应该覆盖整备\nassistant 认为全链路数据结构和事件链路应该覆盖财务\nassistant 认为全链路数据结构应支持利润复盘",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731314+00:00"
+      },
+      {
+        "uuid": "2b6bd047-dfe5-4cd1-85b6-43460a60c46a",
+        "name": "SoR-lite",
+        "summary": "assistant 提出Day 1 全链路骨架应当是 SoR-lite",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731296+00:00"
+      },
+      {
+        "uuid": "59a863cb-1b77-4aa6-9052-b00ebcb8130c",
+        "name": "ERP/CRM/全链路系统",
+        "summary": "assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262898+00:00"
+      },
+      {
+        "uuid": "5b1926e7-c9e4-4064-b949-9e2d04955bb2",
+        "name": "SoR",
+        "summary": "与 SoE 一起被讨论为一种战略或系统定位，用户关心是否采纳从 SoE 过渡到 SoR 的方案。\nSoR 被 assistant(assistant) 定义为 System of Record",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627484+00:00"
+      },
+      {
+        "uuid": "34eee794-1e10-4bdb-b792-3ed7c3c6c37d",
+        "name": "assistant(assistant)",
+        "summary": "System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统\nSystem of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统\nassistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口\nassistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态\nassistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式\nassistant(assistant) 表示内部北极星仍然是 OS + 生态\nassistant 认为大风车当前更多是一个事后记录系统或高级记事本\nassistant 指出大风车体现的是数字化表象和模拟化内核的状态\nassistant 认为库存管理与营销分发是车商愿意付费的核心循环\nassistant 认为库存管理与微店展示构成车商愿意付费的核心循环\nassistant 指出直播发车是车商核心循环的一部分\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在微信中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在电话中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在纸笔中\nassistant 认为财务深度功能在大风车中往往成为数字幽灵\nassistant 认为电子审批在大风车中往往成为数字幽灵\nassistant 认为CRM 深度录入在大风车中往往成为数字幽灵\nassistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值\nassistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列\nassistant 认为要把关键环节拉回系统需要决策简报\nassistant 认为要把关键环节拉回系统需要人审队列",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262442+00:00"
+      },
+      {
+        "uuid": "167eced1-9b06-480a-8439-0793b8f4acb0",
+        "name": "事件链路",
+        "summary": "事件链路指围绕二手车从收车、整备、销售到财务结算的全流程业务事件序列，用于在系统中形成采购↔销售↔整备↔财务的闭环。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.731471+00:00"
+      }
+    ]
+  }
+}

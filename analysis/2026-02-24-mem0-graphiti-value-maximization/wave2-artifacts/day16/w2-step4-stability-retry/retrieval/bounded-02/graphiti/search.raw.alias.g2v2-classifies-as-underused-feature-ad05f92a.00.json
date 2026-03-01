@@ -1,0 +1,61 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "CRM",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "CRM"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "b09b6e12-3641-4b59-a4d3-c10531e7a515",
+        "name": "IS_ANALOGOUS_TO",
+        "fact": "在 二手车 场景中，System of Record 被比作 CRM",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184301+00:00",
+        "expired_at": "2026-02-28T16:01:00.661505+00:00"
+      },
+      {
+        "uuid": "ad05f92a-c0b7-46c2-a256-a21003be509e",
+        "name": "CLASSIFIES_AS_UNDERUSED_FEATURE",
+        "fact": "assistant 认为CRM 深度录入在大风车中往往成为数字幽灵",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061597+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "7ee63378-d9c4-4bc5-a253-d89efbdd15fe",
+        "name": "CRM",
+        "summary": "在 二手车 场景中，System of Record 被比作 CRM",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262765+00:00"
+      },
+      {
+        "uuid": "c6f0d305-02d0-4e49-882f-436c81c4d7ad",
+        "name": "CRM 深度录入",
+        "summary": "assistant 认为CRM 深度录入在大风车中往往成为数字幽灵",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724301+00:00"
+      },
+      {
+        "uuid": "59a863cb-1b77-4aa6-9052-b00ebcb8130c",
+        "name": "ERP/CRM/全链路系统",
+        "summary": "assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262898+00:00"
+      }
+    ]
+  }
+}

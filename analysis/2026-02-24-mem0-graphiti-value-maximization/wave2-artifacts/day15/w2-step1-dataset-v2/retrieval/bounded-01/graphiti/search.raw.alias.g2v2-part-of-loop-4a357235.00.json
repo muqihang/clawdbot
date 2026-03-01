@@ -1,0 +1,70 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "sub2api",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "sub2api"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "8f74c566-e157-4b67-8f95-f83827ee9a74",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184795+00:00",
+        "expired_at": "2026-02-28T16:01:03.014452+00:00"
+      },
+      {
+        "uuid": "4a357235-3250-4379-bf51-ea4b363f1d86",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061836+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6aaccc4b-b2d9-42c7-ba36-59329cf23a24",
+        "name": "HAS_NORTH_STAR",
+        "fact": "assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+        "valid_at": "2026-02-28T15:26:53.572000+00:00",
+        "invalid_at": "2026-02-28T15:56:33.208000+00:00",
+        "created_at": "2026-02-28T15:28:34.184571+00:00",
+        "expired_at": "2026-02-28T16:01:03.014420+00:00"
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "f850d94c-f9cb-4006-9b93-037149c21da7",
+        "name": "内容生成",
+        "summary": "assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.732759+00:00"
+      },
+      {
+        "uuid": "7b170674-8f85-4bff-b4cb-67eed1be22fa",
+        "name": "内部北极星",
+        "summary": "在对话中被描述为仍然是“OS + 生态”，代表内部长期方向或核心目标。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:27:34.627450+00:00"
+      },
+      {
+        "uuid": "5b561607-6f8c-4244-8d09-e4e2a6bb65dd",
+        "name": "模拟化内核",
+        "summary": "模拟化内核指二手车商关键流程依然依赖线下、电话、微信等人工方式推进，系统只做结果登记，业务内核仍是传统模拟运作模式。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724004+00:00"
+      }
+    ]
+  }
+}

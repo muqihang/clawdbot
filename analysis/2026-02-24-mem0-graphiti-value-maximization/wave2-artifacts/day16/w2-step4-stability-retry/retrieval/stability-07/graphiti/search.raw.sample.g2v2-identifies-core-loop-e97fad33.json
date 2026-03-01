@@ -1,0 +1,175 @@
+{
+  "provider": "graphiti",
+  "url": "http://127.0.0.1:8000/search",
+  "query": "assistant 认为库存管理与营销分发是车商愿意付费的核心循环",
+  "requestBody": {
+    "max_facts": 50,
+    "group_ids": [
+      "agent_main_main",
+      "openclaw-backfill-canonical",
+      "openclaw-backfill-topics",
+      "openclaw-backfill-daily"
+    ],
+    "query": "assistant 认为库存管理与营销分发是车商愿意付费的核心循环"
+  },
+  "payload": {
+    "facts": [
+      {
+        "uuid": "e97fad33-e6ca-4314-a685-a557125b661e",
+        "name": "IDENTIFIES_CORE_LOOP",
+        "fact": "assistant 认为库存管理与营销分发是车商愿意付费的核心循环",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061539+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "7ebdfbe6-5324-4c46-82d0-b52b889f89a3",
+        "name": "IDENTIFIES_CORE_LOOP",
+        "fact": "assistant 认为库存管理与微店展示构成车商愿意付费的核心循环",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061548+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "56726247-6055-4568-b7e1-221ad1f05fe8",
+        "name": "IDENTIFIES_CORE_LOOP",
+        "fact": "assistant 指出直播发车是车商核心循环的一部分",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061555+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "6315ce5b-fbda-4870-9084-4b8883a65323",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为微店是车辆生命周期 killer loop 中的展示与分发环节",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061822+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "419fced4-363c-4e52-8ed7-90867978e933",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为发车分发是车辆生命周期 killer loop 中的一个步骤",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061829+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "b86b94fc-f519-4eb7-8971-c7bb5eda5fa0",
+        "name": "PART_OF_LOOP",
+        "fact": "assistant 认为收车评估是车辆生命周期 killer loop 的一部分",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061785+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "114a2e8c-3103-4d47-b7f2-186e8d52f72e",
+        "name": "DESCRIBES_BUSINESS_LOOP",
+        "fact": "assistant 指出以采带销是车商业务中的一种闭环模式",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061746+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "1888297b-5e03-4304-b8ee-9d2c48714c46",
+        "name": "DESCRIBES_BUSINESS_LOOP",
+        "fact": "assistant 指出以销带采是车商业务中的另一种闭环模式",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061753+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "2376c110-7639-4c39-87a4-6c793b2c4787",
+        "name": "AFFECTS",
+        "fact": "assistant 认为高频枢纽的最低对标线会影响车商是否迁移",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061893+00:00",
+        "expired_at": null
+      },
+      {
+        "uuid": "eddccf9f-9247-4ed2-a472-1dab780b6668",
+        "name": "DEFINES_PHASE_LOOP",
+        "fact": "assistant 建议将Phase 1 的核心闭环定义为车辆生命周期 killer loop",
+        "valid_at": "2026-02-28T15:56:33.208000+00:00",
+        "invalid_at": null,
+        "created_at": "2026-02-28T16:00:13.061763+00:00",
+        "expired_at": null
+      }
+    ],
+    "episodes": [],
+    "nodes": [
+      {
+        "uuid": "e7703ed0-2da7-40b1-8dda-f07115fa9da3",
+        "name": "库存管理",
+        "summary": "assistant 认为库存管理与营销分发是车商愿意付费的核心循环",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724140+00:00"
+      },
+      {
+        "uuid": "942ccbb3-001c-4a7e-a808-65c97571c621",
+        "name": "营销分发",
+        "summary": "营销分发是车商围绕库存车辆进行的分发展示活动，包括微店展示、直播发车等，是大风车中车商高频使用并愿意为之付费的核心循环之一。",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724158+00:00"
+      },
+      {
+        "uuid": "f139757c-9be1-4279-8416-72cea23c9a5d",
+        "name": "发车分发",
+        "summary": "assistant 认为发车分发是车辆生命周期 killer loop 中的一个步骤",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.732742+00:00"
+      },
+      {
+        "uuid": "85ce2b25-b8cb-4b26-8191-10fe1896bfde",
+        "name": "库存",
+        "summary": "在 二手车 场景中，System of Record 管理库存",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262856+00:00"
+      },
+      {
+        "uuid": "7ba48bb2-f873-468f-81fa-92ccc65d609e",
+        "name": "车商的业务数据经营数据",
+        "summary": "AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务\n车商的业务数据经营数据 涉及 采购与销售、财务数据结构",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442238+00:00"
+      },
+      {
+        "uuid": "34eee794-1e10-4bdb-b792-3ed7c3c6c37d",
+        "name": "assistant(assistant)",
+        "summary": "System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统\nSystem of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统\nassistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口\nassistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态\nassistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式\nassistant(assistant) 表示内部北极星仍然是 OS + 生态\nassistant 认为大风车当前更多是一个事后记录系统或高级记事本\nassistant 指出大风车体现的是数字化表象和模拟化内核的状态\nassistant 认为库存管理与营销分发是车商愿意付费的核心循环\nassistant 认为库存管理与微店展示构成车商愿意付费的核心循环\nassistant 指出直播发车是车商核心循环的一部分\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在微信中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在电话中\nassistant 指出在车商的实际工作中关键决策和沟通仍然发生在纸笔中\nassistant 认为财务深度功能在大风车中往往成为数字幽灵\nassistant 认为电子审批在大风车中往往成为数字幽灵\nassistant 认为CRM 深度录入在大风车中往往成为数字幽灵\nassistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值\nassistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列\nassistant 认为要把关键环节拉回系统需要决策简报\nassistant 认为要把关键环节拉回系统需要人审队列",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:28:02.262442+00:00"
+      },
+      {
+        "uuid": "31e90988-b24c-46a4-aa05-7615765db394",
+        "name": "二手车商",
+        "summary": "文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关\n文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况\n二手车商 习惯把 大风车 作为 高级记事本（大风车定位） 使用\nassistant 认为车商把信任外包给查博士报告\nassistant 指出以采带销是车商业务中的一种闭环模式\nassistant 指出以销带采是车商业务中的另一种闭环模式",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442202+00:00"
+      },
+      {
+        "uuid": "accfb6db-aba4-4b8b-b6c3-0643ba503305",
+        "name": "销售环节",
+        "summary": "以销带采模式 利用 销售环节 的数据指导采购\n采购助手/工具 如果不连接 销售环节 就难以形成闭环",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:57:30.442271+00:00"
+      },
+      {
+        "uuid": "8e701d3d-d679-4ae5-8502-2bb785cbb138",
+        "name": "直播发车",
+        "summary": "assistant 指出直播发车是车商核心循环的一部分",
+        "group_id": "agent_main_main",
+        "created_at": "2026-02-28T15:59:13.724202+00:00"
+      }
+    ]
+  }
+}
