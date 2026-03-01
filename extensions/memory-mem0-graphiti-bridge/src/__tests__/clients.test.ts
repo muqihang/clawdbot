@@ -106,6 +106,51 @@ describe("mem0 + graphiti clients", () => {
         message: "timed out",
       },
     ]);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("retries once on transient search failure", async () => {
+    const fetchMock = vi
+      .fn<typeof fetch>()
+      .mockRejectedValueOnce(Object.assign(new Error("timed out"), { name: "TimeoutError" }))
+      .mockResolvedValueOnce(
+        toJsonResponse(200, {
+          results: [
+            {
+              id: "fact-1",
+              fact: "Telegram is preferred",
+              score: 0.91,
+            },
+          ],
+        }),
+      );
+
+    const errors: RemoteClientError[] = [];
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 1_500,
+      fetchImpl: fetchMock,
+      errorReporter: (error) => {
+        errors.push(error);
+      },
+    });
+
+    const hits = await client.search("timeline");
+
+    expect(hits).toEqual([
+      {
+        path: "bridge/graphiti/fact-1",
+        startLine: 1,
+        endLine: 1,
+        score: 0.91,
+        snippet: "Telegram is preferred",
+        source: "graphiti",
+        remoteId: "fact-1",
+        structure: undefined,
+      },
+    ]);
+    expect(errors).toEqual([]);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
   it("maps getById http error into remote client error", async () => {

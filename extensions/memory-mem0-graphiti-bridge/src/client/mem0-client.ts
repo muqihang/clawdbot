@@ -55,6 +55,7 @@ export type CreateRemoteClientOptions = {
   apiKey?: string;
   timeoutMs: number;
   getTimeoutMs?: number;
+  defaultSearchBody?: Record<string, unknown>;
   fetchImpl?: FetchLike;
   errorReporter?: RemoteErrorReporter;
   searchPath?: string;
@@ -382,8 +383,13 @@ const reportError = (reporter: RemoteErrorReporter | undefined, error: RemoteCli
   reporter?.(error);
 };
 
-const toSearchBody = (query: string, options?: RemoteSearchOptions): Record<string, unknown> => {
+const toSearchBody = (
+  query: string,
+  options?: RemoteSearchOptions,
+  defaultSearchBody?: Record<string, unknown>,
+): Record<string, unknown> => {
   const body: Record<string, unknown> = {
+    ...(defaultSearchBody ?? {}),
     query,
   };
 
@@ -423,12 +429,16 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
 
   return {
     async search(query: string, searchOptions?: RemoteSearchOptions): Promise<BridgeSearchHit[]> {
-      try {
+      const requestBody = JSON.stringify(
+        toSearchBody(query, searchOptions, options.defaultSearchBody),
+      );
+
+      const runOnce = async (timeoutMs: number): Promise<BridgeSearchHit[]> => {
         const response = await fetchImpl(`${resolvedBaseUrl}${searchPath}`, {
           method: "POST",
           headers,
-          body: JSON.stringify(toSearchBody(query, searchOptions)),
-          signal: AbortSignal.timeout(options.timeoutMs),
+          body: requestBody,
+          signal: AbortSignal.timeout(timeoutMs),
         });
 
         const payload = await readJsonSafe(response);
@@ -454,15 +464,39 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
           .filter((item): item is BridgeSearchHit => Boolean(item));
 
         return normalizeSearchHits(hits);
+      };
+
+      try {
+        return await runOnce(options.timeoutMs);
       } catch (error) {
-        reportError(
-          options.errorReporter,
-          mapThrownError({
-            source: options.source,
-            operation: "search",
-            error,
-          }),
-        );
+        const mapped = mapThrownError({
+          source: options.source,
+          operation: "search",
+          error,
+        });
+
+        const retryable = mapped.code === "REMOTE_TIMEOUT" || mapped.code === "REMOTE_UNAVAILABLE";
+        if (retryable) {
+          const retryTimeoutMs = Math.min(
+            Math.max(options.timeoutMs * 3, options.timeoutMs),
+            120_000,
+          );
+          try {
+            return await runOnce(retryTimeoutMs);
+          } catch (retryError) {
+            reportError(
+              options.errorReporter,
+              mapThrownError({
+                source: options.source,
+                operation: "search",
+                error: retryError,
+              }),
+            );
+            return [];
+          }
+        }
+
+        reportError(options.errorReporter, mapped);
         return [];
       }
     },

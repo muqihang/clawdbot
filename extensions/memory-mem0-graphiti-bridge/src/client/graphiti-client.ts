@@ -70,6 +70,9 @@ export function createGraphitiClient(options: CreateGraphitiClientOptions): Remo
     searchPath: "/search",
     getPath: (id) => `/entity-edge/${encodeURIComponent(id)}`,
     extractSearchItems: extractGraphitiSearchItems,
+    defaultSearchBody: {
+      max_facts: 50,
+    },
     ...options,
   });
 }
