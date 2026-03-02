@@ -1,7 +1,8 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { performance } from "node:perf_hooks";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 
 type Gate4Bucket = "exact_id" | "decision_reason" | "temporal_relation" | "project_context";
 
@@ -458,56 +459,57 @@ const main = async (): Promise<void> => {
   // --- load OpenClaw config + bridge flags from user config
   const repoRoot = process.cwd();
 
-  const configModule = await import(pathToFileURL(path.join(repoRoot, "src/config/io.ts")).href);
-  const flagsModule = await import(
-    pathToFileURL(path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/config/flags.ts"))
-      .href
-  );
-  const toolModule = await import(
-    pathToFileURL(
-      path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts"),
-    ).href
-  );
-  const remoteStoreModule = await import(
-    pathToFileURL(
-      path.join(
-        repoRoot,
-        "extensions/memory-mem0-graphiti-bridge/src/bridge/remote-snippet-store.ts",
-      ),
-    ).href
-  );
-  const mem0ClientModule = await import(
-    pathToFileURL(
-      path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/mem0-client.ts"),
-    ).href
-  );
-  const graphitiClientModule = await import(
-    pathToFileURL(
-      path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/graphiti-client.ts"),
-    ).href
-  );
-  const localMemoryToolModule = await import(
-    pathToFileURL(path.join(repoRoot, "src/agents/tools/memory-tool.ts")).href
-  );
+  const require = createRequire(import.meta.url);
+  const jitiFactory = require("jiti") as (
+    filename: string,
+    opts?: { interopDefault?: boolean; esmResolve?: boolean },
+  ) => (id: string) => unknown;
+  const jiti = jitiFactory(filePathFromUrl(import.meta.url), {
+    interopDefault: true,
+    esmResolve: true,
+  });
 
-  const loadConfig = configModule.loadConfig as () => unknown;
-  const resolveBridgeFlags = flagsModule.resolveBridgeFlags as (raw: unknown) => unknown;
-  const createBridgeMemorySearchTool = toolModule.createBridgeMemorySearchTool as (
-    deps: unknown,
-  ) => {
-    execute: (toolCallId: string, params: unknown) => Promise<{ details?: unknown }>;
+  const configModule = jiti(path.join(repoRoot, "src/config/io.ts")) as {
+    loadConfig: () => unknown;
   };
-  const createRemoteSnippetStore = remoteStoreModule.createRemoteSnippetStore as (opts: {
-    ttlMs: number;
-  }) => unknown;
-  const createMem0Client = mem0ClientModule.createMem0Client as (opts: unknown) => unknown;
-  const createGraphitiClient = graphitiClientModule.createGraphitiClient as (
-    opts: unknown,
-  ) => unknown;
-  const createMemorySearchTool = localMemoryToolModule.createMemorySearchTool as (opts: {
-    config?: unknown;
-    agentSessionKey?: string;
-  }) => { execute: (toolCallId: string, params: unknown) => Promise<unknown> } | null;
+  const flagsModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/config/flags.ts"),
+  ) as { resolveBridgeFlags: (raw: unknown) => unknown };
+  const toolModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts"),
+  ) as {
+    createBridgeMemorySearchTool: (deps: unknown) => {
+      execute: (toolCallId: string, params: unknown) => Promise<{ details?: unknown }>;
+    };
+  };
+  const remoteStoreModule = jiti(
+    path.join(
+      repoRoot,
+      "extensions/memory-mem0-graphiti-bridge/src/bridge/remote-snippet-store.ts",
+    ),
+  ) as {
+    createRemoteSnippetStore: (opts: { ttlMs: number }) => unknown;
+  };
+  const mem0ClientModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/mem0-client.ts"),
+  ) as { createMem0Client: (opts: unknown) => unknown };
+  const graphitiClientModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/graphiti-client.ts"),
+  ) as { createGraphitiClient: (opts: unknown) => unknown };
+  const localMemoryToolModule = jiti(path.join(repoRoot, "src/agents/tools/memory-tool.ts")) as {
+    createMemorySearchTool: (opts: {
+      config?: unknown;
+      agentSessionKey?: string;
+    }) => { execute: (toolCallId: string, params: unknown) => Promise<unknown> } | null;
+  };
+
+  const { loadConfig } = configModule;
+  const resolveBridgeFlags = flagsModule.resolveBridgeFlags;
+  const { createBridgeMemorySearchTool } = toolModule;
+  const { createRemoteSnippetStore } = remoteStoreModule;
+  const { createMem0Client } = mem0ClientModule;
+  const { createGraphitiClient } = graphitiClientModule;
+  const { createMemorySearchTool } = localMemoryToolModule;
 
   const cfg = loadConfig();
   const pluginEntry =
@@ -1098,3 +1100,4 @@ const main = async (): Promise<void> => {
 };
 
 await main();
+process.exit(typeof process.exitCode === "number" ? process.exitCode : 0);

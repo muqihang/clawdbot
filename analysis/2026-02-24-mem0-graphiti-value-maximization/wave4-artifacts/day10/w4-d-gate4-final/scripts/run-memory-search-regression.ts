@@ -1,7 +1,8 @@
 import { spawn } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
+import { createRequire } from "node:module";
 import path from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 
 type RegressionQuery = {
   id: string;
@@ -30,6 +31,7 @@ type OneQueryRunRecord = {
   query: string;
   run_id: string;
   l1_cli: CliRunRecord;
+  l1_local_tool: ToolRunRecord;
   l2_bridge: {
     read_mode_local: ToolRunRecord;
     read_mode_primary: ToolRunRecord;
@@ -42,6 +44,15 @@ type SummaryRow = {
   expected_non_empty: boolean;
 
   l1_cli: {
+    results_count: number;
+    top1_path: string | null;
+    provider: string | null;
+    model: string | null;
+    disabled: boolean;
+    unavailable: boolean;
+  };
+
+  l1_local_tool: {
     results_count: number;
     top1_path: string | null;
     provider: string | null;
@@ -242,48 +253,58 @@ const main = async (): Promise<void> => {
 
   // --- env snapshot (redacted)
   const repoRoot = process.cwd();
-  const configModule = await import(pathToFileURL(path.join(repoRoot, "src/config/io.ts")).href);
-  const flagsModule = await import(
-    pathToFileURL(path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/config/flags.ts"))
-      .href
-  );
-  const toolModule = await import(
-    pathToFileURL(
-      path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts"),
-    ).href
-  );
-  const remoteStoreModule = await import(
-    pathToFileURL(
-      path.join(
-        repoRoot,
-        "extensions/memory-mem0-graphiti-bridge/src/bridge/remote-snippet-store.ts",
-      ),
-    ).href
-  );
-  const mem0ClientModule = await import(
-    pathToFileURL(
-      path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/mem0-client.ts"),
-    ).href
-  );
-  const graphitiClientModule = await import(
-    pathToFileURL(
-      path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/graphiti-client.ts"),
-    ).href
-  );
-  const localMemoryToolModule = await import(
-    pathToFileURL(path.join(repoRoot, "src/agents/tools/memory-tool.ts")).href
-  );
+  const require = createRequire(import.meta.url);
+  const jitiFactory = require("jiti") as (
+    filename: string,
+    opts?: { interopDefault?: boolean; esmResolve?: boolean },
+  ) => (id: string) => unknown;
+  const jiti = jitiFactory(filePathFromUrl(import.meta.url), {
+    interopDefault: true,
+    esmResolve: true,
+  });
 
-  const loadConfig = configModule.loadConfig as () => unknown;
-  const cfg = loadConfig();
+  const configModule = jiti(path.join(repoRoot, "src/config/io.ts")) as {
+    loadConfig: () => unknown;
+  };
+  const flagsModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/config/flags.ts"),
+  ) as { resolveBridgeFlags: (raw: unknown) => unknown };
+  const toolModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts"),
+  ) as {
+    createBridgeMemorySearchTool: (deps: unknown) => {
+      execute: (toolCallId: string, params: unknown) => Promise<{ details?: unknown }>;
+    };
+  };
+  const remoteStoreModule = jiti(
+    path.join(
+      repoRoot,
+      "extensions/memory-mem0-graphiti-bridge/src/bridge/remote-snippet-store.ts",
+    ),
+  ) as {
+    createRemoteSnippetStore: (opts: { ttlMs: number }) => unknown;
+  };
+  const mem0ClientModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/mem0-client.ts"),
+  ) as { createMem0Client: (opts: unknown) => unknown };
+  const graphitiClientModule = jiti(
+    path.join(repoRoot, "extensions/memory-mem0-graphiti-bridge/src/client/graphiti-client.ts"),
+  ) as { createGraphitiClient: (opts: unknown) => unknown };
+  const localMemoryToolModule = jiti(path.join(repoRoot, "src/agents/tools/memory-tool.ts")) as {
+    createMemorySearchTool: (opts: {
+      config?: unknown;
+      agentSessionKey?: string;
+    }) => { execute: (toolCallId: string, params: unknown) => Promise<unknown> } | null;
+  };
+
+  const cfg = configModule.loadConfig();
   const pluginEntry =
     toRecord(cfg).plugins && toRecord(toRecord(cfg).plugins).entries
       ? toRecord(toRecord(toRecord(cfg).plugins).entries)["memory-mem0-graphiti-bridge"]
       : null;
   const pluginConfig = toRecord(pluginEntry).config ?? {};
 
-  const resolveBridgeFlags = flagsModule.resolveBridgeFlags as (raw: unknown) => unknown;
-  const baseFlags = resolveBridgeFlags(pluginConfig);
+  const baseFlags = flagsModule.resolveBridgeFlags(pluginConfig);
 
   const envSnapshot = {
     generated_at: new Date().toISOString(),
@@ -298,24 +319,11 @@ const main = async (): Promise<void> => {
   await writeJson(path.join(outDir, "queries.json"), QUERIES);
 
   // --- build bridge tools (local + primary)
-  const createRemoteSnippetStore = remoteStoreModule.createRemoteSnippetStore as (opts: {
-    ttlMs: number;
-  }) => unknown;
-  const createBridgeMemorySearchTool = toolModule.createBridgeMemorySearchTool as (
-    deps: unknown,
-  ) => {
-    execute: (toolCallId: string, params: unknown) => Promise<{ details?: unknown }>;
-  };
-
-  const createMem0Client = mem0ClientModule.createMem0Client as (opts: unknown) => unknown;
-  const createGraphitiClient = graphitiClientModule.createGraphitiClient as (
-    opts: unknown,
-  ) => unknown;
-
-  const createMemorySearchTool = localMemoryToolModule.createMemorySearchTool as (opts: {
-    config?: unknown;
-    agentSessionKey?: string;
-  }) => { execute: (toolCallId: string, params: unknown) => Promise<unknown> } | null;
+  const { createRemoteSnippetStore } = remoteStoreModule;
+  const { createBridgeMemorySearchTool } = toolModule;
+  const { createMem0Client } = mem0ClientModule;
+  const { createGraphitiClient } = graphitiClientModule;
+  const { createMemorySearchTool } = localMemoryToolModule;
 
   const sessionKey = "w4-d-gate4-memory-search-regression:direct";
 
@@ -340,7 +348,7 @@ const main = async (): Promise<void> => {
       read_mode: readMode,
       cutover_percent: 100,
     };
-    const resolved = resolveBridgeFlags(flagsOverride);
+    const resolved = flagsModule.resolveBridgeFlags(flagsOverride);
 
     const resolvedRecord = toRecord(resolved);
     const mem0 = createMem0Client({
@@ -381,6 +389,7 @@ const main = async (): Promise<void> => {
       const slug = `${q.id}.${slugify(q.query)}`;
 
       const cli = await runCliMemorySearch(q.query);
+      const localToolRun = await safeRunTool(localTool, q.query);
       const bridgeLocalRun = await safeRunTool(bridgeLocal, q.query);
       const bridgePrimaryRun = await safeRunTool(bridgePrimary, q.query);
 
@@ -389,6 +398,7 @@ const main = async (): Promise<void> => {
         query: q.query,
         run_id: runId,
         l1_cli: cli,
+        l1_local_tool: localToolRun,
         l2_bridge: {
           read_mode_local: bridgeLocalRun,
           read_mode_primary: bridgePrimaryRun,
@@ -407,11 +417,13 @@ const main = async (): Promise<void> => {
   for (const q of QUERIES) {
     const last = allRunRecords.findLast((r) => r.query_id === q.id && r.run_id === lastRunId);
     const cliPayload = last?.l1_cli.parsed_json ?? null;
+    const localToolPayload = last?.l1_local_tool.parsed ?? null;
     const bridgeLocalPayload = last?.l2_bridge.read_mode_local.parsed ?? null;
     const bridgePrimaryPayload = last?.l2_bridge.read_mode_primary.parsed ?? null;
 
     // Both tools return an outer envelope; we want `.details` when present.
     const cliDetails = cliPayload;
+    const localToolDetails = toRecord(localToolPayload).details ?? localToolPayload;
     const bridgeLocalDetails = toRecord(bridgeLocalPayload).details ?? bridgeLocalPayload;
     const bridgePrimaryDetails = toRecord(bridgePrimaryPayload).details ?? bridgePrimaryPayload;
 
@@ -426,6 +438,14 @@ const main = async (): Promise<void> => {
         model: readModel(cliDetails),
         disabled: readDisabled(cliDetails),
         unavailable: readUnavailable(cliDetails),
+      },
+      l1_local_tool: {
+        results_count: readResultsCount(localToolDetails),
+        top1_path: readTop1Path(localToolDetails),
+        provider: readProvider(localToolDetails),
+        model: readModel(localToolDetails),
+        disabled: readDisabled(localToolDetails),
+        unavailable: readUnavailable(localToolDetails),
       },
       l2_bridge_local: {
         results_count: readResultsCount(bridgeLocalDetails),
@@ -456,6 +476,7 @@ const main = async (): Promise<void> => {
   const rowById = new Map(rows.map((row) => [row.query_id, row]));
 
   const blockers: string[] = [];
+  const diagnostics: string[] = [];
   const missing = (id: string): SummaryRow => {
     const row = rowById.get(id);
     if (!row) {
@@ -466,11 +487,16 @@ const main = async (): Promise<void> => {
 
   for (const id of ["control-01", "control-02"]) {
     const row = missing(id);
-    if (row.l1_cli.results_count <= 0) {
-      blockers.push(`${id}: control query empty in L1 (CLI)`);
+    if (row.l1_local_tool.results_count <= 0) {
+      blockers.push(`${id}: control query empty in L1 (local tool)`);
     }
     if (row.l2_bridge_primary.results_count <= 0) {
       blockers.push(`${id}: control query empty in L2 (bridge primary)`);
+    }
+    if (row.l1_cli.results_count <= 0) {
+      diagnostics.push(
+        `${id}: control query empty in CLI (expected if qmd scope denies session=<none>)`,
+      );
     }
   }
 
@@ -487,8 +513,8 @@ const main = async (): Promise<void> => {
     const hyphenRow = missing(pair.hyphenId);
     const spaceRow = missing(pair.spaceId);
 
-    const l1Hyphen = hyphenRow.l1_cli.results_count;
-    const l1Space = spaceRow.l1_cli.results_count;
+    const l1Hyphen = hyphenRow.l1_local_tool.results_count;
+    const l1Space = spaceRow.l1_local_tool.results_count;
     const l2Hyphen = hyphenRow.l2_bridge_primary.results_count;
     const l2Space = spaceRow.l2_bridge_primary.results_count;
 
@@ -527,6 +553,9 @@ const main = async (): Promise<void> => {
     "## Blockers",
     ...(blockers.length > 0 ? blockers.map((b) => `- ${b}`) : ["- (none)"]),
     "",
+    "## Diagnostics",
+    ...(diagnostics.length > 0 ? diagnostics.map((d) => `- ${d}`) : ["- (none)"]),
+    "",
     "## Evidence",
     `- summary: ${path.join(outDir, "summary.json")}`,
     `- runs: ${path.join(outDir, "runs")}`,
@@ -543,3 +572,4 @@ const main = async (): Promise<void> => {
 };
 
 await main();
+process.exit(typeof process.exitCode === "number" ? process.exitCode : 0);
