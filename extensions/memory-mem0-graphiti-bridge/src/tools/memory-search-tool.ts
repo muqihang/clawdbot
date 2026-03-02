@@ -7,6 +7,7 @@ import type {
   RemoteSearchOptions,
 } from "../client/mem0-client.js";
 import type { BridgeFlags, BridgeRoute } from "../config/flags.js";
+import { normalizeAndRankCandidates, type RankedCandidate } from "../fusion/normalize.js";
 import type { ShadowReporter } from "../metrics/shadow-reporter.js";
 import { contextAssemble } from "../p3/context-assemble.js";
 import { parseOntologyV1MarkerFromSnippet } from "../p3/ontology-v1.js";
@@ -946,6 +947,18 @@ const readQuery = (params: unknown): string | null => {
   return normalized.length > 0 ? normalized : null;
 };
 
+const readMaxResults = (params: unknown): number => {
+  const record = asRecord(params);
+  const raw = asNumber(record?.maxResults ?? record?.max_results);
+  if (typeof raw !== "number" || !Number.isFinite(raw)) {
+    return 5;
+  }
+  if (raw <= 1) {
+    return 1;
+  }
+  return Math.min(50, Math.floor(raw));
+};
+
 const readFilters = (params: unknown): Record<string, unknown> | undefined => {
   const record = asRecord(params);
   if (!record) {
@@ -1240,6 +1253,16 @@ type FusionShadowTrace = {
   candidate_route: BridgeRoute;
   mem0: FusionShadowAttemptTrace;
   graphiti: FusionShadowAttemptTrace;
+  normalized_topk: Array<{
+    source: BridgeRoute;
+    remote_id: string;
+    path: string;
+    score: number;
+    score_source: string;
+  }>;
+  tie: Record<string, unknown>;
+  dedupe: Record<string, unknown>;
+  score_source_counts: Record<string, unknown>;
 };
 
 const classifyErrorKind = (error: unknown): string => {
@@ -1277,6 +1300,16 @@ const toFusionShadowAttemptTrace = (
     hit_count: attempt.hits.length,
     latency_ms: attempt.latencyMs,
     error_kind: attempt.error ? classifyErrorKind(attempt.error) : null,
+  };
+};
+
+const toNormalizedCandidateTrace = (candidate: RankedCandidate): Record<string, unknown> => {
+  return {
+    source: candidate.source,
+    remote_id: candidate.remoteId,
+    path: candidate.path,
+    score: candidate.score,
+    score_source: candidate.score_source,
   };
 };
 
@@ -1812,16 +1845,53 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           : [await shadowAttemptPromise, null];
 
         const fusionShadowTrace: FusionShadowTrace | undefined = fusionShadowEnabled
-          ? {
-              enabled: true,
-              candidate_route: readPlan.candidateRoute,
-              mem0: toFusionShadowAttemptTrace(
-                readPlan.candidateRoute === "mem0" ? shadowAttempt : fusionOtherAttempt,
-              ),
-              graphiti: toFusionShadowAttemptTrace(
-                readPlan.candidateRoute === "graphiti" ? shadowAttempt : fusionOtherAttempt,
-              ),
-            }
+          ? (() => {
+              const requestedTopK = readMaxResults(params);
+              const combinedCandidates = [
+                ...shadowAttempt.hits,
+                ...(fusionOtherAttempt?.hits ?? []),
+              ].map((hit) => ({
+                source: hit.source,
+                remoteId: hit.remoteId,
+                path: hit.path,
+                score: hit.score,
+                score_source: hit.score_source,
+              }));
+
+              const normalized = normalizeAndRankCandidates({
+                candidates: combinedCandidates,
+                topK: requestedTopK,
+              });
+
+              const collisions = normalized.dedupe.collisions.map((collision) => ({
+                normalized_key: collision.normalized_key,
+                kept: toNormalizedCandidateTrace(collision.kept),
+                dropped: collision.dropped.map((candidate) =>
+                  toNormalizedCandidateTrace(candidate),
+                ),
+              }));
+
+              return {
+                enabled: true,
+                candidate_route: readPlan.candidateRoute,
+                mem0: toFusionShadowAttemptTrace(
+                  readPlan.candidateRoute === "mem0" ? shadowAttempt : fusionOtherAttempt,
+                ),
+                graphiti: toFusionShadowAttemptTrace(
+                  readPlan.candidateRoute === "graphiti" ? shadowAttempt : fusionOtherAttempt,
+                ),
+                normalized_topk: normalized.topk.map((candidate) =>
+                  toNormalizedCandidateTrace(candidate),
+                ),
+                tie: normalized.tie,
+                dedupe: {
+                  input_count: normalized.dedupe.input_count,
+                  unique_count: normalized.dedupe.unique_count,
+                  collisions,
+                },
+                score_source_counts: normalized.score_source_counts,
+              };
+            })()
           : undefined;
 
         const shadowReranked = precisionPattern

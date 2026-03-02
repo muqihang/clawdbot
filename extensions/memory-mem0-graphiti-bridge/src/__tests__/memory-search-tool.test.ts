@@ -368,6 +368,130 @@ describe("memory search bridge tool", () => {
     expect(Number(graphitiTrace.latency_ms)).toBeGreaterThanOrEqual(0);
   });
 
+  it("adds deterministic normalized_topk trace in fusion shadow mode", async () => {
+    const localTool = createLocalTool();
+    const shadowReporter = {
+      record: vi.fn(),
+    };
+
+    let mem0Flip = false;
+    let graphitiFlip = false;
+
+    const mem0Search = vi.fn(async (): Promise<BridgeSearchHit[]> => {
+      mem0Flip = !mem0Flip;
+      const first: BridgeSearchHit = {
+        path: "bridge/mem0/a-hit",
+        startLine: 1,
+        endLine: 1,
+        score: 0,
+        snippet: "mem0 a-hit",
+        source: "mem0",
+        remoteId: "a-hit",
+      };
+      const second: BridgeSearchHit = {
+        path: "bridge/mem0/shared",
+        startLine: 1,
+        endLine: 1,
+        score: 0,
+        snippet: "mem0 shared",
+        source: "mem0",
+        remoteId: "shared",
+      };
+      return mem0Flip ? [first, second] : [second, first];
+    });
+
+    const graphitiSearch = vi.fn(async (): Promise<BridgeSearchHit[]> => {
+      graphitiFlip = !graphitiFlip;
+      const first: BridgeSearchHit = {
+        path: "bridge/graphiti/shared",
+        startLine: 1,
+        endLine: 1,
+        score: 0,
+        snippet: "graphiti shared",
+        source: "graphiti",
+        remoteId: "SHARED",
+      };
+      const second: BridgeSearchHit = {
+        path: "bridge/graphiti/z-hit",
+        startLine: 1,
+        endLine: 1,
+        score: 0,
+        snippet: "graphiti z-hit",
+        source: "graphiti",
+        remoteId: "z-hit",
+      };
+      return graphitiFlip ? [first, second] : [second, first];
+    });
+
+    const flags = createFlags({
+      read_mode: "shadow",
+      read: {
+        alias_normalization: false,
+        fusion: {
+          shadow_enabled: true,
+        },
+      },
+    });
+
+    const tool = createBridgeMemorySearchTool({
+      flags,
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter,
+      sessionKey: "session-1",
+    });
+
+    const first = await tool.execute("1", { query: "when did we migrate providers" });
+    const second = await tool.execute("2", { query: "when did we migrate providers" });
+
+    expect(mem0Search).toHaveBeenCalledTimes(2);
+    expect(graphitiSearch).toHaveBeenCalledTimes(2);
+
+    const firstDetails = first.details as Record<string, unknown>;
+    const secondDetails = second.details as Record<string, unknown>;
+
+    expect(firstDetails.source).toBe("local");
+    expect(secondDetails.source).toBe("local");
+
+    const firstResults = firstDetails.results as Array<Record<string, unknown>>;
+    const secondResults = secondDetails.results as Array<Record<string, unknown>>;
+    expect(firstResults[0]?.path).toBe("MEMORY.md");
+    expect(secondResults[0]?.path).toBe("MEMORY.md");
+
+    const firstFusionShadow = firstDetails.fusion_shadow as Record<string, unknown>;
+    const secondFusionShadow = secondDetails.fusion_shadow as Record<string, unknown>;
+
+    const firstTopk = firstFusionShadow.normalized_topk as Array<Record<string, unknown>>;
+    const secondTopk = secondFusionShadow.normalized_topk as Array<Record<string, unknown>>;
+
+    expect(firstTopk[0]).toEqual(
+      expect.objectContaining({
+        source: "mem0",
+        remote_id: "a-hit",
+        path: "bridge/mem0/a-hit",
+        score: 0,
+      }),
+    );
+    expect(secondTopk[0]).toEqual(firstTopk[0]);
+
+    expect(firstFusionShadow.tie).toEqual(
+      expect.objectContaining({
+        all_zero: true,
+        all_same_score: true,
+      }),
+    );
+  });
+
   it("sends mem0 filters+criteria during shadow compare without impacting user route", async () => {
     const localTool = createLocalTool();
     const shadowReporter = {

@@ -5,6 +5,7 @@ export type BridgeSearchHit = {
   startLine: number;
   endLine: number;
   score: number;
+  score_source?: "score" | "rank_score" | "missing";
   snippet: string;
   source: BridgeRemoteSource;
   remoteId: string;
@@ -280,11 +281,19 @@ const parseSearchHit = (source: BridgeRemoteSource, item: unknown): BridgeSearch
     normalizeString(record.structure_type) ??
     normalizeString(record.type);
 
+  const score_source: BridgeSearchHit["score_source"] =
+    record.score !== undefined
+      ? "score"
+      : record.rank_score !== undefined
+        ? "rank_score"
+        : "missing";
+
   return {
     path: toBridgePath(source, id),
     startLine: 1,
     endLine: 1,
     score: parseScore(record.score ?? record.rank_score),
+    score_source,
     snippet,
     source,
     remoteId: id,
