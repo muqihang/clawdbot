@@ -26,7 +26,9 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.read.graphiti_temporal_filters.sample_percent).toBe(0);
     expect(flags.read.graphiti_ontology_readback.enabled).toBe(false);
     expect(flags.read.graphiti_ontology_readback.sample_percent).toBe(0);
+    expect(flags.read.fusion.enabled).toBe(false);
     expect(flags.read.fusion.shadow_enabled).toBe(false);
+    expect(flags.read.fusion.bucket_policy).toBe("conservative");
     expect(flags.p3.graphiti_write_path).toBe("/messages");
     expect(flags.p3.graphiti_ontology_v1.enabled).toBe(false);
     expect(flags.p3.graphiti_ontology_v1.sample_percent).toBe(0);
@@ -203,11 +205,13 @@ describe("mem0-graphiti bridge flags", () => {
     expect(flags.p3.graphiti_ontology_v1.sample_percent).toBe(100);
   });
 
-  it("parses fusion shadow flags with snake_case and camelCase keys", () => {
+  it("parses fusion flags with snake_case and camelCase keys", () => {
     const snakeCase = resolveBridgeFlags({
       read: {
         fusion: {
+          enabled: true,
           shadow_enabled: true,
+          bucket_policy: "balanced",
         },
       },
     });
@@ -215,12 +219,18 @@ describe("mem0-graphiti bridge flags", () => {
     const camelCase = resolveBridgeFlags({
       read: {
         fusion: {
+          enabled: true,
           shadowEnabled: true,
+          bucketPolicy: "balanced",
         },
       },
     });
 
+    expect(snakeCase.read.fusion.enabled).toBe(true);
+    expect(camelCase.read.fusion.enabled).toBe(true);
     expect(snakeCase.read.fusion.shadow_enabled).toBe(true);
     expect(camelCase.read.fusion.shadow_enabled).toBe(true);
+    expect(snakeCase.read.fusion.bucket_policy).toBe("balanced");
+    expect(camelCase.read.fusion.bucket_policy).toBe("balanced");
   });
 });

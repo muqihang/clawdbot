@@ -6,8 +6,17 @@ import type {
   RemoteMemoryClient,
   RemoteSearchOptions,
 } from "../client/mem0-client.js";
-import type { BridgeFlags, BridgeRoute } from "../config/flags.js";
-import { normalizeAndRankCandidates, type RankedCandidate } from "../fusion/normalize.js";
+import type {
+  BridgeFlags,
+  BridgeFusionBucket,
+  BridgeFusionBucketPolicy,
+  BridgeRoute,
+} from "../config/flags.js";
+import {
+  normalizeAndRankCandidates,
+  type NormalizationCandidate,
+  type RankedCandidate,
+} from "../fusion/normalize.js";
 import type { ShadowReporter } from "../metrics/shadow-reporter.js";
 import { contextAssemble } from "../p3/context-assemble.js";
 import { parseOntologyV1MarkerFromSnippet } from "../p3/ontology-v1.js";
@@ -1256,8 +1265,39 @@ type NormalizedCandidateTrace = {
   score_source: string;
 };
 
+type FusionSourcePolicy = {
+  quota: number;
+  weight: number;
+};
+
+type FusionBucketPolicy = {
+  name: BridgeFusionBucketPolicy;
+  bucket: BridgeFusionBucket;
+  strategy: "quota_then_weight";
+  local: FusionSourcePolicy;
+  mem0: FusionSourcePolicy;
+  graphiti: FusionSourcePolicy;
+};
+
+type FusionSourceBreakdownTrace = {
+  hit_count: number;
+  quota: number;
+  after_quota_count: number;
+};
+
+type FusionCandidateBreakdownTrace = {
+  local: FusionSourceBreakdownTrace;
+  mem0: FusionSourceBreakdownTrace;
+  graphiti: FusionSourceBreakdownTrace;
+  total_input_count: number;
+  total_after_quota_count: number;
+};
+
 type FusionShadowTrace = {
   enabled: boolean;
+  bucket: BridgeFusionBucket;
+  bucket_policy: FusionBucketPolicy;
+  candidate_breakdown: FusionCandidateBreakdownTrace;
   candidate_route: BridgeRoute;
   mem0: FusionShadowAttemptTrace;
   graphiti: FusionShadowAttemptTrace;
@@ -1312,6 +1352,256 @@ const toNormalizedCandidateTrace = (candidate: RankedCandidate): NormalizedCandi
     path: candidate.path,
     score: candidate.score,
     score_source: candidate.score_source,
+  };
+};
+
+const clampQuota = (value: number): number => {
+  if (!Number.isFinite(value)) {
+    return 0;
+  }
+  if (value <= 0) {
+    return 0;
+  }
+  return Math.min(10, Math.floor(value));
+};
+
+const FUSION_POLICY_PRESETS: Record<
+  BridgeFusionBucketPolicy,
+  Record<
+    BridgeFusionBucket,
+    {
+      local: FusionSourcePolicy;
+      mem0: FusionSourcePolicy;
+      graphiti: FusionSourcePolicy;
+    }
+  >
+> = {
+  conservative: {
+    exact_id: {
+      local: { quota: 5, weight: 1.3 },
+      mem0: { quota: 1, weight: 0.8 },
+      graphiti: { quota: 1, weight: 0.8 },
+    },
+    decision_reason: {
+      local: { quota: 2, weight: 1 },
+      mem0: { quota: 3, weight: 1.05 },
+      graphiti: { quota: 3, weight: 1.05 },
+    },
+    temporal_relation: {
+      local: { quota: 1, weight: 0.9 },
+      mem0: { quota: 2, weight: 1 },
+      graphiti: { quota: 4, weight: 1.1 },
+    },
+    project_context: {
+      local: { quota: 2, weight: 1.05 },
+      mem0: { quota: 4, weight: 1.05 },
+      graphiti: { quota: 2, weight: 0.95 },
+    },
+  },
+  balanced: {
+    exact_id: {
+      local: { quota: 4, weight: 1.2 },
+      mem0: { quota: 2, weight: 1 },
+      graphiti: { quota: 2, weight: 1 },
+    },
+    decision_reason: {
+      local: { quota: 2, weight: 1 },
+      mem0: { quota: 3, weight: 1.1 },
+      graphiti: { quota: 3, weight: 1.1 },
+    },
+    temporal_relation: {
+      local: { quota: 1, weight: 1 },
+      mem0: { quota: 2, weight: 1.05 },
+      graphiti: { quota: 3, weight: 1.05 },
+    },
+    project_context: {
+      local: { quota: 1, weight: 1 },
+      mem0: { quota: 3, weight: 1.1 },
+      graphiti: { quota: 3, weight: 1.1 },
+    },
+  },
+  mem0_focus: {
+    exact_id: {
+      local: { quota: 4, weight: 1.2 },
+      mem0: { quota: 3, weight: 1.15 },
+      graphiti: { quota: 1, weight: 0.95 },
+    },
+    decision_reason: {
+      local: { quota: 1, weight: 1 },
+      mem0: { quota: 4, weight: 1.2 },
+      graphiti: { quota: 2, weight: 1 },
+    },
+    temporal_relation: {
+      local: { quota: 1, weight: 0.95 },
+      mem0: { quota: 3, weight: 1.2 },
+      graphiti: { quota: 2, weight: 1 },
+    },
+    project_context: {
+      local: { quota: 1, weight: 1 },
+      mem0: { quota: 4, weight: 1.2 },
+      graphiti: { quota: 2, weight: 0.95 },
+    },
+  },
+  graphiti_focus: {
+    exact_id: {
+      local: { quota: 4, weight: 1.2 },
+      mem0: { quota: 1, weight: 0.95 },
+      graphiti: { quota: 3, weight: 1.15 },
+    },
+    decision_reason: {
+      local: { quota: 1, weight: 1 },
+      mem0: { quota: 2, weight: 1 },
+      graphiti: { quota: 4, weight: 1.2 },
+    },
+    temporal_relation: {
+      local: { quota: 1, weight: 0.95 },
+      mem0: { quota: 2, weight: 1 },
+      graphiti: { quota: 4, weight: 1.2 },
+    },
+    project_context: {
+      local: { quota: 1, weight: 1 },
+      mem0: { quota: 2, weight: 0.95 },
+      graphiti: { quota: 4, weight: 1.2 },
+    },
+  },
+};
+
+const toFusionBucket = (queryBucket: QueryBucket): BridgeFusionBucket => {
+  if (queryBucket === "exact_id") {
+    return "exact_id";
+  }
+  if (queryBucket === "decision_reason") {
+    return "decision_reason";
+  }
+  if (queryBucket === "temporal_relation") {
+    return "temporal_relation";
+  }
+  return "project_context";
+};
+
+const resolveFusionBucketPolicy = (params: {
+  name: BridgeFusionBucketPolicy;
+  bucket: BridgeFusionBucket;
+}): FusionBucketPolicy => {
+  const preset = FUSION_POLICY_PRESETS[params.name][params.bucket];
+  return {
+    name: params.name,
+    bucket: params.bucket,
+    strategy: "quota_then_weight",
+    local: {
+      quota: clampQuota(preset.local.quota),
+      weight: preset.local.weight,
+    },
+    mem0: {
+      quota: clampQuota(preset.mem0.quota),
+      weight: preset.mem0.weight,
+    },
+    graphiti: {
+      quota: clampQuota(preset.graphiti.quota),
+      weight: preset.graphiti.weight,
+    },
+  };
+};
+
+const takeByQuota = <T>(items: readonly T[], quota: number): T[] => {
+  if (quota <= 0) {
+    return [];
+  }
+  return items.slice(0, quota);
+};
+
+const asFiniteScore = (value: unknown): number => {
+  const parsed = asNumber(value);
+  return typeof parsed === "number" ? parsed : 0;
+};
+
+const toLocalFusionCandidates = (
+  localResults: unknown[],
+  policy: FusionBucketPolicy,
+): NormalizationCandidate[] => {
+  const ranked: NormalizationCandidate[] = [];
+  for (const [index, rawResult] of localResults.entries()) {
+    const record = asRecord(rawResult);
+    if (!record) {
+      continue;
+    }
+
+    const path = asString(record.path) ?? "";
+    if (!path) {
+      continue;
+    }
+
+    const startLine = asFiniteScore(record.startLine);
+    const endLine = asFiniteScore(record.endLine);
+    ranked.push({
+      source: "local",
+      remoteId: `local:${index}:${path}:${startLine}:${endLine}`,
+      path,
+      score: asFiniteScore(record.score) * policy.local.weight,
+      score_source: "score",
+    });
+  }
+
+  return takeByQuota(ranked, policy.local.quota);
+};
+
+const toRemoteFusionCandidates = (params: {
+  hits: BridgeSearchHit[];
+  source: "mem0" | "graphiti";
+  policy: FusionSourcePolicy;
+}): NormalizationCandidate[] => {
+  return takeByQuota(params.hits, params.policy.quota).map((hit) => ({
+    source: params.source,
+    remoteId: hit.remoteId,
+    path: hit.path,
+    score: hit.score * params.policy.weight,
+    score_source: hit.score_source ?? "missing",
+  }));
+};
+
+const buildFusionCandidates = (params: {
+  localResults: unknown[];
+  mem0Hits: BridgeSearchHit[];
+  graphitiHits: BridgeSearchHit[];
+  policy: FusionBucketPolicy;
+}): { candidates: NormalizationCandidate[]; breakdown: FusionCandidateBreakdownTrace } => {
+  const localCandidates = toLocalFusionCandidates(params.localResults, params.policy);
+  const mem0Candidates = toRemoteFusionCandidates({
+    hits: params.mem0Hits,
+    source: "mem0",
+    policy: params.policy.mem0,
+  });
+  const graphitiCandidates = toRemoteFusionCandidates({
+    hits: params.graphitiHits,
+    source: "graphiti",
+    policy: params.policy.graphiti,
+  });
+
+  const breakdown: FusionCandidateBreakdownTrace = {
+    local: {
+      hit_count: params.localResults.length,
+      quota: params.policy.local.quota,
+      after_quota_count: localCandidates.length,
+    },
+    mem0: {
+      hit_count: params.mem0Hits.length,
+      quota: params.policy.mem0.quota,
+      after_quota_count: mem0Candidates.length,
+    },
+    graphiti: {
+      hit_count: params.graphitiHits.length,
+      quota: params.policy.graphiti.quota,
+      after_quota_count: graphitiCandidates.length,
+    },
+    total_input_count:
+      params.localResults.length + params.mem0Hits.length + params.graphitiHits.length,
+    total_after_quota_count:
+      localCandidates.length + mem0Candidates.length + graphitiCandidates.length,
+  };
+
+  return {
+    candidates: [...localCandidates, ...mem0Candidates, ...graphitiCandidates],
+    breakdown,
   };
 };
 
@@ -1454,7 +1744,7 @@ const mapBridgeHitsToMemoryResults = (hits: BridgeSearchHit[]): Array<Record<str
     endLine: hit.endLine,
     score: hit.score,
     snippet: hit.snippet,
-    source: "memory",
+    source: hit.source,
     structure: hit.structure,
   }));
 };
@@ -1849,19 +2139,28 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         const fusionShadowTrace: FusionShadowTrace | undefined = fusionShadowEnabled
           ? (() => {
               const requestedTopK = readMaxResults(params);
-              const combinedCandidates = [
-                ...shadowAttempt.hits,
-                ...(fusionOtherAttempt?.hits ?? []),
-              ].map((hit) => ({
-                source: hit.source,
-                remoteId: hit.remoteId,
-                path: hit.path,
-                score: hit.score,
-                score_source: hit.score_source,
-              }));
+              const fusionBucket = toFusionBucket(readPlan.queryBucket);
+              const fusionPolicy = resolveFusionBucketPolicy({
+                name: deps.flags.read.fusion.bucket_policy,
+                bucket: fusionBucket,
+              });
+              const mem0Hits =
+                readPlan.candidateRoute === "mem0"
+                  ? shadowAttempt.hits
+                  : (fusionOtherAttempt?.hits ?? []);
+              const graphitiHits =
+                readPlan.candidateRoute === "graphiti"
+                  ? shadowAttempt.hits
+                  : (fusionOtherAttempt?.hits ?? []);
+              const constrained = buildFusionCandidates({
+                localResults: [],
+                mem0Hits,
+                graphitiHits,
+                policy: fusionPolicy,
+              });
 
               const normalized = normalizeAndRankCandidates({
-                candidates: combinedCandidates,
+                candidates: constrained.candidates,
                 topK: requestedTopK,
               });
 
@@ -1875,6 +2174,9 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
 
               return {
                 enabled: true,
+                bucket: fusionBucket,
+                bucket_policy: fusionPolicy,
+                candidate_breakdown: constrained.breakdown,
                 candidate_route: readPlan.candidateRoute,
                 mem0: toFusionShadowAttemptTrace(
                   readPlan.candidateRoute === "mem0" ? shadowAttempt : fusionOtherAttempt,

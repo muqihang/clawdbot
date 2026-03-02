@@ -2,6 +2,16 @@ export type BridgeRoute = "local" | "mem0" | "graphiti";
 export type BridgeRemoteRoute = "mem0" | "graphiti";
 export type BridgeReadMode = "local" | "shadow" | "primary" | "remote";
 export type BridgeWriteMode = "off" | "propose_only" | "propose_commit";
+export type BridgeFusionBucket =
+  | "exact_id"
+  | "decision_reason"
+  | "temporal_relation"
+  | "project_context";
+export type BridgeFusionBucketPolicy =
+  | "conservative"
+  | "balanced"
+  | "mem0_focus"
+  | "graphiti_focus";
 
 export type BridgeRoutingFlags = {
   default_route: BridgeRoute;
@@ -28,7 +38,9 @@ export type BridgeOutboxFlags = {
 export type BridgeReadFlags = {
   alias_normalization: boolean;
   fusion: {
+    enabled: boolean;
     shadow_enabled: boolean;
+    bucket_policy: BridgeFusionBucketPolicy;
   };
   precision_guard: {
     enabled: boolean;
@@ -111,6 +123,12 @@ const ROUTES: BridgeRoute[] = ["local", "mem0", "graphiti"];
 const REMOTE_ROUTES: BridgeRemoteRoute[] = ["mem0", "graphiti"];
 const READ_MODES: BridgeReadMode[] = ["local", "shadow", "primary", "remote"];
 const WRITE_MODES: BridgeWriteMode[] = ["off", "propose_only", "propose_commit"];
+const FUSION_BUCKET_POLICIES: BridgeFusionBucketPolicy[] = [
+  "conservative",
+  "balanced",
+  "mem0_focus",
+  "graphiti_focus",
+];
 const MESSAGE_ENVELOPE_ROLES: BridgeMessageEnvelopeRole[] = ["user", "assistant", "system", "tool"];
 
 const DEFAULT_TIMEOUT_MS = 3000;
@@ -141,7 +159,9 @@ const DEFAULT_FLAGS: BridgeFlags = {
   read: {
     alias_normalization: true,
     fusion: {
+      enabled: false,
       shadow_enabled: false,
+      bucket_policy: "conservative",
     },
     precision_guard: {
       enabled: false,
@@ -502,9 +522,18 @@ export function resolveBridgeFlags(value: unknown): BridgeFlags {
         DEFAULT_FLAGS.read.alias_normalization,
       ),
       fusion: {
+        enabled: readBoolean(
+          readRawValue(fusionRaw, ["enabled"]),
+          DEFAULT_FLAGS.read.fusion.enabled,
+        ),
         shadow_enabled: readBoolean(
           readRawValue(fusionRaw, ["shadow_enabled", "shadowEnabled"]),
           DEFAULT_FLAGS.read.fusion.shadow_enabled,
+        ),
+        bucket_policy: readEnum(
+          readRawValue(fusionRaw, ["bucket_policy", "bucketPolicy"]),
+          FUSION_BUCKET_POLICIES,
+          DEFAULT_FLAGS.read.fusion.bucket_policy,
         ),
       },
       precision_guard: {

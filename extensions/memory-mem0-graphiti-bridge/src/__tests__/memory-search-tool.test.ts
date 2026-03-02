@@ -52,7 +52,9 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     read: {
       alias_normalization: true,
       fusion: {
+        enabled: false,
         shadow_enabled: false,
+        bucket_policy: "conservative",
       },
       precision_guard: {
         enabled: false,
@@ -104,6 +106,10 @@ const createFlags = (overrides: Partial<BridgeFlags> = {}): BridgeFlags => {
     read: {
       ...base.read,
       ...(overrides.read ?? {}),
+      fusion: {
+        ...base.read.fusion,
+        ...(overrides.read?.fusion ?? {}),
+      },
     },
   };
 };
@@ -350,7 +356,29 @@ describe("memory search bridge tool", () => {
     expect(fusionShadow).toEqual(
       expect.objectContaining({
         enabled: true,
+        bucket: "temporal_relation",
         candidate_route: "graphiti",
+        bucket_policy: expect.objectContaining({
+          name: "conservative",
+          mem0: expect.objectContaining({
+            quota: 2,
+            weight: 1,
+          }),
+          graphiti: expect.objectContaining({
+            quota: 4,
+            weight: 1.1,
+          }),
+        }),
+        candidate_breakdown: expect.objectContaining({
+          mem0: expect.objectContaining({
+            hit_count: 1,
+            after_quota_count: 1,
+          }),
+          graphiti: expect.objectContaining({
+            hit_count: 1,
+            after_quota_count: 1,
+          }),
+        }),
         mem0: expect.objectContaining({
           attempted: true,
           hit_count: 1,
@@ -594,6 +622,8 @@ describe("memory search bridge tool", () => {
     });
 
     const result = await tool.execute("1", { query: "timeline before migration" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
 
     expect(result.details).toEqual(
       expect.objectContaining({
@@ -604,7 +634,59 @@ describe("memory search bridge tool", () => {
         ],
       }),
     );
+    expect(results[0]?.source).toBe("graphiti");
     expect(snippetStore.get("graphiti", "abc")).toBe("remote graphiti hit");
+  });
+
+  it("maps remote mem0 hits to source-aware citations", async () => {
+    const localTool = createLocalTool();
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "mem0",
+          semantic_route: "mem0",
+          timeline_route: "graphiti",
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: vi.fn(
+            async (): Promise<BridgeSearchHit[]> => [
+              {
+                path: "bridge/mem0/m1",
+                startLine: 1,
+                endLine: 1,
+                score: 0.95,
+                snippet: "remote mem0 hit",
+                source: "mem0",
+                remoteId: "m1",
+              },
+            ],
+          ),
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "what config owner is active" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+
+    expect(detailsRecord.source).toBe("mem0");
+    expect(results[0]?.path).toBe("bridge/mem0/m1");
+    expect(results[0]?.source).toBe("mem0");
   });
 
   it("expands alias queries when alias normalization is enabled", async () => {
