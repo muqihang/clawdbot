@@ -92,6 +92,11 @@ type BridgeFlags = {
   };
   read: {
     alias_normalization: boolean;
+    fusion: {
+      enabled: boolean;
+      shadow_enabled: boolean;
+      bucket_policy: string;
+    };
     precision_guard: {
       enabled: boolean;
     };
@@ -395,6 +400,11 @@ const createFlags = (mode: Mode): BridgeFlags => {
     },
     read: {
       alias_normalization: false,
+      fusion: {
+        enabled: false,
+        shadow_enabled: false,
+        bucket_policy: "conservative",
+      },
       precision_guard: {
         enabled: true,
       },
