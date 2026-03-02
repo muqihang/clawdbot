@@ -85,6 +85,19 @@ USER.md
 .tgz
 .idea
 
+# Local analysis drafts (audit-closed; keep Wave evidence tracked)
+analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/
+analysis/2026-02-24-p3-writepath-remediation-plan/
+analysis/2026-02-27-ai-native-org-workflow-playbook.md
+analysis/ai-native-org-workflow-frameworks.md
+analysis/openclaw-codebase-product.md
+analysis/openclaw-codebase-tech.md
+analysis/openclaw-memory-deep-dive.md
+analysis/openclaw-update-delta-2026-02-08.md
+analysis/openclaw-高级玩法调研与落地手册-2026-02-21.md
+analysis/Jarvis-Clawdbot活系统/
+唯一文件路径
+
 # local tooling
 .serena/
 .opencode/
