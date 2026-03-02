@@ -1,0 +1,234 @@
+{
+  "results": [
+    {
+      "path": "MEMORY.md",
+      "startLine": 1,
+      "endLine": 1,
+      "score": 0.9,
+      "snippet": "local snippet",
+      "source": "memory"
+    }
+  ],
+  "provider": "builtin",
+  "model": "builtin",
+  "citations": "auto",
+  "source": "local",
+  "route": {
+    "read_mode": "shadow",
+    "reason": "phase0_local_only_guard",
+    "intent": "semantic",
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "user_route": "local",
+    "candidate_route": "mem0",
+    "primary_route": "mem0",
+    "fallback_route": "local",
+    "selected_route": "local"
+  },
+  "fallback": {
+    "triggered": false,
+    "reason": null,
+    "result_route": "local",
+    "primary_error": null,
+    "primary_status": null,
+    "primary_latency_ms": 0,
+    "fallback_attempted": false,
+    "fallback_route_attempted": null,
+    "fallback_error": null,
+    "fallback_latency_ms": null,
+    "total_latency_ms": 0
+  },
+  "fusion_shadow": {
+    "enabled": true,
+    "bucket": "decision_reason",
+    "bucket_policy": {
+      "name": "conservative",
+      "bucket": "decision_reason",
+      "strategy": "quota_then_weight",
+      "local": {
+        "quota": 2,
+        "weight": 1
+      },
+      "mem0": {
+        "quota": 3,
+        "weight": 1.05
+      },
+      "graphiti": {
+        "quota": 3,
+        "weight": 1.05
+      }
+    },
+    "candidate_breakdown": {
+      "local": {
+        "hit_count": 0,
+        "quota": 2,
+        "after_quota_count": 0
+      },
+      "mem0": {
+        "hit_count": 2,
+        "quota": 3,
+        "after_quota_count": 2
+      },
+      "graphiti": {
+        "hit_count": 2,
+        "quota": 3,
+        "after_quota_count": 2
+      },
+      "total_input_count": 4,
+      "total_after_quota_count": 4
+    },
+    "candidate_route": "mem0",
+    "mem0": {
+      "attempted": true,
+      "hit_count": 2,
+      "latency_ms": 0,
+      "error_kind": null
+    },
+    "graphiti": {
+      "attempted": true,
+      "hit_count": 2,
+      "latency_ms": 0,
+      "error_kind": null
+    },
+    "normalized_topk": [
+      {
+        "source": "mem0",
+        "remote_id": "m-shadow",
+        "path": "bridge/mem0/m-shadow",
+        "score": 0.8505000000000001,
+        "score_source": "missing"
+      },
+      {
+        "source": "mem0",
+        "remote_id": "shared",
+        "path": "bridge/mem0/shared",
+        "score": 0.8400000000000001,
+        "score_source": "missing"
+      },
+      {
+        "source": "graphiti",
+        "remote_id": "g-shadow",
+        "path": "bridge/graphiti/g-shadow",
+        "score": 0.8400000000000001,
+        "score_source": "missing"
+      }
+    ],
+    "tie": {
+      "top_k": 5,
+      "size": 3,
+      "top_score": 0.8505000000000001,
+      "top_score_count": 1,
+      "unique_score_count": 2,
+      "unique_scores": [0.8505000000000001, 0.8400000000000001],
+      "all_zero": false,
+      "all_same_score": false
+    },
+    "dedupe": {
+      "input_count": 4,
+      "unique_count": 3,
+      "collisions": [
+        {
+          "normalized_key": "shared",
+          "kept": {
+            "source": "mem0",
+            "remote_id": "shared",
+            "path": "bridge/mem0/shared",
+            "score": 0.8400000000000001,
+            "score_source": "missing"
+          },
+          "dropped": [
+            {
+              "source": "graphiti",
+              "remote_id": "shared",
+              "path": "bridge/graphiti/shared",
+              "score": 0.8295000000000001,
+              "score_source": "missing"
+            }
+          ]
+        }
+      ]
+    },
+    "score_source_counts": {
+      "score": 0,
+      "rank_score": 0,
+      "missing": 4
+    }
+  },
+  "signature": {
+    "version": "v1",
+    "query": "why did we choose graphiti architecture",
+    "normalizedQuery": "why did we choose graphiti architecture",
+    "precisionKey": null
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "selected_recipe": "hybrid",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "mem0",
+    "top1_source": "mem0",
+    "top1_remote_id": "m-shadow",
+    "top1_structure": null,
+    "structures": {
+      "facts": 0,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "route": "mem0",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "route": "mem0",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  },
+  "ontology_v1": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "decision_reason",
+    "query_bucket": "decision_reason",
+    "route": "mem0",
+    "active": false,
+    "top_k": 2,
+    "marker_presence_count": 0,
+    "marker_presence_rate": 0,
+    "parse_success_count": 0,
+    "parse_failure_count": 0,
+    "parse_success_rate": 0,
+    "entity_summary": {
+      "decision_count": 0,
+      "project_count": 0,
+      "reason_count": 0,
+      "rejected_option_count": 0,
+      "relation_count": 0,
+      "has_rejected_options": false
+    },
+    "parse_failures": [],
+    "degrade_reason": "flag_disabled"
+  }
+}
