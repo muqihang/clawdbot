@@ -1248,18 +1248,20 @@ type FusionShadowAttemptTrace = {
   error_kind: string | null;
 };
 
+type NormalizedCandidateTrace = {
+  source: BridgeRoute;
+  remote_id: string;
+  path: string;
+  score: number;
+  score_source: string;
+};
+
 type FusionShadowTrace = {
   enabled: boolean;
   candidate_route: BridgeRoute;
   mem0: FusionShadowAttemptTrace;
   graphiti: FusionShadowAttemptTrace;
-  normalized_topk: Array<{
-    source: BridgeRoute;
-    remote_id: string;
-    path: string;
-    score: number;
-    score_source: string;
-  }>;
+  normalized_topk: NormalizedCandidateTrace[];
   tie: Record<string, unknown>;
   dedupe: Record<string, unknown>;
   score_source_counts: Record<string, unknown>;
@@ -1303,7 +1305,7 @@ const toFusionShadowAttemptTrace = (
   };
 };
 
-const toNormalizedCandidateTrace = (candidate: RankedCandidate): Record<string, unknown> => {
+const toNormalizedCandidateTrace = (candidate: RankedCandidate): NormalizedCandidateTrace => {
   return {
     source: candidate.source,
     remote_id: candidate.remoteId,
