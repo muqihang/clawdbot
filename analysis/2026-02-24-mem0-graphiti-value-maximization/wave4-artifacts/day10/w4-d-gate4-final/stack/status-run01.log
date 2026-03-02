@@ -1,0 +1,3 @@
+graphiti   pid=49015    alive=no  port=8000  health=down
+mem0       pid=49018    alive=no  port=8766  health=down
+embeddings pid=48983    alive=no  port=18082 health=down

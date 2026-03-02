@@ -1,0 +1,9 @@
+{
+  "generated_at": "2026-03-02T08:20:53.098Z",
+  "dataset_path": "/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day2/inputs/retrieval-gate4-dataset.v1.json",
+  "graphiti_base_url": "http://127.0.0.1:8000",
+  "unique_expected_id_count": 82,
+  "ok_count": 82,
+  "fail_count": 0,
+  "failures": []
+}

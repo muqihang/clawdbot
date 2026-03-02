@@ -1,0 +1,6 @@
+=== start run02 2026-03-02T15:45:53+08:00 ===
+[memory-stack] started graphiti + mem0
+graphiti   pid=50774    alive=yes port=8000  health=ok
+mem0       pid=50777    alive=yes port=8766  health=ok
+embeddings pid=50611    alive=yes port=18082 health=ok
+start.exit=0

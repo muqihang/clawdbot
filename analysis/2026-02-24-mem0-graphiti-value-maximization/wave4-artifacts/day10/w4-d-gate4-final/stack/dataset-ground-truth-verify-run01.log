@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-03-02T08:13:44.372Z",
+  "dataset_path": "/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day2/inputs/retrieval-gate4-dataset.v1.json",
+  "graphiti_base_url": "http://127.0.0.1:8000",
+  "unique_expected_id_count": 99,
+  "ok_count": 68,
+  "fail_count": 31,
+  "failures": [
+    {
+      "id": "29ceb61a-74f9-4101-a39a-32b62a33f208",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "7490ac24-2a60-4945-ae4f-4624da75b1eb",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "8b9c8c74-5706-4a00-a194-2d7154012e14",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "31e90988-b24c-46a4-aa05-7615765db394",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "ae9ce888-9527-4a72-b4e3-1a392974a46c",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "9cf565ce-3932-415c-84a3-aa24087d3f77",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "adb072d6-1b06-4ca0-8944-a4a44faf63b9",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "f936ffca-997e-4aa5-ba1f-855211a92885",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "c510fe63-00c9-407d-a859-55f972286358",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "7b170674-8f85-4bff-b4cb-67eed1be22fa",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "5689bc61-d8f3-4235-87c2-ea359421e790",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "4cf45b6e-efe3-4850-823e-edbb1b82971e",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "c6f0d305-02d0-4e49-882f-436c81c4d7ad",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "0b3e9e43-33b2-4f58-b0c2-e0fbaaef6f05",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "4b367a9e-9e1a-403a-9093-01f56905342c",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "c2c92f85-1edb-4a8c-b28d-b7f627bd8b68",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "27fa8d12-db34-4e42-848b-3475e8099dc9",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "fcb62818-47c5-45af-a512-60e692022608",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "d1bf252a-93a8-4673-b403-b248f062f002",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "41b1e7c5-cabd-4b81-a680-339eade0e68f",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "7ba48bb2-f873-468f-81fa-92ccc65d609e",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "495b2bdc-010d-4920-ba25-4bd265fa2cd2",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "34eee794-1e10-4bdb-b792-3ed7c3c6c37d",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "19e4026c-94c2-409d-abe2-d5bd0edcd882",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "62b6647c-1348-4033-aef7-b54980fa994a",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "335a76c3-db12-469c-a8fb-5aa544cd94a4",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "cf81ef82-c71d-4c78-ba3a-22db73ae786a",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "c0c17fc3-7cde-4595-9b86-23ec97dbc9ce",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "1d9613a5-1b0a-4fa7-917c-cb89dcba61d8",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "5f088b86-5196-4506-9997-4a84213fba44",
+      "status": 404,
+      "statusText": "Not Found"
+    },
+    {
+      "id": "3c6ee110-7f1d-4400-a805-a14fcc880d89",
+      "status": 404,
+      "statusText": "Not Found"
+    }
+  ]
+}

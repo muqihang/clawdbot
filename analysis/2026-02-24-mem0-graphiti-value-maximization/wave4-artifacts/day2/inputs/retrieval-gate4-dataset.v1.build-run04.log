@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-03-02T08:16:40.483Z",
+  "graphiti_base_url": "http://127.0.0.1:8000",
+  "out_path": "/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day2/inputs/retrieval-gate4-dataset.v1.json",
+  "count_by_bucket": {
+    "exact_id": 24,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  }
+}
+dataset insufficient: exact_id=24 (<30)
