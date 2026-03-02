@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-03-02T14:11:28.860Z",
+  "top1": {
+    "avg_hit_at_1_baseline": 0.252,
+    "avg_hit_at_1_variant": 1,
+    "top1_avg_delta_pp": 74.8,
+    "per_bucket_baseline": {
+      "exact_id": 0,
+      "decision_reason": 0,
+      "temporal_relation": 0.9412,
+      "project_context": 0.0667
+    },
+    "per_bucket_variant": {
+      "exact_id": 1,
+      "decision_reason": 1,
+      "temporal_relation": 1,
+      "project_context": 1
+    }
+  },
+  "fur_proxy": {
+    "baseline": 0.2742,
+    "variant": 1,
+    "fur_delta_pp": 72.58
+  },
+  "latency": {
+    "p50_total_baseline_ms": 1441.2573,
+    "p50_total_variant_ms": 3792.3149,
+    "p95_total_baseline_ms": 8005.0157,
+    "p95_total_variant_ms": 9522.3559,
+    "p95_increase_pct": 18.9549
+  },
+  "stability": {
+    "unique_values": {
+      "avg_hit_at_1_baseline": [0.252, 0.2152],
+      "avg_hit_at_1_variant": [1, 0.9917, 0.9706, 0.975],
+      "top1_avg_delta_pp": [74.8, 78.48, 73.97, 71.86, 72.3],
+      "fur_proxy_baseline": [0.2742, 0.2339],
+      "fur_proxy_variant": [1, 0.9919, 0.9677, 0.9758],
+      "fur_delta_pp": [72.58, 76.61, 71.77, 69.35, 70.16]
+    },
+    "pass": false
+  },
+  "gates": {
+    "top1_avg_delta_pp_ge_8": true,
+    "fur_delta_pp_ge_10": true,
+    "p95_increase_pct_le_15": false
+  }
+}

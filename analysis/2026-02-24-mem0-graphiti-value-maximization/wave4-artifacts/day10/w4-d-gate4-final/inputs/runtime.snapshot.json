@@ -1,0 +1,832 @@
+{
+  "generated_at": "2026-03-02T08:47:51.602Z",
+  "node": "v24.7.0",
+  "pnpm": "10.23.0",
+  "uname": "Darwin muqihangdeMBP.lan 23.5.0 Darwin Kernel Version 23.5.0: Wed May  1 20:16:51 PDT 2024; root:xnu-10063.121.3~5/RELEASE_ARM64_T8103 arm64",
+  "openclaw_config_path": "/Users/muqihang/.openclaw/openclaw.json",
+  "openclaw_config_redacted": {
+    "meta": {
+      "lastTouchedVersion": "2026.2.23",
+      "lastTouchedAt": "2026-03-01T18:24:22.207Z"
+    },
+    "env": {
+      "vars": {
+        "QMD_ROUTER_MODE": "search"
+      }
+    },
+    "wizard": {
+      "lastRunAt": "2026-02-13T06:06:53.432Z",
+      "lastRunVersion": "2026.2.12",
+      "lastRunCommand": "onboard",
+      "lastRunMode": "local"
+    },
+    "browser": {
+      "defaultProfile": "openclaw"
+    },
+    "auth": {
+      "profiles": {
+        "google-gemini-cli:BrosBforHoes@aol.com": {
+          "provider": "google-gemini-cli",
+          "mode": "oauth",
+          "email": "BrosBforHoes@aol.com"
+        },
+        "google-gemini-cli:kerlyssubieta@gmail.com": {
+          "provider": "google-gemini-cli",
+          "mode": "oauth"
+        }
+      }
+    },
+    "models": {
+      "mode": "merge",
+      "providers": {
+        "sub2api": {
+          "baseUrl": "http://127.0.0.1:18081",
+          "apiKey": "<redacted>",
+          "auth": "api-key",
+          "api": "openai-responses",
+          "models": [
+            {
+              "id": "gpt-5.3-codex",
+              "name": "GPT-5.3 Codex (Sub2API)",
+              "reasoning": true,
+              "input": ["text"],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 272000,
+              "maxTokens": "<redacted>"
+            },
+            {
+              "id": "gpt-5.2",
+              "name": "GPT-5.2 (Sub2API)",
+              "reasoning": true,
+              "input": ["text"],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 272000,
+              "maxTokens": "<redacted>"
+            },
+            {
+              "id": "gpt-5.1-codex-mini",
+              "name": "GPT-5.1 Codex Mini (Sub2API)",
+              "reasoning": true,
+              "input": ["text"],
+              "cost": {
+                "input": 0,
+                "output": 0,
+                "cacheRead": 0,
+                "cacheWrite": 0
+              },
+              "contextWindow": 200000,
+              "maxTokens": "<redacted>"
+            }
+          ]
+        }
+      }
+    },
+    "agents": {
+      "defaults": {
+        "model": {
+          "primary": "sub2api/gpt-5.3-codex",
+          "fallbacks": ["sub2api/gpt-5.2"]
+        },
+        "models": {
+          "sub2api/gpt-5.3-codex": {
+            "alias": "Sub2API GPT-5.3 Codex"
+          },
+          "google-gemini-cli/gemini-3-pro-preview": {},
+          "sub2api/gpt-5.1-codex-mini": {
+            "alias": "Sub2API GPT-5.1 Codex Mini"
+          },
+          "sub2api/gpt-5.2": {
+            "alias": "Sub2API GPT-5.2"
+          }
+        },
+        "workspace": "/Users/muqihang/clawd",
+        "memorySearch": {
+          "extraPaths": [
+            "/Users/muqihang/chelingxi_workspace/clawdbot/analysis",
+            "/Users/muqihang/chelingxi_workspace/clawdbot/docs"
+          ],
+          "provider": "openai",
+          "remote": {
+            "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+            "apiKey": "<redacted>",
+            "batch": {
+              "enabled": true,
+              "wait": true,
+              "concurrency": 2,
+              "pollIntervalMs": 3000,
+              "timeoutMinutes": 120
+            }
+          },
+          "fallback": "none",
+          "model": "text-embedding-v4",
+          "query": {
+            "maxResults": 8,
+            "minScore": 0.2,
+            "hybrid": {
+              "enabled": true,
+              "vectorWeight": 0.7,
+              "textWeight": 0.3,
+              "candidateMultiplier": 4,
+              "mmr": {
+                "enabled": true,
+                "lambda": 0.45
+              },
+              "temporalDecay": {
+                "enabled": true,
+                "halfLifeDays": 21
+              }
+            }
+          }
+        },
+        "compaction": {
+          "mode": "default",
+          "reserveTokens": "<redacted>",
+          "keepRecentTokens": "<redacted>",
+          "reserveTokensFloor": "<redacted>",
+          "memoryFlush": {
+            "enabled": false
+          }
+        },
+        "thinkingDefault": "high",
+        "heartbeat": {
+          "every": "30m",
+          "activeHours": {
+            "start": "08:00",
+            "end": "23:00",
+            "timezone": "Asia/Shanghai"
+          },
+          "model": "sub2api/gpt-5.1-codex-mini",
+          "session": "heartbeat",
+          "target": "last"
+        },
+        "maxConcurrent": 4,
+        "subagents": {
+          "maxConcurrent": 8,
+          "maxSpawnDepth": 2,
+          "maxChildrenPerAgent": 5,
+          "thinking": "high"
+        }
+      },
+      "list": [
+        {
+          "id": "main",
+          "default": true,
+          "name": "Jarvis CoS",
+          "workspace": "/Users/muqihang/clawd",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Jarvis",
+            "emoji": "⚙️"
+          },
+          "groupChat": {
+            "mentionPatterns": [
+              "@jarvis",
+              "jarvis",
+              "@chief",
+              "chief",
+              "@cos",
+              "cos",
+              "@my_Jarvis_v1_bot",
+              "my_Jarvis_v1_bot",
+              "@my_jarvis_v1_bot",
+              "my_jarvis_v1_bot"
+            ],
+            "historyLimit": 80
+          },
+          "subagents": {
+            "allowAgents": [
+              "main",
+              "advisor_product",
+              "advisor_engineering",
+              "advisor_growth",
+              "advisor_finance_risk",
+              "advisor_red_tech",
+              "advisor_red_biz"
+            ],
+            "model": "sub2api/gpt-5.3-codex",
+            "thinking": "high"
+          }
+        },
+        {
+          "id": "advisor_product",
+          "name": "Product Advisor",
+          "workspace": "/Users/muqihang/.openclaw/workspace-advisor-product",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Product Advisor",
+            "emoji": "🧭"
+          },
+          "groupChat": {
+            "mentionPatterns": ["@jravis_lens_bot", "jravis_lens_bot"]
+          },
+          "subagents": {
+            "allowAgents": ["advisor_product"]
+          },
+          "tools": {
+            "deny": ["gateway", "cron", "nodes"]
+          }
+        },
+        {
+          "id": "advisor_engineering",
+          "name": "Engineering Advisor",
+          "workspace": "/Users/muqihang/.openclaw/workspace-advisor-engineering",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Engineering Advisor",
+            "emoji": "🏗️"
+          },
+          "groupChat": {
+            "mentionPatterns": ["@jravis_forge_bot", "jravis_forge_bot"]
+          },
+          "subagents": {
+            "allowAgents": ["advisor_engineering"]
+          },
+          "tools": {
+            "deny": ["gateway", "cron", "nodes"]
+          }
+        },
+        {
+          "id": "advisor_growth",
+          "name": "Growth Advisor",
+          "workspace": "/Users/muqihang/.openclaw/workspace-advisor-growth",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Growth Advisor",
+            "emoji": "📈"
+          },
+          "groupChat": {
+            "mentionPatterns": ["@jravis_pulse_bot", "jravis_pulse_bot"]
+          },
+          "subagents": {
+            "allowAgents": ["advisor_growth"]
+          },
+          "tools": {
+            "deny": ["gateway", "cron", "nodes"]
+          }
+        },
+        {
+          "id": "advisor_finance_risk",
+          "name": "Finance Risk Advisor",
+          "workspace": "/Users/muqihang/.openclaw/workspace-advisor-finance-risk",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Finance Risk Advisor",
+            "emoji": "🛡️"
+          },
+          "groupChat": {
+            "mentionPatterns": ["@jravis_vault_bot", "jravis_vault_bot"]
+          },
+          "subagents": {
+            "allowAgents": ["advisor_finance_risk"]
+          },
+          "tools": {
+            "deny": ["gateway", "cron", "nodes"]
+          }
+        },
+        {
+          "id": "advisor_red_tech",
+          "name": "Technical Red Team Advisor",
+          "workspace": "/Users/muqihang/.openclaw/workspace-advisor-red-tech",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Technical Red Team Advisor",
+            "emoji": "🔐"
+          },
+          "groupChat": {
+            "mentionPatterns": ["@jravis_warden_bot", "jravis_warden_bot"]
+          },
+          "subagents": {
+            "allowAgents": ["advisor_red_tech"]
+          },
+          "tools": {
+            "deny": ["gateway", "cron", "nodes"]
+          }
+        },
+        {
+          "id": "advisor_red_biz",
+          "name": "Commercial Red Team Advisor",
+          "workspace": "/Users/muqihang/.openclaw/workspace-advisor-red-biz",
+          "model": "sub2api/gpt-5.3-codex",
+          "identity": {
+            "name": "Razor | Commercial Red Team Advisor",
+            "emoji": "⚔️"
+          },
+          "groupChat": {
+            "mentionPatterns": ["@jravis_razor_bot", "jravis_razor_bot"]
+          },
+          "subagents": {
+            "allowAgents": ["advisor_red_biz"]
+          },
+          "tools": {
+            "deny": ["gateway", "cron", "nodes"]
+          }
+        }
+      ]
+    },
+    "tools": {
+      "web": {
+        "search": {
+          "enabled": true,
+          "provider": "brave",
+          "maxResults": 8,
+          "timeoutSeconds": 20
+        },
+        "fetch": {
+          "enabled": true,
+          "maxChars": 25000,
+          "timeoutSeconds": 20
+        }
+      },
+      "sessions": {
+        "visibility": "all"
+      },
+      "agentToAgent": {
+        "enabled": true,
+        "allow": [
+          "main",
+          "advisor_product",
+          "advisor_engineering",
+          "advisor_growth",
+          "advisor_finance_risk",
+          "advisor_red_tech",
+          "advisor_red_biz"
+        ]
+      }
+    },
+    "bindings": [
+      {
+        "agentId": "main",
+        "match": {
+          "channel": "webchat"
+        }
+      },
+      {
+        "agentId": "advisor_product",
+        "match": {
+          "channel": "telegram",
+          "accountId": "lens"
+        }
+      },
+      {
+        "agentId": "advisor_engineering",
+        "match": {
+          "channel": "telegram",
+          "accountId": "forge"
+        }
+      },
+      {
+        "agentId": "advisor_growth",
+        "match": {
+          "channel": "telegram",
+          "accountId": "pulse"
+        }
+      },
+      {
+        "agentId": "advisor_finance_risk",
+        "match": {
+          "channel": "telegram",
+          "accountId": "vault"
+        }
+      },
+      {
+        "agentId": "advisor_red_tech",
+        "match": {
+          "channel": "telegram",
+          "accountId": "warden"
+        }
+      },
+      {
+        "agentId": "advisor_red_biz",
+        "match": {
+          "channel": "telegram",
+          "accountId": "razor"
+        }
+      },
+      {
+        "agentId": "main",
+        "match": {
+          "channel": "telegram",
+          "accountId": "default",
+          "peer": {
+            "kind": "group",
+            "id": "-1003727754459"
+          }
+        }
+      },
+      {
+        "agentId": "main",
+        "match": {
+          "channel": "telegram",
+          "accountId": "*"
+        }
+      },
+      {
+        "agentId": "main",
+        "match": {
+          "channel": "slack"
+        }
+      }
+    ],
+    "messages": {
+      "ackReactionScope": "group-mentions"
+    },
+    "commands": {
+      "native": "auto",
+      "nativeSkills": "auto",
+      "restart": true,
+      "ownerDisplay": "raw"
+    },
+    "session": {
+      "maintenance": {
+        "mode": "enforce",
+        "pruneAfter": "45d",
+        "maxEntries": 1000,
+        "rotateBytes": "20mb"
+      }
+    },
+    "hooks": {
+      "internal": {
+        "enabled": true,
+        "entries": {
+          "self-improvement": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "channels": {
+      "telegram": {
+        "enabled": true,
+        "commands": {
+          "native": true,
+          "nativeSkills": true
+        },
+        "dmPolicy": "pairing",
+        "botToken": "<redacted>",
+        "replyToMode": "first",
+        "groups": {
+          "*": {
+            "requireMention": true
+          },
+          "-1003727754459": {
+            "requireMention": true,
+            "systemPrompt": "You are Jarvis (main) in the founder thinktank Telegram group. Rules: \n- If sender is founder (user id 8000351513 / antoye), always reply directly and clearly; never output NO_REPLY. \n- Do NOT dispatch advisor agents or run cross-session orchestration unless founder explicitly asks for multi-role collaboration. \n- If founder explicitly @mentions a role bot and does not ask main to coordinate, stay silent (NO_REPLY). \n- When founder asks for multi-role collaboration, run in visible-orchestration mode: first post a short dispatch message in-group with explicit role @mentions, then fan out via sessions_send to role sessions; @mentions are for human visibility and audit, not bot wake-up. \n- Keep responses short, practical, and decision-oriented."
+          }
+        },
+        "groupAllowFrom": [8000351513],
+        "groupPolicy": "allowlist",
+        "historyLimit": 80,
+        "dmHistoryLimit": 30,
+        "streaming": "partial",
+        "proxy": "http://127.0.0.1:1087",
+        "accounts": {
+          "lens": {
+            "name": "见微 Lens | 产品智囊",
+            "dmPolicy": "pairing",
+            "botToken": "<redacted>",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          },
+          "forge": {
+            "name": "规度 Forge | 工程智囊",
+            "dmPolicy": "pairing",
+            "botToken": "<redacted>",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          },
+          "default": {
+            "name": "Jarvis Main",
+            "dmPolicy": "pairing",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true,
+                "topics": {
+                  "1": {
+                    "requireMention": true
+                  },
+                  "14": {
+                    "requireMention": true
+                  },
+                  "17": {
+                    "requireMention": true
+                  },
+                  "20": {
+                    "requireMention": true
+                  },
+                  "24": {
+                    "requireMention": true
+                  },
+                  "27": {
+                    "requireMention": true
+                  },
+                  "30": {
+                    "requireMention": true
+                  }
+                }
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          },
+          "pulse": {
+            "name": "溯洄 Pulse | 增长顾问",
+            "dmPolicy": "pairing",
+            "botToken": "<redacted>",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          },
+          "vault": {
+            "name": "明算 Vault | 财务风控顾问",
+            "dmPolicy": "pairing",
+            "botToken": "<redacted>",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          },
+          "warden": {
+            "name": "悬镜 Warden | 技术红队顾问",
+            "dmPolicy": "pairing",
+            "botToken": "<redacted>",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          },
+          "razor": {
+            "name": "破妄 Razor | 商业红队顾问",
+            "dmPolicy": "pairing",
+            "botToken": "<redacted>",
+            "groups": {
+              "*": {
+                "requireMention": true
+              },
+              "-1003727754459": {
+                "requireMention": true
+              }
+            },
+            "groupAllowFrom": [8000351513],
+            "groupPolicy": "allowlist",
+            "streaming": "partial"
+          }
+        }
+      },
+      "slack": {
+        "mode": "socket",
+        "webhookPath": "/slack/events",
+        "enabled": false,
+        "commands": {
+          "native": true
+        },
+        "userTokenReadOnly": "<redacted>",
+        "groupPolicy": "allowlist",
+        "streaming": "partial",
+        "nativeStreaming": true,
+        "replyToMode": "first",
+        "thread": {
+          "historyScope": "thread",
+          "inheritParent": true,
+          "initialHistoryLimit": 30
+        },
+        "slashCommand": {
+          "enabled": true,
+          "name": "jarvis",
+          "sessionPrefix": "slack:decision",
+          "ephemeral": true
+        },
+        "dmPolicy": "pairing",
+        "channels": {}
+      }
+    },
+    "gateway": {
+      "port": 18789,
+      "mode": "local",
+      "bind": "loopback",
+      "auth": {
+        "mode": "token",
+        "token": "<redacted>"
+      },
+      "tailscale": {
+        "mode": "off",
+        "resetOnExit": false
+      }
+    },
+    "memory": {
+      "backend": "qmd",
+      "qmd": {
+        "command": "/Users/muqihang/clawd/scripts/qmd-smart-router.sh",
+        "searchMode": "search",
+        "includeDefaultMemory": true,
+        "paths": [
+          {
+            "path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis",
+            "name": "jarvis-analysis",
+            "pattern": "**/*.md"
+          },
+          {
+            "path": "/Users/muqihang/chelingxi_workspace/clawdbot/docs",
+            "name": "clawdbot-docs",
+            "pattern": "**/*.md"
+          }
+        ],
+        "sessions": {
+          "enabled": false
+        },
+        "update": {
+          "interval": "15m",
+          "debounceMs": 15000,
+          "waitForBootSync": false,
+          "embedInterval": "180m",
+          "updateTimeoutMs": 180000,
+          "embedTimeoutMs": 180000
+        },
+        "limits": {
+          "maxResults": 6,
+          "timeoutMs": 30000
+        }
+      }
+    },
+    "skills": {
+      "install": {
+        "nodeManager": "npm"
+      },
+      "entries": {
+        "nano-banana-pro": {
+          "apiKey": "<redacted>"
+        },
+        "1password": "<redacted>",
+        "brainstorming": {
+          "enabled": false
+        },
+        "dispatching-parallel-agents": {
+          "enabled": false
+        },
+        "executing-plans": {
+          "enabled": false
+        },
+        "finishing-a-development-branch": {
+          "enabled": false
+        },
+        "receiving-code-review": {
+          "enabled": false
+        },
+        "requesting-code-review": {
+          "enabled": false
+        },
+        "subagent-driven-development": {
+          "enabled": false
+        },
+        "systematic-debugging": {
+          "enabled": false
+        },
+        "test-driven-development": {
+          "enabled": false
+        },
+        "using-git-worktrees": {
+          "enabled": false
+        },
+        "using-superpowers": {
+          "enabled": false
+        },
+        "verification-before-completion": {
+          "enabled": false
+        },
+        "writing-plans": {
+          "enabled": false
+        },
+        "writing-skills": {
+          "enabled": false
+        },
+        "tavily-search": {
+          "enabled": true,
+          "apiKey": "<redacted>"
+        },
+        "tavily": {
+          "apiKey": "<redacted>"
+        },
+        "exa-search": {
+          "apiKey": "<redacted>"
+        },
+        "exa": {
+          "apiKey": "<redacted>"
+        }
+      }
+    },
+    "plugins": {
+      "slots": {
+        "memory": "memory-mem0-graphiti-bridge"
+      },
+      "entries": {
+        "telegram": {
+          "enabled": true
+        },
+        "google-gemini-cli-auth": {
+          "enabled": true
+        },
+        "slack": {
+          "enabled": true
+        },
+        "memory-mem0-graphiti-bridge": {
+          "enabled": true,
+          "config": {
+            "plugin_load": true,
+            "read_mode": "primary",
+            "write_mode": "propose_only",
+            "cutover_percent": 100,
+            "request_timeout_ms": 3000,
+            "routing": {
+              "default_route": "local",
+              "timeline_route": "graphiti",
+              "semantic_route": "mem0",
+              "fallback_route": "local"
+            },
+            "timeoutMs": {
+              "search": 3000,
+              "get": 3000
+            },
+            "mem0": {
+              "base_url": "http://127.0.0.1:8766"
+            },
+            "graphiti": {
+              "base_url": "http://127.0.0.1:8000"
+            },
+            "outbox": {
+              "enabled": false,
+              "db_path": "/Users/muqihang/.openclaw/memory-bridge-p3.sqlite"
+            },
+            "localHierarchy": {
+              "enabled": true
+            },
+            "contract": {
+              "enforce_compat": true
+            },
+            "p3": {
+              "auto_worker": true,
+              "write_timeout_ms": 60000,
+              "admission_enabled": true,
+              "commit_canary_ratio": 0.05,
+              "commit_require_index_check": true,
+              "commit_require_non_sensitive": true,
+              "commit_require_dual_write_ok": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

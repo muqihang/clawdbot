@@ -1,0 +1,14 @@
+[memory] qmd search failed: Error: qmd search assistant 建议 phase 的对 对外 外命 命名 名可 以使 使用 执行 行工 --json -n 6 -c memory-dir-main timed out after 30000ms
+[memory] qmd memory failed; switching to builtin index: qmd search assistant 建议 phase 的对 对外 外命 命名 名可 以使 使用 执行 行工 --json -n 6 -c memory-dir-main timed out after 30000ms
+[memory] embeddings: openai batch failed (1/2); keeping batch enabled; falling back to non-batch embeddings: openai batch create failed: 400 {"error":{"message":"Access denied, please make sure your account is in good standing.","type":"arrearage","param":null,"code":null}}
+[memory] embeddings: openai batch failed (2/2); disabling batch; falling back to non-batch embeddings: openai batch create failed: 400 {"error":{"message":"Access denied, please make sure your account is in good standing.","type":"arrearage","param":null,"code":null}}
+[memory] embeddings rate limited; retrying in 546ms
+[memory] sync failed (session-start): Error: openai embeddings failed: 400 {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"3c7e90ff-9cc7-9f51-92cb-5a5f6e3994eb","request_id":"3c7e90ff-9cc7-9f51-92cb-5a5f6e3994eb"}
+[memory] sync failed (search): Error: openai embeddings failed: 400 {"error":{"message":"Access denied, please make sure your account is in good standing. For details, see: https://help.aliyun.com/zh/model-studio/error-code#overdue-payment","type":"Arrearage","param":null,"code":"Arrearage"},"id":"3c7e90ff-9cc7-9f51-92cb-5a5f6e3994eb","request_id":"3c7e90ff-9cc7-9f51-92cb-5a5f6e3994eb"}
+{
+  "dataset_size": 124,
+  "top1_avg_delta_pp": 74.8,
+  "fur_delta_pp": 72.58,
+  "p95_increase_pct": 18.9549,
+  "stability_pass": false
+}

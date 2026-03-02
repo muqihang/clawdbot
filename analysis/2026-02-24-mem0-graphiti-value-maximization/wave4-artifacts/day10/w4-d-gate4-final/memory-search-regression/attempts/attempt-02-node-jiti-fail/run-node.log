@@ -1,0 +1,10 @@
+file:///Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts:345
+    const resolved = resolveBridgeFlags(flagsOverride);
+                     ^
+
+ReferenceError: resolveBridgeFlags is not defined
+    at buildToolForReadMode (file:///Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts:345:22)
+    at main (file:///Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts:371:23)
+    at async file:///Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts:566:1
+
+Node.js v24.7.0

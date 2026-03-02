@@ -1,0 +1,31 @@
+W4-D Gate-4 Final Report (Day10)
+
+结论: NO-GO
+
+指标 (冻结公式; pp=percentage points)
+- Top1_avg_delta_pp: 74.8 (>= 8 PASS)
+- FUR_delta_pp: 72.58 (>= 10 PASS; 注意: 本轮为 overall_hit_at_1 proxy)
+- p95_increase_pct: 18.9549 (<= 15 FAIL)
+- stability: FAIL (unique-values != 1)
+- sample_size_by_bucket: exact_id=30, decision_reason=30, temporal_relation=34, project_context=30
+
+硬门禁
+- memory_search regression: FAIL
+  - hyphenated DEC 查询为空:
+    - DEC-2026-02-21-main-role-boundary
+    - DEC-2026-02-22-documentation-first-freeze
+
+必跑回归
+- extensions vitest: PASS (exit=0)
+- W2 Gate-2 minimal regression: PASS (exit=0)
+- W3 Gate-3 minimal regression: PASS (exit=0)
+
+证据路径 (审计锚点)
+- 单点事实 (JSON): analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-gate4-report.json
+- evidence_dir: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final
+- Gate-4 delta: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-delta.json
+- memory_search summary: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/summary.json
+- vitest exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/tests/vitest.exit
+- gate2 exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate2-regression/w2-gate2-minimal-verify.exit
+- gate3 exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate3-regression/w3-gate3-minimal-verify.exit
+

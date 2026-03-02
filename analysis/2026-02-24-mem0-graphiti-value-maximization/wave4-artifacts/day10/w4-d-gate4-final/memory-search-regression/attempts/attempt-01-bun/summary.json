@@ -1,0 +1,180 @@
+{
+  "generated_at": "2026-03-02T08:54:09.033Z",
+  "last_run_id": "run-03",
+  "rows": [
+    {
+      "query_id": "control-01",
+      "query": "muqihang",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": true,
+        "unavailable": true
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": true,
+        "unavailable": true
+      }
+    },
+    {
+      "query_id": "control-02",
+      "query": "documentation first freeze decision",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": true,
+        "unavailable": true
+      },
+      "l2_bridge_primary": {
+        "results_count": 5,
+        "top1_path": "bridge/graphiti/ea159c11-1520-4b7c-bb05-62882370b16f",
+        "provider": "graphiti",
+        "model": "graphiti",
+        "disabled": true,
+        "unavailable": true
+      }
+    },
+    {
+      "query_id": "hyphen-01",
+      "query": "DEC-2026-02-21-main-role-boundary",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "qmd",
+        "model": "qmd",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "qmd",
+        "model": "qmd",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "hyphen-02",
+      "query": "DEC-2026-02-22-documentation-first-freeze",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "qmd",
+        "model": "qmd",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "qmd",
+        "model": "qmd",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "space-01",
+      "query": "DEC 2026 02 21 main role boundary",
+      "expected_non_empty": false,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": true,
+        "unavailable": true
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": true,
+        "unavailable": true
+      }
+    },
+    {
+      "query_id": "space-02",
+      "query": "DEC 2026 02 22 documentation first freeze",
+      "expected_non_empty": false,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": true,
+        "unavailable": true
+      },
+      "l2_bridge_primary": {
+        "results_count": 4,
+        "top1_path": "bridge/graphiti/ea159c11-1520-4b7c-bb05-62882370b16f",
+        "provider": "graphiti",
+        "model": "graphiti",
+        "disabled": true,
+        "unavailable": true
+      }
+    }
+  ]
+}

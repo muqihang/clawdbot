@@ -1,0 +1,180 @@
+{
+  "query_id": "hyphen-02",
+  "query": "DEC-2026-02-22-documentation-first-freeze",
+  "run_id": "run-02",
+  "l1_cli": {
+    "ok": true,
+    "exit_code": 0,
+    "command": "pnpm \"-s\" \"openclaw\" \"memory\" \"search\" \"DEC-2026-02-22-documentation-first-freeze\" \"--json\"",
+    "stdout": "{\n  \"results\": []\n}\n",
+    "stderr": "[memory] qmd search denied by scope (channel=unknown, chatType=unknown, session=<none>)\n",
+    "parsed_json": {
+      "results": []
+    }
+  },
+  "l1_local_tool": {
+    "ok": true,
+    "error": null,
+    "parsed": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"results\": [],\n  \"provider\": \"qmd\",\n  \"model\": \"qmd\",\n  \"citations\": \"auto\"\n}"
+        }
+      ],
+      "details": {
+        "results": [],
+        "provider": "qmd",
+        "model": "qmd",
+        "citations": "auto"
+      }
+    }
+  },
+  "l2_bridge": {
+    "read_mode_local": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [],\n  \"provider\": \"qmd\",\n  \"model\": \"qmd\",\n  \"citations\": \"auto\"\n}"
+          }
+        ],
+        "details": {
+          "results": [],
+          "provider": "qmd",
+          "model": "qmd",
+          "citations": "auto"
+        }
+      }
+    },
+    "read_mode_primary": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [],\n  \"provider\": \"qmd\",\n  \"model\": \"qmd\",\n  \"citations\": \"auto\"\n}"
+          }
+        ],
+        "details": {
+          "results": [],
+          "provider": "qmd",
+          "model": "qmd",
+          "fallback": {
+            "triggered": true,
+            "reason": "empty_results",
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 8,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 8
+          },
+          "citations": "auto",
+          "source": "local",
+          "route": {
+            "read_mode": "primary",
+            "reason": "read_cutover_candidate_enabled",
+            "intent": "semantic",
+            "query_type": "other",
+            "query_bucket": "exact_id",
+            "user_route": "mem0",
+            "candidate_route": "mem0",
+            "primary_route": "mem0",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "DEC-2026-02-22-documentation-first-freeze",
+            "normalizedQuery": "DEC-2026-02-22-documentation-first-freeze",
+            "precisionKey": {
+              "kind": "ticket_id",
+              "value": "DEC-2026",
+              "normalizedValue": "dec-2026",
+              "matchStart": 0,
+              "matchEnd": 8
+            }
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "exact_id",
+            "selected_recipe": "hybrid",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "mem0",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "exact_id",
+            "route": "mem0",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "exact_id",
+            "route": "mem0",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "exact_id",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    }
+  }
+}

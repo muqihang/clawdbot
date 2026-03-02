@@ -1,0 +1,17 @@
+node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/muqihang/.codex/worktrees/db5f/clawdbot/src/agents/owner-display.js' imported from /Users/muqihang/.codex/worktrees/db5f/clawdbot/src/config/io.ts
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:864:10)
+    at defaultResolve (node:internal/modules/esm/resolve:990:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:749:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:726:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:312:38)
+    at #link (node:internal/modules/esm/module_job:208:49) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///Users/muqihang/.codex/worktrees/db5f/clawdbot/src/agents/owner-display.js'
+}
+
+Node.js v24.7.0

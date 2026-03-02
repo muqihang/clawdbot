@@ -1,0 +1,847 @@
+{
+  "mode": "variant",
+  "generated_at": "2026-03-02T14:11:28.859Z",
+  "dataset_snapshot_path": "/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/inputs/retrieval-gate4-dataset.v1.snapshot.json",
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "selected_bounded_attempt": 1,
+  "selected_bounded_summary": {
+    "mode": "variant",
+    "phase": "bounded",
+    "attempt": 1,
+    "generated_at": "2026-03-02T11:18:56.153Z",
+    "dataset_size": 124,
+    "sample_size_by_bucket": {
+      "exact_id": 30,
+      "decision_reason": 30,
+      "temporal_relation": 34,
+      "project_context": 30
+    },
+    "bucket_metrics": [
+      {
+        "bucket": "exact_id",
+        "sample_size": 30,
+        "matched_top1": 30,
+        "hit_at_1": 1
+      },
+      {
+        "bucket": "decision_reason",
+        "sample_size": 30,
+        "matched_top1": 30,
+        "hit_at_1": 1
+      },
+      {
+        "bucket": "temporal_relation",
+        "sample_size": 34,
+        "matched_top1": 34,
+        "hit_at_1": 1
+      },
+      {
+        "bucket": "project_context",
+        "sample_size": 30,
+        "matched_top1": 30,
+        "hit_at_1": 1
+      }
+    ],
+    "avg_hit_at_1": 1,
+    "fur_proxy": 1,
+    "top1_path_prefix_counts": {
+      "bridge": 124,
+      "local": 0,
+      "other": 0,
+      "null": 0
+    },
+    "non_bridge_top1_samples": []
+  },
+  "bounded_summaries": [
+    {
+      "mode": "variant",
+      "phase": "bounded",
+      "attempt": 1,
+      "generated_at": "2026-03-02T11:18:56.153Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "bounded",
+      "attempt": 2,
+      "generated_at": "2026-03-02T11:34:36.769Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "bounded",
+      "attempt": 3,
+      "generated_at": "2026-03-02T11:50:12.495Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 29,
+          "hit_at_1": 0.9667
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 0.9917,
+      "fur_proxy": 0.9919,
+      "top1_path_prefix_counts": {
+        "bridge": 123,
+        "local": 0,
+        "other": 0,
+        "null": 1
+      },
+      "non_bridge_top1_samples": [
+        {
+          "sample_id": "g4v1-exact_id-ea159c11-25",
+          "bucket": "exact_id",
+          "top1_path": null,
+          "top1_source": null
+        }
+      ]
+    },
+    {
+      "mode": "variant",
+      "phase": "bounded",
+      "attempt": 4,
+      "generated_at": "2026-03-02T12:06:21.171Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "bounded",
+      "attempt": 5,
+      "generated_at": "2026-03-02T12:22:31.729Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    }
+  ],
+  "stability_summaries": [
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 1,
+      "generated_at": "2026-03-02T12:34:45.228Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 2,
+      "generated_at": "2026-03-02T12:44:26.106Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 3,
+      "generated_at": "2026-03-02T12:55:25.303Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 4,
+      "generated_at": "2026-03-02T13:09:17.750Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 5,
+      "generated_at": "2026-03-02T13:19:58.831Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 6,
+      "generated_at": "2026-03-02T13:29:39.416Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 29,
+          "hit_at_1": 0.9667
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 0.9917,
+      "fur_proxy": 0.9919,
+      "top1_path_prefix_counts": {
+        "bridge": 123,
+        "local": 0,
+        "other": 0,
+        "null": 1
+      },
+      "non_bridge_top1_samples": [
+        {
+          "sample_id": "g4v1-exact_id-07fd8f05-24",
+          "bucket": "exact_id",
+          "top1_path": null,
+          "top1_source": null
+        }
+      ]
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 7,
+      "generated_at": "2026-03-02T13:37:58.534Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 8,
+      "generated_at": "2026-03-02T13:48:14.113Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 30,
+          "hit_at_1": 0.8824
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 0.9706,
+      "fur_proxy": 0.9677,
+      "top1_path_prefix_counts": {
+        "bridge": 120,
+        "local": 0,
+        "other": 0,
+        "null": 4
+      },
+      "non_bridge_top1_samples": [
+        {
+          "sample_id": "g4v1-temporal-w3a-tr-g2v2-manages-3c898bc3",
+          "bucket": "temporal_relation",
+          "top1_path": null,
+          "top1_source": null
+        },
+        {
+          "sample_id": "g4v1-temporal-w3a-tr-g2v2-manages-c5d7bcbb",
+          "bucket": "temporal_relation",
+          "top1_path": null,
+          "top1_source": null
+        },
+        {
+          "sample_id": "g4v1-temporal-w3a-tr-g2v2-part-of-loop-4a357235",
+          "bucket": "temporal_relation",
+          "top1_path": null,
+          "top1_source": null
+        },
+        {
+          "sample_id": "g4v1-temporal-w3a-tr-g2v2-proposes-naming-e0847c10",
+          "bucket": "temporal_relation",
+          "top1_path": null,
+          "top1_source": null
+        }
+      ]
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 9,
+      "generated_at": "2026-03-02T14:00:28.529Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 27,
+          "hit_at_1": 0.9
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 0.975,
+      "fur_proxy": 0.9758,
+      "top1_path_prefix_counts": {
+        "bridge": 121,
+        "local": 0,
+        "other": 0,
+        "null": 3
+      },
+      "non_bridge_top1_samples": [
+        {
+          "sample_id": "g4v1-decision_reason-ba3e0572-11",
+          "bucket": "decision_reason",
+          "top1_path": null,
+          "top1_source": null
+        },
+        {
+          "sample_id": "g4v1-decision_reason-bbd0aae3-12",
+          "bucket": "decision_reason",
+          "top1_path": null,
+          "top1_source": null
+        },
+        {
+          "sample_id": "g4v1-decision_reason-77c5054e-13",
+          "bucket": "decision_reason",
+          "top1_path": null,
+          "top1_source": null
+        }
+      ]
+    },
+    {
+      "mode": "variant",
+      "phase": "stability",
+      "attempt": 10,
+      "generated_at": "2026-03-02T14:11:28.846Z",
+      "dataset_size": 124,
+      "sample_size_by_bucket": {
+        "exact_id": 30,
+        "decision_reason": 30,
+        "temporal_relation": 34,
+        "project_context": 30
+      },
+      "bucket_metrics": [
+        {
+          "bucket": "exact_id",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "decision_reason",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "temporal_relation",
+          "sample_size": 34,
+          "matched_top1": 34,
+          "hit_at_1": 1
+        },
+        {
+          "bucket": "project_context",
+          "sample_size": 30,
+          "matched_top1": 30,
+          "hit_at_1": 1
+        }
+      ],
+      "avg_hit_at_1": 1,
+      "fur_proxy": 1,
+      "top1_path_prefix_counts": {
+        "bridge": 124,
+        "local": 0,
+        "other": 0,
+        "null": 0
+      },
+      "non_bridge_top1_samples": []
+    }
+  ],
+  "stability_unique_values": {
+    "avg_hit_at_1": [1, 0.9917, 0.9706, 0.975],
+    "fur_proxy": [1, 0.9919, 0.9677, 0.9758]
+  },
+  "latency": {
+    "bounded_sample_count": 620,
+    "p50_total_ms": 3792.3149,
+    "p95_total_ms": 9522.3559
+  }
+}

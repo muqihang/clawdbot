@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-03-02T14:31:16.000Z",
+  "gate4": "NO-GO",
+  "evidence_dir": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final",
+  "inputs": {
+    "git_snapshot": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/inputs/git.snapshot.json",
+    "runtime_snapshot": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/inputs/runtime.snapshot.json",
+    "dataset_snapshot": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/inputs/retrieval-gate4-dataset.v1.snapshot.json",
+    "dataset_notes_snapshot": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/inputs/dataset-notes.snapshot.md",
+    "runner_input_snapshot": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/inputs/runner-input.snapshot.json"
+  },
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "metrics": {
+    "top1": {
+      "avg_hit_at_1_baseline": 0.252,
+      "avg_hit_at_1_variant": 1,
+      "top1_avg_delta_pp": 74.8,
+      "per_bucket_baseline": {
+        "exact_id": 0,
+        "decision_reason": 0,
+        "temporal_relation": 0.9412,
+        "project_context": 0.0667
+      },
+      "per_bucket_variant": {
+        "exact_id": 1,
+        "decision_reason": 1,
+        "temporal_relation": 1,
+        "project_context": 1
+      }
+    },
+    "fur_proxy": {
+      "proxy": true,
+      "definition": "overall_hit_at_1",
+      "baseline": 0.2742,
+      "variant": 1,
+      "fur_delta_pp": 72.58
+    },
+    "latency": {
+      "p50_total_baseline_ms": 1441.2573,
+      "p50_total_variant_ms": 3792.3149,
+      "p95_total_baseline_ms": 8005.0157,
+      "p95_total_variant_ms": 9522.3559,
+      "p95_increase_pct": 18.9549
+    },
+    "stability": {
+      "pass": false,
+      "unique_values": {
+        "avg_hit_at_1_baseline": [0.252, 0.2152],
+        "avg_hit_at_1_variant": [1, 0.9917, 0.9706, 0.975],
+        "top1_avg_delta_pp": [74.8, 78.48, 73.97, 71.86, 72.3],
+        "fur_proxy_baseline": [0.2742, 0.2339],
+        "fur_proxy_variant": [1, 0.9919, 0.9677, 0.9758],
+        "fur_delta_pp": [72.58, 76.61, 71.77, 69.35, 70.16]
+      }
+    },
+    "gates": {
+      "top1_avg_delta_pp_ge_8": true,
+      "fur_delta_pp_ge_10": true,
+      "p95_increase_pct_le_15": false
+    }
+  },
+  "tests_pass": true,
+  "gate2_regression_pass": true,
+  "gate3_regression_pass": true,
+  "memory_search_regression_pass": false,
+  "evidence_paths": {
+    "gate4_delta": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-delta.json",
+    "gate4_baseline_report": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-baseline-report.json",
+    "gate4_variant_report": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-variant-report.json",
+    "gate4_review_notes": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-review.md",
+    "latency_samples": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/latency/latency.samples.jsonl",
+    "gate4_runner_log": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/run-w4-d-gate4-eval.log",
+    "gate4_runner_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/run-w4-d-gate4-eval.exit",
+    "tests_vitest_log": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/tests/vitest.log",
+    "tests_vitest_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/tests/vitest.exit",
+    "gate2_regression_log": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate2-regression/w2-gate2-minimal-verify.log",
+    "gate2_regression_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate2-regression/w2-gate2-minimal-verify.exit",
+    "gate3_regression_log": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate3-regression/w3-gate3-minimal-verify.log",
+    "gate3_regression_exit": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate3-regression/w3-gate3-minimal-verify.exit",
+    "memory_search_regression_summary": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/summary.json",
+    "memory_search_regression_acceptance": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/acceptance.md"
+  },
+  "unresolved": [
+    {
+      "id": "memory-search-hyphenated-dec-empty",
+      "blocker": true,
+      "title": "memory_search hyphenated DEC 查询为空（硬门禁）",
+      "evidence": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/summary.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/acceptance.md"
+      ],
+      "minimal_fix_plan": [
+        "在 local(qmd) 搜索链路增加 query normalization：将 '-' 与 '_' 等分隔符标准化为空格后再检索（并在 CLI/tool/bridge 三个入口保持一致）。",
+        "新增回归用例：DEC-YYYY-MM-DD-* 与空格版本必须同等可召回（results_count>0）。"
+      ]
+    },
+    {
+      "id": "gate4-latency-p95-regression",
+      "blocker": true,
+      "title": "Gate-4 p95 增幅超阈值（>15%）",
+      "evidence": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-delta.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/latency/latency.samples.jsonl"
+      ],
+      "minimal_fix_plan": [
+        "做一次 per-bucket 的 p95 breakdown：确认增幅主要来源（local/mem0/graphiti）以及是否与 timeout/fallback 相关。",
+        "如果增幅来自并行远端：减少不必要的 provider 调用、引入 cache、或收紧融合 bucket_policy 以控制远端调用成本。"
+      ]
+    },
+    {
+      "id": "gate4-stability-jitter",
+      "blocker": true,
+      "title": "Gate-4 stability 抖动（unique-values != 1）",
+      "evidence": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-delta.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-baseline-report.json",
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-variant-report.json"
+      ],
+      "minimal_fix_plan": [
+        "优先排查 timeout / fallback / provider error 触发率（同一 query 在 10 次 run 是否走不同 route）。",
+        "如果结果顺序抖动：保证跨源 topK 归一化排序稳定（明确 tie-break），并为稳定性跑固定 seed/固定排序键。"
+      ]
+    },
+    {
+      "id": "memory-search-cli-scope-denied",
+      "blocker": false,
+      "title": "CLI 直跑 qmd 链路被 scope 拒绝（session=<none>）",
+      "evidence": [
+        "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/control-01.muqihang.json"
+      ],
+      "minimal_fix_plan": [
+        "为 CLI memory search 提供可配置的 session/channel scope（用于审计回归时的 local-only 诊断），或在回归 runner 中显式注入允许的 sessionKey。"
+      ]
+    }
+  ]
+}

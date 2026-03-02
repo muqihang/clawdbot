@@ -1,0 +1,14 @@
+/Users/muqihang/.codex/worktrees/db5f/clawdbot/src/logging/subsystem.ts:265
+  const getFileLogger = () => {
+                        ^
+
+
+TypeError: __name is not a function
+    at createSubsystemLogger (/Users/muqihang/.codex/worktrees/db5f/clawdbot/src/logging/subsystem.ts:265:25)
+    at <anonymous> (/Users/muqihang/.codex/worktrees/db5f/clawdbot/src/hooks/internal-hooks.ts:115:13)
+    at ModuleJob.run (node:internal/modules/esm/module_job:371:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:683:26)
+    at async main (/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts:245:24)
+    at async <anonymous> (/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts:545:1)
+
+Node.js v24.7.0

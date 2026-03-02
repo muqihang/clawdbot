@@ -1,0 +1,13 @@
+/Users/muqihang/.codex/worktrees/db5f/clawdbot/extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts:2369
+        deps.flags.read.fusion.enabled &&
+                               ^
+
+
+TypeError: Cannot read properties of undefined (reading 'enabled')
+    at Object.execute (/Users/muqihang/.codex/worktrees/db5f/clawdbot/extensions/memory-mem0-graphiti-bridge/src/tools/memory-search-tool.ts:2369:32)
+    at async runOne (/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final/scripts/run-w3-d-gate3-eval.ts:589:22)
+    at async runMode (/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final/scripts/run-w3-d-gate3-eval.ts:661:18)
+    at async main (/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final/scripts/run-w3-d-gate3-eval.ts:752:20)
+    at async <anonymous> (/Users/muqihang/.codex/worktrees/db5f/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave3-artifacts/day10/w3-d-gate3-final/scripts/run-w3-d-gate3-eval.ts:880:1)
+
+Node.js v24.7.0

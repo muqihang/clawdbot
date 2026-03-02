@@ -1,0 +1,339 @@
+{
+  "query_id": "control-01",
+  "query": "muqihang",
+  "run_id": "run-02",
+  "l1_cli": {
+    "ok": true,
+    "exit_code": 0,
+    "command": "pnpm \"-s\" \"openclaw\" \"memory\" \"search\" \"muqihang\" \"--json\"",
+    "stdout": "{\n  \"results\": []\n}\n",
+    "stderr": "[memory] qmd search denied by scope (channel=unknown, chatType=unknown, session=<none>)\n",
+    "parsed_json": {
+      "results": []
+    }
+  },
+  "l1_local_tool": {
+    "ok": true,
+    "error": null,
+    "parsed": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 3,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -1,3 @@ (0 before, 34 after)\\n# person.muqihang\\n\\n## Metadata\\n\\nSource: memory/people/muqihang.md#L1-L3\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/people/muqihang.md#L1-L3\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md\",\n      \"startLine\": 4,\n      \"endLine\": 7,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -4,4 @@ (3 before, 236 after)\\n\\n- 研究范围：`/Users/muqihang/chelingxi_workspace/clawdbot`（以及 Jarvis KB 对照仓 ` /Users/muqihang/chelingxi_workspace/chelingxi-os`）。\\n- 证据类型：\\n  - 命令证据：`CMD-*`（命令、exit code、关键输出摘要）\\n\\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md\",\n      \"startLine\": 5,\n      \"endLine\": 8,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -5,4 @@ (4 before, 533 after)\\n- 研究对象：\\n  - Clawdbot 主仓：`/Users/muqihang/chelingxi_workspace/clawdbot`\\n  - Jarvis KB 对照仓：`/Users/muqihang/chelingxi_workspace/chelingxi-os`\\n- 任务边界：仅研究与设计，不做业务功能改造，不 push，不做 destructive git 操作。\\n\\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md\",\n      \"startLine\": 36,\n      \"endLine\": 39,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -36,4 @@ (35 before, 557 after)\\n\\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml`（D1 升级为 v1 草案）\\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql`（D1 拆分为批次迁移）\\n- `/Users/muqihang/chelingxi_...\\n\\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md\",\n      \"startLine\": 5,\n      \"endLine\": 8,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -5,4 @@ (4 before, 59 after)\\n- 仓库：\\n  - chelingxi-os: `/Users/muqihang/chelingxi_workspace/chelingxi-os`\\n  - clawdbot: `/Users/muqihang/chelingxi_workspace/clawdbot`\\n\\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md\",\n      \"startLine\": 70,\n      \"endLine\": 73,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -70,4 @@ (69 before, 84 after)\\n# 新增 flag（需在实现中提供）\\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3.admission_enabled true\\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3...\\n\\nSource: qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73\"\n    }\n  ],\n  \"provider\": \"qmd\",\n  \"model\": \"qmd\",\n  \"citations\": \"auto\"\n}"
+        }
+      ],
+      "details": {
+        "results": [
+          {
+            "path": "memory/people/muqihang.md",
+            "startLine": 1,
+            "endLine": 3,
+            "score": 0.87,
+            "snippet": "@@ -1,3 @@ (0 before, 34 after)\n# person.muqihang\n\n## Metadata\n\nSource: memory/people/muqihang.md#L1-L3",
+            "source": "memory",
+            "citation": "memory/people/muqihang.md#L1-L3"
+          },
+          {
+            "path": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md",
+            "startLine": 4,
+            "endLine": 7,
+            "score": 0.87,
+            "snippet": "@@ -4,4 @@ (3 before, 236 after)\n\n- 研究范围：`/Users/muqihang/chelingxi_workspace/clawdbot`（以及 Jarvis KB 对照仓 ` /Users/muqihang/chelingxi_workspace/chelingxi-os`）。\n- 证据类型：\n  - 命令证据：`CMD-*`（命令、exit code、关键输出摘要）\n\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7",
+            "source": "memory",
+            "citation": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7"
+          },
+          {
+            "path": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md",
+            "startLine": 5,
+            "endLine": 8,
+            "score": 0.87,
+            "snippet": "@@ -5,4 @@ (4 before, 533 after)\n- 研究对象：\n  - Clawdbot 主仓：`/Users/muqihang/chelingxi_workspace/clawdbot`\n  - Jarvis KB 对照仓：`/Users/muqihang/chelingxi_workspace/chelingxi-os`\n- 任务边界：仅研究与设计，不做业务功能改造，不 push，不做 destructive git 操作。\n\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8",
+            "source": "memory",
+            "citation": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8"
+          },
+          {
+            "path": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md",
+            "startLine": 36,
+            "endLine": 39,
+            "score": 0.87,
+            "snippet": "@@ -36,4 @@ (35 before, 557 after)\n\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml`（D1 升级为 v1 草案）\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql`（D1 拆分为批次迁移）\n- `/Users/muqihang/chelingxi_...\n\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39",
+            "source": "memory",
+            "citation": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39"
+          },
+          {
+            "path": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md",
+            "startLine": 5,
+            "endLine": 8,
+            "score": 0.87,
+            "snippet": "@@ -5,4 @@ (4 before, 59 after)\n- 仓库：\n  - chelingxi-os: `/Users/muqihang/chelingxi_workspace/chelingxi-os`\n  - clawdbot: `/Users/muqihang/chelingxi_workspace/clawdbot`\n\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8",
+            "source": "memory",
+            "citation": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8"
+          },
+          {
+            "path": "qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md",
+            "startLine": 70,
+            "endLine": 73,
+            "score": 0.87,
+            "snippet": "@@ -70,4 @@ (69 before, 84 after)\n# 新增 flag（需在实现中提供）\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3.admission_enabled true\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3...\n\nSource: qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73",
+            "source": "memory",
+            "citation": "qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73"
+          }
+        ],
+        "provider": "qmd",
+        "model": "qmd",
+        "citations": "auto"
+      }
+    }
+  },
+  "l2_bridge": {
+    "read_mode_local": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 3,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -1,3 @@ (0 before, 34 after)\\n# person.muqihang\\n\\n## Metadata\\n\\nSource: memory/people/muqihang.md#L1-L3\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/people/muqihang.md#L1-L3\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md\",\n      \"startLine\": 4,\n      \"endLine\": 7,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -4,4 @@ (3 before, 236 after)\\n\\n- 研究范围：`/Users/muqihang/chelingxi_workspace/clawdbot`（以及 Jarvis KB 对照仓 ` /Users/muqihang/chelingxi_workspace/chelingxi-os`）。\\n- 证据类型：\\n  - 命令证据：`CMD-*`（命令、exit code、关键输出摘要）\\n\\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md\",\n      \"startLine\": 5,\n      \"endLine\": 8,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -5,4 @@ (4 before, 533 after)\\n- 研究对象：\\n  - Clawdbot 主仓：`/Users/muqihang/chelingxi_workspace/clawdbot`\\n  - Jarvis KB 对照仓：`/Users/muqihang/chelingxi_workspace/chelingxi-os`\\n- 任务边界：仅研究与设计，不做业务功能改造，不 push，不做 destructive git 操作。\\n\\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md\",\n      \"startLine\": 36,\n      \"endLine\": 39,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -36,4 @@ (35 before, 557 after)\\n\\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml`（D1 升级为 v1 草案）\\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql`（D1 拆分为批次迁移）\\n- `/Users/muqihang/chelingxi_...\\n\\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md\",\n      \"startLine\": 5,\n      \"endLine\": 8,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -5,4 @@ (4 before, 59 after)\\n- 仓库：\\n  - chelingxi-os: `/Users/muqihang/chelingxi_workspace/chelingxi-os`\\n  - clawdbot: `/Users/muqihang/chelingxi_workspace/clawdbot`\\n\\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md\",\n      \"startLine\": 70,\n      \"endLine\": 73,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -70,4 @@ (69 before, 84 after)\\n# 新增 flag（需在实现中提供）\\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3.admission_enabled true\\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3...\\n\\nSource: qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73\"\n    }\n  ],\n  \"provider\": \"qmd\",\n  \"model\": \"qmd\",\n  \"citations\": \"auto\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "memory/people/muqihang.md",
+              "startLine": 1,
+              "endLine": 3,
+              "score": 0.87,
+              "snippet": "@@ -1,3 @@ (0 before, 34 after)\n# person.muqihang\n\n## Metadata\n\nSource: memory/people/muqihang.md#L1-L3",
+              "source": "memory",
+              "citation": "memory/people/muqihang.md#L1-L3"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md",
+              "startLine": 4,
+              "endLine": 7,
+              "score": 0.87,
+              "snippet": "@@ -4,4 @@ (3 before, 236 after)\n\n- 研究范围：`/Users/muqihang/chelingxi_workspace/clawdbot`（以及 Jarvis KB 对照仓 ` /Users/muqihang/chelingxi_workspace/chelingxi-os`）。\n- 证据类型：\n  - 命令证据：`CMD-*`（命令、exit code、关键输出摘要）\n\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md",
+              "startLine": 5,
+              "endLine": 8,
+              "score": 0.87,
+              "snippet": "@@ -5,4 @@ (4 before, 533 after)\n- 研究对象：\n  - Clawdbot 主仓：`/Users/muqihang/chelingxi_workspace/clawdbot`\n  - Jarvis KB 对照仓：`/Users/muqihang/chelingxi_workspace/chelingxi-os`\n- 任务边界：仅研究与设计，不做业务功能改造，不 push，不做 destructive git 操作。\n\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md",
+              "startLine": 36,
+              "endLine": 39,
+              "score": 0.87,
+              "snippet": "@@ -36,4 @@ (35 before, 557 after)\n\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml`（D1 升级为 v1 草案）\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql`（D1 拆分为批次迁移）\n- `/Users/muqihang/chelingxi_...\n\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md",
+              "startLine": 5,
+              "endLine": 8,
+              "score": 0.87,
+              "snippet": "@@ -5,4 @@ (4 before, 59 after)\n- 仓库：\n  - chelingxi-os: `/Users/muqihang/chelingxi_workspace/chelingxi-os`\n  - clawdbot: `/Users/muqihang/chelingxi_workspace/clawdbot`\n\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md",
+              "startLine": 70,
+              "endLine": 73,
+              "score": 0.87,
+              "snippet": "@@ -70,4 @@ (69 before, 84 after)\n# 新增 flag（需在实现中提供）\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3.admission_enabled true\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3...\n\nSource: qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73"
+            }
+          ],
+          "provider": "qmd",
+          "model": "qmd",
+          "citations": "auto"
+        }
+      }
+    },
+    "read_mode_primary": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 3,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -1,3 @@ (0 before, 34 after)\\n# person.muqihang\\n\\n## Metadata\\n\\nSource: memory/people/muqihang.md#L1-L3\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/people/muqihang.md#L1-L3\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md\",\n      \"startLine\": 4,\n      \"endLine\": 7,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -4,4 @@ (3 before, 236 after)\\n\\n- 研究范围：`/Users/muqihang/chelingxi_workspace/clawdbot`（以及 Jarvis KB 对照仓 ` /Users/muqihang/chelingxi_workspace/chelingxi-os`）。\\n- 证据类型：\\n  - 命令证据：`CMD-*`（命令、exit code、关键输出摘要）\\n\\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md\",\n      \"startLine\": 5,\n      \"endLine\": 8,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -5,4 @@ (4 before, 533 after)\\n- 研究对象：\\n  - Clawdbot 主仓：`/Users/muqihang/chelingxi_workspace/clawdbot`\\n  - Jarvis KB 对照仓：`/Users/muqihang/chelingxi_workspace/chelingxi-os`\\n- 任务边界：仅研究与设计，不做业务功能改造，不 push，不做 destructive git 操作。\\n\\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md\",\n      \"startLine\": 36,\n      \"endLine\": 39,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -36,4 @@ (35 before, 557 after)\\n\\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml`（D1 升级为 v1 草案）\\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql`（D1 拆分为批次迁移）\\n- `/Users/muqihang/chelingxi_...\\n\\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md\",\n      \"startLine\": 5,\n      \"endLine\": 8,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -5,4 @@ (4 before, 59 after)\\n- 仓库：\\n  - chelingxi-os: `/Users/muqihang/chelingxi_workspace/chelingxi-os`\\n  - clawdbot: `/Users/muqihang/chelingxi_workspace/clawdbot`\\n\\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8\"\n    },\n    {\n      \"path\": \"qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md\",\n      \"startLine\": 70,\n      \"endLine\": 73,\n      \"score\": 0.87,\n      \"snippet\": \"@@ -70,4 @@ (69 before, 84 after)\\n# 新增 flag（需在实现中提供）\\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3.admission_enabled true\\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3...\\n\\nSource: qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73\",\n      \"source\": \"memory\",\n      \"citation\": \"qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73\"\n    }\n  ],\n  \"provider\": \"qmd\",\n  \"model\": \"qmd\",\n  \"citations\": \"auto\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "memory/people/muqihang.md",
+              "startLine": 1,
+              "endLine": 3,
+              "score": 0.87,
+              "snippet": "@@ -1,3 @@ (0 before, 34 after)\n# person.muqihang\n\n## Metadata\n\nSource: memory/people/muqihang.md#L1-L3",
+              "source": "memory",
+              "citation": "memory/people/muqihang.md#L1-L3"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md",
+              "startLine": 4,
+              "endLine": 7,
+              "score": 0.87,
+              "snippet": "@@ -4,4 @@ (3 before, 236 after)\n\n- 研究范围：`/Users/muqihang/chelingxi_workspace/clawdbot`（以及 Jarvis KB 对照仓 ` /Users/muqihang/chelingxi_workspace/chelingxi-os`）。\n- 证据类型：\n  - 命令证据：`CMD-*`（命令、exit code、关键输出摘要）\n\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-study-evidence-index.md#L4-L7"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md",
+              "startLine": 5,
+              "endLine": 8,
+              "score": 0.87,
+              "snippet": "@@ -5,4 @@ (4 before, 533 after)\n- 研究对象：\n  - Clawdbot 主仓：`/Users/muqihang/chelingxi_workspace/clawdbot`\n  - Jarvis KB 对照仓：`/Users/muqihang/chelingxi_workspace/chelingxi-os`\n- 任务边界：仅研究与设计，不做业务功能改造，不 push，不做 destructive git 操作。\n\nSource: qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/2026-02-10-clawdbot-system-full-study-for-jarvis-adaptation.md#L5-L8"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md",
+              "startLine": 36,
+              "endLine": 39,
+              "score": 0.87,
+              "snippet": "@@ -36,4 @@ (35 before, 557 after)\n\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-openapi-v0.yaml`（D1 升级为 v1 草案）\n- `/Users/muqihang/chelingxi_workspace/clawdbot/analysis/Jarvis-Clawdbot活系统/2026-02-15-jarvis-clawdbot-ddl-draft-v0.sql`（D1 拆分为批次迁移）\n- `/Users/muqihang/chelingxi_...\n\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/2026-02-15-jarvis-clawdbot-implementation-plan-v1.md#L36-L39"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md",
+              "startLine": 5,
+              "endLine": 8,
+              "score": 0.87,
+              "snippet": "@@ -5,4 @@ (4 before, 59 after)\n- 仓库：\n  - chelingxi-os: `/Users/muqihang/chelingxi_workspace/chelingxi-os`\n  - clawdbot: `/Users/muqihang/chelingxi_workspace/clawdbot`\n\nSource: qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/jarvis-clawdbot活系统/evidence/d17-openclaw-agent-acceptance.md#L5-L8"
+            },
+            {
+              "path": "qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md",
+              "startLine": 70,
+              "endLine": 73,
+              "score": 0.87,
+              "snippet": "@@ -70,4 @@ (69 before, 84 after)\n# 新增 flag（需在实现中提供）\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3.admission_enabled true\nnode /Users/muqihang/chelingxi_workspace/clawdbot/openclaw.mjs config set plugins.entries.memory-mem0-graphiti-bridge.config.p3...\n\nSource: qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73",
+              "source": "memory",
+              "citation": "qmd/jarvis-analysis-main/2026-02-24-p3-writepath-remediation-plan/03-p1-write-admission-plan.md#L70-L73"
+            }
+          ],
+          "provider": "qmd",
+          "model": "qmd",
+          "fallback": {
+            "triggered": true,
+            "reason": "empty_results",
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 8,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 8
+          },
+          "citations": "auto",
+          "source": "local",
+          "route": {
+            "read_mode": "primary",
+            "reason": "read_cutover_candidate_enabled",
+            "intent": "semantic",
+            "query_type": "other",
+            "query_bucket": "other",
+            "user_route": "mem0",
+            "candidate_route": "mem0",
+            "primary_route": "mem0",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "muqihang",
+            "normalizedQuery": "muqihang",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "selected_recipe": "hybrid",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "mem0",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "mem0",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "mem0",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    }
+  }
+}
