@@ -1,0 +1,125 @@
+{
+  "results": [
+    {
+      "path": "bridge/mem0/p-top",
+      "startLine": 1,
+      "endLine": 1,
+      "score": 0.9,
+      "snippet": "mem0 snippet p-top",
+      "source": "mem0"
+    }
+  ],
+  "provider": "mem0",
+  "model": "mem0",
+  "citations": "auto",
+  "source": "mem0",
+  "mode": "primary",
+  "alias_normalization": false,
+  "structures": {
+    "facts": 0,
+    "episodes": 0,
+    "nodes": 0
+  },
+  "route": {
+    "read_mode": "primary",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "semantic",
+    "query_type": "entity_attribute",
+    "query_bucket": "entity_attribute",
+    "user_route": "mem0",
+    "candidate_route": "mem0",
+    "primary_route": "mem0",
+    "fallback_route": "local",
+    "selected_route": "mem0"
+  },
+  "fallback": {
+    "triggered": false,
+    "reason": null,
+    "result_route": "mem0",
+    "primary_error": null,
+    "primary_status": null,
+    "primary_latency_ms": 0,
+    "fallback_attempted": false,
+    "fallback_route_attempted": null,
+    "fallback_error": null,
+    "fallback_latency_ms": null,
+    "total_latency_ms": 0
+  },
+  "signature": {
+    "version": "v1",
+    "query": "who is maintainer for memory bridge",
+    "normalizedQuery": "who is maintainer for memory bridge",
+    "precisionKey": null
+  },
+  "recipe": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "entity_attribute",
+    "query_bucket": "entity_attribute",
+    "selected_recipe": "node",
+    "requested_strategy": null,
+    "active": false,
+    "degraded": true,
+    "degrade_reason": "flag_disabled",
+    "route": "mem0",
+    "top1_source": "mem0",
+    "top1_remote_id": "p-top",
+    "top1_structure": null,
+    "structures": {
+      "facts": 0,
+      "episodes": 0,
+      "nodes": 0
+    }
+  },
+  "focal_node": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "entity_attribute",
+    "query_bucket": "entity_attribute",
+    "route": "mem0",
+    "active": false,
+    "focal_node_uuid": null,
+    "discovery_strategy": "node",
+    "degrade_reason": "flag_disabled"
+  },
+  "temporal_filters": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "entity_attribute",
+    "query_bucket": "entity_attribute",
+    "route": "mem0",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "flag_disabled"
+  },
+  "ontology_v1": {
+    "enabled": false,
+    "sampled": false,
+    "sample_percent": 0,
+    "query_type": "entity_attribute",
+    "query_bucket": "entity_attribute",
+    "route": "mem0",
+    "active": false,
+    "top_k": 1,
+    "marker_presence_count": 0,
+    "marker_presence_rate": 0,
+    "parse_success_count": 0,
+    "parse_failure_count": 0,
+    "parse_success_rate": 0,
+    "entity_summary": {
+      "decision_count": 0,
+      "project_count": 0,
+      "reason_count": 0,
+      "rejected_option_count": 0,
+      "relation_count": 0,
+      "has_rejected_options": false
+    },
+    "parse_failures": [],
+    "degrade_reason": "flag_disabled"
+  }
+}

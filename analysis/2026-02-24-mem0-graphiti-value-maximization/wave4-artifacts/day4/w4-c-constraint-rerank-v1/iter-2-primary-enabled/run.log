@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-03-02T06:23:58.458Z",
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "baseline_top1_unique": 1,
+  "variant_top1_unique": 1,
+  "invariant_top1": false,
+  "baseline_top1": [
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top",
+    "bridge/mem0/p-top"
+  ],
+  "variant_top1": [
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top",
+    "bridge/graphiti/p-top"
+  ]
+}
