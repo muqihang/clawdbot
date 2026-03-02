@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-03-02T05:00:03.209Z",
+  "run_id": "stability-03",
+  "seed": "stability-03",
+  "top_k": 5,
+  "mode": "baseline/raw_first",
+  "candidates": [
+    {
+      "source": "mem0",
+      "remote_id": "a-hit",
+      "path": "bridge/mem0/a-hit",
+      "score": 0,
+      "score_source": "missing"
+    },
+    {
+      "source": "graphiti",
+      "remote_id": "SHARED",
+      "path": "bridge/graphiti/shared",
+      "score": 0,
+      "score_source": "score"
+    },
+    {
+      "source": "mem0",
+      "remote_id": "shared",
+      "path": "bridge/mem0/shared",
+      "score": 0,
+      "score_source": "rank_score"
+    },
+    {
+      "source": "graphiti",
+      "remote_id": "z-hit",
+      "path": "bridge/graphiti/z-hit",
+      "score": 0,
+      "score_source": "missing"
+    }
+  ],
+  "top1": {
+    "source": "mem0",
+    "remote_id": "a-hit",
+    "path": "bridge/mem0/a-hit",
+    "score": 0,
+    "score_source": "missing"
+  }
+}

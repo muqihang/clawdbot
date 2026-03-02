@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-03-02T05:00:03.208Z",
+  "run_id": "stability-02",
+  "seed": "stability-02",
+  "top_k": 5,
+  "mode": "variant/normalizeAndRankCandidates",
+  "candidates": [
+    {
+      "source": "mem0",
+      "remote_id": "shared",
+      "path": "bridge/mem0/shared",
+      "score": 0,
+      "score_source": "rank_score"
+    },
+    {
+      "source": "graphiti",
+      "remote_id": "SHARED",
+      "path": "bridge/graphiti/shared",
+      "score": 0,
+      "score_source": "score"
+    },
+    {
+      "source": "graphiti",
+      "remote_id": "z-hit",
+      "path": "bridge/graphiti/z-hit",
+      "score": 0,
+      "score_source": "missing"
+    },
+    {
+      "source": "mem0",
+      "remote_id": "a-hit",
+      "path": "bridge/mem0/a-hit",
+      "score": 0,
+      "score_source": "missing"
+    }
+  ],
+  "top1": {
+    "source": "mem0",
+    "remote_id": "a-hit",
+    "path": "bridge/mem0/a-hit",
+    "score": 0,
+    "score_source": "missing"
+  },
+  "normalized_topk": [
+    {
+      "source": "mem0",
+      "remote_id": "a-hit",
+      "path": "bridge/mem0/a-hit",
+      "score": 0,
+      "score_source": "missing"
+    },
+    {
+      "source": "mem0",
+      "remote_id": "shared",
+      "path": "bridge/mem0/shared",
+      "score": 0,
+      "score_source": "rank_score"
+    },
+    {
+      "source": "graphiti",
+      "remote_id": "z-hit",
+      "path": "bridge/graphiti/z-hit",
+      "score": 0,
+      "score_source": "missing"
+    }
+  ],
+  "tie": {
+    "top_k": 5,
+    "size": 3,
+    "top_score": 0,
+    "top_score_count": 3,
+    "unique_score_count": 1,
+    "unique_scores": [0],
+    "all_zero": true,
+    "all_same_score": true
+  },
+  "dedupe": {
+    "input_count": 4,
+    "unique_count": 3,
+    "collisions": [
+      {
+        "normalized_key": "shared",
+        "kept": {
+          "source": "mem0",
+          "remote_id": "shared",
+          "path": "bridge/mem0/shared",
+          "score": 0,
+          "score_source": "rank_score"
+        },
+        "dropped": [
+          {
+            "source": "graphiti",
+            "remote_id": "SHARED",
+            "path": "bridge/graphiti/shared",
+            "score": 0,
+            "score_source": "score"
+          }
+        ]
+      }
+    ]
+  },
+  "score_source_counts": {
+    "score": 1,
+    "rank_score": 1,
+    "missing": 2
+  }
+}

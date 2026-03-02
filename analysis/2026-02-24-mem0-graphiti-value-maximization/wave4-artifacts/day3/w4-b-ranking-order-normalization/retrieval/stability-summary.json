@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-03-02T05:00:03.213Z",
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "baseline_top1_unique": 4,
+  "variant_top1_unique": 1,
+  "invariant_top1": true,
+  "expected_variant_top1": "a-hit",
+  "baseline_top1": [
+    "SHARED",
+    "shared",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "z-hit",
+    "a-hit",
+    "a-hit",
+    "z-hit",
+    "z-hit"
+  ],
+  "variant_top1": [
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit",
+    "a-hit"
+  ]
+}
