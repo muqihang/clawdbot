@@ -2365,6 +2365,217 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         });
       }
 
+      const fusionPrimaryEnabled =
+        deps.flags.read.fusion.enabled &&
+        (deps.flags.read_mode === "primary" || deps.flags.read_mode === "remote") &&
+        responseRoute !== "local";
+
+      if (fusionPrimaryEnabled) {
+        const requestedTopK = readMaxResults(params);
+        const fusionBucket = toFusionBucket(readPlan.queryBucket);
+        const fusionPolicy = resolveFusionBucketPolicy({
+          name: deps.flags.read.fusion.bucket_policy,
+          bucket: fusionBucket,
+        });
+
+        const mem0RecipeDecision = resolveRecipeForRoute("mem0");
+        const graphitiRecipeDecision = resolveRecipeForRoute("graphiti");
+        const [mem0FocalDecision, graphitiFocalDecision] = await Promise.all([
+          resolveFocalNodeForRoute("mem0"),
+          resolveFocalNodeForRoute("graphiti"),
+        ]);
+        const mem0TemporalFiltersDecision = resolveTemporalFiltersForRoute("mem0");
+        const graphitiTemporalFiltersDecision = resolveTemporalFiltersForRoute("graphiti");
+
+        const [mem0Attempt, graphitiAttempt] = await Promise.all([
+          searchRemoteWithDiagnostics({
+            route: "mem0",
+            query,
+            clients: deps.clients,
+            aliasNormalization,
+            searchOptions: mergeSearchOptions(
+              buildRecipeSearchOptions(mem0RecipeDecision),
+              buildFocalNodeSearchOptions(mem0FocalDecision),
+              buildTemporalFiltersSearchOptions(mem0TemporalFiltersDecision),
+            ),
+          }),
+          searchRemoteWithDiagnostics({
+            route: "graphiti",
+            query,
+            clients: deps.clients,
+            aliasNormalization,
+            searchOptions: mergeSearchOptions(
+              buildRecipeSearchOptions(graphitiRecipeDecision),
+              buildFocalNodeSearchOptions(graphitiFocalDecision),
+              buildTemporalFiltersSearchOptions(graphitiTemporalFiltersDecision),
+            ),
+          }),
+        ]);
+
+        const mem0Reranked = precisionPattern
+          ? rerankRemoteHits({ hits: mem0Attempt.hits, precisionPattern })
+          : null;
+        const graphitiReranked = precisionPattern
+          ? rerankRemoteHits({ hits: graphitiAttempt.hits, precisionPattern })
+          : null;
+        const mem0Hits = applyRecipeRerank({
+          hits: mem0Reranked?.hits ?? mem0Attempt.hits,
+          decision: mem0RecipeDecision,
+        });
+        const graphitiHits = applyRecipeRerank({
+          hits: graphitiReranked?.hits ?? graphitiAttempt.hits,
+          decision: graphitiRecipeDecision,
+        });
+        const mem0ExactMatchCount =
+          precisionPattern !== null ? (mem0Reranked?.exactMatchCount ?? 0) : null;
+        const graphitiExactMatchCount =
+          precisionPattern !== null ? (graphitiReranked?.exactMatchCount ?? 0) : null;
+
+        const constrained = buildFusionCandidates({
+          localResults: localResultsOverride ?? localResults,
+          mem0Hits,
+          graphitiHits,
+          policy: fusionPolicy,
+        });
+        const normalized = normalizeAndRankCandidates({
+          candidates: constrained.candidates,
+          topK: requestedTopK,
+        });
+        const topCandidate = normalized.topk[0];
+        const selectedSource = topCandidate?.source ?? "local";
+
+        if (selectedSource === "local") {
+          const primaryAttempt = responseRoute === "mem0" ? mem0Attempt : graphitiAttempt;
+          const otherAttempt = responseRoute === "mem0" ? graphitiAttempt : mem0Attempt;
+          const localFallbackReason =
+            mem0Hits.length === 0 && graphitiHits.length === 0
+              ? classifyFallbackReason(primaryAttempt)
+              : "fusion_bucket_policy_local";
+
+          const localRecipeDecision = resolveRecipeForRoute("local");
+          const localFocalDecision = await resolveFocalNodeForRoute("local");
+          const localTemporalFiltersDecision = resolveTemporalFiltersForRoute("local");
+          const routeTrace = createRouteTrace({
+            readMode: deps.flags.read_mode,
+            readPlan,
+            primaryRoute: responseRoute,
+            selectedRoute: "local",
+          });
+          const fallbackTrace = createFallbackTrace({
+            triggered: true,
+            reason: localFallbackReason,
+            primaryAttempt,
+            fallbackAttempt: otherAttempt,
+            resultRoute: "local",
+          });
+          const guardTrace = guardTraceBase({
+            selectedRoute: "local",
+            decision: "fusion_primary_local",
+            remoteExactMatchCount:
+              responseRoute === "mem0" ? mem0ExactMatchCount : graphitiExactMatchCount,
+            forcedLocal: false,
+          });
+          const recipeTrace = createRecipeTrace({
+            decision: localRecipeDecision,
+            hits: [],
+          });
+          const focalNodeTrace = createFocalNodeTrace(localFocalDecision);
+          const temporalFiltersTrace = createTemporalFiltersTrace(localTemporalFiltersDecision);
+          const ontologyTrace = createOntologyTraceForRoute("local", []);
+
+          return withLocalDiagnostics({
+            localResult,
+            localDetails,
+            routeTrace,
+            fallbackTrace,
+            signature: querySignature,
+            guardTrace,
+            recipeTrace,
+            focalNodeTrace,
+            temporalFiltersTrace,
+            ontologyTrace,
+            resultsOverride: localResultsOverride,
+          });
+        }
+
+        const selectedRoute: BridgeRoute = selectedSource;
+        const selectedAttempt = selectedRoute === "mem0" ? mem0Attempt : graphitiAttempt;
+        const selectedHits = selectedRoute === "mem0" ? mem0Hits : graphitiHits;
+        const selectedRemoteExactMatchCount =
+          selectedRoute === "mem0" ? mem0ExactMatchCount : graphitiExactMatchCount;
+        const selectedRecipeDecision =
+          selectedRoute === "mem0" ? mem0RecipeDecision : graphitiRecipeDecision;
+        const selectedFocalDecision =
+          selectedRoute === "mem0" ? mem0FocalDecision : graphitiFocalDecision;
+        const selectedTemporalFiltersDecision =
+          selectedRoute === "mem0" ? mem0TemporalFiltersDecision : graphitiTemporalFiltersDecision;
+
+        const explicitBucket = readContextBucket(params);
+        const fallbackBucket: P3ContextBucket | null =
+          readPlan.intent === "timeline" ? "timeline" : null;
+        const bucket = explicitBucket ?? fallbackBucket;
+        const contextAssembleResult = bucket
+          ? contextAssemble(
+              toContextAssembleInput({
+                toolCallId,
+                query,
+                bucket,
+                rawParams: params,
+                remoteHits: selectedHits,
+              }),
+            )
+          : undefined;
+
+        deps.snippetStore.setFromSearchHits(selectedHits);
+        const primaryAttempt = responseRoute === "mem0" ? mem0Attempt : graphitiAttempt;
+        const selectedFromPrimary = selectedRoute === responseRoute;
+        const routeTrace = createRouteTrace({
+          readMode: deps.flags.read_mode,
+          readPlan,
+          primaryRoute: responseRoute,
+          selectedRoute,
+        });
+        const fallbackTrace = createFallbackTrace({
+          triggered: !selectedFromPrimary,
+          reason: selectedFromPrimary ? null : "fusion_bucket_policy",
+          primaryAttempt,
+          fallbackAttempt: selectedFromPrimary ? undefined : selectedAttempt,
+          resultRoute: selectedRoute,
+        });
+        const guardTrace = guardTraceBase({
+          selectedRoute,
+          decision: "fusion_primary_selected",
+          remoteExactMatchCount: selectedRemoteExactMatchCount,
+          forcedLocal: false,
+        });
+        const recipeTrace = createRecipeTrace({
+          decision: selectedRecipeDecision,
+          hits: selectedHits,
+        });
+        const focalNodeTrace = createFocalNodeTrace(selectedFocalDecision);
+        const temporalFiltersTrace = createTemporalFiltersTrace(selectedTemporalFiltersDecision);
+        const ontologyTrace = createOntologyTraceForRoute(selectedRoute, selectedHits);
+
+        return jsonResult(
+          toRemotePayload({
+            localDetails,
+            remoteRoute: selectedRoute,
+            remoteHits: selectedHits,
+            readMode: deps.flags.read_mode,
+            aliasNormalization,
+            routeTrace,
+            fallbackTrace,
+            contextAssembleResult,
+            signature: querySignature,
+            guardTrace,
+            recipeTrace,
+            focalNodeTrace,
+            temporalFiltersTrace,
+            ontologyTrace,
+          }),
+        );
+      }
+
       const primaryRecipeDecision = resolveRecipeForRoute(responseRoute);
       const primaryFocalNodeDecision = await resolveFocalNodeForRoute(responseRoute);
       const primaryTemporalFiltersDecision = resolveTemporalFiltersForRoute(responseRoute);

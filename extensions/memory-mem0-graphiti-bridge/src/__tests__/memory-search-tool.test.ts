@@ -689,6 +689,285 @@ describe("memory search bridge tool", () => {
     expect(results[0]?.source).toBe("mem0");
   });
 
+  it("enables fusion primary rerank and can promote mem0 by weights", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/mem0/fusion-top",
+          startLine: 1,
+          endLine: 1,
+          score: 0.86,
+          snippet: "mem0 weighted top1",
+          source: "mem0",
+          remoteId: "fusion-top",
+        },
+      ],
+    );
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/fusion-top",
+          startLine: 1,
+          endLine: 1,
+          score: 0.92,
+          snippet: "graphiti raw score higher",
+          source: "graphiti",
+          remoteId: "fusion-top",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "primary",
+        cutover_percent: 100,
+        read: {
+          alias_normalization: false,
+          fusion: {
+            enabled: true,
+            bucket_policy: "mem0_focus",
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "what config owner is active" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const routeRecord = detailsRecord.route as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(detailsRecord.source).toBe("mem0");
+    expect(routeRecord.selected_route).toBe("mem0");
+    expect(results[0]?.path).toBe("bridge/mem0/fusion-top");
+    expect(results[0]?.source).toBe("mem0");
+  });
+
+  it("enables fusion primary rerank and can promote graphiti by weights", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/mem0/temporal-top",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet: "mem0 raw score",
+          source: "mem0",
+          remoteId: "temporal-top",
+        },
+      ],
+    );
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/temporal-top",
+          startLine: 1,
+          endLine: 1,
+          score: 0.82,
+          snippet: "graphiti weighted top",
+          source: "graphiti",
+          remoteId: "temporal-top",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        read: {
+          alias_normalization: false,
+          fusion: {
+            enabled: true,
+            bucket_policy: "graphiti_focus",
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "when did we migrate providers" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const routeRecord = detailsRecord.route as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(detailsRecord.source).toBe("graphiti");
+    expect(routeRecord.selected_route).toBe("graphiti");
+    expect(results[0]?.path).toBe("bridge/graphiti/temporal-top");
+    expect(results[0]?.source).toBe("graphiti");
+  });
+
+  it("keeps precision guard forcing local when fusion primary is enabled", async () => {
+    const localTool: AnyAgentTool = {
+      name: "memory_search",
+      label: "Memory Search",
+      description: "local search tool",
+      parameters: {},
+      execute: vi.fn(async () => ({
+        content: [],
+        details: {
+          results: [
+            {
+              path: "MEMORY.md",
+              startLine: 1,
+              endLine: 1,
+              score: 0.95,
+              snippet: "commit deadbeef rollout decision",
+              source: "memory",
+            },
+          ],
+          provider: "builtin",
+          model: "builtin",
+          citations: "auto",
+        },
+      })),
+    };
+    const mem0Search = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+    const graphitiSearch = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "primary",
+        cutover_percent: 100,
+        read: {
+          precision_guard: {
+            enabled: true,
+          },
+          fusion: {
+            enabled: true,
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "commit deadbeef" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const routeRecord = detailsRecord.route as Record<string, unknown>;
+
+    expect(mem0Search).not.toHaveBeenCalled();
+    expect(graphitiSearch).not.toHaveBeenCalled();
+    expect(detailsRecord.source).toBe("local");
+    expect(routeRecord.selected_route).toBe("local");
+  });
+
+  it("keeps fusion primary available when one remote source fails", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(async (): Promise<BridgeSearchHit[]> => {
+      throw new Error("mem0 timeout");
+    });
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/fusion-fallback",
+          startLine: 1,
+          endLine: 1,
+          score: 0.95,
+          snippet: "graphiti fallback hit",
+          source: "graphiti",
+          remoteId: "fusion-fallback",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "primary",
+        cutover_percent: 100,
+        routing: {
+          default_route: "mem0",
+          fallback_route: "local",
+        },
+        read: {
+          alias_normalization: false,
+          fusion: {
+            enabled: true,
+            bucket_policy: "balanced",
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "what config owner is active" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const routeRecord = detailsRecord.route as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(detailsRecord.source).toBe("graphiti");
+    expect(routeRecord.selected_route).toBe("graphiti");
+    expect(results[0]?.path).toBe("bridge/graphiti/fusion-fallback");
+    expect(results[0]?.source).toBe("graphiti");
+  });
+
   it("expands alias queries when alias normalization is enabled", async () => {
     const localTool = createLocalTool();
     const mem0Search = vi.fn(async (query: string) => {
