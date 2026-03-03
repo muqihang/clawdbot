@@ -320,14 +320,20 @@ export async function preflightDiscordMessage(
       }
     : route;
   const mentionRegexes = buildMentionRegexes(params.cfg, effectiveRoute.agentId);
+
+  const mentionMarkup = !isDirectMessage ? (baseText.match(/<@!?\d+>/g) ?? []) : [];
+  const mentionBotMarkup =
+    !isDirectMessage && botId ? new RegExp(String.raw`<@!?${botId}>`).test(baseText) : false;
+
   const explicitlyMentioned = Boolean(
-    botId && message.mentionedUsers?.some((user: User) => user.id === botId),
+    botId && (message.mentionedUsers?.some((user: User) => user.id === botId) || mentionBotMarkup),
   );
   const hasAnyMention = Boolean(
     !isDirectMessage &&
     (message.mentionedEveryone ||
       (message.mentionedUsers?.length ?? 0) > 0 ||
-      (message.mentionedRoles?.length ?? 0) > 0),
+      (message.mentionedRoles?.length ?? 0) > 0 ||
+      mentionMarkup.length > 0),
   );
 
   if (
@@ -625,25 +631,23 @@ export async function preflightDiscordMessage(
   logDebug(
     `[discord-preflight] shouldRequireMention=${shouldRequireMention} baseRequireMention=${shouldRequireMentionByConfig} boundThreadSession=${isBoundThreadSession} mentionGate.shouldSkip=${mentionGate.shouldSkip} wasMentioned=${wasMentioned}`,
   );
-  if (isGuildMessage && shouldRequireMention) {
-    if (botId && mentionGate.shouldSkip) {
-      logDebug(`[discord-preflight] drop: no-mention`);
-      logVerbose(`discord: drop guild message (mention required, botId=${botId})`);
-      logger.info(
-        {
-          channelId: messageChannelId,
-          reason: "no-mention",
-        },
-        "discord: skipping guild message",
-      );
-      recordPendingHistoryEntryIfEnabled({
-        historyMap: params.guildHistories,
-        historyKey: messageChannelId,
-        limit: params.historyLimit,
-        entry: historyEntry ?? null,
-      });
-      return null;
-    }
+  if (isGuildMessage && shouldRequireMention && mentionGate.shouldSkip) {
+    logDebug(`[discord-preflight] drop: no-mention`);
+    logVerbose(`discord: drop guild message (mention required)`);
+    logger.info(
+      {
+        channelId: messageChannelId,
+        reason: "no-mention",
+      },
+      "discord: skipping guild message",
+    );
+    recordPendingHistoryEntryIfEnabled({
+      historyMap: params.guildHistories,
+      historyKey: messageChannelId,
+      limit: params.historyLimit,
+      entry: historyEntry ?? null,
+    });
+    return null;
   }
 
   if (isGuildMessage && hasAccessRestrictions && !memberAllowed) {
