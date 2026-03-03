@@ -35,6 +35,7 @@ import { createSubsystemLogger } from "../../logging/subsystem.js";
 import { createNonExitingRuntime, type RuntimeEnv } from "../../runtime.js";
 import { resolveDiscordAccount } from "../accounts.js";
 import { fetchDiscordApplicationId } from "../probe.js";
+import { installDiscordProxyFetch } from "../proxy-fetch.js";
 import { normalizeDiscordToken } from "../token.js";
 import { createDiscordVoiceCommand } from "../voice/command.js";
 import { DiscordVoiceManager, DiscordVoiceReadyListener } from "../voice/manager.js";
@@ -245,6 +246,9 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
   const runtime: RuntimeEnv = opts.runtime ?? createNonExitingRuntime();
 
   const rawDiscordCfg = account.config;
+  // Ensure the Carbon REST client (which uses global fetch) routes Discord API
+  // traffic through the configured proxy in restrictive networks.
+  installDiscordProxyFetch(rawDiscordCfg.proxy);
   const discordRootThreadBindings = cfg.channels?.discord?.threadBindings;
   const discordAccountThreadBindings =
     cfg.channels?.discord?.accounts?.[account.accountId]?.threadBindings;
@@ -514,8 +518,10 @@ export async function monitorDiscordProvider(opts: MonitorDiscordOpts = {}) {
 
     try {
       const botUser = await client.fetchUser("@me");
-      botUserId = botUser?.id;
+      botUserId = botUser?.id ?? applicationId;
     } catch (err) {
+      // Fall back to application id: for bot accounts this matches the bot user id.
+      botUserId = applicationId;
       runtime.error?.(danger(`discord: failed to fetch bot identity: ${String(err)}`));
     }
 
