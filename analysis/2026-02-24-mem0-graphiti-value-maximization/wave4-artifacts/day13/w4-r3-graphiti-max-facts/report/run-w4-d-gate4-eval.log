@@ -1,0 +1,5 @@
+[memory] qmd search failed because a managed collection is missing; repairing collections and retrying once
+[memory] qmd search failed: Error: qmd search timeline 第天 里程 程碑 碑中 二手 手车 场景 景中 system record 被比 --json -n 6 -c memory-alt-main failed (code 1): Collection not found: memory-alt-main
+
+[memory] qmd memory failed; switching to builtin index: qmd search timeline 第天 里程 程碑 碑中 二手 手车 场景 景中 system record 被比 --json -n 6 -c memory-alt-main failed (code 1): Collection not found: memory-alt-main
+
