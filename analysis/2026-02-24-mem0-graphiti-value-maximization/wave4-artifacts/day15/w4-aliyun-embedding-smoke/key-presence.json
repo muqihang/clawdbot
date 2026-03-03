@@ -1,0 +1,6 @@
+{
+  "has_env_DASHSCOPE_API_KEY": false,
+  "has_file_DASHSCOPE_API_KEY": true,
+  "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "model": "text-embedding-v4"
+}
