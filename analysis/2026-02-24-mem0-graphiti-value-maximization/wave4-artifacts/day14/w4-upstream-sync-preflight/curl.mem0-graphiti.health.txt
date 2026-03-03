@@ -1,0 +1,8 @@
+## curl graphiti 8000 /healthcheck
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Couldn't connect to server
+
+exit=7
+## curl mem0 8766 /docs (head)
+curl: (7) Failed to connect to 127.0.0.1 port 8766 after 0 ms: Couldn't connect to server
+
+exit=7

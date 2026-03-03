@@ -1,0 +1,8 @@
+## curl 18082 /v1/healthz
+curl: (7) Failed to connect to 127.0.0.1 port 18082 after 0 ms: Couldn't connect to server
+
+exit=7
+## curl 18082 /v1/embeddings
+curl: (7) Failed to connect to 127.0.0.1 port 18082 after 0 ms: Couldn't connect to server
+
+exit=7
