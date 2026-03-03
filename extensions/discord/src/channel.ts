@@ -30,7 +30,33 @@ import {
   type ChannelPlugin,
   type ResolvedDiscordAccount,
 } from "openclaw/plugin-sdk";
+import { ProxyAgent, fetch as undiciFetch } from "undici";
 import { getDiscordRuntime } from "./runtime.js";
+
+const discordProbeFetchers = new Map<string, typeof fetch>();
+
+function resolveDiscordProbeFetch(proxyUrl: string | undefined): typeof fetch {
+  const proxy = proxyUrl?.trim();
+  if (!proxy) {
+    return fetch;
+  }
+  const cached = discordProbeFetchers.get(proxy);
+  if (cached) {
+    return cached;
+  }
+  try {
+    const agent = new ProxyAgent(proxy);
+    const fetcher = ((input: RequestInfo | URL, init?: RequestInit) =>
+      undiciFetch(input as string | URL, {
+        ...(init as Record<string, unknown>),
+        dispatcher: agent,
+      }) as unknown as Promise<Response>) as typeof fetch;
+    discordProbeFetchers.set(proxy, fetcher);
+    return fetcher;
+  } catch {
+    return fetch;
+  }
+}
 
 const meta = getChatChannelMeta("discord");
 
@@ -353,6 +379,7 @@ export const discordPlugin: ChannelPlugin<ResolvedDiscordAccount> = {
     probeAccount: async ({ account, timeoutMs }) =>
       getDiscordRuntime().channel.discord.probeDiscord(account.token, timeoutMs, {
         includeApplication: true,
+        fetcher: resolveDiscordProbeFetch(account.config.proxy),
       }),
     auditAccount: async ({ account, timeoutMs, cfg }) => {
       const { channelIds, unresolvedChannels } = collectDiscordAuditChannelIds({
@@ -411,6 +438,7 @@ export const discordPlugin: ChannelPlugin<ResolvedDiscordAccount> = {
       try {
         const probe = await getDiscordRuntime().channel.discord.probeDiscord(token, 2500, {
           includeApplication: true,
+          fetcher: resolveDiscordProbeFetch(account.config.proxy),
         });
         const username = probe.ok ? probe.bot?.username?.trim() : null;
         if (username) {

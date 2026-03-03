@@ -31,6 +31,7 @@ export type DiscordReactOpts = {
   token?: string;
   accountId?: string;
   rest?: RequestClient;
+  timeoutMs?: number;
   verbose?: boolean;
   retry?: RetryConfig;
 };
