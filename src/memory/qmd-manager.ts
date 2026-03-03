@@ -43,6 +43,7 @@ const QMD_EMBED_BACKOFF_BASE_MS = 60_000;
 const QMD_EMBED_BACKOFF_MAX_MS = 60 * 60 * 1000;
 const HAN_SCRIPT_RE = /[\u3400-\u9fff]/u;
 const QMD_BM25_HAN_KEYWORD_LIMIT = 12;
+const QMD_BM25_DEC_ID_RE = /\bDEC-\d{4}-\d{2}-\d{2}-[A-Za-z0-9-]*[A-Za-z0-9]\b/g;
 
 let qmdEmbedQueueTail: Promise<void> = Promise.resolve();
 
@@ -97,6 +98,18 @@ function normalizeHanBm25Query(query: string): string {
     }
   }
   return normalizedKeywords.length > 0 ? normalizedKeywords.join(" ") : trimmed;
+}
+
+function normalizeHyphenatedBm25IdQuery(query: string): string {
+  const trimmed = query.trim();
+  if (!trimmed) {
+    return trimmed;
+  }
+  const normalized = trimmed.replace(QMD_BM25_DEC_ID_RE, (match) => match.replaceAll("-", " "));
+  if (normalized === trimmed) {
+    return trimmed;
+  }
+  return normalized.replace(/\s+/g, " ").trim();
 }
 
 async function runWithQmdEmbedLock<T>(task: () => Promise<T>): Promise<T> {
@@ -1879,7 +1892,8 @@ export class QmdMemoryManager implements MemorySearchManager {
     query: string,
     limit: number,
   ): string[] {
-    const normalizedQuery = command === "search" ? normalizeHanBm25Query(query) : query;
+    const normalizedQuery =
+      command === "search" ? normalizeHanBm25Query(normalizeHyphenatedBm25IdQuery(query)) : query;
     if (command === "query") {
       return ["query", normalizedQuery, "--json", "-n", String(limit)];
     }

@@ -953,6 +953,42 @@ describe("QmdMemoryManager", () => {
     await manager.close();
   });
 
+  it("normalizes hyphenated DEC IDs before qmd search", async () => {
+    cfg = {
+      ...cfg,
+      memory: {
+        backend: "qmd",
+        qmd: {
+          includeDefaultMemory: false,
+          searchMode: "search",
+          update: { interval: "0s", debounceMs: 60_000, onBoot: false },
+          paths: [{ path: workspaceDir, pattern: "**/*.md", name: "workspace" }],
+        },
+      },
+    } as OpenClawConfig;
+    spawnMock.mockImplementation((_cmd: string, args: string[]) => {
+      if (args[0] === "search") {
+        const child = createMockChild({ autoClose: false });
+        emitAndClose(child, "stdout", "[]");
+        return child;
+      }
+      return createMockChild();
+    });
+
+    const { manager } = await createManager();
+    await expect(
+      manager.search("DEC-2026-02-21-main-role-boundary", {
+        sessionKey: "agent:main:slack:dm:u123",
+      }),
+    ).resolves.toEqual([]);
+
+    const searchCall = spawnMock.mock.calls.find(
+      (call: unknown[]) => (call[1] as string[])?.[0] === "search",
+    );
+    expect(searchCall?.[1]?.[1]).toBe("DEC 2026 02 21 main role boundary");
+    await manager.close();
+  });
+
   it("falls back to the original query when Han normalization yields no BM25 tokens", async () => {
     cfg = {
       ...cfg,
