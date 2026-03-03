@@ -24,7 +24,7 @@ describe("graphiti query construction", () => {
 
     expect(requestBody).toEqual({
       query: "telegram preference",
-      max_facts: 50,
+      max_facts: 10,
     });
   });
 });

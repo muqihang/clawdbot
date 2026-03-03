@@ -71,7 +71,7 @@ export function createGraphitiClient(options: CreateGraphitiClientOptions): Remo
     getPath: (id) => `/entity-edge/${encodeURIComponent(id)}`,
     extractSearchItems: extractGraphitiSearchItems,
     defaultSearchBody: {
-      max_facts: 50,
+      max_facts: 10,
     },
     ...options,
   });
