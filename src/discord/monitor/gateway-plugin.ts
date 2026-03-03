@@ -5,6 +5,30 @@ import type { DiscordAccountConfig } from "../../config/types.js";
 import { danger } from "../../globals.js";
 import type { RuntimeEnv } from "../../runtime.js";
 
+function withSafeGatewayRegister(params: {
+  plugin: GatewayPlugin;
+  runtime: RuntimeEnv;
+}): GatewayPlugin {
+  const { plugin, runtime } = params;
+  const originalRegisterClient = plugin.registerClient.bind(plugin);
+  plugin.registerClient = async (
+    client: Parameters<GatewayPlugin["registerClient"]>[0],
+  ): Promise<void> => {
+    try {
+      await originalRegisterClient(client);
+    } catch (err) {
+      runtime.error?.(danger(`discord: failed to initialize gateway client: ${String(err)}`));
+      try {
+        // Fallback to direct gateway connect without requiring /gateway/bot preflight.
+        plugin.connect(false);
+      } catch (connectErr) {
+        runtime.error?.(danger(`discord: fallback gateway connect failed: ${String(connectErr)}`));
+      }
+    }
+  };
+  return plugin;
+}
+
 export function resolveDiscordGatewayIntents(
   intentsConfig?: import("../../config/types.discord.js").DiscordIntentsConfig,
 ): number {
@@ -38,7 +62,7 @@ export function createDiscordGatewayPlugin(params: {
   };
 
   if (!proxy) {
-    return new GatewayPlugin(options);
+    return withSafeGatewayRegister({ plugin: new GatewayPlugin(options), runtime: params.runtime });
   }
 
   try {
@@ -56,9 +80,9 @@ export function createDiscordGatewayPlugin(params: {
       }
     }
 
-    return new ProxyGatewayPlugin();
+    return withSafeGatewayRegister({ plugin: new ProxyGatewayPlugin(), runtime: params.runtime });
   } catch (err) {
     params.runtime.error?.(danger(`discord: invalid gateway proxy: ${String(err)}`));
-    return new GatewayPlugin(options);
+    return withSafeGatewayRegister({ plugin: new GatewayPlugin(options), runtime: params.runtime });
   }
 }

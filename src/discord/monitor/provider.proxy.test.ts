@@ -4,12 +4,17 @@ const {
   GatewayIntents,
   GatewayPlugin,
   HttpsProxyAgent,
+  connectSpy,
   getLastAgent,
   proxyAgentSpy,
+  registerClientSpy,
   resetLastAgent,
+  resetGatewayPluginSpies,
   webSocketSpy,
 } = vi.hoisted(() => {
+  const connectSpy = vi.fn();
   const proxyAgentSpy = vi.fn();
+  const registerClientSpy = vi.fn(async () => undefined);
   const webSocketSpy = vi.fn();
 
   const GatewayIntents = {
@@ -23,7 +28,14 @@ const {
     GuildMembers: 1 << 7,
   } as const;
 
-  class GatewayPlugin {}
+  class GatewayPlugin {
+    async registerClient(client: unknown) {
+      return await registerClientSpy(client);
+    }
+    connect(resume = false) {
+      connectSpy(resume);
+    }
+  }
 
   class HttpsProxyAgent {
     static lastCreated: HttpsProxyAgent | undefined;
@@ -42,10 +54,17 @@ const {
     GatewayIntents,
     GatewayPlugin,
     HttpsProxyAgent,
+    connectSpy,
     getLastAgent: () => HttpsProxyAgent.lastCreated,
     proxyAgentSpy,
+    registerClientSpy,
     resetLastAgent: () => {
       HttpsProxyAgent.lastCreated = undefined;
+    },
+    resetGatewayPluginSpies: () => {
+      connectSpy.mockClear();
+      registerClientSpy.mockReset();
+      registerClientSpy.mockResolvedValue(undefined);
     },
     webSocketSpy,
   };
@@ -87,6 +106,7 @@ describe("createDiscordGatewayPlugin", () => {
   }
 
   beforeEach(() => {
+    resetGatewayPluginSpies();
     proxyAgentSpy.mockClear();
     webSocketSpy.mockClear();
     resetLastAgent();
@@ -126,5 +146,23 @@ describe("createDiscordGatewayPlugin", () => {
     expect(Object.getPrototypeOf(plugin)).toBe(GatewayPlugin.prototype);
     expect(runtime.error).toHaveBeenCalled();
     expect(runtime.log).not.toHaveBeenCalled();
+  });
+
+  it("guards gateway registerClient failures to avoid unhandled rejections", async () => {
+    const runtime = createRuntime();
+    registerClientSpy.mockRejectedValueOnce(
+      new Error("Failed to get gateway information from Discord: fetch failed"),
+    );
+
+    const plugin = createDiscordGatewayPlugin({
+      discordConfig: { proxy: "http://proxy.test:8080" },
+      runtime,
+    });
+
+    await expect(plugin.registerClient({} as never)).resolves.toBeUndefined();
+    expect(runtime.error).toHaveBeenCalledWith(
+      expect.stringContaining("discord: failed to initialize gateway client"),
+    );
+    expect(connectSpy).toHaveBeenCalledWith(false);
   });
 });
