@@ -1,0 +1,901 @@
+
+> openclaw@2026.3.3 test:fast /Users/muqihang/chelingxi_workspace/clawdbot
+> vitest run --config vitest.unit.config.ts -- src/discord/monitor/message-handler.preflight.test.ts src/discord/monitor/provider.proxy.test.ts src/memory/search-manager.test.ts
+
+
+ RUN  v4.0.18 /Users/muqihang/chelingxi_workspace/clawdbot
+
+ ✓ src/acp/server.startup.test.ts (3 tests) 308ms
+ ✓ src/cli/command-secret-gateway.test.ts (13 tests) 31ms
+stderr | src/config/env-preserve-io.test.ts > env snapshot TOCTOU via createConfigIO > restores env refs using read-time env even after env mutation
+Config overwrite: /var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/openclaw-env-io-5hWOKt/openclaw.json (sha256 47e5d8da8e3dd19c3396e697d83783d1320bf57ae0efbc357a7d08713c8cc49b -> e2e3b656daef705debb896992f6a0e4135cd0646d4cae1fcd95c607f16bd7e2a, backup=/var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/openclaw-env-io-5hWOKt/openclaw.json.bak, changedPaths=1)
+Config write anomaly: /var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/openclaw-env-io-5hWOKt/openclaw.json (missing-meta-before-write)
+
+stderr | src/config/env-preserve-io.test.ts > env snapshot TOCTOU via createConfigIO > without snapshot bridging, mutated env causes incorrect restoration
+Config overwrite: /var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/openclaw-env-io-bWHshw/openclaw.json (sha256 47e5d8da8e3dd19c3396e697d83783d1320bf57ae0efbc357a7d08713c8cc49b -> 1600f42d49e40999dcfbb9318a3889cb3c36ceebfac4bd186852b00c678617b3, backup=/var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/openclaw-env-io-bWHshw/openclaw.json.bak, changedPaths=1)
+Config write anomaly: /var/folders/qz/l_mb0jld3g59chyppmzk21xm0000gn/T/openclaw-env-io-bWHshw/openclaw.json (missing-meta-before-write)
+
+ ✓ src/secrets/runtime.test.ts (48 tests) 177ms
+ ✓ src/config/env-preserve-io.test.ts (4 tests) 313ms
+ ✓ src/config/config.plugin-validation.test.ts (8 tests) 485ms
+ ✓ src/config/schema.test.ts (10 tests) 1676ms
+ ✓ src/hooks/loader.test.ts (13 tests) 125ms
+ ✓ src/config/sessions.test.ts (37 tests) 479ms
+ ✓ src/cli/daemon-cli.coverage.test.ts (5 tests) 55ms
+ ✓ src/cron/service.delivery-plan.test.ts (3 tests) 114ms
+ ✓ src/cron/service.read-ops-nonblocking.test.ts (3 tests) 148ms
+ ✓ src/cron/service.runs-one-shot-main-job-disables-it.test.ts (14 tests) 158ms
+ ✓ src/plugins/loader.test.ts (28 tests) 317ms
+ ✓ src/cron/isolated-agent.skips-delivery-without-whatsapp-recipient-besteffortdeliver-true.test.ts (11 tests) 208ms
+ ✓ src/cron/isolated-agent.uses-last-non-empty-agent-text-as.test.ts (18 tests) 257ms
+ ✓ src/acp/control-plane/manager.test.ts (25 tests) 122ms
+ ✓ src/cron/service.issue-regressions.test.ts (33 tests) 694ms
+ ✓ src/cli/gateway-cli.coverage.test.ts (8 tests) 32ms
+ ✓ src/config/redact-snapshot.test.ts (40 tests) 62ms
+ ✓ src/config/config.legacy-config-detection.rejects-routing-allowfrom.test.ts (28 tests) 71ms
+ ✓ src/cli/update-cli.test.ts (26 tests) 29ms
+ ✓ src/config/config.web-search-provider.test.ts (14 tests) 18ms
+ ✓ src/config/io.write-config.test.ts (15 tests) 263ms
+ ✓ src/cli/config-cli.test.ts (19 tests) 177ms
+ ✓ src/cli/nodes-cli.coverage.test.ts (4 tests) 394ms
+ ✓ src/hooks/install.test.ts (14 tests) 276ms
+ ✓ src/memory/batch-voyage.test.ts (2 tests) 582ms
+     ✓ successfully submits batch, waits, and streams results  460ms
+ ✓ src/config/config.legacy-config-detection.accepts-imessage-dmpolicy.test.ts (29 tests) 173ms
+ ✓ src/config/sessions.cache.test.ts (9 tests) 116ms
+ ✓ src/slack/monitor/media.test.ts (28 tests) 103ms
+ ✓ src/media-understanding/apply.test.ts (32 tests) 345ms
+ ✓ src/memory/manager.batch.test.ts (3 tests) 213ms
+ ✓ src/media-understanding/apply.echo-transcript.test.ts (10 tests) 108ms
+ ✓ src/slack/monitor/monitor.test.ts (22 tests) 185ms
+ ✓ src/cron/service.store-migration.test.ts (3 tests) 256ms
+ ✓ src/cron/service.every-jobs-fire.test.ts (3 tests) 335ms
+ ✓ src/signal/monitor.tool-result.sends-tool-summaries-responseprefix.test.ts (16 tests) 92ms
+ ✓ src/infra/heartbeat-runner.ghost-reminder.test.ts (6 tests) 310ms
+ ✓ src/infra/outbound/message-action-runner.test.ts (35 tests) 321ms
+ ✓ src/infra/heartbeat-runner.transcript-prune.test.ts (2 tests) 64ms
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > updates assistant thread status when replies start
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > treats replies to bot threads as implicit mentions
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > threads replies when incoming message is in a thread
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+ ✓ src/infra/heartbeat-runner.respects-ackmaxchars-heartbeat-acks.test.ts (12 tests) 266ms
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > keeps replyToId directive threading when replyToMode is all
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > threads top-level replies when replyToMode is all
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > treats parent_user_id as a thread reply even when thread_ts matches ts
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > keeps thread parent inheritance opt-in
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > injects starter context for thread replies
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > scopes thread session keys to the routed agent
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+stderr | src/slack/monitor.tool-result.test.ts > monitorSlackProvider tool results > threads first reply when replyToMode is first and message is not threaded
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+ ✓ src/slack/monitor.tool-result.test.ts (25 tests) 207ms
+stderr | src/slack/monitor.threading.missing-thread-ts.test.ts > monitorSlackProvider threading > recovers missing thread_ts when parent_user_id is present
+slack-stream: streaming API call failed: TypeError: client.chatStream is not a function, falling back
+
+ ✓ src/slack/monitor.threading.missing-thread-ts.test.ts (3 tests) 84ms
+ ✓ src/process/exec.test.ts (7 tests | 1 skipped) 28ms
+ ✓ src/infra/heartbeat-runner.model-override.test.ts (6 tests) 175ms
+ ✓ src/infra/update-startup.test.ts (10 tests) 188ms
+ ✓ src/infra/session-cost-usage.test.ts (9 tests) 98ms
+ ✓ src/infra/provider-usage.auth.normalizes-keys.test.ts (15 tests) 116ms
+ ✓ src/infra/update-runner.test.ts (16 tests) 184ms
+ ✓ src/infra/npm-pack-install.test.ts (10 tests) 7ms
+ ✓ src/security/audit.test.ts (88 tests) 546ms
+ ✓ src/infra/gateway-lock.test.ts (9 tests) 176ms
+ ✓ src/infra/provider-usage.fetch.codex.test.ts (5 tests) 9ms
+ ✓ src/infra/host-env-security.test.ts (10 tests) 19ms
+ ✓ src/infra/restart-sentinel.test.ts (9 tests) 36ms
+ ✓ src/infra/infra-runtime.test.ts (14 tests) 46ms
+ ✓ src/infra/openclaw-root.test.ts (7 tests) 13ms
+ ✓ src/infra/push-apns.test.ts (8 tests) 61ms
+ ✓ src/process/exec.windows.test.ts (2 tests) 5ms
+ ✓ src/infra/heartbeat-active-hours.test.ts (7 tests) 25ms
+ ✓ src/infra/install-flow.test.ts (5 tests) 22ms
+ ✓ src/infra/node-pairing.test.ts (4 tests) 33ms
+ ✓ src/secrets/apply.test.ts (11 tests) 394ms
+ ✓ src/infra/session-maintenance-warning.test.ts (1 test) 9ms
+ ✓ src/infra/fetch.test.ts (9 tests) 21ms
+ ✓ src/infra/system-presence.version.test.ts (3 tests) 121ms
+ ✓ src/infra/system-presence.test.ts (3 tests) 30ms
+ ✓ src/process/command-queue.test.ts (16 tests) 60ms
+ ✓ src/infra/run-node.test.ts (1 test) 72ms
+ ✓ src/infra/unhandled-rejections.fatal-detection.test.ts (6 tests) 21ms
+ ✓ src/infra/provider-usage.format.test.ts (5 tests) 72ms
+ ✓ src/infra/infra-store.test.ts (15 tests) 39ms
+ ✓ src/infra/install-source-utils.test.ts (13 tests) 45ms
+ ✓ src/infra/heartbeat-wake.test.ts (13 tests) 26ms
+ ✓ src/infra/ports.test.ts (6 tests) 22ms
+ ✓ src/infra/npm-integrity.test.ts (4 tests) 8ms
+ ✓ src/infra/path-env.test.ts (5 tests) 19ms
+ ✓ src/infra/provider-usage.fetch.zai.test.ts (3 tests) 10ms
+ ✓ src/infra/fs-safe.test.ts (27 tests) 324ms
+ ✓ src/infra/exec-safe-bin-trust.test.ts (6 tests) 7ms
+ ✓ src/infra/safe-open-sync.test.ts (2 tests) 11ms
+ ✓ src/infra/heartbeat-runner.returns-default-unset.test.ts (24 tests) 439ms
+ ✓ src/infra/heartbeat-runner.sender-prefers-delivery-target.test.ts (1 test) 188ms
+ ✓ src/infra/provider-usage.fetch.minimax.test.ts (8 tests) 9ms
+ ✓ src/infra/system-events.test.ts (10 tests) 12ms
+ ✓ src/infra/heartbeat-runner.scheduler.test.ts (7 tests) 31ms
+ ✓ src/infra/provider-usage.shared.test.ts (4 tests) 12ms
+ ✓ src/hooks/bundled/session-memory/handler.test.ts (16 tests) 255ms
+ ✓ src/infra/provider-usage.test.ts (15 tests) 49ms
+ ✓ ui/src/ui/controllers/chat.test.ts (25 tests) 17ms
+ ✓ src/wizard/onboarding.test.ts (7 tests) 111ms
+ ✓ src/security/fix.test.ts (5 tests) 205ms
+ ✓ src/cli/daemon-cli/status.gather.test.ts (5 tests) 13ms
+ ✓ test/scripts/ios-team-id.test.ts (3 tests) 1859ms
+     ✓ resolves a fallback team ID from Xcode team listings (smoke)  1633ms
+ ✓ src/config/sessions/store.pruning.test.ts (4 tests) 56ms
+ ✓ src/cli/gateway-cli/run.option-collisions.test.ts (5 tests) 114ms
+ ✓ src/config/sessions/sessions.test.ts (15 tests) 192ms
+ ✓ src/cli/gateway-cli/register.option-collisions.test.ts (2 tests) 59ms
+ ✓ src/process/supervisor/supervisor.test.ts (5 tests) 34ms
+ ✓ src/cli/program/preaction.test.ts (5 tests) 209ms
+ ✓ src/slack/monitor/slash.test.ts (27 tests) 363ms
+ ✓ src/cli/program/register.agent.test.ts (13 tests) 85ms
+ ✓ src/channels/plugins/account-helpers.test.ts (14 tests) 26ms
+ ✓ src/secrets/resolve.test.ts (16 tests) 5653ms
+     ✓ resolves exec refs with protocolVersion 1 response  1873ms
+     ✓ uses timeoutMs as the default no-output timeout for exec providers  1196ms
+     ✓ supports non-JSON single-value exec output when jsonOnly is false  596ms
+     ✓ ignores EPIPE when exec provider exits before consuming stdin  357ms
+     ✓ handles Homebrew-style symlinked exec commands with args only when explicitly allowed  376ms
+     ✓ rejects exec refs when protocolVersion is not 1  422ms
+     ✓ rejects exec refs when response omits requested id  386ms
+     ✓ rejects exec refs with invalid JSON when jsonOnly is true  378ms
+ ✓ src/cli/program/register.status-health-sessions.test.ts (9 tests) 158ms
+ ✓ src/channels/plugins/plugins-core.test.ts (26 tests) 177ms
+ ✓ src/signal/monitor/event-handler.mention-gating.test.ts (14 tests) 75ms
+ ✓ src/slack/monitor/message-handler/prepare.test.ts (21 tests) 761ms
+ ✓ src/cli/daemon-cli/lifecycle.test.ts (2 tests) 36ms
+ ✓ src/cli/update-cli/restart-helper.test.ts (16 tests) 59ms
+ ✓ src/infra/net/fetch-guard.ssrf.test.ts (10 tests) 32ms
+ ✓ src/infra/outbound/outbound.test.ts (58 tests) 291ms
+ ✓ src/config/sessions/store.pruning.integration.test.ts (10 tests) 179ms
+ ✓ src/config/sessions/disk-budget.test.ts (2 tests) 27ms
+ ✓ src/infra/outbound/deliver.test.ts (35 tests) 40ms
+ ✓ src/infra/outbound/targets.test.ts (47 tests) 21ms
+ ✓ src/infra/format-time/format-time.test.ts (32 tests) 36ms
+ ✓ src/cli/program/register.configure.test.ts (2 tests) 30ms
+ ✓ src/cli/program/command-registry.test.ts (9 tests) 21ms
+ ✓ src/cli/program/help.test.ts (3 tests) 30ms
+ ✓ src/cli/daemon-cli/restart-health.test.ts (6 tests) 20ms
+ ✓ src/cli/nodes-cli/register.invoke.nodes-run-approval-timeout.test.ts (4 tests) 15ms
+ ✓ src/cron/isolated-agent/session.test.ts (10 tests) 8ms
+ ✓ src/wizard/onboarding.gateway-config.test.ts (5 tests) 27ms
+ ✓ src/cron/isolated-agent/helpers.test.ts (20 tests) 5ms
+ ✓ src/cli/program/register.maintenance.test.ts (7 tests) 47ms
+ ✓ src/cli/cron-cli/shared.test.ts (9 tests) 11ms
+ ✓ src/channels/plugins/actions/actions.test.ts (38 tests) 52ms
+ ✓ src/channels/plugins/plugins-channel.test.ts (21 tests) 11ms
+ ✓ src/cli/program/register.onboard.test.ts (6 tests) 89ms
+ ✓ src/cli/program/register.setup.test.ts (4 tests) 31ms
+ ✓ test/scripts/check-channel-agnostic-boundaries.test.ts (11 tests) 31ms
+ ✓ src/tui/components/searchable-select-list.test.ts (19 tests) 40ms
+ ✓ src/cli/daemon-cli/lifecycle-core.test.ts (3 tests) 56ms
+ ✓ src/cron/isolated-agent/run.skill-filter.test.ts (13 tests) 18ms
+ ✓ src/channels/allowlists/resolve-utils.test.ts (8 tests) 8ms
+ ✓ src/cron/isolated-agent/run.cron-model-override.test.ts (6 tests) 19ms
+ ✓ src/cli/program/register.message.test.ts (2 tests) 171ms
+ ✓ src/cron/service/jobs.schedule-error-isolation.test.ts (8 tests) 29ms
+ ✓ src/cli/gateway-cli/run-loop.test.ts (8 tests) 34ms
+ ✓ src/channels/plugins/outbound/telegram.test.ts (4 tests) 6ms
+ ✓ src/config/sessions/store.session-key-normalization.test.ts (4 tests) 192ms
+ ✓ src/channels/plugins/onboarding/whatsapp.test.ts (8 tests) 10ms
+ ✓ src/security/temp-path-guard.test.ts (3 tests) 511ms
+     ✓ enforces runtime guardrails for tmpdir joins and weak randomness  508ms
+ ✓ src/secrets/audit.test.ts (5 tests) 937ms
+     ✓ batches ref resolution per provider during audit  439ms
+     ✓ short-circuits per-ref fallback for provider-wide batch failures  409ms
+ ✓ src/channels/plugins/outbound/discord.test.ts (12 tests) 12ms
+ ✓ src/plugins/runtime/index.test.ts (4 tests) 26ms
+ ✓ src/cron/isolated-agent/delivery-target.test.ts (15 tests) 8ms
+ ✓ src/pairing/pairing-store.test.ts (17 tests) 123ms
+ ✓ src/media/store.test.ts (18 tests) 258ms
+ ✓ src/plugins/install.test.ts (20 tests) 429ms
+ ✓ src/slack/monitor/events/messages.test.ts (10 tests) 7ms
+ ✓ src/signal/monitor/event-handler.inbound-contract.test.ts (6 tests) 104ms
+ ✓ src/memory/index.test.ts (10 tests) 165ms
+ ✓ src/infra/bonjour.test.ts (7 tests) 21ms
+ ✓ src/memory/embeddings.test.ts (18 tests) 100ms
+ ✓ src/config/config-misc.test.ts (29 tests) 91ms
+ ✓ src/config/config.identity-defaults.test.ts (6 tests) 72ms
+ ✓ src/cli/memory-cli.test.ts (23 tests) 117ms
+ ✓ src/cli/pairing-cli.test.ts (12 tests) 39ms
+ ✓ src/cron/service.jobs.test.ts (31 tests) 40ms
+ ✓ src/infra/control-ui-assets.test.ts (9 tests) 23ms
+ ✓ src/cron/run-log.test.ts (9 tests) 71ms
+ ✓ src/cli/devices-cli.test.ts (13 tests) 70ms
+ ✓ src/whatsapp/resolve-outbound-target.test.ts (21 tests) 14ms
+ ✓ src/plugin-sdk/webhook-request-guards.test.ts (11 tests) 7ms
+ ✓ src/cli/cron-cli.test.ts (34 tests) 55ms
+stderr | ui/src/ui/views/usage-render-details.test.ts
+Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+
+ ✓ ui/src/ui/views/usage-render-details.test.ts (8 tests) 13ms
+ ✓ src/secrets/runtime.coverage.test.ts (2 tests) 21ms
+ ✓ src/infra/net/proxy-fetch.test.ts (7 tests) 15ms
+stderr | src/signal/monitor.tool-result.pairs-uuid-only-senders-uuid-allowlist-entry.test.ts > monitorSignalProvider tool results > reconnects after stream errors until aborted
+Signal SSE stream error: Error: stream dropped
+
+ ✓ src/signal/monitor.tool-result.pairs-uuid-only-senders-uuid-allowlist-entry.test.ts (2 tests) 21ms
+ ✓ src/wizard/session.test.ts (3 tests) 9ms
+ ✓ analysis/Jarvis-Clawdbot活系统/contracts/check-contract-lock.test.mts (2 tests) 9ms
+ ✓ src/cli/program/action-reparse.test.ts (3 tests) 8ms
+ ✓ src/utils/delivery-context.test.ts (5 tests) 4ms
+ ✓ src/slack/monitor/events/reactions.test.ts (8 tests) 5ms
+ ✓ src/utils/utils-misc.test.ts (21 tests) 4ms
+ ✓ src/channels/plugins/whatsapp-heartbeat.test.ts (8 tests) 4ms
+ ✓ src/cli/program/build-program.test.ts (1 test) 3ms
+ ✓ src/channels/plugins/group-mentions.test.ts (5 tests) 10ms
+ ✓ src/secrets/configure-plan.test.ts (6 tests) 28ms
+ ✓ src/channels/plugins/outbound/direct-text-media.sendpayload.test.ts (5 tests) 7ms
+ ✓ src/acp/runtime/session-identifiers.test.ts (5 tests) 6ms
+stderr | ui/src/ui/views/agents-utils.test.ts
+Lit is in dev mode. Not recommended for production! See https://lit.dev/msg/dev-mode for more information.
+
+ ✓ ui/src/ui/views/agents-utils.test.ts (7 tests) 50ms
+ ✓ src/cron/service.restart-catchup.test.ts (2 tests) 123ms
+ ✓ src/cron/service.persists-delivered-status.test.ts (6 tests) 230ms
+ ✓ analysis/Jarvis-Clawdbot活系统/contracts/check-contract-diff.test.mts (1 test) 35ms
+ ✓ src/acp/runtime/registry.test.ts (6 tests) 5ms
+ ✓ src/cli/daemon-cli/register-service-commands.test.ts (2 tests) 5ms
+ ✓ src/utils/directive-tags.test.ts (6 tests) 4ms
+ ✓ src/channels/plugins/message-actions.test.ts (2 tests) 3ms
+ ✓ src/channels/plugins/message-actions.security.test.ts (3 tests) 4ms
+ ✓ src/utils/transcript-tools.test.ts (7 tests) 4ms
+ ✓ src/acp/control-plane/runtime-cache.test.ts (2 tests) 7ms
+ ✓ src/channels/transport/stall-watchdog.test.ts (3 tests) 17ms
+ ✓ src/infra/exec-approval-forwarder.test.ts (13 tests) 31ms
+ ✓ src/plugins/voice-call.plugin.test.ts (7 tests) 16ms
+ ✓ src/channels/plugins/outbound/discord.sendpayload.test.ts (5 tests) 9ms
+ ✓ analysis/Jarvis-Clawdbot活系统/contracts/tests/openapi-v1-contract.spec.mts (3 tests) 158ms
+ ✓ src/config/thread-bindings-config-keys.test.ts (5 tests) 23ms
+ ✓ src/config/plugins-runtime-boundary.test.ts (3 tests) 89ms
+ ✓ src/cron/isolated-agent/run.payload-fallbacks.test.ts (3 tests) 12ms
+ ✓ src/memory/manager.readonly-recovery.test.ts (3 tests) 61ms
+ ✓ src/media/server.test.ts (9 tests) 176ms
+ ✓ src/plugin-sdk/persistent-dedupe.test.ts (6 tests) 117ms
+ ✓ src/imessage/monitor/inbound-processing.test.ts (4 tests) 12ms
+ ✓ src/config/schema.hints.test.ts (7 tests) 106ms
+ ✓ src/tui/tui.test.ts (19 tests) 12ms
+ ✓ src/security/skill-scanner.test.ts (27 tests) 57ms
+ ✓ src/markdown/ir.blockquote-spacing.test.ts (19 tests) 24ms
+ ✓ src/memory/manager.async-search.test.ts (2 tests) 92ms
+ ✓ src/cli/models-cli.test.ts (4 tests) 57ms
+ ✓ src/infra/brew.test.ts (5 tests) 30ms
+ ✓ src/plugins/uninstall.test.ts (23 tests) 51ms
+ ✓ src/memory/qmd-manager.test.ts (50 tests) 314ms
+ ✓ src/memory/search-manager.test.ts (6 tests) 9ms
+ ✓ src/cli/nodes-camera.test.ts (17 tests) 54ms
+ ✓ src/infra/archive.test.ts (13 tests) 189ms
+ ✓ src/infra/bonjour-discovery.test.ts (4 tests) 7ms
+ ✓ src/daemon/systemd.test.ts (19 tests) 6ms
+ ✓ src/infra/device-pairing.test.ts (11 tests) 181ms
+ ✓ src/slack/monitor/message-handler/prepare.thread-session-key.test.ts (4 tests) 153ms
+ ✓ src/cli/secrets-cli.test.ts (5 tests) 15ms
+ ✓ src/plugin-sdk/webhook-memory-guards.test.ts (9 tests) 6ms
+ ✓ src/tui/tui-command-handlers.test.ts (5 tests) 9ms
+ ✓ src/config/config.allowlist-requires-allowfrom.test.ts (14 tests) 50ms
+ ✓ src/config/config.secrets-schema.test.ts (8 tests) 33ms
+ ✓ src/cli/program/build-program.version-alias.test.ts (2 tests) 10ms
+ ✓ src/config/config.dm-policy-alias.test.ts (6 tests) 53ms
+ ✓ src/media-understanding/runner.auto-audio.test.ts (4 tests) 67ms
+ ✓ src/config/config.discord-presence.test.ts (5 tests) 8ms
+ ✓ src/config/config.nix-integration-u3-u5-u9.test.ts (19 tests) 212ms
+ ✓ src/config/config.pruning-defaults.test.ts (6 tests) 119ms
+ ✓ src/config/config.agent-concurrency-defaults.test.ts (4 tests) 36ms
+ ✓ src/cron/service.jobs.top-of-hour-stagger.test.ts (6 tests) 28ms
+ ✓ src/config/legacy-migrate.test.ts (13 tests) 53ms
+ ✓ src/cron/normalize.test.ts (27 tests) 12ms
+ ✓ src/config/config.sandbox-docker.test.ts (21 tests) 42ms
+ ✓ src/config/config.msteams.test.ts (2 tests) 23ms
+ ✓ src/config/io.compat.test.ts (7 tests) 66ms
+ ✓ src/config/config.identity-avatar.test.ts (3 tests) 31ms
+ ✓ src/cron/service.session-reaper-in-finally.test.ts (3 tests) 192ms
+ ✓ src/cron/isolated-agent.auth-profile-propagation.test.ts (1 test) 153ms
+ ✓ src/config/config.discord.test.ts (2 tests) 66ms
+ ✓ src/cron/isolated-agent.delivers-response-has-heartbeat-ok-but-includes.test.ts (5 tests) 273ms
+ ✓ src/config/config.env-vars.test.ts (6 tests) 36ms
+ ✓ src/cron/session-reaper.test.ts (16 tests) 151ms
+ ✓ src/cron/schedule.test.ts (16 tests) 27ms
+ ✓ src/plugins/http-registry.test.ts (5 tests) 7ms
+ ✓ src/config/config.schema-regressions.test.ts (13 tests) 33ms
+ ✓ src/config/io.owner-display-secret.test.ts (1 test) 56ms
+ ✓ src/config/config.compaction-settings.test.ts (3 tests) 97ms
+ ✓ src/config/includes.test.ts (26 tests) 96ms
+ ✓ src/config/config.hooks-module-paths.test.ts (4 tests) 15ms
+ ✓ src/config/config.backup-rotation.test.ts (4 tests) 131ms
+ ✓ src/memory/manager.mistral-provider.test.ts (3 tests) 71ms
+ ✓ src/config/model-alias-defaults.test.ts (7 tests) 6ms
+ ✓ src/config/config.tools-alsoAllow.test.ts (3 tests) 10ms
+ ✓ src/daemon/schtasks.test.ts (18 tests) 40ms
+ ✓ src/infra/exec-approvals-parity.test.ts (20 tests) 14ms
+ ✓ src/plugins/discovery.test.ts (11 tests) 28ms
+ ✓ src/cli/deps.test.ts (2 tests) 4ms
+ ✓ src/daemon/runtime-paths.test.ts (17 tests) 7ms
+ ✓ src/infra/exec-approvals-safe-bins.test.ts (47 tests) 19ms
+ ✓ src/config/config.irc.test.ts (7 tests) 10ms
+ ✓ src/cron/service.store.migration.test.ts (6 tests) 154ms
+ ✓ src/plugins/hooks.model-override-wiring.test.ts (6 tests) 5ms
+ ✓ src/cron/service.failure-alert.test.ts (4 tests) 237ms
+ ✓ src/plugins/wired-hooks-compaction.test.ts (5 tests) 10ms
+ ✓ src/config/normalize-paths.test.ts (1 test) 9ms
+ ✓ src/cli/route.test.ts (3 tests) 41ms
+ ✓ src/cli/hooks-cli.test.ts (3 tests) 6ms
+ ✓ src/infra/boundary-path.test.ts (5 tests) 188ms
+ ✓ src/infra/device-identity.state-dir.test.ts (1 test) 14ms
+ ✓ src/infra/abort-pattern.test.ts (6 tests) 6ms
+ ✓ src/infra/exec-obfuscation-detect.test.ts (22 tests) 10ms
+ ✓ src/infra/exec-approvals.test.ts (41 tests) 22ms
+ ✓ src/infra/exec-approvals-allow-always.test.ts (11 tests) 14ms
+ ✓ src/config/commands.test.ts (8 tests) 5ms
+ ✓ src/daemon/service-env.test.ts (47 tests) 14ms
+ ✓ src/infra/exec-approvals-config.test.ts (9 tests) 11ms
+ ✓ src/config/env-substitution.test.ts (9 tests) 6ms
+ ✓ src/plugins/hooks.before-agent-start.test.ts (10 tests) 4ms
+ ✓ src/plugins/manifest-registry.test.ts (7 tests) 22ms
+ ✓ src/cli/logs-cli.test.ts (11 tests) 41ms
+ ✓ src/cli/exec-approvals-cli.test.ts (3 tests) 37ms
+ ✓ src/plugins/schema-validator.test.ts (7 tests) 55ms
+ ✓ src/cron/service.prevents-duplicate-timers.test.ts (1 test) 108ms
+ ✓ src/daemon/service-audit.test.ts (11 tests) 36ms
+ ✓ src/config/talk.normalize.test.ts (6 tests) 32ms
+ ✓ src/daemon/schtasks.install.test.ts (2 tests) 171ms
+ ✓ src/memory/manager.embedding-batches.test.ts (4 tests) 152ms
+ ✓ src/plugins/tools.optional.test.ts (6 tests) 6ms
+ ✓ src/plugins/bundled-sources.test.ts (3 tests) 5ms
+ ✓ src/markdown/ir.table-bullets.test.ts (7 tests) 34ms
+ ✓ src/media-understanding/runner.skip-tiny-audio.test.ts (3 tests) 65ms
+ ✓ src/plugins/wired-hooks-message.test.ts (4 tests) 6ms
+ ✓ src/hooks/hooks-install.test.ts (1 test) 93ms
+ ✓ src/memory/manager.atomic-reindex.test.ts (1 test) 132ms
+ ✓ src/plugins/config-state.test.ts (8 tests) 7ms
+ ✓ src/plugins/update.test.ts (2 tests) 159ms
+ ✓ src/config/validation.allowed-values.test.ts (4 tests) 18ms
+ ✓ src/memory/manager.get-concurrency.test.ts (1 test) 120ms
+ ✓ src/cli/run-main.profile-env.test.ts (1 test) 4ms
+ ✓ src/cli/plugin-install-plan.test.ts (4 tests) 5ms
+ ✓ src/cli/skills-cli.commands.test.ts (5 tests) 73ms
+ ✓ test/git-hooks-pre-commit.test.ts (1 test) 638ms
+     ✓ does not treat staged filenames as git-add flags (e.g. --all)  635ms
+ ✓ src/cron/isolated-agent.subagent-model.test.ts (4 tests) 173ms
+ ✓ src/canvas-host/server.test.ts (6 tests) 340ms
+ ✓ src/cron/service.armtimer-tight-loop.test.ts (3 tests) 18ms
+ ✓ test/ui.presenter-next-run.test.ts (2 tests) 28ms
+ ✓ src/channels/status-reactions.test.ts (35 tests) 41ms
+ ✓ src/cron/service.issue-13992-regression.test.ts (5 tests) 15ms
+ ✓ src/cron/service.skips-main-jobs-empty-systemevent-text.test.ts (3 tests) 33ms
+ ✓ src/cli/acp-cli.option-collisions.test.ts (7 tests) 65ms
+ ✓ src/cli/program.smoke.test.ts (4 tests) 126ms
+stdout | src/logger.test.ts > logger helpers > only logs debug when verbose is enabled
+loud
+
+ ✓ src/cron/service.issue-16156-list-skips-cron.test.ts (3 tests) 172ms
+ ✓ src/logger.test.ts (9 tests) 96ms
+ ✓ src/version.test.ts (10 tests) 186ms
+ ✓ src/docker-image-digests.test.ts (2 tests) 73ms
+ ✓ src/cli/browser-cli-state.option-collisions.test.ts (9 tests) 48ms
+ ✓ src/cli/browser-cli-inspect.test.ts (5 tests) 57ms
+ ✓ src/plugins/commands.test.ts (2 tests) 6ms
+ ✓ src/memory/embeddings-voyage.test.ts (4 tests) 46ms
+ ✓ src/plugins/installs.test.ts (3 tests) 13ms
+ ✓ src/cli/cli-utils.test.ts (11 tests) 38ms
+ ✓ src/acp/session-mapper.test.ts (2 tests) 5ms
+ ✓ src/cli/update-cli.option-collisions.test.ts (2 tests) 17ms
+ ✓ src/cli/browser-cli-extension.test.ts (4 tests) 112ms
+ ✓ src/channels/allow-from.test.ts (8 tests) 8ms
+ ✓ src/channels/sender-label.test.ts (4 tests) 16ms
+ ✓ src/plugins/cli.test.ts (1 test) 19ms
+ ✓ src/docs/slash-commands-doc.test.ts (1 test) 32ms
+ ✓ src/media-understanding/runner.vision-skip.test.ts (1 test) 8ms
+ ✓ src/cli/system-cli.test.ts (7 tests) 17ms
+ ✓ src/cli/daemon-cli-compat.test.ts (3 tests) 4ms
+ ✓ src/cli/argv.test.ts (51 tests) 29ms
+ ✓ src/media-understanding/runner.video.test.ts (2 tests) 43ms
+ ✓ src/plugins/services.test.ts (2 tests) 15ms
+ ✓ src/cli/skills-cli.formatting.test.ts (2 tests) 18ms
+ ✓ src/utils.test.ts (28 tests) 66ms
+ ✓ src/channels/model-overrides.test.ts (3 tests) 4ms
+ ✓ src/acp/translator.session-rate-limit.test.ts (4 tests) 23ms
+ ✓ src/daemon/launchd.test.ts (16 tests) 30ms
+ ✓ src/plugins/logger.test.ts (1 test) 13ms
+ ✓ src/channels/dock.test.ts (5 tests) 5ms
+ ✓ src/acp/translator.prompt-prefix.test.ts (2 tests) 13ms
+ ✓ src/canvas-host/server.state-dir.test.ts (1 test) 44ms
+ ✓ src/cron/cron-protocol-conformance.test.ts (2 tests) 16ms
+ ✓ src/channels/session.test.ts (4 tests) 17ms
+ ✓ src/acp/client.test.ts (31 tests) 56ms
+ ✓ src/cli/channel-auth.test.ts (7 tests) 17ms
+ ✓ src/daemon/constants.test.ts (19 tests) 12ms
+ ✓ src/infra/dotenv.test.ts (3 tests) 68ms
+ ✓ src/config/merge-patch.test.ts (6 tests) 9ms
+ ✓ src/cron/isolated-agent.direct-delivery-forum-topics.test.ts (1 test) 194ms
+ ✓ src/config/config.telegram-custom-commands.test.ts (2 tests) 23ms
+ ✓ src/plugins/slots.test.ts (5 tests) 7ms
+ ✓ src/plugins/wired-hooks-llm.test.ts (3 tests) 13ms
+ ✓ src/infra/archive-path.test.ts (3 tests) 55ms
+ ✓ src/channels/draft-stream-controls.test.ts (6 tests) 11ms
+ ✓ src/channels/command-gating.test.ts (8 tests) 5ms
+ ✓ src/acp/session.test.ts (5 tests) 6ms
+ ✓ src/cli/command-options.test.ts (7 tests) 12ms
+ ✓ src/plugin-sdk/status-helpers.test.ts (8 tests) 9ms
+ ✓ src/plugins/wired-hooks-subagent.test.ts (6 tests) 11ms
+ ✓ src/config/channel-capabilities.test.ts (6 tests) 6ms
+ ✓ src/channels/channels-misc.test.ts (11 tests) 21ms
+ ✓ src/plugin-sdk/fetch-auth.test.ts (5 tests) 103ms
+ ✓ src/cron/service.issue-19676-at-reschedule.test.ts (7 tests) 4ms
+ ✓ src/config/issue-format.test.ts (4 tests) 9ms
+ ✓ src/acp/policy.test.ts (4 tests) 4ms
+ ✓ src/cli/browser-cli-manage.timeout-option.test.ts (1 test) 7ms
+ ✓ src/cli/run-main.test.ts (14 tests) 16ms
+ ✓ src/config/config.gateway-tailscale-bind.test.ts (4 tests) 16ms
+ ✓ src/config/slack-token-validation.test.ts (4 tests) 54ms
+ ✓ src/config/io.runtime-snapshot-write.test.ts (1 test) 36ms
+ ✓ src/cron/service.rearm-timer-when-running.test.ts (2 tests) 173ms
+ ✓ src/memory/internal.test.ts (13 tests) 144ms
+ ✓ src/memory/manager.watcher-config.test.ts (1 test) 25ms
+ ✓ src/memory/manager.vector-dedupe.test.ts (1 test) 33ms
+ ✓ src/config/telegram-webhook-port.test.ts (3 tests) 19ms
+ ✓ src/config/paths.test.ts (10 tests) 27ms
+ ✓ src/config/schema.help.quality.test.ts (20 tests) 155ms
+ ✓ src/memory/manager.read-file.test.ts (4 tests) 100ms
+ ✓ src/cron/store.test.ts (8 tests) 133ms
+ ✓ src/imessage/monitor.shutdown.unhandled-rejection.test.ts (1 test) 6ms
+ ✓ src/logging/log-file-size-cap.test.ts (3 tests) 159ms
+ ✓ src/media-understanding/media-understanding-misc.test.ts (7 tests) 23ms
+ ✓ src/logging/subsystem.test.ts (5 tests) 4ms
+ ✓ src/hooks/gmail-setup-utils.test.ts (3 tests) 16ms
+ ✓ src/markdown/ir.nested-lists.test.ts (18 tests) 46ms
+ ✓ src/node-host/invoke-system-run.test.ts (20 tests) 128ms
+ ✓ src/logging/logger-env.test.ts (2 tests) 4ms
+ ✓ src/memory/manager.sync-errors-do-not-crash.test.ts (1 test) 99ms
+ ✓ src/imessage/send.test.ts (11 tests) 28ms
+ ✓ src/hooks/internal-hooks.test.ts (30 tests) 12ms
+ ✓ src/daemon/inspect.test.ts (3 tests) 3ms
+ ✓ src/cron/service.main-job-passes-heartbeat-target-last.test.ts (2 tests) 116ms
+ ✓ src/config/plugin-auto-enable.test.ts (20 tests) 101ms
+ ✓ src/cron/service.heartbeat-ok-summary-suppressed.test.ts (2 tests) 215ms
+ ✓ src/hooks/message-hooks.test.ts (12 tests) 14ms
+ ✓ src/memory/hybrid.test.ts (4 tests) 5ms
+ ✓ src/hooks/frontmatter.test.ts (20 tests) 39ms
+ ✓ src/logging/console-timestamp.test.ts (4 tests) 42ms
+ ✓ src/media-understanding/runner.deepgram.test.ts (1 test) 21ms
+ ✓ src/memory/embeddings-remote-fetch.test.ts (2 tests) 7ms
+ ✓ src/config/telegram-webhook-secret.test.ts (6 tests) 19ms
+ ✓ src/hooks/workspace.test.ts (5 tests) 30ms
+ ✓ src/hooks/message-hook-mappers.test.ts (5 tests) 4ms
+ ✓ scripts/jarvis-kb/__tests__/run-fault-drills.test.mts (1 test) 5ms
+ ✓ src/cli/program/config-guard.test.ts (8 tests) 12ms
+ ✓ src/media-understanding/providers/moonshot/video.test.ts (2 tests) 31ms
+ ✓ src/media/input-files.fetch-guard.test.ts (5 tests) 102ms
+ ✓ src/process/supervisor/adapters/child.test.ts (4 tests) 46ms
+ ✓ src/media-understanding/providers/google/video.test.ts (2 tests) 9ms
+ ✓ src/tui/gateway-chat.test.ts (8 tests) 23ms
+ ✓ src/signal/format.chunking.test.ts (21 tests) 181ms
+ ✓ src/security/external-content.test.ts (35 tests) 39ms
+ ✓ src/slack/send.upload.test.ts (5 tests) 48ms
+ ✓ src/tui/tui.submit-handler.test.ts (11 tests) 14ms
+ ✓ src/slack/send.blocks.test.ts (12 tests) 182ms
+ ✓ src/cron/service.get-job.test.ts (2 tests) 58ms
+ ✓ src/slack/stream-mode.test.ts (11 tests) 24ms
+ ✓ src/terminal/table.test.ts (12 tests) 9ms
+ ✓ src/test-helpers/state-dir-env.test.ts (4 tests) 23ms
+ ✓ src/tts/prepare-text.test.ts (5 tests) 7ms
+ ✓ src/slack/threading-tool-context.test.ts (9 tests) 6ms
+ ✓ src/secrets/runtime-gateway-auth-surfaces.test.ts (6 tests) 7ms
+ ✓ src/slack/actions.download-file.test.ts (5 tests) 13ms
+ ✓ src/cron/service.issue-17852-daily-skip.test.ts (2 tests) 39ms
+ ✓ src/secrets/target-registry.test.ts (3 tests) 87ms
+ ✓ src/imessage/monitor.gating.test.ts (9 tests) 21ms
+ ✓ src/tui/tui-stream-assembler.test.ts (11 tests) 6ms
+ ✓ src/plugin-sdk/ssrf-policy.test.ts (9 tests) 7ms
+ ✓ src/memory/post-json.test.ts (2 tests) 34ms
+ ✓ src/hooks/bundled/boot-md/handler.test.ts (7 tests) 6ms
+ ✓ src/slack/format.test.ts (7 tests) 48ms
+ ✓ src/plugin-sdk/command-auth.test.ts (2 tests) 7ms
+ ✓ src/hooks/bundled/bootstrap-extra-files/handler.test.ts (2 tests) 26ms
+ ✓ src/plugin-sdk/index.test.ts (3 tests) 6ms
+ ✓ src/shared/text/reasoning-tags.test.ts (12 tests) 4ms
+ ✓ src/test-utils/env.test.ts (8 tests) 5ms
+ ✓ src/media/fetch.test.ts (3 tests) 59ms
+ ✓ src/markdown/ir.table-code.test.ts (4 tests) 9ms
+ ✓ src/media/store.redirect.test.ts (2 tests) 39ms
+ ✓ src/cli/program/register.subclis.test.ts (4 tests) 10ms
+ ✓ src/link-understanding/detect.test.ts (10 tests) 11ms
+ ✓ src/slack/monitor/message-handler/dispatch.streaming.test.ts (5 tests) 5ms
+ ✓ src/process/supervisor/adapters/pty.test.ts (9 tests) 91ms
+stderr | src/scripts/canvas-a2ui-copy.test.ts > canvas a2ui copy > skips missing assets when OPENCLAW_A2UI_SKIP_MISSING=1
+Missing A2UI bundle assets. Run "pnpm canvas:a2ui:bundle" and retry. Skipping copy (OPENCLAW_A2UI_SKIP_MISSING=1).
+
+ ✓ src/scripts/canvas-a2ui-copy.test.ts (3 tests) 24ms
+ ✓ src/infra/outbound/message.channels.test.ts (7 tests) 19ms
+ ✓ src/tts/tts.test.ts (19 tests) 14ms
+ ✓ src/infra/net/ssrf.pinning.test.ts (15 tests) 17ms
+ ✓ src/memory/query-expansion.test.ts (26 tests) 10ms
+ ✓ src/channels/plugins/outbound/imessage.test.ts (2 tests) 9ms
+ ✓ src/media/mime.test.ts (41 tests) 16ms
+ ✓ src/memory/mmr.test.ts (25 tests) 6ms
+ ✓ src/hooks/gmail.test.ts (8 tests) 4ms
+ ✓ src/media-understanding/providers/openai/audio.test.ts (3 tests) 16ms
+ ✓ src/media-understanding/providers/mistral/index.test.ts (3 tests) 15ms
+ ✓ src/config/slack-http-config.test.ts (6 tests) 12ms
+ ✓ src/process/kill-tree.test.ts (4 tests) 21ms
+ ✓ src/signal/send-reactions.test.ts (3 tests) 14ms
+ ✓ src/channels/plugins/onboarding/channel-access.test.ts (7 tests) 8ms
+ ✓ src/channels/plugins/onboarding/signal.test.ts (5 tests) 7ms
+ ✓ src/channels/plugins/outbound/signal.test.ts (2 tests) 6ms
+ ✓ src/media-understanding/providers/deepgram/audio.test.ts (3 tests) 10ms
+ ✓ src/slack/monitor/events/interactions.test.ts (21 tests) 54ms
+ ✓ src/security/windows-acl.test.ts (40 tests) 16ms
+ ✓ src/security/dm-policy-shared.test.ts (50 tests) 28ms
+ ✓ src/cli/program/message/helpers.test.ts (10 tests) 21ms
+ ✓ src/tui/osc8-hyperlinks.test.ts (19 tests) 9ms
+ ✓ src/infra/outbound/session-binding-service.test.ts (6 tests) 10ms
+ ✓ src/wizard/onboarding.finalize.test.ts (1 test) 6ms
+ ✓ src/infra/outbound/sanitize-text.test.ts (27 tests) 8ms
+ ✓ src/tui/tui-event-handlers.test.ts (13 tests) 26ms
+ ✓ src/memory/session-files.test.ts (3 tests) 25ms
+ ✓ src/channels/plugins/onboarding/helpers.test.ts (53 tests) 29ms
+ ✓ src/channels/plugins/onboarding/channel-access-configure.test.ts (3 tests) 8ms
+ ✓ src/tui/theme/theme.test.ts (6 tests) 7ms
+ ✓ src/infra/net/ssrf.test.ts (9 tests) 20ms
+stderr | src/logging/console-settings.test.ts > getConsoleSettings > does not recurse when loadConfig logs during resolution
+2026-03-04T00:49:28.815+08:00 config load failed
+
+ ✓ src/logging/console-settings.test.ts (2 tests) 35ms
+ ✓ src/memory/temporal-decay.test.ts (6 tests) 44ms
+ ✓ src/memory/batch-output.test.ts (3 tests) 3ms
+ ✓ src/memory/batch-http.test.ts (2 tests) 7ms
+ ✓ src/tui/tui-formatters.test.ts (24 tests) 7ms
+ ✓ src/slack/channel-migration.test.ts (5 tests) 5ms
+ ✓ src/terminal/restore.test.ts (3 tests) 19ms
+ ✓ src/plugin-sdk/webhook-targets.test.ts (17 tests) 9ms
+ ✓ src/slack/actions.blocks.test.ts (7 tests) 7ms
+ ✓ src/whatsapp/normalize.test.ts (8 tests) 7ms
+ ✓ src/pairing/setup-code.test.ts (9 tests) 26ms
+ ✓ src/infra/outbound/message-action-runner.threading.test.ts (7 tests) 37ms
+ ✓ src/memory/backend-config.test.ts (7 tests) 30ms
+ ✓ src/slack/monitor/events/pins.test.ts (7 tests) 79ms
+ ✓ src/shared/pid-alive.test.ts (9 tests) 5ms
+ ✓ src/shared/shared-misc.test.ts (16 tests) 10ms
+ ✓ src/logging/diagnostic.test.ts (7 tests) 22ms
+ ✓ src/logging/redact.test.ts (12 tests) 10ms
+ ✓ src/slack/monitor.test.ts (12 tests) 12ms
+ ✓ src/node-host/invoke-system-run-plan.test.ts (4 tests) 13ms
+ ✓ src/scripts/ci-changed-scope.test.ts (8 tests) 31ms
+ ✓ src/infra/outbound/targets.channel-resolution.test.ts (2 tests) 6ms
+ ✓ src/slack/sent-thread-cache.test.ts (8 tests) 7ms
+ ✓ src/infra/watch-node.test.ts (3 tests) 5ms
+ ✓ src/sessions/model-overrides.test.ts (3 tests) 3ms
+ ✓ src/slack/draft-stream.test.ts (7 tests) 7ms
+ ✓ src/shared/requirements.test.ts (6 tests) 3ms
+ ✓ src/slack/accounts.test.ts (4 tests) 68ms
+ ✓ src/signal/probe.test.ts (6 tests) 3ms
+ ✓ src/signal/client.test.ts (3 tests) 82ms
+ ✓ src/infra/transport-ready.test.ts (3 tests) 9ms
+ ✓ src/memory/embedding-chunk-limits.test.ts (4 tests) 3ms
+ ✓ src/media-understanding/format.test.ts (5 tests) 4ms
+ ✓ src/media-understanding/resolve.test.ts (6 tests) 9ms
+ ✓ src/logging/timestamps.test.ts (9 tests) 31ms
+ ✓ src/logging/logger-settings.test.ts (2 tests) 13ms
+ ✓ src/media-understanding/transcribe-audio.test.ts (3 tests) 8ms
+ ✓ src/i18n/registry.test.ts (3 tests) 39ms
+ ✓ src/logging/logger-timestamp.test.ts (1 test) 23ms
+ ✓ src/media-understanding/runner.proxy.test.ts (3 tests) 30ms
+ ✓ src/memory/embeddings-ollama.test.ts (2 tests) 15ms
+ ✓ src/markdown/frontmatter.test.ts (8 tests) 23ms
+ ✓ src/slack/monitor/message-handler.test.ts (4 tests) 12ms
+ ✓ src/process/supervisor/supervisor.pty-command.test.ts (2 tests) 25ms
+ ✓ src/config/zod-schema.cron-retention.test.ts (3 tests) 13ms
+ ✓ src/signal/format.test.ts (7 tests) 71ms
+ ✓ src/plugin-sdk/channel-lifecycle.test.ts (3 tests) 60ms
+ ✓ src/infra/state-migrations.state-dir.test.ts (1 test) 9ms
+ ✓ src/infra/tmp-openclaw-dir.test.ts (11 tests) 7ms
+ ✓ src/media/audio.test.ts (23 tests) 13ms
+ ✓ src/providers/google-shared.preserves-parameters-type-is-missing.test.ts (9 tests) 6ms
+ ✓ src/media/server.outside-workspace.test.ts (1 test) 33ms
+ ✓ src/infra/update-check.test.ts (5 tests) 10ms
+ ✓ src/logging/console-capture.test.ts (9 tests) 98ms
+ ✓ src/providers/github-copilot-models.test.ts (6 tests) 9ms
+ ✓ src/infra/tailscale.test.ts (12 tests) 12ms
+ ✓ src/infra/git-root.test.ts (4 tests) 44ms
+ ✓ src/infra/process-respawn.test.ts (10 tests) 29ms
+ ✓ src/infra/exec-safe-bin-policy.test.ts (84 tests) 7ms
+ ✓ src/process/exec.no-output-timer.test.ts (1 test) 7ms
+ ✓ src/shared/node-list-parse.test.ts (2 tests) 2ms
+ ✓ src/signal/identity.test.ts (7 tests) 3ms
+ ✓ src/slack/client.test.ts (3 tests) 7ms
+ ✓ src/infra/secure-random.test.ts (2 tests) 3ms
+ ✓ src/sessions/send-policy.test.ts (5 tests) 3ms
+ ✓ src/infra/shell-env.test.ts (13 tests) 8ms
+ ✓ src/config/zod-schema.typing-mode.test.ts (2 tests) 83ms
+ ✓ src/media-understanding/runner.entries.guards.test.ts (3 tests) 3ms
+ ✓ src/signal/format.links.test.ts (3 tests) 23ms
+ ✓ src/infra/unhandled-rejections.test.ts (29 tests) 5ms
+ ✓ src/infra/provider-usage.fetch.copilot.test.ts (2 tests) 7ms
+ ✓ src/routing/resolve-route.test.ts (38 tests) 13ms
+ ✓ src/memory/qmd-query-parser.test.ts (6 tests) 8ms
+ ✓ src/infra/provider-usage.fetch.claude.test.ts (9 tests) 33ms
+ ✓ src/signal/format.visual.test.ts (7 tests) 70ms
+ ✓ src/providers/google-shared.ensures-function-call-comes-after-user-turn.test.ts (2 tests) 3ms
+ ✓ src/markdown/ir.hr-spacing.test.ts (13 tests) 36ms
+ ✓ src/node-host/exec-policy.test.ts (12 tests) 4ms
+ ✓ src/infra/retry.test.ts (9 tests) 22ms
+ ✓ src/infra/outbound/target-resolver.test.ts (2 tests) 7ms
+ ✓ src/infra/http-body.test.ts (9 tests) 8ms
+ ✓ src/shared/net/ip.test.ts (4 tests) 10ms
+ ✓ src/process/supervisor/registry.test.ts (3 tests) 3ms
+ ✓ src/infra/provider-usage.fetch.shared.test.ts (3 tests) 8ms
+ ✓ src/slack/actions.read.test.ts (2 tests) 15ms
+ ✓ src/slack/monitor/message-handler.debounce-key.test.ts (7 tests) 13ms
+ ✓ src/config/zod-schema.session-maintenance-extensions.test.ts (5 tests) 17ms
+ ✓ src/security/dm-policy-channel-smoke.test.ts (6 tests) 22ms
+ ✓ src/media/parse.test.ts (5 tests) 8ms
+ ✓ src/polls.test.ts (6 tests) 5ms
+ ✓ src/imessage/targets.test.ts (12 tests) 22ms
+ ✓ src/slack/monitor/events/members.test.ts (7 tests) 52ms
+ ✓ src/infra/outbound/outbound-send-service.test.ts (4 tests) 7ms
+ ✓ src/node-host/invoke.sanitize-env.test.ts (9 tests) 98ms
+ ✓ src/media/inbound-path-policy.test.ts (5 tests) 10ms
+ ✓ src/security/audit-extra.sync.test.ts (7 tests) 11ms
+ ✓ src/channels/plugins/outbound/whatsapp.sendpayload.test.ts (5 tests) 10ms
+ ✓ src/media/host.test.ts (3 tests) 17ms
+ ✓ src/plugin-sdk/keyed-async-queue.test.ts (4 tests) 66ms
+ ✓ src/daemon/program-args.test.ts (3 tests) 6ms
+ ✓ src/plugin-sdk/temp-path.test.ts (4 tests) 41ms
+ ✓ src/process/spawn-utils.test.ts (3 tests) 6ms
+ ✓ src/secrets/target-registry-pattern.test.ts (3 tests) 21ms
+ ✓ src/secrets/command-config.test.ts (3 tests) 4ms
+ ✓ src/config/zod-schema.logging-levels.test.ts (2 tests) 10ms
+ ✓ src/secrets/plan.test.ts (5 tests) 62ms
+ ✓ src/slack/monitor/events/message-subtype-handlers.test.ts (4 tests) 3ms
+ ✓ src/infra/ssh-config.test.ts (3 tests) 18ms
+ ✓ src/config/runtime-overrides.test.ts (7 tests) 5ms
+ ✓ src/hooks/gmail-watcher-lifecycle.test.ts (5 tests) 4ms
+ ✓ src/hooks/import-url.test.ts (7 tests) 7ms
+ ✓ src/memory/qmd-scope.test.ts (6 tests) 3ms
+ ✓ src/plugin-sdk/allow-from.test.ts (7 tests) 4ms
+ ✓ src/node-host/runner.credentials.test.ts (4 tests) 5ms
+ ✓ src/secrets/path-utils.test.ts (7 tests) 13ms
+ ✓ src/plugin-sdk/group-access.test.ts (4 tests) 5ms
+ ✓ src/infra/outbound/channel-selection.test.ts (5 tests) 6ms
+ ✓ src/config/config.talk-api-key-fallback.test.ts (2 tests) 5ms
+ ✓ src/channels/plugins/outbound/slack.sendpayload.test.ts (5 tests) 10ms
+ ✓ src/config/config.skills-entries-config.test.ts (2 tests) 6ms
+ ✓ src/config/sessions/artifacts.test.ts (3 tests) 5ms
+ ✓ src/infra/outbound/message-action-params.test.ts (1 test) 28ms
+ ✓ src/slack/monitor/allow-list.test.ts (3 tests) 11ms
+ ✓ src/slack/http/registry.test.ts (5 tests) 6ms
+ ✓ src/config/config.multi-agent-agentdir-validation.test.ts (2 tests) 135ms
+ ✓ src/config/config.meta-timestamp-coercion.test.ts (5 tests) 55ms
+ ✓ src/config/logging-max-file-bytes.test.ts (2 tests) 5ms
+ ✓ ui/src/ui/controllers/agents.test.ts (2 tests) 5ms
+ ✓ src/config/io.eacces.test.ts (2 tests) 6ms
+ ✓ src/slack/monitor/auth.test.ts (4 tests) 3ms
+ ✓ src/channels/targets.test.ts (4 tests) 4ms
+ ✓ src/config/agent-dirs.test.ts (2 tests) 4ms
+ ✓ src/config/merge-patch.proto-pollution.test.ts (4 tests) 3ms
+ ✓ src/config/group-policy.test.ts (13 tests) 10ms
+ ✓ src/infra/outbound/message.test.ts (2 tests) 12ms
+ ✓ src/cli/browser-cli.test.ts (3 tests) 8ms
+ ✓ src/pairing/pairing-messages.test.ts (6 tests) 3ms
+ ✓ src/channels/mention-gating.test.ts (5 tests) 3ms
+ ✓ src/config/env-preserve.test.ts (16 tests) 5ms
+ ✓ src/plugins/enable.test.ts (6 tests) 6ms
+stderr | src/channels/typing.test.ts > createTypingCallbacks > TTL safety > uses default 60s TTL when not specified
+[typing] TTL exceeded (60000ms), auto-stopping typing indicator
+
+ ✓ src/channels/typing.test.ts (14 tests) 88ms
+ ✓ src/slack/monitor/events/channels.test.ts (2 tests) 4ms
+ ✓ src/plugins/wired-hooks-gateway.test.ts (3 tests) 8ms
+ ✓ src/hooks/module-loader.test.ts (5 tests) 2ms
+ ✓ src/plugins/wired-hooks-session.test.ts (3 tests) 5ms
+ ✓ src/plugins/hooks.phase-hooks.test.ts (2 tests) 5ms
+ ✓ src/logging/parse-log-line.test.ts (3 tests) 7ms
+ ✓ src/config/runtime-group-policy.test.ts (7 tests) 6ms
+ ✓ src/cron/stagger.test.ts (4 tests) 4ms
+ ✓ src/infra/env.test.ts (6 tests) 5ms
+ ✓ src/infra/agent-events.test.ts (3 tests) 3ms
+ ✓ src/daemon/runtime-binary.test.ts (6 tests) 8ms
+ ✓ src/channels/location.test.ts (4 tests) 2ms
+ ✓ src/channels/conversation-label.test.ts (8 tests) 3ms
+ ✓ src/slack/monitor/context.test.ts (2 tests) 6ms
+ ✓ src/markdown/whatsapp.test.ts (3 tests) 6ms
+ ✓ src/infra/outbound/message-action-normalization.test.ts (5 tests) 8ms
+ ✓ src/plugins/source-display.test.ts (3 tests) 3ms
+ ✓ src/plugin-sdk/slack-message-actions.test.ts (2 tests) 4ms
+ ✓ src/slack/monitor/replies.test.ts (3 tests) 4ms
+ ✓ src/shared/text/assistant-visible-text.test.ts (5 tests) 5ms
+ ✓ src/imessage/probe.test.ts (1 test) 3ms
+ ✓ src/media/store.outside-workspace.test.ts (1 test) 28ms
+ ✓ test/release-check.test.ts (3 tests) 5ms
+ ✓ src/media-understanding/attachments.guards.test.ts (3 tests) 3ms
+ ✓ src/plugin-sdk/outbound-media.test.ts (2 tests) 3ms
+ ✓ test/appcast.test.ts (1 test) 3ms
+ ✓ src/config/config.telegram-audio-preflight.test.ts (2 tests) 46ms
+ ✓ src/channels/plugins/config-schema.test.ts (3 tests) 6ms
+ ✓ src/channels/channel-config.test.ts (17 tests) 8ms
+ ✓ scripts/jarvis-kb/__tests__/shadow-compare.test.mts (2 tests) 8ms
+ ✓ src/cli/program.force.test.ts (15 tests) 35ms
+ ✓ src/secrets/configure.test.ts (1 test) 8ms
+ ✓ src/infra/outbound/conversation-id.test.ts (5 tests) 2ms
+ ✓ src/infra/net/ssrf.dispatcher.test.ts (1 test) 8ms
+ ✓ src/cli/skills-cli.test.ts (11 tests) 8ms
+ ✓ src/cli/qr-cli.test.ts (17 tests) 40ms
+ ✓ src/slack/resolve-channels.test.ts (2 tests) 11ms
+ ✓ src/providers/qwen-portal-oauth.test.ts (8 tests) 6ms
+ ✓ src/test-utils/channel-plugins.test.ts (3 tests) 7ms
+ ✓ src/routing/session-key.test.ts (18 tests) 7ms
+ ✓ src/test-utils/temp-home.test.ts (1 test) 86ms
+ ✓ src/daemon/cmd-argv.test.ts (12 tests) 7ms
+ ✓ src/tui/components/chat-log.test.ts (3 tests) 29ms
+ ✓ src/infra/runtime-guard.test.ts (5 tests) 124ms
+ ✓ src/shared/string-normalization.test.ts (4 tests) 4ms
+ ✓ src/channels/ack-reactions.test.ts (8 tests) 15ms
+ ✓ src/infra/install-safe-path.test.ts (5 tests) 28ms
+ ✓ src/infra/provider-usage.fetch.gemini.test.ts (2 tests) 8ms
+ ✓ src/slack/monitor/provider.reconnect.test.ts (3 tests) 5ms
+ ✓ src/cli/npm-resolution.test.ts (8 tests) 3ms
+ ✓ src/hooks/bundled/boot-md/handler.gateway-startup.integration.test.ts (1 test) 4ms
+ ✓ src/infra/host-env-security.policy-parity.test.ts (1 test) 46ms
+ ✓ src/shared/config-eval.test.ts (4 tests) 3ms
+ ✓ src/slack/targets.test.ts (6 tests) 12ms
+ ✓ src/slack/monitor/provider.auth-errors.test.ts (20 tests) 8ms
+ ✓ src/infra/infra-parsing.test.ts (16 tests) 6ms
+ ✓ src/cli/channel-options.test.ts (4 tests) 20ms
+ ✓ src/channels/typing-start-guard.test.ts (4 tests) 4ms
+ ✓ src/cli/outbound-send-mapping.test.ts (1 test) 3ms
+ ✓ src/infra/scp-host.test.ts (2 tests) 2ms
+ ✓ src/infra/restart.test.ts (4 tests) 13ms
+ ✓ src/slack/blocks-fallback.test.ts (3 tests) 3ms
+ ✓ src/infra/heartbeat-visibility.test.ts (13 tests) 8ms
+ ✓ src/routing/session-key.continuity.test.ts (3 tests) 31ms
+ ✓ src/tui/commands.test.ts (4 tests) 9ms
+ ✓ src/dockerfile.test.ts (3 tests) 4ms
+ ✓ src/tui/tui-overlays.test.ts (2 tests) 4ms
+(node:50396) [OPENCLAW_TEST_WARNING] Warning: Visible warning
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ src/infra/warning-filter.test.ts (3 tests) 5ms
+ ✓ src/channels/telegram/api.test.ts (4 tests) 4ms
+ ✓ src/cron/service.list-page-sort-guards.test.ts (2 tests) 12ms
+ ✓ src/providers/github-copilot-token.test.ts (3 tests) 5ms
+ ✓ src/cli/program.nodes-test-helpers.test.ts (1 test) 3ms
+ ✓ src/terminal/stream-writer.test.ts (2 tests) 3ms
+ ✓ src/cli/progress.test.ts (2 tests) 3ms
+ ✓ src/wizard/onboarding.completion.test.ts (2 tests) 5ms
+ ✓ src/signal/monitor.test.ts (6 tests) 3ms
+ ✓ src/slack/threading.test.ts (7 tests) 3ms
+ ✓ test/scripts/ui.test.ts (5 tests) 51ms
+ ✓ src/channels/plugins/onboarding/imessage.test.ts (3 tests) 3ms
+ ✓ src/config/sessions/delivery-info.test.ts (4 tests) 3ms
+ ✓ src/cron/service.issue-22895-every-next-run.test.ts (2 tests) 2ms
+ ✓ src/infra/system-run-command.test.ts (23 tests) 8ms
+ ✓ src/infra/install-mode-options.test.ts (4 tests) 3ms
+ ✓ src/utils/run-with-concurrency.test.ts (3 tests) 5ms
+ ✓ src/shared/avatar-policy.test.ts (5 tests) 3ms
+ ✓ src/tui/tui-local-shell.test.ts (2 tests) 7ms
+ ✓ src/slack/blocks-input.test.ts (4 tests) 4ms
+ ✓ src/cli/program/routes.test.ts (20 tests) 69ms
+ ✓ src/imessage/monitor/monitor-provider.echo-cache.test.ts (3 tests) 38ms
+ ✓ src/cli/update-cli/progress.test.ts (3 tests) 24ms
+ ✓ src/imessage/monitor/provider.group-policy.test.ts (3 tests) 4ms
+ ✓ src/tui/tui-input-history.test.ts (7 tests) 7ms
+ ✓ src/cron/service/timeout-policy.test.ts (4 tests) 5ms
+ ✓ src/utils/message-channel.test.ts (2 tests) 6ms
+ ✓ src/wizard/onboarding.secret-input.test.ts (3 tests) 4ms
+ ✓ src/cli/program/program-context.test.ts (3 tests) 4ms
+ ✓ src/channels/plugins/account-action-gate.test.ts (3 tests) 3ms
+ ✓ src/cli/update-cli/shared.command-runner.test.ts (1 test) 3ms
+ ✓ src/cli/program/helpers.test.ts (16 tests) 5ms
+ ✓ src/utils/queue-helpers.test.ts (8 tests) 6ms
+ ✓ src/utils/usage-format.test.ts (3 tests) 5ms
+ ✓ src/utils/reaction-level.test.ts (5 tests) 6ms
+ ✓ src/cli/program/command-tree.test.ts (4 tests) 6ms
+ ✓ src/config/sessions/cache-fields.test.ts (4 tests) 2ms
+ ✓ src/imessage/monitor/deliver.test.ts (3 tests) 6ms
+ ✓ src/cli/program/context.test.ts (5 tests) 5ms
+ ✓ src/acp/runtime/errors.test.ts (2 tests) 4ms
+ ✓ src/cron/isolated-agent/run.session-key.test.ts (4 tests) 3ms
+ ✓ src/channels/telegram/allow-from.test.ts (2 tests) 4ms
+ ✓ test/scripts/check-no-random-messaging-tmp.test.ts (5 tests) 13ms
+ ✓ test/scripts/check-no-raw-window-open.test.ts (4 tests) 9ms
+ ✓ src/infra/outbound/bound-delivery-router.test.ts (5 tests) 4ms
+ ✓ src/channels/plugins/outbound/slack.test.ts (7 tests) 9ms
+ ✓ src/infra/exec-safe-bin-runtime-policy.test.ts (16 tests) 12ms
+ ✓ src/cli/run-main.exit.test.ts (1 test) 23ms
+ ✓ src/infra/path-alias-guards.test.ts (3 tests) 57ms
+ ✓ src/tui/tui-session-actions.test.ts (1 test) 52ms
+ ✓ src/security/safe-regex.test.ts (5 tests) 5ms
+ ✓ src/wizard/clack-prompter.test.ts (3 tests) 6ms
+ ✓ src/cli/profile.test.ts (19 tests) 8ms
+ ✓ src/memory/batch-error-utils.test.ts (4 tests) 7ms
+ ✓ src/cli/prompt.test.ts (2 tests) 6ms
+ ✓ src/routing/account-id.test.ts (5 tests) 3ms
+ ✓ src/media-understanding/providers/index.test.ts (3 tests) 7ms
+ ✓ src/cli/completion-fish.test.ts (4 tests) 2ms
+ ✓ src/terminal/prompt-select-styled.test.ts (1 test) 3ms
+ ✓ src/infra/widearea-dns.test.ts (2 tests) 6ms
+ ✓ src/channels/inbound-debounce-policy.test.ts (3 tests) 10ms
+ ✓ src/cli/browser-cli-actions-input/shared.test.ts (4 tests) 10ms
+ ✓ src/infra/heartbeat-reason.test.ts (5 tests) 9ms
+ ✓ src/infra/system-run-approval-mismatch.contract.test.ts (3 tests) 3ms
+ ✓ src/infra/file-identity.test.ts (6 tests) 4ms
+ ✓ src/infra/system-run-command.contract.test.ts (8 tests) 6ms
+ ✓ src/cli/command-secret-resolution.coverage.test.ts (9 tests) 19ms
+ ✓ src/daemon/systemd-unit.test.ts (2 tests) 5ms
+ ✓ src/infra/abort-signal.test.ts (3 tests) 4ms
+ ✓ src/media/load-options.test.ts (3 tests) 2ms
+ ✓ src/config/allowed-values.test.ts (2 tests) 10ms
+ ✓ src/logging/logger.settings.test.ts (3 tests) 3ms
+ ✓ src/media-understanding/defaults.test.ts (3 tests) 3ms
+ ✓ src/media/ffmpeg-exec.test.ts (3 tests) 4ms
+ ✓ src/config/legacy.shared.test.ts (1 test) 4ms
+ ✓ src/cli/command-secret-targets.test.ts (2 tests) 3ms
+ ✓ src/infra/cli-root-options.test.ts (2 tests) 8ms
+ ✓ src/hooks/fire-and-forget.test.ts (2 tests) 5ms
+ ✓ src/plugin-sdk/text-chunking.test.ts (3 tests) 3ms
+ ✓ src/cli/log-level-option.test.ts (2 tests) 3ms
+ ✓ src/infra/fixed-window-rate-limit.test.ts (2 tests) 5ms
+ ✓ src/media/base64.test.ts (3 tests) 11ms
+ ✓ src/channels/plugins/normalize/telegram.test.ts (6 tests) 4ms
+ ✓ src/infra/outbound/agent-delivery.test.ts (6 tests) 20ms
+ ✓ src/routing/account-lookup.test.ts (2 tests) 4ms
+ ✓ src/media/image-ops.helpers.test.ts (3 tests) 4ms
+ ✓ src/channels/plugins/normalize/targets.test.ts (4 tests) 4ms
+ ✓ src/channels/plugins/status-issues/bluebubbles.test.ts (3 tests) 4ms
+ ✓ src/channels/plugins/status-issues/whatsapp.test.ts (3 tests) 6ms
+ ✓ src/slack/modal-metadata.test.ts (4 tests) 8ms
+ ✓ src/tui/tui-waiting.test.ts (2 tests) 4ms
+ ✓ src/infra/home-dir.test.ts (8 tests) 4ms
+ ✓ src/shared/operator-scope-compat.test.ts (5 tests) 5ms
+ ✓ src/cli/plugins-config.test.ts (3 tests) 3ms
+ ✓ src/memory/embeddings-mistral.test.ts (3 tests) 2ms
+ ✓ src/cron/heartbeat-policy.test.ts (5 tests) 3ms
+ ✓ src/cli/banner.test.ts (3 tests) 90ms
+ ✓ src/channels/registry.helpers.test.ts (4 tests) 6ms
+ ✓ src/sessions/transcript-events.test.ts (2 tests) 5ms
+ ✓ src/infra/heartbeat-events-filter.test.ts (3 tests) 4ms
+ ✓ src/channels/plugins/onboarding/telegram.test.ts (3 tests) 3ms
+ ✓ src/acp/runtime/error-text.test.ts (2 tests) 5ms
+ ✓ src/channels/plugins/actions/reaction-message-id.test.ts (3 tests) 4ms
+ ✓ src/infra/system-message.test.ts (3 tests) 3ms
+ ✓ src/infra/update-channels.test.ts (3 tests) 2ms
+ ✓ src/infra/plain-object.test.ts (2 tests) 2ms
+ ✓ src/slack/message-actions.test.ts (1 test) 5ms
+ ✓ src/cli/daemon-cli/shared.test.ts (2 tests) 2ms
+ ✓ src/cli/nodes-media-utils.test.ts (2 tests) 4ms
+ ✓ src/infra/path-safety.test.ts (2 tests) 2ms
+ ✓ src/utils/mask-api-key.test.ts (3 tests) 14ms
+ ✓ src/cli/tagline.test.ts (3 tests) 25ms
+ ✓ src/infra/skills-remote.test.ts (2 tests) 4ms
+ ✓ src/infra/json-utf8-bytes.test.ts (2 tests) 6ms
+ ✓ src/terminal/safe-text.test.ts (2 tests) 4ms
+ ↓ src/cli/gateway.sigterm.test.ts (1 test | 1 skipped)
+ ✓ src/cron/isolated-agent.delivery-target-thread-session.test.ts (6 tests) 6ms
+ ✓ src/slack/monitor/provider.group-policy.test.ts (3 tests) 8ms
+ ✓ src/cron/delivery.test.ts (9 tests) 6ms
+ ✓ src/plugins/runtime/types.contract.test.ts (1 test) 4ms
+
+ Test Files  809 passed | 1 skipped (810)
+      Tests  6495 passed | 2 skipped (6497)
+   Start at  00:47:24
+   Duration  160.41s (transform 85.93s, setup 87.24s, import 996.02s, tests 49.18s, environment 111ms)
+

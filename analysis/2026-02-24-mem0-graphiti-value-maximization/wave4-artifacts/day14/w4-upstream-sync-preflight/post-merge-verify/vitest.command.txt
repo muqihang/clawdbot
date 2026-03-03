@@ -1,0 +1,1 @@
+pnpm test:fast -- src/discord/monitor/message-handler.preflight.test.ts src/discord/monitor/provider.proxy.test.ts src/memory/search-manager.test.ts
