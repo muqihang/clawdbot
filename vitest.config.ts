@@ -18,6 +18,10 @@ export default defineConfig({
         replacement: path.join(repoRoot, "src", "plugin-sdk", "account-id.ts"),
       },
       {
+        find: "openclaw/plugin-sdk/keyed-async-queue",
+        replacement: path.join(repoRoot, "src", "plugin-sdk", "keyed-async-queue.ts"),
+      },
+      {
         find: "openclaw/plugin-sdk",
         replacement: path.join(repoRoot, "src", "plugin-sdk", "index.ts"),
       },
@@ -40,8 +44,10 @@ export default defineConfig({
       "test/**/*.test.ts",
       "analysis/Jarvis-Clawdbot活系统/contracts/**/*.test.mts",
       "analysis/Jarvis-Clawdbot活系统/contracts/tests/**/*.spec.mts",
+      "ui/src/ui/views/agents-utils.test.ts",
       "ui/src/ui/views/usage-render-details.test.ts",
       "ui/src/ui/controllers/agents.test.ts",
+      "ui/src/ui/controllers/chat.test.ts",
     ],
     setupFiles: ["test/setup.ts"],
     exclude: [
