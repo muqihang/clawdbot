@@ -291,4 +291,69 @@ describe("mem0 + graphiti clients", () => {
       },
     ]);
   });
+
+  it("fills missing graphiti scores with deterministic rank_score", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      toJsonResponse(200, {
+        facts: [
+          {
+            uuid: "fact-1",
+            fact: "First fact without score",
+          },
+          {
+            uuid: "fact-2",
+            fact: "Second fact without score",
+          },
+          {
+            uuid: "fact-3",
+            fact: "Fact with explicit score",
+            score: 0.33,
+          },
+        ],
+      }),
+    );
+
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    const hits = await client.search("timeline");
+    expect(hits).toEqual([
+      {
+        path: "bridge/graphiti/fact-1",
+        startLine: 1,
+        endLine: 1,
+        score: 1,
+        score_source: "rank_score",
+        snippet: "First fact without score",
+        source: "graphiti",
+        remoteId: "fact-1",
+        structure: "facts",
+      },
+      {
+        path: "bridge/graphiti/fact-2",
+        startLine: 1,
+        endLine: 1,
+        score: 0.5,
+        score_source: "rank_score",
+        snippet: "Second fact without score",
+        source: "graphiti",
+        remoteId: "fact-2",
+        structure: "facts",
+      },
+      {
+        path: "bridge/graphiti/fact-3",
+        startLine: 1,
+        endLine: 1,
+        score: 0.33,
+        score_source: "score",
+        snippet: "Fact with explicit score",
+        source: "graphiti",
+        remoteId: "fact-3",
+        structure: "facts",
+      },
+    ]);
+  });
 });

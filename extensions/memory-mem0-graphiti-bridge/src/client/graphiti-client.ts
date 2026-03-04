@@ -36,8 +36,24 @@ const appendStructuredItems = (params: {
 };
 
 const extractGraphitiSearchItems = (payload: unknown): unknown[] => {
+  const withRankScoreFallback = (items: unknown[]): unknown[] => {
+    return items.map((item, index) => {
+      const record = asRecord(item);
+      if (!record) {
+        return item;
+      }
+      if (record.score !== undefined || record.rank_score !== undefined) {
+        return item;
+      }
+      return {
+        ...record,
+        rank_score: 1 / (index + 1),
+      };
+    });
+  };
+
   if (Array.isArray(payload)) {
-    return payload;
+    return withRankScoreFallback(payload);
   }
 
   const record = asRecord(payload);
@@ -61,7 +77,7 @@ const extractGraphitiSearchItems = (payload: unknown): unknown[] => {
     appendStructuredItems({ payload: dataRecord, key: "nodes", output });
   }
 
-  return output;
+  return withRankScoreFallback(output);
 };
 
 export function createGraphitiClient(options: CreateGraphitiClientOptions): RemoteMemoryClient {
