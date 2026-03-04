@@ -12,6 +12,7 @@ need_cmd python3
 ensure_dirs
 load_stack_env
 validate_required_env
+validate_embedding_policy
 
 if ! curl -fsS "http://${QDRANT_HOST}:${QDRANT_PORT}/healthz" >/dev/null 2>&1; then
   fail "qdrant not healthy at http://${QDRANT_HOST}:${QDRANT_PORT}/healthz"
@@ -20,16 +21,6 @@ fi
 stop_from_pid_file "graphiti"
 stop_from_pid_file "mem0"
 stop_from_pid_file "embeddings"
-
-if [[ "${EMBEDDING_BASE_URL}" == "${LOCAL_EMBEDDING_BASE_URL_DEFAULT}" ]]; then
-  kill_port_listener "$LOCAL_EMBEDDING_PORT"
-
-  EMBEDDINGS_LOG="${LOG_ROOT}/embeddings.log"
-  nohup python3 "${SCRIPT_DIR}/local-embeddings-server.py" >"$EMBEDDINGS_LOG" 2>&1 &
-  echo $! >"$(pid_file_for embeddings)"
-
-  wait_for_http "http://127.0.0.1:${LOCAL_EMBEDDING_PORT}/healthz" 20 || fail "local embeddings server did not start"
-fi
 
 GRAPHITI_LOG="${LOG_ROOT}/graphiti.log"
 MEM0_LOG="${LOG_ROOT}/mem0.log"

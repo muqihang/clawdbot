@@ -311,34 +311,96 @@ def patch_responses_temperature_kwargs(text: str) -> tuple[str, bool]:
     return text, changed
 
 
+def patch_embedder_dimensions(text: str) -> tuple[str, bool]:
+    marker = "dimensions=self.config.embedding_dim"
+    if text.count(marker) >= 2:
+        return text, False
+
+    replacements = [
+        (
+            """
+        result = await self.client.embeddings.create(
+            input=input_data, model=self.config.embedding_model
+        )
+""".lstrip("\n"),
+            """
+        result = await self.client.embeddings.create(
+            input=input_data,
+            model=self.config.embedding_model,
+            dimensions=self.config.embedding_dim,
+        )
+""".lstrip("\n"),
+            "create",
+        ),
+        (
+            """
+        result = await self.client.embeddings.create(
+            input=input_data_list, model=self.config.embedding_model
+        )
+""".lstrip("\n"),
+            """
+        result = await self.client.embeddings.create(
+            input=input_data_list,
+            model=self.config.embedding_model,
+            dimensions=self.config.embedding_dim,
+        )
+""".lstrip("\n"),
+            "create_batch",
+        ),
+    ]
+
+    changed = False
+    for old_block, new_block, name in replacements:
+        if new_block in text:
+            continue
+        if old_block not in text:
+            raise RuntimeError(f"failed to patch embedder {name} dimensions block")
+        text = text.replace(old_block, new_block)
+        changed = True
+
+    if text.count(marker) < 2:
+        raise RuntimeError("verification failed: dimensions marker count < 2 in embedder openai.py")
+
+    return text, changed
+
+
 def main() -> int:
     if len(sys.argv) != 2:
         print("usage: patch-graphiti-sitepkg.py <venv-site-packages-path>")
         return 2
 
     site_pkg = Path(sys.argv[1])
-    file = site_pkg / "graphiti_core" / "llm_client" / "openai_client.py"
-    if not file.exists():
-        print(f"missing file: {file}")
+    llm_file = site_pkg / "graphiti_core" / "llm_client" / "openai_client.py"
+    embedder_file = site_pkg / "graphiti_core" / "embedder" / "openai.py"
+
+    if not llm_file.exists():
+        print(f"missing file: {llm_file}")
+        return 1
+    if not embedder_file.exists():
+        print(f"missing file: {embedder_file}")
         return 1
 
-    text = file.read_text()
+    llm_text = llm_file.read_text()
+    embedder_text = embedder_file.read_text()
 
     try:
-        text, _ = ensure_helper_block(text)
-        text, _ = patch_input_messages(text)
-        text, _ = patch_structured_format(text)
-        text, _ = patch_reasoning_kwargs(text)
-        text, _ = patch_chat_completions_to_responses(text)
-        text, _ = patch_responses_temperature_kwargs(text)
+        llm_text, _ = ensure_helper_block(llm_text)
+        llm_text, _ = patch_input_messages(llm_text)
+        llm_text, _ = patch_structured_format(llm_text)
+        llm_text, _ = patch_reasoning_kwargs(llm_text)
+        llm_text, _ = patch_chat_completions_to_responses(llm_text)
+        llm_text, _ = patch_responses_temperature_kwargs(llm_text)
+        embedder_text, _ = patch_embedder_dimensions(embedder_text)
     except RuntimeError as exc:
         print(f"patch failed: {exc}")
         return 1
 
-    file.write_text(text)
-    print(f"patched {file}")
+    llm_file.write_text(llm_text)
+    embedder_file.write_text(embedder_text)
+    print(f"patched {llm_file}")
+    print(f"patched {embedder_file}")
 
-    verify = file.read_text()
+    verify = llm_file.read_text()
     required = [
         "_make_strict_json_schema",
         "_ensure_json_keyword_for_responses",
@@ -361,6 +423,12 @@ def main() -> int:
         if marker in verify:
             print(f"verification failed: {marker} should be disabled/absent")
             return 1
+
+    embedder_verify = embedder_file.read_text()
+    marker = "dimensions=self.config.embedding_dim"
+    if embedder_verify.count(marker) < 2:
+        print(f"verification failed: expected at least 2 occurrences of {marker}")
+        return 1
 
     return 0
 

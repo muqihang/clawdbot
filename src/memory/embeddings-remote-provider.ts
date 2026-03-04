@@ -13,6 +13,9 @@ export type RemoteEmbeddingClient = {
   model: string;
 };
 
+const DASHSCOPE_EMBEDDING_MODEL = "text-embedding-v4";
+const DASHSCOPE_EMBEDDING_DIMENSIONS = 1536;
+
 export function createRemoteEmbeddingProvider(params: {
   id: string;
   client: RemoteEmbeddingClient;
@@ -26,11 +29,19 @@ export function createRemoteEmbeddingProvider(params: {
     if (input.length === 0) {
       return [];
     }
+    const body: {
+      model: string;
+      input: string[];
+      dimensions?: number;
+    } = { model: client.model, input };
+    if (client.model === DASHSCOPE_EMBEDDING_MODEL) {
+      body.dimensions = DASHSCOPE_EMBEDDING_DIMENSIONS;
+    }
     return await fetchRemoteEmbeddingVectors({
       url,
       headers: client.headers,
       ssrfPolicy: client.ssrfPolicy,
-      body: { model: client.model, input },
+      body,
       errorPrefix: params.errorPrefix,
     });
   };

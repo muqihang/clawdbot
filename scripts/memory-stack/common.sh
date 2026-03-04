@@ -76,7 +76,7 @@ LLM_MODEL_NAME=gpt-5.3-codex
 EMBEDDING_API_KEY=
 EMBEDDING_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 EMBEDDING_MODEL_NAME=text-embedding-v4
-EMBEDDING_DIM=1024
+EMBEDDING_DIM=1536
 
 # Neo4j cloud
 NEO4J_URI=
@@ -170,6 +170,20 @@ validate_required_env() {
 
   if [[ "${#missing[@]}" -gt 0 ]]; then
     fail "missing env values in ${STACK_ENV_FILE}: ${missing[*]}"
+  fi
+}
+
+validate_embedding_policy() {
+  if [[ "${EMBEDDING_BASE_URL}" == *"18082"* ]]; then
+    fail "EMBEDDING_BASE_URL must not target port 18082: ${EMBEDDING_BASE_URL}. Port 18082 is forbidden for embedding endpoints."
+  fi
+
+  if [[ "${EMBEDDING_MODEL_NAME}" != "text-embedding-v4" ]]; then
+    fail "EMBEDDING_MODEL_NAME must be text-embedding-v4, got: ${EMBEDDING_MODEL_NAME}"
+  fi
+
+  if [[ "${EMBEDDING_DIM}" != "1536" ]]; then
+    fail "EMBEDDING_DIM must be 1536, got: ${EMBEDDING_DIM}"
   fi
 }
 
