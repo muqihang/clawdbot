@@ -1,0 +1,25 @@
+{
+  "result": "NO-GO",
+  "stage": "D.memory_search_regression",
+  "reason": "hard gate failed; Gate-4 runner skipped by policy",
+  "hard_gate": {
+    "hyphen_01_l2_primary_results_count": 0,
+    "hyphen_02_l2_primary_results_count": 0,
+    "control_01_l1_local_results_count": 0,
+    "control_02_l1_local_results_count": 0
+  },
+  "gate4_runner": {
+    "executed": false,
+    "reason": "blocked by D1 instruction: do not continue Gate-4 when memory_search regression fails"
+  },
+  "likely_causes": [
+    "builtin memory_search corpus/scope currently does not return DEC-hyphen records",
+    "bridge primary route mirrors local empty result for hyphen IDs",
+    "hard gate requires hyphen query non-empty before Gate-4 can start"
+  ],
+  "next_steps": [
+    "fix hyphen tokenization/normalization in builtin memory_search path",
+    "re-run run-memory-search-regression.ts until hyphen-01 and hyphen-02 results_count > 0",
+    "then re-run Gate-4 bounded(5)+stability(10) and regenerate delta metrics"
+  ]
+}

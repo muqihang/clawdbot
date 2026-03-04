@@ -1,0 +1,7 @@
+{
+  "dataset_size": 34,
+  "hit_at_1_baseline": 0,
+  "hit_at_1_variant": 1,
+  "hit_at_3_baseline": 0,
+  "hit_at_3_variant": 1
+}

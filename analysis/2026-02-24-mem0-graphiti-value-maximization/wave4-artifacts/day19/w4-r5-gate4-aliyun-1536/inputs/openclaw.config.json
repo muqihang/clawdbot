@@ -1,0 +1,42 @@
+{
+  "memory": {
+    "backend": "builtin"
+  },
+  "agents": {
+    "defaults": {
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "fallback": "none",
+        "remote": {
+          "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          "apiKey": "${MEMORY_REMOTE_API_KEY}"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "slots": {
+      "memory": "memory-mem0-graphiti-bridge"
+    },
+    "entries": {
+      "memory-mem0-graphiti-bridge": {
+        "enabled": true,
+        "config": {
+          "read_mode": "primary",
+          "routing": {
+            "semantic_route": "mem0",
+            "timeline_route": "graphiti",
+            "fallback_route": "local"
+          },
+          "mem0": {
+            "base_url": "http://127.0.0.1:8766"
+          },
+          "graphiti": {
+            "base_url": "http://127.0.0.1:8000"
+          }
+        }
+      }
+    }
+  }
+}

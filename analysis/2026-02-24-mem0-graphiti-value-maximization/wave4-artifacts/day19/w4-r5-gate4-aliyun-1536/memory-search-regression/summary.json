@@ -1,0 +1,228 @@
+{
+  "generated_at": "2026-03-04T11:49:56.511Z",
+  "last_run_id": "run-03",
+  "rows": [
+    {
+      "query_id": "control-01",
+      "query": "muqihang",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l1_local_tool": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "control-02",
+      "query": "documentation first freeze decision",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l1_local_tool": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 22,
+        "top1_path": "bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51",
+        "provider": "graphiti",
+        "model": "graphiti",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "hyphen-01",
+      "query": "DEC-2026-02-21-main-role-boundary",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l1_local_tool": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "hyphen-02",
+      "query": "DEC-2026-02-22-documentation-first-freeze",
+      "expected_non_empty": true,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l1_local_tool": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "space-01",
+      "query": "DEC 2026 02 21 main role boundary",
+      "expected_non_empty": false,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l1_local_tool": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      }
+    },
+    {
+      "query_id": "space-02",
+      "query": "DEC 2026 02 22 documentation first freeze",
+      "expected_non_empty": false,
+      "l1_cli": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": null,
+        "model": null,
+        "disabled": false,
+        "unavailable": false
+      },
+      "l1_local_tool": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_local": {
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "disabled": false,
+        "unavailable": false
+      },
+      "l2_bridge_primary": {
+        "results_count": 23,
+        "top1_path": "bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51",
+        "provider": "graphiti",
+        "model": "graphiti",
+        "disabled": false,
+        "unavailable": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "request": {
+    "url": "https://dashscope.aliyuncs.com/compatible-mode/v1/embeddings",
+    "headers": {
+      "content-type": "application/json",
+      "Authorization": "Bearer <redacted>"
+    },
+    "body": {
+      "model": "text-embedding-v4",
+      "input": ["ping"],
+      "dimensions": 1536
+    }
+  },
+  "response": {
+    "model": "text-embedding-v4",
+    "object": "list",
+    "usage": {
+      "prompt_tokens": 2,
+      "total_tokens": 2
+    },
+    "embedding_length": 1536,
+    "data_count": 1,
+    "id": "6e4691a9-3320-99df-9d46-439463e0a114"
+  }
+}

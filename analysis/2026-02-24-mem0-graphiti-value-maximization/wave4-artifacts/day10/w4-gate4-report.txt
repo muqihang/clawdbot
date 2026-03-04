@@ -1,31 +1,27 @@
-W4-D Gate-4 Final Report (Day10)
+W4-R5 Gate-4 Report Anchor (Day19)
 
 结论: NO-GO
 
-指标 (冻结公式; pp=percentage points)
-- Top1_avg_delta_pp: 74.8 (>= 8 PASS)
-- FUR_delta_pp: 72.58 (>= 10 PASS; 注意: 本轮为 overall_hit_at_1 proxy)
-- p95_increase_pct: 18.9549 (<= 15 FAIL)
-- stability: FAIL (unique-values != 1)
-- sample_size_by_bucket: exact_id=30, decision_reason=30, temporal_relation=34, project_context=30
+固定策略（本轮已执行）
+- 向量链路统一: DashScope OpenAI-compatible (`text-embedding-v4`, `dimensions=1536`)
+- 18082 禁用: `scripts/memory-stack/start.sh` 对 `EMBEDDING_BASE_URL` 命中 `18082` 直接 fail
+- LLM 固定: Sub2API `/v1/responses` + `gpt-5.3-codex`
+- OpenClaw local fallback: `memory.backend=builtin`（本轮禁用 qmd）
 
-硬门禁
-- memory_search regression: FAIL
-  - hyphenated DEC 查询为空:
-    - DEC-2026-02-21-main-role-boundary
-    - DEC-2026-02-22-documentation-first-freeze
+硬门禁结果
+- memory_search regression: FAIL（硬门禁未过）
+  - hyphen-01 `DEC-2026-02-21-main-role-boundary`: L2 primary results_count = 0
+  - hyphen-02 `DEC-2026-02-22-documentation-first-freeze`: L2 primary results_count = 0
+- 按 D1 规则，本轮不继续执行 Gate-4 runner（bounded 5 + stability 10）
 
-必跑回归
-- extensions vitest: PASS (exit=0)
-- W2 Gate-2 minimal regression: PASS (exit=0)
-- W3 Gate-3 minimal regression: PASS (exit=0)
+可用指标
+- Top1_avg_delta_pp: N/A（Gate-4 runner 未执行）
+- FUR_delta_pp: N/A（Gate-4 runner 未执行）
+- p95_increase_pct: N/A（Gate-4 runner 未执行）
+- stability: N/A（Gate-4 runner 未执行）
 
-证据路径 (审计锚点)
-- 单点事实 (JSON): analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-gate4-report.json
-- evidence_dir: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final
-- Gate-4 delta: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-delta.json
-- memory_search summary: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/summary.json
-- vitest exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/tests/vitest.exit
-- gate2 exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate2-regression/w2-gate2-minimal-verify.exit
-- gate3 exit: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate3-regression/w3-gate3-minimal-verify.exit
-
+关键取证
+- evidence_dir: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536
+- Neo4j 向量维度 before/after: 1536（节点/边采样均 1536）
+- graphiti /search ping after re-embed: HTTP 200
+- no-go summary: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/report/no-go-summary.json

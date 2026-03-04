@@ -1,0 +1,37 @@
+-- group discovery
+MATCH (n:Entity)
+WHERE n.group_id STARTS WITH 'openclaw-backfill-' OR n.group_id = 'agent_main_main'
+RETURN n.group_id AS group_id, count(n) AS node_count
+ORDER BY node_count DESC, group_id ASC
+
+-- node samples
+MATCH (n:Entity)
+WHERE n.group_id IN $group_ids AND n.name_embedding IS NOT NULL
+RETURN n.uuid AS uuid, n.group_id AS group_id, size(n.name_embedding) AS dim
+ORDER BY n.uuid DESC
+LIMIT 3
+
+-- edge samples
+MATCH ()-[e]->()
+WHERE e.group_id IN $group_ids AND e.fact_embedding IS NOT NULL
+RETURN e.uuid AS uuid, e.group_id AS group_id, type(e) AS rel_type, size(e.fact_embedding) AS dim
+ORDER BY e.uuid DESC
+LIMIT 3
+
+-- node summary
+MATCH (n:Entity)
+WHERE n.group_id IN $group_ids
+RETURN
+  count(n) AS total,
+  count(CASE WHEN n.name_embedding IS NULL THEN 1 END) AS null_count,
+  count(CASE WHEN n.name_embedding IS NOT NULL AND size(n.name_embedding)=1536 THEN 1 END) AS dim_1536_count,
+  count(CASE WHEN n.name_embedding IS NOT NULL AND size(n.name_embedding)<>1536 THEN 1 END) AS non_1536_count
+
+-- edge summary
+MATCH ()-[e]->()
+WHERE e.group_id IN $group_ids AND e.fact_embedding IS NOT NULL
+RETURN
+  count(e) AS total,
+  count(CASE WHEN e.fact_embedding IS NULL THEN 1 END) AS null_count,
+  count(CASE WHEN e.fact_embedding IS NOT NULL AND size(e.fact_embedding)=1536 THEN 1 END) AS dim_1536_count,
+  count(CASE WHEN e.fact_embedding IS NOT NULL AND size(e.fact_embedding)<>1536 THEN 1 END) AS non_1536_count

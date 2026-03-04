@@ -1,81 +1,62 @@
-# Wave4 Gate-4 Final Review (W4-D)
+# Wave4 Gate-4 Review (W4-R5 / Day19)
 
-Single source of truth (audit anchor):
+Single source of truth:
 
 - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-gate4-report.json`
 
-Evidence root (full artifacts):
+Evidence root:
 
-- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/`
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/`
 
-## Conclusion
+## 本轮执行结果
 
-Gate-4 result: **NO-GO**
+- **NO-GO**
+- 阻断位置：`D) memory_search regression` 硬门禁
+- 按执行约束，硬门禁失败后停止 Gate-4 runner（不进入 bounded/stability）
 
-Reasons (hard gates):
+## 已确认策略与运行状态
 
-- `memory_search` regression fails on **hyphenated DEC** queries (must be non-empty).
-- Gate-4 p95 increase exceeds frozen threshold (`18.9549% > 15%`).
-- Gate-4 stability fails (`unique-values != 1` across 10 stability runs).
+- embeddings 全链路统一为阿里云：`text-embedding-v4@1536`
+- `127.0.0.1:18082` 已禁用为向量端点（start 脚本策略 + 运行状态均未启动 embeddings 子进程）
+- LLM 使用 `gpt-5.3-codex`，网关基址 `http://127.0.0.1:18081/v1`（Responses API）
+- graphiti `/search` ping before/after re-embed 均 `HTTP 200`
+- mem0 `/search` ping `HTTP 200`
 
-## Frozen Metrics (from delta json)
+## Neo4j 向量维度取证（重算前后）
 
-- `Top1_avg_delta_pp=74.8` (PASS, threshold `>= 8`)
-- `FUR_delta_pp=72.58` (PASS, threshold `>= 10`)
-  - Note: FUR is reported as **proxy** (`overall_hit_at_1`) and is explicitly labeled as such.
-- `p95_increase_pct=18.9549` (FAIL, threshold `<= 15`)
-- `stability_pass=false` (FAIL)
-- sample_size_by_bucket:
-  - exact_id=30
-  - decision_reason=30
-  - temporal_relation=34
-  - project_context=30
+- 目标 group（实际发现）：
+  - `openclaw-backfill-canonical`
+  - `agent_main_main`
+- before 采样：节点 `name_embedding` 与边 `fact_embedding` 均为 `1536`
+- 执行重算写回（不改 UUID）：
+  - nodes: `297`
+  - edges: `317`
+- after 采样：节点/边维度仍均为 `1536`
 
-Primary evidence:
+证据：
 
-- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-delta.json`
-- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/report/w4-gate4-review.md`
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/preflight/neo4j.embedding-dims.before.txt`
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/preflight/neo4j.embedding-dims.after.txt`
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/stack/neo4j.reembed.log`
 
-## Required Tests / Regressions (hard gate)
+## 硬门禁失败细节（memory_search regression）
 
-- extensions vitest: PASS (exit=0)
-  - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/tests/vitest.exit`
-- W2 Gate-2 minimal regression: PASS (exit=0)
-  - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate2-regression/w2-gate2-minimal-verify.exit`
-- W3 Gate-3 minimal regression: PASS (exit=0)
-  - `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/gate3-regression/w3-gate3-minimal-verify.exit`
+- `hyphen-01`: `DEC-2026-02-21-main-role-boundary` → L2 primary `results_count=0`
+- `hyphen-02`: `DEC-2026-02-22-documentation-first-freeze` → L2 primary `results_count=0`
 
-## memory_search Regression (new hard gate)
+证据：
 
-Result: FAIL
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/memory-search-regression/summary.json`
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/memory-search-regression/acceptance.md`
+- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/report/no-go-summary.json`
 
-- Control queries return non-empty in tool/bridge chain, but **hyphenated DEC** queries are empty while the space-separated control is non-empty.
+## 回归测试状态
 
-Primary evidence:
+- extensions vitest: PASS (`tests/vitest.exit = 0`)
+- W2 Gate-2 minimal: PASS (`gate2-regression/w2-gate2-minimal-verify.exit = 0`)
+- W3 Gate-3 minimal: PASS (`gate3-regression/w3-gate3-minimal-verify.exit = 0`)
 
-- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/summary.json`
-- `analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/acceptance.md`
+## Gate-4 指标
 
-## Minimal Fix Plan (do not implement in W4-D)
-
-1. Fix hyphenated DEC query normalization:
-   - Make `DEC-YYYY-MM-DD-*` tokenize equivalently to whitespace separators across CLI/tool/bridge.
-2. Reduce p95 regression:
-   - Identify p95 contribution per provider and reduce unnecessary provider calls (or tighten fusion bucket policy).
-3. Eliminate stability jitter:
-   - Remove non-deterministic ordering/ties and reduce timeout/fallback variance; ensure a single stable route for repeated runs.
-
-## Reproduce (suggested)
-
-From repo root:
-
-```bash
-# Gate-4 eval (baseline vs variant)
-bun analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-w4-d-gate4-eval.ts
-
-# memory_search regression (L1 CLI + L1 localTool + L2 bridge local/primary)
-bun analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/scripts/run-memory-search-regression.ts
-
-# required tests
-pnpm -s vitest run --config vitest.extensions.config.ts extensions/memory-mem0-graphiti-bridge/src/__tests__
-```
+- Top1/FUR/p95/stability：**N/A（未执行）**
+- 原因：memory_search 硬门禁失败后按策略停止 Gate-4 runner

@@ -1,0 +1,59 @@
+{
+  "group_ids": [
+    "agent_main_main",
+    "openclaw-backfill-canonical"
+  ],
+  "node_samples": [
+    {
+      "uuid": "ffd4c720-7f1e-470f-8928-46d60685d4e1",
+      "group_id": "agent_main_main",
+      "dim": 1536
+    },
+    {
+      "uuid": "ff575759-8d6e-437b-8997-fc8f519b1bf4",
+      "group_id": "agent_main_main",
+      "dim": 1536
+    },
+    {
+      "uuid": "ff49a8ac-6ace-4321-a7a3-9c9442faa8a7",
+      "group_id": "agent_main_main",
+      "dim": 1536
+    }
+  ],
+  "edge_samples": [
+    {
+      "uuid": "fd69c79d-fe2d-4b98-969f-4c0677765c20",
+      "group_id": "openclaw-backfill-canonical",
+      "rel_type": "RELATES_TO",
+      "dim": 1536
+    },
+    {
+      "uuid": "fd3cdbd2-e960-422c-bfda-6bf136888c84",
+      "group_id": "agent_main_main",
+      "rel_type": "RELATES_TO",
+      "dim": 1536
+    },
+    {
+      "uuid": "fc8ca7de-8be9-4494-b21e-9e25aa18cc1b",
+      "group_id": "openclaw-backfill-canonical",
+      "rel_type": "RELATES_TO",
+      "dim": 1536
+    }
+  ],
+  "node_summary": {
+    "total": 297,
+    "null_count": 0,
+    "dim_1536_count": 297,
+    "non_1536_count": 0
+  },
+  "edge_summary": {
+    "total": 317,
+    "null_count": 0,
+    "dim_1536_count": 317,
+    "non_1536_count": 0
+  },
+  "reembed_counts": {
+    "nodes": 297,
+    "edges": 317
+  }
+}

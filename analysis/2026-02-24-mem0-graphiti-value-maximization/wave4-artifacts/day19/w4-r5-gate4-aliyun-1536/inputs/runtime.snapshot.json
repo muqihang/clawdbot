@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-03-04T11:52:15Z",
+  "host": "muqihangdeMBP.lan",
+  "python": "3.14.3",
+  "node": "v24.7.0",
+  "git_sha": "aed64ad1818cce722f29a21edbe4909bcc7c148f",
+  "openclaw_config_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day19/w4-r5-gate4-aliyun-1536/inputs/openclaw.config.json",
+  "memory_backend": "builtin",
+  "embedding_policy": {
+    "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "model": "text-embedding-v4",
+    "dimensions": 1536,
+    "forbidden_port_18082": true
+  },
+  "llm_policy": {
+    "base_url": "http://127.0.0.1:18081/v1",
+    "api": "responses",
+    "model": "gpt-5.3-codex"
+  }
+}
