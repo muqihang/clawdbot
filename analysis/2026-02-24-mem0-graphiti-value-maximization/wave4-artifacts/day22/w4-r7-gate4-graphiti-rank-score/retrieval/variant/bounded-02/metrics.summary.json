@@ -1,0 +1,217 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 2,
+  "generated_at": "2026-03-04T16:58:59.173Z",
+  "dataset_size": 124,
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "bucket_metrics": [
+    {
+      "bucket": "exact_id",
+      "sample_size": 30,
+      "matched_top1": 24,
+      "hit_at_1": 0.8
+    },
+    {
+      "bucket": "decision_reason",
+      "sample_size": 30,
+      "matched_top1": 22,
+      "hit_at_1": 0.7333
+    },
+    {
+      "bucket": "temporal_relation",
+      "sample_size": 34,
+      "matched_top1": 26,
+      "hit_at_1": 0.7647
+    },
+    {
+      "bucket": "project_context",
+      "sample_size": 30,
+      "matched_top1": 24,
+      "hit_at_1": 0.8
+    }
+  ],
+  "avg_hit_at_1": 0.7745,
+  "fur_proxy": 0.7742,
+  "top1_path_prefix_counts": {
+    "bridge": 96,
+    "local": 0,
+    "other": 7,
+    "null": 21
+  },
+  "non_bridge_top1_samples": [
+    {
+      "sample_id": "g4v1-exact_id-bd5ddb56-10",
+      "bucket": "exact_id",
+      "top1_path": "memory/2026-03-01.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-b8b71207-11",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-dfba30ba-13",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-032c08af-14",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-d0f12ca0-15",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-8f74c566-26",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-27c1671d-01",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-ab7b3d14-02",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-b794907e-04",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-ad05f92a-05",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-905bd93c-06",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-7b13afa4-16",
+      "bucket": "decision_reason",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-b901ad1a-17",
+      "bucket": "decision_reason",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-f3eebec6-24",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-constrains-with-43389e87",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/2026-03-01.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-described-by-496d31e5",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-example-of-a520613a",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-manages-0dbffdb2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-part-of-loop-4a357235",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-ea159c11-05",
+      "bucket": "project_context",
+      "top1_path": "memory/projects/openclaw-memory-upgrade.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-project_context-e7212791-11",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-a54cde8e-18",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-bbd0aae3-20",
+      "bucket": "project_context",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-project_context-10fe5aac-23",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-b162c6b1-24",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    }
+  ]
+}
