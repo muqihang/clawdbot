@@ -82,7 +82,7 @@ describe("mem0 + graphiti clients", () => {
     timeoutSpy.mockRestore();
   });
 
-  it("returns empty results on timeout", async () => {
+  it("throws on timeout and does not retry (graphiti)", async () => {
     const fetchMock = vi
       .fn<typeof fetch>()
       .mockRejectedValue(Object.assign(new Error("timed out"), { name: "TimeoutError" }));
@@ -97,21 +97,23 @@ describe("mem0 + graphiti clients", () => {
       },
     });
 
-    const hits = await client.search("timeline");
-
-    expect(hits).toEqual([]);
-    expect(errors).toEqual([
-      {
-        source: "graphiti",
-        operation: "search",
-        code: "REMOTE_TIMEOUT",
-        message: "timed out",
-      },
-    ]);
-    expect(fetchMock).toHaveBeenCalledTimes(2);
+    await expect(client.search("timeline")).rejects.toMatchObject({
+      source: "graphiti",
+      operation: "search",
+      code: "REMOTE_TIMEOUT",
+      message: "timed out",
+    });
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatchObject({
+      source: "graphiti",
+      operation: "search",
+      code: "REMOTE_TIMEOUT",
+      message: "timed out",
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
-  it("retries once on transient search failure", async () => {
+  it("retries once on transient search failure (mem0)", async () => {
     const fetchMock = vi
       .fn<typeof fetch>()
       .mockRejectedValueOnce(Object.assign(new Error("timed out"), { name: "TimeoutError" }))
@@ -128,8 +130,8 @@ describe("mem0 + graphiti clients", () => {
       );
 
     const errors: RemoteClientError[] = [];
-    const client = createGraphitiClient({
-      baseUrl: "https://graphiti.test",
+    const client = createMem0Client({
+      baseUrl: "https://mem0.test",
       timeoutMs: 1_500,
       fetchImpl: fetchMock,
       errorReporter: (error) => {
@@ -141,19 +143,83 @@ describe("mem0 + graphiti clients", () => {
 
     expect(hits).toEqual([
       {
-        path: "bridge/graphiti/fact-1",
+        path: "bridge/mem0/fact-1",
         startLine: 1,
         endLine: 1,
         score: 0.91,
         score_source: "score",
         snippet: "Telegram is preferred",
-        source: "graphiti",
+        source: "mem0",
         remoteId: "fact-1",
         structure: undefined,
       },
     ]);
     expect(errors).toEqual([]);
     expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it("includes run_id in mem0 /search request body (required field injection)", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockImplementation(async (_url, init) => {
+      const body = typeof init?.body === "string" ? JSON.parse(init.body) : null;
+      const hasId = Boolean(body?.run_id ?? body?.agent_id ?? body?.user_id);
+      if (!hasId) {
+        return toJsonResponse(500, { message: "missing required id field" });
+      }
+      return toJsonResponse(200, { results: [] });
+    });
+
+    const client = createMem0Client({
+      baseUrl: "https://mem0.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+    });
+
+    await client.search("user preference", { run_id: "run-123" });
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "https://mem0.test/search",
+      expect.objectContaining({
+        method: "POST",
+        body: JSON.stringify({ query: "user preference", run_id: "run-123" }),
+      }),
+    );
+  });
+
+  it("throws on http 500 and preserves status for diagnostics", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockResolvedValue(
+      toJsonResponse(500, {
+        error: {
+          message: "upstream blew up",
+        },
+      }),
+    );
+
+    const errors: RemoteClientError[] = [];
+    const client = createMem0Client({
+      baseUrl: "https://mem0.test",
+      timeoutMs: 2_000,
+      fetchImpl: fetchMock,
+      errorReporter: (error) => {
+        errors.push(error);
+      },
+    });
+
+    await expect(client.search("boom")).rejects.toMatchObject({
+      source: "mem0",
+      operation: "search",
+      code: "REMOTE_HTTP_ERROR",
+      status: 500,
+      message: "upstream blew up",
+    });
+
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toMatchObject({
+      source: "mem0",
+      operation: "search",
+      code: "REMOTE_HTTP_ERROR",
+      status: 500,
+      message: "upstream blew up",
+    });
   });
 
   it("maps getById http error into remote client error", async () => {

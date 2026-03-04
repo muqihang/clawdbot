@@ -25,6 +25,9 @@ export type RemoteSearchOptions = {
   strategy?: string;
   focal_node_uuid?: string;
   temporal_filters?: Record<string, unknown>;
+  user_id?: string;
+  agent_id?: string;
+  run_id?: string;
 };
 
 export type RemoteClientOperation = "search" | "get";
@@ -58,6 +61,10 @@ export type CreateRemoteClientOptions = {
   apiKey?: string;
   timeoutMs: number;
   getTimeoutMs?: number;
+  retry?: {
+    enabled: boolean;
+    timeoutMultiplier?: number;
+  };
   defaultSearchBody?: Record<string, unknown>;
   fetchImpl?: FetchLike;
   errorReporter?: RemoteErrorReporter;
@@ -394,6 +401,26 @@ const reportError = (reporter: RemoteErrorReporter | undefined, error: RemoteCli
   reporter?.(error);
 };
 
+class RemoteClientRequestError extends Error implements RemoteClientError {
+  source: BridgeRemoteSource;
+  operation: RemoteClientOperation;
+  code: RemoteClientErrorCode;
+  status?: number;
+
+  constructor(error: RemoteClientError) {
+    super(error.message);
+    this.name = "RemoteClientRequestError";
+    this.source = error.source;
+    this.operation = error.operation;
+    this.code = error.code;
+    this.status = error.status;
+  }
+}
+
+const isRemoteClientRequestError = (error: unknown): error is RemoteClientRequestError => {
+  return error instanceof RemoteClientRequestError;
+};
+
 const toSearchBody = (
   query: string,
   options?: RemoteSearchOptions,
@@ -419,6 +446,18 @@ const toSearchBody = (
   if (options?.temporal_filters !== undefined) {
     body.temporal_filters = options.temporal_filters;
   }
+  const user_id = normalizeString(options?.user_id);
+  if (user_id) {
+    body.user_id = user_id;
+  }
+  const agent_id = normalizeString(options?.agent_id);
+  if (agent_id) {
+    body.agent_id = agent_id;
+  }
+  const run_id = normalizeString(options?.run_id);
+  if (run_id) {
+    body.run_id = run_id;
+  }
 
   return body;
 };
@@ -443,6 +482,8 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
 
   const resolvedBaseUrl = trimRightSlash(baseUrl);
   const headers = createHeaders(options.apiKey);
+  const retryEnabled = options.retry?.enabled ?? true;
+  const retryMultiplier = Math.max(1, options.retry?.timeoutMultiplier ?? 3);
 
   return {
     async search(query: string, searchOptions?: RemoteSearchOptions): Promise<BridgeSearchHit[]> {
@@ -460,8 +501,7 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
 
         const payload = await readJsonSafe(response);
         if (!response.ok) {
-          reportError(
-            options.errorReporter,
+          const error = new RemoteClientRequestError(
             toHttpError({
               source: options.source,
               operation: "search",
@@ -469,7 +509,8 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
               status: response.status,
             }),
           );
-          return [];
+          reportError(options.errorReporter, error);
+          throw error;
         }
 
         const searchItems = options.extractSearchItems
@@ -486,6 +527,9 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
       try {
         return await runOnce(options.timeoutMs);
       } catch (error) {
+        if (isRemoteClientRequestError(error)) {
+          throw error;
+        }
         const mapped = mapThrownError({
           source: options.source,
           operation: "search",
@@ -493,28 +537,31 @@ export function createRemoteClient(options: CreateRemoteClientOptions): RemoteMe
         });
 
         const retryable = mapped.code === "REMOTE_TIMEOUT" || mapped.code === "REMOTE_UNAVAILABLE";
-        if (retryable) {
+        if (retryable && retryEnabled) {
           const retryTimeoutMs = Math.min(
-            Math.max(options.timeoutMs * 3, options.timeoutMs),
+            Math.max(options.timeoutMs * retryMultiplier, options.timeoutMs),
             120_000,
           );
           try {
             return await runOnce(retryTimeoutMs);
           } catch (retryError) {
-            reportError(
-              options.errorReporter,
-              mapThrownError({
-                source: options.source,
-                operation: "search",
-                error: retryError,
-              }),
-            );
-            return [];
+            if (isRemoteClientRequestError(retryError)) {
+              throw retryError;
+            }
+            const retryMapped = mapThrownError({
+              source: options.source,
+              operation: "search",
+              error: retryError,
+            });
+            const clientError = new RemoteClientRequestError(retryMapped);
+            reportError(options.errorReporter, clientError);
+            throw clientError;
           }
         }
 
-        reportError(options.errorReporter, mapped);
-        return [];
+        const clientError = new RemoteClientRequestError(mapped);
+        reportError(options.errorReporter, clientError);
+        throw clientError;
       }
     },
 

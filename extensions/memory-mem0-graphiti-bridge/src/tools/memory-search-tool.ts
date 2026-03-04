@@ -1175,16 +1175,49 @@ type RemoteSearchAttempt = {
   error?: unknown;
 };
 
+const hasMem0RequiredIdentifier = (options: RemoteSearchOptions | undefined): boolean => {
+  if (!options) {
+    return false;
+  }
+
+  return Boolean(
+    asString(options.user_id) ?? asString(options.agent_id) ?? asString(options.run_id),
+  );
+};
+
+const injectMem0StableIdentifier = (options: RemoteSearchOptions | undefined, stableId: string) => {
+  if (hasMem0RequiredIdentifier(options)) {
+    return options;
+  }
+
+  return {
+    ...(options ?? {}),
+    user_id: stableId,
+  } satisfies RemoteSearchOptions;
+};
+
 const searchRemoteWithDiagnostics = async (params: {
   route: BridgeRoute;
   query: string;
   clients: BridgeSearchToolDeps["clients"];
   aliasNormalization: boolean;
   searchOptions?: RemoteSearchOptions;
+  mem0StableId?: string;
 }): Promise<RemoteSearchAttempt> => {
   const startedAt = Date.now();
   try {
-    const hits = await searchRemote(params);
+    const searchOptions =
+      params.route === "mem0" && params.mem0StableId
+        ? injectMem0StableIdentifier(params.searchOptions, params.mem0StableId)
+        : params.searchOptions;
+
+    const hits = await searchRemote({
+      route: params.route,
+      query: params.query,
+      clients: params.clients,
+      aliasNormalization: params.aliasNormalization,
+      searchOptions,
+    });
     return {
       route: params.route,
       hits,
@@ -1243,6 +1276,9 @@ const classifyFallbackReason = (attempt: RemoteSearchAttempt): string => {
   }
 
   const status = readErrorStatus(attempt.error);
+  if (typeof status === "number" && status >= 400 && status <= 499) {
+    return "http_4xx";
+  }
   if (typeof status === "number" && status >= 500 && status <= 599) {
     return "http_5xx";
   }
@@ -1898,10 +1934,45 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
       const localResults = asArray(localDetails?.results);
       const query = readQuery(params);
       if (!query) {
-        return localResult;
+        return withLocalDiagnostics({
+          localResult,
+          localDetails,
+          routeTrace: {
+            read_mode: deps.flags.read_mode,
+            reason: "missing_query",
+            intent: null,
+            query_type: null,
+            query_bucket: null,
+            user_route: "local",
+            candidate_route: "local",
+            primary_route: "local",
+            fallback_route: "local",
+            selected_route: "local",
+          },
+          fallbackTrace: {
+            triggered: false,
+            reason: null,
+            result_route: "local",
+            primary_error: null,
+            primary_status: null,
+            primary_latency_ms: 0,
+            fallback_attempted: false,
+            fallback_route_attempted: null,
+            fallback_error: null,
+            fallback_latency_ms: null,
+            total_latency_ms: 0,
+          },
+        });
       }
 
       const querySignature = resolveQuerySignature(query);
+      const paramsRecord = asRecord(params);
+      const metadataRecord = asRecord(paramsRecord?.metadata);
+      const mem0StableId =
+        asString(paramsRecord?.oc_user_id) ??
+        asString(metadataRecord?.oc_user_id) ??
+        deps.sessionKey ??
+        toolCallId;
       const precisionGuardEnabled = deps.flags.read.precision_guard.enabled;
       const precisionPattern =
         precisionGuardEnabled && querySignature.precisionKey
@@ -1981,6 +2052,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           searchOptions: {
             strategy: baseDecision.discoveryStrategy,
           },
+          mem0StableId,
         });
 
         const candidate = resolveFocalNodeCandidate(discoveryAttempt.hits);
@@ -2122,6 +2194,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
             buildFocalNodeSearchOptions(shadowFocalDecision),
             buildTemporalFiltersSearchOptions(shadowTemporalFiltersDecision),
           ),
+          mem0StableId,
         });
 
         const [shadowAttempt, fusionOtherAttempt] = fusionShadowEnabled
@@ -2132,6 +2205,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
                 query,
                 clients: deps.clients,
                 aliasNormalization,
+                mem0StableId,
               }),
             ])
           : [await shadowAttemptPromise, null];
@@ -2315,7 +2389,51 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
 
       if (responseRoute === "local") {
         if (!precisionPattern) {
-          return localResult;
+          const focalNodeDecision = await resolveFocalNodeForRoute(responseRoute);
+          const temporalFiltersDecision = resolveTemporalFiltersForRoute(responseRoute);
+          const routeTrace = createRouteTrace({
+            readMode: deps.flags.read_mode,
+            readPlan,
+            primaryRoute: "local",
+            selectedRoute: "local",
+          });
+          const fallbackTrace = createFallbackTrace({
+            triggered: false,
+            reason: null,
+            primaryAttempt: {
+              route: "local",
+              hits: [],
+              latencyMs: 0,
+            },
+            resultRoute: "local",
+          });
+          const guardTrace = guardTraceBase({
+            selectedRoute: "local",
+            decision: "disabled",
+            remoteExactMatchCount: null,
+            forcedLocal: false,
+          });
+          const recipeDecision = resolveRecipeForRoute("local");
+          const recipeTrace = createRecipeTrace({
+            decision: recipeDecision,
+            hits: [],
+          });
+          const focalNodeTrace = createFocalNodeTrace(focalNodeDecision);
+          const temporalFiltersTrace = createTemporalFiltersTrace(temporalFiltersDecision);
+          const ontologyTrace = createOntologyTraceForRoute("local", []);
+
+          return withLocalDiagnostics({
+            localResult,
+            localDetails,
+            routeTrace,
+            fallbackTrace,
+            signature: querySignature,
+            guardTrace,
+            recipeTrace,
+            focalNodeTrace,
+            temporalFiltersTrace,
+            ontologyTrace,
+          });
         }
 
         const focalNodeDecision = await resolveFocalNodeForRoute(responseRoute);
@@ -2398,6 +2516,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               buildFocalNodeSearchOptions(mem0FocalDecision),
               buildTemporalFiltersSearchOptions(mem0TemporalFiltersDecision),
             ),
+            mem0StableId,
           }),
           searchRemoteWithDiagnostics({
             route: "graphiti",
@@ -2409,6 +2528,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               buildFocalNodeSearchOptions(graphitiFocalDecision),
               buildTemporalFiltersSearchOptions(graphitiTemporalFiltersDecision),
             ),
+            mem0StableId,
           }),
         ]);
 
@@ -2589,6 +2709,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           buildFocalNodeSearchOptions(primaryFocalNodeDecision),
           buildTemporalFiltersSearchOptions(primaryTemporalFiltersDecision),
         ),
+        mem0StableId,
       });
       const primaryReranked = precisionPattern
         ? rerankRemoteHits({ hits: primaryAttempt.hits, precisionPattern })
@@ -2623,6 +2744,7 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               buildFocalNodeSearchOptions(fallbackFocalNodeDecision),
               buildTemporalFiltersSearchOptions(fallbackTemporalFiltersDecision),
             ),
+            mem0StableId,
           });
           const fallbackReranked = precisionPattern
             ? rerankRemoteHits({ hits: fallbackAttempt.hits, precisionPattern })

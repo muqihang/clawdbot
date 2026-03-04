@@ -132,7 +132,12 @@ export async function runRetrievalEvaluation(
   let aliasSamples = 0;
 
   for (const sample of options.dataset) {
-    const hits = await options.client.search(sample.query);
+    let hits: BridgeSearchHit[] = [];
+    try {
+      hits = await options.client.search(sample.query);
+    } catch {
+      hits = [];
+    }
 
     if ((sample.expected_ids ?? []).length > 0) {
       expectedIdSamples += 1;
@@ -149,7 +154,12 @@ export async function runRetrievalEvaluation(
 
     for (const aliasQuery of sample.aliases ?? []) {
       aliasSamples += 1;
-      const aliasHits = await options.client.search(aliasQuery);
+      let aliasHits: BridgeSearchHit[] = [];
+      try {
+        aliasHits = await options.client.search(aliasQuery);
+      } catch {
+        aliasHits = [];
+      }
       if (hitWithinTopK(aliasHits, sample.expected_ids ?? [], topK)) {
         aliasMatched += 1;
       }

@@ -143,6 +143,97 @@ const createLocalTool = (): AnyAgentTool => {
 };
 
 describe("memory search bridge tool", () => {
+  it("always attaches route + fallback details for local-only routing", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(async () => []);
+    const graphitiSearch = vi.fn(async () => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "local",
+        routing: {
+          default_route: "local",
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("local-1", { query: "local only" });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const routeRecord = detailsRecord.route as Record<string, unknown>;
+    const fallbackRecord = detailsRecord.fallback as Record<string, unknown>;
+
+    expect(mem0Search).not.toHaveBeenCalled();
+    expect(graphitiSearch).not.toHaveBeenCalled();
+
+    expect(detailsRecord.source).toBe("local");
+    expect(routeRecord.primary_route).toBe("local");
+    expect(routeRecord.candidate_route).toBe("local");
+    expect(routeRecord.selected_route).toBe("local");
+    expect(fallbackRecord.triggered).toBe(false);
+    expect(fallbackRecord.reason).toBeNull();
+  });
+
+  it("injects mem0 stable identifier into remote search options when missing", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(async () => []);
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "remote",
+        cutover_percent: 100,
+        routing: {
+          default_route: "mem0",
+          fallback_route: "local",
+        },
+        read: {
+          alias_normalization: false,
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: vi.fn(async () => []),
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    await tool.execute("mem0-1", { query: "semantic", oc_user_id: "user-123" });
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(mem0Search).toHaveBeenCalledWith(
+      "semantic",
+      expect.objectContaining({
+        user_id: "user-123",
+      }),
+    );
+  });
+
   it("keeps precision guard deterministic across repeated calls and stable on ties", async () => {
     let flipOrder = false;
     const localTool: AnyAgentTool = {

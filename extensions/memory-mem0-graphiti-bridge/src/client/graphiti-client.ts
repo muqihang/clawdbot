@@ -89,6 +89,9 @@ export function createGraphitiClient(options: CreateGraphitiClientOptions): Remo
     defaultSearchBody: {
       max_facts: 10,
     },
+    retry: {
+      enabled: false,
+    },
     ...options,
   });
 }
