@@ -34,6 +34,7 @@ MEM0_REF="${MEM0_REF:-db15d5c6297ee2afaed2e91d86796a86f383949e}"
 STACK_ENV_FILE="${STACK_ENV_FILE:-${ENV_ROOT}/memory-stack.env}"
 
 CHELINGXI_ENV_PATH="${CHELINGXI_ENV_PATH:-$HOME/chelingxi_workspace/chelingxi-os/.env.local}"
+REPO_DOTENV_PATH="${REPO_DOTENV_PATH:-${REPO_ROOT}/.env}"
 
 log() {
   printf '[memory-stack] %s\n' "$*"
@@ -138,6 +139,49 @@ update_env_kv() {
   fi
 }
 
+read_dotenv_kv() {
+  local key="$1"
+  local file="$2"
+  [[ -f "$file" ]] || return 0
+
+  # Read first non-comment match. Keep parsing minimal and predictable:
+  # - Accept KEY=value
+  # - Ignore leading "export "
+  # - Preserve the raw value (no shell evaluation)
+  local value=""
+  value="$(
+    awk -F= -v k="$key" '
+      /^[[:space:]]*#/ { next }
+      /^[[:space:]]*$/ { next }
+      $1 ~ /^[[:space:]]*export[[:space:]]+/ { sub(/^[[:space:]]*export[[:space:]]+/, "", $1) }
+      $1 == k { sub(/^[^=]*=/, "", $0); print $0; exit }
+    ' "$file" | tr -d '\r'
+  )"
+  [[ -n "$value" ]] && printf '%s' "$value"
+}
+
+import_defaults_from_repo_dotenv() {
+  [[ -f "$REPO_DOTENV_PATH" ]] || return 0
+
+  # Unify keys across OpenClaw config (uses SUB2API_API_KEY / MEMORY_REMOTE_API_KEY)
+  # and memory-stack env (uses LLM_API_KEY / EMBEDDING_API_KEY).
+  local sub2api_key=""
+  local memory_remote_key=""
+  local dashscope_key=""
+
+  sub2api_key="$(read_dotenv_kv "SUB2API_API_KEY" "$REPO_DOTENV_PATH" || true)"
+  memory_remote_key="$(read_dotenv_kv "MEMORY_REMOTE_API_KEY" "$REPO_DOTENV_PATH" || true)"
+  dashscope_key="$(read_dotenv_kv "DASHSCOPE_API_KEY" "$REPO_DOTENV_PATH" || true)"
+
+  [[ -n "$sub2api_key" ]] && update_env_kv "LLM_API_KEY" "$sub2api_key"
+
+  if [[ -n "$memory_remote_key" ]]; then
+    update_env_kv "EMBEDDING_API_KEY" "$memory_remote_key"
+  elif [[ -n "$dashscope_key" ]]; then
+    update_env_kv "EMBEDDING_API_KEY" "$dashscope_key"
+  fi
+}
+
 load_stack_env() {
   [[ -f "$STACK_ENV_FILE" ]] || fail "missing env file: $STACK_ENV_FILE"
   set -a
@@ -184,6 +228,31 @@ validate_embedding_policy() {
 
   if [[ "${EMBEDDING_DIM}" != "1536" ]]; then
     fail "EMBEDDING_DIM must be 1536, got: ${EMBEDDING_DIM}"
+  fi
+}
+
+validate_embedding_credentials() {
+  # Fail fast if the DashScope key is missing/invalid (otherwise mem0/graphiti /search will 500).
+  local url="${EMBEDDING_BASE_URL%/}/embeddings"
+  local out="${RUN_ROOT}/embedding.health.json"
+  local code=""
+  code="$(
+    curl -sS \
+      -o "$out" \
+      -w '%{http_code}' \
+      -X POST "$url" \
+      -H "content-type: application/json" \
+      -H "authorization: Bearer ${EMBEDDING_API_KEY}" \
+      --data-binary "{\"model\":\"${EMBEDDING_MODEL_NAME}\",\"input\":[\"healthcheck\"],\"dimensions\":${EMBEDDING_DIM}}" \
+      || true
+  )"
+
+  if [[ "$code" != "200" ]]; then
+    log "embedding auth probe failed (HTTP ${code}). Response saved to: ${out}"
+    # Print a short excerpt for quick diagnosis (avoid dumping huge payloads).
+    head -c 600 "$out" 2>/dev/null || true
+    printf '\n' || true
+    fail "embedding endpoint rejected credentials; fix EMBEDDING_API_KEY in ${STACK_ENV_FILE} (or in ${REPO_DOTENV_PATH} then rerun)."
   fi
 }
 

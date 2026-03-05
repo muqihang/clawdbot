@@ -10,9 +10,12 @@ need_cmd jq
 need_cmd python3
 
 ensure_dirs
+write_env_template_if_missing
+import_defaults_from_repo_dotenv
 load_stack_env
 validate_required_env
 validate_embedding_policy
+validate_embedding_credentials
 
 if ! curl -fsS "http://${QDRANT_HOST}:${QDRANT_PORT}/healthz" >/dev/null 2>&1; then
   fail "qdrant not healthy at http://${QDRANT_HOST}:${QDRANT_PORT}/healthz"

@@ -15,6 +15,7 @@ ensure_dirs
 write_env_template_if_missing
 import_defaults_from_chelingxi_env
 import_llm_key_from_graphiti_env
+import_defaults_from_repo_dotenv
 
 log "stack root: ${STACK_ROOT}"
 log "graphiti ref: ${GRAPHITI_REF}"
