@@ -82,6 +82,23 @@ describe("mem0 + graphiti clients", () => {
     timeoutSpy.mockRestore();
   });
 
+  it("uses a smaller max_facts budget for graphiti search to avoid timeouts", async () => {
+    const fetchMock = vi.fn<typeof fetch>().mockImplementation(async (_url, init) => {
+      const body = typeof init?.body === "string" ? JSON.parse(init.body) : null;
+      expect(body).toMatchObject({ query: "timeline", max_facts: 5 });
+      return toJsonResponse(200, { results: [] });
+    });
+
+    const client = createGraphitiClient({
+      baseUrl: "https://graphiti.test",
+      timeoutMs: 1_500,
+      fetchImpl: fetchMock,
+    });
+
+    await client.search("timeline");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
   it("throws on timeout and does not retry (graphiti)", async () => {
     const fetchMock = vi
       .fn<typeof fetch>()
