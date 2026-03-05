@@ -1,0 +1,157 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 1,
+  "generated_at": "2026-03-05T10:00:15.404Z",
+  "dataset_size": 124,
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "bucket_metrics": [
+    {
+      "bucket": "exact_id",
+      "sample_size": 30,
+      "matched_top1": 30,
+      "hit_at_1": 1
+    },
+    {
+      "bucket": "decision_reason",
+      "sample_size": 30,
+      "matched_top1": 24,
+      "hit_at_1": 0.8
+    },
+    {
+      "bucket": "temporal_relation",
+      "sample_size": 34,
+      "matched_top1": 26,
+      "hit_at_1": 0.7647
+    },
+    {
+      "bucket": "project_context",
+      "sample_size": 30,
+      "matched_top1": 26,
+      "hit_at_1": 0.8667
+    }
+  ],
+  "avg_hit_at_1": 0.8579,
+  "fur_proxy": 0.8548,
+  "top1_path_prefix_counts": {
+    "bridge": 106,
+    "local": 0,
+    "other": 2,
+    "null": 16
+  },
+  "non_bridge_top1_samples": [
+    {
+      "sample_id": "g4v1-decision_reason-ab7b3d14-02",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-e42b22ed-03",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-b8b71207-07",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-e7212791-08",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-ba3e0572-11",
+      "bucket": "decision_reason",
+      "top1_path": "memory/2026-02-18.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-bbd0aae3-12",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-depends-on-3b4474d0",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-depends-on-8c2a4d43",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/2026-03-01.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-analogous-to-b09b6e12",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-uses-8615619c",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-uses-8aa701e5",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-b86b94fc-10",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-e7212791-11",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-5dc3de9f-13",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-496d31e5-14",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    }
+  ]
+}

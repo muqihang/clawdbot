@@ -1,8 +1,9 @@
 {
-  "generated_at": "2026-03-05T08:42:09.589Z",
-  "dataset_snapshot_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day25/w4-r11-gate4-stability-fix/inputs/retrieval-gate4-dataset.v1.snapshot.json",
+  "generated_at": "2026-03-05T10:56:16.846Z",
+  "dataset_snapshot_path": "/Users/muqihang/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day25/w4-r14-gate4-stability-timeoutfix/inputs/retrieval-gate4-dataset.v1.snapshot.json",
   "top_k": 5,
-  "bounded_runs": 5,
+  "stability_only": true,
+  "bounded_runs": 0,
   "stability_runs": 10,
   "baseline": {
     "fusion_enabled": false,
@@ -19,8 +20,8 @@
         "fallback_route": "local"
       },
       "timeoutMs": {
-        "search": 3500,
-        "get": 3500
+        "search": 8000,
+        "get": 8000
       },
       "mem0": {
         "base_url": "http://127.0.0.1:8766"
@@ -111,8 +112,8 @@
         "fallback_route": "local"
       },
       "timeoutMs": {
-        "search": 3500,
-        "get": 3500
+        "search": 8000,
+        "get": 8000
       },
       "mem0": {
         "base_url": "http://127.0.0.1:8766"

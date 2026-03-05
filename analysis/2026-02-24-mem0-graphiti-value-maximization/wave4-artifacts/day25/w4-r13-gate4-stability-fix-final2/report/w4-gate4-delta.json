@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-03-05T10:36:20.010Z",
+  "top1": {
+    "avg_hit_at_1_baseline": 0.147,
+    "avg_hit_at_1_variant": 0.6387,
+    "top1_avg_delta_pp": 49.17,
+    "per_bucket_baseline": {
+      "exact_id": 0,
+      "decision_reason": 0,
+      "temporal_relation": 0.5882,
+      "project_context": 0
+    },
+    "per_bucket_variant": {
+      "exact_id": 0.6667,
+      "decision_reason": 0.9,
+      "temporal_relation": 0.5882,
+      "project_context": 0.4
+    }
+  },
+  "fur_proxy": {
+    "baseline": 0.1613,
+    "variant": 0.6371,
+    "fur_delta_pp": 47.58
+  },
+  "latency": {
+    "p50_total_baseline_ms": 237.919,
+    "p50_total_variant_ms": 1664.5511,
+    "p95_total_baseline_ms": 3530.8933,
+    "p95_total_variant_ms": 3539.2952,
+    "p95_increase_pct": 0.238
+  },
+  "stability": {
+    "unique_values": {
+      "avg_hit_at_1_baseline": [0.1775, 0.1701, 0.1848, 0.1691, 0.1931, 0.2069, 0.125, 0.1995],
+      "avg_hit_at_1_variant": [
+        0.8579, 0.7902, 0.6941, 0.8745, 0.8025, 0.7789, 0.8078, 0.7652, 0.7892, 0.7578
+      ],
+      "top1_avg_delta_pp": [68.04, 62.01, 50.93, 70.54, 60.94, 57.2, 60.09, 58.77, 66.42, 55.83],
+      "fur_proxy_baseline": [0.1935, 0.1855, 0.2016, 0.2097, 0.2258, 0.1371, 0.2177],
+      "fur_proxy_variant": [0.8548, 0.7903, 0.6935, 0.871, 0.7984, 0.7823, 0.8065, 0.7661, 0.7581],
+      "fur_delta_pp": [66.13, 60.48, 49.19, 68.55, 58.87, 55.65, 58.07, 57.26, 65.32, 54.04]
+    },
+    "pass": false
+  },
+  "gates": {
+    "top1_avg_delta_pp_ge_8": true,
+    "fur_delta_pp_ge_10": true,
+    "p95_increase_pct_le_15": true
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 9,
+  "generated_at": "2026-03-05T10:32:15.208Z",
+  "dataset_size": 124,
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "bucket_metrics": [
+    {
+      "bucket": "exact_id",
+      "sample_size": 30,
+      "matched_top1": 25,
+      "hit_at_1": 0.8333
+    },
+    {
+      "bucket": "decision_reason",
+      "sample_size": 30,
+      "matched_top1": 23,
+      "hit_at_1": 0.7667
+    },
+    {
+      "bucket": "temporal_relation",
+      "sample_size": 34,
+      "matched_top1": 28,
+      "hit_at_1": 0.8235
+    },
+    {
+      "bucket": "project_context",
+      "sample_size": 30,
+      "matched_top1": 22,
+      "hit_at_1": 0.7333
+    }
+  ],
+  "avg_hit_at_1": 0.7892,
+  "fur_proxy": 0.7903,
+  "top1_path_prefix_counts": {
+    "bridge": 98,
+    "local": 0,
+    "other": 7,
+    "null": 19
+  },
+  "non_bridge_top1_samples": [
+    {
+      "sample_id": "g4v1-exact_id-aa7a841a-03",
+      "bucket": "exact_id",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-81408c94-04",
+      "bucket": "exact_id",
+      "top1_path": "memory/2026-03-02.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-b09b6e12-09",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-bd5ddb56-10",
+      "bucket": "exact_id",
+      "top1_path": "memory/2026-03-01.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-d0f12ca0-15",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-ab7b3d14-02",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-ad05f92a-05",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-905bd93c-06",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-4102fe35-15",
+      "bucket": "decision_reason",
+      "top1_path": "memory/people/muqihang.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-7b13afa4-16",
+      "bucket": "decision_reason",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-8cee093e-21",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-39987cf6-22",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/2026-03-01.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-has-north-star-8f74c566",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-manages-0dbffdb2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-manages-3c898bc3",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-ea159c11-05",
+      "bucket": "project_context",
+      "top1_path": "memory/projects/openclaw-memory-upgrade.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-project_context-27c1671d-06",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-eddccf9f-08",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-39efdd7f-09",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-496d31e5-14",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-a10eb2d0-15",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-a54cde8e-18",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-bd5ddb56-19",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    }
+  ]
+}

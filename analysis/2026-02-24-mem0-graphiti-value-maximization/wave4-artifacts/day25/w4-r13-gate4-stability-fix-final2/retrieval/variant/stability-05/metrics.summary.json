@@ -1,0 +1,199 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 5,
+  "generated_at": "2026-03-05T10:16:06.543Z",
+  "dataset_size": 124,
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "bucket_metrics": [
+    {
+      "bucket": "exact_id",
+      "sample_size": 30,
+      "matched_top1": 26,
+      "hit_at_1": 0.8667
+    },
+    {
+      "bucket": "decision_reason",
+      "sample_size": 30,
+      "matched_top1": 26,
+      "hit_at_1": 0.8667
+    },
+    {
+      "bucket": "temporal_relation",
+      "sample_size": 34,
+      "matched_top1": 23,
+      "hit_at_1": 0.6765
+    },
+    {
+      "bucket": "project_context",
+      "sample_size": 30,
+      "matched_top1": 24,
+      "hit_at_1": 0.8
+    }
+  ],
+  "avg_hit_at_1": 0.8025,
+  "fur_proxy": 0.7984,
+  "top1_path_prefix_counts": {
+    "bridge": 99,
+    "local": 0,
+    "other": 8,
+    "null": 17
+  },
+  "non_bridge_top1_samples": [
+    {
+      "sample_id": "g4v1-exact_id-ea159c11-25",
+      "bucket": "exact_id",
+      "top1_path": "memory/2026-02-14.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-8f74c566-26",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-b86b94fc-29",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-5dc3de9f-30",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-3b8dbcea-27",
+      "bucket": "decision_reason",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-decision_reason-b91591ae-28",
+      "bucket": "decision_reason",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-aa7a841a-29",
+      "bucket": "decision_reason",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-decision_reason-b6aecc79-30",
+      "bucket": "decision_reason",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-aims-to-improve-5dc3de9f",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-classifies-as-underused-feature-ad05f92a",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-constrains-with-43389e87",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/2026-03-01.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-depends-on-3b4474d0",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-has-north-star-8f74c566",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-analogous-to-b09b6e12",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "bucket": "temporal_relation",
+      "top1_path": "memory/2026-02-20.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-manages-0dbffdb2",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-39efdd7f-09",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-b86b94fc-10",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-496d31e5-14",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-a10eb2d0-15",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-1d520547-17",
+      "bucket": "project_context",
+      "top1_path": "memory/2026-02-20.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-project_context-a54cde8e-18",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "dataset_size": 124,
+  "top1_avg_delta_pp": 49.17,
+  "fur_delta_pp": 47.58,
+  "p95_increase_pct": 0.238,
+  "stability_pass": false
+}

@@ -1,0 +1,1743 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 6,
+  "queries": [
+    {
+      "label": "sample.g4v1-exact_id-b91591ae-01",
+      "query": "b91591ae 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+      "calls": [
+        {
+          "query": "b91591ae 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 205.7107,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-d2002e41-02",
+      "query": "d2002e41 user(user) 建议随后阅读文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md",
+      "calls": [
+        {
+          "query": "d2002e41 user(user) 建议随后阅读文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 212.6942,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-aa7a841a-03",
+      "query": "aa7a841a 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关",
+      "calls": [
+        {
+          "query": "aa7a841a 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 166.9688,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-81408c94-04",
+      "query": "81408c94 user(user) 建议优先阅读文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md",
+      "calls": [
+        {
+          "query": "81408c94 user(user) 建议优先阅读文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 191.0955,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-b6aecc79-05",
+      "query": "b6aecc79 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况",
+      "calls": [
+        {
+          "query": "b6aecc79 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 233.7187,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-2fa00bcb-06",
+      "query": "2fa00bcb 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 中包含关于 大风车 的产品情况信息",
+      "calls": [
+        {
+          "query": "2fa00bcb 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 中包含关于 大风车 的产品情况信息",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 156.0372,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-c5d7bcbb-07",
+      "query": "c5d7bcbb 在 二手车 场景中，System of Record 管理成交",
+      "calls": [
+        {
+          "query": "c5d7bcbb 在 二手车 场景中，System of Record 管理成交",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 176.2812,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-3c898bc3-08",
+      "query": "3c898bc3 在 二手车 场景中，System of Record 管理库存",
+      "calls": [
+        {
+          "query": "3c898bc3 在 二手车 场景中，System of Record 管理库存",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 152.7629,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-b09b6e12-09",
+      "query": "b09b6e12 在 二手车 场景中，System of Record 被比作 CRM",
+      "calls": [
+        {
+          "query": "b09b6e12 在 二手车 场景中，System of Record 被比作 CRM",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 152.9529,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-bd5ddb56-10",
+      "query": "bd5ddb56 执行面被定义为承载 agent runtime",
+      "calls": [
+        {
+          "query": "bd5ddb56 执行面被定义为承载 agent runtime",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 192.7325,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-b8b71207-11",
+      "query": "b8b71207 SoE 被 assistant(assistant) 定义为 System of Engagement",
+      "calls": [
+        {
+          "query": "b8b71207 SoE 被 assistant(assistant) 定义为 System of Engagement",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 203.9284,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-e7212791-12",
+      "query": "e7212791 SoR 被 assistant(assistant) 定义为 System of Record",
+      "calls": [
+        {
+          "query": "e7212791 SoR 被 assistant(assistant) 定义为 System of Record",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 163.096,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-dfba30ba-13",
+      "query": "dfba30ba 数据面被定义为组织事实库",
+      "calls": [
+        {
+          "query": "dfba30ba 数据面被定义为组织事实库",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 183.497,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-032c08af-14",
+      "query": "032c08af 执行面被定义为承载工具调用",
+      "calls": [
+        {
+          "query": "032c08af 执行面被定义为承载工具调用",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 205.4261,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-d0f12ca0-15",
+      "query": "d0f12ca0 执行面被定义为承载边缘节点",
+      "calls": [
+        {
+          "query": "d0f12ca0 执行面被定义为承载边缘节点",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 157.0205,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-2b44f76f-16",
+      "query": "2b44f76f Tier‑X 被定义为私有化部署形态",
+      "calls": [
+        {
+          "query": "2b44f76f Tier‑X 被定义为私有化部署形态",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 176.85,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-7b41875a-17",
+      "query": "7b41875a 数据面被定义为包含证据链",
+      "calls": [
+        {
+          "query": "7b41875a 数据面被定义为包含证据链",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 185.0644,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-59f0c961-18",
+      "query": "59f0c961 数据面被定义为包含执行治理账本",
+      "calls": [
+        {
+          "query": "59f0c961 数据面被定义为包含执行治理账本",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 146.4162,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-27c1671d-19",
+      "query": "27c1671d 北极星 被定义为以生态为核心目标之一",
+      "calls": [
+        {
+          "query": "27c1671d 北极星 被定义为以生态为核心目标之一",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 245.1131,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-934c63f9-20",
+      "query": "934c63f9 assistant 认为车商把信任外包给查博士报告",
+      "calls": [
+        {
+          "query": "934c63f9 assistant 认为车商把信任外包给查博士报告",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 206.4488,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-b162c6b1-21",
+      "query": "b162c6b1 assistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值",
+      "calls": [
+        {
+          "query": "b162c6b1 assistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 208.5425,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-b05ce560-22",
+      "query": "b05ce560 assistant(assistant) 认为 OpenClaw 的趋势是 runtime 商品化并抬高安全争议",
+      "calls": [
+        {
+          "query": "b05ce560 assistant(assistant) 认为 OpenClaw 的趋势是 runtime 商品化并抬高安全争议",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 184.246,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-ba3e0572-23",
+      "query": "ba3e0572 assistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+      "calls": [
+        {
+          "query": "ba3e0572 assistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 177.7981,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-07fd8f05-24",
+      "query": "07fd8f05 assistant 认为车辆生命周期 killer loop 可以打穿 ROI",
+      "calls": [
+        {
+          "query": "07fd8f05 assistant 认为车辆生命周期 killer loop 可以打穿 ROI",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 188.451,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-ea159c11-25",
+      "query": "ea159c11 OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地",
+      "calls": [
+        {
+          "query": "ea159c11 OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 180.159,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-8f74c566-26",
+      "query": "8f74c566 assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+      "calls": [
+        {
+          "query": "8f74c566 assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 192.5583,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-eddccf9f-27",
+      "query": "eddccf9f assistant 建议将Phase 1 的核心闭环定义为车辆生命周期 killer loop",
+      "calls": [
+        {
+          "query": "eddccf9f assistant 建议将Phase 1 的核心闭环定义为车辆生命周期 killer loop",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 185.4644,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-39efdd7f-28",
+      "query": "39efdd7f assistant 认为新能源二手车带来了动态定价的新痛点",
+      "calls": [
+        {
+          "query": "39efdd7f assistant 认为新能源二手车带来了动态定价的新痛点",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 203.2542,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-b86b94fc-29",
+      "query": "b86b94fc assistant 认为收车评估是车辆生命周期 killer loop 的一部分",
+      "calls": [
+        {
+          "query": "b86b94fc assistant 认为收车评估是车辆生命周期 killer loop 的一部分",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 204.7145,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-exact_id-5dc3de9f-30",
+      "query": "5dc3de9f assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+      "calls": [
+        {
+          "query": "5dc3de9f assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 210.1839,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-27c1671d-01",
+      "query": "为什么 北极星 被定义为以生态为核心目标之一",
+      "calls": [
+        {
+          "query": "为什么 北极星 被定义为以生态为核心目标之一",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 178.0124,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-ab7b3d14-02",
+      "query": "为什么 assistant 认为电子审批在大风车中往往成为数字幽灵",
+      "calls": [
+        {
+          "query": "为什么 assistant 认为电子审批在大风车中往往成为数字幽灵",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 779.0509,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-e42b22ed-03",
+      "query": "为什么 北极星 被定义为以组织级治理与生态为目标而非 runtime 本身",
+      "calls": [
+        {
+          "query": "为什么 北极星 被定义为以组织级治理与生态为目标而非 runtime 本身",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 208.0218,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-b794907e-04",
+      "query": "为什么 assistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record",
+      "calls": [
+        {
+          "query": "为什么 assistant(assistant) 将 SoE→SoR 描述为先做行动入口再演进为 System of Record",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 163.475,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-ad05f92a-05",
+      "query": "为什么 assistant 认为CRM 深度录入在大风车中往往成为数字幽灵",
+      "calls": [
+        {
+          "query": "为什么 assistant 认为CRM 深度录入在大风车中往往成为数字幽灵",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 169.9154,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-905bd93c-06",
+      "query": "为什么 assistant 认为财务深度功能在大风车中往往成为数字幽灵",
+      "calls": [
+        {
+          "query": "为什么 assistant 认为财务深度功能在大风车中往往成为数字幽灵",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 175.0738,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-b8b71207-07",
+      "query": "为什么 SoE 被 assistant(assistant) 定义为 System of Engagement",
+      "calls": [
+        {
+          "query": "为什么 SoE 被 assistant(assistant) 定义为 System of Engagement",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 139.2501,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-e7212791-08",
+      "query": "为什么 SoR 被 assistant(assistant) 定义为 System of Record",
+      "calls": [
+        {
+          "query": "为什么 SoR 被 assistant(assistant) 定义为 System of Record",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 173.3914,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-bd5ddb56-09",
+      "query": "为什么 执行面被定义为承载 agent runtime",
+      "calls": [
+        {
+          "query": "为什么 执行面被定义为承载 agent runtime",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 182.619,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-7b41875a-10",
+      "query": "为什么 数据面被定义为包含证据链",
+      "calls": [
+        {
+          "query": "为什么 数据面被定义为包含证据链",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 176.4979,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-ba3e0572-11",
+      "query": "为什么 assistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+      "calls": [
+        {
+          "query": "为什么 assistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 159.3348,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-bbd0aae3-12",
+      "query": "为什么 AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+      "calls": [
+        {
+          "query": "为什么 AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 226.4594,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-77c5054e-13",
+      "query": "为什么 assistant 认为要把关键环节拉回系统需要决策简报",
+      "calls": [
+        {
+          "query": "为什么 assistant 认为要把关键环节拉回系统需要决策简报",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 162.1699,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-0a225ddc-14",
+      "query": "为什么 assistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列",
+      "calls": [
+        {
+          "query": "为什么 assistant 认为要把关键环节拉回系统需要证据、决策简报和人审队列",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 157.1414,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-4102fe35-15",
+      "query": "为什么 assistant 指出在车商的实际工作中关键决策和沟通仍然发生在微信中",
+      "calls": [
+        {
+          "query": "为什么 assistant 指出在车商的实际工作中关键决策和沟通仍然发生在微信中",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 203.4927,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-7b13afa4-16",
+      "query": "为什么 assistant 指出在车商的实际工作中关键决策和沟通仍然发生在纸笔中",
+      "calls": [
+        {
+          "query": "为什么 assistant 指出在车商的实际工作中关键决策和沟通仍然发生在纸笔中",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 183.6887,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-b901ad1a-17",
+      "query": "为什么 assistant 指出在车商的实际工作中关键决策和沟通仍然发生在电话中",
+      "calls": [
+        {
+          "query": "为什么 assistant 指出在车商的实际工作中关键决策和沟通仍然发生在电话中",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 147.795,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-25619dec-18",
+      "query": "为什么 assistant 认为AI 自动入库用于解决录入地狱问题",
+      "calls": [
+        {
+          "query": "为什么 assistant 认为AI 自动入库用于解决录入地狱问题",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 182.818,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-33d7a381-19",
+      "query": "为什么 控制面负责承载权限与策略系统",
+      "calls": [
+        {
+          "query": "为什么 控制面负责承载权限与策略系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 188.0839,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-31dedcb2-20",
+      "query": "为什么 Tiered Hybrid 部署策略在升级时为客户提供专属隔离域",
+      "calls": [
+        {
+          "query": "为什么 Tiered Hybrid 部署策略在升级时为客户提供专属隔离域",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 152.9763,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-8cee093e-21",
+      "query": "为什么 Tiered Hybrid 部署策略在升级时为客户提供专属数据库",
+      "calls": [
+        {
+          "query": "为什么 Tiered Hybrid 部署策略在升级时为客户提供专属数据库",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 202.296,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-39987cf6-22",
+      "query": "为什么 Unified Control Plane 的核心是统一控制面中的权限与策略系统",
+      "calls": [
+        {
+          "query": "为什么 Unified Control Plane 的核心是统一控制面中的权限与策略系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 148.094,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-1e4cabd3-23",
+      "query": "为什么 Unified Control Plane 的核心是统一控制面中的审计索引",
+      "calls": [
+        {
+          "query": "为什么 Unified Control Plane 的核心是统一控制面中的审计索引",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 150.1461,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-f3eebec6-24",
+      "query": "为什么 Unified Control Plane 的核心是统一控制面中的身份系统",
+      "calls": [
+        {
+          "query": "为什么 Unified Control Plane 的核心是统一控制面中的身份系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 177.4608,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-103c4c88-25",
+      "query": "为什么 Unified Control Plane 的核心是统一控制面中的 Pack 分发机制",
+      "calls": [
+        {
+          "query": "为什么 Unified Control Plane 的核心是统一控制面中的 Pack 分发机制",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 180.0027,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-1ea4d71d-26",
+      "query": "为什么 Unified Control Plane 的核心是统一控制面中的升级灰度机制",
+      "calls": [
+        {
+          "query": "为什么 Unified Control Plane 的核心是统一控制面中的升级灰度机制",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 156.9232,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-3b8dbcea-27",
+      "query": "为什么 Unified Control Plane 的核心是统一控制面中的计费与配额系统",
+      "calls": [
+        {
+          "query": "为什么 Unified Control Plane 的核心是统一控制面中的计费与配额系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 164.3183,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-b91591ae-28",
+      "query": "为什么 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+      "calls": [
+        {
+          "query": "为什么 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 171.3987,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-aa7a841a-29",
+      "query": "为什么 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关",
+      "calls": [
+        {
+          "query": "为什么 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 154.8816,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-decision_reason-b6aecc79-30",
+      "query": "为什么 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况",
+      "calls": [
+        {
+          "query": "为什么 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 描述 二手车商 尚未完成数字化转型的情况",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 188.7127,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-aims-to-improve-5dc3de9f",
+      "query": "在时间线中，assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 210.0624,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-benefits-0cf1802e",
+      "query": "在依赖顺序里，assistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，assistant(assistant) 提到 SoE 切入可以减轻 超级个体 的迁移阻力和交付半径 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 221.6712,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-classifies-as-underused-feature-ad05f92a",
+      "query": "在 timeline 第3天 里程碑中，assistant 认为CRM 深度录入在大风车中往往成为数字幽灵 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第3天 里程碑中，assistant 认为CRM 深度录入在大风车中往往成为数字幽灵 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 192.8093,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-constrains-with-43389e87",
+      "query": "因为 assistant 计划把Top5 功能变成Gate-0 硬约束的一部分，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 assistant 计划把Top5 功能变成Gate-0 硬约束的一部分，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 218.9488,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-depends-on-3b4474d0",
+      "query": "在时间线中，结算 依赖 System of Record 提供一致的数据 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，结算 依赖 System of Record 提供一致的数据 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 187.7907,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-depends-on-8c2a4d43",
+      "query": "在依赖顺序里，报表 依赖 System of Record 提供一致的数据 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，报表 依赖 System of Record 提供一致的数据 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 192.8646,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-depends-on-9916589d",
+      "query": "在 timeline 第7天 里程碑中，审计 依赖 System of Record 提供一致的数据 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第7天 里程碑中，审计 依赖 System of Record 提供一致的数据 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 214.0377,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-depends-on-a0b74571",
+      "query": "因为 法务 依赖 System of Record 提供一致的数据，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 法务 依赖 System of Record 提供一致的数据，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 192.9583,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "query": "在时间线中，assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，assistant 认为采纳 SoE→SoR 的关键是在系统中抓到过程数据 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 160.0756,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 195.8243,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-has-north-star-6aaccc4b",
+      "query": "在 timeline 第4天 里程碑中，assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第4天 里程碑中，assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 224.4583,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-has-north-star-8f74c566",
+      "query": "因为 assistant(assistant) 表示内部北极星仍然是 OS + 生态，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 assistant(assistant) 表示内部北极星仍然是 OS + 生态，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 177.075,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 180.4339,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-involves-3dccd76d",
+      "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 176.7467,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 171.6667,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-analogous-to-b09b6e12",
+      "query": "因为 在 二手车 场景中，System of Record 被比作 CRM，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 在 二手车 场景中，System of Record 被比作 CRM，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 182.4882,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+      "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 173.6312,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "query": "在依赖顺序里，System of Engagement 的核心不在于主数据而在于承载动作与协作 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，System of Engagement 的核心不在于主数据而在于承载动作与协作 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 208.8583,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-defined-as-b8b71207",
+      "query": "在 timeline 第5天 里程碑中，SoE 被 assistant(assistant) 定义为 System of Engagement 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第5天 里程碑中，SoE 被 assistant(assistant) 定义为 System of Engagement 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 146.5651,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-defined-as-e7212791",
+      "query": "因为 SoR 被 assistant(assistant) 定义为 System of Record，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 SoR 被 assistant(assistant) 定义为 System of Record，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 160.6241,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-described-by-48f96cd4",
+      "query": "在时间线中，System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 181.6496,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-described-by-496d31e5",
+      "query": "在依赖顺序里，System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 216.4325,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-example-of-a520613a",
+      "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 195.1662,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-is-fact-base-of-33dc6070",
+      "query": "因为 assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 assistant(assistant) 提到最终目标是让 System of Record 成为 经营 OS 的事实底座，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 153.4112,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-manages-0dbffdb2",
+      "query": "在时间线中，在 二手车 场景中，System of Record 管理费用 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，在 二手车 场景中，System of Record 管理费用 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 210.9921,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-manages-3c898bc3",
+      "query": "在依赖顺序里，在 二手车 场景中，System of Record 管理库存 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，在 二手车 场景中，System of Record 管理库存 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 182.0605,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-manages-c5d7bcbb",
+      "query": "在 timeline 第6天 里程碑中，在 二手车 场景中，System of Record 管理成交 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第6天 里程碑中，在 二手车 场景中，System of Record 管理成交 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 156.8293,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-part-of-loop-4a357235",
+      "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 assistant 认为内容生成是车辆生命周期 killer loop 中的一个步骤，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 148.0425,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-proposes-naming-e0847c10",
+      "query": "在时间线中，assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 756.8781,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "query": "在依赖顺序里，assistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，assistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 173.77,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-uses-8615619c",
+      "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+      "calls": [
+        {
+          "query": "在 timeline 第3天 里程碑中，评估师 在 二手车 场景中被描述为 System of Engagement 的使用者 属于哪个阶段？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 188.2748,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-uses-8aa701e5",
+      "query": "因为 销售 在 二手车 场景中被描述为 System of Engagement 的使用者，之后触发了什么变化？",
+      "calls": [
+        {
+          "query": "因为 销售 在 二手车 场景中被描述为 System of Engagement 的使用者，之后触发了什么变化？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 153.5352,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-uses-e2b4e231",
+      "query": "在时间线中，店长 在 二手车 场景中被描述为 System of Engagement 的使用者 之前发生了什么？",
+      "calls": [
+        {
+          "query": "在时间线中，店长 在 二手车 场景中被描述为 System of Engagement 的使用者 之前发生了什么？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 201.9001,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-temporal-w3a-tr-g2v2-uses-to-optimize-e818c7c7",
+      "query": "在依赖顺序里，assistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI 先于哪个事件，后于哪个事件？",
+      "calls": [
+        {
+          "query": "在依赖顺序里，assistant(assistant) 将 SoE→SoR 路线描述为先在 SoE 中把 SOP 跑顺并跑出 ROI 先于哪个事件，后于哪个事件？",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 166.6907,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-b05ce560-01",
+      "query": "what is assistant(assistant) 认为 OpenClaw 的趋势是 runtime 商品化并抬高安全争议",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 认为 OpenClaw 的趋势是 runtime 商品化并抬高安全争议",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 177.0348,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-2b44f76f-02",
+      "query": "what is Tier‑X 被定义为私有化部署形态",
+      "calls": [
+        {
+          "query": "what is Tier‑X 被定义为私有化部署形态",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 170.8565,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-ba3e0572-03",
+      "query": "what is assistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 因 OpenClaw 的趋势提出要把治理能力做成默认能力",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 183.0291,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-07fd8f05-04",
+      "query": "what is assistant 认为车辆生命周期 killer loop 可以打穿 ROI",
+      "calls": [
+        {
+          "query": "what is assistant 认为车辆生命周期 killer loop 可以打穿 ROI",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 163.0813,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-ea159c11-05",
+      "query": "what is OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地",
+      "calls": [
+        {
+          "query": "what is OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 168.7726,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-27c1671d-06",
+      "query": "what is 北极星 被定义为以生态为核心目标之一",
+      "calls": [
+        {
+          "query": "what is 北极星 被定义为以生态为核心目标之一",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 192.7309,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-8f74c566-07",
+      "query": "what is assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 表示内部北极星仍然是 OS + 生态",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 149.641,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-eddccf9f-08",
+      "query": "what is assistant 建议将Phase 1 的核心闭环定义为车辆生命周期 killer loop",
+      "calls": [
+        {
+          "query": "what is assistant 建议将Phase 1 的核心闭环定义为车辆生命周期 killer loop",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 177.3169,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-39efdd7f-09",
+      "query": "what is assistant 认为新能源二手车带来了动态定价的新痛点",
+      "calls": [
+        {
+          "query": "what is assistant 认为新能源二手车带来了动态定价的新痛点",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 201.9301,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-b86b94fc-10",
+      "query": "what is assistant 认为收车评估是车辆生命周期 killer loop 的一部分",
+      "calls": [
+        {
+          "query": "what is assistant 认为收车评估是车辆生命周期 killer loop 的一部分",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 279.9121,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-e7212791-11",
+      "query": "what is SoR 被 assistant(assistant) 定义为 System of Record",
+      "calls": [
+        {
+          "query": "what is SoR 被 assistant(assistant) 定义为 System of Record",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 180.9787,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-b8b71207-12",
+      "query": "what is SoE 被 assistant(assistant) 定义为 System of Engagement",
+      "calls": [
+        {
+          "query": "what is SoE 被 assistant(assistant) 定义为 System of Engagement",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 170.7819,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-5dc3de9f-13",
+      "query": "what is assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 将 SoE→SoR 路线描述为通过 System of Engagement 跑出 ROI",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 173.9535,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-496d31e5-14",
+      "query": "what is System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统",
+      "calls": [
+        {
+          "query": "what is System of Engagement 被 assistant(assistant) 描述为“人每天在哪儿做事”的系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 186.8557,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-a10eb2d0-15",
+      "query": "what is assistant(assistant) 建议默认采用多租户架构以服务中小车商",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 建议默认采用多租户架构以服务中小车商",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 189.8149,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-48f96cd4-16",
+      "query": "what is System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统",
+      "calls": [
+        {
+          "query": "what is System of Record 被 assistant(assistant) 描述为“哪个系统说了算”的系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 175.5452,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-1d520547-17",
+      "query": "what is assistant(assistant) 认为自部署模式会削弱双脑架构的可携带性",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 认为自部署模式会削弱双脑架构的可携带性",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 162.729,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-a54cde8e-18",
+      "query": "what is assistant(assistant) 强调控制面应当统一以保证个人 Agent 网络的能力",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 强调控制面应当统一以保证个人 Agent 网络的能力",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 236.8284,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-bd5ddb56-19",
+      "query": "what is 执行面被定义为承载 agent runtime",
+      "calls": [
+        {
+          "query": "what is 执行面被定义为承载 agent runtime",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 186.3028,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-bbd0aae3-20",
+      "query": "what is AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+      "calls": [
+        {
+          "query": "what is AI原生的产品 依赖 车商的业务数据经营数据 来让 AI Agent 完成高质量任务",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 204.206,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-59f0c961-21",
+      "query": "what is 数据面被定义为包含执行治理账本",
+      "calls": [
+        {
+          "query": "what is 数据面被定义为包含执行治理账本",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 157.4758,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-0235a211-22",
+      "query": "what is assistant 认为大风车当前更多是一个事后记录系统或高级记事本",
+      "calls": [
+        {
+          "query": "what is assistant 认为大风车当前更多是一个事后记录系统或高级记事本",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 194.0544,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-10fe5aac-23",
+      "query": "what is System of Record 是结构化主数据和关键记录的权威系统",
+      "calls": [
+        {
+          "query": "what is System of Record 是结构化主数据和关键记录的权威系统",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 153.7467,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-b162c6b1-24",
+      "query": "what is assistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值",
+      "calls": [
+        {
+          "query": "what is assistant 指出车商对查博士报告存在很强的代理信任阈值和数字信任阈值",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 183.3722,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-934c63f9-25",
+      "query": "what is assistant 认为车商把信任外包给查博士报告",
+      "calls": [
+        {
+          "query": "what is assistant 认为车商把信任外包给查博士报告",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 154.9149,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-6aaccc4b-26",
+      "query": "what is assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 强调内部北极星是 经营 OS 而 SoE 只是切入方式",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 165.3856,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-05167df4-27",
+      "query": "what is assistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 建议 Phase 1 对外定位使用 AI 执行型工作台 作为 SoE 的实现形态",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 178.1363,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-e0847c10-28",
+      "query": "what is assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口",
+      "calls": [
+        {
+          "query": "what is assistant(assistant) 建议 Phase 1 的对外命名可以使用 AI 执行工作台 / 经营执行层 / 行动入口",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 184.1591,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-aa7a841a-29",
+      "query": "what is 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关",
+      "calls": [
+        {
+          "query": "what is 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车商行为洞察报告.md 与 二手车商 的行为和情况相关",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 201.2878,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "label": "sample.g4v1-project_context-b91591ae-30",
+      "query": "what is 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+      "calls": [
+        {
+          "query": "what is 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关",
+          "options": {
+            "user_id": "w4-d-gate4:variant:direct"
+          },
+          "latency_ms": 160.5597,
+          "hits": []
+        }
+      ]
+    }
+  ]
+}

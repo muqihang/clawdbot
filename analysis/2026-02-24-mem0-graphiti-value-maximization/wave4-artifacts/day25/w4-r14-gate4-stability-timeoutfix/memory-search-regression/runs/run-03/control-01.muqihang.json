@@ -1,0 +1,494 @@
+{
+  "query_id": "control-01",
+  "query": "muqihang",
+  "run_id": "run-03",
+  "l1_cli": {
+    "ok": true,
+    "exit_code": 0,
+    "command": "pnpm \"-s\" \"openclaw\" \"memory\" \"search\" \"muqihang\" \"--json\"",
+    "stdout": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 37,\n      \"score\": 0.6440693318843842,\n      \"snippet\": \"# person.muqihang\\n\\n## Metadata\\n- canonical_id: person.muqihang\\n- display_name: 牧启航\\n- role: Founder and CEO\\n- timezone: Asia/Shanghai\\n- status: active\\n- source_system: manual\\n- source_ref: USER.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Stable Profile\\n- leads a one-person company with a strong strategy-first operating style\\n- expects Jarvis to turn business intent into executable architecture and delivery\\n- keeps final authority for strategy and high-risk decisions\\n\\n## Collaboration Preferences\\n- preferred style: align intent first, then execute fast and iteratively\\n- language style: direct, practical, low jargon\\n- platform preference: prioritize T\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"memory/2026-03-02.md\",\n      \"startLine\": 1,\n      \"endLine\": 8,\n      \"score\": 0.5474498808383941,\n      \"snippet\": \"# 2026-03-02\\n\\n## Work Log\\n- \\n\\n## Pointers\\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\\n\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"memory/context/drill-rules.md\",\n      \"startLine\": 1,\n      \"endLine\": 49,\n      \"score\": 0.5365980803966521,\n      \"snippet\": \"# drill-rules\\n\\nLast reviewed: 2026-02-23\\nOwner: Jarvis\\n\\n## Rule Format\\n- rule_id: stable identifier\\n- match_any: keywords or aliases\\n- open_files: ordered detail files to drill\\n- fallback: next action when no clear hit\\n\\n## Rules\\n- rule_id: drill.person.muqihang\\n  match_any: [\\\"牧启航\\\", \\\"muqihang\\\", \\\"founder\\\", \\\"CEO\\\", \\\"创始人\\\"]\\n  open_files:\\n    - memory/people/muqihang.md\\n    - memory/projects/jarvis-os.md\\n  fallback: use MEMORY.md snapshot + latest daily logs\\n\\n- rule_id: drill.project.jarvis_os\\n  match_any: [\\\"Jarvis OS\\\", \\\"jarvis os\\\", \\\"组织架构\\\", \\\"thinktank\\\"]\\n  open_files:\\n    - memory/projects/jarvis-os.md\\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\\n  fallback: use MEMORY.md projects ind\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.52428058385849,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"memory/topics/channel-policy.md\",\n      \"startLine\": 1,\n      \"endLine\": 24,\n      \"score\": 0.5232784330844878,\n      \"snippet\": \"# topic.channel-policy\\n\\n## Metadata\\n- topic_id: topic.channel-policy\\n- status: active\\n- authority: derived_view\\n- source_system: local_topic_digest\\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- event_time: 2026-02-23T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Digest\\n- Telegram is the primary collaboration channel for reliability and workflow fit.\\n- iMessage remains secondary unless Telegram materially blocks core operations.\\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\\n\\n## Canonical Sources\\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- memory/people/muqihang.md\\n- memory/projects/jarvis-os.md\\n\\n##\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"memory/2026-02-21.md\",\n      \"startLine\": 231,\n      \"endLine\": 249,\n      \"score\": 0.5167784512042999,\n      \"snippet\": \"- Related compaction instability evidence in gateway error logs:\\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\\n\\n### Immediate mitigation applied (manual session reset for target group lanes)\\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\",\n      \"source\": \"memory\"\n    }\n  ]\n}\n",
+    "stderr": "",
+    "parsed_json": {
+      "results": [
+        {
+          "path": "memory/people/muqihang.md",
+          "startLine": 1,
+          "endLine": 37,
+          "score": 0.6440693318843842,
+          "snippet": "# person.muqihang\n\n## Metadata\n- canonical_id: person.muqihang\n- display_name: 牧启航\n- role: Founder and CEO\n- timezone: Asia/Shanghai\n- status: active\n- source_system: manual\n- source_ref: USER.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Stable Profile\n- leads a one-person company with a strong strategy-first operating style\n- expects Jarvis to turn business intent into executable architecture and delivery\n- keeps final authority for strategy and high-risk decisions\n\n## Collaboration Preferences\n- preferred style: align intent first, then execute fast and iteratively\n- language style: direct, practical, low jargon\n- platform preference: prioritize T",
+          "source": "memory"
+        },
+        {
+          "path": "memory/2026-03-02.md",
+          "startLine": 1,
+          "endLine": 8,
+          "score": 0.5474498808383941,
+          "snippet": "# 2026-03-02\n\n## Work Log\n- \n\n## Pointers\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\n",
+          "source": "memory"
+        },
+        {
+          "path": "memory/context/drill-rules.md",
+          "startLine": 1,
+          "endLine": 49,
+          "score": 0.5365980803966521,
+          "snippet": "# drill-rules\n\nLast reviewed: 2026-02-23\nOwner: Jarvis\n\n## Rule Format\n- rule_id: stable identifier\n- match_any: keywords or aliases\n- open_files: ordered detail files to drill\n- fallback: next action when no clear hit\n\n## Rules\n- rule_id: drill.person.muqihang\n  match_any: [\"牧启航\", \"muqihang\", \"founder\", \"CEO\", \"创始人\"]\n  open_files:\n    - memory/people/muqihang.md\n    - memory/projects/jarvis-os.md\n  fallback: use MEMORY.md snapshot + latest daily logs\n\n- rule_id: drill.project.jarvis_os\n  match_any: [\"Jarvis OS\", \"jarvis os\", \"组织架构\", \"thinktank\"]\n  open_files:\n    - memory/projects/jarvis-os.md\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\n  fallback: use MEMORY.md projects ind",
+          "source": "memory"
+        },
+        {
+          "path": "MEMORY.md",
+          "startLine": 25,
+          "endLine": 47,
+          "score": 0.52428058385849,
+          "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used",
+          "source": "memory"
+        },
+        {
+          "path": "memory/topics/channel-policy.md",
+          "startLine": 1,
+          "endLine": 24,
+          "score": 0.5232784330844878,
+          "snippet": "# topic.channel-policy\n\n## Metadata\n- topic_id: topic.channel-policy\n- status: active\n- authority: derived_view\n- source_system: local_topic_digest\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\n- event_time: 2026-02-23T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Digest\n- Telegram is the primary collaboration channel for reliability and workflow fit.\n- iMessage remains secondary unless Telegram materially blocks core operations.\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\n\n## Canonical Sources\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\n- memory/people/muqihang.md\n- memory/projects/jarvis-os.md\n\n##",
+          "source": "memory"
+        },
+        {
+          "path": "memory/2026-02-21.md",
+          "startLine": 231,
+          "endLine": 249,
+          "score": 0.5167784512042999,
+          "snippet": "- Related compaction instability evidence in gateway error logs:\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\n\n### Immediate mitigation applied (manual session reset for target group lanes)\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com",
+          "source": "memory"
+        }
+      ]
+    }
+  },
+  "l1_local_tool": {
+    "ok": true,
+    "error": null,
+    "parsed": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 37,\n      \"score\": 0.6440693318843842,\n      \"snippet\": \"# person.muqihang\\n\\n## Metadata\\n- canonical_id: person.muqihang\\n- display_name: 牧启航\\n- role: Founder and CEO\\n- timezone: Asia/Shanghai\\n- status: active\\n- source_system: manual\\n- source_ref: USER.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Stable Profile\\n- leads a one-person company with a strong strategy-first operating style\\n- expects Jarvis to turn business intent into executable architecture and delivery\\n- keeps final authority for strategy and high-risk decisions\\n\\n## Collaboration Preferences\\n- preferred style: align intent first, then execute fast and iteratively\\n- language style: direct, practical, low jargon\\n- platform preference: prioritize T\\n\\nSource: memory/people/muqihang.md#L1-L37\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/people/muqihang.md#L1-L37\"\n    },\n    {\n      \"path\": \"memory/2026-03-02.md\",\n      \"startLine\": 1,\n      \"endLine\": 8,\n      \"score\": 0.5474498808383941,\n      \"snippet\": \"# 2026-03-02\\n\\n## Work Log\\n- \\n\\n## Pointers\\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\\n\\nSource: memory/2026-03-02.md#L1-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/2026-03-02.md#L1-L8\"\n    },\n    {\n      \"path\": \"memory/context/drill-rules.md\",\n      \"startLine\": 1,\n      \"endLine\": 49,\n      \"score\": 0.5365980803966521,\n      \"snippet\": \"# drill-rules\\n\\nLast reviewed: 2026-02-23\\nOwner: Jarvis\\n\\n## Rule Format\\n- rule_id: stable identifier\\n- match_any: keywords or aliases\\n- open_files: ordered detail files to drill\\n- fallback: next action when no clear hit\\n\\n## Rules\\n- rule_id: drill.person.muqihang\\n  match_any: [\\\"牧启航\\\", \\\"muqihang\\\", \\\"founder\\\", \\\"CEO\\\", \\\"创始人\\\"]\\n  open_files:\\n    - memory/people/muqihang.md\\n    - memory/projects/jarvis-os.md\\n  fallback: use MEMORY.md snapshot + latest daily logs\\n\\n- rule_id: drill.project.jarvis_os\\n  match_any: [\\\"Jarvis OS\\\", \\\"jarvis os\\\", \\\"组织架构\\\", \\\"thinktank\\\"]\\n  open_files:\\n    - memory/projects/jarvis-os.md\\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\\n  fallback: use MEMORY.md projects ind\\n\\nSource: memory/context/drill-rules.md#L1-L49\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/context/drill-rules.md#L1-L49\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.52428058385849,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\\n\\nSource: MEMORY.md#L25-L47\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L25-L47\"\n    },\n    {\n      \"path\": \"memory/topics/channel-policy.md\",\n      \"startLine\": 1,\n      \"endLine\": 24,\n      \"score\": 0.5232784330844878,\n      \"snippet\": \"# topic.channel-policy\\n\\n## Metadata\\n- topic_id: topic.channel-policy\\n- status: active\\n- authority: derived_view\\n- source_system: local_topic_digest\\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- event_time: 2026-02-23T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Digest\\n- Telegram is the primary collaboration channel for reliability and workflow fit.\\n- iMessage remains secondary unless Telegram materially blocks core operations.\\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\\n\\n## Canonical Sources\\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- memory/people/muqihang.md\\n- memory/projects/jarvis-os.md\\n\\n##\\n\\nSource: memory/topics/channel-policy.md#L1-L24\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/topics/channel-policy.md#L1-L24\"\n    },\n    {\n      \"path\": \"memory/2026-02-21.md\",\n      \"startLine\": 231,\n      \"endLine\": 249,\n      \"score\": 0.5167784512042999,\n      \"snippet\": \"- Related compaction instability evidence in gateway error logs:\\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\\n\\n### Immediate mitigation applied (manual session reset for target group lanes)\\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\\n\\nSource: memory/2026-02-21.md#L231-L249\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/2026-02-21.md#L231-L249\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+        }
+      ],
+      "details": {
+        "results": [
+          {
+            "path": "memory/people/muqihang.md",
+            "startLine": 1,
+            "endLine": 37,
+            "score": 0.6440693318843842,
+            "snippet": "# person.muqihang\n\n## Metadata\n- canonical_id: person.muqihang\n- display_name: 牧启航\n- role: Founder and CEO\n- timezone: Asia/Shanghai\n- status: active\n- source_system: manual\n- source_ref: USER.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Stable Profile\n- leads a one-person company with a strong strategy-first operating style\n- expects Jarvis to turn business intent into executable architecture and delivery\n- keeps final authority for strategy and high-risk decisions\n\n## Collaboration Preferences\n- preferred style: align intent first, then execute fast and iteratively\n- language style: direct, practical, low jargon\n- platform preference: prioritize T\n\nSource: memory/people/muqihang.md#L1-L37",
+            "source": "memory",
+            "citation": "memory/people/muqihang.md#L1-L37"
+          },
+          {
+            "path": "memory/2026-03-02.md",
+            "startLine": 1,
+            "endLine": 8,
+            "score": 0.5474498808383941,
+            "snippet": "# 2026-03-02\n\n## Work Log\n- \n\n## Pointers\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\n\nSource: memory/2026-03-02.md#L1-L8",
+            "source": "memory",
+            "citation": "memory/2026-03-02.md#L1-L8"
+          },
+          {
+            "path": "memory/context/drill-rules.md",
+            "startLine": 1,
+            "endLine": 49,
+            "score": 0.5365980803966521,
+            "snippet": "# drill-rules\n\nLast reviewed: 2026-02-23\nOwner: Jarvis\n\n## Rule Format\n- rule_id: stable identifier\n- match_any: keywords or aliases\n- open_files: ordered detail files to drill\n- fallback: next action when no clear hit\n\n## Rules\n- rule_id: drill.person.muqihang\n  match_any: [\"牧启航\", \"muqihang\", \"founder\", \"CEO\", \"创始人\"]\n  open_files:\n    - memory/people/muqihang.md\n    - memory/projects/jarvis-os.md\n  fallback: use MEMORY.md snapshot + latest daily logs\n\n- rule_id: drill.project.jarvis_os\n  match_any: [\"Jarvis OS\", \"jarvis os\", \"组织架构\", \"thinktank\"]\n  open_files:\n    - memory/projects/jarvis-os.md\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\n  fallback: use MEMORY.md projects ind\n\nSource: memory/context/drill-rules.md#L1-L49",
+            "source": "memory",
+            "citation": "memory/context/drill-rules.md#L1-L49"
+          },
+          {
+            "path": "MEMORY.md",
+            "startLine": 25,
+            "endLine": 47,
+            "score": 0.52428058385849,
+            "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used\n\nSource: MEMORY.md#L25-L47",
+            "source": "memory",
+            "citation": "MEMORY.md#L25-L47"
+          },
+          {
+            "path": "memory/topics/channel-policy.md",
+            "startLine": 1,
+            "endLine": 24,
+            "score": 0.5232784330844878,
+            "snippet": "# topic.channel-policy\n\n## Metadata\n- topic_id: topic.channel-policy\n- status: active\n- authority: derived_view\n- source_system: local_topic_digest\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\n- event_time: 2026-02-23T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Digest\n- Telegram is the primary collaboration channel for reliability and workflow fit.\n- iMessage remains secondary unless Telegram materially blocks core operations.\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\n\n## Canonical Sources\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\n- memory/people/muqihang.md\n- memory/projects/jarvis-os.md\n\n##\n\nSource: memory/topics/channel-policy.md#L1-L24",
+            "source": "memory",
+            "citation": "memory/topics/channel-policy.md#L1-L24"
+          },
+          {
+            "path": "memory/2026-02-21.md",
+            "startLine": 231,
+            "endLine": 249,
+            "score": 0.5167784512042999,
+            "snippet": "- Related compaction instability evidence in gateway error logs:\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\n\n### Immediate mitigation applied (manual session reset for target group lanes)\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\n\nSource: memory/2026-02-21.md#L231-L249",
+            "source": "memory",
+            "citation": "memory/2026-02-21.md#L231-L249"
+          }
+        ],
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "citations": "auto",
+        "mode": "hybrid"
+      }
+    }
+  },
+  "l2_bridge": {
+    "read_mode_local": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 37,\n      \"score\": 0.6440693318843842,\n      \"snippet\": \"# person.muqihang\\n\\n## Metadata\\n- canonical_id: person.muqihang\\n- display_name: 牧启航\\n- role: Founder and CEO\\n- timezone: Asia/Shanghai\\n- status: active\\n- source_system: manual\\n- source_ref: USER.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Stable Profile\\n- leads a one-person company with a strong strategy-first operating style\\n- expects Jarvis to turn business intent into executable architecture and delivery\\n- keeps final authority for strategy and high-risk decisions\\n\\n## Collaboration Preferences\\n- preferred style: align intent first, then execute fast and iteratively\\n- language style: direct, practical, low jargon\\n- platform preference: prioritize T\\n\\nSource: memory/people/muqihang.md#L1-L37\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/people/muqihang.md#L1-L37\"\n    },\n    {\n      \"path\": \"memory/2026-03-02.md\",\n      \"startLine\": 1,\n      \"endLine\": 8,\n      \"score\": 0.5474498808383941,\n      \"snippet\": \"# 2026-03-02\\n\\n## Work Log\\n- \\n\\n## Pointers\\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\\n\\nSource: memory/2026-03-02.md#L1-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/2026-03-02.md#L1-L8\"\n    },\n    {\n      \"path\": \"memory/context/drill-rules.md\",\n      \"startLine\": 1,\n      \"endLine\": 49,\n      \"score\": 0.5365980803966521,\n      \"snippet\": \"# drill-rules\\n\\nLast reviewed: 2026-02-23\\nOwner: Jarvis\\n\\n## Rule Format\\n- rule_id: stable identifier\\n- match_any: keywords or aliases\\n- open_files: ordered detail files to drill\\n- fallback: next action when no clear hit\\n\\n## Rules\\n- rule_id: drill.person.muqihang\\n  match_any: [\\\"牧启航\\\", \\\"muqihang\\\", \\\"founder\\\", \\\"CEO\\\", \\\"创始人\\\"]\\n  open_files:\\n    - memory/people/muqihang.md\\n    - memory/projects/jarvis-os.md\\n  fallback: use MEMORY.md snapshot + latest daily logs\\n\\n- rule_id: drill.project.jarvis_os\\n  match_any: [\\\"Jarvis OS\\\", \\\"jarvis os\\\", \\\"组织架构\\\", \\\"thinktank\\\"]\\n  open_files:\\n    - memory/projects/jarvis-os.md\\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\\n  fallback: use MEMORY.md projects ind\\n\\nSource: memory/context/drill-rules.md#L1-L49\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/context/drill-rules.md#L1-L49\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.52428058385849,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\\n\\nSource: MEMORY.md#L25-L47\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L25-L47\"\n    },\n    {\n      \"path\": \"memory/topics/channel-policy.md\",\n      \"startLine\": 1,\n      \"endLine\": 24,\n      \"score\": 0.5232784330844878,\n      \"snippet\": \"# topic.channel-policy\\n\\n## Metadata\\n- topic_id: topic.channel-policy\\n- status: active\\n- authority: derived_view\\n- source_system: local_topic_digest\\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- event_time: 2026-02-23T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Digest\\n- Telegram is the primary collaboration channel for reliability and workflow fit.\\n- iMessage remains secondary unless Telegram materially blocks core operations.\\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\\n\\n## Canonical Sources\\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- memory/people/muqihang.md\\n- memory/projects/jarvis-os.md\\n\\n##\\n\\nSource: memory/topics/channel-policy.md#L1-L24\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/topics/channel-policy.md#L1-L24\"\n    },\n    {\n      \"path\": \"memory/2026-02-21.md\",\n      \"startLine\": 231,\n      \"endLine\": 249,\n      \"score\": 0.5167784512042999,\n      \"snippet\": \"- Related compaction instability evidence in gateway error logs:\\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\\n\\n### Immediate mitigation applied (manual session reset for target group lanes)\\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\\n\\nSource: memory/2026-02-21.md#L231-L249\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/2026-02-21.md#L231-L249\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "memory/people/muqihang.md",
+              "startLine": 1,
+              "endLine": 37,
+              "score": 0.6440693318843842,
+              "snippet": "# person.muqihang\n\n## Metadata\n- canonical_id: person.muqihang\n- display_name: 牧启航\n- role: Founder and CEO\n- timezone: Asia/Shanghai\n- status: active\n- source_system: manual\n- source_ref: USER.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Stable Profile\n- leads a one-person company with a strong strategy-first operating style\n- expects Jarvis to turn business intent into executable architecture and delivery\n- keeps final authority for strategy and high-risk decisions\n\n## Collaboration Preferences\n- preferred style: align intent first, then execute fast and iteratively\n- language style: direct, practical, low jargon\n- platform preference: prioritize T\n\nSource: memory/people/muqihang.md#L1-L37",
+              "source": "memory",
+              "citation": "memory/people/muqihang.md#L1-L37"
+            },
+            {
+              "path": "memory/2026-03-02.md",
+              "startLine": 1,
+              "endLine": 8,
+              "score": 0.5474498808383941,
+              "snippet": "# 2026-03-02\n\n## Work Log\n- \n\n## Pointers\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\n\nSource: memory/2026-03-02.md#L1-L8",
+              "source": "memory",
+              "citation": "memory/2026-03-02.md#L1-L8"
+            },
+            {
+              "path": "memory/context/drill-rules.md",
+              "startLine": 1,
+              "endLine": 49,
+              "score": 0.5365980803966521,
+              "snippet": "# drill-rules\n\nLast reviewed: 2026-02-23\nOwner: Jarvis\n\n## Rule Format\n- rule_id: stable identifier\n- match_any: keywords or aliases\n- open_files: ordered detail files to drill\n- fallback: next action when no clear hit\n\n## Rules\n- rule_id: drill.person.muqihang\n  match_any: [\"牧启航\", \"muqihang\", \"founder\", \"CEO\", \"创始人\"]\n  open_files:\n    - memory/people/muqihang.md\n    - memory/projects/jarvis-os.md\n  fallback: use MEMORY.md snapshot + latest daily logs\n\n- rule_id: drill.project.jarvis_os\n  match_any: [\"Jarvis OS\", \"jarvis os\", \"组织架构\", \"thinktank\"]\n  open_files:\n    - memory/projects/jarvis-os.md\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\n  fallback: use MEMORY.md projects ind\n\nSource: memory/context/drill-rules.md#L1-L49",
+              "source": "memory",
+              "citation": "memory/context/drill-rules.md#L1-L49"
+            },
+            {
+              "path": "MEMORY.md",
+              "startLine": 25,
+              "endLine": 47,
+              "score": 0.52428058385849,
+              "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used\n\nSource: MEMORY.md#L25-L47",
+              "source": "memory",
+              "citation": "MEMORY.md#L25-L47"
+            },
+            {
+              "path": "memory/topics/channel-policy.md",
+              "startLine": 1,
+              "endLine": 24,
+              "score": 0.5232784330844878,
+              "snippet": "# topic.channel-policy\n\n## Metadata\n- topic_id: topic.channel-policy\n- status: active\n- authority: derived_view\n- source_system: local_topic_digest\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\n- event_time: 2026-02-23T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Digest\n- Telegram is the primary collaboration channel for reliability and workflow fit.\n- iMessage remains secondary unless Telegram materially blocks core operations.\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\n\n## Canonical Sources\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\n- memory/people/muqihang.md\n- memory/projects/jarvis-os.md\n\n##\n\nSource: memory/topics/channel-policy.md#L1-L24",
+              "source": "memory",
+              "citation": "memory/topics/channel-policy.md#L1-L24"
+            },
+            {
+              "path": "memory/2026-02-21.md",
+              "startLine": 231,
+              "endLine": 249,
+              "score": 0.5167784512042999,
+              "snippet": "- Related compaction instability evidence in gateway error logs:\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\n\n### Immediate mitigation applied (manual session reset for target group lanes)\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\n\nSource: memory/2026-02-21.md#L231-L249",
+              "source": "memory",
+              "citation": "memory/2026-02-21.md#L231-L249"
+            }
+          ],
+          "provider": "openai",
+          "model": "text-embedding-v4",
+          "fallback": {
+            "triggered": false,
+            "reason": null,
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 0,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 0
+          },
+          "citations": "auto",
+          "mode": "hybrid",
+          "source": "local",
+          "route": {
+            "read_mode": "local",
+            "reason": "phase0_local_default",
+            "intent": "semantic",
+            "query_type": "other",
+            "query_bucket": "other",
+            "user_route": "local",
+            "candidate_route": "local",
+            "primary_route": "local",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "muqihang",
+            "normalizedQuery": "muqihang",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "selected_recipe": "hybrid",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "local",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "local",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "local",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    },
+    "read_mode_primary": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/people/muqihang.md\",\n      \"startLine\": 1,\n      \"endLine\": 37,\n      \"score\": 0.6440693318843842,\n      \"snippet\": \"# person.muqihang\\n\\n## Metadata\\n- canonical_id: person.muqihang\\n- display_name: 牧启航\\n- role: Founder and CEO\\n- timezone: Asia/Shanghai\\n- status: active\\n- source_system: manual\\n- source_ref: USER.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Stable Profile\\n- leads a one-person company with a strong strategy-first operating style\\n- expects Jarvis to turn business intent into executable architecture and delivery\\n- keeps final authority for strategy and high-risk decisions\\n\\n## Collaboration Preferences\\n- preferred style: align intent first, then execute fast and iteratively\\n- language style: direct, practical, low jargon\\n- platform preference: prioritize T\\n\\nSource: memory/people/muqihang.md#L1-L37\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/people/muqihang.md#L1-L37\"\n    },\n    {\n      \"path\": \"memory/2026-03-02.md\",\n      \"startLine\": 1,\n      \"endLine\": 8,\n      \"score\": 0.5474498808383941,\n      \"snippet\": \"# 2026-03-02\\n\\n## Work Log\\n- \\n\\n## Pointers\\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\\n\\nSource: memory/2026-03-02.md#L1-L8\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/2026-03-02.md#L1-L8\"\n    },\n    {\n      \"path\": \"memory/context/drill-rules.md\",\n      \"startLine\": 1,\n      \"endLine\": 49,\n      \"score\": 0.5365980803966521,\n      \"snippet\": \"# drill-rules\\n\\nLast reviewed: 2026-02-23\\nOwner: Jarvis\\n\\n## Rule Format\\n- rule_id: stable identifier\\n- match_any: keywords or aliases\\n- open_files: ordered detail files to drill\\n- fallback: next action when no clear hit\\n\\n## Rules\\n- rule_id: drill.person.muqihang\\n  match_any: [\\\"牧启航\\\", \\\"muqihang\\\", \\\"founder\\\", \\\"CEO\\\", \\\"创始人\\\"]\\n  open_files:\\n    - memory/people/muqihang.md\\n    - memory/projects/jarvis-os.md\\n  fallback: use MEMORY.md snapshot + latest daily logs\\n\\n- rule_id: drill.project.jarvis_os\\n  match_any: [\\\"Jarvis OS\\\", \\\"jarvis os\\\", \\\"组织架构\\\", \\\"thinktank\\\"]\\n  open_files:\\n    - memory/projects/jarvis-os.md\\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\\n  fallback: use MEMORY.md projects ind\\n\\nSource: memory/context/drill-rules.md#L1-L49\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/context/drill-rules.md#L1-L49\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.52428058385849,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\\n\\nSource: MEMORY.md#L25-L47\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L25-L47\"\n    },\n    {\n      \"path\": \"memory/topics/channel-policy.md\",\n      \"startLine\": 1,\n      \"endLine\": 24,\n      \"score\": 0.5232784330844878,\n      \"snippet\": \"# topic.channel-policy\\n\\n## Metadata\\n- topic_id: topic.channel-policy\\n- status: active\\n- authority: derived_view\\n- source_system: local_topic_digest\\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- event_time: 2026-02-23T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Digest\\n- Telegram is the primary collaboration channel for reliability and workflow fit.\\n- iMessage remains secondary unless Telegram materially blocks core operations.\\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\\n\\n## Canonical Sources\\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\\n- memory/people/muqihang.md\\n- memory/projects/jarvis-os.md\\n\\n##\\n\\nSource: memory/topics/channel-policy.md#L1-L24\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/topics/channel-policy.md#L1-L24\"\n    },\n    {\n      \"path\": \"memory/2026-02-21.md\",\n      \"startLine\": 231,\n      \"endLine\": 249,\n      \"score\": 0.5167784512042999,\n      \"snippet\": \"- Related compaction instability evidence in gateway error logs:\\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\\n\\n### Immediate mitigation applied (manual session reset for target group lanes)\\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\\n\\nSource: memory/2026-02-21.md#L231-L249\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/2026-02-21.md#L231-L249\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "memory/people/muqihang.md",
+              "startLine": 1,
+              "endLine": 37,
+              "score": 0.6440693318843842,
+              "snippet": "# person.muqihang\n\n## Metadata\n- canonical_id: person.muqihang\n- display_name: 牧启航\n- role: Founder and CEO\n- timezone: Asia/Shanghai\n- status: active\n- source_system: manual\n- source_ref: USER.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Stable Profile\n- leads a one-person company with a strong strategy-first operating style\n- expects Jarvis to turn business intent into executable architecture and delivery\n- keeps final authority for strategy and high-risk decisions\n\n## Collaboration Preferences\n- preferred style: align intent first, then execute fast and iteratively\n- language style: direct, practical, low jargon\n- platform preference: prioritize T\n\nSource: memory/people/muqihang.md#L1-L37",
+              "source": "memory",
+              "citation": "memory/people/muqihang.md#L1-L37"
+            },
+            {
+              "path": "memory/2026-03-02.md",
+              "startLine": 1,
+              "endLine": 8,
+              "score": 0.5474498808383941,
+              "snippet": "# 2026-03-02\n\n## Work Log\n- \n\n## Pointers\n- Repo: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas\n\nSource: memory/2026-03-02.md#L1-L8",
+              "source": "memory",
+              "citation": "memory/2026-03-02.md#L1-L8"
+            },
+            {
+              "path": "memory/context/drill-rules.md",
+              "startLine": 1,
+              "endLine": 49,
+              "score": 0.5365980803966521,
+              "snippet": "# drill-rules\n\nLast reviewed: 2026-02-23\nOwner: Jarvis\n\n## Rule Format\n- rule_id: stable identifier\n- match_any: keywords or aliases\n- open_files: ordered detail files to drill\n- fallback: next action when no clear hit\n\n## Rules\n- rule_id: drill.person.muqihang\n  match_any: [\"牧启航\", \"muqihang\", \"founder\", \"CEO\", \"创始人\"]\n  open_files:\n    - memory/people/muqihang.md\n    - memory/projects/jarvis-os.md\n  fallback: use MEMORY.md snapshot + latest daily logs\n\n- rule_id: drill.project.jarvis_os\n  match_any: [\"Jarvis OS\", \"jarvis os\", \"组织架构\", \"thinktank\"]\n  open_files:\n    - memory/projects/jarvis-os.md\n    - memory/decisions/DEC-2026-02-21-main-role-boundary.md\n  fallback: use MEMORY.md projects ind\n\nSource: memory/context/drill-rules.md#L1-L49",
+              "source": "memory",
+              "citation": "memory/context/drill-rules.md#L1-L49"
+            },
+            {
+              "path": "MEMORY.md",
+              "startLine": 25,
+              "endLine": 47,
+              "score": 0.52428058385849,
+              "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used\n\nSource: MEMORY.md#L25-L47",
+              "source": "memory",
+              "citation": "MEMORY.md#L25-L47"
+            },
+            {
+              "path": "memory/topics/channel-policy.md",
+              "startLine": 1,
+              "endLine": 24,
+              "score": 0.5232784330844878,
+              "snippet": "# topic.channel-policy\n\n## Metadata\n- topic_id: topic.channel-policy\n- status: active\n- authority: derived_view\n- source_system: local_topic_digest\n- source_ref: memory/decisions/DEC-2026-02-13-telegram-priority.md\n- event_time: 2026-02-23T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Digest\n- Telegram is the primary collaboration channel for reliability and workflow fit.\n- iMessage remains secondary unless Telegram materially blocks core operations.\n- Channel policy changes should be recorded as explicit decisions, not ad-hoc config drift.\n\n## Canonical Sources\n- memory/decisions/DEC-2026-02-13-telegram-priority.md\n- memory/people/muqihang.md\n- memory/projects/jarvis-os.md\n\n##\n\nSource: memory/topics/channel-policy.md#L1-L24",
+              "source": "memory",
+              "citation": "memory/topics/channel-policy.md#L1-L24"
+            },
+            {
+              "path": "memory/2026-02-21.md",
+              "startLine": 231,
+              "endLine": 249,
+              "score": 0.5167784512042999,
+              "snippet": "- Related compaction instability evidence in gateway error logs:\n  - `/Users/muqihang/.openclaw/logs/gateway.err.log` shows repeated `timed out during compaction` for prior overloaded main session IDs.\n- Group session token state showed near-window saturation on old topic sessions (context window 200k, high totals, compaction not effectively recovering).\n\n### Immediate mitigation applied (manual session reset for target group lanes)\n- Edited `/Users/muqihang/.openclaw/agents/main/sessions/sessions.json` to rotate `sessionId` for all `agent:main:telegram:group:-1003727754459:topic:*` entries (6 lanes).\n- Cleared stale token/compaction counters on those entries (`input/output/total/context/com\n\nSource: memory/2026-02-21.md#L231-L249",
+              "source": "memory",
+              "citation": "memory/2026-02-21.md#L231-L249"
+            }
+          ],
+          "provider": "openai",
+          "model": "text-embedding-v4",
+          "fallback": {
+            "triggered": true,
+            "reason": "empty_results",
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 344,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 344
+          },
+          "citations": "auto",
+          "mode": "hybrid",
+          "source": "local",
+          "route": {
+            "read_mode": "primary",
+            "reason": "read_cutover_candidate_enabled",
+            "intent": "semantic",
+            "query_type": "other",
+            "query_bucket": "other",
+            "user_route": "mem0",
+            "candidate_route": "mem0",
+            "primary_route": "mem0",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "muqihang",
+            "normalizedQuery": "muqihang",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "selected_recipe": "hybrid",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "mem0",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "mem0",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "mem0",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "other",
+            "query_bucket": "other",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    }
+  }
+}
