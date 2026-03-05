@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 3,
+  "query": "timeline: SoE",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-emphasizes-need-for-84c81332",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

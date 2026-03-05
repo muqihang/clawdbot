@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 1,
+  "query": "在依赖顺序里，车商的业务数据经营数据 涉及 采购与销售、财务数据结构 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-involves-3dccd76d",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-involves-3dccd76d",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-involves-3dccd76d",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-involves-3dccd76d",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 4,
+  "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+  "requestBody": {
+    "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+    "temporal_filters": {
+      "kind": "relative_window",
+      "window_days": 1,
+      "matched_phrase": "第1天"
+    }
+  },
+  "search_calls": [
+    {
+      "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3d-focal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+            "score": 0.98,
+            "name": "w3d focal node candidate for w3a-tr-g2v2-is-analogous-to-494e4b38"
+          }
+        ]
+      }
+    },
+    {
+      "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3d-focal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "temporalFilters": {
+        "kind": "relative_window",
+        "window_days": 1,
+        "matched_phrase": "第1天"
+      },
+      "requestBody": {
+        "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+        "temporal_filters": {
+          "kind": "relative_window",
+          "window_days": 1,
+          "matched_phrase": "第1天"
+        }
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-fact-w3a-tr-g2v2-is-analogous-to-494e4b38",
+            "score": 0.6,
+            "fact": "w3d variant fact context for w3a-tr-g2v2-is-analogous-to-494e4b38"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "494e4b38-115b-4ec6-85da-15dbc4c99c86",
+            "score": 0.99,
+            "summary": "w3d expected temporal episode for w3a-tr-g2v2-is-analogous-to-494e4b38"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3d-node-w3a-tr-g2v2-is-analogous-to-494e4b38",
+            "score": 0.7,
+            "name": "w3d node context for w3a-tr-g2v2-is-analogous-to-494e4b38"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "494e4b38-115b-4ec6-85da-15dbc4c99c86",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-is-analogous-to-494e4b38",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  },
+  "temporal_filters": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "kind": "relative_window",
+    "window_days": 1,
+    "matched_phrase": "第1天",
+    "degrade_reason": null
+  }
+}

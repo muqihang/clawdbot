@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 8,
+  "query": "在时间线中，System of Engagement 之后发生了什么？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-uses-e2b4e231",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-uses-e2b4e231",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-uses-e2b4e231",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-uses-e2b4e231",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

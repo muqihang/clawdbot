@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 10,
+  "query": "请说明 经营 OS 的 precedes/follows 关系",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-involves-3dccd76d",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-involves-3dccd76d",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-involves-3dccd76d",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-involves-3dccd76d",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

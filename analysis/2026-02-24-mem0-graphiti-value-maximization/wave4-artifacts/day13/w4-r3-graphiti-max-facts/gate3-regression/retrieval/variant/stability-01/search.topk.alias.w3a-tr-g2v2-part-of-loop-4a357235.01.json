@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 1,
+  "query": "sub2api 触发后事件",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "4a357235-3250-4379-bf51-ea4b363f1d86",
+      "path": "bridge/graphiti/4a357235-3250-4379-bf51-ea4b363f1d86",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-part-of-loop-4a357235",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-part-of-loop-4a357235",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-part-of-loop-4a357235",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-part-of-loop-4a357235",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "graphiti"
+    }
+  ]
+}

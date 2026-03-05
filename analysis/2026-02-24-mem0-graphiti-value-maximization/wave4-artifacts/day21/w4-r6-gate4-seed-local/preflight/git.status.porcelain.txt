@@ -1,0 +1,28 @@
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/acceptance.md
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/env.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-01/control-01.muqihang.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-01/control-02.documentation-first-freeze-decision.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-01/hyphen-01.dec-2026-02-21-main-role-boundary.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-01/hyphen-02.dec-2026-02-22-documentation-first-freeze.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-01/space-01.dec-2026-02-21-main-role-boundary.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-01/space-02.dec-2026-02-22-documentation-first-freeze.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-02/control-01.muqihang.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-02/control-02.documentation-first-freeze-decision.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-02/hyphen-01.dec-2026-02-21-main-role-boundary.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-02/hyphen-02.dec-2026-02-22-documentation-first-freeze.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-02/space-01.dec-2026-02-21-main-role-boundary.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-02/space-02.dec-2026-02-22-documentation-first-freeze.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/control-01.muqihang.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/control-02.documentation-first-freeze-decision.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/hyphen-01.dec-2026-02-21-main-role-boundary.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/hyphen-02.dec-2026-02-22-documentation-first-freeze.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/space-01.dec-2026-02-21-main-role-boundary.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/runs/run-03/space-02.dec-2026-02-22-documentation-first-freeze.json
+ M analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day10/w4-d-gate4-final/memory-search-regression/summary.json
+ M src/discord/monitor/message-handler.preflight.ts
+?? analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day13/w4-r3-graphiti-max-facts/gate3-regression/inputs/runner-input.snapshot.json
+?? analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day13/w4-r3-graphiti-max-facts/gate3-regression/report/
+?? analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day13/w4-r3-graphiti-max-facts/gate3-regression/retrieval/
+?? analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day20/
+?? analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/
+?? analysis/2026-03-03-openclaw-vs-zeroclaw-report.md

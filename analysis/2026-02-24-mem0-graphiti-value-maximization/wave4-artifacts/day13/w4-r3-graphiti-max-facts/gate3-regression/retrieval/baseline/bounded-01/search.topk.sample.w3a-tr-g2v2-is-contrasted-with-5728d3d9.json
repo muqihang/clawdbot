@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 1,
+  "query": "在依赖顺序里，System of Engagement 的核心不在于主数据而在于承载动作与协作 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

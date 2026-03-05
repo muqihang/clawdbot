@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-03-04T11:51:21.934Z",
+  "git_sha": null,
+  "dataset_path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day13/w4-r3-graphiti-max-facts/gate3-regression/inputs/retrieval-temporal-dataset.v1.json",
+  "sample_size": 34,
+  "top_k": 3,
+  "bounded_runs": 5,
+  "stability_runs": 10,
+  "mode": "W3-D-gate3-final",
+  "variable": "graphiti_recipe_routing + graphiti_focal_node + graphiti_temporal_filters",
+  "baseline_flags": {
+    "graphiti_recipe_routing": {
+      "enabled": false,
+      "sample_percent": 0
+    },
+    "graphiti_focal_node": {
+      "enabled": false,
+      "sample_percent": 0
+    },
+    "graphiti_temporal_filters": {
+      "enabled": false,
+      "sample_percent": 0
+    },
+    "graphiti_ontology_readback": {
+      "enabled": false,
+      "sample_percent": 0
+    }
+  },
+  "variant_flags": {
+    "graphiti_recipe_routing": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_focal_node": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_temporal_filters": {
+      "enabled": true,
+      "sample_percent": 100
+    },
+    "graphiti_ontology_readback": {
+      "enabled": false,
+      "sample_percent": 0
+    }
+  }
+}

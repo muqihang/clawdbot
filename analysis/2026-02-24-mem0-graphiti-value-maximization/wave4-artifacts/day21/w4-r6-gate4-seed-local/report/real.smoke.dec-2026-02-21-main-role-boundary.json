@@ -1,0 +1,52 @@
+{
+  "results": [
+    {
+      "path": "memory/decisions/DEC-2026-02-21-main-role-boundary.md",
+      "startLine": 1,
+      "endLine": 28,
+      "score": 0.6854865431785584,
+      "snippet": "# DEC-2026-02-21-main-role-boundary\n\n## Metadata\n- decision_id: DEC-2026-02-21-main-role-boundary\n- title: Keep main as full Jarvis OS executive role, not only thinktank coordinator\n- status: active\n- owner: founder\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-21T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n- supersedes: none\n- superseded_by: none\n\n## Decision\nThe six advisor roles are a subsystem. `main` keeps full executive scope across strategy translation, architecture, build, ops, and orchestration.\n\n## Why\n- prevents role shrinkage and execution fragmentation\n- keeps a single accountable execution spine for founder collaboration\n\n## Execution Impact\n",
+      "source": "memory"
+    },
+    {
+      "path": "MEMORY.md",
+      "startLine": 43,
+      "endLine": 59,
+      "score": 0.6771058231592177,
+      "snippet": "- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\n\n## Long-Term Notes\n- aspiration::build_personal_jarvis_mobile_app\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\n- architecture_not",
+      "source": "memory"
+    },
+    {
+      "path": "memory/context/active-context.md",
+      "startLine": 1,
+      "endLine": 30,
+      "score": 0.659037297964096,
+      "snippet": "# active-context\n\nLast reviewed: 2026-02-28\nOwner: Jarvis\n\n## Hot Set (keep to 2-3 files)\n- path: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas/docs/product/workflow/gate-to-bmad-workflow.md\n  reason: current operating workflow for Gate-0/1/2 -> BMAD in the used-car Agent SaaS repo\n  ttl_class: active\n  review_by: 2026-03-03\n\n- path: /Users/muqihang/chelingxi_workspace/chelingxi-agent-saas/docs/product/gates/GATE-0-problem-definition-1pager.md\n  reason: active Gate-0 freeze target; upstream authority for PRFAQ/PRD\n  ttl_class: active\n  review_by: 2026-03-03\n\n- path: memory/decisions/DEC-2026-02-21-main-role-boundary.md\n  reason: prevents role-boundary drift during advisor executio",
+      "source": "memory"
+    },
+    {
+      "path": "MEMORY.md",
+      "startLine": 25,
+      "endLine": 47,
+      "score": 0.6408627748489379,
+      "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used",
+      "source": "memory"
+    },
+    {
+      "path": "memory/topics/collaboration-model.md",
+      "startLine": 1,
+      "endLine": 27,
+      "score": 0.6297990202903747,
+      "snippet": "# topic.collaboration-model\n\n## Metadata\n- topic_id: topic.collaboration-model\n- status: active\n- authority: derived_view\n- source_system: local_topic_digest\n- source_ref: memory/people/muqihang.md\n- event_time: 2026-02-23T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Digest\n- Founder and Jarvis collaborate in an intent-first, execution-fast loop.\n- Founder keeps final authority on strategy and high-risk decisions.\n- `main` remains full-scope executive role; advisors are specialist modules.\n- Advisor process should be visible in group threads, not only final one-line verdicts.\n\n## Canonical Sources\n- memory/people/muqihang.md\n- memory/projects/jarvis-os.md\n- memory/decisions/DE",
+      "source": "memory"
+    },
+    {
+      "path": "memory/projects/jarvis-os.md",
+      "startLine": 1,
+      "endLine": 39,
+      "score": 0.6175202012062073,
+      "snippet": "# project.jarvis_os\n\n## Metadata\n- canonical_id: project.jarvis_os\n- name: Jarvis OS\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\n\n## Scope\n- product planning and architecture\n- implementation and operations\n- commercial enablement\n- advisor and worker-agent orchestration\n\n## Execution Principles\n- intent alignment before implementation\n- documentation-first for major changes\n- explicit role boundaries and accountable ownership\n- stag",
+      "source": "memory"
+    }
+  ]
+}

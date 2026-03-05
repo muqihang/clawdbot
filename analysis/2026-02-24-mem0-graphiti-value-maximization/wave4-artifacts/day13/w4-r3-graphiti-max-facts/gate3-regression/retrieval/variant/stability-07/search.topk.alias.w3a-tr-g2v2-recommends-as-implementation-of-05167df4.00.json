@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "请说明 SoE 的 precedes/follows 关系",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "05167df4-ca7b-458a-bf9e-baf2f384f6b6",
+      "path": "bridge/graphiti/05167df4-ca7b-458a-bf9e-baf2f384f6b6",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-node-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "graphiti"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-recommends-as-implementation-of-05167df4",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

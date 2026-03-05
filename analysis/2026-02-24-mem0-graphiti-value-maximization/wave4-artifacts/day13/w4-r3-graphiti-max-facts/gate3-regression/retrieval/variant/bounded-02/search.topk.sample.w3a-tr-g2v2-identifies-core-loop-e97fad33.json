@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 2,
+  "query": "在时间线中，assistant 认为库存管理与营销分发是车商愿意付费的核心循环 之前发生了什么？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "e97fad33-e6ca-4314-a685-a557125b661e",
+      "path": "bridge/graphiti/e97fad33-e6ca-4314-a685-a557125b661e",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "graphiti"
+    }
+  ]
+}

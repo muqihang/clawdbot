@@ -1,0 +1,12 @@
+{
+  "results": [
+    {
+      "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+      "startLine": 1,
+      "endLine": 7,
+      "score": 0.7826850086450576,
+      "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n",
+      "source": "memory"
+    }
+  ]
+}

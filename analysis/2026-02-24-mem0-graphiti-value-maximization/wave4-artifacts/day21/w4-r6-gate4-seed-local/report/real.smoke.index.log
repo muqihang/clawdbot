@@ -1,0 +1,43 @@
+Memory Index (w4_gate4)
+Provider: openai (requested: openai)
+Model: text-embedding-v4
+Sources: memory (MEMORY.md + ~/clawd/memory/*.md)
+
+[memory] sync: indexing memory files
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+[memory] embeddings: batch start
+Memory index updated (w4_gate4).

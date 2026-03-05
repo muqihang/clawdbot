@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "path": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md",
+      "startLine": 1,
+      "endLine": 28,
+      "score": 0.732104703783989,
+      "snippet": "# DEC-2026-02-22-documentation-first-freeze\n\n## Metadata\n- decision_id: DEC-2026-02-22-documentation-first-freeze\n- title: Freeze plans in files before execution for memory-critical work\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n- supersedes: none\n- superseded_by: none\n\n## Decision\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\n\n## Why\n- reduces token-window drift and context loss\n- improves reviewability, rollback, and alignment\n\n## Execution Impact\n- docs become the execution contract\n- implementation proceeds in ",
+      "source": "memory"
+    },
+    {
+      "path": "MEMORY.md",
+      "startLine": 43,
+      "endLine": 59,
+      "score": 0.6627434074878693,
+      "snippet": "- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\n\n## Long-Term Notes\n- aspiration::build_personal_jarvis_mobile_app\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\n- architecture_not",
+      "source": "memory"
+    },
+    {
+      "path": "MEMORY.md",
+      "startLine": 25,
+      "endLine": 47,
+      "score": 0.6240785121917725,
+      "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used",
+      "source": "memory"
+    },
+    {
+      "path": "memory/projects/jarvis-os.md",
+      "startLine": 1,
+      "endLine": 39,
+      "score": 0.6028964519500732,
+      "snippet": "# project.jarvis_os\n\n## Metadata\n- canonical_id: project.jarvis_os\n- name: Jarvis OS\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\n\n## Scope\n- product planning and architecture\n- implementation and operations\n- commercial enablement\n- advisor and worker-agent orchestration\n\n## Execution Principles\n- intent alignment before implementation\n- documentation-first for major changes\n- explicit role boundaries and accountable ownership\n- stag",
+      "source": "memory"
+    },
+    {
+      "path": "memory/projects/openclaw-memory-upgrade.md",
+      "startLine": 1,
+      "endLine": 30,
+      "score": 0.6008881449699401,
+      "snippet": "# project.openclaw_memory_upgrade\n\n## Metadata\n- canonical_id: project.openclaw_memory_upgrade\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\n- status: active\n- owner: jarvis (execution), founder (approval)\n- source_system: manual\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\n\n## Current Stage\n- self-host stack deployed and smoke-tested\n- bridge plugin enabled in shadow mode\n- write path remains off by design\n- next ",
+      "source": "memory"
+    }
+  ]
+}

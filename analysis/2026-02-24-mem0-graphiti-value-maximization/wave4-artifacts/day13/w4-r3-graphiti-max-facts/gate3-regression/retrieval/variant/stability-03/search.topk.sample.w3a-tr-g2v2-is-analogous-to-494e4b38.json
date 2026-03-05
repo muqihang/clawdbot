@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 3,
+  "query": "在 timeline 第1天 里程碑中，在 二手车 场景中，System of Record 被比作 ERP 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "494e4b38-115b-4ec6-85da-15dbc4c99c86",
+      "path": "bridge/graphiti/494e4b38-115b-4ec6-85da-15dbc4c99c86",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-is-analogous-to-494e4b38",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "graphiti"
+    }
+  ]
+}

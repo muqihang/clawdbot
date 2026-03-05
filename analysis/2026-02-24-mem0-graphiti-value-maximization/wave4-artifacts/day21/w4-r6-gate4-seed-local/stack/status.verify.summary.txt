@@ -1,0 +1,3 @@
+verify1=ok
+verify2=ok
+note=embeddings(18082) intentionally down by policy

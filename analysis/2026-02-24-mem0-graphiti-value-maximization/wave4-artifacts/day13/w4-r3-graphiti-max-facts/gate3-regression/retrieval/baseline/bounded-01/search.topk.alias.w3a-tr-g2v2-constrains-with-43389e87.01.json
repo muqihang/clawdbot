@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 1,
+  "query": "Gate-2 触发后事件",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-constrains-with-43389e87",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-constrains-with-43389e87",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-constrains-with-43389e87",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-constrains-with-43389e87",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

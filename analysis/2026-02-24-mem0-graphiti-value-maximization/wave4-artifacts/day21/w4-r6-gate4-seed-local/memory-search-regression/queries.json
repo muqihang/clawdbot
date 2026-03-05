@@ -1,0 +1,32 @@
+[
+  {
+    "id": "control-01",
+    "query": "muqihang",
+    "expected_non_empty": true
+  },
+  {
+    "id": "control-02",
+    "query": "documentation first freeze decision",
+    "expected_non_empty": true
+  },
+  {
+    "id": "hyphen-01",
+    "query": "DEC-2026-02-21-main-role-boundary",
+    "expected_non_empty": true
+  },
+  {
+    "id": "hyphen-02",
+    "query": "DEC-2026-02-22-documentation-first-freeze",
+    "expected_non_empty": true
+  },
+  {
+    "id": "space-01",
+    "query": "DEC 2026 02 21 main role boundary",
+    "expected_non_empty": false
+  },
+  {
+    "id": "space-02",
+    "query": "DEC 2026 02 22 documentation first freeze",
+    "expected_non_empty": false
+  }
+]

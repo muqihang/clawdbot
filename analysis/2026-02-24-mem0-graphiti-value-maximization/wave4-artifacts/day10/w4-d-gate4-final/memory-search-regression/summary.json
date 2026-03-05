@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-02T09:20:30.329Z",
+  "generated_at": "2026-03-04T11:49:56.511Z",
   "last_run_id": "run-03",
   "rows": [
     {
@@ -15,26 +15,26 @@
         "unavailable": false
       },
       "l1_local_tool": {
-        "results_count": 6,
-        "top1_path": "memory/people/muqihang.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_local": {
-        "results_count": 6,
-        "top1_path": "memory/people/muqihang.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_primary": {
-        "results_count": 6,
-        "top1_path": "memory/people/muqihang.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       }
@@ -52,24 +52,24 @@
         "unavailable": false
       },
       "l1_local_tool": {
-        "results_count": 4,
-        "top1_path": "memory/decisions/dec-2026-02-22-documentation-first-freeze.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_local": {
-        "results_count": 4,
-        "top1_path": "memory/decisions/dec-2026-02-22-documentation-first-freeze.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_primary": {
-        "results_count": 5,
-        "top1_path": "bridge/graphiti/ea159c11-1520-4b7c-bb05-62882370b16f",
+        "results_count": 22,
+        "top1_path": "bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51",
         "provider": "graphiti",
         "model": "graphiti",
         "disabled": false,
@@ -91,24 +91,24 @@
       "l1_local_tool": {
         "results_count": 0,
         "top1_path": null,
-        "provider": "qmd",
-        "model": "qmd",
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_local": {
         "results_count": 0,
         "top1_path": null,
-        "provider": "qmd",
-        "model": "qmd",
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_primary": {
         "results_count": 0,
         "top1_path": null,
-        "provider": "qmd",
-        "model": "qmd",
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       }
@@ -128,24 +128,24 @@
       "l1_local_tool": {
         "results_count": 0,
         "top1_path": null,
-        "provider": "qmd",
-        "model": "qmd",
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_local": {
         "results_count": 0,
         "top1_path": null,
-        "provider": "qmd",
-        "model": "qmd",
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_primary": {
         "results_count": 0,
         "top1_path": null,
-        "provider": "qmd",
-        "model": "qmd",
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       }
@@ -163,26 +163,26 @@
         "unavailable": false
       },
       "l1_local_tool": {
-        "results_count": 6,
-        "top1_path": "memory/decisions/dec-2026-02-21-main-role-boundary.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_local": {
-        "results_count": 6,
-        "top1_path": "memory/decisions/dec-2026-02-21-main-role-boundary.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_primary": {
-        "results_count": 6,
-        "top1_path": "memory/decisions/dec-2026-02-21-main-role-boundary.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       }
@@ -200,24 +200,24 @@
         "unavailable": false
       },
       "l1_local_tool": {
-        "results_count": 4,
-        "top1_path": "memory/decisions/dec-2026-02-22-documentation-first-freeze.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_local": {
-        "results_count": 4,
-        "top1_path": "memory/decisions/dec-2026-02-22-documentation-first-freeze.md",
-        "provider": "qmd",
-        "model": "qmd",
+        "results_count": 0,
+        "top1_path": null,
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "disabled": false,
         "unavailable": false
       },
       "l2_bridge_primary": {
-        "results_count": 4,
-        "top1_path": "bridge/graphiti/ea159c11-1520-4b7c-bb05-62882370b16f",
+        "results_count": 23,
+        "top1_path": "bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51",
         "provider": "graphiti",
         "model": "graphiti",
         "disabled": false,

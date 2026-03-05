@@ -1,0 +1,9 @@
+Memory Index (w4_gate4)
+Provider: openai (requested: openai)
+Model: text-embedding-v4
+Sources: memory (MEMORY.md + ~/chelingxi_workspace/clawdbot/memory/*.md)
+Extra paths: ~/chelingxi_workspace/clawdbot/analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md
+
+[memory] sync: indexing memory files
+[memory] embeddings: batch start
+Memory index updated (w4_gate4).

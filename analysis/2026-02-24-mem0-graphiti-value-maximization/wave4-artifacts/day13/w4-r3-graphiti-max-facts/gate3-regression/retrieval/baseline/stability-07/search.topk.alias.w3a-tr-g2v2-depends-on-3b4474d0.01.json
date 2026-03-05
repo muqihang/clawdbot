@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "timeline: System of Record",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-manages-0dbffdb2",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-manages-0dbffdb2",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-manages-0dbffdb2",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-manages-0dbffdb2",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 7,
+  "query": "在依赖顺序里，assistant 提出Day 1 全链路骨架应当是 SoR-lite 先于哪个事件，后于哪个事件？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "cafdd618-418f-42c2-8651-1f883f7c76e5",
+      "path": "bridge/graphiti/cafdd618-418f-42c2-8651-1f883f7c76e5",
+      "score": 0.99,
+      "structure": "episodes",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-fact-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "path": "bridge/graphiti/w3d-fact-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "score": 0.6,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 3,
+      "remoteId": "w3d-node-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "path": "bridge/graphiti/w3d-node-w3a-tr-g2v2-equivalent-to-cafdd618",
+      "score": 0.7,
+      "structure": "nodes",
+      "source": "graphiti"
+    }
+  ]
+}

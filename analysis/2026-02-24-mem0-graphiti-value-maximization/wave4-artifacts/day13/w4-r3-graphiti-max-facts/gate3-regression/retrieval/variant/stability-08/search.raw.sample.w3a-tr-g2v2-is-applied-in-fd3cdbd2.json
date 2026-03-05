@@ -1,0 +1,126 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 8,
+  "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+  "requestBody": {
+    "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+    "strategy": "edge",
+    "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-is-applied-in-fd3cdbd2"
+  },
+  "search_calls": [
+    {
+      "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+      "strategy": "node",
+      "focalNodeUuid": null,
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+        "strategy": "node"
+      },
+      "payload": {
+        "facts": [],
+        "episodes": [],
+        "nodes": [
+          {
+            "id": "w3d-focal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+            "score": 0.98,
+            "name": "w3d focal node candidate for w3a-tr-g2v2-is-applied-in-fd3cdbd2"
+          }
+        ]
+      }
+    },
+    {
+      "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+      "strategy": "edge",
+      "focalNodeUuid": "w3d-focal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+      "temporalFilters": null,
+      "requestBody": {
+        "query": "在时间线中，在 二手车 场景中，System of Engagement 被描述为店长在手机上完成跟进等操作的工作台 之前发生了什么？",
+        "strategy": "edge",
+        "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-is-applied-in-fd3cdbd2"
+      },
+      "payload": {
+        "facts": [
+          {
+            "id": "w3d-fact-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+            "score": 0.6,
+            "fact": "w3d variant fact context for w3a-tr-g2v2-is-applied-in-fd3cdbd2"
+          }
+        ],
+        "episodes": [
+          {
+            "id": "fd3cdbd2-e960-422c-bfda-6bf136888c84",
+            "score": 0.99,
+            "summary": "w3d expected temporal episode for w3a-tr-g2v2-is-applied-in-fd3cdbd2"
+          }
+        ],
+        "nodes": [
+          {
+            "id": "w3d-node-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+            "score": 0.7,
+            "name": "w3d node context for w3a-tr-g2v2-is-applied-in-fd3cdbd2"
+          }
+        ]
+      }
+    }
+  ],
+  "route": {
+    "read_mode": "remote",
+    "reason": "read_cutover_candidate_enabled",
+    "intent": "timeline",
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "user_route": "graphiti",
+    "candidate_route": "graphiti",
+    "primary_route": "graphiti",
+    "fallback_route": "local",
+    "selected_route": "graphiti"
+  },
+  "recipe": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "selected_recipe": "edge",
+    "requested_strategy": "edge",
+    "active": true,
+    "degraded": false,
+    "degrade_reason": null,
+    "route": "graphiti",
+    "top1_source": "graphiti",
+    "top1_remote_id": "fd3cdbd2-e960-422c-bfda-6bf136888c84",
+    "top1_structure": "episodes",
+    "structures": {
+      "facts": 1,
+      "episodes": 1,
+      "nodes": 1
+    }
+  },
+  "focal_node": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": true,
+    "focal_node_uuid": "w3d-focal-w3a-tr-g2v2-is-applied-in-fd3cdbd2",
+    "discovery_strategy": "node",
+    "degrade_reason": null
+  },
+  "temporal_filters": {
+    "enabled": true,
+    "sampled": true,
+    "sample_percent": 100,
+    "query_type": "temporal_relation",
+    "query_bucket": "temporal_relation",
+    "route": "graphiti",
+    "active": false,
+    "kind": null,
+    "window_days": null,
+    "matched_phrase": null,
+    "degrade_reason": "no_pattern"
+  }
+}

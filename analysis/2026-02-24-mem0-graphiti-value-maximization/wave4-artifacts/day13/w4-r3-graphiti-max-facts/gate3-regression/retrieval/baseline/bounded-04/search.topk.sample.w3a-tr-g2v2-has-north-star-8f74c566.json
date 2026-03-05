@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 4,
+  "query": "因为 assistant(assistant) 表示内部北极星仍然是 OS + 生态，之后触发了什么变化？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-has-north-star-8f74c566",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-has-north-star-8f74c566",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-has-north-star-8f74c566",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-has-north-star-8f74c566",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}

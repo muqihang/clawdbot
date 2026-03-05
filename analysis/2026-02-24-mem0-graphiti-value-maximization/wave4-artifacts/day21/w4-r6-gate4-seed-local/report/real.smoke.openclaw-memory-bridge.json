@@ -1,0 +1,36 @@
+{
+  "results": [
+    {
+      "path": "memory/projects/openclaw-memory-upgrade.md",
+      "startLine": 1,
+      "endLine": 30,
+      "score": 0.7051048785448074,
+      "snippet": "# project.openclaw_memory_upgrade\n\n## Metadata\n- canonical_id: project.openclaw_memory_upgrade\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\n- status: active\n- owner: jarvis (execution), founder (approval)\n- source_system: manual\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\n\n## Current Stage\n- self-host stack deployed and smoke-tested\n- bridge plugin enabled in shadow mode\n- write path remains off by design\n- next ",
+      "source": "memory"
+    },
+    {
+      "path": "memory/2026-02-23.md",
+      "startLine": 1,
+      "endLine": 29,
+      "score": 0.6335258662700654,
+      "snippet": "# 2026-02-23\n\n## P1.5-Lite local memory architecture rollout\n- Implemented local memory split into Index + Detail + Context layers.\n- Converted `MEMORY.md` into a compact index-oriented long-term memory map.\n- Added detail directories and records:\n  - `memory/people/`\n  - `memory/projects/`\n  - `memory/decisions/`\n  - `memory/context/`\n- Added context governance files for active context, drill rules, drill budget, and source precedence.\n- Added source adapter contracts for future Jarvis KB and Obsidian integration.\n- Updated `AGENTS.md` with P1.5-Lite operating contract and same-commit index/detail maintenance rule.\n\n## P1.5-Lite topics enhancement\n- Added derived topic layer `memory/topics/",
+      "source": "memory"
+    },
+    {
+      "path": "memory/2026-02-14.md",
+      "startLine": 1,
+      "endLine": 11,
+      "score": 0.39036528468132015,
+      "snippet": "# Daily Memory - 2026-02-14\n\n## Activity Log\n- [11:45] User asked how to install OpenClaw Browser Relay extension and whether extra skills/MCP are required.\n- [11:50] Ran extension install successfully; unpacked extension path is `~/.openclaw/browser/chrome-extension`.\n- [12:08] Troubleshot relay connectivity after gateway timeout symptoms; browser relay reached `cdpReady=true`.\n- [12:08] Verified Chrome relay takeover works: detected attached tab and captured a browser screenshot via `profile=chrome`.\n\n## Notes\n- Chrome extension setup still requires manual click steps in `chrome://extensions` (Developer mode + Load unpacked + attach tab badge ON).\n",
+      "source": "memory"
+    },
+    {
+      "path": "memory/2026-02-18.md",
+      "startLine": 10,
+      "endLine": 22,
+      "score": 0.3565243065357208,
+      "snippet": "- Notable environment/tooling issues seen in this session: Brave search key missing for `web_search`; `openclaw` command unavailable in one shell context.\n\n## Durable memory flush (afternoon)\n- User validated and adopted the architectural mental model: OpenClaw as HQ/control-plane; ZeroClaw as scene-specific departments under HQ dispatch and governance.\n- User's intended deployment pattern: one ZeroClaw per scene/domain (e.g., car, home), each responsible for local execution and periodic status reporting back to HQ.\n- Clarified capability expectations: ZeroClaw can drive real-world actions (e.g., lights, camera workflows) through peripherals/integrations, but is strongest today on Linux edge",
+      "source": "memory"
+    }
+  ]
+}

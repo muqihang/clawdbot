@@ -1,0 +1,25 @@
+{
+  "mode": "baseline",
+  "phase": "bounded",
+  "attempt": 3,
+  "query": "在 timeline 第2天 里程碑中，assistant(assistant) 将 ERP/CRM/全链路系统 描述为强 SoR 类型的系统，需要迁移库存、财务和合同等数据 属于哪个阶段？",
+  "top_k": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "remoteId": "w3d-baseline-w3a-tr-g2v2-is-example-of-a520613a",
+      "path": "bridge/graphiti/w3d-baseline-w3a-tr-g2v2-is-example-of-a520613a",
+      "score": 0.9,
+      "structure": "facts",
+      "source": "graphiti"
+    },
+    {
+      "rank": 2,
+      "remoteId": "w3d-baseline-alt-w3a-tr-g2v2-is-example-of-a520613a",
+      "path": "bridge/graphiti/w3d-baseline-alt-w3a-tr-g2v2-is-example-of-a520613a",
+      "score": 0.85,
+      "structure": "facts",
+      "source": "graphiti"
+    }
+  ]
+}
