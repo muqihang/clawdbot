@@ -255,6 +255,110 @@ export type PinnedHostname = {
   lookup: typeof dnsLookupCb;
 };
 
+type PinnedHostnameCacheEntry = {
+  pinned: PinnedHostname;
+  expiresAtMs: number;
+};
+
+const DEFAULT_PINNED_HOSTNAME_CACHE_TTL_MS = 5 * 60_000;
+const MAX_PINNED_HOSTNAME_CACHE_SIZE = 256;
+const pinnedHostnameCache = new Map<string, PinnedHostnameCacheEntry>();
+
+export function clearPinnedHostnameCacheForTests(): void {
+  pinnedHostnameCache.clear();
+}
+
+function normalizePolicyCacheKey(policy?: SsrFPolicy): string {
+  if (!policy) {
+    return "policy:none";
+  }
+
+  const allowed = Array.from(normalizeHostnameSet(policy.allowedHostnames)).toSorted().join(",");
+  const allowlist = normalizeHostnameAllowlist(policy.hostnameAllowlist).toSorted().join(",");
+  const allowPrivateNetwork = isPrivateNetworkAllowedByPolicy(policy);
+
+  return [
+    "policy:v1",
+    `allowPrivateNetwork=${allowPrivateNetwork ? "1" : "0"}`,
+    `allowRfc2544BenchmarkRange=${policy.allowRfc2544BenchmarkRange === true ? "1" : "0"}`,
+    `allowedHostnames=${allowed}`,
+    `hostnameAllowlist=${allowlist}`,
+  ].join("|");
+}
+
+function cacheKeyForPinnedHostname(params: { hostname: string; policy?: SsrFPolicy }): string {
+  return `${params.hostname}|${normalizePolicyCacheKey(params.policy)}`;
+}
+
+function readPinnedHostnameCache(key: string): PinnedHostname | null {
+  const entry = pinnedHostnameCache.get(key);
+  if (!entry) {
+    return null;
+  }
+  if (Date.now() >= entry.expiresAtMs) {
+    pinnedHostnameCache.delete(key);
+    return null;
+  }
+
+  // Best-effort LRU behavior: refresh insertion order.
+  pinnedHostnameCache.delete(key);
+  pinnedHostnameCache.set(key, entry);
+  return entry.pinned;
+}
+
+function writePinnedHostnameCache(key: string, pinned: PinnedHostname): void {
+  pinnedHostnameCache.set(key, {
+    pinned,
+    expiresAtMs: Date.now() + DEFAULT_PINNED_HOSTNAME_CACHE_TTL_MS,
+  });
+
+  while (pinnedHostnameCache.size > MAX_PINNED_HOSTNAME_CACHE_SIZE) {
+    const oldestKey = pinnedHostnameCache.keys().next().value;
+    if (!oldestKey) {
+      break;
+    }
+    pinnedHostnameCache.delete(oldestKey);
+  }
+}
+
+function isRetryableDnsLookupError(error: unknown): boolean {
+  if (!error || typeof error !== "object") {
+    return false;
+  }
+
+  const record = error as { code?: unknown; message?: unknown };
+  const code = typeof record.code === "string" ? record.code : "";
+  if (code === "EAI_AGAIN" || code === "ENOTFOUND" || code === "ETIMEDOUT") {
+    return true;
+  }
+
+  const message = typeof record.message === "string" ? record.message : "";
+  return (
+    message.includes("getaddrinfo") &&
+    (message.includes("ENOTFOUND") || message.includes("EAI_AGAIN"))
+  );
+}
+
+async function lookupAllWithRetry(params: {
+  hostname: string;
+  lookupFn: LookupFn;
+}): Promise<LookupAddress[]> {
+  const attempts = 3;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await params.lookupFn(params.hostname, { all: true });
+    } catch (error) {
+      if (attempt >= attempts || !isRetryableDnsLookupError(error)) {
+        throw error;
+      }
+      await new Promise<void>((resolve) => {
+        setTimeout(resolve, 50 * attempt);
+      });
+    }
+  }
+  return [];
+}
+
 function dedupeAndPreferIpv4(results: readonly LookupAddress[]): string[] {
   const seen = new Set<string>();
   const ipv4: string[] = [];
@@ -282,6 +386,12 @@ export async function resolvePinnedHostnameWithPolicy(
     throw new Error("Invalid hostname");
   }
 
+  const key = cacheKeyForPinnedHostname({ hostname: normalized, policy: params.policy });
+  const cached = readPinnedHostnameCache(key);
+  if (cached) {
+    return cached;
+  }
+
   const allowPrivateNetwork = isPrivateNetworkAllowedByPolicy(params.policy);
   const allowedHostnames = normalizeHostnameSet(params.policy?.allowedHostnames);
   const hostnameAllowlist = normalizeHostnameAllowlist(params.policy?.hostnameAllowlist);
@@ -298,7 +408,7 @@ export async function resolvePinnedHostnameWithPolicy(
   }
 
   const lookupFn = params.lookupFn ?? dnsLookup;
-  const results = await lookupFn(normalized, { all: true });
+  const results = await lookupAllWithRetry({ hostname: normalized, lookupFn });
   if (results.length === 0) {
     throw new Error(`Unable to resolve hostname: ${hostname}`);
   }
@@ -315,11 +425,14 @@ export async function resolvePinnedHostnameWithPolicy(
     throw new Error(`Unable to resolve hostname: ${hostname}`);
   }
 
-  return {
+  const pinned: PinnedHostname = {
     hostname: normalized,
     addresses,
     lookup: createPinnedLookup({ hostname: normalized, addresses }),
   };
+
+  writePinnedHostnameCache(key, pinned);
+  return pinned;
 }
 
 export async function resolvePinnedHostname(

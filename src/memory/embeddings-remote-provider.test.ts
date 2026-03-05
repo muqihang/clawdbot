@@ -58,4 +58,22 @@ describe("createRemoteEmbeddingProvider", () => {
     });
     expect(call?.[0]?.body).not.toHaveProperty("dimensions");
   });
+
+  it("caches repeated embedQuery calls to avoid duplicate remote requests", async () => {
+    const provider = createRemoteEmbeddingProvider({
+      id: "openai",
+      client: {
+        baseUrl: "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        headers: { Authorization: "Bearer test" },
+        model: "text-embedding-v4",
+      },
+      errorPrefix: "remote embeddings",
+      cacheMaxEntries: 128,
+    });
+
+    await provider.embedQuery("ping");
+    await provider.embedQuery("ping");
+
+    expect(fetchRemoteEmbeddingVectors).toHaveBeenCalledTimes(1);
+  });
 });

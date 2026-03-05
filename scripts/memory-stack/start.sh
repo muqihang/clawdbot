@@ -17,6 +17,13 @@ validate_required_env
 validate_embedding_policy
 validate_embedding_credentials
 
+POSTHOG_PATCH_PATH="${REPO_ROOT}/scripts/memory-stack/python"
+if [[ -n "${PYTHONPATH:-}" ]]; then
+  STACK_PYTHONPATH="${POSTHOG_PATCH_PATH}:${PYTHONPATH}"
+else
+  STACK_PYTHONPATH="${POSTHOG_PATCH_PATH}"
+fi
+
 if ! curl -fsS "http://${QDRANT_HOST}:${QDRANT_PORT}/healthz" >/dev/null 2>&1; then
   fail "qdrant not healthy at http://${QDRANT_HOST}:${QDRANT_PORT}/healthz"
 fi
@@ -41,6 +48,8 @@ MEM0_LOG="${LOG_ROOT}/mem0.log"
   export EMBEDDING_BASE_URL
   export EMBEDDING_MODEL_NAME
   export EMBEDDING_DIM
+  export OPENCLAW_DISABLE_POSTHOG_THREADS=1
+  export PYTHONPATH="$STACK_PYTHONPATH"
   nohup "$GRAPHITI_SERVER_DIR/.venv/bin/uvicorn" graph_service.main:app --host 127.0.0.1 --port "$GRAPHITI_PORT" >"$GRAPHITI_LOG" 2>&1 &
   echo $! >"$(pid_file_for graphiti)"
 )
@@ -59,6 +68,9 @@ MEM0_LOG="${LOG_ROOT}/mem0.log"
   export QDRANT_COLLECTION_NAME
   export MEM0_USE_RESPONSES_API="${MEM0_USE_RESPONSES_API:-1}"
   export HISTORY_DB_PATH="${RUN_ROOT}/mem0-history.db"
+  export MEM0_TELEMETRY=False
+  export OPENCLAW_DISABLE_POSTHOG_THREADS=1
+  export PYTHONPATH="$STACK_PYTHONPATH"
   nohup "$MEM0_SERVER_DIR/.venv/bin/uvicorn" main:app --host 127.0.0.1 --port "$MEM0_PORT" >"$MEM0_LOG" 2>&1 &
   echo $! >"$(pid_file_for mem0)"
 )

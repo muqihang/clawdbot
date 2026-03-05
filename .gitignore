@@ -140,6 +140,7 @@ dist/protocol.schema.json
 
 # memory-stack local artifacts
 scripts/memory-stack/__pycache__/
+scripts/memory-stack/python/__pycache__/
 nohup.out
 
 # Ignore vscode AI rules

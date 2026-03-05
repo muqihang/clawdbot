@@ -1,5 +1,6 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+  clearPinnedHostnameCacheForTests,
   createPinnedLookup,
   type LookupFn,
   resolvePinnedHostname,
@@ -12,6 +13,10 @@ function createPublicLookupMock(): LookupFn {
 }
 
 describe("ssrf pinning", () => {
+  afterEach(() => {
+    clearPinnedHostnameCacheForTests();
+  });
+
   it("pins resolved addresses for the target hostname", async () => {
     const lookup = vi.fn(async () => [
       { address: "93.184.216.34", family: 4 },
@@ -211,6 +216,18 @@ describe("ssrf pinning", () => {
       hostname: "localhost",
       addresses: ["127.0.0.1"],
     });
+    expect(lookup).toHaveBeenCalledTimes(1);
+  });
+
+  it("reuses cached pinned results to avoid repeated DNS lookups", async () => {
+    const lookup = vi.fn(async () => [
+      { address: "93.184.216.34", family: 4 },
+      { address: "93.184.216.35", family: 4 },
+    ]) as unknown as LookupFn;
+
+    await resolvePinnedHostnameWithPolicy("dashscope.aliyuncs.com", { lookupFn: lookup });
+    await resolvePinnedHostnameWithPolicy("dashscope.aliyuncs.com", { lookupFn: lookup });
+
     expect(lookup).toHaveBeenCalledTimes(1);
   });
 });
