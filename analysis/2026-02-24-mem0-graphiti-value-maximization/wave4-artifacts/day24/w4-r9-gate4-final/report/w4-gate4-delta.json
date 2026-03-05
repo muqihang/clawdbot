@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-03-05T03:58:03.679Z",
+  "top1": {
+    "avg_hit_at_1_baseline": 0,
+    "avg_hit_at_1_variant": 0,
+    "top1_avg_delta_pp": 0,
+    "per_bucket_baseline": {
+      "exact_id": 0,
+      "decision_reason": 0,
+      "temporal_relation": 0,
+      "project_context": 0
+    },
+    "per_bucket_variant": {
+      "exact_id": 0,
+      "decision_reason": 0,
+      "temporal_relation": 0,
+      "project_context": 0
+    }
+  },
+  "fur_proxy": {
+    "baseline": 0,
+    "variant": 0,
+    "fur_delta_pp": 0
+  },
+  "latency": {
+    "p50_total_baseline_ms": 324.9735,
+    "p50_total_variant_ms": 326.5607,
+    "p95_total_baseline_ms": 411.5768,
+    "p95_total_variant_ms": 439.7799,
+    "p95_increase_pct": 6.8525
+  },
+  "stability": {
+    "unique_values": {
+      "avg_hit_at_1_baseline": [0],
+      "avg_hit_at_1_variant": [0],
+      "top1_avg_delta_pp": [0],
+      "fur_proxy_baseline": [0],
+      "fur_proxy_variant": [0],
+      "fur_delta_pp": [0]
+    },
+    "pass": true
+  },
+  "gates": {
+    "top1_avg_delta_pp_ge_8": false,
+    "fur_delta_pp_ge_10": false,
+    "p95_increase_pct_le_15": true
+  }
+}

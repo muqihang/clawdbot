@@ -1,0 +1,109 @@
+{
+  "mode": "variant",
+  "phase": "bounded",
+  "attempt": 2,
+  "generated_at": "2026-03-05T06:07:57.627Z",
+  "dataset_size": 124,
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "bucket_metrics": [
+    {
+      "bucket": "exact_id",
+      "sample_size": 30,
+      "matched_top1": 26,
+      "hit_at_1": 0.8667
+    },
+    {
+      "bucket": "decision_reason",
+      "sample_size": 30,
+      "matched_top1": 30,
+      "hit_at_1": 1
+    },
+    {
+      "bucket": "temporal_relation",
+      "sample_size": 34,
+      "matched_top1": 32,
+      "hit_at_1": 0.9412
+    },
+    {
+      "bucket": "project_context",
+      "sample_size": 30,
+      "matched_top1": 26,
+      "hit_at_1": 0.8667
+    }
+  ],
+  "avg_hit_at_1": 0.9187,
+  "fur_proxy": 0.9194,
+  "top1_path_prefix_counts": {
+    "bridge": 114,
+    "local": 0,
+    "other": 5,
+    "null": 5
+  },
+  "non_bridge_top1_samples": [
+    {
+      "sample_id": "g4v1-exact_id-b91591ae-01",
+      "bucket": "exact_id",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-7b41875a-17",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-exact_id-ba3e0572-23",
+      "bucket": "exact_id",
+      "top1_path": "memory/2026-02-18.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-exact_id-39efdd7f-28",
+      "bucket": "exact_id",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-identifies-core-loop-e97fad33",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-temporal-w3a-tr-g2v2-is-contrasted-with-5728d3d9",
+      "bucket": "temporal_relation",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-05167df4-27",
+      "bucket": "project_context",
+      "top1_path": null,
+      "top1_source": null
+    },
+    {
+      "sample_id": "g4v1-project_context-e0847c10-28",
+      "bucket": "project_context",
+      "top1_path": "memory/2026-02-21.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-project_context-aa7a841a-29",
+      "bucket": "project_context",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    },
+    {
+      "sample_id": "g4v1-project_context-b91591ae-30",
+      "bucket": "project_context",
+      "top1_path": "memory/projects/used-car-agent-saas.md",
+      "top1_source": "memory"
+    }
+  ]
+}

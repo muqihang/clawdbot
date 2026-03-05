@@ -1,0 +1,459 @@
+{
+  "query_id": "space-02",
+  "query": "DEC 2026 02 22 documentation first freeze",
+  "run_id": "run-01",
+  "l1_cli": {
+    "ok": true,
+    "exit_code": 0,
+    "command": "pnpm \"-s\" \"openclaw\" \"memory\" \"search\" \"DEC 2026 02 22 documentation first freeze\" \"--json\"",
+    "stdout": "{\n  \"results\": [\n    {\n      \"path\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md\",\n      \"startLine\": 1,\n      \"endLine\": 28,\n      \"score\": 0.7095200955867766,\n      \"snippet\": \"# DEC-2026-02-22-documentation-first-freeze\\n\\n## Metadata\\n- decision_id: DEC-2026-02-22-documentation-first-freeze\\n- title: Freeze plans in files before execution for memory-critical work\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n- supersedes: none\\n- superseded_by: none\\n\\n## Decision\\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\\n\\n## Why\\n- reduces token-window drift and context loss\\n- improves reviewability, rollback, and alignment\\n\\n## Execution Impact\\n- docs become the execution contract\\n- implementation proceeds in \",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.6309545874595641,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 43,\n      \"endLine\": 59,\n      \"score\": 0.6307569026947022,\n      \"snippet\": \"- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\\n\\n## Long-Term Notes\\n- aspiration::build_personal_jarvis_mobile_app\\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\\n- architecture_not\",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"memory/projects/openclaw-memory-upgrade.md\",\n      \"startLine\": 1,\n      \"endLine\": 30,\n      \"score\": 0.588098132610321,\n      \"snippet\": \"# project.openclaw_memory_upgrade\\n\\n## Metadata\\n- canonical_id: project.openclaw_memory_upgrade\\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\\n- status: active\\n- owner: jarvis (execution), founder (approval)\\n- source_system: manual\\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\\n\\n## Current Stage\\n- self-host stack deployed and smoke-tested\\n- bridge plugin enabled in shadow mode\\n- write path remains off by design\\n- next \",\n      \"source\": \"memory\"\n    },\n    {\n      \"path\": \"memory/projects/jarvis-os.md\",\n      \"startLine\": 1,\n      \"endLine\": 39,\n      \"score\": 0.5606392681598663,\n      \"snippet\": \"# project.jarvis_os\\n\\n## Metadata\\n- canonical_id: project.jarvis_os\\n- name: Jarvis OS\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\\n\\n## Scope\\n- product planning and architecture\\n- implementation and operations\\n- commercial enablement\\n- advisor and worker-agent orchestration\\n\\n## Execution Principles\\n- intent alignment before implementation\\n- documentation-first for major changes\\n- explicit role boundaries and accountable ownership\\n- stag\",\n      \"source\": \"memory\"\n    }\n  ]\n}\n",
+    "stderr": "",
+    "parsed_json": {
+      "results": [
+        {
+          "path": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md",
+          "startLine": 1,
+          "endLine": 28,
+          "score": 0.7095200955867766,
+          "snippet": "# DEC-2026-02-22-documentation-first-freeze\n\n## Metadata\n- decision_id: DEC-2026-02-22-documentation-first-freeze\n- title: Freeze plans in files before execution for memory-critical work\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n- supersedes: none\n- superseded_by: none\n\n## Decision\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\n\n## Why\n- reduces token-window drift and context loss\n- improves reviewability, rollback, and alignment\n\n## Execution Impact\n- docs become the execution contract\n- implementation proceeds in ",
+          "source": "memory"
+        },
+        {
+          "path": "MEMORY.md",
+          "startLine": 25,
+          "endLine": 47,
+          "score": 0.6309545874595641,
+          "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used",
+          "source": "memory"
+        },
+        {
+          "path": "MEMORY.md",
+          "startLine": 43,
+          "endLine": 59,
+          "score": 0.6307569026947022,
+          "snippet": "- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\n\n## Long-Term Notes\n- aspiration::build_personal_jarvis_mobile_app\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\n- architecture_not",
+          "source": "memory"
+        },
+        {
+          "path": "memory/projects/openclaw-memory-upgrade.md",
+          "startLine": 1,
+          "endLine": 30,
+          "score": 0.588098132610321,
+          "snippet": "# project.openclaw_memory_upgrade\n\n## Metadata\n- canonical_id: project.openclaw_memory_upgrade\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\n- status: active\n- owner: jarvis (execution), founder (approval)\n- source_system: manual\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\n\n## Current Stage\n- self-host stack deployed and smoke-tested\n- bridge plugin enabled in shadow mode\n- write path remains off by design\n- next ",
+          "source": "memory"
+        },
+        {
+          "path": "memory/projects/jarvis-os.md",
+          "startLine": 1,
+          "endLine": 39,
+          "score": 0.5606392681598663,
+          "snippet": "# project.jarvis_os\n\n## Metadata\n- canonical_id: project.jarvis_os\n- name: Jarvis OS\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\n\n## Scope\n- product planning and architecture\n- implementation and operations\n- commercial enablement\n- advisor and worker-agent orchestration\n\n## Execution Principles\n- intent alignment before implementation\n- documentation-first for major changes\n- explicit role boundaries and accountable ownership\n- stag",
+          "source": "memory"
+        }
+      ]
+    }
+  },
+  "l1_local_tool": {
+    "ok": true,
+    "error": null,
+    "parsed": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md\",\n      \"startLine\": 1,\n      \"endLine\": 28,\n      \"score\": 0.7095200955867766,\n      \"snippet\": \"# DEC-2026-02-22-documentation-first-freeze\\n\\n## Metadata\\n- decision_id: DEC-2026-02-22-documentation-first-freeze\\n- title: Freeze plans in files before execution for memory-critical work\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n- supersedes: none\\n- superseded_by: none\\n\\n## Decision\\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\\n\\n## Why\\n- reduces token-window drift and context loss\\n- improves reviewability, rollback, and alignment\\n\\n## Execution Impact\\n- docs become the execution contract\\n- implementation proceeds in\\n\\nSource: memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.6309545874595641,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\\n\\nSource: MEMORY.md#L25-L47\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L25-L47\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 43,\n      \"endLine\": 59,\n      \"score\": 0.6307569026947022,\n      \"snippet\": \"- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\\n\\n## Long-Term Notes\\n- aspiration::build_personal_jarvis_mobile_app\\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\\n- architecture_not\\n\\nSource: MEMORY.md#L43-L59\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L43-L59\"\n    },\n    {\n      \"path\": \"memory/projects/openclaw-memory-upgrade.md\",\n      \"startLine\": 1,\n      \"endLine\": 30,\n      \"score\": 0.588098132610321,\n      \"snippet\": \"# project.openclaw_memory_upgrade\\n\\n## Metadata\\n- canonical_id: project.openclaw_memory_upgrade\\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\\n- status: active\\n- owner: jarvis (execution), founder (approval)\\n- source_system: manual\\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\\n\\n## Current Stage\\n- self-host stack deployed and smoke-tested\\n- bridge plugin enabled in shadow mode\\n- write path remains off by design\\n- next\\n\\nSource: memory/projects/openclaw-memory-upgrade.md#L1-L30\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/projects/openclaw-memory-upgrade.md#L1-L30\"\n    },\n    {\n      \"path\": \"memory/projects/jarvis-os.md\",\n      \"startLine\": 1,\n      \"endLine\": 39,\n      \"score\": 0.5606392681598663,\n      \"snippet\": \"# project.jarvis_os\\n\\n## Metadata\\n- canonical_id: project.jarvis_os\\n- name: Jarvis OS\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\\n\\n## Scope\\n- product planning and architecture\\n- implementation and operations\\n- commercial enablement\\n- advisor and worker-agent orchestration\\n\\n## Execution Principles\\n- intent alignment before implementation\\n- documentation-first for major changes\\n- explicit role boundaries and accountable ownership\\n- stag\\n\\nSource: memory/projects/jarvis-os.md#L1-L39\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/projects/jarvis-os.md#L1-L39\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+        }
+      ],
+      "details": {
+        "results": [
+          {
+            "path": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md",
+            "startLine": 1,
+            "endLine": 28,
+            "score": 0.7095200955867766,
+            "snippet": "# DEC-2026-02-22-documentation-first-freeze\n\n## Metadata\n- decision_id: DEC-2026-02-22-documentation-first-freeze\n- title: Freeze plans in files before execution for memory-critical work\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n- supersedes: none\n- superseded_by: none\n\n## Decision\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\n\n## Why\n- reduces token-window drift and context loss\n- improves reviewability, rollback, and alignment\n\n## Execution Impact\n- docs become the execution contract\n- implementation proceeds in\n\nSource: memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28",
+            "source": "memory",
+            "citation": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28"
+          },
+          {
+            "path": "MEMORY.md",
+            "startLine": 25,
+            "endLine": 47,
+            "score": 0.6309545874595641,
+            "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used\n\nSource: MEMORY.md#L25-L47",
+            "source": "memory",
+            "citation": "MEMORY.md#L25-L47"
+          },
+          {
+            "path": "MEMORY.md",
+            "startLine": 43,
+            "endLine": 59,
+            "score": 0.6307569026947022,
+            "snippet": "- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\n\n## Long-Term Notes\n- aspiration::build_personal_jarvis_mobile_app\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\n- architecture_not\n\nSource: MEMORY.md#L43-L59",
+            "source": "memory",
+            "citation": "MEMORY.md#L43-L59"
+          },
+          {
+            "path": "memory/projects/openclaw-memory-upgrade.md",
+            "startLine": 1,
+            "endLine": 30,
+            "score": 0.588098132610321,
+            "snippet": "# project.openclaw_memory_upgrade\n\n## Metadata\n- canonical_id: project.openclaw_memory_upgrade\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\n- status: active\n- owner: jarvis (execution), founder (approval)\n- source_system: manual\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\n\n## Current Stage\n- self-host stack deployed and smoke-tested\n- bridge plugin enabled in shadow mode\n- write path remains off by design\n- next\n\nSource: memory/projects/openclaw-memory-upgrade.md#L1-L30",
+            "source": "memory",
+            "citation": "memory/projects/openclaw-memory-upgrade.md#L1-L30"
+          },
+          {
+            "path": "memory/projects/jarvis-os.md",
+            "startLine": 1,
+            "endLine": 39,
+            "score": 0.5606392681598663,
+            "snippet": "# project.jarvis_os\n\n## Metadata\n- canonical_id: project.jarvis_os\n- name: Jarvis OS\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\n\n## Scope\n- product planning and architecture\n- implementation and operations\n- commercial enablement\n- advisor and worker-agent orchestration\n\n## Execution Principles\n- intent alignment before implementation\n- documentation-first for major changes\n- explicit role boundaries and accountable ownership\n- stag\n\nSource: memory/projects/jarvis-os.md#L1-L39",
+            "source": "memory",
+            "citation": "memory/projects/jarvis-os.md#L1-L39"
+          }
+        ],
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "citations": "auto",
+        "mode": "hybrid"
+      }
+    }
+  },
+  "l2_bridge": {
+    "read_mode_local": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md\",\n      \"startLine\": 1,\n      \"endLine\": 28,\n      \"score\": 0.7095200955867766,\n      \"snippet\": \"# DEC-2026-02-22-documentation-first-freeze\\n\\n## Metadata\\n- decision_id: DEC-2026-02-22-documentation-first-freeze\\n- title: Freeze plans in files before execution for memory-critical work\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n- supersedes: none\\n- superseded_by: none\\n\\n## Decision\\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\\n\\n## Why\\n- reduces token-window drift and context loss\\n- improves reviewability, rollback, and alignment\\n\\n## Execution Impact\\n- docs become the execution contract\\n- implementation proceeds in\\n\\nSource: memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.6309545874595641,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\\n\\nSource: MEMORY.md#L25-L47\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L25-L47\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 43,\n      \"endLine\": 59,\n      \"score\": 0.6307569026947022,\n      \"snippet\": \"- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\\n\\n## Long-Term Notes\\n- aspiration::build_personal_jarvis_mobile_app\\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\\n- architecture_not\\n\\nSource: MEMORY.md#L43-L59\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L43-L59\"\n    },\n    {\n      \"path\": \"memory/projects/openclaw-memory-upgrade.md\",\n      \"startLine\": 1,\n      \"endLine\": 30,\n      \"score\": 0.588098132610321,\n      \"snippet\": \"# project.openclaw_memory_upgrade\\n\\n## Metadata\\n- canonical_id: project.openclaw_memory_upgrade\\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\\n- status: active\\n- owner: jarvis (execution), founder (approval)\\n- source_system: manual\\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\\n\\n## Current Stage\\n- self-host stack deployed and smoke-tested\\n- bridge plugin enabled in shadow mode\\n- write path remains off by design\\n- next\\n\\nSource: memory/projects/openclaw-memory-upgrade.md#L1-L30\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/projects/openclaw-memory-upgrade.md#L1-L30\"\n    },\n    {\n      \"path\": \"memory/projects/jarvis-os.md\",\n      \"startLine\": 1,\n      \"endLine\": 39,\n      \"score\": 0.5606392681598663,\n      \"snippet\": \"# project.jarvis_os\\n\\n## Metadata\\n- canonical_id: project.jarvis_os\\n- name: Jarvis OS\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\\n\\n## Scope\\n- product planning and architecture\\n- implementation and operations\\n- commercial enablement\\n- advisor and worker-agent orchestration\\n\\n## Execution Principles\\n- intent alignment before implementation\\n- documentation-first for major changes\\n- explicit role boundaries and accountable ownership\\n- stag\\n\\nSource: memory/projects/jarvis-os.md#L1-L39\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/projects/jarvis-os.md#L1-L39\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md",
+              "startLine": 1,
+              "endLine": 28,
+              "score": 0.7095200955867766,
+              "snippet": "# DEC-2026-02-22-documentation-first-freeze\n\n## Metadata\n- decision_id: DEC-2026-02-22-documentation-first-freeze\n- title: Freeze plans in files before execution for memory-critical work\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n- supersedes: none\n- superseded_by: none\n\n## Decision\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\n\n## Why\n- reduces token-window drift and context loss\n- improves reviewability, rollback, and alignment\n\n## Execution Impact\n- docs become the execution contract\n- implementation proceeds in\n\nSource: memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28",
+              "source": "memory",
+              "citation": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28"
+            },
+            {
+              "path": "MEMORY.md",
+              "startLine": 25,
+              "endLine": 47,
+              "score": 0.6309545874595641,
+              "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used\n\nSource: MEMORY.md#L25-L47",
+              "source": "memory",
+              "citation": "MEMORY.md#L25-L47"
+            },
+            {
+              "path": "MEMORY.md",
+              "startLine": 43,
+              "endLine": 59,
+              "score": 0.6307569026947022,
+              "snippet": "- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\n\n## Long-Term Notes\n- aspiration::build_personal_jarvis_mobile_app\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\n- architecture_not\n\nSource: MEMORY.md#L43-L59",
+              "source": "memory",
+              "citation": "MEMORY.md#L43-L59"
+            },
+            {
+              "path": "memory/projects/openclaw-memory-upgrade.md",
+              "startLine": 1,
+              "endLine": 30,
+              "score": 0.588098132610321,
+              "snippet": "# project.openclaw_memory_upgrade\n\n## Metadata\n- canonical_id: project.openclaw_memory_upgrade\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\n- status: active\n- owner: jarvis (execution), founder (approval)\n- source_system: manual\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\n\n## Current Stage\n- self-host stack deployed and smoke-tested\n- bridge plugin enabled in shadow mode\n- write path remains off by design\n- next\n\nSource: memory/projects/openclaw-memory-upgrade.md#L1-L30",
+              "source": "memory",
+              "citation": "memory/projects/openclaw-memory-upgrade.md#L1-L30"
+            },
+            {
+              "path": "memory/projects/jarvis-os.md",
+              "startLine": 1,
+              "endLine": 39,
+              "score": 0.5606392681598663,
+              "snippet": "# project.jarvis_os\n\n## Metadata\n- canonical_id: project.jarvis_os\n- name: Jarvis OS\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\n\n## Scope\n- product planning and architecture\n- implementation and operations\n- commercial enablement\n- advisor and worker-agent orchestration\n\n## Execution Principles\n- intent alignment before implementation\n- documentation-first for major changes\n- explicit role boundaries and accountable ownership\n- stag\n\nSource: memory/projects/jarvis-os.md#L1-L39",
+              "source": "memory",
+              "citation": "memory/projects/jarvis-os.md#L1-L39"
+            }
+          ],
+          "provider": "openai",
+          "model": "text-embedding-v4",
+          "fallback": {
+            "triggered": false,
+            "reason": null,
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 0,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 0
+          },
+          "citations": "auto",
+          "mode": "hybrid",
+          "source": "local",
+          "route": {
+            "read_mode": "local",
+            "reason": "phase0_local_default",
+            "intent": "timeline",
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "user_route": "local",
+            "candidate_route": "local",
+            "primary_route": "local",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "DEC 2026 02 22 documentation first freeze",
+            "normalizedQuery": "DEC 2026 02 22 documentation first freeze",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "selected_recipe": "edge",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "local",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    },
+    "read_mode_primary": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md\",\n      \"startLine\": 1,\n      \"endLine\": 28,\n      \"score\": 0.7095200955867766,\n      \"snippet\": \"# DEC-2026-02-22-documentation-first-freeze\\n\\n## Metadata\\n- decision_id: DEC-2026-02-22-documentation-first-freeze\\n- title: Freeze plans in files before execution for memory-critical work\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n- supersedes: none\\n- superseded_by: none\\n\\n## Decision\\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\\n\\n## Why\\n- reduces token-window drift and context loss\\n- improves reviewability, rollback, and alignment\\n\\n## Execution Impact\\n- docs become the execution contract\\n- implementation proceeds in\\n\\nSource: memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 25,\n      \"endLine\": 47,\n      \"score\": 0.6309545874595641,\n      \"snippet\": \"- context::source_policy | path::memory/context/source-policy.md | status::active\\n\\n## Topics Index (Derived Views)\\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\\n\\n## People Index\\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\\n\\n## Projects Index\\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\\n- project::project.used\\n\\nSource: MEMORY.md#L25-L47\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L25-L47\"\n    },\n    {\n      \"path\": \"MEMORY.md\",\n      \"startLine\": 43,\n      \"endLine\": 59,\n      \"score\": 0.6307569026947022,\n      \"snippet\": \"- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\\n\\n## Long-Term Notes\\n- aspiration::build_personal_jarvis_mobile_app\\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\\n- architecture_not\\n\\nSource: MEMORY.md#L43-L59\",\n      \"source\": \"memory\",\n      \"citation\": \"MEMORY.md#L43-L59\"\n    },\n    {\n      \"path\": \"memory/projects/openclaw-memory-upgrade.md\",\n      \"startLine\": 1,\n      \"endLine\": 30,\n      \"score\": 0.588098132610321,\n      \"snippet\": \"# project.openclaw_memory_upgrade\\n\\n## Metadata\\n- canonical_id: project.openclaw_memory_upgrade\\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\\n- status: active\\n- owner: jarvis (execution), founder (approval)\\n- source_system: manual\\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\\n- event_time: 2026-02-22T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\\n\\n## Current Stage\\n- self-host stack deployed and smoke-tested\\n- bridge plugin enabled in shadow mode\\n- write path remains off by design\\n- next\\n\\nSource: memory/projects/openclaw-memory-upgrade.md#L1-L30\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/projects/openclaw-memory-upgrade.md#L1-L30\"\n    },\n    {\n      \"path\": \"memory/projects/jarvis-os.md\",\n      \"startLine\": 1,\n      \"endLine\": 39,\n      \"score\": 0.5606392681598663,\n      \"snippet\": \"# project.jarvis_os\\n\\n## Metadata\\n- canonical_id: project.jarvis_os\\n- name: Jarvis OS\\n- status: active\\n- owner: founder + jarvis\\n- source_system: manual\\n- source_ref: MEMORY.md\\n- event_time: 2026-02-13T00:00:00+08:00\\n- ingest_time: 2026-02-23T00:00:00+08:00\\n\\n## Objective\\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\\n\\n## Scope\\n- product planning and architecture\\n- implementation and operations\\n- commercial enablement\\n- advisor and worker-agent orchestration\\n\\n## Execution Principles\\n- intent alignment before implementation\\n- documentation-first for major changes\\n- explicit role boundaries and accountable ownership\\n- stag\\n\\nSource: memory/projects/jarvis-os.md#L1-L39\",\n      \"source\": \"memory\",\n      \"citation\": \"memory/projects/jarvis-os.md#L1-L39\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md",
+              "startLine": 1,
+              "endLine": 28,
+              "score": 0.7095200955867766,
+              "snippet": "# DEC-2026-02-22-documentation-first-freeze\n\n## Metadata\n- decision_id: DEC-2026-02-22-documentation-first-freeze\n- title: Freeze plans in files before execution for memory-critical work\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n- supersedes: none\n- superseded_by: none\n\n## Decision\nFor major architecture or multi-phase implementation, finalize plan docs before code execution.\n\n## Why\n- reduces token-window drift and context loss\n- improves reviewability, rollback, and alignment\n\n## Execution Impact\n- docs become the execution contract\n- implementation proceeds in\n\nSource: memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28",
+              "source": "memory",
+              "citation": "memory/decisions/DEC-2026-02-22-documentation-first-freeze.md#L1-L28"
+            },
+            {
+              "path": "MEMORY.md",
+              "startLine": 25,
+              "endLine": 47,
+              "score": 0.6309545874595641,
+              "snippet": "- context::source_policy | path::memory/context/source-policy.md | status::active\n\n## Topics Index (Derived Views)\n- topic::topic.collaboration-model | path::memory/topics/collaboration-model.md | status::active | authority::derived\n- topic::topic.memory-engineering | path::memory/topics/memory-engineering.md | status::active | authority::derived\n- topic::topic.channel-policy | path::memory/topics/channel-policy.md | status::active | authority::derived\n\n## People Index\n- person::person.muqihang | path::memory/people/muqihang.md | status::active | source_system::manual\n\n## Projects Index\n- project::project.jarvis_os | path::memory/projects/jarvis-os.md | status::active\n- project::project.used\n\nSource: MEMORY.md#L25-L47",
+              "source": "memory",
+              "citation": "MEMORY.md#L25-L47"
+            },
+            {
+              "path": "MEMORY.md",
+              "startLine": 43,
+              "endLine": 59,
+              "score": 0.6307569026947022,
+              "snippet": "- decision::DEC-2026-02-21-main-role-boundary | path::memory/decisions/DEC-2026-02-21-main-role-boundary.md | status::active\n- decision::DEC-2026-02-22-documentation-first-freeze | path::memory/decisions/DEC-2026-02-22-documentation-first-freeze.md | status::active\n- decision::DEC-2026-02-22-advisor-collaboration-visibility | path::memory/decisions/DEC-2026-02-22-advisor-collaboration-visibility.md | status::active\n\n## Long-Term Notes\n- aspiration::build_personal_jarvis_mobile_app\n- org_charter_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/AI-Native-Organization-V0.md\n- thinktank_docs_path::/Users/muqihang/chelingxi_workspace/chelingxi-os/docs/jarvis-os-thinktank/\n- architecture_not\n\nSource: MEMORY.md#L43-L59",
+              "source": "memory",
+              "citation": "MEMORY.md#L43-L59"
+            },
+            {
+              "path": "memory/projects/openclaw-memory-upgrade.md",
+              "startLine": 1,
+              "endLine": 30,
+              "score": 0.588098132610321,
+              "snippet": "# project.openclaw_memory_upgrade\n\n## Metadata\n- canonical_id: project.openclaw_memory_upgrade\n- name: OpenClaw Memory Upgrade (Mem0 + Graphiti, Self-Hosted)\n- status: active\n- owner: jarvis (execution), founder (approval)\n- source_system: manual\n- source_ref: analysis/2026-02-22-openclaw-mem0-graphiti-selfhost-plan/README.md\n- event_time: 2026-02-22T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nUpgrade OpenClaw memory into a hybrid system: local-first fallback + Mem0 capture/governance + Graphiti temporal/relationship recall.\n\n## Current Stage\n- self-host stack deployed and smoke-tested\n- bridge plugin enabled in shadow mode\n- write path remains off by design\n- next\n\nSource: memory/projects/openclaw-memory-upgrade.md#L1-L30",
+              "source": "memory",
+              "citation": "memory/projects/openclaw-memory-upgrade.md#L1-L30"
+            },
+            {
+              "path": "memory/projects/jarvis-os.md",
+              "startLine": 1,
+              "endLine": 39,
+              "score": 0.5606392681598663,
+              "snippet": "# project.jarvis_os\n\n## Metadata\n- canonical_id: project.jarvis_os\n- name: Jarvis OS\n- status: active\n- owner: founder + jarvis\n- source_system: manual\n- source_ref: MEMORY.md\n- event_time: 2026-02-13T00:00:00+08:00\n- ingest_time: 2026-02-23T00:00:00+08:00\n\n## Objective\nBuild Jarvis OS into a self-improving AI-native organization architecture that can execute founder functions end-to-end.\n\n## Scope\n- product planning and architecture\n- implementation and operations\n- commercial enablement\n- advisor and worker-agent orchestration\n\n## Execution Principles\n- intent alignment before implementation\n- documentation-first for major changes\n- explicit role boundaries and accountable ownership\n- stag\n\nSource: memory/projects/jarvis-os.md#L1-L39",
+              "source": "memory",
+              "citation": "memory/projects/jarvis-os.md#L1-L39"
+            }
+          ],
+          "provider": "openai",
+          "model": "text-embedding-v4",
+          "fallback": {
+            "triggered": true,
+            "reason": "timeout",
+            "result_route": "local",
+            "primary_error": "The operation was aborted due to timeout",
+            "primary_status": null,
+            "primary_latency_ms": 3503,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 3503
+          },
+          "citations": "auto",
+          "mode": "hybrid",
+          "source": "local",
+          "route": {
+            "read_mode": "primary",
+            "reason": "read_cutover_candidate_enabled",
+            "intent": "timeline",
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "user_route": "graphiti",
+            "candidate_route": "graphiti",
+            "primary_route": "graphiti",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "DEC 2026 02 22 documentation first freeze",
+            "normalizedQuery": "DEC 2026 02 22 documentation first freeze",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "selected_recipe": "edge",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "graphiti",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    }
+  }
+}
