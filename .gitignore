@@ -143,5 +143,9 @@ scripts/memory-stack/__pycache__/
 scripts/memory-stack/python/__pycache__/
 nohup.out
 
+# codex local temp locks (debug-only)
+tmp.lock
+analysis/tmp.lock
+
 # Ignore vscode AI rules
 .github/instructions/codacy.instructions.md

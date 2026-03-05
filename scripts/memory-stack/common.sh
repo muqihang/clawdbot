@@ -175,10 +175,11 @@ import_defaults_from_repo_dotenv() {
 
   [[ -n "$sub2api_key" ]] && update_env_kv "LLM_API_KEY" "$sub2api_key"
 
-  if [[ -n "$memory_remote_key" ]]; then
-    update_env_kv "EMBEDDING_API_KEY" "$memory_remote_key"
-  elif [[ -n "$dashscope_key" ]]; then
+  # Prefer the dedicated DashScope key to avoid accidentally picking up a stale MEMORY_REMOTE_API_KEY.
+  if [[ -n "$dashscope_key" ]]; then
     update_env_kv "EMBEDDING_API_KEY" "$dashscope_key"
+  elif [[ -n "$memory_remote_key" ]]; then
+    update_env_kv "EMBEDDING_API_KEY" "$memory_remote_key"
   fi
 }
 
