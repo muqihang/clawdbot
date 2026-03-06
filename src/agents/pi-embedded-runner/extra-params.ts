@@ -15,7 +15,13 @@ const ANTHROPIC_1M_MODEL_PREFIXES = ["claude-opus-4", "claude-sonnet-4"] as cons
 // Codex responses (chatgpt.com/backend-api/codex/responses) require `store=false`.
 const OPENAI_RESPONSES_APIS = new Set(["openai-responses"]);
 const OPENAI_RESPONSES_PROVIDERS = new Set(["openai", "azure-openai-responses"]);
-const OPENAI_RESPONSES_SERVICE_TIERS = new Set(["auto", "default", "flex", "priority"]);
+const OPENAI_RESPONSES_SERVICE_TIERS = ["auto", "default", "flex", "priority"] as const;
+type OpenAIResponsesServiceTier = (typeof OPENAI_RESPONSES_SERVICE_TIERS)[number];
+const OPENAI_RESPONSES_SERVICE_TIER_SET = new Set<string>(OPENAI_RESPONSES_SERVICE_TIERS);
+
+function isOpenAIResponsesServiceTier(value: string): value is OpenAIResponsesServiceTier {
+  return OPENAI_RESPONSES_SERVICE_TIER_SET.has(value);
+}
 
 /**
  * Resolve provider-specific extra params from model config.
@@ -285,13 +291,13 @@ function shouldEnableOpenAIResponsesServerCompaction(
 
 function resolveResponsesServiceTier(
   extraParams: Record<string, unknown> | undefined,
-): "auto" | "default" | "flex" | "priority" | undefined {
+): OpenAIResponsesServiceTier | undefined {
   const candidate = extraParams?.service_tier ?? extraParams?.serviceTier;
   if (typeof candidate !== "string") {
     return undefined;
   }
   const normalized = candidate.trim().toLowerCase();
-  if (OPENAI_RESPONSES_SERVICE_TIERS.has(normalized)) {
+  if (isOpenAIResponsesServiceTier(normalized)) {
     return normalized;
   }
   if (normalized.length > 0) {
