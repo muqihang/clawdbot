@@ -1,0 +1,7 @@
+# Gate-4 acceptance
+
+- result: GO
+- top1_avg_delta_pp: 74.8
+- fur_delta_pp: 72.58
+- p95_increase_pct: 13.7122
+- stability_pass: true

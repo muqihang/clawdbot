@@ -1,0 +1,360 @@
+{
+  "query_id": "space-02",
+  "query": "DEC 2026 02 22 documentation first freeze",
+  "run_id": "run-02",
+  "l1_cli": {
+    "ok": true,
+    "exit_code": 0,
+    "command": "pnpm \"-s\" \"openclaw\" \"memory\" \"search\" \"DEC 2026 02 22 documentation first freeze\" \"--json\"",
+    "stdout": "{\n  \"results\": [\n    {\n      \"path\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md\",\n      \"startLine\": 1,\n      \"endLine\": 7,\n      \"score\": 0.6548677057027816,\n      \"snippet\": \"This file exists only for Gate-4 regression seeding.\\n\\n- muqihang\\n- documentation first freeze decision\\n- DEC-2026-02-21-main-role-boundary\\n- DEC-2026-02-22-documentation-first-freeze\\n\",\n      \"source\": \"memory\"\n    }\n  ]\n}\n",
+    "stderr": "",
+    "parsed_json": {
+      "results": [
+        {
+          "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+          "startLine": 1,
+          "endLine": 7,
+          "score": 0.6548677057027816,
+          "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n",
+          "source": "memory"
+        }
+      ]
+    }
+  },
+  "l1_local_tool": {
+    "ok": true,
+    "error": null,
+    "parsed": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"results\": [\n    {\n      \"path\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md\",\n      \"startLine\": 1,\n      \"endLine\": 7,\n      \"score\": 0.6548677057027816,\n      \"snippet\": \"This file exists only for Gate-4 regression seeding.\\n\\n- muqihang\\n- documentation first freeze decision\\n- DEC-2026-02-21-main-role-boundary\\n- DEC-2026-02-22-documentation-first-freeze\\n\\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+        }
+      ],
+      "details": {
+        "results": [
+          {
+            "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+            "startLine": 1,
+            "endLine": 7,
+            "score": 0.6548677057027816,
+            "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7",
+            "source": "memory",
+            "citation": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7"
+          }
+        ],
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "citations": "auto",
+        "mode": "hybrid"
+      }
+    }
+  },
+  "l2_bridge": {
+    "read_mode_local": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md\",\n      \"startLine\": 1,\n      \"endLine\": 7,\n      \"score\": 0.6548677057027816,\n      \"snippet\": \"This file exists only for Gate-4 regression seeding.\\n\\n- muqihang\\n- documentation first freeze decision\\n- DEC-2026-02-21-main-role-boundary\\n- DEC-2026-02-22-documentation-first-freeze\\n\\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+              "startLine": 1,
+              "endLine": 7,
+              "score": 0.6548677057027816,
+              "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7",
+              "source": "memory",
+              "citation": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7"
+            }
+          ],
+          "provider": "openai",
+          "model": "text-embedding-v4",
+          "fallback": {
+            "triggered": false,
+            "reason": null,
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 0,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 0
+          },
+          "citations": "auto",
+          "mode": "hybrid",
+          "source": "local",
+          "route": {
+            "read_mode": "local",
+            "reason": "phase0_local_default",
+            "intent": "timeline",
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "user_route": "local",
+            "candidate_route": "local",
+            "primary_route": "local",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "DEC 2026 02 22 documentation first freeze",
+            "normalizedQuery": "DEC 2026 02 22 documentation first freeze",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "selected_recipe": "edge",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "local",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    },
+    "read_mode_primary": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51\",\n      \"startLine\": 1,\n      \"endLine\": 1,\n      \"score\": 1,\n      \"snippet\": \"WANTS_TO_AGREE_ON\",\n      \"source\": \"graphiti\",\n      \"structure\": \"facts\"\n    },\n    {\n      \"path\": \"bridge/graphiti/4f174035-f8c5-4c63-bccb-01bb3d43890e\",\n      \"startLine\": 1,\n      \"endLine\": 1,\n      \"score\": 0.5,\n      \"snippet\": \"user(user): System: [2026-03-02 15:29:14 GMT+8] ⚠️ Post-Compaction Audit: The following required startup files were not read after context reset:\\n  - WORKFLOW_AUTO.md\\n  - memory\\\\/\\\\d{4}-\\\\d{2}-\\\\d{2}\\\\.md\\n\\nPlease read them now using the Read tool before continuing. This ensures your operating protocols are restored after memory compaction.\\n\\nStop Point 1（v3 / 模块A+B的核心）：6 个大题块 这些问题都很好，我需要回答，但是我担心我回答比较仓促和不严谨，虽然我在二手车行业呆了很多年，一时间也无法完全回答准确。我需要智囊角色讨论式启发式的一起讨论这些问题，挨个讨论确定，包括调查研究讨论，回答。 之前你说会子gate 1之前创建之前我们定的智囊角色。现在可以创立吗？\",\n      \"source\": \"graphiti\",\n      \"structure\": \"episodes\"\n    },\n    {\n      \"path\": \"bridge/graphiti/62b6647c-1348-4033-aef7-b54980fa994a\",\n      \"startLine\": 1,\n      \"endLine\": 1,\n      \"score\": 0.3333333333333333,\n      \"snippet\": \"OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地\",\n      \"source\": \"graphiti\",\n      \"structure\": \"nodes\"\n    }\n  ],\n  \"provider\": \"graphiti\",\n  \"model\": \"graphiti\",\n  \"fallback\": {\n    \"triggered\": false,\n    \"reason\": null,\n    \"result_route\": \"graphiti\",\n    \"primary_error\": null,\n    \"primary_status\": null,\n    \"primary_latency_ms\": 6223,\n    \"fallback_attempted\": false,\n    \"fallback_route_attempted\": null,\n    \"fallback_error\": null,\n    \"fallback_latency_ms\": null,\n    \"total_latency_ms\": 6223\n  },\n  \"citations\": \"auto\",\n  \"mode\": \"primary\",\n  \"source\": \"graphiti\",\n  \"alias_normalization\": false,\n  \"structures\": {\n    \"facts\": 1,\n    \"episodes\": 1,\n    \"nodes\": 1\n  },\n  \"route\": {\n    \"read_mode\": \"primary\",\n    \"reason\": \"read_cutover_candidate_enabled\",\n    \"intent\": \"timeline\",\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"user_route\": \"graphiti\",\n    \"candidate_route\": \"graphiti\",\n    \"primary_route\": \"graphiti\",\n    \"fallback_route\": \"local\",\n    \"selected_route\": \"graphiti\"\n  },\n  \"signature\": {\n    \"version\": \"v1\",\n    \"query\": \"DEC 2026 02 22 documentation first freeze\",\n    \"normalizedQuery\": \"DEC 2026 02 22 documentation first freeze\",\n    \"precisionKey\": null\n  },\n  \"recipe\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"selected_recipe\": \"edge\",\n    \"requested_strategy\": null,\n    \"active\": false,\n    \"degraded\": true,\n    \"degrade_reason\": \"flag_disabled\",\n    \"route\": \"graphiti\",\n    \"top1_source\": \"graphiti\",\n    \"top1_remote_id\": \"dafedd1b-b692-46ee-8e43-614bd30bab51\",\n    \"top1_structure\": \"facts\",\n    \"structures\": {\n      \"facts\": 1,\n      \"episodes\": 1,\n      \"nodes\": 1\n    }\n  },\n  \"focal_node\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"route\": \"graphiti\",\n    \"active\": false,\n    \"focal_node_uuid\": null,\n    \"discovery_strategy\": \"node\",\n    \"degrade_reason\": \"flag_disabled\"\n  },\n  \"temporal_filters\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"route\": \"graphiti\",\n    \"active\": false,\n    \"kind\": null,\n    \"window_days\": null,\n    \"matched_phrase\": null,\n    \"degrade_reason\": \"flag_disabled\"\n  },\n  \"ontology_v1\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"route\": \"graphiti\",\n    \"active\": false,\n    \"top_k\": 3,\n    \"marker_presence_count\": 0,\n    \"marker_presence_rate\": 0,\n    \"parse_success_count\": 0,\n    \"parse_failure_count\": 0,\n    \"parse_success_rate\": 0,\n    \"entity_summary\": {\n      \"decision_count\": 0,\n      \"project_count\": 0,\n      \"reason_count\": 0,\n      \"rejected_option_count\": 0,\n      \"relation_count\": 0,\n      \"has_rejected_options\": false\n    },\n    \"parse_failures\": [],\n    \"degrade_reason\": \"flag_disabled\"\n  },\n  \"context_assemble\": {\n    \"template_id\": \"T2\",\n    \"decision\": \"degrade\",\n    \"timeline\": [],\n    \"answer_text\": \"context assembler degraded to baseline\",\n    \"coverage\": {\n      \"events_used\": 0,\n      \"events_total\": 0\n    },\n    \"confidence\": 0,\n    \"degrade_reason\": \"insufficient_timeline_events\",\n    \"trim_report\": [\n      \"degrade:insufficient_timeline_events\"\n    ],\n    \"token_usage\": {\n      \"input\": 263,\n      \"output\": 79\n    }\n  }\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51",
+              "startLine": 1,
+              "endLine": 1,
+              "score": 1,
+              "snippet": "WANTS_TO_AGREE_ON",
+              "source": "graphiti",
+              "structure": "facts"
+            },
+            {
+              "path": "bridge/graphiti/4f174035-f8c5-4c63-bccb-01bb3d43890e",
+              "startLine": 1,
+              "endLine": 1,
+              "score": 0.5,
+              "snippet": "user(user): System: [2026-03-02 15:29:14 GMT+8] ⚠️ Post-Compaction Audit: The following required startup files were not read after context reset:\n  - WORKFLOW_AUTO.md\n  - memory\\/\\d{4}-\\d{2}-\\d{2}\\.md\n\nPlease read them now using the Read tool before continuing. This ensures your operating protocols are restored after memory compaction.\n\nStop Point 1（v3 / 模块A+B的核心）：6 个大题块 这些问题都很好，我需要回答，但是我担心我回答比较仓促和不严谨，虽然我在二手车行业呆了很多年，一时间也无法完全回答准确。我需要智囊角色讨论式启发式的一起讨论这些问题，挨个讨论确定，包括调查研究讨论，回答。 之前你说会子gate 1之前创建之前我们定的智囊角色。现在可以创立吗？",
+              "source": "graphiti",
+              "structure": "episodes"
+            },
+            {
+              "path": "bridge/graphiti/62b6647c-1348-4033-aef7-b54980fa994a",
+              "startLine": 1,
+              "endLine": 1,
+              "score": 0.3333333333333333,
+              "snippet": "OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地",
+              "source": "graphiti",
+              "structure": "nodes"
+            }
+          ],
+          "provider": "graphiti",
+          "model": "graphiti",
+          "fallback": {
+            "triggered": false,
+            "reason": null,
+            "result_route": "graphiti",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 6223,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 6223
+          },
+          "citations": "auto",
+          "mode": "primary",
+          "source": "graphiti",
+          "alias_normalization": false,
+          "structures": {
+            "facts": 1,
+            "episodes": 1,
+            "nodes": 1
+          },
+          "route": {
+            "read_mode": "primary",
+            "reason": "read_cutover_candidate_enabled",
+            "intent": "timeline",
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "user_route": "graphiti",
+            "candidate_route": "graphiti",
+            "primary_route": "graphiti",
+            "fallback_route": "local",
+            "selected_route": "graphiti"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "DEC 2026 02 22 documentation first freeze",
+            "normalizedQuery": "DEC 2026 02 22 documentation first freeze",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "selected_recipe": "edge",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "graphiti",
+            "top1_source": "graphiti",
+            "top1_remote_id": "dafedd1b-b692-46ee-8e43-614bd30bab51",
+            "top1_structure": "facts",
+            "structures": {
+              "facts": 1,
+              "episodes": 1,
+              "nodes": 1
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "top_k": 3,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          },
+          "context_assemble": {
+            "template_id": "T2",
+            "decision": "degrade",
+            "timeline": [],
+            "answer_text": "context assembler degraded to baseline",
+            "coverage": {
+              "events_used": 0,
+              "events_total": 0
+            },
+            "confidence": 0,
+            "degrade_reason": "insufficient_timeline_events",
+            "trim_report": ["degrade:insufficient_timeline_events"],
+            "token_usage": {
+              "input": 263,
+              "output": 79
+            }
+          }
+        }
+      }
+    }
+  }
+}

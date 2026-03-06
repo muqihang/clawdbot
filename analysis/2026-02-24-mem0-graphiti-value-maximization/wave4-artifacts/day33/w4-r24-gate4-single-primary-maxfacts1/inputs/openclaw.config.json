@@ -1,0 +1,85 @@
+{
+  "memory": {
+    "backend": "builtin"
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openai/gpt-5.3-codex"
+      },
+      "memorySearch": {
+        "enabled": true,
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "fallback": "none",
+        "remote": {
+          "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          "apiKey": "${MEMORY_REMOTE_API_KEY}"
+        },
+        "extraPaths": [
+          "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md"
+        ],
+        "sync": {
+          "watch": false,
+          "onSearch": false,
+          "onSessionStart": false
+        }
+      }
+    },
+    "list": [
+      {
+        "id": "w4_gate4",
+        "default": true,
+        "workspace": "."
+      }
+    ]
+  },
+  "models": {
+    "providers": {
+      "openai": {
+        "baseUrl": "http://127.0.0.1:18081/v1",
+        "apiKey": "${SUB2API_API_KEY}",
+        "api": "openai-responses",
+        "models": [
+          {
+            "id": "gpt-5.3-codex",
+            "name": "gpt-5.3-codex"
+          }
+        ]
+      }
+    }
+  },
+  "plugins": {
+    "slots": {
+      "memory": "memory-mem0-graphiti-bridge"
+    },
+    "entries": {
+      "memory-mem0-graphiti-bridge": {
+        "enabled": true,
+        "config": {
+          "read_mode": "primary",
+          "cutover_percent": 100,
+          "timeoutMs": {
+            "search": 15000,
+            "get": 15000
+          },
+          "read": {
+            "alias_normalization": false
+          },
+          "routing": {
+            "default_route": "local",
+            "semantic_route": "mem0",
+            "timeline_route": "graphiti",
+            "fallback_route": "local"
+          },
+          "mem0": {
+            "base_url": "http://127.0.0.1:8766"
+          },
+          "graphiti": {
+            "base_url": "http://127.0.0.1:8000"
+          }
+        }
+      }
+    }
+  }
+}

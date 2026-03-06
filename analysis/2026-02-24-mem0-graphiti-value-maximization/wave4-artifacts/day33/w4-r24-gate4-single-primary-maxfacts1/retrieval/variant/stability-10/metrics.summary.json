@@ -1,0 +1,48 @@
+{
+  "mode": "variant",
+  "phase": "stability",
+  "attempt": 10,
+  "generated_at": "2026-03-06T06:33:05.181Z",
+  "dataset_size": 124,
+  "sample_size_by_bucket": {
+    "exact_id": 30,
+    "decision_reason": 30,
+    "temporal_relation": 34,
+    "project_context": 30
+  },
+  "bucket_metrics": [
+    {
+      "bucket": "exact_id",
+      "sample_size": 30,
+      "matched_top1": 30,
+      "hit_at_1": 1
+    },
+    {
+      "bucket": "decision_reason",
+      "sample_size": 30,
+      "matched_top1": 30,
+      "hit_at_1": 1
+    },
+    {
+      "bucket": "temporal_relation",
+      "sample_size": 34,
+      "matched_top1": 34,
+      "hit_at_1": 1
+    },
+    {
+      "bucket": "project_context",
+      "sample_size": 30,
+      "matched_top1": 30,
+      "hit_at_1": 1
+    }
+  ],
+  "avg_hit_at_1": 1,
+  "fur_proxy": 1,
+  "top1_path_prefix_counts": {
+    "bridge": 124,
+    "local": 0,
+    "other": 0,
+    "null": 0
+  },
+  "non_bridge_top1_samples": []
+}

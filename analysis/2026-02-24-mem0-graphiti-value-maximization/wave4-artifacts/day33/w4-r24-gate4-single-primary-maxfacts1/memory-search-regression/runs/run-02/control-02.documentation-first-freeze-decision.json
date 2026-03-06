@@ -1,0 +1,360 @@
+{
+  "query_id": "control-02",
+  "query": "documentation first freeze decision",
+  "run_id": "run-02",
+  "l1_cli": {
+    "ok": true,
+    "exit_code": 0,
+    "command": "pnpm \"-s\" \"openclaw\" \"memory\" \"search\" \"documentation first freeze decision\" \"--json\"",
+    "stdout": "{\n  \"results\": [\n    {\n      \"path\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md\",\n      \"startLine\": 1,\n      \"endLine\": 7,\n      \"score\": 0.6857946902513503,\n      \"snippet\": \"This file exists only for Gate-4 regression seeding.\\n\\n- muqihang\\n- documentation first freeze decision\\n- DEC-2026-02-21-main-role-boundary\\n- DEC-2026-02-22-documentation-first-freeze\\n\",\n      \"source\": \"memory\"\n    }\n  ]\n}\n",
+    "stderr": "",
+    "parsed_json": {
+      "results": [
+        {
+          "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+          "startLine": 1,
+          "endLine": 7,
+          "score": 0.6857946902513503,
+          "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n",
+          "source": "memory"
+        }
+      ]
+    }
+  },
+  "l1_local_tool": {
+    "ok": true,
+    "error": null,
+    "parsed": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"results\": [\n    {\n      \"path\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md\",\n      \"startLine\": 1,\n      \"endLine\": 7,\n      \"score\": 0.6857946902513503,\n      \"snippet\": \"This file exists only for Gate-4 regression seeding.\\n\\n- muqihang\\n- documentation first freeze decision\\n- DEC-2026-02-21-main-role-boundary\\n- DEC-2026-02-22-documentation-first-freeze\\n\\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+        }
+      ],
+      "details": {
+        "results": [
+          {
+            "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+            "startLine": 1,
+            "endLine": 7,
+            "score": 0.6857946902513503,
+            "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7",
+            "source": "memory",
+            "citation": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7"
+          }
+        ],
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "citations": "auto",
+        "mode": "hybrid"
+      }
+    }
+  },
+  "l2_bridge": {
+    "read_mode_local": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md\",\n      \"startLine\": 1,\n      \"endLine\": 7,\n      \"score\": 0.6857946902513503,\n      \"snippet\": \"This file exists only for Gate-4 regression seeding.\\n\\n- muqihang\\n- documentation first freeze decision\\n- DEC-2026-02-21-main-role-boundary\\n- DEC-2026-02-22-documentation-first-freeze\\n\\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\",\n      \"source\": \"memory\",\n      \"citation\": \"analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7\"\n    }\n  ],\n  \"provider\": \"openai\",\n  \"model\": \"text-embedding-v4\",\n  \"citations\": \"auto\",\n  \"mode\": \"hybrid\"\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md",
+              "startLine": 1,
+              "endLine": 7,
+              "score": 0.6857946902513503,
+              "snippet": "This file exists only for Gate-4 regression seeding.\n\n- muqihang\n- documentation first freeze decision\n- DEC-2026-02-21-main-role-boundary\n- DEC-2026-02-22-documentation-first-freeze\n\nSource: analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7",
+              "source": "memory",
+              "citation": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day21/w4-r6-gate4-seed-local/inputs/seed-memory/seed-memory.md#L1-L7"
+            }
+          ],
+          "provider": "openai",
+          "model": "text-embedding-v4",
+          "fallback": {
+            "triggered": false,
+            "reason": null,
+            "result_route": "local",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 0,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 0
+          },
+          "citations": "auto",
+          "mode": "hybrid",
+          "source": "local",
+          "route": {
+            "read_mode": "local",
+            "reason": "phase0_local_default",
+            "intent": "timeline",
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "user_route": "local",
+            "candidate_route": "local",
+            "primary_route": "local",
+            "fallback_route": "local",
+            "selected_route": "local"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "documentation first freeze decision",
+            "normalizedQuery": "documentation first freeze decision",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "selected_recipe": "edge",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "local",
+            "top1_source": null,
+            "top1_remote_id": null,
+            "top1_structure": null,
+            "structures": {
+              "facts": 0,
+              "episodes": 0,
+              "nodes": 0
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "local",
+            "active": false,
+            "top_k": 0,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          }
+        }
+      }
+    },
+    "read_mode_primary": {
+      "ok": true,
+      "error": null,
+      "parsed": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"results\": [\n    {\n      \"path\": \"bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51\",\n      \"startLine\": 1,\n      \"endLine\": 1,\n      \"score\": 1,\n      \"snippet\": \"WANTS_TO_AGREE_ON\",\n      \"source\": \"graphiti\",\n      \"structure\": \"facts\"\n    },\n    {\n      \"path\": \"bridge/graphiti/97431442-9cc6-48c7-a670-a3ce76d78f8a\",\n      \"startLine\": 1,\n      \"endLine\": 1,\n      \"score\": 0.5,\n      \"snippet\": \"assistant(assistant): 懂你的意思，而且我赞同：先暂停 Gate 的“签字推进”，把“智囊团协作载体 + 角色契约 + 记录机制”搭好，再继续逐题块推进。这样你在 Slack 里可以高频反复讨论/补证，而 TG 保持“控制面”：只做决策确认与定案记录，避免上下文被碎片淹没。\\n\\n我先把我们的意图对齐成一句话（你看是否准确）：\\n- Slack = Thinktank 执行面（高频讨论、补证、材料堆叠、反复推演）\\n- TG = Control Plane（Stop Point 签字、决策公告、最终结论）\\n- 我（Jarvis）= 记录官/合并官（把 Slack 讨论收敛成 receipt + 更新 Gate/ledger/decision-log）\\n\\n下面是我建议的方案（先不实施，只定方案）。\\n\\n## 方案 v0：Thinktank + Slack 工作制（不污染 TG）\\n\\n### 1) Slack 结构（尽量少，避免“频道爆炸”）\\n推荐最小 3 个频道：\\n- `#gate-0`：只讨论 Gate-0 题块（Stop Point 1/2/3）\\n- `#research`：证据与材料（Exa/Tavily 检索、竞品报价、法规摘录）\\n- `#receipts`：每个题块结束我发“Receipt 候选”，你回复 `APPROVED` 或修改点；批准后我才写入仓库并在 TG 做签字确认\\n\\n规则（关键）：\\n- 每个题块必须用 Slack thread 讨论；thread 头消息固定是“Topic Card”（目标/需回答问题/需补证清单/Stop Point条件）。\\n- 讨论可以很碎，但 thread 结束必须落一份 receipt（这就是“抗污染”的核心机制）。\\n\\n### 2) 智囊角色：不需要“常驻 bot”，用“角色契约 + 召回机制”就够\\n你担心的“多轮琐碎讨论污染上下文”，本质不是有没有群，而是有没有“角色输出格式”和“可复用的上下文包”。\\n\\n我建议角色分两类：\\n- 常驻（每个题块都可能用到）：PM/Product、Engineering/Arch、Growth、Risk/Compliance、Research、Eval/Quality\\n- 临时（需要时才拉）：UX移动端、Data/ML、Ops/SRE、红队Tech、红队Biz\\n\\n角色提示词需要优化的点（基于 `docs/product/workflow/thinktank-roles.md` 再加两条硬约束）：\\n- **输出必须分层**：事实/假设/实验/决策建议（防止“写得很爽但无法签字”）\\n- **每条建议必须带“可验证动作”**：验证方式 + 阈值 + 最晚时间点（否则不算建议）\\n\\n### 3) 上下文窗口与记忆隔离（你说得对，这是必须设计的）\\n核心原则：Slack 里聊得再多，也不直接变成“系统记忆”。只有两种东西能进入 SoR：\\n- Gate 文档（`docs/product/gates/*`）\\n- ledger/decision-log/receipts（`docs/product/ledger/*`、`docs/product/sessions/*`）\\n\\n每个角色收到的“上下文包”也必须最小化：\\n- 永远只给：战略基座 v0.2 + 当前题块 Topic Card + 最近一次 receipt + 相关 evidence 条目\\n- 不把整个历史聊天塞进去（这才是真正防污染）\\n\\n### 4) 你可能遗漏但很关键的两点（我补充）\\n- **“合规询价/RFI”要当成研究流程的一部分**：竞品价格不透明，必须通过合规方式拿 2-3 份报价单/权益清单，才能让定价锚点有证据落点（否则永远争论）\\n- **“Stop Point 的签字语义”必须只在 TG 完成**：Slack 讨论达成一致后，我发 receipt，你确认；最终我在 TG 发“签字语义”，你一句话确认，形成不可争议的“决策锚点”\\n\\n## 落地前需要你定的 3 个选择（只要你回答这三个，我就能开始实施）\\n1) 你更倾向 Slack 只你和我，还是还会加入 1-3 个真人顾问？（影响频道与权限设计）\\n2) 你希望 Slack 里“角色呈现”是：我一个人用标签输出（[PM]/[ENG]/[RISK]…），还是你想要每个角色一个独立 bot 身份？（后者配置成本更高）\\n3) 你现在是否已经有 Slack workspace（或愿意新建一个）？后续实施时需要你把我这个 bot 拉进频道（或给我 workspace/channel 信息用于测试连通性）\\n\\n你回复这 3 个选择后，我再给你一份“实施步骤清单”（1小时内可搭起来那种），你确认后我们再开始真正落地。\",\n      \"source\": \"graphiti\",\n      \"structure\": \"episodes\"\n    },\n    {\n      \"path\": \"bridge/graphiti/62b6647c-1348-4033-aef7-b54980fa994a\",\n      \"startLine\": 1,\n      \"endLine\": 1,\n      \"score\": 0.3333333333333333,\n      \"snippet\": \"OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地\",\n      \"source\": \"graphiti\",\n      \"structure\": \"nodes\"\n    }\n  ],\n  \"provider\": \"graphiti\",\n  \"model\": \"graphiti\",\n  \"fallback\": {\n    \"triggered\": false,\n    \"reason\": null,\n    \"result_route\": \"graphiti\",\n    \"primary_error\": null,\n    \"primary_status\": null,\n    \"primary_latency_ms\": 1676,\n    \"fallback_attempted\": false,\n    \"fallback_route_attempted\": null,\n    \"fallback_error\": null,\n    \"fallback_latency_ms\": null,\n    \"total_latency_ms\": 1676\n  },\n  \"citations\": \"auto\",\n  \"mode\": \"primary\",\n  \"source\": \"graphiti\",\n  \"alias_normalization\": false,\n  \"structures\": {\n    \"facts\": 1,\n    \"episodes\": 1,\n    \"nodes\": 1\n  },\n  \"route\": {\n    \"read_mode\": \"primary\",\n    \"reason\": \"read_cutover_candidate_enabled\",\n    \"intent\": \"timeline\",\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"user_route\": \"graphiti\",\n    \"candidate_route\": \"graphiti\",\n    \"primary_route\": \"graphiti\",\n    \"fallback_route\": \"local\",\n    \"selected_route\": \"graphiti\"\n  },\n  \"signature\": {\n    \"version\": \"v1\",\n    \"query\": \"documentation first freeze decision\",\n    \"normalizedQuery\": \"documentation first freeze decision\",\n    \"precisionKey\": null\n  },\n  \"recipe\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"selected_recipe\": \"edge\",\n    \"requested_strategy\": null,\n    \"active\": false,\n    \"degraded\": true,\n    \"degrade_reason\": \"flag_disabled\",\n    \"route\": \"graphiti\",\n    \"top1_source\": \"graphiti\",\n    \"top1_remote_id\": \"dafedd1b-b692-46ee-8e43-614bd30bab51\",\n    \"top1_structure\": \"facts\",\n    \"structures\": {\n      \"facts\": 1,\n      \"episodes\": 1,\n      \"nodes\": 1\n    }\n  },\n  \"focal_node\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"route\": \"graphiti\",\n    \"active\": false,\n    \"focal_node_uuid\": null,\n    \"discovery_strategy\": \"node\",\n    \"degrade_reason\": \"flag_disabled\"\n  },\n  \"temporal_filters\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"route\": \"graphiti\",\n    \"active\": false,\n    \"kind\": null,\n    \"window_days\": null,\n    \"matched_phrase\": null,\n    \"degrade_reason\": \"flag_disabled\"\n  },\n  \"ontology_v1\": {\n    \"enabled\": false,\n    \"sampled\": false,\n    \"sample_percent\": 0,\n    \"query_type\": \"temporal_relation\",\n    \"query_bucket\": \"temporal_relation\",\n    \"route\": \"graphiti\",\n    \"active\": false,\n    \"top_k\": 3,\n    \"marker_presence_count\": 0,\n    \"marker_presence_rate\": 0,\n    \"parse_success_count\": 0,\n    \"parse_failure_count\": 0,\n    \"parse_success_rate\": 0,\n    \"entity_summary\": {\n      \"decision_count\": 0,\n      \"project_count\": 0,\n      \"reason_count\": 0,\n      \"rejected_option_count\": 0,\n      \"relation_count\": 0,\n      \"has_rejected_options\": false\n    },\n    \"parse_failures\": [],\n    \"degrade_reason\": \"flag_disabled\"\n  },\n  \"context_assemble\": {\n    \"template_id\": \"T2\",\n    \"decision\": \"degrade\",\n    \"timeline\": [],\n    \"answer_text\": \"context assembler degraded to baseline\",\n    \"coverage\": {\n      \"events_used\": 0,\n      \"events_total\": 0\n    },\n    \"confidence\": 0,\n    \"degrade_reason\": \"insufficient_timeline_events\",\n    \"trim_report\": [\n      \"degrade:insufficient_timeline_events\"\n    ],\n    \"token_usage\": {\n      \"input\": 638,\n      \"output\": 79\n    }\n  }\n}"
+          }
+        ],
+        "details": {
+          "results": [
+            {
+              "path": "bridge/graphiti/dafedd1b-b692-46ee-8e43-614bd30bab51",
+              "startLine": 1,
+              "endLine": 1,
+              "score": 1,
+              "snippet": "WANTS_TO_AGREE_ON",
+              "source": "graphiti",
+              "structure": "facts"
+            },
+            {
+              "path": "bridge/graphiti/97431442-9cc6-48c7-a670-a3ce76d78f8a",
+              "startLine": 1,
+              "endLine": 1,
+              "score": 0.5,
+              "snippet": "assistant(assistant): 懂你的意思，而且我赞同：先暂停 Gate 的“签字推进”，把“智囊团协作载体 + 角色契约 + 记录机制”搭好，再继续逐题块推进。这样你在 Slack 里可以高频反复讨论/补证，而 TG 保持“控制面”：只做决策确认与定案记录，避免上下文被碎片淹没。\n\n我先把我们的意图对齐成一句话（你看是否准确）：\n- Slack = Thinktank 执行面（高频讨论、补证、材料堆叠、反复推演）\n- TG = Control Plane（Stop Point 签字、决策公告、最终结论）\n- 我（Jarvis）= 记录官/合并官（把 Slack 讨论收敛成 receipt + 更新 Gate/ledger/decision-log）\n\n下面是我建议的方案（先不实施，只定方案）。\n\n## 方案 v0：Thinktank + Slack 工作制（不污染 TG）\n\n### 1) Slack 结构（尽量少，避免“频道爆炸”）\n推荐最小 3 个频道：\n- `#gate-0`：只讨论 Gate-0 题块（Stop Point 1/2/3）\n- `#research`：证据与材料（Exa/Tavily 检索、竞品报价、法规摘录）\n- `#receipts`：每个题块结束我发“Receipt 候选”，你回复 `APPROVED` 或修改点；批准后我才写入仓库并在 TG 做签字确认\n\n规则（关键）：\n- 每个题块必须用 Slack thread 讨论；thread 头消息固定是“Topic Card”（目标/需回答问题/需补证清单/Stop Point条件）。\n- 讨论可以很碎，但 thread 结束必须落一份 receipt（这就是“抗污染”的核心机制）。\n\n### 2) 智囊角色：不需要“常驻 bot”，用“角色契约 + 召回机制”就够\n你担心的“多轮琐碎讨论污染上下文”，本质不是有没有群，而是有没有“角色输出格式”和“可复用的上下文包”。\n\n我建议角色分两类：\n- 常驻（每个题块都可能用到）：PM/Product、Engineering/Arch、Growth、Risk/Compliance、Research、Eval/Quality\n- 临时（需要时才拉）：UX移动端、Data/ML、Ops/SRE、红队Tech、红队Biz\n\n角色提示词需要优化的点（基于 `docs/product/workflow/thinktank-roles.md` 再加两条硬约束）：\n- **输出必须分层**：事实/假设/实验/决策建议（防止“写得很爽但无法签字”）\n- **每条建议必须带“可验证动作”**：验证方式 + 阈值 + 最晚时间点（否则不算建议）\n\n### 3) 上下文窗口与记忆隔离（你说得对，这是必须设计的）\n核心原则：Slack 里聊得再多，也不直接变成“系统记忆”。只有两种东西能进入 SoR：\n- Gate 文档（`docs/product/gates/*`）\n- ledger/decision-log/receipts（`docs/product/ledger/*`、`docs/product/sessions/*`）\n\n每个角色收到的“上下文包”也必须最小化：\n- 永远只给：战略基座 v0.2 + 当前题块 Topic Card + 最近一次 receipt + 相关 evidence 条目\n- 不把整个历史聊天塞进去（这才是真正防污染）\n\n### 4) 你可能遗漏但很关键的两点（我补充）\n- **“合规询价/RFI”要当成研究流程的一部分**：竞品价格不透明，必须通过合规方式拿 2-3 份报价单/权益清单，才能让定价锚点有证据落点（否则永远争论）\n- **“Stop Point 的签字语义”必须只在 TG 完成**：Slack 讨论达成一致后，我发 receipt，你确认；最终我在 TG 发“签字语义”，你一句话确认，形成不可争议的“决策锚点”\n\n## 落地前需要你定的 3 个选择（只要你回答这三个，我就能开始实施）\n1) 你更倾向 Slack 只你和我，还是还会加入 1-3 个真人顾问？（影响频道与权限设计）\n2) 你希望 Slack 里“角色呈现”是：我一个人用标签输出（[PM]/[ENG]/[RISK]…），还是你想要每个角色一个独立 bot 身份？（后者配置成本更高）\n3) 你现在是否已经有 Slack workspace（或愿意新建一个）？后续实施时需要你把我这个 bot 拉进频道（或给我 workspace/channel 信息用于测试连通性）\n\n你回复这 3 个选择后，我再给你一份“实施步骤清单”（1小时内可搭起来那种），你确认后我们再开始真正落地。",
+              "source": "graphiti",
+              "structure": "episodes"
+            },
+            {
+              "path": "bridge/graphiti/62b6647c-1348-4033-aef7-b54980fa994a",
+              "startLine": 1,
+              "endLine": 1,
+              "score": 0.3333333333333333,
+              "snippet": "OpenClaw 的发展趋势被描述为推动 local-first 网关理念在执行面落地",
+              "source": "graphiti",
+              "structure": "nodes"
+            }
+          ],
+          "provider": "graphiti",
+          "model": "graphiti",
+          "fallback": {
+            "triggered": false,
+            "reason": null,
+            "result_route": "graphiti",
+            "primary_error": null,
+            "primary_status": null,
+            "primary_latency_ms": 1676,
+            "fallback_attempted": false,
+            "fallback_route_attempted": null,
+            "fallback_error": null,
+            "fallback_latency_ms": null,
+            "total_latency_ms": 1676
+          },
+          "citations": "auto",
+          "mode": "primary",
+          "source": "graphiti",
+          "alias_normalization": false,
+          "structures": {
+            "facts": 1,
+            "episodes": 1,
+            "nodes": 1
+          },
+          "route": {
+            "read_mode": "primary",
+            "reason": "read_cutover_candidate_enabled",
+            "intent": "timeline",
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "user_route": "graphiti",
+            "candidate_route": "graphiti",
+            "primary_route": "graphiti",
+            "fallback_route": "local",
+            "selected_route": "graphiti"
+          },
+          "signature": {
+            "version": "v1",
+            "query": "documentation first freeze decision",
+            "normalizedQuery": "documentation first freeze decision",
+            "precisionKey": null
+          },
+          "recipe": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "selected_recipe": "edge",
+            "requested_strategy": null,
+            "active": false,
+            "degraded": true,
+            "degrade_reason": "flag_disabled",
+            "route": "graphiti",
+            "top1_source": "graphiti",
+            "top1_remote_id": "dafedd1b-b692-46ee-8e43-614bd30bab51",
+            "top1_structure": "facts",
+            "structures": {
+              "facts": 1,
+              "episodes": 1,
+              "nodes": 1
+            }
+          },
+          "focal_node": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "focal_node_uuid": null,
+            "discovery_strategy": "node",
+            "degrade_reason": "flag_disabled"
+          },
+          "temporal_filters": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "kind": null,
+            "window_days": null,
+            "matched_phrase": null,
+            "degrade_reason": "flag_disabled"
+          },
+          "ontology_v1": {
+            "enabled": false,
+            "sampled": false,
+            "sample_percent": 0,
+            "query_type": "temporal_relation",
+            "query_bucket": "temporal_relation",
+            "route": "graphiti",
+            "active": false,
+            "top_k": 3,
+            "marker_presence_count": 0,
+            "marker_presence_rate": 0,
+            "parse_success_count": 0,
+            "parse_failure_count": 0,
+            "parse_success_rate": 0,
+            "entity_summary": {
+              "decision_count": 0,
+              "project_count": 0,
+              "reason_count": 0,
+              "rejected_option_count": 0,
+              "relation_count": 0,
+              "has_rejected_options": false
+            },
+            "parse_failures": [],
+            "degrade_reason": "flag_disabled"
+          },
+          "context_assemble": {
+            "template_id": "T2",
+            "decision": "degrade",
+            "timeline": [],
+            "answer_text": "context assembler degraded to baseline",
+            "coverage": {
+              "events_used": 0,
+              "events_total": 0
+            },
+            "confidence": 0,
+            "degrade_reason": "insufficient_timeline_events",
+            "trim_report": ["degrade:insufficient_timeline_events"],
+            "token_usage": {
+              "input": 638,
+              "output": 79
+            }
+          }
+        }
+      }
+    }
+  }
+}

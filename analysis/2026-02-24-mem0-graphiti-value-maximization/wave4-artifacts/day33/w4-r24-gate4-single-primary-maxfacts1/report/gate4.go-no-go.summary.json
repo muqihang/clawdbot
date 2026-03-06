@@ -1,0 +1,12 @@
+{
+  "go": true,
+  "top1_avg_delta_pp": 74.8,
+  "fur_delta_pp": 72.58,
+  "p95_increase_pct": 13.7122,
+  "stability_pass": true,
+  "gates": {
+    "top1_avg_delta_pp_ge_8": true,
+    "fur_delta_pp_ge_10": true,
+    "p95_increase_pct_le_15": true
+  }
+}
