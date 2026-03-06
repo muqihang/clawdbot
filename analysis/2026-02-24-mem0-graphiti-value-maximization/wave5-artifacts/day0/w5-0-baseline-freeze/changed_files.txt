@@ -1,0 +1,9 @@
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/baseline-freeze-report.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/inputs-summary.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/runtime-profile.json
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/day33-baseline-freeze.json
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/terminology-decisions.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/write-path-status.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/gate-w5-0-summary.json
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/acceptance.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/day0/w5-0-baseline-freeze/changed_files.txt

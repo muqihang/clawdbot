@@ -1,0 +1,51 @@
+{
+  "task": "W5-0",
+  "captured_on": "2026-03-06",
+  "delivery_status": "artifacts_complete_ready_for_human_review",
+  "phase_advance_scope": "enter W5-A",
+  "phase_advance_decision": "NO_GO",
+  "phase_advance_reason": "W5-0 plan requires human acceptance/signoff before W5-A; that signoff has not happened yet",
+  "go_conditions": [
+    {
+      "name": "day33 baseline frozen",
+      "status": "pass"
+    },
+    {
+      "name": "current runtime profile explicit",
+      "status": "pass"
+    },
+    {
+      "name": "terminology dictionary conflict-free",
+      "status": "pass"
+    },
+    {
+      "name": "write-path operating model recorded",
+      "status": "pass"
+    },
+    {
+      "name": "W5-A prerequisites listed",
+      "status": "pass"
+    },
+    {
+      "name": "human signoff recorded",
+      "status": "pending"
+    }
+  ],
+  "blockers": [
+    {
+      "code": "HUMAN_SIGNOFF_REQUIRED",
+      "detail": "Stop at W5-0 until a human explicitly accepts the frozen baseline pack and signs Go/No-Go"
+    }
+  ],
+  "w5_a_required_inputs": [
+    "day33 baseline freeze",
+    "current runtime profile",
+    "terminology decisions",
+    "write-path status record",
+    "Go/No-Go summary"
+  ],
+  "notes": [
+    "Live config confirms outbox.enabled=false in addition to outbox.db_path; this corrects an earlier summary without changing the conclusion that outbox.enabled is not the write master gate",
+    "Current qmd local backend remains a runtime-profile fact and must not be promoted to the formal W5 baseline"
+  ]
+}

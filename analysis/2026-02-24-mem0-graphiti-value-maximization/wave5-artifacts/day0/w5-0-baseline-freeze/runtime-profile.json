@@ -1,0 +1,161 @@
+{
+  "captured_on": "2026-03-06",
+  "formal_baseline_reference": {
+    "artifact_dir": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day33/w4-r24-gate4-single-primary-maxfacts1",
+    "read_narrative": "builtin + bridge + mem0 + graphiti",
+    "write_scope": "day33 baseline does not define current write-path operating mode"
+  },
+  "product_defaults": {
+    "memory_backend": "builtin",
+    "bridge": {
+      "read_mode": "local",
+      "write_mode": "off",
+      "cutover_percent": 0,
+      "routing": {
+        "default_route": "local",
+        "semantic_route": "mem0",
+        "timeline_route": "graphiti",
+        "fallback_route": "local"
+      },
+      "outbox": {
+        "enabled": false
+      },
+      "p3": {
+        "auto_worker": false,
+        "admission_enabled": false,
+        "commit_canary_ratio": 0
+      }
+    },
+    "graphiti_default_search_body": {
+      "max_facts": 1
+    }
+  },
+  "current_runtime": {
+    "memory_backend": "qmd",
+    "local_backend": {
+      "backend": "qmd",
+      "command": "/Users/muqihang/clawd/scripts/qmd-smart-router.sh",
+      "search_mode": "search",
+      "include_default_memory": true,
+      "paths": [
+        "/Users/muqihang/chelingxi_workspace/clawdbot/analysis",
+        "/Users/muqihang/chelingxi_workspace/clawdbot/docs"
+      ],
+      "sessions_enabled": false
+    },
+    "bridge": {
+      "slot": "memory-mem0-graphiti-bridge",
+      "enabled": true,
+      "read_mode": "primary",
+      "write_mode": "propose_only",
+      "cutover_percent": 100,
+      "routing": {
+        "default_route": "local",
+        "semantic_route": "mem0",
+        "timeline_route": "graphiti",
+        "fallback_route": "local"
+      },
+      "mem0_base_url": "http://127.0.0.1:8766",
+      "graphiti_base_url": "http://127.0.0.1:8000",
+      "outbox": {
+        "enabled": false,
+        "db_path": "/Users/muqihang/.openclaw/memory-bridge-p3.sqlite"
+      },
+      "p3": {
+        "auto_worker": true,
+        "admission_enabled": true,
+        "commit_canary_ratio": 0.05,
+        "commit_require_index_check": true,
+        "commit_require_non_sensitive": true,
+        "commit_require_dual_write_ok": true
+      }
+    },
+    "agent_memory_search": {
+      "provider": "openai",
+      "model": "text-embedding-v4",
+      "remote_base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+      "fallback": "none"
+    }
+  },
+  "route_semantics": {
+    "local": {
+      "day33": "builtin",
+      "current_runtime": "qmd",
+      "note": "local is a bridge route label, not a fixed implementation name"
+    },
+    "semantic": "mem0",
+    "timeline": "graphiti",
+    "fallback": {
+      "route": "local",
+      "note": "fallback describes behavior only and must not replace the concept of the base memory layer"
+    }
+  },
+  "hidden_success_conditions": {
+    "embeddings": {
+      "protocol": "openai-compatible",
+      "model": "text-embedding-v4",
+      "dimensions": 1536,
+      "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    },
+    "forbidden_links": ["EMBEDDING_BASE_URL must not target port 18082"],
+    "service_ports": {
+      "graphiti": 8000,
+      "mem0": 8766,
+      "qdrant": 6333,
+      "llm_proxy": 18081,
+      "local_embedding_port_exists_but_forbidden_for_embedding_base_url": 18082
+    },
+    "neo4j_aura_connection": {
+      "status": "known runtime deviation",
+      "behavior": "Aura-style neo4j+s:// URIs are normalized to bolt+s:// (or corresponding bolt variants) in scripts",
+      "classification": "script-level workaround, not a product default"
+    },
+    "graphiti_query_budget": {
+      "max_facts": 1,
+      "classification": "code default promoted into formal baseline"
+    }
+  },
+  "day33_vs_current": {
+    "same": [
+      "bridge owns the memory slot",
+      "read_mode=primary",
+      "cutover_percent=100",
+      "default_route=local",
+      "semantic_route=mem0",
+      "timeline_route=graphiti",
+      "fallback_route=local",
+      "mem0.base_url=http://127.0.0.1:8766",
+      "graphiti.base_url=http://127.0.0.1:8000"
+    ],
+    "different": [
+      "day33 local backend=builtin; current local backend=qmd",
+      "day33 only freezes read-path winning baseline; current runtime has active write-path experimental state"
+    ],
+    "current_only": [
+      "write_mode=propose_only",
+      "outbox.enabled=false",
+      "outbox.db_path configured",
+      "p3.auto_worker=true",
+      "p3.admission_enabled=true",
+      "p3.commit_canary_ratio=0.05"
+    ],
+    "must_not_promote_to_formal_baseline": [
+      "memory.backend=qmd",
+      "qmd command/path configuration",
+      "current outbox.enabled=false live fact",
+      "proposal-first experimental write-path state"
+    ]
+  },
+  "write_path_operating_model": {
+    "label": "proposal-first + admission evaluation + canary commit",
+    "not_blank": true,
+    "not_full_canonical_commit": true,
+    "driver_fields": [
+      "write_mode",
+      "p3.auto_worker",
+      "p3.admission_enabled",
+      "p3.commit_canary_ratio"
+    ],
+    "non_driver_fields": ["outbox.enabled"]
+  }
+}

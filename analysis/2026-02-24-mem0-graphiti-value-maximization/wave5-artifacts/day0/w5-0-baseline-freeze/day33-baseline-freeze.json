@@ -1,0 +1,66 @@
+{
+  "captured_on": "2026-03-06",
+  "formal_baseline": {
+    "artifact_dir": "analysis/2026-02-24-mem0-graphiti-value-maximization/wave4-artifacts/day33/w4-r24-gate4-single-primary-maxfacts1",
+    "metrics": {
+      "top1_avg_delta_pp": 74.8,
+      "fur_delta_pp": 72.58,
+      "p95_increase_pct": 13.7122,
+      "stability_pass": true,
+      "go": true,
+      "gates": {
+        "top1_avg_delta_pp_ge_8": true,
+        "fur_delta_pp_ge_10": true,
+        "p95_increase_pct_le_15": true
+      }
+    },
+    "config": {
+      "memory_backend": "builtin",
+      "memory_slot": "memory-mem0-graphiti-bridge",
+      "read_mode": "primary",
+      "cutover_percent": 100,
+      "routing": {
+        "default_route": "local",
+        "semantic_route": "mem0",
+        "timeline_route": "graphiti",
+        "fallback_route": "local"
+      },
+      "mem0_base_url": "http://127.0.0.1:8766",
+      "graphiti_base_url": "http://127.0.0.1:8000"
+    },
+    "implicit_parameters": {
+      "single_primary": true,
+      "graphiti_max_facts": 1,
+      "memory_search_hyphen_hard_gate": "PASS"
+    },
+    "regression_gate": {
+      "acceptance_result": "PASS",
+      "hard_gate_queries": [
+        "DEC-2026-02-21-main-role-boundary",
+        "DEC-2026-02-22-documentation-first-freeze"
+      ],
+      "hard_gate_failure_condition": "If L2 primary hyphen results_count=0, the regression script adds a blocker"
+    },
+    "freeze_scope": {
+      "defines": [
+        "official read-path winning baseline for W5",
+        "official quality thresholds",
+        "official route split narrative",
+        "official graphiti max_facts budget",
+        "official memory_search hyphen hard gate"
+      ],
+      "does_not_define": [
+        "current live write-path state",
+        "current live qmd local backend",
+        "proposal / canary / manual commit governance"
+      ]
+    },
+    "forbidden_mutations": [
+      "replace the artifact directory with a different day/runs snapshot",
+      "rewrite the baseline narrative from builtin to qmd",
+      "drop graphiti max_facts=1 from the frozen package",
+      "downgrade the hyphen regression from hard gate to optional check",
+      "treat day33 as proof that the current write path is already fully canonical"
+    ]
+  }
+}
