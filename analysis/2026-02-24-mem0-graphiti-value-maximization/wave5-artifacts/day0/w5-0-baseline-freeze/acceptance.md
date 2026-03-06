@@ -1,8 +1,8 @@
 # W5-0 acceptance
 
-- status: READY_FOR_HUMAN_REVIEW
-- phase_advance_decision: NO_GO
-- reason: W5-A requires human signoff after W5-0 review
+- status: ACCEPTED
+- phase_advance_decision: GO
+- reason: W5-0 pack reviewed and accepted; W5-A is allowed to begin
 
 ## Scope
 
@@ -39,9 +39,16 @@
 - [x] 本机当前配置真实状态已记录，且与正式基线差异已单列
 - [x] `local / fallback / builtin / qmd / bridge` 已形成无冲突字典
 - [x] 当前写链路已正式命名为半落地实验态
-- [ ] 人工签字确认可以进入 `W5-A`
+- [x] 人工签字确认可以进入 `W5-A`
 
 ## Final Acceptance
 
 - `W5-0` 证据化冻结交付：完成
-- `W5-A` 放行结论：No-Go（等待人工验收签字）
+- `W5-A` 放行结论：Go（W5-0 已完成并通过人工验收）
+
+## Human Signoff
+
+- signoff_date: 2026-03-06
+- signoff_scope: W5-0 baseline freeze pack
+- decision: GO_TO_W5-A
+- note: 已确认正式基线、现地画像、术语统一与写链路当前状态记录可作为 W5-A 的唯一前置输入。
