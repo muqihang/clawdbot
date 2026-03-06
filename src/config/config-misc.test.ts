@@ -280,6 +280,37 @@ describe("model compat config schema", () => {
 
     expect(res.ok).toBe(true);
   });
+
+  it("accepts custom Responses gateway provider fields", () => {
+    const res = validateConfigObject({
+      models: {
+        providers: {
+          sub2api: {
+            baseUrl: "http://127.0.0.1:18081/v1",
+            api: "openai-responses",
+            wsUrl: "ws://127.0.0.1:18081/v1/responses",
+            wsHeaders: {
+              session_id: "sess_test",
+            },
+            responsesGateway: true,
+            models: [
+              {
+                id: "gpt-5.4",
+                name: "GPT-5.4",
+                reasoning: true,
+                contextWindow: 1_000_000,
+                maxTokens: 128_000,
+                input: ["text", "image"],
+                cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+              },
+            ],
+          },
+        },
+      },
+    });
+
+    expect(res.ok).toBe(true);
+  });
 });
 
 describe("config paths", () => {

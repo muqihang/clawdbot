@@ -267,6 +267,28 @@ describe("OpenAIWebSocketManager", () => {
       lastSocket().simulateOpen();
       await connectPromise;
     });
+
+    it("merges custom headers into the WebSocket handshake", async () => {
+      const manager = buildManager({
+        headers: {
+          session_id: "sess_123",
+          conversation_id: "conv_123",
+        },
+      });
+      const connectPromise = manager.connect("sk-test");
+
+      expect(lastSocket().options).toMatchObject({
+        headers: expect.objectContaining({
+          Authorization: "Bearer sk-test",
+          "OpenAI-Beta": "responses-websocket=v1",
+          session_id: "sess_123",
+          conversation_id: "conv_123",
+        }),
+      });
+
+      lastSocket().simulateOpen();
+      await connectPromise;
+    });
   });
 
   // ─── send() ────────────────────────────────────────────────────────────────

@@ -649,6 +649,12 @@ export const FIELD_HELP: Record<string, string> = {
     'Selects provider auth style: "api-key" for API key auth, "token" for bearer token auth, "oauth" for OAuth credentials, and "aws-sdk" for AWS credential resolution. Match this to your provider requirements.',
   "models.providers.*.api":
     "Provider API adapter selection controlling request/response compatibility handling for model calls. Use the adapter that matches your upstream provider protocol to avoid feature mismatch.",
+  "models.providers.*.wsUrl":
+    "Optional WebSocket endpoint for Responses-compatible gateways. Use this when your provider exposes OpenAI Responses WebSocket transport on a custom URL instead of the official OpenAI endpoint, and keep it aligned with the same gateway that serves your HTTP Responses traffic.",
+  "models.providers.*.wsHeaders":
+    "Static headers merged into the Responses WebSocket handshake for custom gateways. Use this for session stickiness or proxy routing headers, and keep sensitive values in secrets.",
+  "models.providers.*.responsesGateway":
+    "Marks a custom provider as an OpenAI Responses-compatible gateway so WebSocket transport, store=true, and server compaction can be enabled without pretending the provider is the official OpenAI provider.",
   "models.providers.*.injectNumCtxForOpenAICompat":
     "Controls whether OpenClaw injects `options.num_ctx` for Ollama providers configured with the OpenAI-compatible adapter (`openai-completions`). Default is true. Set false only if your proxy/upstream rejects unknown `options` payload fields.",
   "models.providers.*.headers":

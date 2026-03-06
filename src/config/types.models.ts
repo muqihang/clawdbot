@@ -52,6 +52,9 @@ export type ModelProviderConfig = {
   apiKey?: SecretInput;
   auth?: ModelProviderAuthMode;
   api?: ModelApi;
+  wsUrl?: string;
+  wsHeaders?: Record<string, string>;
+  responsesGateway?: boolean;
   injectNumCtxForOpenAICompat?: boolean;
   headers?: Record<string, string>;
   authHeader?: boolean;

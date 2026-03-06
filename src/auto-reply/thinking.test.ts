@@ -63,6 +63,11 @@ describe("listThinkingLevels", () => {
     expect(listThinkingLevels("sub2api", "gpt-5.3-codex")).toContain("xhigh");
   });
 
+  it("includes xhigh for sub2api gpt-5.4", () => {
+    expect(supportsXHighThinking("sub2api", "gpt-5.4")).toBe(true);
+    expect(listThinkingLevels("sub2api", "gpt-5.4")).toContain("xhigh");
+  });
+
   it("excludes xhigh for non-codex models", () => {
     expect(listThinkingLevels(undefined, "gpt-4.1-mini")).not.toContain("xhigh");
   });

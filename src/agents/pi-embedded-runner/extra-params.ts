@@ -15,6 +15,7 @@ const ANTHROPIC_1M_MODEL_PREFIXES = ["claude-opus-4", "claude-sonnet-4"] as cons
 // Codex responses (chatgpt.com/backend-api/codex/responses) require `store=false`.
 const OPENAI_RESPONSES_APIS = new Set(["openai-responses"]);
 const OPENAI_RESPONSES_PROVIDERS = new Set(["openai", "azure-openai-responses"]);
+const OPENAI_RESPONSES_SERVICE_TIERS = new Set(["auto", "default", "flex", "priority"]);
 
 /**
  * Resolve provider-specific extra params from model config.
@@ -208,12 +209,15 @@ function isDirectOpenAIBaseUrl(baseUrl: unknown): boolean {
   }
 }
 
-function shouldForceResponsesStore(model: {
-  api?: unknown;
-  provider?: unknown;
-  baseUrl?: unknown;
-  compat?: { supportsStore?: boolean };
-}): boolean {
+function shouldForceResponsesStore(
+  model: {
+    api?: unknown;
+    provider?: unknown;
+    baseUrl?: unknown;
+    compat?: { supportsStore?: boolean };
+  },
+  responsesGateway = false,
+): boolean {
   // Never force store=true when the model explicitly declares supportsStore=false
   // (e.g. Azure OpenAI Responses API without server-side persistence).
   if (model.compat?.supportsStore === false) {
@@ -224,6 +228,9 @@ function shouldForceResponsesStore(model: {
   }
   if (!OPENAI_RESPONSES_APIS.has(model.api)) {
     return false;
+  }
+  if (responsesGateway) {
+    return true;
   }
   if (!OPENAI_RESPONSES_PROVIDERS.has(model.provider)) {
     return false;
@@ -260,30 +267,54 @@ function shouldEnableOpenAIResponsesServerCompaction(
     compat?: { supportsStore?: boolean };
   },
   extraParams: Record<string, unknown> | undefined,
+  responsesGateway = false,
 ): boolean {
   const configured = extraParams?.responsesServerCompaction;
   if (configured === false) {
     return false;
   }
-  if (!shouldForceResponsesStore(model)) {
+  if (!shouldForceResponsesStore(model, responsesGateway)) {
     return false;
   }
   if (configured === true) {
     return true;
   }
   // Auto-enable for direct OpenAI Responses models.
-  return model.provider === "openai";
+  return model.provider === "openai" || responsesGateway;
+}
+
+function resolveResponsesServiceTier(
+  extraParams: Record<string, unknown> | undefined,
+): "auto" | "default" | "flex" | "priority" | undefined {
+  const candidate = extraParams?.service_tier ?? extraParams?.serviceTier;
+  if (typeof candidate !== "string") {
+    return undefined;
+  }
+  const normalized = candidate.trim().toLowerCase();
+  if (OPENAI_RESPONSES_SERVICE_TIERS.has(normalized)) {
+    return normalized;
+  }
+  if (normalized.length > 0) {
+    log.warn(`ignoring unsupported service_tier for Responses API: ${normalized}`);
+  }
+  return undefined;
 }
 
 function createOpenAIResponsesContextManagementWrapper(
   baseStreamFn: StreamFn | undefined,
   extraParams: Record<string, unknown> | undefined,
+  gatewayOptions?: { responsesGateway?: boolean },
 ): StreamFn {
   const underlying = baseStreamFn ?? streamSimple;
   return (model, context, options) => {
-    const forceStore = shouldForceResponsesStore(model);
-    const useServerCompaction = shouldEnableOpenAIResponsesServerCompaction(model, extraParams);
-    if (!forceStore && !useServerCompaction) {
+    const forceStore = shouldForceResponsesStore(model, gatewayOptions?.responsesGateway === true);
+    const useServerCompaction = shouldEnableOpenAIResponsesServerCompaction(
+      model,
+      extraParams,
+      gatewayOptions?.responsesGateway === true,
+    );
+    const serviceTier = resolveResponsesServiceTier(extraParams);
+    if (!forceStore && !useServerCompaction && !serviceTier) {
       return underlying(model, context, options);
     }
 
@@ -306,6 +337,9 @@ function createOpenAIResponsesContextManagementWrapper(
                 compact_threshold: compactThreshold,
               },
             ];
+          }
+          if (serviceTier && payloadObj.service_tier === undefined) {
+            payloadObj.service_tier = serviceTier;
           }
         }
         originalOnPayload?.(payload);
@@ -873,6 +907,10 @@ export function applyExtraParamsToAgent(
     modelId,
     agentId,
   });
+  const providerConfig = cfg?.models?.providers?.[provider];
+  const responsesGateway =
+    providerConfig?.responsesGateway === true ||
+    (typeof providerConfig?.wsUrl === "string" && providerConfig.wsUrl.trim().length > 0);
   if (provider === "openai-codex") {
     // Default Codex to WebSocket-first when nothing else specifies transport.
     agent.streamFn = createCodexDefaultTransportWrapper(agent.streamFn);
@@ -963,5 +1001,7 @@ export function applyExtraParamsToAgent(
   // Work around upstream pi-ai hardcoding `store: false` for Responses API.
   // Force `store=true` for direct OpenAI Responses models and auto-enable
   // server-side compaction for compatible OpenAI Responses payloads.
-  agent.streamFn = createOpenAIResponsesContextManagementWrapper(agent.streamFn, merged);
+  agent.streamFn = createOpenAIResponsesContextManagementWrapper(agent.streamFn, merged, {
+    responsesGateway,
+  });
 }

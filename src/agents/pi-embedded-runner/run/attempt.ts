@@ -42,6 +42,7 @@ import { resolveImageSanitizationLimits } from "../../image-sanitization.js";
 import { resolveModelAuthMode } from "../../model-auth.js";
 import { normalizeProviderId, resolveDefaultModelForAgent } from "../../model-selection.js";
 import { createOllamaStreamFn, OLLAMA_NATIVE_BASE_URL } from "../../ollama-stream.js";
+import type { OpenAIWebSocketManagerOptions } from "../../openai-ws-connection.js";
 import { createOpenAIWebSocketStreamFn, releaseWsSession } from "../../openai-ws-stream.js";
 import { resolveOwnerDisplaySetting } from "../../owner-display.js";
 import {
@@ -163,6 +164,65 @@ export function isOllamaCompatProvider(model: {
   } catch {
     return false;
   }
+}
+
+function normalizeWebSocketHeaders(value: unknown): Record<string, string> | undefined {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return undefined;
+  }
+
+  const entries = Object.entries(value).filter(
+    ([key, headerValue]) =>
+      key.trim().length > 0 && typeof headerValue === "string" && headerValue.trim().length > 0,
+  );
+  return entries.length > 0 ? Object.fromEntries(entries) : undefined;
+}
+
+export function resolveResponsesGatewayWebSocketConfig(params: {
+  config?: OpenClawConfig;
+  provider: string;
+  sessionId: string;
+  model: { api?: string; provider?: string };
+}): { managerOptions?: OpenAIWebSocketManagerOptions; promptCacheKey?: string } | undefined {
+  if (params.model.api !== "openai-responses") {
+    return undefined;
+  }
+
+  const providerId =
+    typeof params.model.provider === "string" && params.model.provider.trim().length > 0
+      ? params.model.provider.trim()
+      : params.provider;
+
+  if (providerId === "openai") {
+    return {};
+  }
+
+  const providerConfig = params.config?.models?.providers?.[providerId];
+  if (!providerConfig) {
+    return undefined;
+  }
+
+  const wsUrl = typeof providerConfig.wsUrl === "string" ? providerConfig.wsUrl.trim() : "";
+  const normalizedWsUrl = wsUrl.length > 0 ? wsUrl : undefined;
+  const wsHeaders = normalizeWebSocketHeaders(providerConfig.wsHeaders);
+  const responsesGateway =
+    providerConfig.responsesGateway === true || normalizedWsUrl !== undefined;
+  if (!responsesGateway) {
+    return undefined;
+  }
+
+  const managerOptions =
+    normalizedWsUrl || wsHeaders
+      ? {
+          ...(normalizedWsUrl ? { url: normalizedWsUrl } : {}),
+          ...(wsHeaders ? { headers: wsHeaders } : {}),
+        }
+      : undefined;
+
+  return {
+    ...(managerOptions ? { managerOptions } : {}),
+    promptCacheKey: params.sessionId,
+  };
 }
 
 export function resolveOllamaCompatNumCtxEnabled(params: {
@@ -993,19 +1053,35 @@ export async function runEmbeddedAttempt(
           providerBaseUrl,
         });
         activeSession.agent.streamFn = createOllamaStreamFn(ollamaBaseUrl);
-      } else if (params.model.api === "openai-responses" && params.provider === "openai") {
-        const wsApiKey = await params.authStorage.getApiKey(params.provider);
-        if (wsApiKey) {
-          activeSession.agent.streamFn = createOpenAIWebSocketStreamFn(wsApiKey, params.sessionId, {
-            signal: runAbortController.signal,
-          });
+      } else {
+        const wsConfig = resolveResponsesGatewayWebSocketConfig({
+          config: params.config,
+          provider: params.provider,
+          sessionId: params.sessionId,
+          model: params.model,
+        });
+        if (wsConfig) {
+          const wsApiKey = await params.authStorage.getApiKey(params.provider);
+          if (wsApiKey) {
+            activeSession.agent.streamFn = createOpenAIWebSocketStreamFn(
+              wsApiKey,
+              params.sessionId,
+              {
+                managerOptions: wsConfig.managerOptions,
+                promptCacheKey: wsConfig.promptCacheKey,
+                signal: runAbortController.signal,
+              },
+            );
+          } else {
+            log.warn(
+              `[ws-stream] no API key for provider=${params.provider}; using HTTP transport`,
+            );
+            activeSession.agent.streamFn = streamSimple;
+          }
         } else {
-          log.warn(`[ws-stream] no API key for provider=${params.provider}; using HTTP transport`);
+          // Force a stable streamFn reference so vitest can reliably mock @mariozechner/pi-ai.
           activeSession.agent.streamFn = streamSimple;
         }
-      } else {
-        // Force a stable streamFn reference so vitest can reliably mock @mariozechner/pi-ai.
-        activeSession.agent.streamFn = streamSimple;
       }
 
       // Ollama with OpenAI-compatible API needs num_ctx in payload.options.

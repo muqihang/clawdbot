@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import type { OpenClawConfig } from "../../../config/config.js";
 import {
   isOllamaCompatProvider,
+  resolveResponsesGatewayWebSocketConfig,
   resolveAttemptFsWorkspaceOnly,
   resolveOllamaBaseUrlForRun,
   resolveOllamaCompatNumCtxEnabled,
@@ -122,6 +123,101 @@ describe("resolveAttemptFsWorkspaceOnly", () => {
         sessionAgentId: "main",
       }),
     ).toBe(false);
+  });
+});
+
+describe("resolveResponsesGatewayWebSocketConfig", () => {
+  it("enables Responses WebSocket for configured custom gateways", () => {
+    expect(
+      resolveResponsesGatewayWebSocketConfig({
+        config: {
+          models: {
+            providers: {
+              sub2api: {
+                baseUrl: "http://127.0.0.1:18081/v1",
+                api: "openai-responses",
+                wsUrl: "ws://127.0.0.1:18081/v1/responses",
+                wsHeaders: {
+                  session_id: "sess_header",
+                  conversation_id: "conv_header",
+                },
+                responsesGateway: true,
+                models: [],
+              },
+            },
+          },
+        },
+        provider: "sub2api",
+        sessionId: "sess-cache-key",
+        model: {
+          api: "openai-responses",
+          provider: "sub2api",
+        },
+      }),
+    ).toEqual({
+      managerOptions: {
+        url: "ws://127.0.0.1:18081/v1/responses",
+        headers: {
+          session_id: "sess_header",
+          conversation_id: "conv_header",
+        },
+      },
+      promptCacheKey: "sess-cache-key",
+    });
+  });
+
+  it("does not enable Responses WebSocket for unmarked custom providers", () => {
+    expect(
+      resolveResponsesGatewayWebSocketConfig({
+        config: {
+          models: {
+            providers: {
+              sub2api: {
+                baseUrl: "http://127.0.0.1:18081/v1",
+                api: "openai-responses",
+                models: [],
+              },
+            },
+          },
+        },
+        provider: "sub2api",
+        sessionId: "sess-cache-key",
+        model: {
+          api: "openai-responses",
+          provider: "sub2api",
+        },
+      }),
+    ).toBeUndefined();
+  });
+
+  it("enables Responses WebSocket when wsUrl is configured even without responsesGateway", () => {
+    expect(
+      resolveResponsesGatewayWebSocketConfig({
+        config: {
+          models: {
+            providers: {
+              sub2api: {
+                baseUrl: "http://127.0.0.1:18081/v1",
+                api: "openai-responses",
+                wsUrl: "ws://127.0.0.1:18081/v1/responses",
+                models: [],
+              },
+            },
+          },
+        },
+        provider: "sub2api",
+        sessionId: "sess-cache-key",
+        model: {
+          api: "openai-responses",
+          provider: "sub2api",
+        },
+      }),
+    ).toEqual({
+      managerOptions: {
+        url: "ws://127.0.0.1:18081/v1/responses",
+      },
+      promptCacheKey: "sess-cache-key",
+    });
   });
 });
 

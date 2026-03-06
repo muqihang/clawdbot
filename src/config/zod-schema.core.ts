@@ -232,6 +232,9 @@ export const ModelProviderSchema = z
       .union([z.literal("api-key"), z.literal("aws-sdk"), z.literal("oauth"), z.literal("token")])
       .optional(),
     api: ModelApiSchema.optional(),
+    wsUrl: z.string().min(1).optional(),
+    wsHeaders: z.record(z.string(), z.string()).optional(),
+    responsesGateway: z.boolean().optional(),
     injectNumCtxForOpenAICompat: z.boolean().optional(),
     headers: z.record(z.string(), z.string()).optional(),
     authHeader: z.boolean().optional(),

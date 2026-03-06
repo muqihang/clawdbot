@@ -221,4 +221,44 @@ describe("loadModelCatalog", () => {
     expect(matches).toHaveLength(1);
     expect(matches[0]?.name).toBe("Claude Opus 4.6");
   });
+
+  it("merges configured sub2api gpt-5.4 models into the catalog", async () => {
+    mockSingleOpenAiCatalogModel();
+
+    const result = await loadModelCatalog({
+      config: {
+        models: {
+          providers: {
+            sub2api: {
+              baseUrl: "http://127.0.0.1:18081/v1",
+              api: "openai-responses",
+              responsesGateway: true,
+              models: [
+                {
+                  id: "gpt-5.4",
+                  name: "GPT-5.4",
+                  reasoning: true,
+                  input: ["text", "image"],
+                  cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+                  contextWindow: 1_000_000,
+                  maxTokens: 128_000,
+                },
+              ],
+            },
+          },
+        },
+      } as OpenClawConfig,
+    });
+
+    expect(result).toContainEqual(
+      expect.objectContaining({
+        provider: "sub2api",
+        id: "gpt-5.4",
+        name: "GPT-5.4",
+        reasoning: true,
+        contextWindow: 1_000_000,
+        input: ["text", "image"],
+      }),
+    );
+  });
 });

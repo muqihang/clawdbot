@@ -1094,6 +1094,39 @@ describe("applyExtraParamsToAgent", () => {
     expect(payload.store).toBe(false);
   });
 
+  it("forces store=true for configured Responses gateway providers", () => {
+    const payload = runResponsesPayloadMutationCase({
+      applyProvider: "sub2api",
+      applyModelId: "gpt-5.4",
+      cfg: {
+        models: {
+          providers: {
+            sub2api: {
+              baseUrl: "http://127.0.0.1:18081/v1",
+              api: "openai-responses",
+              responsesGateway: true,
+              wsUrl: "ws://127.0.0.1:18081/v1/responses",
+              models: [],
+            },
+          },
+        },
+      },
+      model: {
+        api: "openai-responses",
+        provider: "sub2api",
+        id: "gpt-5.4",
+        name: "gpt-5.4",
+        baseUrl: "http://127.0.0.1:18081/v1",
+        reasoning: true,
+        input: ["text", "image"],
+        cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+        contextWindow: 1_000_000,
+        maxTokens: 128_000,
+      } as unknown as Model<"openai-responses">,
+    });
+    expect(payload.store).toBe(true);
+  });
+
   it("auto-injects OpenAI Responses context_management compaction for direct OpenAI models", () => {
     const payload = runResponsesPayloadMutationCase({
       applyProvider: "openai",
@@ -1161,6 +1194,50 @@ describe("applyExtraParamsToAgent", () => {
     ]);
   });
 
+  it("auto-injects Responses gateway context_management with configured 900000 threshold", () => {
+    const payload = runResponsesPayloadMutationCase({
+      applyProvider: "sub2api",
+      applyModelId: "gpt-5.4",
+      cfg: {
+        models: {
+          providers: {
+            sub2api: {
+              baseUrl: "http://127.0.0.1:18081/v1",
+              api: "openai-responses",
+              responsesGateway: true,
+              models: [],
+            },
+          },
+        },
+        agents: {
+          defaults: {
+            models: {
+              "sub2api/gpt-5.4": {
+                params: {
+                  responsesCompactThreshold: 900_000,
+                },
+              },
+            },
+          },
+        },
+      },
+      model: {
+        api: "openai-responses",
+        provider: "sub2api",
+        id: "gpt-5.4",
+        baseUrl: "http://127.0.0.1:18081/v1",
+        contextWindow: 1_000_000,
+        maxTokens: 128_000,
+      } as unknown as Model<"openai-responses">,
+    });
+    expect(payload.context_management).toEqual([
+      {
+        type: "compaction",
+        compact_threshold: 900_000,
+      },
+    ]);
+  });
+
   it("preserves existing context_management payload values", () => {
     const payload = runResponsesPayloadMutationCase({
       applyProvider: "openai",
@@ -1204,6 +1281,84 @@ describe("applyExtraParamsToAgent", () => {
       } as unknown as Model<"openai-responses">,
     });
     expect(payload).not.toHaveProperty("context_management");
+  });
+
+  it("injects official service_tier from camelCase params", () => {
+    const payload = runResponsesPayloadMutationCase({
+      applyProvider: "sub2api",
+      applyModelId: "gpt-5.4",
+      cfg: {
+        agents: {
+          defaults: {
+            models: {
+              "sub2api/gpt-5.4": {
+                params: {
+                  serviceTier: "priority",
+                },
+              },
+            },
+          },
+        },
+      },
+      model: {
+        api: "openai-responses",
+        provider: "sub2api",
+        id: "gpt-5.4",
+      } as unknown as Model<"openai-responses">,
+    });
+    expect(payload.service_tier).toBe("priority");
+  });
+
+  it("injects official service_tier from snake_case params", () => {
+    const payload = runResponsesPayloadMutationCase({
+      applyProvider: "sub2api",
+      applyModelId: "gpt-5.4",
+      cfg: {
+        agents: {
+          defaults: {
+            models: {
+              "sub2api/gpt-5.4": {
+                params: {
+                  service_tier: "flex",
+                },
+              },
+            },
+          },
+        },
+      },
+      model: {
+        api: "openai-responses",
+        provider: "sub2api",
+        id: "gpt-5.4",
+      } as unknown as Model<"openai-responses">,
+    });
+    expect(payload.service_tier).toBe("flex");
+  });
+
+  it("does not map unsupported fast service tier aliases", () => {
+    const payload = runResponsesPayloadMutationCase({
+      applyProvider: "sub2api",
+      applyModelId: "gpt-5.4",
+      cfg: {
+        agents: {
+          defaults: {
+            models: {
+              "sub2api/gpt-5.4": {
+                params: {
+                  serviceTier: "fast",
+                },
+              },
+            },
+          },
+        },
+      },
+      model: {
+        api: "openai-responses",
+        provider: "sub2api",
+        id: "gpt-5.4",
+      } as unknown as Model<"openai-responses">,
+    });
+    expect(payload).not.toHaveProperty("service_tier");
   });
 
   it.each([

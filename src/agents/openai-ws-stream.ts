@@ -340,6 +340,8 @@ export function buildAssistantMessageFromResponse(
 export interface OpenAIWebSocketStreamOptions {
   /** Manager options (url override, retry counts, etc.) */
   managerOptions?: OpenAIWebSocketManagerOptions;
+  /** Optional cache key forwarded to Responses-compatible gateway payloads. */
+  promptCacheKey?: string;
   /** Abort signal forwarded from the run. */
   signal?: AbortSignal;
 }
@@ -596,6 +598,9 @@ export function createOpenAIWebSocketStreamFn(
         input: inputItems,
         instructions: context.systemPrompt ?? undefined,
         tools: tools.length > 0 ? tools : undefined,
+        ...(typeof opts.promptCacheKey === "string" && opts.promptCacheKey.trim().length > 0
+          ? { prompt_cache_key: opts.promptCacheKey.trim() }
+          : {}),
         ...(prevResponseId ? { previous_response_id: prevResponseId } : {}),
         ...extraParams,
       };
