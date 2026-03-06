@@ -1,0 +1,29 @@
+{
+  "overall_verdict": "方向正确，W4 已收口成功，但前期设计与排障方法存在明显缺陷；可进入 W5，但需带着风险清单。",
+  "architecture_assessment": "三层架构方向正确：builtin local 负责确定性与控制，Mem0 负责作用域化语义与治理，Graphiti 负责关系与时序；但 Graphiti 仍未被充分图原生化使用。",
+  "quality_assessment": "当前质量提升是实打实的，不是虚高；day33 Gate-4 在四桶上表现稳定，Top1 与 FUR 提升显著。",
+  "latency_assessment": "W4 末期已达标，但主要靠 single-primary 和 max_facts 收敛尾延迟；后续仍应通过 graph-native 范围控制进一步优化。",
+  "stability_assessment": "当前 Gate-4 稳定性达标，说明核心链路已从易抖动状态收敛；但对外部依赖和自托管运行时的敏感性仍然存在。",
+  "observability_assessment": "比前期显著提升，已具备 route、fallback、recipe、temporal 和 ontology 级诊断；但仍缺少系统化 upstream 契约监控。",
+  "maintainability_assessment": "中等偏弱，桥接核心逻辑过度集中，后续持续演进风险较高。",
+  "keep_for_w5": [
+    "三层分工思想：builtin local + Mem0 + Graphiti",
+    "Gate 与证据驱动的推进方式",
+    "single-primary + fallback 的融合执行策略",
+    "builtin local 作为默认 fallback",
+    "Mem0 的 user_id/agent_id/run_id 作用域设计"
+  ],
+  "fix_before_w5": [
+    "建立 upstream 契约 smoke 与兼容回归",
+    "拆分 bridge 核心逻辑，降低单文件耦合",
+    "设计并安全引入 Graphiti group_ids 限组搜索"
+  ],
+  "defer_items": [
+    "更激进的多路图重排器实验",
+    "Qdrant 更深度的索引与过滤调优",
+    "qmd 的长期位置再评估"
+  ],
+  "entry_to_w5_recommendation": "可以进入 W5，但需带着风险清单",
+  "top_strengths": ["角色分工方向正确", "最终 Gate-4 已全门禁通过", "可观测性比前期显著增强"],
+  "top_defects": ["前期未把外部契约当硬约束", "Graphiti 能力利用不足", "bridge 核心逻辑过度集中"]
+}

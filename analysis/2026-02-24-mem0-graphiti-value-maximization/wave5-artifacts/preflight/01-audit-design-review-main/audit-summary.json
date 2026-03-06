@@ -1,0 +1,40 @@
+{
+  "overall_verdict": "可以进入W5，但需带着风险清单",
+  "architecture_assessment": {
+    "rating": "B+",
+    "summary": "方向正确，三层分工基本成立，但 bridge 层承担了过多策略职责。"
+  },
+  "quality_assessment": {
+    "rating": "A-",
+    "summary": "质量提升明确且已通过严格门禁，但评测集开始接近饱和。"
+  },
+  "latency_assessment": {
+    "rating": "B",
+    "summary": "W4 最终已过时延门，但 Graphiti 长尾仍是长期优化主题。"
+  },
+  "stability_assessment": {
+    "rating": "B+",
+    "summary": "当前门禁已过，说明方案可以稳定运行，但仍依赖外部图服务与部署细节。"
+  },
+  "observability_assessment": {
+    "rating": "B+",
+    "summary": "路由、回退、失败原因已具备较好的诊断能力，但还缺统一生产视图。"
+  },
+  "maintainability_assessment": {
+    "rating": "C+",
+    "summary": "桥接主文件过重、策略静态规则较多，长期维护压力明显。"
+  },
+  "keep_for_w5": [
+    "local-first 分层方向",
+    "Mem0 的作用域化搜索设计",
+    "Graphiti 的时序关系定位",
+    "memory_search 硬门禁",
+    "Gate-4 单变量收口方法"
+  ],
+  "fix_before_w5": [
+    "冻结 day33 获胜配置为 W5 基线",
+    "把部署型补丁改成显式运行画像",
+    "明确 qmd 当前不是推荐主路径"
+  ],
+  "defer_items": ["Graphiti 更复杂重排器实验", "更深的 Qdrant 参数调优", "统一线上可观测面板"]
+}

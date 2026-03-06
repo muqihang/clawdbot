@@ -1,0 +1,6 @@
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/preflight/02-audit-design-review-sisyphus/audit-review.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/preflight/02-audit-design-review-sisyphus/audit-summary.json
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/preflight/02-audit-design-review-sisyphus/external-sources.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/preflight/02-audit-design-review-sisyphus/findings-table.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/preflight/02-audit-design-review-sisyphus/recommendations-ranked.md
+analysis/2026-02-24-mem0-graphiti-value-maximization/wave5-artifacts/preflight/02-audit-design-review-sisyphus/changed_files.txt
