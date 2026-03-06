@@ -525,6 +525,8 @@ def init_phase_metrics(phase: str, file_count: int, chunk_count: int) -> dict[st
 
 def update_target_metrics(phase_metrics: dict[str, Any], target: str, result: TargetResult) -> None:
     target_metrics = phase_metrics[target]
+    if result.status == "skipped_disabled":
+        return
     if result.status == "dry_run_pending":
         target_metrics["planned"] += 1
         return
@@ -549,6 +551,7 @@ def write_audit_line(path: Path, payload: dict[str, Any]) -> None:
 async def process_record(
     record: ChunkRecord,
     mode: str,
+    targets: set[str],
     mem0_done: dict[str, Any],
     graphiti_done: dict[str, Any],
     mem0_url: str,
@@ -561,16 +564,27 @@ async def process_record(
     backoff_base_s: float,
     backoff_max_s: float,
 ) -> ProcessResult:
+    mem0_enabled = "mem0" in targets
+    graphiti_enabled = "graphiti" in targets
+
     mem0_already_done = record.chunk_id in mem0_done
     graphiti_already_done = record.chunk_id in graphiti_done
 
     if mode == "dry-run":
-        mem0_status = "skipped_existing" if mem0_already_done else "dry_run_pending"
-        graphiti_status = "skipped_existing" if graphiti_already_done else "dry_run_pending"
+        mem0_status = (
+            ("skipped_existing" if mem0_already_done else "dry_run_pending")
+            if mem0_enabled
+            else "skipped_disabled"
+        )
+        graphiti_status = (
+            ("skipped_existing" if graphiti_already_done else "dry_run_pending")
+            if graphiti_enabled
+            else "skipped_disabled"
+        )
         return ProcessResult(record, TargetResult(mem0_status), TargetResult(graphiti_status))
 
-    mem0_result = TargetResult("skipped_existing")
-    if not mem0_already_done:
+    mem0_result = TargetResult("skipped_disabled" if not mem0_enabled else "skipped_existing")
+    if mem0_enabled and not mem0_already_done:
         try:
             _, retries = await request_json_with_retry(
                 method="POST",
@@ -585,8 +599,10 @@ async def process_record(
         except HttpCallError as error:
             mem0_result = TargetResult(status="failed", retries=max_attempts - 1, error=str(error))
 
-    graphiti_result = TargetResult("skipped_existing")
-    if not graphiti_already_done:
+    graphiti_result = TargetResult(
+        "skipped_disabled" if not graphiti_enabled else "skipped_existing"
+    )
+    if graphiti_enabled and not graphiti_already_done:
         try:
             _, retries = await request_json_with_retry(
                 method="POST",
@@ -609,6 +625,7 @@ async def run_phase(
     source_root: Path,
     state: dict[str, Any],
     mode: str,
+    targets: set[str],
     days: int,
     concurrency: int,
     mem0_url: str,
@@ -659,6 +676,7 @@ async def run_phase(
             return await process_record(
                 record=record,
                 mode=mode,
+                targets=targets,
                 mem0_done=state["targets"]["mem0"],
                 graphiti_done=state["targets"]["graphiti"],
                 mem0_url=mem0_url,
@@ -681,50 +699,52 @@ async def run_phase(
         if result.record.canonical_guarded:
             phase_metrics["reconciliation"]["canonical_guarded_chunks"] += 1
 
-        write_audit_line(
-            audit_file,
-            {
-                "timestamp": utc_now_iso(),
-                "run_id": run_id,
-                "phase": phase,
-                "target": "mem0",
-                "status": result.mem0.status,
-                "retries": result.mem0.retries,
-                "error": result.mem0.error,
-                "chunk_id": result.record.chunk_id,
-                "semantic_key": result.record.semantic_key,
-                "source_tier": result.record.source_tier,
-                "source_system": result.record.source_system,
-                "source_ref": result.record.source_ref,
-                "source_path": result.record.source_path,
-                "heading": result.record.heading,
-                "event_time": result.record.event_time,
-                "ingest_time": result.record.ingest_time,
-                "canonical_guarded": result.record.canonical_guarded,
-            },
-        )
-        write_audit_line(
-            audit_file,
-            {
-                "timestamp": utc_now_iso(),
-                "run_id": run_id,
-                "phase": phase,
-                "target": "graphiti",
-                "status": result.graphiti.status,
-                "retries": result.graphiti.retries,
-                "error": result.graphiti.error,
-                "chunk_id": result.record.chunk_id,
-                "semantic_key": result.record.semantic_key,
-                "source_tier": result.record.source_tier,
-                "source_system": result.record.source_system,
-                "source_ref": result.record.source_ref,
-                "source_path": result.record.source_path,
-                "heading": result.record.heading,
-                "event_time": result.record.event_time,
-                "ingest_time": result.record.ingest_time,
-                "canonical_guarded": result.record.canonical_guarded,
-            },
-        )
+        if result.mem0.status != "skipped_disabled":
+            write_audit_line(
+                audit_file,
+                {
+                    "timestamp": utc_now_iso(),
+                    "run_id": run_id,
+                    "phase": phase,
+                    "target": "mem0",
+                    "status": result.mem0.status,
+                    "retries": result.mem0.retries,
+                    "error": result.mem0.error,
+                    "chunk_id": result.record.chunk_id,
+                    "semantic_key": result.record.semantic_key,
+                    "source_tier": result.record.source_tier,
+                    "source_system": result.record.source_system,
+                    "source_ref": result.record.source_ref,
+                    "source_path": result.record.source_path,
+                    "heading": result.record.heading,
+                    "event_time": result.record.event_time,
+                    "ingest_time": result.record.ingest_time,
+                    "canonical_guarded": result.record.canonical_guarded,
+                },
+            )
+        if result.graphiti.status != "skipped_disabled":
+            write_audit_line(
+                audit_file,
+                {
+                    "timestamp": utc_now_iso(),
+                    "run_id": run_id,
+                    "phase": phase,
+                    "target": "graphiti",
+                    "status": result.graphiti.status,
+                    "retries": result.graphiti.retries,
+                    "error": result.graphiti.error,
+                    "chunk_id": result.record.chunk_id,
+                    "semantic_key": result.record.semantic_key,
+                    "source_tier": result.record.source_tier,
+                    "source_system": result.record.source_system,
+                    "source_ref": result.record.source_ref,
+                    "source_path": result.record.source_path,
+                    "heading": result.record.heading,
+                    "event_time": result.record.event_time,
+                    "ingest_time": result.record.ingest_time,
+                    "canonical_guarded": result.record.canonical_guarded,
+                },
+            )
 
         if mode == "apply":
             state_updated = False
@@ -798,6 +818,11 @@ async def run(args: argparse.Namespace) -> int:
     run_id = datetime.now(timezone.utc).strftime("backfill-%Y%m%dT%H%M%SZ")
     ingest_time = utc_now_iso()
 
+    targets = set(args.targets)
+    if not targets:
+        print("[backfill] ERROR: --targets must include at least one of: mem0, graphiti", file=sys.stderr)
+        return 2
+
     state_file = Path(args.state_file).expanduser()
     summary_dir = Path(args.summary_dir).expanduser()
     summary_dir.mkdir(parents=True, exist_ok=True)
@@ -813,6 +838,7 @@ async def run(args: argparse.Namespace) -> int:
             source_root=source_root,
             state=state,
             mode=mode,
+            targets=targets,
             days=args.days,
             concurrency=args.concurrency,
             mem0_url=args.mem0_url.rstrip("/"),
@@ -872,6 +898,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source-root", required=True, help="local source memory root")
     parser.add_argument("--phase", choices=[*PHASES, "all"], default="all")
     parser.add_argument("--days", type=int, default=14, help="daily phase days window")
+    parser.add_argument(
+        "--targets",
+        nargs="+",
+        choices=["mem0", "graphiti"],
+        default=["mem0", "graphiti"],
+        help="which remote targets to write (default: both)",
+    )
 
     mode_group = parser.add_mutually_exclusive_group(required=True)
     mode_group.add_argument("--dry-run", action="store_true")
