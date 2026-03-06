@@ -218,6 +218,35 @@ validate_required_env() {
   fi
 }
 
+normalize_neo4j_uri() {
+  # Neo4j Aura commonly recommends `neo4j+s://...` which enables routing. We observed intermittent
+  # DNS resolution failures during routing table refreshes, which can surface as Graphiti `/search`
+  # timeouts and Gate-4 stability flakiness. Switching to direct `bolt+s://...` reduces routing
+  # refresh churn while preserving TLS.
+  local uri="${NEO4J_URI:-}"
+  [[ -n "$uri" ]] || return 0
+
+  # Only apply this normalization for Aura-style hosts (routing is usually unnecessary and can add
+  # extra DNS churn). For self-hosted clusters, keep the operator-provided URI as-is.
+  local host="${uri#*://}"
+  host="${host%%/*}"
+  if [[ "$host" != *".databases.neo4j.io"* ]]; then
+    return 0
+  fi
+
+  local normalized="$uri"
+  case "$uri" in
+    neo4j+ssc://*) normalized="bolt+ssc://${uri#neo4j+ssc://}" ;;
+    neo4j+s://*) normalized="bolt+s://${uri#neo4j+s://}" ;;
+    neo4j://*) normalized="bolt://${uri#neo4j://}" ;;
+  esac
+
+  if [[ "$normalized" != "$uri" ]]; then
+    export NEO4J_URI="$normalized"
+    log "normalized NEO4J_URI scheme: ${uri%%://*} -> ${normalized%%://*}"
+  fi
+}
+
 validate_embedding_policy() {
   if [[ "${EMBEDDING_BASE_URL}" == *"18082"* ]]; then
     fail "EMBEDDING_BASE_URL must not target port 18082: ${EMBEDDING_BASE_URL}. Port 18082 is forbidden for embedding endpoints."

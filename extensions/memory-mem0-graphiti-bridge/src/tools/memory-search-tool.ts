@@ -10,6 +10,7 @@ import type {
   BridgeFlags,
   BridgeFusionBucket,
   BridgeFusionBucketPolicy,
+  BridgeRemoteRoute,
   BridgeRoute,
 } from "../config/flags.js";
 import {
@@ -2496,6 +2497,12 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           bucket: fusionBucket,
         });
 
+        const configuredRemoteRoute: BridgeRemoteRoute =
+          responseRoute === "graphiti" ? "graphiti" : "mem0";
+        const fusionPrimaryRoute: BridgeRemoteRoute =
+          readPlan.queryBucket === "exact_id" ? "graphiti" : configuredRemoteRoute;
+        const fusionSecondaryRoute: BridgeRemoteRoute =
+          fusionPrimaryRoute === "mem0" ? "graphiti" : "mem0";
         const mem0RecipeDecision = resolveRecipeForRoute("mem0");
         const graphitiRecipeDecision = resolveRecipeForRoute("graphiti");
         const [mem0FocalDecision, graphitiFocalDecision] = await Promise.all([
@@ -2505,8 +2512,20 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         const mem0TemporalFiltersDecision = resolveTemporalFiltersForRoute("mem0");
         const graphitiTemporalFiltersDecision = resolveTemporalFiltersForRoute("graphiti");
 
-        const [mem0Attempt, graphitiAttempt] = await Promise.all([
-          searchRemoteWithDiagnostics({
+        const emptyAttempt = (route: BridgeRoute): RemoteSearchAttempt => ({
+          route,
+          hits: [],
+          latencyMs: 0,
+        });
+
+        let mem0Attempted = false;
+        let graphitiAttempted = false;
+        let mem0Attempt = emptyAttempt("mem0");
+        let graphitiAttempt = emptyAttempt("graphiti");
+
+        const runMem0 = async (): Promise<RemoteSearchAttempt> => {
+          mem0Attempted = true;
+          mem0Attempt = await searchRemoteWithDiagnostics({
             route: "mem0",
             query,
             clients: deps.clients,
@@ -2517,8 +2536,13 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               buildTemporalFiltersSearchOptions(mem0TemporalFiltersDecision),
             ),
             mem0StableId,
-          }),
-          searchRemoteWithDiagnostics({
+          });
+          return mem0Attempt;
+        };
+
+        const runGraphiti = async (): Promise<RemoteSearchAttempt> => {
+          graphitiAttempted = true;
+          graphitiAttempt = await searchRemoteWithDiagnostics({
             route: "graphiti",
             query,
             clients: deps.clients,
@@ -2529,8 +2553,31 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
               buildTemporalFiltersSearchOptions(graphitiTemporalFiltersDecision),
             ),
             mem0StableId,
-          }),
-        ]);
+          });
+          return graphitiAttempt;
+        };
+
+        // Fusion can optionally consider both remote sources, but calling mem0 + graphiti for every
+        // query doubles embedding traffic and can blow up tail latency (Gate-4 p95). Instead, we
+        // run a single primary remote route per query and only fall back to the other remote when
+        // the primary returns no usable hits.
+        if (fusionPrimaryRoute === "mem0") {
+          await runMem0();
+        } else {
+          await runGraphiti();
+        }
+
+        const fusionPrimaryAttempt = fusionPrimaryRoute === "mem0" ? mem0Attempt : graphitiAttempt;
+        const fusionPrimaryFailed =
+          Boolean(fusionPrimaryAttempt.error) || fusionPrimaryAttempt.hits.length === 0;
+
+        if (fusionPrimaryFailed) {
+          if (fusionSecondaryRoute === "mem0") {
+            await runMem0();
+          } else {
+            await runGraphiti();
+          }
+        }
 
         const mem0Reranked = precisionPattern
           ? rerankRemoteHits({ hits: mem0Attempt.hits, precisionPattern })
@@ -2565,8 +2612,9 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
         const selectedSource = topCandidate?.source ?? "local";
 
         if (selectedSource === "local") {
-          const primaryAttempt = responseRoute === "mem0" ? mem0Attempt : graphitiAttempt;
-          const otherAttempt = responseRoute === "mem0" ? graphitiAttempt : mem0Attempt;
+          const primaryAttempt = fusionPrimaryRoute === "mem0" ? mem0Attempt : graphitiAttempt;
+          const otherAttempt = fusionPrimaryRoute === "mem0" ? graphitiAttempt : mem0Attempt;
+          const otherAttempted = fusionPrimaryRoute === "mem0" ? graphitiAttempted : mem0Attempted;
           const localFallbackReason =
             mem0Hits.length === 0 && graphitiHits.length === 0
               ? classifyFallbackReason(primaryAttempt)
@@ -2578,21 +2626,21 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           const routeTrace = createRouteTrace({
             readMode: deps.flags.read_mode,
             readPlan,
-            primaryRoute: responseRoute,
+            primaryRoute: fusionPrimaryRoute,
             selectedRoute: "local",
           });
           const fallbackTrace = createFallbackTrace({
             triggered: true,
             reason: localFallbackReason,
             primaryAttempt,
-            fallbackAttempt: otherAttempt,
+            fallbackAttempt: otherAttempted ? otherAttempt : undefined,
             resultRoute: "local",
           });
           const guardTrace = guardTraceBase({
             selectedRoute: "local",
             decision: "fusion_primary_local",
             remoteExactMatchCount:
-              responseRoute === "mem0" ? mem0ExactMatchCount : graphitiExactMatchCount,
+              fusionPrimaryRoute === "mem0" ? mem0ExactMatchCount : graphitiExactMatchCount,
             forcedLocal: false,
           });
           const recipeTrace = createRecipeTrace({
@@ -2647,12 +2695,12 @@ export function createBridgeMemorySearchTool(deps: BridgeSearchToolDeps): AnyAge
           : undefined;
 
         deps.snippetStore.setFromSearchHits(selectedHits);
-        const primaryAttempt = responseRoute === "mem0" ? mem0Attempt : graphitiAttempt;
-        const selectedFromPrimary = selectedRoute === responseRoute;
+        const primaryAttempt = fusionPrimaryRoute === "mem0" ? mem0Attempt : graphitiAttempt;
+        const selectedFromPrimary = selectedRoute === fusionPrimaryRoute;
         const routeTrace = createRouteTrace({
           readMode: deps.flags.read_mode,
           readPlan,
-          primaryRoute: responseRoute,
+          primaryRoute: fusionPrimaryRoute,
           selectedRoute,
         });
         const fallbackTrace = createFallbackTrace({

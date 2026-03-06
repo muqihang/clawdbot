@@ -14,6 +14,7 @@ write_env_template_if_missing
 import_defaults_from_repo_dotenv
 load_stack_env
 validate_required_env
+normalize_neo4j_uri
 validate_embedding_policy
 validate_embedding_credentials
 

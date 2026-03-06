@@ -845,11 +845,171 @@ describe("memory search bridge tool", () => {
     const results = detailsRecord.results as Array<Record<string, unknown>>;
 
     expect(mem0Search).toHaveBeenCalledTimes(1);
-    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).not.toHaveBeenCalled();
     expect(detailsRecord.source).toBe("mem0");
     expect(routeRecord.selected_route).toBe("mem0");
     expect(results[0]?.path).toBe("bridge/mem0/fusion-top");
     expect(results[0]?.source).toBe("mem0");
+  });
+
+  it("skips graphiti when fusion is enabled and mem0 is the primary route without a precision key", async () => {
+    const localTool = createLocalTool();
+    const mem0Search = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/mem0/m1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.9,
+          snippet: "mem0 hit",
+          source: "mem0",
+          remoteId: "m1",
+        },
+      ],
+    );
+    const graphitiSearch = vi.fn(
+      async (): Promise<BridgeSearchHit[]> => [
+        {
+          path: "bridge/graphiti/g1",
+          startLine: 1,
+          endLine: 1,
+          score: 0.99,
+          snippet: "graphiti hit",
+          source: "graphiti",
+          remoteId: "g1",
+        },
+      ],
+    );
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "primary",
+        cutover_percent: 100,
+        routing: {
+          default_route: "mem0",
+          semantic_route: "mem0",
+          timeline_route: "graphiti",
+          fallback_route: "local",
+        },
+        read: {
+          alias_normalization: false,
+          fusion: {
+            enabled: true,
+            bucket_policy: "balanced",
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const result = await tool.execute("1", { query: "what config owner is active" });
+    const detailsRecord = result.details as Record<string, unknown>;
+
+    expect(mem0Search).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch).not.toHaveBeenCalled();
+    expect(detailsRecord.source).toBe("mem0");
+  });
+
+  it("keeps exact_id fusion queries intact for graphiti recall", async () => {
+    const localTool: AnyAgentTool = {
+      name: "memory_search",
+      label: "Memory Search",
+      description: "local search tool",
+      parameters: {},
+      execute: vi.fn(async () => ({
+        content: [],
+        details: {
+          results: [
+            {
+              path: "MEMORY.md",
+              startLine: 1,
+              endLine: 1,
+              score: 0.1,
+              snippet: "weak local hit",
+              source: "memory",
+            },
+          ],
+          provider: "builtin",
+          model: "builtin",
+          citations: "auto",
+        },
+      })),
+    };
+    const mem0Search = vi.fn(async (): Promise<BridgeSearchHit[]> => []);
+    const graphitiSearch = vi.fn(async (query: string): Promise<BridgeSearchHit[]> => {
+      if (query.includes("二手车SaaS战略机会")) {
+        return [
+          {
+            path: "bridge/graphiti/b91591ae-hit",
+            startLine: 1,
+            endLine: 1,
+            score: 0.93,
+            snippet: "exact_id graphiti hit",
+            source: "graphiti",
+            remoteId: "b91591ae-ced0-4a4b-b924-0a3d60db0643",
+          },
+        ];
+      }
+      return [];
+    });
+
+    const tool = createBridgeMemorySearchTool({
+      flags: createFlags({
+        read_mode: "primary",
+        cutover_percent: 100,
+        read: {
+          alias_normalization: false,
+          fusion: {
+            enabled: true,
+            bucket_policy: "graphiti_focus",
+          },
+        },
+      }),
+      localTool,
+      snippetStore: createRemoteSnippetStore({ ttlMs: 10_000 }),
+      clients: {
+        mem0: {
+          search: mem0Search,
+          getById: vi.fn(async () => null),
+        },
+        graphiti: {
+          search: graphitiSearch,
+          getById: vi.fn(async () => null),
+        },
+      },
+      shadowReporter: {
+        record: vi.fn(),
+      },
+      sessionKey: "session-1",
+    });
+
+    const query =
+      "b91591ae 文档 /Users/muqihang/Downloads/podcast-ai/chelingxi/docs/调研报告/二手车SaaS战略机会研究.md 与 二手车SaaS战略机会 相关";
+    const result = await tool.execute("1", { query });
+    const detailsRecord = result.details as Record<string, unknown>;
+    const results = detailsRecord.results as Array<Record<string, unknown>>;
+
+    expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(graphitiSearch.mock.calls[0]?.[0]).toBe(query);
+    expect(mem0Search).not.toHaveBeenCalled();
+    expect(detailsRecord.source).toBe("graphiti");
+    expect(results[0]?.path).toBe("bridge/graphiti/b91591ae-hit");
+    expect(results[0]?.source).toBe("graphiti");
   });
 
   it("enables fusion primary rerank and can promote graphiti by weights", async () => {
@@ -916,8 +1076,8 @@ describe("memory search bridge tool", () => {
     const routeRecord = detailsRecord.route as Record<string, unknown>;
     const results = detailsRecord.results as Array<Record<string, unknown>>;
 
-    expect(mem0Search).toHaveBeenCalledTimes(1);
     expect(graphitiSearch).toHaveBeenCalledTimes(1);
+    expect(mem0Search).not.toHaveBeenCalled();
     expect(detailsRecord.source).toBe("graphiti");
     expect(routeRecord.selected_route).toBe("graphiti");
     expect(results[0]?.path).toBe("bridge/graphiti/temporal-top");

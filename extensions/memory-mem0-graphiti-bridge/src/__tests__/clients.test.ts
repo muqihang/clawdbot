@@ -85,7 +85,7 @@ describe("mem0 + graphiti clients", () => {
   it("uses a smaller max_facts budget for graphiti search to avoid timeouts", async () => {
     const fetchMock = vi.fn<typeof fetch>().mockImplementation(async (_url, init) => {
       const body = typeof init?.body === "string" ? JSON.parse(init.body) : null;
-      expect(body).toMatchObject({ query: "timeline", max_facts: 5 });
+      expect(body).toMatchObject({ query: "timeline", max_facts: 1 });
       return toJsonResponse(200, { results: [] });
     });
 
